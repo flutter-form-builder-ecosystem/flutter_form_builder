@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import './form_builder_input_option.dart';
