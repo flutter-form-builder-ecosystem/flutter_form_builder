@@ -40,11 +40,11 @@ class MyHomePage extends StatelessWidget {
                 FormBuilderInputOption(value: "Option 3"),
               ],
             ),
-            FormBuilderInput(
-              type: FormBuilderInput.TYPE_NUMBER,
+            FormBuilderInput.number(
               attribute: "age",
               label: "Age",
               require: true,
+              min: 18,
             ),
             FormBuilderInput(
               type: FormBuilderInput.TYPE_EMAIL,
@@ -88,6 +88,15 @@ class MyHomePage extends StatelessWidget {
                   FormBuilderInputOption(value: "Swift"),
                   FormBuilderInputOption(value: "Objective-C"),
                 ]),
+            FormBuilderInput.slider(
+              label: "Slider",
+              attribute: "slider",
+              min: 0.0,
+              require: true,
+              max: 100.0,
+              value: 10.0,
+              divisions: 20,
+            ),
           ],
           onChanged: () {
             print("Form Changed");

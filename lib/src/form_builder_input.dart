@@ -26,8 +26,9 @@ class FormBuilderInput {
   String placeholder;
   dynamic value;
   bool require;
-  dynamic min;
-  dynamic max;
+  num min;
+  int divisions;
+  num max;
   DateTime firstDate;
   DateTime lastDate;
   FormFieldValidator<String> validator;
@@ -46,10 +47,12 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
+    this.divisions,
     this.firstDate,
     this.lastDate,
     this.suggestionsCallback,
     this.itemBuilder,
+
   });
 
   FormBuilderInput.typeAhead({
@@ -63,6 +66,33 @@ class FormBuilderInput {
     this.validator,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
+  }
+
+  FormBuilderInput.number({
+    @required this.label,
+    @required this.attribute,
+    this.value,
+    this.placeholder,
+    this.min,
+    this.max,
+    this.require = false,
+    this.validator,
+  }): assert(min == null || max == null || min <= max) {
+    type = FormBuilderInput.TYPE_NUMBER;
+  }
+
+  FormBuilderInput.slider({
+    @required this.label,
+    @required this.attribute,
+    @required this.min,
+    @required this.max,
+    @required this.value,
+    this.divisions,
+    this.placeholder,
+    this.require = false,
+    this.validator,
+  }) {
+    type = FormBuilderInput.TYPE_SLIDER;
   }
 
   FormBuilderInput.dropdown({
@@ -87,19 +117,6 @@ class FormBuilderInput {
     this.validator,
   }) {
     type = FormBuilderInput.TYPE_RADIO;
-  }
-
-  FormBuilderInput.slider({
-    @required this.label,
-    @required this.attribute,
-    @required this.min,
-    @required this.max,
-    this.placeholder,
-    this.value,
-    this.require = false,
-    this.validator,
-  }) {
-    type = FormBuilderInput.TYPE_SLIDER;
   }
 
   FormBuilderInput.checkboxList({

@@ -82,15 +82,19 @@ class _FormBuilderState extends State<FormBuilder> {
                   formControl.type == FormBuilderInput.TYPE_NUMBER
                       ? num.tryParse(value)
                       : value;
-              ;
             },
             validator: (value) {
               if (formControl.require && value.isEmpty)
-                return "This field is required";
+                return "${formControl.label} is required";
 
-              if (formControl.type == FormBuilderInput.TYPE_NUMBER &&
-                  num.tryParse(value) == null &&
-                  value.isNotEmpty) return "$value is not a valid number";
+              if (formControl.type == FormBuilderInput.TYPE_NUMBER) {
+                if (num.tryParse(value) == null && value.isNotEmpty)
+                  return "$value is not a valid number";
+                if(formControl.max != null && num.tryParse(value) > formControl.max)
+                  return "${formControl.label} should not be greater than ${formControl.max}";
+                if(formControl.min != null && num.tryParse(value) < formControl.min)
+                  return "${formControl.label} should not be less than ${formControl.min}";
+              }
 
               if (formControl.type == FormBuilderInput.TYPE_EMAIL &&
                   value.isNotEmpty) {
@@ -139,7 +143,7 @@ class _FormBuilderState extends State<FormBuilder> {
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
-                return "This field is required";
+                return "${formControl.label} is required";
               if (formControl.validator != null)
                 return formControl.validator(value);
             },
@@ -196,7 +200,7 @@ class _FormBuilderState extends State<FormBuilder> {
             },
             validator: (value) {
               if (formControl.require && value == null)
-                return "This field is required";
+                return "${formControl.label} is required";
               if (formControl.validator != null)
                 return formControl.validator(value);
             },
@@ -255,7 +259,7 @@ class _FormBuilderState extends State<FormBuilder> {
               initialValue: formControl.value,
               validator: (value) {
                 if (formControl.require && value == null)
-                  return "This field is required";
+                  return "${formControl.label} is required";
                 if (formControl.validator != null)
                   return formControl.validator(value);
               },
@@ -302,7 +306,7 @@ class _FormBuilderState extends State<FormBuilder> {
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
-                return "This field is required";
+                return "${formControl.label} is required";
               if (formControl.validator != null)
                 return formControl.validator(value);
             },
@@ -345,8 +349,8 @@ class _FormBuilderState extends State<FormBuilder> {
           formControlsList.add(FormField(
               initialValue: formControl.value,
               validator: (value) {
-                if (formControl.require && (value.isEmpty || value == null))
-                  return "This field is required";
+                if (formControl.require && value == null)
+                  return "${formControl.label} is required";
                 if (formControl.validator != null)
                   return formControl.validator(value);
               },
@@ -367,6 +371,7 @@ class _FormBuilderState extends State<FormBuilder> {
                           value: formControl.value,
                           min: formControl.min,
                           max: formControl.max,
+                          divisions: formControl.divisions,
                           onChanged: (double value) {
                             setState(() {
                               formControls[count].value = value.roundToDouble();
@@ -499,7 +504,7 @@ class _FormBuilderState extends State<FormBuilder> {
         child: TextFormField(
           validator: (value) {
             if (formControl.require && (value.isEmpty || value == null))
-              return "This field is required";
+              return "${formControl.label} is required";
             if (formControl.validator != null)
               return formControl.validator(value);
           },
@@ -543,7 +548,7 @@ class _FormBuilderState extends State<FormBuilder> {
           controller: _inputController,
           validator: (value) {
             if (formControl.require && (value.isEmpty || value == null))
-              return "This field is required";
+              return "${formControl.label} is required";
             if (formControl.validator != null)
               return formControl.validator(value);
           },
