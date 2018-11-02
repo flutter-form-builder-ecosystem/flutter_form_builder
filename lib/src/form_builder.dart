@@ -311,6 +311,9 @@ class _FormBuilderState extends State<FormBuilder> {
                       constraints:
                           const BoxConstraints(minWidth: double.infinity),
                       child: CupertinoSegmentedControl(
+                        borderColor: Theme.of(context).primaryColor,
+                        selectedColor: Theme.of(context).primaryColor,
+                        pressedColor: Theme.of(context).primaryColor,
                         groupValue: field.value,
                         children: Map.fromIterable(
                           formControls[count].options,

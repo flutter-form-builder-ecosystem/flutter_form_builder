@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: new MyHomePage(),
     );
@@ -70,6 +70,7 @@ class MyHomePage extends StatelessWidget {
                 label: "My Languages",
                 attribute: "languages",
                 require: false,
+                value: ["Dart"],
                 options: [
                   FormBuilderInputOption(label: "Dart", value: false),
                   FormBuilderInputOption(label: "Kotlin", value: false),
