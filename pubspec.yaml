@@ -13,6 +13,7 @@ dependencies:
 
   flutter_typeahead: ^0.4.1
   intl: ^0.15.7
+  sy_flutter_widgets: ^0.1.1
 
 dev_dependencies:
   flutter_test:

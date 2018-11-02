@@ -33,7 +33,7 @@ class MyHomePage extends StatelessWidget {
               attribute: "dropdown",
               require: true,
               label: "Dropdown",
-              placeholder: "Select Option",
+              hint: "Select Option",
               options: [
                 FormBuilderInputOption(value: "Option 1"),
                 FormBuilderInputOption(value: "Option 2"),
@@ -91,12 +91,44 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.slider(
               label: "Slider",
               attribute: "slider",
+              hint: "Hint",
               min: 0.0,
               require: true,
               max: 100.0,
               value: 10.0,
               divisions: 20,
             ),
+            FormBuilderInput.stepper(
+              label: "Stepper",
+              attribute: "stepper",
+              value: 10,
+              step: 1,
+              hint: "Hint",
+            ),
+            FormBuilderInput.rate(
+              label: "Rate",
+              attribute: "rate",
+              iconSize: 48.0,
+              value: 1,
+              max: 5,
+              hint: "Hint",
+            ),
+            FormBuilderInput.segmentedControl(
+                label: "Movie Rating (Archer)",
+                attribute: "movie_rating",
+                require: true,
+                options: [
+                  FormBuilderInputOption(value: 1,),
+                  FormBuilderInputOption(value: 2,),
+                  FormBuilderInputOption(value: 3,),
+                  FormBuilderInputOption(value: 4,),
+                  FormBuilderInputOption(value: 5,),
+                  FormBuilderInputOption(value: 6,),
+                  FormBuilderInputOption(value: 7,),
+                  FormBuilderInputOption(value: 8,),
+                  FormBuilderInputOption(value: 9,),
+                  FormBuilderInputOption(value: 10,),
+                ]),
           ],
           onChanged: () {
             print("Form Changed");
