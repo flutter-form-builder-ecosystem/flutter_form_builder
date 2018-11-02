@@ -3,12 +3,11 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import './form_builder_input_option.dart';
 
-//TODO: Add code_input? https://pub.dartlang.org/packages/code_input#-readme-tab-
+//TODO: Consider adding code_input - https://pub.dartlang.org/packages/code_input#-readme-tab-
 
 class FormBuilderInput {
   static const String TYPE_TEXT = "Text";
   static const String TYPE_NUMBER = "Number";
-  static const String TYPE_PHONE = "Phone";
   static const String TYPE_EMAIL = "Email";
   static const String TYPE_MULTILINE_TEXT = "MultilineText";
   static const String TYPE_PASSWORD = "Password";
@@ -21,7 +20,8 @@ class FormBuilderInput {
   static const String TYPE_DATE_PICKER = "DatePicker";
   static const String TYPE_TIME_PICKER = "TimePicker";
   static const String TYPE_URL = "Url";
-  static const String TYPE_TYPE_AHEAD = "TypeAhead";
+  static const String TYPE_TYPE_AHEAD = "TypeAhead"; //TODO: Needs some work
+  static const String TYPE_PHONE = "Phone";
   static const String TYPE_STEPPER = "Stepper";
   static const String TYPE_RATE = "Rate";
   static const String TYPE_SEGMENTED_CONTROL = "SegmentedControl";
@@ -40,7 +40,7 @@ class FormBuilderInput {
   double iconSize;
   DateTime firstDate;
   DateTime lastDate;
-  FormFieldValidator<String> validator;
+  FormFieldValidator<dynamic> validator;
   List<FormBuilderInputOption> options;
   SuggestionsCallback suggestionsCallback;
   ItemBuilder itemBuilder;
@@ -177,6 +177,17 @@ class FormBuilderInput {
     type = FormBuilderInput.TYPE_SEGMENTED_CONTROL;
   }
 
+  FormBuilderInput.checkbox({
+    @required this.label,
+    @required this.attribute,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) : assert(value == null || value is bool, "Initial value for a checkbox should be boolean") {
+    type = FormBuilderInput.TYPE_CHECKBOX;
+  }
+
   FormBuilderInput.checkboxList({
     @required this.label,
     @required this.options,
@@ -186,6 +197,7 @@ class FormBuilderInput {
     this.require = false,
     this.validator,
   }) : assert(value == null || value is List) {
+    value == value ?? []; // ignore: unnecessary_statements
     type = FormBuilderInput.TYPE_CHECKBOX_LIST;
   }
 

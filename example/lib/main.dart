@@ -85,28 +85,39 @@ class MyHomePage extends StatelessWidget {
               attribute: "time",
             ),
             FormBuilderInput.checkboxList(
-                label: "My Languages",
-                attribute: "languages",
-                require: false,
-                value: ["Dart"],
-                options: [
-                  FormBuilderInputOption(label: "Dart", value: false),
-                  FormBuilderInputOption(label: "Kotlin", value: false),
-                  FormBuilderInputOption(label: "Java", value: false),
-                  FormBuilderInputOption(label: "Swift", value: false),
-                  FormBuilderInputOption(label: "Objective-C", value: false),
-                ]),
+              label: "My Languages",
+              attribute: "languages",
+              require: false,
+              value: ["Dart"],
+              options: [
+                FormBuilderInputOption(value: "Dart"),
+                FormBuilderInputOption(value: "Kotlin"),
+                FormBuilderInputOption(value: "Java"),
+                FormBuilderInputOption(value: "Swift"),
+                FormBuilderInputOption(value: "Objective-C"),
+              ],
+            ),
             FormBuilderInput.radio(
-                label: "My Best Language",
-                attribute: "best_language",
-                require: true,
-                options: [
-                  FormBuilderInputOption(value: "Dart"),
-                  FormBuilderInputOption(value: "Kotlin"),
-                  FormBuilderInputOption(value: "Java"),
-                  FormBuilderInputOption(value: "Swift"),
-                  FormBuilderInputOption(value: "Objective-C"),
-                ]),
+              label: "My Best Language",
+              attribute: "best_language",
+              require: true,
+              options: [
+                FormBuilderInputOption(value: "Dart"),
+                FormBuilderInputOption(value: "Kotlin"),
+                FormBuilderInputOption(value: "Java"),
+                FormBuilderInputOption(value: "Swift"),
+                FormBuilderInputOption(value: "Objective-C"),
+              ],
+            ),
+            FormBuilderInput.checkbox(
+              label: "I accept the terms and conditions",
+              attribute: "accept_terms",
+              hint: "Kindly make sure you've read all the terms and conditions",
+              validator: (value){
+                if(!value)
+                  return "Accept terms to continue";
+              }
+            ),
             FormBuilderInput.slider(
               label: "Slider",
               attribute: "slider",
@@ -137,16 +148,36 @@ class MyHomePage extends StatelessWidget {
                 attribute: "movie_rating",
                 require: true,
                 options: [
-                  FormBuilderInputOption(value: 1,),
-                  FormBuilderInputOption(value: 2,),
-                  FormBuilderInputOption(value: 3,),
-                  FormBuilderInputOption(value: 4,),
-                  FormBuilderInputOption(value: 5,),
-                  FormBuilderInputOption(value: 6,),
-                  FormBuilderInputOption(value: 7,),
-                  FormBuilderInputOption(value: 8,),
-                  FormBuilderInputOption(value: 9,),
-                  FormBuilderInputOption(value: 10,),
+                  FormBuilderInputOption(
+                    value: 1,
+                  ),
+                  FormBuilderInputOption(
+                    value: 2,
+                  ),
+                  FormBuilderInputOption(
+                    value: 3,
+                  ),
+                  FormBuilderInputOption(
+                    value: 4,
+                  ),
+                  FormBuilderInputOption(
+                    value: 5,
+                  ),
+                  FormBuilderInputOption(
+                    value: 6,
+                  ),
+                  FormBuilderInputOption(
+                    value: 7,
+                  ),
+                  FormBuilderInputOption(
+                    value: 8,
+                  ),
+                  FormBuilderInputOption(
+                    value: 9,
+                  ),
+                  FormBuilderInputOption(
+                    value: 10,
+                  ),
                 ]),
           ],
           onChanged: () {

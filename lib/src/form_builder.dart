@@ -120,14 +120,11 @@ class _FormBuilderState extends State<FormBuilder> {
                 if (formControl.min != null &&
                     num.tryParse(value) < formControl.min)
                   return "${formControl.label} should not be less than ${formControl.min}";
-              }else{
-                if (formControl.max != null &&
-                    value.length > formControl.max)
+              } else {
+                if (formControl.max != null && value.length > formControl.max)
                   return "${formControl.label} should have ${formControl.max} character(s) or less";
-                if (formControl.min != null &&
-                    value.length < formControl.min)
+                if (formControl.min != null && value.length < formControl.min)
                   return "${formControl.label} should have ${formControl.min} character(s) or more";
-
               }
 
               if (formControl.type == FormBuilderInput.TYPE_EMAIL &&
@@ -135,7 +132,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 Pattern pattern =
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
                 if (!RegExp(pattern).hasMatch(value))
-                  return 'Please enter a valid email address';
+                  return '$value is not a valid email address';
               }
 
               if (formControl.type == FormBuilderInput.TYPE_URL &&
@@ -143,7 +140,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 Pattern pattern =
                     r"(https?|ftp)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
                 if (!RegExp(pattern, caseSensitive: false).hasMatch(value))
-                  return 'Please enter a valid URL link';
+                  return '$value is not a valid URL';
               }
 
               if (formControl.validator != null)
@@ -227,6 +224,7 @@ class _FormBuilderState extends State<FormBuilder> {
           ));
           break;
 
+        //TODO: For TYPE_CHECKBOX, TYPE_CHECKBOX_LIST, TYPE_RADIO allow user to choose if checkbox/radio to appear before or after Label
         case FormBuilderInput.TYPE_RADIO:
           formControlsList.add(FormField(
             initialValue: formControl.value,
@@ -242,24 +240,27 @@ class _FormBuilderState extends State<FormBuilder> {
             builder: (FormFieldState<dynamic> field) {
               List<Widget> radioList = [];
               for (int i = 0; i < formControls[count].options.length; i++) {
-                radioList.add(Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(formControls[count].options[i].label ??
-                          formControls[count].options[i].value),
-                    ),
-                    //TODO: Select radio on tapping corresponding label (possibly also ripple)
-                    Radio<dynamic>(
-                      value: formControls[count].options[i].value,
-                      groupValue: formControls[count].value,
-                      onChanged: (dynamic value) {
-                        setState(() {
-                          formControls[count].value = value;
-                        });
-                        field.didChange(value);
-                      },
-                    ),
-                  ],
+                radioList.add(ListTile(
+                  title: Text(formControls[count].options[i].label ??
+                      formControls[count].options[i].value),
+                  trailing: Radio<dynamic>(
+                    value: formControls[count].options[i].value,
+                    groupValue: formControls[count].value,
+                    onChanged: (dynamic value) {
+                      setState(() {
+                        formControls[count].value = value;
+                      });
+                      field.didChange(value);
+                    },
+                  ),
+                  onTap: () {
+                    var selectedValue = formControls[count].value =
+                        formControls[count].options[i].value;
+                    setState(() {
+                      formControls[count].value = selectedValue;
+                    });
+                    field.didChange(selectedValue);
+                  },
                 ));
               }
               return Container(
@@ -513,7 +514,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_CHECKBOX:
           formControlsList.add(FormField(
-            initialValue: formControl.value,
+            initialValue: formControl.value ?? false,
             validator: (value) {
               if (formControl.require && value == null)
                 return "${formControl.label} is required";
@@ -524,16 +525,21 @@ class _FormBuilderState extends State<FormBuilder> {
               formData[formControl.attribute] = value;
             },
             builder: (FormFieldState<dynamic> field) {
-              return Column(children: [
-                Row( //TODO: Extract as CheckboxWithLabel to separate widget
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        formControl.label,
-                        style: TextStyle(color: Colors.grey),
-                      ),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListTile(
+                    title: Text(
+                      formControl.label,
+                      style: TextStyle(color: Colors.grey),
                     ),
-                    Checkbox(
+                    subtitle: formControl.hasHint()
+                        ? Text(
+                            formControl.hint,
+                            style: Theme.of(context).textTheme.caption,
+                          )
+                        : SizedBox(),
+                    trailing: Checkbox(
                       value: field.value ?? false,
                       onChanged: (bool value) {
                         setState(() {
@@ -542,16 +548,23 @@ class _FormBuilderState extends State<FormBuilder> {
                         field.didChange(value);
                       },
                     ),
-                  ],
-                ),
-                field.hasError
-                    ? Text(
-                        field.errorText,
-                        style: TextStyle(color: Theme.of(context).errorColor),
-                      )
-                    : SizedBox(),
-                Divider(),
-              ]);
+                    onTap: () {
+                      var newValue = !(field.value ?? false);
+                      setState(() {
+                        formControls[count].value = newValue;
+                      });
+                      field.didChange(newValue);
+                    },
+                  ),
+                  field.hasError
+                      ? Text(
+                          field.errorText,
+                          style: TextStyle(color: Theme.of(context).errorColor),
+                        )
+                      : SizedBox(),
+                  Divider(),
+                ],
+              );
             },
           ));
           break;
@@ -627,27 +640,34 @@ class _FormBuilderState extends State<FormBuilder> {
               builder: (FormFieldState<dynamic> field) {
                 List<Widget> checkboxList = [];
                 for (int i = 0; i < formControls[count].options.length; i++) {
-                  checkboxList.add(Row(
-                    children: <Widget>[
-                      Checkbox(
-                        value: formControls[count].options[i].value,
-                        //FIXME: Checkbox initial value should be picked from formControl value (field.initialValue)
-                        onChanged: (bool value) {
-                          setState(() {
-                            formControls[count].options[i].value = value;
-                          });
-                          List<dynamic> chosenItems = formControls[count]
-                              .options
-                              .where((option) => option.value == true)
-                              .map((option) => option.label)
-                              .toList();
-                          field.didChange(chosenItems);
-                        },
-                      ),
-                      Expanded(
-                        child: Text("${formControls[count].options[i].label}"),
-                      ),
-                    ],
+                  checkboxList.add(ListTile(
+                    leading: Checkbox(
+                      value: field.value
+                          .contains(formControls[count].options[i].value),
+                      onChanged: (bool value) {
+                        setState(() {
+                          if (value)
+                            formControls[count]
+                                .value
+                                .add(formControls[count].options[i].value);
+                          else
+                            formControls[count]
+                                .value
+                                .remove(formControls[count].options[i].value);
+                        });
+                        field.didChange(formControls[count].value);
+                      },
+                    ),
+                    title: Text(
+                        "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
+                    onTap: () {
+                      setState(() {
+                        formControls[count]
+                            .value
+                            .add(formControls[count].options[i].value);
+                      });
+                      field.didChange(formControls[count].value);
+                    },
                   ));
                 }
                 return Container(
