@@ -29,6 +29,13 @@ class MyHomePage extends StatelessWidget {
           context,
           autovalidate: true,
           controls: [
+            FormBuilderInput.textField(
+              type: FormBuilderInput.TYPE_TEXT,
+              attribute: "name",
+              label: "Name",
+              require: true,
+              min: 3,
+            ),
             FormBuilderInput.dropdown(
               attribute: "dropdown",
               require: true,

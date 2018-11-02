@@ -7,11 +7,11 @@ import './form_builder_input_option.dart';
 
 class FormBuilderInput {
   static const String TYPE_TEXT = "Text";
-  static const String TYPE_PASSWORD = "Password";
   static const String TYPE_NUMBER = "Number";
   static const String TYPE_PHONE = "Phone";
-  static const String TYPE_EMAIL = "Text";
+  static const String TYPE_EMAIL = "Email";
   static const String TYPE_MULTILINE_TEXT = "MultilineText";
+  static const String TYPE_PASSWORD = "Password";
   static const String TYPE_RADIO = "Radio";
   static const String TYPE_CHECKBOX_LIST = "CheckboxList";
   static const String TYPE_CHECKBOX = "Checkbox";
