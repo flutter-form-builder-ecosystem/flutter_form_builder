@@ -41,7 +41,7 @@ class _FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       onChanged: widget.onChanged,
-      //TODO: Allow user to update field value based on changes in others
+      //TODO: Allow user to update field value based on changes in others (e.g. Summations)
       onWillPop: widget.onWillPop,
       autovalidate: widget.autovalidate,
       child: ListView(
@@ -120,6 +120,14 @@ class _FormBuilderState extends State<FormBuilder> {
                 if (formControl.min != null &&
                     num.tryParse(value) < formControl.min)
                   return "${formControl.label} should not be less than ${formControl.min}";
+              }else{
+                if (formControl.max != null &&
+                    value.length > formControl.max)
+                  return "${formControl.label} should have ${formControl.max} character(s) or less";
+                if (formControl.min != null &&
+                    value.length < formControl.min)
+                  return "${formControl.label} should have ${formControl.min} character(s) or more";
+
               }
 
               if (formControl.type == FormBuilderInput.TYPE_EMAIL &&
@@ -330,18 +338,21 @@ class _FormBuilderState extends State<FormBuilder> {
                       ),
                     ),
                     field.hasError
-                        ? Padding(padding: EdgeInsets.only(top: 5.0),child: Text(
-                      field.errorText,
-                      style: TextStyle(
-                        color: Theme.of(context).errorColor,
-                      ),
-                    ),)
+                        ? Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              field.errorText,
+                              style: TextStyle(
+                                color: Theme.of(context).errorColor,
+                              ),
+                            ),
+                          )
                         : SizedBox(),
                     formControl.hasHint()
                         ? Text(
-                      formControl.hint,
-                      style: Theme.of(context).textTheme.caption,
-                    )
+                            formControl.hint,
+                            style: Theme.of(context).textTheme.caption,
+                          )
                         : SizedBox(),
                   ],
                 ),
@@ -416,8 +427,7 @@ class _FormBuilderState extends State<FormBuilder> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child:
-                            Text(formControl.label ?? formControl.hint),
+                        child: Text(formControl.label ?? formControl.hint),
                       ),
                       SyStepper(
                         value: field.value ?? 0,
@@ -515,7 +525,7 @@ class _FormBuilderState extends State<FormBuilder> {
             },
             builder: (FormFieldState<dynamic> field) {
               return Column(children: [
-                Row(
+                Row( //TODO: Extract as CheckboxWithLabel to separate widget
                   children: <Widget>[
                     Expanded(
                       child: Text(
@@ -524,13 +534,14 @@ class _FormBuilderState extends State<FormBuilder> {
                       ),
                     ),
                     Checkbox(
-                        value: field.value ?? false,
-                        onChanged: (bool value) {
-                          setState(() {
-                            formControls[count].value = value;
-                          });
-                          field.didChange(value);
-                        })
+                      value: field.value ?? false,
+                      onChanged: (bool value) {
+                        setState(() {
+                          formControls[count].value = value;
+                        });
+                        field.didChange(value);
+                      },
+                    ),
                   ],
                 ),
                 field.hasError
@@ -620,6 +631,7 @@ class _FormBuilderState extends State<FormBuilder> {
                     children: <Widget>[
                       Checkbox(
                         value: formControls[count].options[i].value,
+                        //FIXME: Checkbox initial value should be picked from formControl value (field.initialValue)
                         onChanged: (bool value) {
                           setState(() {
                             formControls[count].options[i].value = value;
@@ -633,7 +645,7 @@ class _FormBuilderState extends State<FormBuilder> {
                         },
                       ),
                       Expanded(
-                        child: Text(formControls[count].options[i].label),
+                        child: Text("${formControls[count].options[i].label}"),
                       ),
                     ],
                   ));

@@ -46,17 +46,28 @@ class MyHomePage extends StatelessWidget {
               require: true,
               min: 18,
             ),
-            FormBuilderInput(
+            FormBuilderInput.textField(
               type: FormBuilderInput.TYPE_EMAIL,
               attribute: "email",
               label: "Email",
               require: true,
             ),
-            FormBuilderInput(
+            FormBuilderInput.textField(
               type: FormBuilderInput.TYPE_URL,
               attribute: "url",
               label: "URL",
               require: true,
+            ),
+            FormBuilderInput.textField(
+              type: FormBuilderInput.TYPE_PHONE,
+              attribute: "phone",
+              label: "Phone",
+              //require: true,
+            ),
+            FormBuilderInput.password(
+              attribute: "password",
+              label: "Password",
+              //require: true,
             ),
             FormBuilderInput.datePicker(
               label: "Date of Birth",

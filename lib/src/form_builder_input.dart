@@ -45,24 +45,30 @@ class FormBuilderInput {
   SuggestionsCallback suggestionsCallback;
   ItemBuilder itemBuilder;
 
-  FormBuilderInput({
+  FormBuilderInput.textField({
     @required this.label,
     @required this.type,
     @required this.attribute,
     this.hint,
-    this.options,
     this.value,
     this.require = false,
     this.validator,
     this.min,
     this.max,
-    this.divisions,
-    this.firstDate,
-    this.lastDate,
-    this.suggestionsCallback,
-    this.itemBuilder,
-
   });
+
+  FormBuilderInput.password({
+    @required this.label,
+    @required this.attribute,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+    this.min,
+    this.max,
+  }){
+    type = FormBuilderInput.TYPE_PASSWORD;
+  }
 
   FormBuilderInput.typeAhead({
     @required this.label,
@@ -86,7 +92,8 @@ class FormBuilderInput {
     this.max,
     this.require = false,
     this.validator,
-  }): assert(min == null || max == null || min <= max, "Min cannot be higher than Max") {
+  }) : assert(min == null || max == null || min <= max,
+            "Min cannot be higher than Max") {
     type = FormBuilderInput.TYPE_NUMBER;
   }
 
@@ -100,7 +107,8 @@ class FormBuilderInput {
     this.step,
     this.require = false,
     this.validator,
-  }): assert(min == null || max == null || min <= max, "Min cannot be higher than Max") {
+  }) : assert(min == null || max == null || min <= max,
+            "Min cannot be higher than Max") {
     type = FormBuilderInput.TYPE_STEPPER;
   }
 
@@ -114,7 +122,8 @@ class FormBuilderInput {
     this.hint,
     this.require = false,
     this.validator,
-  }): assert(max > value || value == null, "Initial value cannot be higher than Max") {
+  }) : assert(max > value || value == null,
+            "Initial value cannot be higher than Max") {
     type = FormBuilderInput.TYPE_RATE;
   }
 
@@ -176,7 +185,7 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-  }) {
+  }) : assert(value == null || value is List) {
     type = FormBuilderInput.TYPE_CHECKBOX_LIST;
   }
 
@@ -206,7 +215,7 @@ class FormBuilderInput {
     type = FormBuilderInput.TYPE_TIME_PICKER;
   }
 
-  hasHint(){
+  hasHint() {
     return hint != null;
   }
 }
