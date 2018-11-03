@@ -18,7 +18,6 @@
     * Url
     * TypeAhead
 
-
 ## [1.0.0] - 3-Nov-2018
 ### Features
 * New `FormBuilderInput` types:  

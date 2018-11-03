@@ -67,7 +67,7 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
-  }){
+  }) {
     type = FormBuilderInput.TYPE_PASSWORD;
   }
 
@@ -185,7 +185,8 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-  }) : assert(value == null || value is bool, "Initial value for a checkbox should be boolean") {
+  }) : assert(value == null || value is bool,
+            "Initial value for a checkbox should be boolean") {
     type = FormBuilderInput.TYPE_CHECKBOX;
   }
 

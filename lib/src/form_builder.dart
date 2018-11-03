@@ -27,7 +27,7 @@ class FormBuilder extends StatefulWidget {
     this.onWillPop,
     this.submitButtonContent,
     this.resetButtonContent,
-  }): assert(resetButtonContent == null || showResetButton);
+  }) : assert(resetButtonContent == null || showResetButton);
 
   @override
   _FormBuilderState createState() => _FormBuilderState(controls);
@@ -705,16 +705,20 @@ class _FormBuilderState extends State<FormBuilder> {
       margin: EdgeInsets.only(top: 10.0),
       child: Row(
         children: [
-          widget.showResetButton ? Expanded(
-            child: OutlineButton(
-              borderSide: BorderSide(color: Theme.of(context).accentColor),
-              textColor: Theme.of(context).accentColor,
-              onPressed: () {
-                _formKey.currentState.reset(); //FIXME: only resets TextField based inputs
-              },
-              child: widget.resetButtonContent ?? Text('Reset'),
-            ),
-          ) : SizedBox(),
+          widget.showResetButton
+              ? Expanded(
+                  child: OutlineButton(
+                    borderSide:
+                        BorderSide(color: Theme.of(context).accentColor),
+                    textColor: Theme.of(context).accentColor,
+                    onPressed: () {
+                      _formKey.currentState
+                          .reset(); //FIXME: only resets TextField based inputs
+                    },
+                    child: widget.resetButtonContent ?? Text('Reset'),
+                  ),
+                )
+              : SizedBox(),
           Expanded(
             child: MaterialButton(
               color: Theme.of(context).accentColor,
@@ -731,7 +735,6 @@ class _FormBuilderState extends State<FormBuilder> {
               child: widget.submitButtonContent ?? Text('Submit'),
             ),
           ),
-
         ],
       ),
     ));
