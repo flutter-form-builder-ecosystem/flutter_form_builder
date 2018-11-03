@@ -13,7 +13,9 @@ class FormBuilder extends StatefulWidget {
   final List<FormBuilderInput> controls;
   final Function onSubmit;
   final bool autovalidate;
+  final bool showResetButton;
   final Widget submitButtonContent;
+  final Widget resetButtonContent;
 
   const FormBuilder(
     this.context, {
@@ -21,9 +23,11 @@ class FormBuilder extends StatefulWidget {
     @required this.onSubmit,
     this.onChanged,
     this.autovalidate = false,
+    this.showResetButton = false,
     this.onWillPop,
     this.submitButtonContent,
-  });
+    this.resetButtonContent,
+  }): assert(resetButtonContent == null || showResetButton);
 
   @override
   _FormBuilderState createState() => _FormBuilderState(controls);
@@ -41,7 +45,7 @@ class _FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       onChanged: widget.onChanged,
-      //TODO: Allow user to update field value based on changes in others (e.g. Summations)
+      //TODO: Allow user to update field value or validate based on changes in others (e.g. Summations, Confirm Password)
       onWillPop: widget.onWillPop,
       autovalidate: widget.autovalidate,
       child: ListView(
@@ -193,7 +197,6 @@ class _FormBuilderState extends State<FormBuilder> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     DropdownButton(
-                      //TODO: Is it possible to clear dropdown selection?
                       isExpanded: true,
                       hint: Text(formControl.hint ?? ''),
                       items: formControls[count].options.map((option) {
@@ -700,19 +703,36 @@ class _FormBuilderState extends State<FormBuilder> {
 
     formControlsList.add(Container(
       margin: EdgeInsets.only(top: 10.0),
-      child: MaterialButton(
-        color: Theme.of(context).accentColor,
-        textColor: Colors.white,
-        onPressed: () {
-          if (_formKey.currentState.validate()) {
-            _formKey.currentState.save();
-            widget.onSubmit(formData);
-          } else {
-            debugPrint("Validation failed");
-            widget.onSubmit(null);
-          }
-        },
-        child: widget.submitButtonContent ?? Text('Submit'),
+      child: Row(
+        children: [
+          widget.showResetButton ? Expanded(
+            child: OutlineButton(
+              borderSide: BorderSide(color: Theme.of(context).accentColor),
+              textColor: Theme.of(context).accentColor,
+              onPressed: () {
+                _formKey.currentState.reset(); //FIXME: only resets TextField based inputs
+              },
+              child: widget.resetButtonContent ?? Text('Reset'),
+            ),
+          ) : SizedBox(),
+          Expanded(
+            child: MaterialButton(
+              color: Theme.of(context).accentColor,
+              textColor: Colors.white,
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  _formKey.currentState.save();
+                  widget.onSubmit(formData);
+                } else {
+                  debugPrint("Validation failed");
+                  widget.onSubmit(null);
+                }
+              },
+              child: widget.submitButtonContent ?? Text('Submit'),
+            ),
+          ),
+
+        ],
       ),
     ));
 

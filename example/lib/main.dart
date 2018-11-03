@@ -28,6 +28,8 @@ class MyHomePage extends StatelessWidget {
         child: FormBuilder(
           context,
           autovalidate: true,
+          // showResetButton: true,
+          // resetButtonContent: Text("Clear Form"),
           controls: [
             FormBuilderInput.textField(
               type: FormBuilderInput.TYPE_TEXT,
@@ -181,7 +183,7 @@ class MyHomePage extends StatelessWidget {
                 ]),
           ],
           onChanged: () {
-            print("Form Changed");
+            print("Form value changed");
           },
           onSubmit: (formValue) {
             if (formValue != null) {

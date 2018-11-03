@@ -4,7 +4,8 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import './form_builder_input_option.dart';
 
 //TODO: Consider adding code_input - https://pub.dartlang.org/packages/code_input#-readme-tab-
-
+//TODO: Consider adding Input Chips - https://stackoverflow.com/questions/52155254/how-can-i-build-a-chip-input-field-in-flutter
+//TODO: Add autovalidate attribute type
 class FormBuilderInput {
   static const String TYPE_TEXT = "Text";
   static const String TYPE_NUMBER = "Number";
