@@ -33,8 +33,8 @@
 * Added resetButton
 
 ### Fixes 
-Fixed bug where `TYPE_TEXT` validates as `TYPE_EMAIL` - Closes [#1](https://github.com/danvick/flutter_form_builder/issues/1)
-Fixed initial value setting `FormBuilderInput.checkboxList()`
+* Fixed bug where `TYPE_TEXT` validates as `TYPE_EMAIL` - Closes [#1](https://github.com/danvick/flutter_form_builder/issues/1)
+* Fixed initial value setting `FormBuilderInput.checkboxList()`
 
 ### Breaking Changes
 * `placeholder` attribute of class `FormBuilderInput` renamed to `hint`
