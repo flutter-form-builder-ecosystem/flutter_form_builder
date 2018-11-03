@@ -38,3 +38,6 @@
 ### Breaking Changes
 * `placeholder` attribute of class `FormBuilderInput` renamed to `hint`
 * Removed default constructor for `FormBuilderInput`
+
+## [1.0.1] - 3-Nov-2018
+* Minor improvements to documentation, added known issues section too
