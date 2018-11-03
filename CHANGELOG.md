@@ -1,12 +1,31 @@
 ## [0.0.1] - 1-Nov-2018.
 
 * Initial Release
-* Input Types: Text, Number, Email, MultilineText, Password, Radio, CheckboxList, Checkbox, Switch, Slider, Dropdown, DatePicker, TimePicker, Url, TypeAhead
+* Input Types: 
+    * Text 
+    * Number 
+    * Email
+    * MultilineText
+    * Password
+    * Radio
+    * CheckboxList
+    * Checkbox
+    * Switch
+    * Slider
+    * Dropdown
+    * DatePicker
+    * TimePicker
+    * Url
+    * TypeAhead
 
 
-## [1.0.0] -
+## [1.0.0] - 3-Nov-2018
 ### Features
-* New `FormBuilderInput` types:  Phone, Stepper, Rate, SegmentedControl
+* New `FormBuilderInput` types:  
+    * Phone
+    * Stepper
+    * Rate
+    * SegmentedControl
 * `min` and `max` validation added to number field and textField
 * More specialized keyboard types for TextField control types (text, number, url, email, multiline, phone etc)
 * Tapping on Label for radio/checkbox changes the control value
