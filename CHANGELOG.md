@@ -11,6 +11,7 @@
 * More specialized keyboard types for TextField control types (text, number, url, email, multiline, phone etc)
 * Tapping on Label for radio/checkbox changes the control value
 * Created new constructors for password and textField inputs
+* Added resetButton
 
 ### Fixes 
 Fixed bug where `TYPE_TEXT` validates as `TYPE_EMAIL` - Closes [#1](https://github.com/danvick/flutter_form_builder/issues/1)
