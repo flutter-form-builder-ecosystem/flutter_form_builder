@@ -87,7 +87,7 @@ class MyHomePage extends StatelessWidget {
               attribute: "time",
             ),
             FormBuilderInput.checkboxList(
-              label: "My Languages",
+              label: "The Languages of my people",
               attribute: "languages",
               require: false,
               value: ["Dart"],

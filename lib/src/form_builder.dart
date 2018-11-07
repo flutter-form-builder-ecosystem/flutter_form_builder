@@ -243,28 +243,36 @@ class _FormBuilderState extends State<FormBuilder> {
             builder: (FormFieldState<dynamic> field) {
               List<Widget> radioList = [];
               for (int i = 0; i < formControls[count].options.length; i++) {
-                radioList.add(ListTile(
-                  title: Text(formControls[count].options[i].label ??
-                      formControls[count].options[i].value),
-                  trailing: Radio<dynamic>(
-                    value: formControls[count].options[i].value,
-                    groupValue: formControls[count].value,
-                    onChanged: (dynamic value) {
+                radioList.addAll([
+                  ListTile(
+                    dense: true,
+                    isThreeLine: false,
+                    contentPadding: EdgeInsets.all(0.0),
+                    title: Text(formControls[count].options[i].label ??
+                        formControls[count].options[i].value),
+                    trailing: Radio<dynamic>(
+                      value: formControls[count].options[i].value,
+                      groupValue: formControls[count].value,
+                      onChanged: (dynamic value) {
+                        setState(() {
+                          formControls[count].value = value;
+                        });
+                        field.didChange(value);
+                      },
+                    ),
+                    onTap: () {
+                      var selectedValue = formControls[count].value =
+                          formControls[count].options[i].value;
                       setState(() {
-                        formControls[count].value = value;
+                        formControls[count].value = selectedValue;
                       });
-                      field.didChange(value);
+                      field.didChange(selectedValue);
                     },
                   ),
-                  onTap: () {
-                    var selectedValue = formControls[count].value =
-                        formControls[count].options[i].value;
-                    setState(() {
-                      formControls[count].value = selectedValue;
-                    });
-                    field.didChange(selectedValue);
-                  },
-                ));
+                  Divider(
+                    height: 0.0,
+                  ),
+                ]);
               }
               return Container(
                 padding: EdgeInsets.only(top: 10.0),
@@ -286,7 +294,9 @@ class _FormBuilderState extends State<FormBuilder> {
                             ),
                           )
                         : SizedBox(),
-                    Divider(),
+                    SizedBox(
+                      height: 10.0,
+                    ),
                   ],
                 ),
               );
@@ -643,13 +653,35 @@ class _FormBuilderState extends State<FormBuilder> {
               builder: (FormFieldState<dynamic> field) {
                 List<Widget> checkboxList = [];
                 for (int i = 0; i < formControls[count].options.length; i++) {
-                  checkboxList.add(ListTile(
-                    leading: Checkbox(
-                      value: field.value
-                          .contains(formControls[count].options[i].value),
-                      onChanged: (bool value) {
+                  checkboxList.addAll([
+                    ListTile(
+                      dense: true,
+                      isThreeLine: false,
+                      contentPadding: EdgeInsets.all(0.0),
+                      leading: Checkbox(
+                        value: field.value
+                            .contains(formControls[count].options[i].value),
+                        onChanged: (bool value) {
+                          setState(() {
+                            if (value)
+                              formControls[count]
+                                  .value
+                                  .add(formControls[count].options[i].value);
+                            else
+                              formControls[count]
+                                  .value
+                                  .remove(formControls[count].options[i].value);
+                          });
+                          field.didChange(formControls[count].value);
+                        },
+                      ),
+                      title: Text(
+                          "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
+                      onTap: () {
                         setState(() {
-                          if (value)
+                          bool newValue = field.value
+                              .contains(formControls[count].options[i].value);
+                          if (!newValue)
                             formControls[count]
                                 .value
                                 .add(formControls[count].options[i].value);
@@ -661,23 +693,8 @@ class _FormBuilderState extends State<FormBuilder> {
                         field.didChange(formControls[count].value);
                       },
                     ),
-                    title: Text(
-                        "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
-                    onTap: () {
-                      setState(() {
-                        bool newValue = field.value.contains(formControls[count].options[i].value);
-                        if (!newValue)
-                          formControls[count]
-                              .value
-                              .add(formControls[count].options[i].value);
-                        else
-                          formControls[count]
-                              .value
-                              .remove(formControls[count].options[i].value);
-                      });
-                      field.didChange(formControls[count].value);
-                    },
-                  ));
+                    Divider(height: 0.0,),
+                  ]);
                 }
                 return Container(
                   padding: EdgeInsets.only(top: 10.0),
@@ -698,7 +715,9 @@ class _FormBuilderState extends State<FormBuilder> {
                                   color: Theme.of(context).errorColor),
                             )
                           : SizedBox(),
-                      Divider(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
                     ],
                   ),
                 );
