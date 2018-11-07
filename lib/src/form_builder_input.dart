@@ -190,6 +190,18 @@ class FormBuilderInput {
     type = FormBuilderInput.TYPE_CHECKBOX;
   }
 
+  FormBuilderInput.switchInput({
+    @required this.label,
+    @required this.attribute,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) : assert(value == null || value is bool,
+  "Initial value for a switch should be boolean") {
+    type = FormBuilderInput.TYPE_SWITCH;
+  }
+
   FormBuilderInput.checkboxList({
     @required this.label,
     @required this.options,

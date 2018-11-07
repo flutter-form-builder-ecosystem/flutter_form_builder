@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
         margin: EdgeInsets.all(15.0),
         child: FormBuilder(
           context,
-          autovalidate: true,
+          autovalidate: false,
           // showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [
@@ -71,6 +71,7 @@ class MyHomePage extends StatelessWidget {
               type: FormBuilderInput.TYPE_PHONE,
               attribute: "phone",
               label: "Phone",
+              hint: "Including country code (+254)"
               //require: true,
             ),
             FormBuilderInput.password(
@@ -88,6 +89,7 @@ class MyHomePage extends StatelessWidget {
             ),
             FormBuilderInput.checkboxList(
               label: "The Languages of my people",
+              hint: "The Languages of my people",
               attribute: "languages",
               require: false,
               value: ["Dart"],
@@ -120,6 +122,15 @@ class MyHomePage extends StatelessWidget {
                   return "Accept terms to continue";
               }
             ),
+            FormBuilderInput.switchInput(
+                label: "I accept the terms and conditions",
+                attribute: "accept_terms_switch",
+                hint: "Kindly make sure you've read all the terms and conditions",
+                validator: (value){
+                  if(!value)
+                    return "Accept terms to continue";
+                }
+            ),
             FormBuilderInput.slider(
               label: "Slider",
               attribute: "slider",
@@ -140,7 +151,7 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.rate(
               label: "Rate",
               attribute: "rate",
-              iconSize: 48.0,
+              iconSize: 32.0,
               value: 1,
               max: 5,
               hint: "Hint",
