@@ -94,7 +94,8 @@ class _FormBuilderState extends State<FormBuilder> {
             //TODO: add min and max validation for non-numeric text to validate character count
             decoration: InputDecoration(
               labelText: formControl.label,
-              hintText: formControl.hint ?? "",
+              hintText: formControl.hint,
+              helperText: formControl.hint,
             ),
             initialValue:
                 formControl.value != null ? "${formControl.value}" : null,
@@ -274,30 +275,14 @@ class _FormBuilderState extends State<FormBuilder> {
                   ),
                 ]);
               }
-              return Container(
-                padding: EdgeInsets.only(top: 10.0),
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint ?? "",
+                  errorText: field.errorText,
+                ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      formControl.label,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    Column(
-                      children: radioList,
-                    ),
-                    field.hasError
-                        ? Text(
-                            field.errorText,
-                            style: TextStyle(
-                              color: Theme.of(context).errorColor,
-                            ),
-                          )
-                        : SizedBox(),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                  ],
+                  children: radioList,
                 ),
               );
             },
@@ -317,58 +302,29 @@ class _FormBuilderState extends State<FormBuilder> {
                 return formControl.validator(value);
             },
             builder: (FormFieldState<dynamic> field) {
-              return Container(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      formControl.label,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    ConstrainedBox(
-                      constraints:
-                          const BoxConstraints(minWidth: double.infinity),
-                      child: CupertinoSegmentedControl(
-                        borderColor: Theme.of(context).primaryColor,
-                        selectedColor: Theme.of(context).primaryColor,
-                        pressedColor: Theme.of(context).primaryColor,
-                        groupValue: field.value,
-                        children: Map.fromIterable(
-                          formControls[count].options,
-                          key: (v) => v.value,
-                          value: (v) => Text(
-                              v.label != null ? "${v.label}" : "${v.value}"),
-                        ),
-                        onValueChanged: (dynamic value) {
-                          setState(() {
-                            formControls[count].value = value;
-                          });
-                          field.didChange(value);
-                        },
-                      ),
-                    ),
-                    field.hasError
-                        ? Padding(
-                            padding: EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              field.errorText,
-                              style: TextStyle(
-                                color: Theme.of(context).errorColor,
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                    formControl.hasHint()
-                        ? Text(
-                            formControl.hint,
-                            style: Theme.of(context).textTheme.caption,
-                          )
-                        : SizedBox(),
-                  ],
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint,
+                  errorText: field.errorText,
+                ),
+                child: CupertinoSegmentedControl(
+                  borderColor: Theme.of(context).primaryColor,
+                  selectedColor: Theme.of(context).primaryColor,
+                  pressedColor: Theme.of(context).primaryColor,
+                  groupValue: field.value,
+                  children: Map.fromIterable(
+                    formControls[count].options,
+                    key: (v) => v.value,
+                    value: (v) =>
+                        Text(v.label != null ? "${v.label}" : "${v.value}"),
+                  ),
+                  onValueChanged: (dynamic value) {
+                    setState(() {
+                      formControls[count].value = value;
+                    });
+                    field.didChange(value);
+                  },
                 ),
               );
             },
@@ -377,48 +333,49 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SWITCH:
           formControlsList.add(FormField(
-              initialValue: formControl.value,
+              initialValue: formControl.value ?? false,
               validator: (value) {
                 if (formControl.require && value == null)
                   return "${formControl.label} is required";
-                if (formControl.validator != null)
-                  return formControl.validator(value);
+                /*if (formControl.validator != null)
+                  return formControl.validator(value);*/
               },
               onSaved: (value) {
                 formData[formControl.attribute] = value;
               },
               builder: (FormFieldState<dynamic> field) {
-                if (formControl.value == null) {
-                  setState(() {
-                    formControls[count].value = false;
-                  });
-                }
-                return Column(children: [
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          formControl.label,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                      Switch(
-                          value: formControl.value,
-                          onChanged: (bool value) {
-                            setState(() {
-                              formControls[count].value = value;
-                            });
-                            field.didChange(value);
-                          })
-                    ],
+                return InputDecorator(
+                  decoration: InputDecoration(
+                    // labelText: formControl.label,
+                    helperText: formControl.hint ?? "",
+                    errorText: field.errorText,
                   ),
-                  field.hasError
-                      ? Text(
-                          field.errorText,
-                          style: TextStyle(color: Theme.of(context).errorColor),
-                        )
-                      : SizedBox(),
-                ]);
+                  child: ListTile(
+                    dense: true,
+                    isThreeLine: false,
+                    contentPadding: EdgeInsets.all(0.0),
+                    title: Text(
+                      formControl.label,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    trailing: Switch(
+                      value: field.value,
+                      onChanged: (bool value) {
+                        setState(() {
+                          formControls[count].value = value;
+                        });
+                        field.didChange(value);
+                      },
+                    ),
+                    onTap: () {
+                      bool newValue = !(field.value ?? false);
+                      setState(() {
+                        formControls[count].value = newValue;
+                      });
+                      field.didChange(newValue);
+                    },
+                  ),
+                );
               }));
           break;
 
@@ -435,43 +392,25 @@ class _FormBuilderState extends State<FormBuilder> {
               formData[formControl.attribute] = value;
             },
             builder: (FormFieldState<dynamic> field) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(formControl.label ?? formControl.hint),
-                      ),
-                      SyStepper(
-                        value: field.value ?? 0,
-                        step: formControl.step ?? 1,
-                        min: formControl.min ?? 0,
-                        max: formControl.max ?? 9999999,
-                        size: 24.0,
-                        onChange: (value) {
-                          setState(() {
-                            formControls[count].value = value;
-                          });
-                          field.didChange(value);
-                        },
-                      ),
-                    ],
-                  ),
-                  formControl.hint != null
-                      ? Text(
-                          formControl.hint,
-                          style: Theme.of(context).textTheme.caption,
-                        )
-                      : SizedBox(),
-                  field.hasError
-                      ? Text(
-                          field.errorText,
-                          style: TextStyle(color: Theme.of(context).errorColor),
-                        )
-                      : SizedBox(),
-                  Divider(),
-                ],
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint ?? "",
+                  errorText: field.errorText,
+                ),
+                child: SyStepper(
+                  value: field.value ?? 0,
+                  step: formControl.step ?? 1,
+                  min: formControl.min ?? 0,
+                  max: formControl.max ?? 9999999,
+                  size: 24.0,
+                  onChange: (value) {
+                    setState(() {
+                      formControls[count].value = value;
+                    });
+                    field.didChange(value);
+                  },
+                ),
               );
             },
           ));
@@ -490,36 +429,24 @@ class _FormBuilderState extends State<FormBuilder> {
               formData[formControl.attribute] = value;
             },
             builder: (FormFieldState<dynamic> field) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(formControl.label ?? formControl.hint),
-                  SyRate(
-                    value: field.value,
-                    total: formControl.max,
-                    icon: formControl.icon,
-                    iconSize: formControl.iconSize ?? 24.0,
-                    onTap: (value) {
-                      setState(() {
-                        formControls[count].value = value;
-                      });
-                      field.didChange(value);
-                    },
-                  ),
-                  formControl.hint != null
-                      ? Text(
-                          formControl.hint,
-                          style: Theme.of(context).textTheme.caption,
-                        )
-                      : SizedBox(),
-                  field.hasError
-                      ? Text(
-                          field.errorText,
-                          style: TextStyle(color: Theme.of(context).errorColor),
-                        )
-                      : SizedBox(),
-                  Divider(),
-                ],
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint ?? "",
+                  errorText: field.errorText,
+                ),
+                child: SyRate(
+                  value: field.value,
+                  total: formControl.max,
+                  icon: formControl.icon,
+                  iconSize: formControl.iconSize ?? 24.0,
+                  onTap: (value) {
+                    setState(() {
+                      formControls[count].value = value;
+                    });
+                    field.didChange(value);
+                  },
+                ),
               );
             },
           ));
@@ -538,45 +465,37 @@ class _FormBuilderState extends State<FormBuilder> {
               formData[formControl.attribute] = value;
             },
             builder: (FormFieldState<dynamic> field) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListTile(
-                    title: Text(
-                      formControl.label,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    subtitle: formControl.hasHint()
-                        ? Text(
-                            formControl.hint,
-                            style: Theme.of(context).textTheme.caption,
-                          )
-                        : SizedBox(),
-                    trailing: Checkbox(
-                      value: field.value ?? false,
-                      onChanged: (bool value) {
-                        setState(() {
-                          formControls[count].value = value;
-                        });
-                        field.didChange(value);
-                      },
-                    ),
-                    onTap: () {
-                      var newValue = !(field.value ?? false);
+              return InputDecorator(
+                decoration: InputDecoration(
+                  // labelText: formControl.label,
+                  helperText: formControl.hint ?? "",
+                  errorText: field.errorText,
+                ),
+                child: ListTile(
+                  dense: true,
+                  isThreeLine: false,
+                  contentPadding: EdgeInsets.all(0.0),
+                  title: Text(
+                    formControl.label,
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  trailing: Checkbox(
+                    value: field.value ?? false,
+                    onChanged: (bool value) {
                       setState(() {
-                        formControls[count].value = newValue;
+                        formControls[count].value = value;
                       });
-                      field.didChange(newValue);
+                      field.didChange(value);
                     },
                   ),
-                  field.hasError
-                      ? Text(
-                          field.errorText,
-                          style: TextStyle(color: Theme.of(context).errorColor),
-                        )
-                      : SizedBox(),
-                  Divider(),
-                ],
+                  onTap: () {
+                    bool newValue = !(field.value ?? false);
+                    setState(() {
+                      formControls[count].value = newValue;
+                    });
+                    field.didChange(newValue);
+                  },
+                ),
               );
             },
           ));
@@ -584,37 +503,40 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SLIDER:
           formControlsList.add(FormField(
-              initialValue: formControl.value,
-              validator: (value) {
-                if (formControl.require && value == null)
-                  return "${formControl.label} is required";
-                if (formControl.validator != null)
-                  return formControl.validator(value);
-              },
-              onSaved: (value) {
-                formData[formControl.attribute] = value;
-              },
-              builder: (FormFieldState<dynamic> field) {
-                return Container(
+            initialValue: formControl.value,
+            validator: (value) {
+              if (formControl.require && value == null)
+                return "${formControl.label} is required";
+              if (formControl.validator != null)
+                return formControl.validator(value);
+            },
+            onSaved: (value) {
+              formData[formControl.attribute] = value;
+            },
+            builder: (FormFieldState<dynamic> field) {
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint,
+                  errorText: field.errorText,
+                ),
+                child: Container(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        formControl.label,
-                        style: TextStyle(color: Colors.grey),
-                      ),
                       Slider(
-                          value: formControl.value,
-                          min: formControl.min,
-                          max: formControl.max,
-                          divisions: formControl.divisions,
-                          onChanged: (double value) {
-                            setState(() {
-                              formControls[count].value = value.roundToDouble();
-                            });
-                            field.didChange(value);
-                          }),
+                        value: formControl.value,
+                        min: formControl.min,
+                        max: formControl.max,
+                        divisions: formControl.divisions,
+                        onChanged: (double value) {
+                          setState(() {
+                            formControls[count].value = value.roundToDouble();
+                          });
+                          field.didChange(value);
+                        },
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -623,24 +545,12 @@ class _FormBuilderState extends State<FormBuilder> {
                           Text("${formControl.max}"),
                         ],
                       ),
-                      field.hasError
-                          ? Text(
-                              field.errorText,
-                              style: TextStyle(
-                                  color: Theme.of(context).errorColor),
-                            )
-                          : SizedBox(),
-                      formControl.hasHint()
-                          ? Text(
-                              formControl.hint,
-                              style: Theme.of(context).textTheme.caption,
-                            )
-                          : SizedBox(),
-                      Divider(),
                     ],
                   ),
-                );
-              }));
+                ),
+              );
+            },
+          ));
           break;
 
         case FormBuilderInput.TYPE_CHECKBOX_LIST:
@@ -649,7 +559,7 @@ class _FormBuilderState extends State<FormBuilder> {
               onSaved: (value) {
                 formData[formControl.attribute] = value;
               },
-              // validator: formControl.validator,
+              validator: formControl.validator,
               builder: (FormFieldState<dynamic> field) {
                 List<Widget> checkboxList = [];
                 for (int i = 0; i < formControls[count].options.length; i++) {
@@ -693,32 +603,19 @@ class _FormBuilderState extends State<FormBuilder> {
                         field.didChange(formControls[count].value);
                       },
                     ),
-                    Divider(height: 0.0,),
+                    Divider(
+                      height: 0.0,
+                    ),
                   ]);
                 }
-                return Container(
-                  padding: EdgeInsets.only(top: 10.0),
+                return InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: formControl.label,
+                    helperText: formControl.hint ?? "",
+                    errorText: field.errorText,
+                  ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        formControl.label,
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      Column(
-                        children: checkboxList,
-                      ),
-                      field.hasError
-                          ? Text(
-                              field.errorText,
-                              style: TextStyle(
-                                  color: Theme.of(context).errorColor),
-                            )
-                          : SizedBox(),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                    ],
+                    children: checkboxList,
                   ),
                 );
               }));
