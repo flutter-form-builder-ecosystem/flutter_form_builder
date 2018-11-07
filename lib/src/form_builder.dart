@@ -5,7 +5,9 @@ import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
 
 import './form_builder_input.dart';
 import './form_builder_type_ahead.dart';
+import './chips_input.dart';
 
+//TODO: Refactor this spaghetti code
 class FormBuilder extends StatefulWidget {
   final BuildContext context;
   final VoidCallback onChanged;
@@ -698,6 +700,36 @@ class _FormBuilderState extends State<FormBuilder> {
                 );
               }));
           break;
+        /*case FormBuilderInput.TYPE_CHIPS_INPUT:
+          formControlsList.add(ChipsInput(
+            decoration: InputDecoration(prefixIcon: Icon(Icons.search), hintText: 'Profile search', labelText: ),
+            // findSuggestions: _findSuggestions,
+            // onChanged: _onChanged,
+            chipBuilder: (BuildContext context, ChipsInputState<AppProfile> state, AppProfile profile) {
+              return InputChip(
+                key: ObjectKey(profile),
+                label: Text(profile.name),
+                avatar: CircleAvatar(
+                  backgroundImage: NetworkImage(profile.imageUrl),
+                ),
+                onDeleted: () => state.deleteChip(profile),
+                onSelected: (_) => _onChipTapped(profile),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              );
+            },
+            suggestionBuilder: (BuildContext context, ChipsInputState<AppProfile> state, AppProfile profile) {
+              return ListTile(
+                key: ObjectKey(profile),
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(profile.imageUrl),
+                ),
+                title: Text(profile.name),
+                subtitle: Text(profile.email),
+                onTap: () => state.selectSuggestion(profile),
+              );
+            },
+          ));
+          break;*/
       }
     }
 
