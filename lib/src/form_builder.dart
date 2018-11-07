@@ -665,9 +665,15 @@ class _FormBuilderState extends State<FormBuilder> {
                         "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
                     onTap: () {
                       setState(() {
-                        formControls[count]
-                            .value
-                            .add(formControls[count].options[i].value);
+                        bool newValue = field.value.contains(formControls[count].options[i].value);
+                        if (!newValue)
+                          formControls[count]
+                              .value
+                              .add(formControls[count].options[i].value);
+                        else
+                          formControls[count]
+                              .value
+                              .remove(formControls[count].options[i].value);
                       });
                       field.didChange(formControls[count].value);
                     },
