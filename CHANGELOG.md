@@ -41,3 +41,6 @@
 
 ## [1.0.1] - 3-Nov-2018
 * Minor improvements to documentation, added known issues section too
+
+## [1.0.2] - 7-Nov-2018
+* Fixed bug in (un)selecting checkbox list using by clicking its label
