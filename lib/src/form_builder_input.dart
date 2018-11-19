@@ -56,6 +56,7 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
+    //TODO: Include maxLines for multiline text
   });
 
   FormBuilderInput.password({

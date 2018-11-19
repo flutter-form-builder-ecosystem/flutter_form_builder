@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
         margin: EdgeInsets.all(15.0),
         child: FormBuilder(
           context,
-          autovalidate: false,
+          // autovalidate: true,
           // showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [

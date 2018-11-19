@@ -91,14 +91,12 @@ class _FormBuilderState extends State<FormBuilder> {
           }
 
           formControlsList.add(TextFormField(
-            //TODO: add min and max validation for non-numeric text to validate character count
             decoration: InputDecoration(
               labelText: formControl.label,
               hintText: formControl.hint,
               helperText: formControl.hint,
             ),
-            initialValue:
-                formControl.value != null ? "${formControl.value}" : null,
+            initialValue: "${formControl.value}" ?? null,
             maxLines: formControl.type == FormBuilderInput.TYPE_MULTILINE_TEXT
                 ? 5
                 : 1,
@@ -646,8 +644,8 @@ class _FormBuilderState extends State<FormBuilder> {
               color: Theme.of(context).accentColor,
               textColor: Colors.white,
               onPressed: () {
+                _formKey.currentState.save();
                 if (_formKey.currentState.validate()) {
-                  _formKey.currentState.save();
                   widget.onSubmit(formData);
                 } else {
                   debugPrint("Validation failed");
