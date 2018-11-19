@@ -59,6 +59,7 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
+    //TODO: Include maxLines for multiline text
   });
 
   FormBuilderInput.password({
@@ -191,6 +192,18 @@ class FormBuilderInput {
   }) : assert(value == null || value is bool,
             "Initial value for a checkbox should be boolean") {
     type = FormBuilderInput.TYPE_CHECKBOX;
+  }
+
+  FormBuilderInput.switchInput({
+    @required this.label,
+    @required this.attribute,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) : assert(value == null || value is bool,
+            "Initial value for a switch should be boolean") {
+    type = FormBuilderInput.TYPE_SWITCH;
   }
 
   FormBuilderInput.checkboxList({

@@ -35,7 +35,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       textFieldConfiguration: TextFieldConfiguration(
         controller: _typeAheadController,
         decoration: InputDecoration(
-          labelText: formControl.label ?? formControl.attribute,
+          labelText: formControl.label,
         ),
       ),
       suggestionsCallback: formControl.suggestionsCallback,

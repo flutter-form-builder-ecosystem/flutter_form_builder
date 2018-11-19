@@ -41,3 +41,11 @@
 
 ## [1.0.1] - 3-Nov-2018
 * Minor improvements to documentation, added known issues section too
+
+## [1.0.2] - 7-Nov-2018
+* Fixed bug in (un)selecting checkbox list using by clicking its label
+
+## [1.1.0] - 19-Nov-2018
+* Fixed bug where validation not working for fields outside screen (when using ListView) - [Flutter Issue #17385](https://github.com/flutter/flutter/issues/17385)
+* Added InputDecoration for all custom FormFields
+
