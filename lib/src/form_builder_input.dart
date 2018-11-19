@@ -199,7 +199,7 @@ class FormBuilderInput {
     this.require = false,
     this.validator,
   }) : assert(value == null || value is bool,
-  "Initial value for a switch should be boolean") {
+            "Initial value for a switch should be boolean") {
     type = FormBuilderInput.TYPE_SWITCH;
   }
 

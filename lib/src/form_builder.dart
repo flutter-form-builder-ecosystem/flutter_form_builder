@@ -97,7 +97,8 @@ class _FormBuilderState extends State<FormBuilder> {
               hintText: formControl.hint,
               helperText: formControl.hint,
             ),
-            initialValue: formControl.value != null ? "${formControl.value}" : '',
+            initialValue:
+                formControl.value != null ? "${formControl.value}" : '',
             maxLines: formControl.type == FormBuilderInput.TYPE_MULTILINE_TEXT
                 ? 5
                 : 1,
