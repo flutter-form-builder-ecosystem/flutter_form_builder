@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import './form_builder_input_option.dart';
+import './chips_input.dart';
 
 //TODO: Consider adding RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
 //TODO: Consider adding ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
@@ -48,6 +49,8 @@ class FormBuilderInput {
   List<FormBuilderInputOption> options;
   SuggestionsCallback suggestionsCallback;
   ItemBuilder itemBuilder;
+  ChipsBuilder suggestionBuilder;
+  ChipsBuilder chipBuilder;
 
   FormBuilderInput.textField({
     @required this.label,
@@ -248,6 +251,9 @@ class FormBuilderInput {
   FormBuilderInput.chipsInput({
     @required this.label,
     @required this.attribute,
+    @required this.suggestionsCallback,
+    @required this.suggestionBuilder,
+    @required this.chipBuilder,
     this.hint,
     this.value,
     this.require = false,
