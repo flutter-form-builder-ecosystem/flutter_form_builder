@@ -48,8 +48,10 @@ class _FormBuilderState extends State<FormBuilder> {
       //TODO: Allow user to update field value or validate based on changes in others (e.g. Summations, Confirm Password)
       onWillPop: widget.onWillPop,
       autovalidate: widget.autovalidate,
-      child: ListView(
-        children: formControlsToForm(),
+      child: SingleChildScrollView(
+        child: Column(
+          children: formControlsToForm(),
+        ),
       ),
     );
   }
@@ -89,14 +91,13 @@ class _FormBuilderState extends State<FormBuilder> {
               keyboardType = TextInputType.text;
               break;
           }
-
           formControlsList.add(TextFormField(
             decoration: InputDecoration(
               labelText: formControl.label,
               hintText: formControl.hint,
               helperText: formControl.hint,
             ),
-            initialValue: "${formControl.value}" ?? null,
+            initialValue: formControl.value != null ? "${formControl.value}" : '',
             maxLines: formControl.type == FormBuilderInput.TYPE_MULTILINE_TEXT
                 ? 5
                 : 1,
