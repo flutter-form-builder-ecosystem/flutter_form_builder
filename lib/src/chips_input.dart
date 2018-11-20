@@ -32,16 +32,17 @@ class ChipsInput<T> extends StatefulWidget {
 class ChipsInputState<T> extends State<ChipsInput<T>>
     implements TextInputClient {
   static const kObjectReplacementChar = 0xFFFC;
-
   Set<T> _chips = Set<T>();
   List<T> _suggestions;
+  StreamController<List<T>> _suggestionsStreamController;
+  Stream<List<T>> _suggestionsStream;
   int _searchId = 0;
-
   FocusNode _focusNode;
   TextEditingValue _value = TextEditingValue();
   TextInputConnection _connection;
   _SuggestionsBoxController _suggestionsBoxController;
   final LayerLink _layerLink = LayerLink();
+  // OverlayEntry _overlayEntry;
 
   String get text => String.fromCharCodes(
         _value.text.codeUnits.where((ch) => ch != kObjectReplacementChar),
@@ -54,6 +55,8 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
     super.initState();
     this._focusNode = FocusNode();
     this._suggestionsBoxController = _SuggestionsBoxController(context);
+    this._suggestionsStreamController = StreamController<List<T>>.broadcast();
+    // this._suggestionsStream.asBroadcastStream(())
 
     (() async {
       await this._initOverlayEntry();
@@ -69,9 +72,11 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
     if (_focusNode.hasFocus) {
       _openInputConnection();
       this._suggestionsBoxController.open();
+      //Overlay.of(context).insert(_overlayEntry);
     } else {
       _closeInputConnectionIfNeeded();
       this._suggestionsBoxController.close();
+      //_overlayEntry.remove();
     }
     setState(() {
       /*rebuild so that _TextCursor is hidden.*/
@@ -107,12 +112,18 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
             */
           child: Material(
             elevation: 4.0,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: _suggestions?.length ?? 0,
-              itemBuilder: (BuildContext context, int index) {
-                return widget.suggestionBuilder(
-                    context, this, _suggestions[index]);
+            child: StreamBuilder(
+              stream: _suggestionsStreamController.stream,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<dynamic>> snapshot) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data?.length ?? 0,
+                  itemBuilder: (BuildContext context, int index) {
+                    return widget.suggestionBuilder(
+                        context, this, _suggestions[index]);
+                  },
+                );
               },
             ),
           ),
@@ -142,6 +153,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
       _chips.add(data);
       _updateTextInputState();
       _suggestions = null;
+      _suggestionsStreamController.add(_suggestions);
     });
     widget.onChanged(_chips.toList(growable: false));
   }
@@ -257,7 +269,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
           .where((profile) => !_chips.contains(profile))
           .toList(growable: false));
     }
-    print(_suggestions);
+    _suggestionsStreamController.add(_suggestions);
   }
 }
 
