@@ -624,7 +624,7 @@ class _FormBuilderState extends State<FormBuilder> {
           break;
         case FormBuilderInput.TYPE_CHIPS_INPUT:
           formControlsList.add(SizedBox(
-            height: 200.0,
+            // height: 200.0,
             child: FormField(
               initialValue: formControl.value ?? [],
               onSaved: (value) {
@@ -638,6 +638,7 @@ class _FormBuilderState extends State<FormBuilder> {
               },
               builder: (FormFieldState<dynamic> field) {
                 return ChipsInput(
+                  // key: GlobalKey<ChipsInputState>(),
                   decoration: InputDecoration(
                     // prefixIcon: Icon(Icons.search),
                     hintText: formControl.hint,

@@ -35,7 +35,7 @@ class AppProfile {
 
   @override
   String toString() {
-    return 'Profile{$name}';
+    return name;
   }
 }
 
@@ -117,7 +117,7 @@ class MyHomePage extends StatelessWidget {
               require: true,
               min: 3,
             ),
-            FormBuilderInput.dropdown(
+            /*FormBuilderInput.dropdown(
               attribute: "dropdown",
               require: true,
               label: "Dropdown",
@@ -269,7 +269,7 @@ class MyHomePage extends StatelessWidget {
                   value: 10,
                 ),
               ],
-            ),
+            ),*/
           ],
           onChanged: () {
             print("Form value changed");
