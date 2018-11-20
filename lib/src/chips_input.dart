@@ -35,14 +35,12 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
   Set<T> _chips = Set<T>();
   List<T> _suggestions;
   StreamController<List<T>> _suggestionsStreamController;
-  Stream<List<T>> _suggestionsStream;
   int _searchId = 0;
   FocusNode _focusNode;
   TextEditingValue _value = TextEditingValue();
   TextInputConnection _connection;
   _SuggestionsBoxController _suggestionsBoxController;
   final LayerLink _layerLink = LayerLink();
-  // OverlayEntry _overlayEntry;
 
   String get text => String.fromCharCodes(
         _value.text.codeUnits.where((ch) => ch != kObjectReplacementChar),
@@ -56,7 +54,6 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
     this._focusNode = FocusNode();
     this._suggestionsBoxController = _SuggestionsBoxController(context);
     this._suggestionsStreamController = StreamController<List<T>>.broadcast();
-    // this._suggestionsStream.asBroadcastStream(())
 
     (() async {
       await this._initOverlayEntry();
@@ -72,11 +69,9 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
     if (_focusNode.hasFocus) {
       _openInputConnection();
       this._suggestionsBoxController.open();
-      //Overlay.of(context).insert(_overlayEntry);
     } else {
       _closeInputConnectionIfNeeded();
       this._suggestionsBoxController.close();
-      //_overlayEntry.remove();
     }
     setState(() {
       /*rebuild so that _TextCursor is hidden.*/
@@ -85,6 +80,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
 
   Future<void> _initOverlayEntry() async {
     RenderBox renderBox = context.findRenderObject();
+    // TODO: See if after_layout mixin (https://pub.dartlang.org/packages/after_layout) works instead of keep checking if rendered
 
     while (renderBox == null) {
       await Future.delayed(Duration(milliseconds: 10));
@@ -97,37 +93,33 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
     }
 
     var size = renderBox.size;
-    var offset = renderBox.localToGlobal(Offset.zero);
 
     this._suggestionsBoxController._overlayEntry = OverlayEntry(
       builder: (context) {
         return Positioned(
           width: size.width,
-          left: offset.dx,
-          top: offset.dy + size.height + 5.0,
-          /*child: CompositedTransformFollower(
+          child: CompositedTransformFollower(
             link: this._layerLink,
             showWhenUnlinked: false,
             offset: Offset(0.0, size.height + 5.0),
-            */
-          child: Material(
-            elevation: 4.0,
-            child: StreamBuilder(
-              stream: _suggestionsStreamController.stream,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<dynamic>> snapshot) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data?.length ?? 0,
-                  itemBuilder: (BuildContext context, int index) {
-                    return widget.suggestionBuilder(
-                        context, this, _suggestions[index]);
-                  },
-                );
-              },
+            child: Material(
+              elevation: 4.0,
+              child: StreamBuilder(
+                stream: _suggestionsStreamController.stream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<dynamic>> snapshot) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      return widget.suggestionBuilder(
+                          context, this, _suggestions[index]);
+                    },
+                  );
+                },
+              ),
             ),
           ),
-          //),
         );
       },
     );
@@ -210,17 +202,20 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
       ),
     );
 
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: requestKeyboard,
-      child: InputDecorator(
-        decoration: widget.decoration,
-        isFocused: _focusNode.hasFocus,
-        isEmpty: _value.text.length == 0,
-        child: Wrap(
-          children: chipsChildren,
-          spacing: 4.0,
-          runSpacing: 4.0,
+    return CompositedTransformTarget(
+      link: this._layerLink,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: requestKeyboard,
+        child: InputDecorator(
+          decoration: widget.decoration,
+          isFocused: _focusNode.hasFocus,
+          isEmpty: _value.text.length == 0,
+          child: Wrap(
+            children: chipsChildren,
+            spacing: 4.0,
+            runSpacing: 4.0,
+          ),
         ),
       ),
     );

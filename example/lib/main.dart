@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter FormBuilder Demo',
       theme: new ThemeData(
         primarySwatch: Colors.green,
       ),
@@ -74,7 +74,7 @@ class MyHomePage extends StatelessWidget {
           // resetButtonContent: Text("Clear Form"),
           controls: [
             FormBuilderInput.chipsInput(
-              label: 'Test',
+              label: 'Chips',
               attribute: 'chips_test',
               require: true,
               suggestionsCallback: (String query) {
@@ -117,7 +117,7 @@ class MyHomePage extends StatelessWidget {
               require: true,
               min: 3,
             ),
-            /*FormBuilderInput.dropdown(
+            FormBuilderInput.dropdown(
               attribute: "dropdown",
               require: true,
               label: "Dropdown",
@@ -192,7 +192,7 @@ class MyHomePage extends StatelessWidget {
                 FormBuilderInputOption(value: "Objective-C"),
               ],
             ),
-            FormBuilderInput.checkbox(
+            /*FormBuilderInput.checkbox(
                 label: "I accept the terms and conditions",
                 attribute: "accept_terms",
                 hint:

@@ -673,8 +673,7 @@ class _FormBuilderState extends State<FormBuilder> {
                         BorderSide(color: Theme.of(context).accentColor),
                     textColor: Theme.of(context).accentColor,
                     onPressed: () {
-                      _formKey.currentState
-                          .reset(); //FIXME: only resets TextField based inputs
+                      _formKey.currentState.reset();
                     },
                     child: widget.resetButtonContent ?? Text('Reset'),
                   ),
@@ -707,7 +706,7 @@ class _FormBuilderState extends State<FormBuilder> {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
     return GestureDetector(
-      onTap: () {
+      onTap: () { //TODO: Set focus on textfield when selected
         _showDatePickerDialog(
           context,
           initialDate: DateTime.tryParse(_inputController.value.text),
@@ -751,7 +750,7 @@ class _FormBuilderState extends State<FormBuilder> {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
     return GestureDetector(
-      onTap: () {
+      onTap: () { //TODO: Set focus on textfield when selected
         _showTimePickerDialog(
           context,
           // initialTime: new Time, //FIXME: Parse time from string
