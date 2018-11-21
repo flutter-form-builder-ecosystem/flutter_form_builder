@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
 
 import './form_builder_input.dart';
-import './form_builder_type_ahead.dart';
 import './chips_input.dart';
 
 //TODO: Refactor this spaghetti code
@@ -166,9 +166,30 @@ class _FormBuilderState extends State<FormBuilder> {
           break;
 
         case FormBuilderInput.TYPE_TYPE_AHEAD:
-          formControlsList.add(FormBuilderTypeAhead(
-            formControl: formControl,
-            count: count,
+          final TextEditingController _typeAheadController = TextEditingController();
+          formControlsList.add(TypeAheadFormField(
+            initialValue: formControl.value,
+            textFieldConfiguration: TextFieldConfiguration(
+              controller: _typeAheadController,
+              decoration: InputDecoration(
+                labelText: formControl.label,
+              ),
+            ),
+            suggestionsCallback: formControl.suggestionsCallback,
+            itemBuilder: formControl.itemBuilder,
+            transitionBuilder: (context, suggestionsBox, controller) {
+              return suggestionsBox;
+            },
+            onSuggestionSelected: (suggestion) {
+              _typeAheadController.value = TextEditingValue(text: suggestion);
+            },
+            validator: (value) {
+              if (formControl.require && value.isEmpty)
+                return '${formControl.label} is required';
+
+              if (formControl.validator != null)
+                return formControl.validator(value);
+            },
             onSaved: (value) {
               formData[formControl.attribute] = value;
             },
@@ -176,7 +197,6 @@ class _FormBuilderState extends State<FormBuilder> {
           break;
 
         case FormBuilderInput.TYPE_DROPDOWN:
-          // dropdownHasError =
           formControlsList.add(FormField(
             initialValue: formControl.value,
             validator: (value) {
@@ -706,7 +726,8 @@ class _FormBuilderState extends State<FormBuilder> {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
     return GestureDetector(
-      onTap: () { //TODO: Set focus on textfield when selected
+      onTap: () {
+        //TODO: Set focus on textfield when selected
         _showDatePickerDialog(
           context,
           initialDate: DateTime.tryParse(_inputController.value.text),
@@ -750,7 +771,8 @@ class _FormBuilderState extends State<FormBuilder> {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
     return GestureDetector(
-      onTap: () { //TODO: Set focus on textfield when selected
+      onTap: () {
+        //TODO: Set focus on textfield when selected
         _showTimePickerDialog(
           context,
           // initialTime: new Time, //FIXME: Parse time from string
