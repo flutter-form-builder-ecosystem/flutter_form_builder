@@ -224,7 +224,7 @@ class _FormBuilderState extends State<FormBuilder> {
                   hint: Text(formControl.hint ?? ''),
                   items: formControls[count].options.map((option) {
                     return DropdownMenuItem(
-                      child: Text(option.label ?? option.value),
+                      child: Text("${option.label ?? option.value}"),
                       value: option.value,
                     );
                   }).toList(),
@@ -262,8 +262,9 @@ class _FormBuilderState extends State<FormBuilder> {
                     dense: true,
                     isThreeLine: false,
                     contentPadding: EdgeInsets.all(0.0),
-                    title: Text(formControls[count].options[i].label ??
-                        formControls[count].options[i].value),
+                    leading: null,
+                    title: Text(
+                        "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
                     trailing: Radio<dynamic>(
                       value: formControls[count].options[i].value,
                       groupValue: field.value,
@@ -293,6 +294,8 @@ class _FormBuilderState extends State<FormBuilder> {
                   labelText: formControl.label,
                   helperText: formControl.hint ?? "",
                   errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                  border: InputBorder.none,
                 ),
                 child: Column(
                   children: radioList,
@@ -320,24 +323,31 @@ class _FormBuilderState extends State<FormBuilder> {
                   labelText: formControl.label,
                   helperText: formControl.hint,
                   errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  border: InputBorder.none,
                 ),
-                child: CupertinoSegmentedControl(
-                  borderColor: Theme.of(context).primaryColor,
-                  selectedColor: Theme.of(context).primaryColor,
-                  pressedColor: Theme.of(context).primaryColor,
-                  groupValue: field.value,
-                  children: Map.fromIterable(
-                    formControls[count].options,
-                    key: (v) => v.value,
-                    value: (v) =>
-                        Text(v.label != null ? "${v.label}" : "${v.value}"),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: CupertinoSegmentedControl(
+                    borderColor: Theme.of(context).primaryColor,
+                    selectedColor: Theme.of(context).primaryColor,
+                    pressedColor: Theme.of(context).primaryColor,
+                    groupValue: field.value,
+                    children: Map.fromIterable(
+                      formControls[count].options,
+                      key: (v) => v.value,
+                      value: (v) => Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text("${v.label ?? v.value}"),
+                          ),
+                    ),
+                    onValueChanged: (dynamic value) {
+                      setState(() {
+                        formControls[count].value = value;
+                      });
+                      field.didChange(value);
+                    },
                   ),
-                  onValueChanged: (dynamic value) {
-                    setState(() {
-                      formControls[count].value = value;
-                    });
-                    field.didChange(value);
-                  },
                 ),
               );
             },
@@ -626,6 +636,8 @@ class _FormBuilderState extends State<FormBuilder> {
                     labelText: formControl.label,
                     helperText: formControl.hint ?? "",
                     errorText: field.errorText,
+                    contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                    border: InputBorder.none,
                   ),
                   child: Column(
                     children: checkboxList,
@@ -716,9 +728,10 @@ class _FormBuilderState extends State<FormBuilder> {
   _generateDatePicker(FormBuilderInput formControl, int count) {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
+    FocusNode _focusNode = FocusNode();
     return GestureDetector(
       onTap: () {
-        //TODO: Set focus on textfield when selected
+        FocusScope.of(context).requestFocus(_focusNode);
         _showDatePickerDialog(
           context,
           initialDate: DateTime.tryParse(_inputController.value.text),
@@ -761,9 +774,10 @@ class _FormBuilderState extends State<FormBuilder> {
   _generateTimePicker(FormBuilderInput formControl, int count) {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
+    FocusNode _focusNode = new FocusNode();
     return GestureDetector(
       onTap: () {
-        //TODO: Set focus on textfield when selected
+        FocusScope.of(context).requestFocus(_focusNode);
         _showTimePickerDialog(
           context,
           // initialTime: new Time, //FIXME: Parse time from string
@@ -781,6 +795,7 @@ class _FormBuilderState extends State<FormBuilder> {
       child: AbsorbPointer(
         child: TextFormField(
           controller: _inputController,
+          focusNode: _focusNode,
           validator: (value) {
             if (formControl.require && (value.isEmpty || value == null))
               return "${formControl.label} is required";
