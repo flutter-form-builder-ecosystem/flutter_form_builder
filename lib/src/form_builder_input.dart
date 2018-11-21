@@ -258,7 +258,7 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-  }) {
+  }) : assert(value == null || value is List) {
     type = FormBuilderInput.TYPE_CHIPS_INPUT;
   }
 
