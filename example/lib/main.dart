@@ -70,13 +70,15 @@ class MyHomePage extends StatelessWidget {
         child: FormBuilder(
           context,
           autovalidate: true,
-          // showResetButton: true,
+          showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [
             FormBuilderInput.chipsInput(
               label: 'Chips',
               attribute: 'chips_test',
               require: true,
+              value: [AppProfile('Stock Man', 'stock@man.com',
+                  'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')],
               suggestionsCallback: (String query) {
                 if (query.length != 0) {
                   return mockResults.where((profile) {

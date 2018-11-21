@@ -208,7 +208,7 @@ class _FormBuilderState extends State<FormBuilder> {
                           value: option.value,
                         );
                       }).toList(),
-                      value: formControl.value,
+                      value: field.value,
                       onChanged: (value) {
                         setState(() {
                           formControls[count].value = value;
@@ -255,7 +255,7 @@ class _FormBuilderState extends State<FormBuilder> {
                         formControls[count].options[i].value),
                     trailing: Radio<dynamic>(
                       value: formControls[count].options[i].value,
-                      groupValue: formControls[count].value,
+                      groupValue: field.value,
                       onChanged: (dynamic value) {
                         setState(() {
                           formControls[count].value = value;
@@ -638,7 +638,7 @@ class _FormBuilderState extends State<FormBuilder> {
               },
               builder: (FormFieldState<dynamic> field) {
                 return ChipsInput(
-                  // key: GlobalKey<ChipsInputState>(),
+                  initialValue: field.value,
                   decoration: InputDecoration(
                     // prefixIcon: Icon(Icons.search),
                     hintText: formControl.hint,

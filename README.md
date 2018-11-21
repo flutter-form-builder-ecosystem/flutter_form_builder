@@ -189,6 +189,9 @@ FormBuilder(
 * Add more `FormBuilderInput` types
 
 ## KNOWN ISSUES - HELP NEEDED (Send help ;-P)
-* Proper validation for URL 
+* Proper validation for URL [doesn't work without http(s)]
 * Resetting the form doesn't clear all `FormField`s
+* Overlay for ChipsInput doesn't move when input height changes i.e. when chips wrap
+* For some reason Overlay for ChipsInput floats above AppBar when scrolling
+* DatePicker and TimePicker Textfields don't get focus when selecting
 

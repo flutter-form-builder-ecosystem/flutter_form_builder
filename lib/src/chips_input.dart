@@ -10,6 +10,7 @@ typedef ChipsBuilder<T> = Widget Function(
 class ChipsInput<T> extends StatefulWidget {
   const ChipsInput({
     Key key,
+    this.initialValue = const [],
     this.decoration = const InputDecoration(),
     @required this.chipBuilder,
     @required this.suggestionBuilder,
@@ -24,6 +25,7 @@ class ChipsInput<T> extends StatefulWidget {
   final ValueChanged<T> onChipTapped;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
+  final List<T> initialValue;
 
   @override
   ChipsInputState<T> createState() => ChipsInputState<T>();
@@ -51,6 +53,10 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
   @override
   void initState() {
     super.initState();
+    _chips.addAll(widget.initialValue);
+    /*widget.initialValue.forEach((data){
+      selectSuggestion(data);
+    });*/
     this._focusNode = FocusNode();
     this._suggestionsBoxController = _SuggestionsBoxController(context);
     this._suggestionsStreamController = StreamController<List<T>>.broadcast();
@@ -210,7 +216,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
         child: InputDecorator(
           decoration: widget.decoration,
           isFocused: _focusNode.hasFocus,
-          isEmpty: _value.text.length == 0,
+          isEmpty: _value.text.length == 0 && _chips.length == 0,
           child: Wrap(
             children: chipsChildren,
             spacing: 4.0,
