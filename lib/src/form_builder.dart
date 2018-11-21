@@ -166,7 +166,8 @@ class _FormBuilderState extends State<FormBuilder> {
           break;
 
         case FormBuilderInput.TYPE_TYPE_AHEAD:
-          final TextEditingController _typeAheadController = TextEditingController();
+          final TextEditingController _typeAheadController =
+              TextEditingController();
           formControlsList.add(TypeAheadFormField(
             initialValue: formControl.value,
             textFieldConfiguration: TextFieldConfiguration(
@@ -210,40 +211,30 @@ class _FormBuilderState extends State<FormBuilder> {
               formData[formControl.attribute] = value;
             },
             builder: (FormFieldState<dynamic> field) {
-              return Container(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      formControl.label,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    DropdownButton(
-                      isExpanded: true,
-                      hint: Text(formControl.hint ?? ''),
-                      items: formControls[count].options.map((option) {
-                        return DropdownMenuItem(
-                          child: Text(option.label ?? option.value),
-                          value: option.value,
-                        );
-                      }).toList(),
-                      value: field.value,
-                      onChanged: (value) {
-                        setState(() {
-                          formControls[count].value = value;
-                        });
-                        field.didChange(value);
-                      },
-                    ),
-                    field.hasError
-                        ? Text(
-                            field.errorText,
-                            style:
-                                TextStyle(color: Theme.of(context).errorColor),
-                          )
-                        : SizedBox(),
-                  ],
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint,
+                  errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                  border: InputBorder.none,
+                ),
+                child: DropdownButton(
+                  isExpanded: true,
+                  hint: Text(formControl.hint ?? ''),
+                  items: formControls[count].options.map((option) {
+                    return DropdownMenuItem(
+                      child: Text(option.label ?? option.value),
+                      value: option.value,
+                    );
+                  }).toList(),
+                  value: field.value,
+                  onChanged: (value) {
+                    setState(() {
+                      formControls[count].value = value;
+                    });
+                    field.didChange(value);
+                  },
                 ),
               );
             },
