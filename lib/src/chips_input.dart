@@ -74,6 +74,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
   void _onFocusChanged() {
     if (_focusNode.hasFocus) {
       _openInputConnection();
+      // if()
       this._suggestionsBoxController.open();
     } else {
       _closeInputConnectionIfNeeded();
@@ -102,30 +103,33 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
 
     this._suggestionsBoxController._overlayEntry = OverlayEntry(
       builder: (context) {
-        return Positioned(
-          width: size.width,
-          child: CompositedTransformFollower(
-            link: this._layerLink,
-            showWhenUnlinked: false,
-            offset: Offset(0.0, size.height + 5.0),
-            child: Material(
-              elevation: 4.0,
-              child: StreamBuilder(
-                stream: _suggestionsStreamController.stream,
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<dynamic>> snapshot) {
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: snapshot.data?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      return widget.suggestionBuilder(
-                          context, this, _suggestions[index]);
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
+        return StreamBuilder(
+          stream: _suggestionsStreamController.stream,
+          builder:
+              (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+            if (snapshot.data != null && snapshot.data?.length != 0)
+              return Positioned(
+                width: size.width,
+                child: CompositedTransformFollower(
+                  link: this._layerLink,
+                  showWhenUnlinked: false,
+                  offset: Offset(0.0, size.height + 5.0),
+                  child: Material(
+                    elevation: 4.0,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data?.length ?? 0,
+                      itemBuilder: (BuildContext context, int index) {
+                        return widget.suggestionBuilder(
+                            context, this, _suggestions[index]);
+                      },
+                    ),
+                  ),
+                ),
+              );
+            else
+              return Container();
+          },
         );
       },
     );
@@ -259,6 +263,8 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
       selection: TextSelection.collapsed(offset: text.length),
       composing: TextRange(start: 0, end: text.length),
     );
+    if(_connection == null)
+      _connection = TextInput.attach(this, TextInputConfiguration());
     _connection.setEditingState(_value);
   }
 

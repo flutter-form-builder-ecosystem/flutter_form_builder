@@ -43,21 +43,29 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const mockResults = <AppProfile>[
-      AppProfile('Stock Man', 'stock@man.com',
+      AppProfile('Andrew', 'stock@man.com',
           'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
       AppProfile('Paul', 'paul@google.com',
           'https://mbtskoudsalg.com/images/person-stock-image-png.png'),
       AppProfile('Fred', 'fred@google.com',
           'https://media.istockphoto.com/photos/feeling-great-about-my-corporate-choices-picture-id507296326'),
-      AppProfile('Bera', 'bera@flutter.io',
+      AppProfile('Brian', 'brian@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
       AppProfile('John', 'john@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
       AppProfile('Thomas', 'thomas@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Norbert', 'norbert@flutter.io',
+      AppProfile('Nelly', 'nelly@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Marina', 'marina@flutter.io',
+      AppProfile('Marie', 'marie@flutter.io',
+          'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
+      AppProfile('Charlie', 'charlie@flutter.io',
+          'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
+      AppProfile('Diana', 'diana@flutter.io',
+          'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
+      AppProfile('Ernie', 'ernie@flutter.io',
+          'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
+      AppProfile('Gina', 'fred@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
     ];
 
@@ -77,13 +85,12 @@ class MyHomePage extends StatelessWidget {
               label: 'Chips',
               attribute: 'chips_test',
               require: true,
-              value: [AppProfile('Stock Man', 'stock@man.com',
-                  'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')],
+              value: [AppProfile('Andrew', 'stock@man.com','https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')],
               suggestionsCallback: (String query) {
                 if (query.length != 0) {
                   return mockResults.where((profile) {
-                    return profile.name.contains(query) ||
-                        profile.email.contains(query);
+                    return profile.name.toLowerCase().contains(query.toLowerCase()) ||
+                        profile.email.toLowerCase().contains(query.toLowerCase());
                   }).toList(growable: false);
                 } else {
                   return const <AppProfile>[];
