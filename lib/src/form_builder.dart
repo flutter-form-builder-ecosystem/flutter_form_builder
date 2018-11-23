@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
 
 import './form_builder_input.dart';
-import './form_builder_type_ahead.dart';
+import './chips_input.dart';
 
+//TODO: Refactor this spaghetti code
 class FormBuilder extends StatefulWidget {
   final BuildContext context;
   final VoidCallback onChanged;
@@ -28,6 +30,24 @@ class FormBuilder extends StatefulWidget {
     this.submitButtonContent,
     this.resetButtonContent,
   }) : assert(resetButtonContent == null || showResetButton);
+
+  // assert(duplicateAttributes(controls).length == 0, "Duplicate attribute names not allowed");
+
+  //TODO: Find way to assert no duplicates in control attributes
+  /*final Function duplicateAttributes = (List<FormBuilderInput> controls) {
+    Map<String, int> attributeMap = {};
+    controls.forEach((c) {
+      if (attributeMap["${c.attribute}"] == null)
+        attributeMap["${c.attribute}"] = 1;
+      else
+        attributeMap["${c.attribute}"] += 1;
+    });
+    List<String> duplicates = [];
+    attributeMap.forEach((k, v) {
+      if (v > 1) duplicates.add(k);
+    });
+    return duplicates;
+  };*/
 
   @override
   _FormBuilderState createState() => _FormBuilderState(controls);
@@ -92,6 +112,7 @@ class _FormBuilderState extends State<FormBuilder> {
               break;
           }
           formControlsList.add(TextFormField(
+            key: Key(formControl.attribute),
             decoration: InputDecoration(
               labelText: formControl.label,
               hintText: formControl.hint,
@@ -164,18 +185,35 @@ class _FormBuilderState extends State<FormBuilder> {
           break;
 
         case FormBuilderInput.TYPE_TYPE_AHEAD:
-          formControlsList.add(FormBuilderTypeAhead(
-            formControl: formControl,
-            count: count,
-            onSaved: (value) {
-              formData[formControl.attribute] = value;
+          TextEditingController _typeAheadController =
+              TextEditingController(text: formControl.value);
+          formControlsList.add(TypeAheadFormField(
+            key: Key(formControl.attribute),
+            textFieldConfiguration: TextFieldConfiguration(
+              controller: _typeAheadController,
+              decoration: InputDecoration(
+                labelText: formControl.label,
+                hintText: formControl.hint,
+              ),
+            ),
+            suggestionsCallback: formControl.suggestionsCallback,
+            itemBuilder: formControl.itemBuilder,
+            transitionBuilder: (context, suggestionsBox, controller) => suggestionsBox,
+            onSuggestionSelected: (suggestion) => _typeAheadController.value = TextEditingValue(text: suggestion),
+            validator: (value) {
+              if (formControl.require && value.isEmpty)
+                return '${formControl.label} is required';
+
+              if (formControl.validator != null)
+                return formControl.validator(value);
             },
+            onSaved: (value) => formData[formControl.attribute] = value,
           ));
           break;
 
         case FormBuilderInput.TYPE_DROPDOWN:
-          // dropdownHasError =
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
@@ -183,45 +221,34 @@ class _FormBuilderState extends State<FormBuilder> {
               if (formControl.validator != null)
                 return formControl.validator(value);
             },
-            // autovalidate: ,
             onSaved: (value) {
               formData[formControl.attribute] = value;
             },
             builder: (FormFieldState<dynamic> field) {
-              return Container(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      formControl.label,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    DropdownButton(
-                      isExpanded: true,
-                      hint: Text(formControl.hint ?? ''),
-                      items: formControls[count].options.map((option) {
-                        return DropdownMenuItem(
-                          child: Text(option.label ?? option.value),
-                          value: option.value,
-                        );
-                      }).toList(),
-                      value: formControl.value,
-                      onChanged: (value) {
-                        setState(() {
-                          formControls[count].value = value;
-                        });
-                        field.didChange(value);
-                      },
-                    ),
-                    field.hasError
-                        ? Text(
-                            field.errorText,
-                            style:
-                                TextStyle(color: Theme.of(context).errorColor),
-                          )
-                        : SizedBox(),
-                  ],
+              return InputDecorator(
+                decoration: InputDecoration(
+                  labelText: formControl.label,
+                  helperText: formControl.hint,
+                  errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                  border: InputBorder.none,
+                ),
+                child: DropdownButton(
+                  isExpanded: true,
+                  hint: Text(formControl.hint ?? ''),
+                  items: formControls[count].options.map((option) {
+                    return DropdownMenuItem(
+                      child: Text("${option.label ?? option.value}"),
+                      value: option.value,
+                    );
+                  }).toList(),
+                  value: field.value,
+                  onChanged: (value) {
+                    setState(() {
+                      formControls[count].value = value;
+                    });
+                    field.didChange(value);
+                  },
                 ),
               );
             },
@@ -231,6 +258,7 @@ class _FormBuilderState extends State<FormBuilder> {
         //TODO: For TYPE_CHECKBOX, TYPE_CHECKBOX_LIST, TYPE_RADIO allow user to choose if checkbox/radio to appear before or after Label
         case FormBuilderInput.TYPE_RADIO:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             onSaved: (value) {
               formData[formControl.attribute] = value;
@@ -249,11 +277,12 @@ class _FormBuilderState extends State<FormBuilder> {
                     dense: true,
                     isThreeLine: false,
                     contentPadding: EdgeInsets.all(0.0),
-                    title: Text(formControls[count].options[i].label ??
-                        formControls[count].options[i].value),
+                    leading: null,
+                    title: Text(
+                        "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
                     trailing: Radio<dynamic>(
                       value: formControls[count].options[i].value,
-                      groupValue: formControls[count].value,
+                      groupValue: field.value,
                       onChanged: (dynamic value) {
                         setState(() {
                           formControls[count].value = value;
@@ -280,6 +309,8 @@ class _FormBuilderState extends State<FormBuilder> {
                   labelText: formControl.label,
                   helperText: formControl.hint ?? "",
                   errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                  border: InputBorder.none,
                 ),
                 child: Column(
                   children: radioList,
@@ -291,6 +322,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SEGMENTED_CONTROL:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             onSaved: (value) {
               formData[formControl.attribute] = value;
@@ -307,24 +339,31 @@ class _FormBuilderState extends State<FormBuilder> {
                   labelText: formControl.label,
                   helperText: formControl.hint,
                   errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  border: InputBorder.none,
                 ),
-                child: CupertinoSegmentedControl(
-                  borderColor: Theme.of(context).primaryColor,
-                  selectedColor: Theme.of(context).primaryColor,
-                  pressedColor: Theme.of(context).primaryColor,
-                  groupValue: field.value,
-                  children: Map.fromIterable(
-                    formControls[count].options,
-                    key: (v) => v.value,
-                    value: (v) =>
-                        Text(v.label != null ? "${v.label}" : "${v.value}"),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: CupertinoSegmentedControl(
+                    borderColor: Theme.of(context).primaryColor,
+                    selectedColor: Theme.of(context).primaryColor,
+                    pressedColor: Theme.of(context).primaryColor,
+                    groupValue: field.value,
+                    children: Map.fromIterable(
+                      formControls[count].options,
+                      key: (v) => v.value,
+                      value: (v) => Padding(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text("${v.label ?? v.value}"),
+                          ),
+                    ),
+                    onValueChanged: (dynamic value) {
+                      setState(() {
+                        formControls[count].value = value;
+                      });
+                      field.didChange(value);
+                    },
                   ),
-                  onValueChanged: (dynamic value) {
-                    setState(() {
-                      formControls[count].value = value;
-                    });
-                    field.didChange(value);
-                  },
                 ),
               );
             },
@@ -333,6 +372,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SWITCH:
           formControlsList.add(FormField(
+              key: Key(formControl.attribute),
               initialValue: formControl.value ?? false,
               validator: (value) {
                 if (formControl.require && value == null)
@@ -381,6 +421,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_STEPPER:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
@@ -418,6 +459,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_RATE:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value ?? 1,
             validator: (value) {
               if (formControl.require && value == null)
@@ -454,6 +496,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_CHECKBOX:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value ?? false,
             validator: (value) {
               if (formControl.require && value == null)
@@ -503,6 +546,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SLIDER:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
@@ -555,6 +599,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_CHECKBOX_LIST:
           formControlsList.add(FormField(
+              key: Key(formControl.attribute),
               initialValue: formControl.value ?? [],
               onSaved: (value) {
                 formData[formControl.attribute] = value;
@@ -613,12 +658,52 @@ class _FormBuilderState extends State<FormBuilder> {
                     labelText: formControl.label,
                     helperText: formControl.hint ?? "",
                     errorText: field.errorText,
+                    contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                    border: InputBorder.none,
                   ),
                   child: Column(
                     children: checkboxList,
                   ),
                 );
               }));
+          break;
+        case FormBuilderInput.TYPE_CHIPS_INPUT:
+          formControlsList.add(SizedBox(
+            // height: 200.0,
+            child: FormField(
+              key: Key(formControl.attribute),
+              initialValue: formControl.value ?? [],
+              onSaved: (value) {
+                formData[formControl.attribute] = value;
+              },
+              validator: (value) {
+                if (formControl.require && value.length == 0)
+                  return "${formControl.label} is required";
+                if (formControl.validator != null)
+                  return formControl.validator(value);
+              },
+              builder: (FormFieldState<dynamic> field) {
+                return ChipsInput(
+                  initialValue: field.value,
+                  decoration: InputDecoration(
+                    // prefixIcon: Icon(Icons.search),
+                    hintText: formControl.hint,
+                    labelText: formControl.label,
+                    errorText: field.errorText,
+                  ),
+                  findSuggestions: formControl.suggestionsCallback,
+                  onChanged: (data) {
+                    setState(() {
+                      formControls[count].value = data;
+                    });
+                    field.didChange(data);
+                  },
+                  chipBuilder: formControl.chipBuilder,
+                  suggestionBuilder: formControl.suggestionBuilder,
+                );
+              },
+            ),
+          ));
           break;
       }
     }
@@ -634,8 +719,7 @@ class _FormBuilderState extends State<FormBuilder> {
                         BorderSide(color: Theme.of(context).accentColor),
                     textColor: Theme.of(context).accentColor,
                     onPressed: () {
-                      _formKey.currentState
-                          .reset(); //FIXME: only resets TextField based inputs
+                      _formKey.currentState.reset();
                     },
                     child: widget.resetButtonContent ?? Text('Reset'),
                   ),
@@ -667,8 +751,10 @@ class _FormBuilderState extends State<FormBuilder> {
   _generateDatePicker(FormBuilderInput formControl, int count) {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
+    FocusNode _focusNode = FocusNode();
     return GestureDetector(
       onTap: () {
+        FocusScope.of(context).requestFocus(_focusNode);
         _showDatePickerDialog(
           context,
           initialDate: DateTime.tryParse(_inputController.value.text),
@@ -686,6 +772,7 @@ class _FormBuilderState extends State<FormBuilder> {
       },
       child: AbsorbPointer(
         child: TextFormField(
+          key: Key(formControl.attribute),
           validator: (value) {
             if (formControl.require && (value.isEmpty || value == null))
               return "${formControl.label} is required";
@@ -711,8 +798,10 @@ class _FormBuilderState extends State<FormBuilder> {
   _generateTimePicker(FormBuilderInput formControl, int count) {
     TextEditingController _inputController =
         new TextEditingController(text: formControl.value);
+    FocusNode _focusNode = new FocusNode();
     return GestureDetector(
       onTap: () {
+        FocusScope.of(context).requestFocus(_focusNode);
         _showTimePickerDialog(
           context,
           // initialTime: new Time, //FIXME: Parse time from string
@@ -729,7 +818,9 @@ class _FormBuilderState extends State<FormBuilder> {
       },
       child: AbsorbPointer(
         child: TextFormField(
+          key: Key(formControl.attribute),
           controller: _inputController,
+          focusNode: _focusNode,
           validator: (value) {
             if (formControl.require && (value.isEmpty || value == null))
               return "${formControl.label} is required";

@@ -49,3 +49,10 @@
 * Fixed bug where validation not working for fields outside screen (when using ListView) - [Flutter Issue #17385](https://github.com/flutter/flutter/issues/17385)
 * Added InputDecoration for all custom FormFields
 
+## [1.2.0] - 23-Nov-2018
+* New `FormBuilderInput` types:  
+    * ChipsInput
+* Some bug fixes
+* Minor UI improvements
+* Some bugs introduced, to be fixed later
+

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import './form_builder_input_option.dart';
+import './chips_input.dart';
 
-//TODO: Consider adding code_input - https://pub.dartlang.org/packages/code_input#-readme-tab-
-//TODO: Consider adding Input Chips - https://stackoverflow.com/questions/52155254/how-can-i-build-a-chip-input-field-in-flutter
+//TODO: Consider adding RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
+//TODO: Consider adding ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
+//TODO: Consider adding masked_text - https://pub.dartlang.org/packages/code_input#-readme-tab- (Not Important)
+//TODO: Consider adding code_input - https://pub.dartlang.org/packages/flutter_masked_text#-changelog-tab- (Not Important)
 //TODO: Add autovalidate attribute type
 class FormBuilderInput {
   static const String TYPE_TEXT = "Text";
@@ -26,6 +29,7 @@ class FormBuilderInput {
   static const String TYPE_STEPPER = "Stepper";
   static const String TYPE_RATE = "Rate";
   static const String TYPE_SEGMENTED_CONTROL = "SegmentedControl";
+  static const String TYPE_CHIPS_INPUT = "ChipsInput";
 
   String label;
   String attribute;
@@ -45,6 +49,8 @@ class FormBuilderInput {
   List<FormBuilderInputOption> options;
   SuggestionsCallback suggestionsCallback;
   ItemBuilder itemBuilder;
+  ChipsBuilder suggestionBuilder;
+  ChipsBuilder chipBuilder;
 
   FormBuilderInput.textField({
     @required this.label,
@@ -240,6 +246,20 @@ class FormBuilderInput {
     this.validator,
   }) {
     type = FormBuilderInput.TYPE_TIME_PICKER;
+  }
+
+  FormBuilderInput.chipsInput({
+    @required this.label,
+    @required this.attribute,
+    @required this.suggestionsCallback,
+    @required this.suggestionBuilder,
+    @required this.chipBuilder,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) : assert(value == null || value is List) {
+    type = FormBuilderInput.TYPE_CHIPS_INPUT;
   }
 
   hasHint() {
