@@ -42,7 +42,8 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
   TextEditingValue _value = TextEditingValue();
   TextInputConnection _connection;
   _SuggestionsBoxController _suggestionsBoxController;
-  final LayerLink _layerLink = LayerLink();
+  LayerLink _layerLink = LayerLink();
+  Size size;
 
   String get text => String.fromCharCodes(
         _value.text.codeUnits.where((ch) => ch != kObjectReplacementChar),
@@ -99,7 +100,8 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
       await Future.delayed(Duration(milliseconds: 10));
     }
 
-    var size = renderBox.size;
+    size = renderBox.size;
+    print(size);
 
     this._suggestionsBoxController._overlayEntry = OverlayEntry(
       builder: (context) {
@@ -263,7 +265,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
       selection: TextSelection.collapsed(offset: text.length),
       composing: TextRange(start: 0, end: text.length),
     );
-    if(_connection == null)
+    if (_connection == null)
       _connection = TextInput.attach(this, TextInputConfiguration());
     _connection.setEditingState(_value);
   }

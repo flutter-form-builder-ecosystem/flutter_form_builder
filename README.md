@@ -193,5 +193,5 @@ FormBuilder(
 * Resetting the form doesn't clear all `FormField`s
 * Overlay for ChipsInput doesn't move when input height changes i.e. when chips wrap
 * For some reason Overlay for ChipsInput floats above AppBar when scrolling
-* DatePicker and TimePicker Textfields don't get focus when selecting
+* TypeAhead text gets cleared when Dropdown/ChipsInput value changes. What the Flip????
 

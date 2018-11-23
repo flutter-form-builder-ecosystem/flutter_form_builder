@@ -31,6 +31,24 @@ class FormBuilder extends StatefulWidget {
     this.resetButtonContent,
   }) : assert(resetButtonContent == null || showResetButton);
 
+  // assert(duplicateAttributes(controls).length == 0, "Duplicate attribute names not allowed");
+
+  //TODO: Find way to assert no duplicates in control attributes
+  /*final Function duplicateAttributes = (List<FormBuilderInput> controls) {
+    Map<String, int> attributeMap = {};
+    controls.forEach((c) {
+      if (attributeMap["${c.attribute}"] == null)
+        attributeMap["${c.attribute}"] = 1;
+      else
+        attributeMap["${c.attribute}"] += 1;
+    });
+    List<String> duplicates = [];
+    attributeMap.forEach((k, v) {
+      if (v > 1) duplicates.add(k);
+    });
+    return duplicates;
+  };*/
+
   @override
   _FormBuilderState createState() => _FormBuilderState(controls);
 }
@@ -94,6 +112,7 @@ class _FormBuilderState extends State<FormBuilder> {
               break;
           }
           formControlsList.add(TextFormField(
+            key: Key(formControl.attribute),
             decoration: InputDecoration(
               labelText: formControl.label,
               hintText: formControl.hint,
@@ -166,24 +185,21 @@ class _FormBuilderState extends State<FormBuilder> {
           break;
 
         case FormBuilderInput.TYPE_TYPE_AHEAD:
-          final TextEditingController _typeAheadController =
-              TextEditingController();
+          TextEditingController _typeAheadController =
+              TextEditingController(text: formControl.value);
           formControlsList.add(TypeAheadFormField(
-            initialValue: formControl.value,
+            key: Key(formControl.attribute),
             textFieldConfiguration: TextFieldConfiguration(
               controller: _typeAheadController,
               decoration: InputDecoration(
                 labelText: formControl.label,
+                hintText: formControl.hint,
               ),
             ),
             suggestionsCallback: formControl.suggestionsCallback,
             itemBuilder: formControl.itemBuilder,
-            transitionBuilder: (context, suggestionsBox, controller) {
-              return suggestionsBox;
-            },
-            onSuggestionSelected: (suggestion) {
-              _typeAheadController.value = TextEditingValue(text: suggestion);
-            },
+            transitionBuilder: (context, suggestionsBox, controller) => suggestionsBox,
+            onSuggestionSelected: (suggestion) => _typeAheadController.value = TextEditingValue(text: suggestion),
             validator: (value) {
               if (formControl.require && value.isEmpty)
                 return '${formControl.label} is required';
@@ -191,14 +207,13 @@ class _FormBuilderState extends State<FormBuilder> {
               if (formControl.validator != null)
                 return formControl.validator(value);
             },
-            onSaved: (value) {
-              formData[formControl.attribute] = value;
-            },
+            onSaved: (value) => formData[formControl.attribute] = value,
           ));
           break;
 
         case FormBuilderInput.TYPE_DROPDOWN:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
@@ -206,7 +221,6 @@ class _FormBuilderState extends State<FormBuilder> {
               if (formControl.validator != null)
                 return formControl.validator(value);
             },
-            // autovalidate: ,
             onSaved: (value) {
               formData[formControl.attribute] = value;
             },
@@ -244,6 +258,7 @@ class _FormBuilderState extends State<FormBuilder> {
         //TODO: For TYPE_CHECKBOX, TYPE_CHECKBOX_LIST, TYPE_RADIO allow user to choose if checkbox/radio to appear before or after Label
         case FormBuilderInput.TYPE_RADIO:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             onSaved: (value) {
               formData[formControl.attribute] = value;
@@ -307,6 +322,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SEGMENTED_CONTROL:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             onSaved: (value) {
               formData[formControl.attribute] = value;
@@ -356,6 +372,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SWITCH:
           formControlsList.add(FormField(
+              key: Key(formControl.attribute),
               initialValue: formControl.value ?? false,
               validator: (value) {
                 if (formControl.require && value == null)
@@ -404,6 +421,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_STEPPER:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
@@ -441,6 +459,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_RATE:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value ?? 1,
             validator: (value) {
               if (formControl.require && value == null)
@@ -477,6 +496,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_CHECKBOX:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value ?? false,
             validator: (value) {
               if (formControl.require && value == null)
@@ -526,6 +546,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_SLIDER:
           formControlsList.add(FormField(
+            key: Key(formControl.attribute),
             initialValue: formControl.value,
             validator: (value) {
               if (formControl.require && value == null)
@@ -578,6 +599,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
         case FormBuilderInput.TYPE_CHECKBOX_LIST:
           formControlsList.add(FormField(
+              key: Key(formControl.attribute),
               initialValue: formControl.value ?? [],
               onSaved: (value) {
                 formData[formControl.attribute] = value;
@@ -649,6 +671,7 @@ class _FormBuilderState extends State<FormBuilder> {
           formControlsList.add(SizedBox(
             // height: 200.0,
             child: FormField(
+              key: Key(formControl.attribute),
               initialValue: formControl.value ?? [],
               onSaved: (value) {
                 formData[formControl.attribute] = value;
@@ -749,6 +772,7 @@ class _FormBuilderState extends State<FormBuilder> {
       },
       child: AbsorbPointer(
         child: TextFormField(
+          key: Key(formControl.attribute),
           validator: (value) {
             if (formControl.require && (value.isEmpty || value == null))
               return "${formControl.label} is required";
@@ -794,6 +818,7 @@ class _FormBuilderState extends State<FormBuilder> {
       },
       child: AbsorbPointer(
         child: TextFormField(
+          key: Key(formControl.attribute),
           controller: _inputController,
           focusNode: _focusNode,
           validator: (value) {
