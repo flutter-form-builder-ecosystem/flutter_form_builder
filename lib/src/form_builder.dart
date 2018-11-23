@@ -198,8 +198,10 @@ class _FormBuilderState extends State<FormBuilder> {
             ),
             suggestionsCallback: formControl.suggestionsCallback,
             itemBuilder: formControl.itemBuilder,
-            transitionBuilder: (context, suggestionsBox, controller) => suggestionsBox,
-            onSuggestionSelected: (suggestion) => _typeAheadController.value = TextEditingValue(text: suggestion),
+            transitionBuilder: (context, suggestionsBox, controller) =>
+                suggestionsBox,
+            onSuggestionSelected: (suggestion) =>
+                _typeAheadController.value = TextEditingValue(text: suggestion),
             validator: (value) {
               if (formControl.require && value.isEmpty)
                 return '${formControl.label} is required';

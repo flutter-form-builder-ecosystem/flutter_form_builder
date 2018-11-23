@@ -186,7 +186,10 @@ FormBuilder(
 
 ## TODO: 
 * Improve documentation by showing complete list of input types and their usage and options
-* Add more `FormBuilderInput` types
+* Add more `FormBuilderInput` types:
+    * RangeSlider
+    * ColorPicker
+    * MaskedText
 
 ## KNOWN ISSUES - HELP NEEDED (Send help ;-P)
 * Proper validation for URL [doesn't work without http(s)]
