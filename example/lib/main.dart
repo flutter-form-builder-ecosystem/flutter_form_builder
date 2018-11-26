@@ -348,7 +348,6 @@ class MyHomePage extends StatelessWidget {
                         .toLowerCase()
                         .indexOf(lowercaseQuery)
                         .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
-                  ;
                 } else {
                   return const <AppProfile>[];
                 }
