@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="API docs for the createState method from the FormBuilder class, for the Dart programming language.">
+  <title>createState method - FormBuilder class - flutter_form_builder library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">flutter_form_builder</a></li>
+    <li><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></li>
+    <li><a href="flutter_form_builder/FormBuilder-class.html">FormBuilder</a></li>
+    <li class="self-crumb">createState method</li>
+  </ol>
+  <div class="self-name">createState</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5>FormBuilder class</h5>
+    <ol>
+      <li class="section-title"><a href="flutter_form_builder/FormBuilder-class.html#constructors">Constructors</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/FormBuilder.html">FormBuilder</a></li>
+    
+      <li class="section-title">
+        <a href="flutter_form_builder/FormBuilder-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="flutter_form_builder/FormBuilder/autovalidate.html">autovalidate</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/context.html">context</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/controls.html">controls</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/onChanged.html">onChanged</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/onSubmit.html">onSubmit</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/onWillPop.html">onWillPop</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/resetButtonContent.html">resetButtonContent</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/showResetButton.html">showResetButton</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/submitButtonContent.html">submitButtonContent</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/key.html">key</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="flutter_form_builder/FormBuilder-class.html#instance-methods">Methods</a></li>
+      <li><a href="flutter_form_builder/FormBuilder/createState.html">createState</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/createElement.html">createElement</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/debugFillProperties.html">debugFillProperties</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/toString.html">toString</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/toStringShort.html">toStringShort</a></li>
+    
+      <li class="section-title inherited"><a href="flutter_form_builder/FormBuilder-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilder/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+    <h1>createState method</h1>
+
+    <section class="multi-line-signature">
+      <div>
+        <ol class="annotation-list">
+          <li>@override</li>
+        </ol>
+      </div>
+      <span class="returntype">_FormBuilderState</span>
+      <span class="name ">createState</span>
+(<wbr>)
+    </section>
+    <section class="desc markdown">
+      <p>Creates the mutable state for this widget at a given location in the tree.</p>
+<p>Subclasses should override this method to return a newly created
+instance of their associated <code>State</code> subclass:</p>
+<pre class="language-dart"><code class="language-dart">@override
+_MyState createState() =&gt; _MyState();
+</code></pre>
+<p>The framework can call this method multiple times over the lifetime of
+a <code>StatefulWidget</code>. For example, if the widget is inserted into the tree
+in multiple locations, the framework will create a separate <code>State</code> object
+for each location. Similarly, if the widget is removed from the tree and
+later inserted into the tree again, the framework will call <a href="flutter_form_builder/FormBuilder/createState.html">createState</a>
+again to create a fresh <code>State</code> object, simplifying the lifecycle of
+<code>State</code> objects.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span> </h2>
+      <pre class="language-dart"><code class="language-dart">@override
+_FormBuilderState createState() =&gt; _FormBuilderState(controls);</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_form_builder 1.2.0
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

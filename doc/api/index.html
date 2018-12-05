@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="made with love by dartdoc 0.20.1">
+  <meta name="description" content="flutter_form_builder API docs, for the Dart programming language.">
+  <title>flutter_form_builder - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/danvick/flutter_form_builder">flutter_form_builder package</a></li>
+  </ol>
+  <div class="self-name">flutter_form_builder</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5><span class="package-name">flutter_form_builder</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></li>
+    </ol>
+  </div>
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1>Flutter FormBuilder - flutter_form_builder</h1>
+<p>This widget helps in generation of forms in <a href="https://flutter.io/">Flutter</a>. 
+Wraps common input types with FormField allowing validation, change detection, setting input value etc and have them in a single form</p>
+<p>Saves you some common validations  such as: required fields, number, email &amp; url validity, <code>min</code> and <code>max</code> values for numbers, <code>min</code> and <code>max</code> character length for string based fields
+as well as allow you to include your own custom validation</p>
+<p>On submission, the form returns a <code>Map&lt;String, dynamic&gt;</code> of form values if the form is valid or <code>null</code> otherwise.</p>
+<h2>Usage</h2>
+<p>To use this plugin, add <code>flutter_form_builder</code> as a <a href="https://flutter.io/platform-plugins/">dependency in your pubspec.yaml file</a>.</p>
+<h3>Example</h3>
+<pre class="language-dart"><code>FormBuilder(
+  context,
+  autovalidate: true,
+  controls: [
+    FormBuilderInput.textField(
+      type: FormBuilderInput.TYPE_TEXT,
+      attribute: "name",
+      label: "Name",
+      require: true,
+      min: 3,
+    ),
+    FormBuilderInput.dropdown(
+      attribute: "dropdown",
+      require: true,
+      label: "Dropdown",
+      hint: "Select Option",
+      options: [
+        FormBuilderInputOption(value: "Option 1"),
+        FormBuilderInputOption(value: "Option 2"),
+        FormBuilderInputOption(value: "Option 3"),
+      ],
+    ),
+    FormBuilderInput.number(
+      attribute: "age",
+      label: "Age",
+      require: true,
+      min: 18,
+    ),
+    FormBuilderInput.textField(
+      type: FormBuilderInput.TYPE_EMAIL,
+      attribute: "email",
+      label: "Email",
+      require: true,
+    ),
+    FormBuilderInput.textField(
+      type: FormBuilderInput.TYPE_URL,
+      attribute: "url",
+      label: "URL",
+      require: true,
+    ),
+    FormBuilderInput.textField(
+      type: FormBuilderInput.TYPE_PHONE,
+      attribute: "phone",
+      label: "Phone",
+      //require: true,
+    ),
+    FormBuilderInput.password(
+      attribute: "password",
+      label: "Password",
+      //require: true,
+    ),
+    FormBuilderInput.datePicker(
+      label: "Date of Birth",
+      attribute: "dob",
+    ),
+    FormBuilderInput.timePicker(
+      label: "Appointment Time",
+      attribute: "time",
+    ),
+    FormBuilderInput.checkboxList(
+      label: "My Languages",
+      attribute: "languages",
+      require: false,
+      value: ["Dart"],
+      options: [
+        FormBuilderInputOption(value: "Dart"),
+        FormBuilderInputOption(value: "Kotlin"),
+        FormBuilderInputOption(value: "Java"),
+        FormBuilderInputOption(value: "Swift"),
+        FormBuilderInputOption(value: "Objective-C"),
+      ],
+    ),
+    FormBuilderInput.radio(
+      label: "My Best Language",
+      attribute: "best_language",
+      require: true,
+      options: [
+        FormBuilderInputOption(value: "Dart"),
+        FormBuilderInputOption(value: "Kotlin"),
+        FormBuilderInputOption(value: "Java"),
+        FormBuilderInputOption(value: "Swift"),
+        FormBuilderInputOption(value: "Objective-C"),
+      ],
+    ),
+    FormBuilderInput.checkbox(
+      label: "I accept the terms and conditions",
+      attribute: "accept_terms",
+      hint: "Kindly make sure you've read all the terms and conditions",
+      validator: (value){
+        if(!value)
+          return "Accept terms to continue";
+      }
+    ),
+    FormBuilderInput.slider(
+      label: "Slider",
+      attribute: "slider",
+      hint: "Hint",
+      min: 0.0,
+      require: true,
+      max: 100.0,
+      value: 10.0,
+      divisions: 20,
+    ),
+    FormBuilderInput.stepper(
+      label: "Stepper",
+      attribute: "stepper",
+      value: 10,
+      step: 1,
+      hint: "Hint",
+    ),
+    FormBuilderInput.rate(
+      label: "Rate",
+      attribute: "rate",
+      iconSize: 48.0,
+      value: 1,
+      max: 5,
+      hint: "Hint",
+    ),
+    FormBuilderInput.segmentedControl(
+        label: "Movie Rating (Archer)",
+        attribute: "movie_rating",
+        require: true,
+        options: [
+          FormBuilderInputOption(
+            value: 1,
+          ),
+          FormBuilderInputOption(
+            value: 2,
+          ),
+          FormBuilderInputOption(
+            value: 3,
+          ),
+          FormBuilderInputOption(
+            value: 4,
+          ),
+          FormBuilderInputOption(
+            value: 5,
+          ),
+          FormBuilderInputOption(
+            value: 6,
+          ),
+          FormBuilderInputOption(
+            value: 7,
+          ),
+          FormBuilderInputOption(
+            value: 8,
+          ),
+          FormBuilderInputOption(
+            value: 9,
+          ),
+          FormBuilderInputOption(
+            value: 10,
+          ),
+        ]),
+  ],
+  onChanged: () {
+    print("Form Changed");
+  },
+  onSubmit: (formValue) {
+    if (formValue != null) {
+      print(formValue);
+    } else {
+      print("Form invalid");
+    }
+  },
+),
+</code></pre>
+<h2>TODO:</h2><ul><li>Improve documentation by showing complete list of input types and their usage and options</li><li>Add more <code>FormBuilderInput</code> types:<ul><li>RangeSlider</li><li>ColorPicker</li><li>MaskedText</li></ul></li></ul>
+<h2>KNOWN ISSUES - HELP NEEDED (Send help ;-P)</h2><ul><li>Proper validation for URL <code>doesn't work without http(s)</code></li><li>Resetting the form doesn't clear all <code>FormField</code>s</li><li>Overlay for ChipsInput doesn't move when input height changes i.e. when chips wrap</li><li>For some reason Overlay for ChipsInput floats above AppBar when scrolling</li><li>TypeAhead text gets cleared when Dropdown/ChipsInput value changes. What the Flip????</li></ul>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="flutter_form_builder">
+              <span class="name"><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></span>
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_form_builder 1.2.0
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>
