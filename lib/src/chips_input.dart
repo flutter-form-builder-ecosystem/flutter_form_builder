@@ -141,6 +141,7 @@ class ChipsInputState<T> extends State<ChipsInput<T>>
   void dispose() {
     _focusNode?.dispose();
     _closeInputConnectionIfNeeded();
+    _suggestionsStreamController.close();
     super.dispose();
   }
 
