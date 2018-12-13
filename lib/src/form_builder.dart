@@ -111,6 +111,7 @@ class _FormBuilderState extends State<FormBuilder> {
               keyboardType = TextInputType.text;
               break;
           }
+
           formControlsList.add(TextFormField(
             key: Key(formControl.attribute),
             decoration: InputDecoration(
@@ -545,6 +546,12 @@ class _FormBuilderState extends State<FormBuilder> {
             },
           ));
           break;
+
+
+        case FormBuilderInput.CUSTOM_WIDGET:
+          formControlsList.add(formControl.customChild);
+          break;
+
 
         case FormBuilderInput.TYPE_SLIDER:
           formControlsList.add(FormField(

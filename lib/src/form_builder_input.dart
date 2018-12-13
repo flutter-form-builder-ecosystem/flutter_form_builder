@@ -30,6 +30,7 @@ class FormBuilderInput {
   static const String TYPE_RATE = "Rate";
   static const String TYPE_SEGMENTED_CONTROL = "SegmentedControl";
   static const String TYPE_CHIPS_INPUT = "ChipsInput";
+  static const String CUSTOM_WIDGET = "CUSTOM_WIDGET";
 
   String label;
   String attribute;
@@ -51,6 +52,12 @@ class FormBuilderInput {
   ItemBuilder itemBuilder;
   ChipsBuilder suggestionBuilder;
   ChipsBuilder chipBuilder;
+
+  
+  Widget customChild;
+  FormBuilderInput.customWidget({@required this.customChild}) {
+    type = FormBuilderInput.CUSTOM_WIDGET;
+  }
 
   FormBuilderInput.textField({
     @required this.label,
