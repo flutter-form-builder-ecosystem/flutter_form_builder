@@ -1,3 +1,9 @@
+## [1.3.0] - 15-Dec-2018
+* Fixed bug where TypeAhead value reset when other fields are updated
+* `onChanged` function for FormBuilder is now called with current form values (breaking change)
+* Form reset now works as expected
+* Other minor refactorings
+
 ## [1.2.0] - 23-Nov-2018
 * New `FormBuilderInput` types:  
     * ChipsInput

@@ -304,7 +304,6 @@ class MyHomePage extends StatelessWidget {
               label: 'Country',
               attribute: 'country',
               require: true,
-              value: 'Kenya',
               itemBuilder: (context, country) {
                 return ListTile(
                   title: Text(country),
@@ -503,8 +502,8 @@ class MyHomePage extends StatelessWidget {
                   .toList(),
             ),
           ],
-          onChanged: () {
-            print("Form value changed");
+          onChanged: (formValue) {
+            print(formValue);
           },
           onSubmit: (formValue) {
             if (formValue != null) {

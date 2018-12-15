@@ -7,8 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d516c1a-1e29-487d-a597-c4f4760b5e12" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/chips_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/chips_input.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder-class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/FormBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/FormBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onChanged.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onChanged.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/form_builder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/form_builder.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -26,88 +35,84 @@
       <file leaf-file-name="form_builder.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3510">
-              <caret line="241" column="35" selection-start-line="241" selection-start-column="35" selection-end-line="241" selection-end-column="35" />
+            <state relative-caret-position="263">
+              <caret line="810" column="3" selection-start-line="810" selection-start-column="3" selection-end-line="810" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="form_builder_input.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/form_builder_input.dart">
+      <file leaf-file-name="editable_text.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/editable_text.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="264" column="13" selection-start-line="264" selection-start-column="13" selection-end-line="264" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="265">
+              <caret line="74" column="17" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/api/index.html">
+      <file leaf-file-name="form.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/form.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="181">
+              <caret line="312" column="42" selection-start-line="312" selection-start-column="36" selection-end-line="312" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-869">
+              <caret line="437" column="27" selection-start-line="437" selection-start-column="23" selection-end-line="437" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/android/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/doc/api/index.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2457" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChipsBuilder.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/doc/api/flutter_form_builder/ChipsBuilder.html">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/android/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chips_input.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/chips_input.dart">
+      <file leaf-file-name="gradle.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/android/gradle.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2370">
-              <caret line="160" column="36" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stream_controller.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib/async/stream_controller.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="852" column="45" selection-start-line="852" selection-start-column="41" selection-end-line="852" selection-end-column="45" />
-            </state>
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="CHANGELOG.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="45">
+              <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flutter_form_builder.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/flutter_form_builder.dart">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+            <state relative-caret-position="420">
+              <caret line="194" column="58" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="form_builder_input_option.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/form_builder_input_option.dart">
+      <file leaf-file-name="navigator.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/navigator.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state />
+            <state relative-caret-position="181">
+              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -115,28 +120,14 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>transitionBuilder</find>
-      <find>suggestions</find>
-      <find>transit</find>
-      <find>container</find>
-      <find>setEditing</find>
-      <find>remove</find>
-      <find>_co</find>
-      <find>_connection.seteditingState</find>
-      <find>TextInputConfiguration</find>
-      <find>build</find>
-      <find>build(</find>
-      <find>typeahea</find>
       <find>formfield</find>
       <find>formfield(</find>
       <find>_formke</find>
       <find>formData</find>
       <find>dropd</find>
       <find>drop</find>
-      <find>typea</find>
       <find>reset</find>
       <find>typeah</find>
-      <find>typeahead</find>
       <find>dropdownmenuitem</find>
       <find>children</find>
       <find>dropdown</find>
@@ -145,6 +136,20 @@
       <find>dispo</find>
       <find>.add</find>
       <find>sink</find>
+      <find>onsaved</find>
+      <find>auto</find>
+      <find>onSav</find>
+      <find>typea</find>
+      <find>onChanged</find>
+      <find>typeahead</find>
+      <find>texted</find>
+      <find>_value</find>
+      <find>onSaved</find>
+      <find>text</find>
+      <find>setState</find>
+      <find>typeaheaf</find>
+      <find>formControls[count]</find>
+      <find>formControls[count].value =</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;${formControl.label} field is required&quot;</replace>
@@ -175,20 +180,20 @@
         <option value="$PROJECT_DIR$/lib/src/form_builder_type_ahead.dart" />
         <option value="$PROJECT_DIR$/lib/flutter_form_builder.dart" />
         <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-0.4.1/lib/flutter_typeahead.dart" />
-        <option value="$PROJECT_DIR$/lib/src/form_builder.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/example/lib/main.dart" />
-        <option value="$PROJECT_DIR$/CHANGELOG.md" />
         <option value="$PROJECT_DIR$/lib/src/chips_input.dart" />
         <option value="$PROJECT_DIR$/lib/src/form_builder_input.dart" />
+        <option value="$PROJECT_DIR$/lib/src/form_builder.dart" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/CHANGELOG.md" />
+        <option value="$PROJECT_DIR$/example/lib/main.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="3" />
     <option name="y" value="23" />
-    <option name="width" value="1410" />
+    <option name="width" value="1160" />
     <option name="height" value="942" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -197,6 +202,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -215,13 +222,33 @@
               <item name="flutter_form_builder" type="b2602c69:ProjectViewProjectNode" />
               <item name="flutter_form_builder" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="flutter_form_builder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flutter_form_builder" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flutter_form_builder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flutter_form_builder" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flutter_form_builder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flutter_form_builder" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flutter_form_builder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flutter_form_builder" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -314,7 +341,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3" y="23" width="1410" height="942" extended-state="0" />
+    <frame x="3" y="23" width="1160" height="942" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -323,29 +350,29 @@
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
+      <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="8" weight="0.3289941" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3739645" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29752067" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.33017752" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32821724" />
       <window_info anchor="right" id="Flutter Outline" order="7" weight="0.32968882" />
       <window_info anchor="bottom" id="Logcat" order="10" />
-      <window_info id="Captures" order="6" />
+      <window_info id="Captures" order="6" weight="0.3291592" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14400585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24865831" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.31242603" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3116883" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Flutter Inspector" order="3" weight="0.32968882" />
-      <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.18343195" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.18343195" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
@@ -359,18 +386,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/FormBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/main.dart" />
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -446,13 +461,6 @@
     <entry file="file://$PROJECT_DIR$/.project">
       <provider selected="true" editor-type-id="text-editor">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/form.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="71" column="13" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib/ui/window.dart">
@@ -550,38 +558,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/editable_text.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="63" column="2" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-0.4.1/lib/flutter_typeahead.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="764" column="6" selection-start-line="764" selection-start-column="6" selection-end-line="764" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2865">
-          <caret line="191" column="16" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5220">
-          <caret line="349" column="82" selection-start-line="349" selection-start-column="82" selection-end-line="349" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -596,30 +576,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13605">
           <caret line="933" column="8" selection-start-line="933" selection-start-column="8" selection-end-line="933" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/material/dropdown.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5190">
-          <caret line="363" column="36" selection-start-line="363" selection-start-column="36" selection-end-line="363" selection-end-column="36" />
-          <folding>
-            <element signature="e#166#193#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/flutter_form_builder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -640,21 +596,14 @@
     </entry>
     <entry file="file://$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib/async/stream_controller.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
+        <state relative-caret-position="12750">
           <caret line="852" column="45" selection-start-line="852" selection-start-column="41" selection-end-line="852" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3510">
-          <caret line="241" column="35" selection-start-line="241" selection-start-column="35" selection-end-line="241" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/form_builder_input.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
+        <state relative-caret-position="3900">
           <caret line="264" column="13" selection-start-line="264" selection-start-column="13" selection-end-line="264" selection-end-column="13" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
@@ -669,12 +618,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/api/index.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2457" />
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doc/api/flutter_form_builder/ChipsBuilder.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/flutter_form_builder.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="e#31#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/navigator.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/android/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/android/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/android/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/material/dropdown.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="819" column="7" selection-start-line="819" selection-start-column="7" selection-end-line="819" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/form.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="312" column="42" selection-start-line="312" selection-start-column="36" selection-end-line="312" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-0.4.1/lib/flutter_typeahead.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#45354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/widgets/editable_text.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="74" column="17" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="810" column="3" selection-start-line="810" selection-start-column="3" selection-end-line="810" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="194" column="58" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-869">
+          <caret line="437" column="27" selection-start-line="437" selection-start-column="23" selection-end-line="437" selection-end-column="27" />
+        </state>
       </provider>
     </entry>
   </component>

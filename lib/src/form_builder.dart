@@ -10,7 +10,7 @@ import './chips_input.dart';
 //TODO: Refactor this spaghetti code
 class FormBuilder extends StatefulWidget {
   final BuildContext context;
-  final VoidCallback onChanged;
+  final Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
   final List<FormBuilderInput> controls;
   final Function onSubmit;
@@ -64,7 +64,12 @@ class _FormBuilderState extends State<FormBuilder> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      onChanged: widget.onChanged,
+      onChanged: () {
+        if (widget.onChanged != null) {
+          _formKey.currentState.save();
+          widget.onChanged(formData);
+        }
+      },
       //TODO: Allow user to update field value or validate based on changes in others (e.g. Summations, Confirm Password)
       onWillPop: widget.onWillPop,
       autovalidate: widget.autovalidate,
@@ -200,8 +205,9 @@ class _FormBuilderState extends State<FormBuilder> {
             itemBuilder: formControl.itemBuilder,
             transitionBuilder: (context, suggestionsBox, controller) =>
                 suggestionsBox,
-            onSuggestionSelected: (suggestion) =>
-                _typeAheadController.value = TextEditingValue(text: suggestion),
+            onSuggestionSelected: (suggestion) {
+              _typeAheadController.text = suggestion;
+            },
             validator: (value) {
               if (formControl.require && value.isEmpty)
                 return '${formControl.label} is required';
@@ -246,9 +252,6 @@ class _FormBuilderState extends State<FormBuilder> {
                   }).toList(),
                   value: field.value,
                   onChanged: (value) {
-                    setState(() {
-                      formControls[count].value = value;
-                    });
                     field.didChange(value);
                   },
                 ),
@@ -286,18 +289,12 @@ class _FormBuilderState extends State<FormBuilder> {
                       value: formControls[count].options[i].value,
                       groupValue: field.value,
                       onChanged: (dynamic value) {
-                        setState(() {
-                          formControls[count].value = value;
-                        });
                         field.didChange(value);
                       },
                     ),
                     onTap: () {
                       var selectedValue = formControls[count].value =
                           formControls[count].options[i].value;
-                      setState(() {
-                        formControls[count].value = selectedValue;
-                      });
                       field.didChange(selectedValue);
                     },
                   ),
@@ -360,9 +357,6 @@ class _FormBuilderState extends State<FormBuilder> {
                           ),
                     ),
                     onValueChanged: (dynamic value) {
-                      setState(() {
-                        formControls[count].value = value;
-                      });
                       field.didChange(value);
                     },
                   ),
@@ -403,17 +397,11 @@ class _FormBuilderState extends State<FormBuilder> {
                     trailing: Switch(
                       value: field.value,
                       onChanged: (bool value) {
-                        setState(() {
-                          formControls[count].value = value;
-                        });
                         field.didChange(value);
                       },
                     ),
                     onTap: () {
                       bool newValue = !(field.value ?? false);
-                      setState(() {
-                        formControls[count].value = newValue;
-                      });
                       field.didChange(newValue);
                     },
                   ),
@@ -448,9 +436,6 @@ class _FormBuilderState extends State<FormBuilder> {
                   max: formControl.max ?? 9999999,
                   size: 24.0,
                   onChange: (value) {
-                    setState(() {
-                      formControls[count].value = value;
-                    });
                     field.didChange(value);
                   },
                 ),
@@ -485,9 +470,6 @@ class _FormBuilderState extends State<FormBuilder> {
                   icon: formControl.icon,
                   iconSize: formControl.iconSize ?? 24.0,
                   onTap: (value) {
-                    setState(() {
-                      formControls[count].value = value;
-                    });
                     field.didChange(value);
                   },
                 ),
@@ -527,17 +509,11 @@ class _FormBuilderState extends State<FormBuilder> {
                   trailing: Checkbox(
                     value: field.value ?? false,
                     onChanged: (bool value) {
-                      setState(() {
-                        formControls[count].value = value;
-                      });
                       field.didChange(value);
                     },
                   ),
                   onTap: () {
                     bool newValue = !(field.value ?? false);
-                    setState(() {
-                      formControls[count].value = newValue;
-                    });
                     field.didChange(newValue);
                   },
                 ),
@@ -577,9 +553,6 @@ class _FormBuilderState extends State<FormBuilder> {
                         max: formControl.max,
                         divisions: formControl.divisions,
                         onChanged: (double value) {
-                          setState(() {
-                            formControls[count].value = value.roundToDouble();
-                          });
                           field.didChange(value);
                         },
                       ),
@@ -619,26 +592,7 @@ class _FormBuilderState extends State<FormBuilder> {
                         value: field.value
                             .contains(formControls[count].options[i].value),
                         onChanged: (bool value) {
-                          setState(() {
-                            if (value)
-                              formControls[count]
-                                  .value
-                                  .add(formControls[count].options[i].value);
-                            else
-                              formControls[count]
-                                  .value
-                                  .remove(formControls[count].options[i].value);
-                          });
-                          field.didChange(formControls[count].value);
-                        },
-                      ),
-                      title: Text(
-                          "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
-                      onTap: () {
-                        setState(() {
-                          bool newValue = field.value
-                              .contains(formControls[count].options[i].value);
-                          if (!newValue)
+                          if (value)
                             formControls[count]
                                 .value
                                 .add(formControls[count].options[i].value);
@@ -646,7 +600,22 @@ class _FormBuilderState extends State<FormBuilder> {
                             formControls[count]
                                 .value
                                 .remove(formControls[count].options[i].value);
-                        });
+                          field.didChange(formControls[count].value);
+                        },
+                      ),
+                      title: Text(
+                          "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
+                      onTap: () {
+                        bool newValue = field.value
+                            .contains(formControls[count].options[i].value);
+                        if (!newValue)
+                          formControls[count]
+                              .value
+                              .add(formControls[count].options[i].value);
+                        else
+                          formControls[count]
+                              .value
+                              .remove(formControls[count].options[i].value);
                         field.didChange(formControls[count].value);
                       },
                     ),
@@ -695,9 +664,6 @@ class _FormBuilderState extends State<FormBuilder> {
                   ),
                   findSuggestions: formControl.suggestionsCallback,
                   onChanged: (data) {
-                    setState(() {
-                      formControls[count].value = data;
-                    });
                     field.didChange(data);
                   },
                   chipBuilder: formControl.chipBuilder,
@@ -764,9 +730,6 @@ class _FormBuilderState extends State<FormBuilder> {
           if (selectedDate != null) {
             String selectedDateFormatted = DateFormat('yyyy-MM-dd')
                 .format(selectedDate); //TODO: Ask user for format
-            setState(() {
-              formControls[count].value = selectedDateFormatted;
-            });
             _inputController.value =
                 TextEditingValue(text: selectedDateFormatted);
           }
@@ -787,9 +750,6 @@ class _FormBuilderState extends State<FormBuilder> {
             hintText: formControl.hint ?? "",
           ),
           onSaved: (value) {
-            setState(() {
-              formControls[count].value = value;
-            });
             formData[formControl.attribute] = value;
           },
         ),
@@ -810,9 +770,6 @@ class _FormBuilderState extends State<FormBuilder> {
         ).then((selectedTime) {
           if (selectedTime != null) {
             String selectedDateFormatted = selectedTime.format(context);
-            setState(() {
-              formControls[count].value = selectedDateFormatted;
-            });
             _inputController.value =
                 TextEditingValue(text: selectedDateFormatted);
           }
@@ -834,9 +791,6 @@ class _FormBuilderState extends State<FormBuilder> {
             hintText: formControl.hint ?? "",
           ),
           onSaved: (value) {
-            setState(() {
-              formControls[count].value = value;
-            });
             formData[formControl.attribute] = value;
           },
         ),

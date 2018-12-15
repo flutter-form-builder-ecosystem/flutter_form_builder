@@ -193,8 +193,6 @@ FormBuilder(
 
 ## KNOWN ISSUES - HELP NEEDED (Send help ;-P)
 * Proper validation for URL [doesn't work without http(s)]
-* Resetting the form doesn't clear all `FormField`s
 * Overlay for ChipsInput doesn't move when input height changes i.e. when chips wrap
 * For some reason Overlay for ChipsInput floats above AppBar when scrolling
-* TypeAhead text gets cleared when Dropdown/ChipsInput value changes. What the Flip????
 
