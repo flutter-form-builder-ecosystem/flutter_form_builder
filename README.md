@@ -171,8 +171,8 @@ FormBuilder(
           ),
         ]),
   ],
-  onChanged: () {
-    print("Form Changed");
+  onChanged: (currentFormData) {
+    print(currentFormData);
   },
   onSubmit: (formValue) {
     if (formValue != null) {
@@ -186,13 +186,15 @@ FormBuilder(
 
 ## TODO: 
 * Improve documentation by showing complete list of input types and their usage and options
+* Assert no duplicates in `FormBuilderInput`s `attribute` names
 * Add more `FormBuilderInput` types:
     * RangeSlider
     * ColorPicker
     * MaskedText
+* Allow options for Checkboxes and Radios to appear left or right
+* Allow addition of custom input types
+* Fire `onChanged()` on every control allowing reaction to changes
 
 ## KNOWN ISSUES - HELP NEEDED (Send help ;-P)
 * Proper validation for URL [doesn't work without http(s)]
-* Overlay for ChipsInput doesn't move when input height changes i.e. when chips wrap
-* For some reason Overlay for ChipsInput floats above AppBar when scrolling
 

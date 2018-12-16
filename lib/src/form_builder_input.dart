@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:flutter_chips_input/flutter_chips_input.dart';
 
 import './form_builder_input_option.dart';
-import './chips_input.dart';
 
 //TODO: Consider adding RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
 //TODO: Consider adding ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
@@ -24,7 +24,7 @@ class FormBuilderInput {
   static const String TYPE_DATE_PICKER = "DatePicker";
   static const String TYPE_TIME_PICKER = "TimePicker";
   static const String TYPE_URL = "Url";
-  static const String TYPE_TYPE_AHEAD = "TypeAhead"; //TODO: Needs some work
+  static const String TYPE_TYPE_AHEAD = "TypeAhead";
   static const String TYPE_PHONE = "Phone";
   static const String TYPE_STEPPER = "Stepper";
   static const String TYPE_RATE = "Rate";

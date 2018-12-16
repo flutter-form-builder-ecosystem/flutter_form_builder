@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
+import 'package:flutter_chips_input/flutter_chips_input.dart';
 
 import './form_builder_input.dart';
-import './chips_input.dart';
 
 //TODO: Refactor this spaghetti code
 class FormBuilder extends StatefulWidget {
