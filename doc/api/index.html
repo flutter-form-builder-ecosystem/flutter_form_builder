@@ -205,8 +205,8 @@ as well as allow you to include your own custom validation</p>
           ),
         ]),
   ],
-  onChanged: () {
-    print("Form Changed");
+  onChanged: (currentFormData) {
+    print(currentFormData);
   },
   onSubmit: (formValue) {
     if (formValue != null) {
@@ -217,8 +217,8 @@ as well as allow you to include your own custom validation</p>
   },
 ),
 </code></pre>
-<h2>TODO:</h2><ul><li>Improve documentation by showing complete list of input types and their usage and options</li><li>Add more <code>FormBuilderInput</code> types:<ul><li>RangeSlider</li><li>ColorPicker</li><li>MaskedText</li></ul></li></ul>
-<h2>KNOWN ISSUES - HELP NEEDED (Send help ;-P)</h2><ul><li>Proper validation for URL <code>doesn't work without http(s)</code></li><li>Overlay for ChipsInput doesn't move when input height changes i.e. when chips wrap</li><li>For some reason Overlay for ChipsInput floats above AppBar when scrolling</li></ul>
+<h2>TODO:</h2><ul><li>Improve documentation by showing complete list of input types and their usage and options</li><li>Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li><li>Add more <code>FormBuilderInput</code> types:<ul><li>RangeSlider</li><li>ColorPicker</li><li>MaskedText</li></ul></li><li>Allow options for Checkboxes and Radios to appear left or right</li><li>Allow addition of custom input types</li><li>Fire <code>onChanged()</code> on every control allowing reaction to changes</li></ul>
+<h2>KNOWN ISSUES - HELP NEEDED (Send help ;-P)</h2><ul><li>Proper validation for URL <code>doesn't work without http(s)</code></li></ul>
       </section>
       
         <section class="summary">
@@ -238,7 +238,7 @@ as well as allow you to include your own custom validation</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.2.0
+    flutter_form_builder 1.3.0
   </span>
 
 </footer>
