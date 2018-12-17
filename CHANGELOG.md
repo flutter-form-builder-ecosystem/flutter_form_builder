@@ -1,3 +1,7 @@
+## [1.3.1] - 17-Dec-2018
+* Moved ChipsInput into own library on pub.dartlang.org, check it out [here](https://pub.dartlang.org/packages/flutter_chips_input)
+* Updated example code to include proper use of Form's `onChanged` function after update
+
 ## [1.3.0] - 15-Dec-2018
 * Fixed bug where TypeAhead value reset when other fields are updated
 * `onChanged` function for FormBuilder is now called with current form values (breaking change)

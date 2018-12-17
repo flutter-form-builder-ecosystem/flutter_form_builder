@@ -34,19 +34,13 @@ class FormBuilder extends StatefulWidget {
   // assert(duplicateAttributes(controls).length == 0, "Duplicate attribute names not allowed");
 
   //TODO: Find way to assert no duplicates in control attributes
-  /*final Function duplicateAttributes = (List<FormBuilderInput> controls) {
-    Map<String, int> attributeMap = {};
+  /*Function duplicateAttributes = (List<FormBuilderInput> controls) {
+    List<String> attributeList = [];
     controls.forEach((c) {
-      if (attributeMap["${c.attribute}"] == null)
-        attributeMap["${c.attribute}"] = 1;
-      else
-        attributeMap["${c.attribute}"] += 1;
+      attributeList.add(c.attribute);
     });
-    List<String> duplicates = [];
-    attributeMap.forEach((k, v) {
-      if (v > 1) duplicates.add(k);
-    });
-    return duplicates;
+    List<String> uniqueAttributes = Set.from(attributeList).toList(growable: false);
+    //attributeList.
   };*/
 
   @override
