@@ -19,7 +19,83 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 FormBuilder(
   context,
   autovalidate: true,
+  showResetButton: true,
+  // resetButtonContent: Text("Clear Form"),
   controls: [
+    FormBuilderInput.typeAhead(
+      label: 'Country',
+      attribute: 'country',
+      require: true,
+      itemBuilder: (context, country) {
+        return ListTile(
+          title: Text(country),
+        );
+      },
+      suggestionsCallback: (query) {
+        if (query.length != 0) {
+          var lowercaseQuery = query.toLowerCase();
+          return allCountries.where((country) {
+            return country.toLowerCase().contains(lowercaseQuery);
+          }).toList(growable: false)
+            ..sort((a, b) => a
+                .toLowerCase()
+                .indexOf(lowercaseQuery)
+                .compareTo(b.toLowerCase().indexOf(lowercaseQuery)));
+        } else {
+          return allCountries;
+        }
+      },
+    ),
+    FormBuilderInput.chipsInput(
+      label: 'Chips',
+      attribute: 'chips_test',
+      require: true,
+      value: [
+        AppProfile('Andrew', 'stock@man.com',
+            'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')
+      ],
+      suggestionsCallback: (String query) {
+        if (query.length != 0) {
+          var lowercaseQuery = query.toLowerCase();
+          return mockResults.where((profile) {
+            return profile.name
+                    .toLowerCase()
+                    .contains(query.toLowerCase()) ||
+                profile.email
+                    .toLowerCase()
+                    .contains(query.toLowerCase());
+          }).toList(growable: false)
+            ..sort((a, b) => a.name
+                .toLowerCase()
+                .indexOf(lowercaseQuery)
+                .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
+        } else {
+          return const <AppProfile>[];
+        }
+      },
+      chipBuilder: (context, state, profile) {
+        return InputChip(
+          key: ObjectKey(profile),
+          label: Text(profile.name),
+          avatar: CircleAvatar(
+            backgroundImage: NetworkImage(profile.imageUrl),
+          ),
+          onDeleted: () => state.deleteChip(profile),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        );
+      },
+      suggestionBuilder: (context, state, profile) {
+        return ListTile(
+          key: ObjectKey(profile),
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(profile.imageUrl),
+          ),
+          title: Text(profile.name),
+          subtitle: Text(profile.email),
+          onTap: () => state.selectSuggestion(profile),
+        );
+      },
+    ),
     FormBuilderInput.textField(
       type: FormBuilderInput.TYPE_TEXT,
       attribute: "name",
@@ -57,26 +133,31 @@ FormBuilder(
       require: true,
     ),
     FormBuilderInput.textField(
-      type: FormBuilderInput.TYPE_PHONE,
-      attribute: "phone",
-      label: "Phone",
-      //require: true,
-    ),
+        type: FormBuilderInput.TYPE_PHONE,
+        attribute: "phone",
+        label: "Phone",
+        hint: "Including country code (+254)"
+        //require: true,
+        ),
     FormBuilderInput.password(
       attribute: "password",
       label: "Password",
-      //require: true,
+      min: 8,
     ),
     FormBuilderInput.datePicker(
       label: "Date of Birth",
       attribute: "dob",
+      firstDate: DateTime(1970),
+      lastDate: DateTime.now().add(Duration(days: 1)),
+      format: 'dd, MM yyyy'
     ),
     FormBuilderInput.timePicker(
       label: "Appointment Time",
       attribute: "time",
     ),
     FormBuilderInput.checkboxList(
-      label: "My Languages",
+      label: "The Languages of my people",
+      hint: "The Languages of my people",
       attribute: "languages",
       require: false,
       value: ["Dart"],
@@ -92,23 +173,26 @@ FormBuilder(
       label: "My Best Language",
       attribute: "best_language",
       require: true,
-      options: [
-        FormBuilderInputOption(value: "Dart"),
-        FormBuilderInputOption(value: "Kotlin"),
-        FormBuilderInputOption(value: "Java"),
-        FormBuilderInputOption(value: "Swift"),
-        FormBuilderInputOption(value: "Objective-C"),
-      ],
+      options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
+          .map((lang) => FormBuilderInputOption(value: lang))
+          .toList(growable: false),
     ),
     FormBuilderInput.checkbox(
-      label: "I accept the terms and conditions",
-      attribute: "accept_terms",
-      hint: "Kindly make sure you've read all the terms and conditions",
-      validator: (value){
-        if(!value)
-          return "Accept terms to continue";
-      }
-    ),
+        label: "I accept the terms and conditions",
+        attribute: "accept_terms",
+        hint:
+            "Kindly make sure you've read all the terms and conditions",
+        validator: (value) {
+          if (!value) return "Accept terms to continue";
+        }),
+    FormBuilderInput.switchInput(
+        label: "I accept the terms and conditions",
+        attribute: "accept_terms_switch",
+        hint:
+            "Kindly make sure you've read all the terms and conditions",
+        validator: (value) {
+          if (!value) return "Accept terms to continue";
+        }),
     FormBuilderInput.slider(
       label: "Slider",
       attribute: "slider",
@@ -129,50 +213,22 @@ FormBuilder(
     FormBuilderInput.rate(
       label: "Rate",
       attribute: "rate",
-      iconSize: 48.0,
+      iconSize: 32.0,
       value: 1,
       max: 5,
       hint: "Hint",
     ),
     FormBuilderInput.segmentedControl(
-        label: "Movie Rating (Archer)",
-        attribute: "movie_rating",
-        require: true,
-        options: [
-          FormBuilderInputOption(
-            value: 1,
-          ),
-          FormBuilderInputOption(
-            value: 2,
-          ),
-          FormBuilderInputOption(
-            value: 3,
-          ),
-          FormBuilderInputOption(
-            value: 4,
-          ),
-          FormBuilderInputOption(
-            value: 5,
-          ),
-          FormBuilderInputOption(
-            value: 6,
-          ),
-          FormBuilderInputOption(
-            value: 7,
-          ),
-          FormBuilderInputOption(
-            value: 8,
-          ),
-          FormBuilderInputOption(
-            value: 9,
-          ),
-          FormBuilderInputOption(
-            value: 10,
-          ),
-        ]),
+      label: "Movie Rating (Archer)",
+      attribute: "movie_rating",
+      require: true,
+      options: List.generate(5, (i) => i + 1)
+          .map((number) => FormBuilderInputOption(value: number))
+          .toList(),
+    ),
   ],
-  onChanged: (currentFormData) {
-    print(currentFormData);
+  onChanged: (formValue) {
+    print(formValue);
   },
   onSubmit: (formValue) {
     if (formValue != null) {

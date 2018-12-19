@@ -724,8 +724,9 @@ class _FormBuilderState extends State<FormBuilder> {
           lastDate: formControl.lastDate,
         ).then((selectedDate) {
           if (selectedDate != null) {
-            String selectedDateFormatted = DateFormat(formControl.format ?? 'yyyy-MM-dd')
-                .format(selectedDate); //TODO: Ask user for format
+            String selectedDateFormatted =
+                DateFormat(formControl.format ?? 'yyyy-MM-dd')
+                    .format(selectedDate);
             _inputController.value =
                 TextEditingValue(text: selectedDateFormatted);
           }

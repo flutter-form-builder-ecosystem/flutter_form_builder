@@ -137,7 +137,7 @@ class FormBuilderInput {
     this.hint,
     this.require = false,
     this.validator,
-  }) :assert(max == null || max is num),
+  })  : assert(max == null || max is num),
         assert(max > value || value == null,
             "Initial value cannot be higher than Max") {
     type = FormBuilderInput.TYPE_RATE;
