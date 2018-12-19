@@ -720,9 +720,11 @@ class _FormBuilderState extends State<FormBuilder> {
         _showDatePickerDialog(
           context,
           initialDate: DateTime.tryParse(_inputController.value.text),
+          firstDate: formControl.firstDate,
+          lastDate: formControl.lastDate,
         ).then((selectedDate) {
           if (selectedDate != null) {
-            String selectedDateFormatted = DateFormat('yyyy-MM-dd')
+            String selectedDateFormatted = DateFormat(formControl.format ?? 'yyyy-MM-dd')
                 .format(selectedDate); //TODO: Ask user for format
             _inputController.value =
                 TextEditingValue(text: selectedDateFormatted);
@@ -797,9 +799,8 @@ class _FormBuilderState extends State<FormBuilder> {
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: initialDate ?? DateTime.now(),
-      firstDate:
-          firstDate ?? DateTime.now().subtract(new Duration(days: 10000)),
-      lastDate: lastDate ?? DateTime.now().add(new Duration(days: 10000)),
+      firstDate: firstDate ?? DateTime.now().subtract(Duration(days: 100000)),
+      lastDate: lastDate ?? DateTime.now().add(Duration(days: 100000)),
     );
     return picked;
   }

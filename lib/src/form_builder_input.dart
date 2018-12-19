@@ -37,14 +37,15 @@ class FormBuilderInput {
   String hint;
   dynamic value;
   bool require;
-  num min;
+  dynamic min;
+  dynamic max;
   int divisions;
-  num max;
   num step;
+  String format;
   IconData icon;
   double iconSize;
-  DateTime firstDate;
-  DateTime lastDate;
+  DateTime firstDate; //TODO: Use min?
+  DateTime lastDate; //TODO: Use max?
   FormFieldValidator<dynamic> validator;
   List<FormBuilderInputOption> options;
   SuggestionsCallback suggestionsCallback;
@@ -63,7 +64,8 @@ class FormBuilderInput {
     this.min,
     this.max,
     //TODO: Include maxLines for multiline text
-  });
+  })  : assert(min == null || min is int),
+        assert(max == null || max is int);
 
   FormBuilderInput.password({
     @required this.label,
@@ -74,7 +76,8 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
-  }) {
+  })  : assert(min == null || min is int),
+        assert(max == null || max is int) {
     type = FormBuilderInput.TYPE_PASSWORD;
   }
 
@@ -100,7 +103,9 @@ class FormBuilderInput {
     this.max,
     this.require = false,
     this.validator,
-  }) : assert(min == null || max == null || min <= max,
+  })  : assert(min == null || min is num),
+        assert(max == null || max is num),
+        assert(min == null || max == null || min <= max,
             "Min cannot be higher than Max") {
     type = FormBuilderInput.TYPE_NUMBER;
   }
@@ -115,7 +120,9 @@ class FormBuilderInput {
     this.step,
     this.require = false,
     this.validator,
-  }) : assert(min == null || max == null || min <= max,
+  })  : assert(min == null || min is num),
+        assert(max == null || max is num),
+        assert(min == null || max == null || min <= max,
             "Min cannot be higher than Max") {
     type = FormBuilderInput.TYPE_STEPPER;
   }
@@ -130,7 +137,8 @@ class FormBuilderInput {
     this.hint,
     this.require = false,
     this.validator,
-  }) : assert(max > value || value == null,
+  }) :assert(max == null || max is num),
+        assert(max > value || value == null,
             "Initial value cannot be higher than Max") {
     type = FormBuilderInput.TYPE_RATE;
   }
@@ -145,7 +153,8 @@ class FormBuilderInput {
     this.hint,
     this.require = false,
     this.validator,
-  }) {
+  })  : assert(min == null || min is num),
+        assert(max == null || max is num) {
     type = FormBuilderInput.TYPE_SLIDER;
   }
 
@@ -228,6 +237,7 @@ class FormBuilderInput {
     this.hint,
     this.firstDate,
     this.lastDate,
+    this.format,
     this.value,
     this.require = false,
     this.validator,

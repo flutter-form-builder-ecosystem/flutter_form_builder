@@ -420,11 +420,14 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.password(
               attribute: "password",
               label: "Password",
-              //require: true,
+              min: 8,
             ),
             FormBuilderInput.datePicker(
               label: "Date of Birth",
               attribute: "dob",
+              firstDate: DateTime(1970),
+              lastDate: DateTime.now().add(Duration(days: 1)),
+              format: 'dd, MM yyyy'
             ),
             FormBuilderInput.timePicker(
               label: "Appointment Time",
