@@ -1,3 +1,6 @@
+## [1.3.3] - 17-Jan-2019
+* Updated flutter_typeahead version. Closes [#15](https://github.com/danvick/flutter_form_builder/issues/15)
+
 ## [1.3.2] - 19-Dec-2018
 * Allow setting of `format` for DatePicker
 * Fixed bug where `lastDate` and `firstDate` for DatePicker don't work
