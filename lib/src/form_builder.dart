@@ -127,6 +127,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 : null,
             decoration: InputDecoration(
               labelText: formControl.label,
+              enabled: !(widget.readonly || formControl.readonly),
               hintText: formControl.hint,
               helperText: formControl.hint,
             ),
@@ -214,6 +215,7 @@ class _FormBuilderState extends State<FormBuilder> {
                   : null,
               decoration: InputDecoration(
                 labelText: formControl.label,
+                enabled: !(widget.readonly || formControl.readonly),
                 hintText: formControl.hint,
               ),
             ),
@@ -253,6 +255,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint,
                   errorText: field.errorText,
                   contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
@@ -324,6 +327,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint ?? "",
                   errorText: field.errorText,
                   contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
@@ -355,6 +359,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint,
                   errorText: field.errorText,
                   contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -406,6 +411,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 return InputDecorator(
                   decoration: InputDecoration(
                     // labelText: formControl.label,
+                    enabled: !(widget.readonly || formControl.readonly),
                     helperText: formControl.hint ?? "",
                     errorText: field.errorText,
                   ),
@@ -450,6 +456,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint ?? "",
                   errorText: field.errorText,
                 ),
@@ -486,6 +493,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint ?? "",
                   errorText: field.errorText,
                 ),
@@ -521,6 +529,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   // labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint ?? "",
                   errorText: field.errorText,
                 ),
@@ -566,6 +575,7 @@ class _FormBuilderState extends State<FormBuilder> {
               return InputDecorator(
                 decoration: InputDecoration(
                   labelText: formControl.label,
+                  enabled: !(widget.readonly || formControl.readonly),
                   helperText: formControl.hint,
                   errorText: field.errorText,
                 ),
@@ -655,6 +665,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 return InputDecorator(
                   decoration: InputDecoration(
                     labelText: formControl.label,
+                    enabled: !(widget.readonly || formControl.readonly),
                     helperText: formControl.hint ?? "",
                     errorText: field.errorText,
                     contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
@@ -687,6 +698,7 @@ class _FormBuilderState extends State<FormBuilder> {
                   initialValue: field.value,
                   decoration: InputDecoration(
                     // prefixIcon: Icon(Icons.search),
+                    enabled: !(widget.readonly || formControl.readonly),
                     hintText: formControl.hint,
                     labelText: formControl.label,
                     errorText: field.errorText,
@@ -789,6 +801,7 @@ class _FormBuilderState extends State<FormBuilder> {
           controller: _inputController,
           decoration: InputDecoration(
             labelText: formControl.label,
+            enabled: !(formWidget.readonly || formControl.readonly),
             hintText: formControl.hint ?? "",
           ),
           onSaved: (value) {
@@ -839,6 +852,7 @@ class _FormBuilderState extends State<FormBuilder> {
           },
           decoration: InputDecoration(
             labelText: formControl.label,
+            enabled: !(formWidget.readonly || formControl.readonly),
             hintText: formControl.hint ?? "",
           ),
           onSaved: (value) {
