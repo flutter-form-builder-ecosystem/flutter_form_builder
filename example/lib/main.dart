@@ -296,7 +296,8 @@ class MyHomePage extends StatelessWidget {
         margin: EdgeInsets.all(15.0),
         child: FormBuilder(
           context,
-          autovalidate: true,
+          // autovalidate: true,
+          readonly: true,
           showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [
@@ -378,7 +379,9 @@ class MyHomePage extends StatelessWidget {
               type: FormBuilderInput.TYPE_TEXT,
               attribute: "name",
               label: "Name",
+              value: "John Doe",
               require: true,
+              readonly: true,
               min: 3,
             ),
             FormBuilderInput.dropdown(
@@ -424,6 +427,7 @@ class MyHomePage extends StatelessWidget {
             ),
             FormBuilderInput.datePicker(
               label: "Date of Birth",
+              readonly: true,
               attribute: "dob",
               firstDate: DateTime(1970),
               lastDate: DateTime.now().add(Duration(days: 1)),
@@ -466,6 +470,7 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.switchInput(
                 label: "I accept the terms and conditions",
                 attribute: "accept_terms_switch",
+                value: true,
                 hint:
                     "Kindly make sure you've read all the terms and conditions",
                 validator: (value) {
@@ -499,6 +504,7 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.segmentedControl(
               label: "Movie Rating (Archer)",
               attribute: "movie_rating",
+              // value: 2,
               require: true,
               options: List.generate(5, (i) => i + 1)
                   .map((number) => FormBuilderInputOption(value: number))

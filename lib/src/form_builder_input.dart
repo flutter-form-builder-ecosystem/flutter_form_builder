@@ -34,6 +34,7 @@ class FormBuilderInput {
   String label;
   String attribute;
   String type;
+  bool readonly;
   String hint;
   dynamic value;
   bool require;
@@ -57,6 +58,7 @@ class FormBuilderInput {
     @required this.label,
     @required this.type,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -70,6 +72,7 @@ class FormBuilderInput {
   FormBuilderInput.password({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -86,6 +89,7 @@ class FormBuilderInput {
     @required this.attribute,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -97,6 +101,7 @@ class FormBuilderInput {
   FormBuilderInput.number({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.value,
     this.hint,
     this.min,
@@ -113,6 +118,7 @@ class FormBuilderInput {
   FormBuilderInput.stepper({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.value,
     this.hint,
     this.min,
@@ -131,6 +137,7 @@ class FormBuilderInput {
     @required this.label,
     @required this.attribute,
     @required this.max,
+    this.readonly = false,
     this.value,
     this.icon,
     this.iconSize,
@@ -149,6 +156,7 @@ class FormBuilderInput {
     @required this.min,
     @required this.max,
     @required this.value,
+    this.readonly = false,
     this.divisions,
     this.hint,
     this.require = false,
@@ -162,6 +170,7 @@ class FormBuilderInput {
     @required this.label,
     @required this.options,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -174,6 +183,7 @@ class FormBuilderInput {
     @required this.label,
     @required this.attribute,
     @required this.options,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -186,6 +196,7 @@ class FormBuilderInput {
     @required this.label,
     @required this.attribute,
     @required this.options,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -197,6 +208,7 @@ class FormBuilderInput {
   FormBuilderInput.checkbox({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -209,6 +221,7 @@ class FormBuilderInput {
   FormBuilderInput.switchInput({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -222,6 +235,7 @@ class FormBuilderInput {
     @required this.label,
     @required this.options,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
@@ -234,6 +248,7 @@ class FormBuilderInput {
   FormBuilderInput.datePicker({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.firstDate,
     this.lastDate,
@@ -248,6 +263,7 @@ class FormBuilderInput {
   FormBuilderInput.timePicker({
     @required this.label,
     @required this.attribute,
+    this.readonly = false,
     this.hint,
     this.firstDate,
     this.lastDate,
@@ -264,6 +280,7 @@ class FormBuilderInput {
     @required this.suggestionsCallback,
     @required this.suggestionBuilder,
     @required this.chipBuilder,
+    this.readonly = false,
     this.hint,
     this.value,
     this.require = false,
