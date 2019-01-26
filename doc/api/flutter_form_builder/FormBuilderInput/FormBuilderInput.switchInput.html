@@ -64,6 +64,7 @@
       <li><a href="flutter_form_builder/FormBuilderInput/chipBuilder.html">chipBuilder</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/divisions.html">divisions</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/firstDate.html">firstDate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderInput/format.html">format</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/hint.html">hint</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/icon.html">icon</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/iconSize.html">iconSize</a></li>
@@ -73,6 +74,7 @@
       <li><a href="flutter_form_builder/FormBuilderInput/max.html">max</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/min.html">min</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/options.html">options</a></li>
+      <li><a href="flutter_form_builder/FormBuilderInput/readonly.html">readonly</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/require.html">require</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/step.html">step</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/suggestionBuilder.html">suggestionBuilder</a></li>
@@ -122,7 +124,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderInput.switchInput</span>(<wbr>{<span class="parameter" id="switchInput-param-label"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="switchInput-param-attribute"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="switchInput-param-hint"><span class="type-annotation">String</span> <span class="parameter-name">hint</span>, </span> <span class="parameter" id="switchInput-param-value"><span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="switchInput-param-require"><span class="type-annotation">bool</span> <span class="parameter-name">require</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="switchInput-param-validator"><span class="type-annotation">FormFieldValidator</span> <span class="parameter-name">validator</span></span> })
+      <span class="name ">FormBuilderInput.switchInput</span>(<wbr>{<span class="parameter" id="switchInput-param-label"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="switchInput-param-attribute"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="switchInput-param-readonly"><span class="type-annotation">bool</span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="switchInput-param-hint"><span class="type-annotation">String</span> <span class="parameter-name">hint</span>, </span> <span class="parameter" id="switchInput-param-value"><span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="switchInput-param-require"><span class="type-annotation">bool</span> <span class="parameter-name">require</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="switchInput-param-validator"><span class="type-annotation">FormFieldValidator</span> <span class="parameter-name">validator</span></span> })
     </section>
 
     
@@ -131,6 +133,7 @@
       <pre class="language-dart"><code class="language-dart">FormBuilderInput.switchInput({
   @required this.label,
   @required this.attribute,
+  this.readonly = false,
   this.hint,
   this.value,
   this.require = false,
@@ -150,7 +153,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.3.0
+    flutter_form_builder 1.3.4
   </span>
 
 </footer>

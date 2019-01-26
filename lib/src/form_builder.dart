@@ -696,6 +696,7 @@ class _FormBuilderState extends State<FormBuilder> {
               builder: (FormFieldState<dynamic> field) {
                 return ChipsInput(
                   initialValue: field.value,
+                  enabled: !(widget.readonly || formControl.readonly),
                   decoration: InputDecoration(
                     // prefixIcon: Icon(Icons.search),
                     enabled: !(widget.readonly || formControl.readonly),
