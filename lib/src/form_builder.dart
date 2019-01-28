@@ -82,7 +82,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
     for (var count = 0; count < formControls.length; count++) {
       FormBuilderInput formControl = formControls[count];
-
+      
       switch (formControl.type) {
         case FormBuilderInput.TYPE_TEXT:
         case FormBuilderInput.TYPE_PASSWORD:
@@ -544,7 +544,7 @@ class _FormBuilderState extends State<FormBuilder> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Slider(
-                        value: formControl.value,
+                        value: field.value,
                         min: formControl.min,
                         max: formControl.max,
                         divisions: formControl.divisions,
@@ -556,7 +556,7 @@ class _FormBuilderState extends State<FormBuilder> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Text("${formControl.min}"),
-                          Text("${formControl.value}"),
+                          Text("${field.value}"),
                           Text("${formControl.max}"),
                         ],
                       ),
