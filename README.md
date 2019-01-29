@@ -19,6 +19,7 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 FormBuilder(
   context,
   autovalidate: true,
+  // readonly: true,
   showResetButton: true,
   // resetButtonContent: Text("Clear Form"),
   controls: [
@@ -51,8 +52,8 @@ FormBuilder(
       attribute: 'chips_test',
       require: true,
       value: [
-        AppProfile('Andrew', 'stock@man.com',
-            'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')
+        Contact('Andrew', 'stock@man.com',
+            'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
       ],
       suggestionsCallback: (String query) {
         if (query.length != 0) {
@@ -68,9 +69,10 @@ FormBuilder(
             ..sort((a, b) => a.name
                 .toLowerCase()
                 .indexOf(lowercaseQuery)
-                .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
+                .compareTo(
+                    b.name.toLowerCase().indexOf(lowercaseQuery)));
         } else {
-          return const <AppProfile>[];
+          return const <Contact>[];
         }
       },
       chipBuilder: (context, state, profile) {
@@ -100,7 +102,9 @@ FormBuilder(
       type: FormBuilderInput.TYPE_TEXT,
       attribute: "name",
       label: "Name",
+      value: "John Doe",
       require: true,
+      readonly: true,
       min: 3,
     ),
     FormBuilderInput.dropdown(
@@ -145,12 +149,12 @@ FormBuilder(
       min: 8,
     ),
     FormBuilderInput.datePicker(
-      label: "Date of Birth",
-      attribute: "dob",
-      firstDate: DateTime(1970),
-      lastDate: DateTime.now().add(Duration(days: 1)),
-      format: 'dd, MM yyyy'
-    ),
+        label: "Date of Birth",
+        readonly: true,
+        attribute: "dob",
+        firstDate: DateTime(1970),
+        lastDate: DateTime.now().add(Duration(days: 1)),
+        format: 'dd, MM yyyy'),
     FormBuilderInput.timePicker(
       label: "Appointment Time",
       attribute: "time",
@@ -188,6 +192,7 @@ FormBuilder(
     FormBuilderInput.switchInput(
         label: "I accept the terms and conditions",
         attribute: "accept_terms_switch",
+        value: true,
         hint:
             "Kindly make sure you've read all the terms and conditions",
         validator: (value) {
@@ -221,6 +226,7 @@ FormBuilder(
     FormBuilderInput.segmentedControl(
       label: "Movie Rating (Archer)",
       attribute: "movie_rating",
+      // value: 2,
       require: true,
       options: List.generate(5, (i) => i + 1)
           .map((number) => FormBuilderInputOption(value: number))
@@ -249,8 +255,7 @@ FormBuilder(
     * MaskedText
 * Allow options for Checkboxes and Radios to appear left or right
 * Allow addition of custom input types
-* Fire `onChanged()` on every control allowing reaction to changes
 
 ## KNOWN ISSUES - HELP NEEDED (Send help ;-P)
-* Proper validation for URL [doesn't work without http(s)]
+* Proper validation for URL [doesn't work without protocol - http(s)]
 

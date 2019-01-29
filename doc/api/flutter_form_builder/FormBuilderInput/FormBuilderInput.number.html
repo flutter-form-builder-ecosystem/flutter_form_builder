@@ -74,6 +74,7 @@
       <li><a href="flutter_form_builder/FormBuilderInput/max.html">max</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/min.html">min</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/options.html">options</a></li>
+      <li><a href="flutter_form_builder/FormBuilderInput/readonly.html">readonly</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/require.html">require</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/step.html">step</a></li>
       <li><a href="flutter_form_builder/FormBuilderInput/suggestionBuilder.html">suggestionBuilder</a></li>
@@ -123,7 +124,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderInput.number</span>(<wbr>{<span class="parameter" id="number-param-label"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="number-param-attribute"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="number-param-value"><span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="number-param-hint"><span class="type-annotation">String</span> <span class="parameter-name">hint</span>, </span> <span class="parameter" id="number-param-min"><span class="type-annotation">dynamic</span> <span class="parameter-name">min</span>, </span> <span class="parameter" id="number-param-max"><span class="type-annotation">dynamic</span> <span class="parameter-name">max</span>, </span> <span class="parameter" id="number-param-require"><span class="type-annotation">bool</span> <span class="parameter-name">require</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="number-param-validator"><span class="type-annotation">FormFieldValidator</span> <span class="parameter-name">validator</span></span> })
+      <span class="name ">FormBuilderInput.number</span>(<wbr>{<span class="parameter" id="number-param-label"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="number-param-attribute"><span>@required</span> <span class="type-annotation">String</span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="number-param-readonly"><span class="type-annotation">bool</span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="number-param-value"><span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="number-param-hint"><span class="type-annotation">String</span> <span class="parameter-name">hint</span>, </span> <span class="parameter" id="number-param-min"><span class="type-annotation">dynamic</span> <span class="parameter-name">min</span>, </span> <span class="parameter" id="number-param-max"><span class="type-annotation">dynamic</span> <span class="parameter-name">max</span>, </span> <span class="parameter" id="number-param-require"><span class="type-annotation">bool</span> <span class="parameter-name">require</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="number-param-validator"><span class="type-annotation">FormFieldValidator</span> <span class="parameter-name">validator</span></span> })
     </section>
 
     
@@ -132,6 +133,7 @@
       <pre class="language-dart"><code class="language-dart">FormBuilderInput.number({
   @required this.label,
   @required this.attribute,
+  this.readonly = false,
   this.value,
   this.hint,
   this.min,

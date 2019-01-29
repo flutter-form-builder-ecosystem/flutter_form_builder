@@ -19,30 +19,30 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const mockResults = <AppProfile>[
-      AppProfile('Andrew', 'stock@man.com',
+    const mockResults = <Contact>[
+      Contact('Andrew', 'stock@man.com',
           'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-      AppProfile('Paul', 'paul@google.com',
+      Contact('Paul', 'paul@google.com',
           'https://mbtskoudsalg.com/images/person-stock-image-png.png'),
-      AppProfile('Fred', 'fred@google.com',
+      Contact('Fred', 'fred@google.com',
           'https://media.istockphoto.com/photos/feeling-great-about-my-corporate-choices-picture-id507296326'),
-      AppProfile('Brian', 'brian@flutter.io',
+      Contact('Brian', 'brian@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('John', 'john@flutter.io',
+      Contact('John', 'john@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Thomas', 'thomas@flutter.io',
+      Contact('Thomas', 'thomas@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Nelly', 'nelly@flutter.io',
+      Contact('Nelly', 'nelly@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Marie', 'marie@flutter.io',
+      Contact('Marie', 'marie@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Charlie', 'charlie@flutter.io',
+      Contact('Charlie', 'charlie@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Diana', 'diana@flutter.io',
+      Contact('Diana', 'diana@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Ernie', 'ernie@flutter.io',
+      Contact('Ernie', 'ernie@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
-      AppProfile('Gina', 'fred@flutter.io',
+      Contact('Gina', 'fred@flutter.io',
           'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'),
     ];
 
@@ -297,6 +297,7 @@ class MyHomePage extends StatelessWidget {
         child: FormBuilder(
           context,
           autovalidate: true,
+          // readonly: true,
           showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [
@@ -329,8 +330,8 @@ class MyHomePage extends StatelessWidget {
               attribute: 'chips_test',
               require: true,
               value: [
-                AppProfile('Andrew', 'stock@man.com',
-                    'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')
+                Contact('Andrew', 'stock@man.com',
+                    'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
               ],
               suggestionsCallback: (String query) {
                 if (query.length != 0) {
@@ -346,9 +347,10 @@ class MyHomePage extends StatelessWidget {
                     ..sort((a, b) => a.name
                         .toLowerCase()
                         .indexOf(lowercaseQuery)
-                        .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
+                        .compareTo(
+                            b.name.toLowerCase().indexOf(lowercaseQuery)));
                 } else {
-                  return const <AppProfile>[];
+                  return const <Contact>[];
                 }
               },
               chipBuilder: (context, state, profile) {
@@ -378,7 +380,9 @@ class MyHomePage extends StatelessWidget {
               type: FormBuilderInput.TYPE_TEXT,
               attribute: "name",
               label: "Name",
+              value: "John Doe",
               require: true,
+              readonly: true,
               min: 3,
             ),
             FormBuilderInput.dropdown(
@@ -423,12 +427,12 @@ class MyHomePage extends StatelessWidget {
               min: 8,
             ),
             FormBuilderInput.datePicker(
-              label: "Date of Birth",
-              attribute: "dob",
-              firstDate: DateTime(1970),
-              lastDate: DateTime.now().add(Duration(days: 1)),
-              format: 'dd, MM yyyy'
-            ),
+                label: "Date of Birth",
+                readonly: true,
+                attribute: "dob",
+                firstDate: DateTime(1970),
+                lastDate: DateTime.now().add(Duration(days: 1)),
+                format: 'dd, MM yyyy'),
             FormBuilderInput.timePicker(
               label: "Appointment Time",
               attribute: "time",
@@ -466,6 +470,7 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.switchInput(
                 label: "I accept the terms and conditions",
                 attribute: "accept_terms_switch",
+                value: true,
                 hint:
                     "Kindly make sure you've read all the terms and conditions",
                 validator: (value) {
@@ -499,6 +504,7 @@ class MyHomePage extends StatelessWidget {
             FormBuilderInput.segmentedControl(
               label: "Movie Rating (Archer)",
               attribute: "movie_rating",
+              // value: 2,
               require: true,
               options: List.generate(5, (i) => i + 1)
                   .map((number) => FormBuilderInputOption(value: number))
@@ -521,17 +527,17 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
-class AppProfile {
+class Contact {
   final String name;
   final String email;
   final String imageUrl;
 
-  const AppProfile(this.name, this.email, this.imageUrl);
+  const Contact(this.name, this.email, this.imageUrl);
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AppProfile &&
+      other is Contact &&
           runtimeType == other.runtimeType &&
           name == other.name;
 

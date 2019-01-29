@@ -1,3 +1,6 @@
+## [1.4.0] - 29-Jan-2019
+* The entire form or individual controls can now be made readonly by making `readonly` property to `true`. Default value is `false`. Closes [#11](https://github.com/danvick/flutter_form_builder/issues/11) and[#16](https://github.com/danvick/flutter_form_builder/issues/16)
+
 ## [1.3.5] - 28-Jan-2019
 * Fixed bug on Slider where current value not updated on slider & label
 
