@@ -385,6 +385,13 @@ class MyHomePage extends StatelessWidget {
               readonly: true,
               min: 3,
             ),
+            FormBuilderInput.signaturePad(
+              attribute: "signature",
+              label: "Signature:",
+              // value: "John Doe",
+              require: true,
+              // readonly: true,
+            ),
             FormBuilderInput.dropdown(
               attribute: "dropdown",
               require: true,
@@ -408,7 +415,7 @@ class MyHomePage extends StatelessWidget {
               label: "Email",
               require: true,
             ),
-            FormBuilderInput.textField(
+            /*FormBuilderInput.textField(
               type: FormBuilderInput.TYPE_URL,
               attribute: "url",
               label: "URL",
@@ -509,7 +516,7 @@ class MyHomePage extends StatelessWidget {
               options: List.generate(5, (i) => i + 1)
                   .map((number) => FormBuilderInputOption(value: number))
                   .toList(),
-            ),
+            ),*/
           ],
           onChanged: (formValue) {
             print(formValue);

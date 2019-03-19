@@ -30,6 +30,7 @@ class FormBuilderInput {
   static const String TYPE_RATE = "Rate";
   static const String TYPE_SEGMENTED_CONTROL = "SegmentedControl";
   static const String TYPE_CHIPS_INPUT = "ChipsInput";
+  static const String TYPE_SIGNATURE_PAD = "DrawingPad";
 
   String label;
   String attribute;
@@ -41,6 +42,9 @@ class FormBuilderInput {
   dynamic min;
   dynamic max;
   int divisions;
+  Color color;
+  double strokeWidth;
+  double height;
   num step;
   String format;
   IconData icon;
@@ -96,6 +100,21 @@ class FormBuilderInput {
     this.validator,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
+  }
+
+  FormBuilderInput.signaturePad({
+    @required this.label,
+    @required this.attribute,
+    this.readonly = false,
+    this.color = Colors.black,
+    this.strokeWidth = 5,
+    this.height = 200,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) {
+    type = FormBuilderInput.TYPE_SIGNATURE_PAD;
   }
 
   FormBuilderInput.number({

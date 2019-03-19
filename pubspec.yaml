@@ -15,6 +15,7 @@ dependencies:
   intl: ^0.15.7
   sy_flutter_widgets: ^0.1.4
   flutter_chips_input: ^1.1.0
+  flutter_signature_pad: ^1.0.0
 
 dev_dependencies:
   flutter_test:

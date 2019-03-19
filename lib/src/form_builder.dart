@@ -1,13 +1,14 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:flutter_form_builder/src/form_builder_input.dart';
+import 'package:flutter_form_builder/src/signature_pad.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
-import 'package:flutter_chips_input/flutter_chips_input.dart';
-
-import './form_builder_input.dart';
 
 //TODO: Refactor this spaghetti code
 class FormBuilder extends StatefulWidget {
@@ -84,7 +85,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
     for (var count = 0; count < formControls.length; count++) {
       FormBuilderInput formControl = formControls[count];
-      
+
       switch (formControl.type) {
         case FormBuilderInput.TYPE_TEXT:
         case FormBuilderInput.TYPE_PASSWORD:
@@ -207,8 +208,8 @@ class _FormBuilderState extends State<FormBuilder> {
               controller: _typeAheadController,
               style: (widget.readonly || formControl.readonly)
                   ? Theme.of(context).textTheme.subhead.copyWith(
-                color: Theme.of(context).disabledColor,
-              )
+                        color: Theme.of(context).disabledColor,
+                      )
                   : null,
               focusNode: (widget.readonly || formControl.readonly)
                   ? AlwaysDisabledFocusNode()
@@ -271,9 +272,11 @@ class _FormBuilderState extends State<FormBuilder> {
                     );
                   }).toList(),
                   value: field.value,
-                  onChanged: (widget.readonly || formControl.readonly) ? null : (value) {
-                    field.didChange(value);
-                  },
+                  onChanged: (widget.readonly || formControl.readonly)
+                      ? null
+                      : (value) {
+                          field.didChange(value);
+                        },
                 ),
               );
             },
@@ -309,15 +312,19 @@ class _FormBuilderState extends State<FormBuilder> {
                     trailing: Radio<dynamic>(
                       value: formControls[count].options[i].value,
                       groupValue: field.value,
-                      onChanged: (widget.readonly || formControl.readonly) ? null : (dynamic value) {
-                        field.didChange(value);
-                      },
+                      onChanged: (widget.readonly || formControl.readonly)
+                          ? null
+                          : (dynamic value) {
+                              field.didChange(value);
+                            },
                     ),
-                    onTap: (widget.readonly || formControl.readonly) ? null : () {
-                      var selectedValue = formControls[count].value =
-                          formControls[count].options[i].value;
-                      field.didChange(selectedValue);
-                    },
+                    onTap: (widget.readonly || formControl.readonly)
+                        ? null
+                        : () {
+                            var selectedValue = formControls[count].value =
+                                formControls[count].options[i].value;
+                            field.didChange(selectedValue);
+                          },
                   ),
                   Divider(
                     height: 0.0,
@@ -368,9 +375,15 @@ class _FormBuilderState extends State<FormBuilder> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: CupertinoSegmentedControl(
-                    borderColor: (widget.readonly || formControl.readonly) ? Theme.of(context).disabledColor : Theme.of(context).primaryColor,
-                    selectedColor: (widget.readonly || formControl.readonly) ? Theme.of(context).disabledColor : Theme.of(context).primaryColor,
-                    pressedColor: (widget.readonly || formControl.readonly) ? Theme.of(context).disabledColor : Theme.of(context).primaryColor,
+                    borderColor: (widget.readonly || formControl.readonly)
+                        ? Theme.of(context).disabledColor
+                        : Theme.of(context).primaryColor,
+                    selectedColor: (widget.readonly || formControl.readonly)
+                        ? Theme.of(context).disabledColor
+                        : Theme.of(context).primaryColor,
+                    pressedColor: (widget.readonly || formControl.readonly)
+                        ? Theme.of(context).disabledColor
+                        : Theme.of(context).primaryColor,
                     groupValue: field.value,
                     children: Map.fromIterable(
                       formControls[count].options,
@@ -381,9 +394,9 @@ class _FormBuilderState extends State<FormBuilder> {
                           ),
                     ),
                     onValueChanged: (dynamic value) {
-                      if(widget.readonly || formControl.readonly) {
+                      if (widget.readonly || formControl.readonly) {
                         field.reset();
-                      }else
+                      } else
                         field.didChange(value);
                     },
                   ),
@@ -425,14 +438,18 @@ class _FormBuilderState extends State<FormBuilder> {
                     ),
                     trailing: Switch(
                       value: field.value,
-                      onChanged: (widget.readonly || formControl.readonly) ? null : (bool value) {
-                        field.didChange(value);
-                      },
+                      onChanged: (widget.readonly || formControl.readonly)
+                          ? null
+                          : (bool value) {
+                              field.didChange(value);
+                            },
                     ),
-                    onTap: (widget.readonly || formControl.readonly) ? null : () {
-                      bool newValue = !(field.value ?? false);
-                      field.didChange(newValue);
-                    },
+                    onTap: (widget.readonly || formControl.readonly)
+                        ? null
+                        : () {
+                            bool newValue = !(field.value ?? false);
+                            field.didChange(newValue);
+                          },
                   ),
                 );
               }));
@@ -466,9 +483,11 @@ class _FormBuilderState extends State<FormBuilder> {
                   min: formControl.min ?? 0,
                   max: formControl.max ?? 9999999,
                   size: 24.0,
-                  onChange: (widget.readonly || formControl.readonly) ? null : (value) {
-                    field.didChange(value);
-                  },
+                  onChange: (widget.readonly || formControl.readonly)
+                      ? null
+                      : (value) {
+                          field.didChange(value);
+                        },
                 ),
               );
             },
@@ -500,11 +519,14 @@ class _FormBuilderState extends State<FormBuilder> {
                 child: SyRate(
                   value: field.value,
                   total: formControl.max,
-                  icon: formControl.icon, //TODO: When disabled change icon color (Probably deep grey)
+                  icon: formControl.icon,
+                  //TODO: When disabled change icon color (Probably deep grey)
                   iconSize: formControl.iconSize ?? 24.0,
-                  onTap: (widget.readonly || formControl.readonly) ? null : (value) {
-                    field.didChange(value);
-                  },
+                  onTap: (widget.readonly || formControl.readonly)
+                      ? null
+                      : (value) {
+                          field.didChange(value);
+                        },
                 ),
               );
             },
@@ -543,14 +565,18 @@ class _FormBuilderState extends State<FormBuilder> {
                   ),
                   trailing: Checkbox(
                     value: field.value ?? false,
-                    onChanged: (widget.readonly || formControl.readonly) ? null : (bool value) {
-                      field.didChange(value);
-                    },
+                    onChanged: (widget.readonly || formControl.readonly)
+                        ? null
+                        : (bool value) {
+                            field.didChange(value);
+                          },
                   ),
-                  onTap: (widget.readonly || formControl.readonly) ? null : () {
-                    bool newValue = !(field.value ?? false);
-                    field.didChange(newValue);
-                  },
+                  onTap: (widget.readonly || formControl.readonly)
+                      ? null
+                      : () {
+                          bool newValue = !(field.value ?? false);
+                          field.didChange(newValue);
+                        },
                 ),
               );
             },
@@ -589,9 +615,11 @@ class _FormBuilderState extends State<FormBuilder> {
                         min: formControl.min,
                         max: formControl.max,
                         divisions: formControl.divisions,
-                        onChanged: (widget.readonly || formControl.readonly) ? null : (double value) {
-                          field.didChange(value);
-                        },
+                        onChanged: (widget.readonly || formControl.readonly)
+                            ? null
+                            : (double value) {
+                                field.didChange(value);
+                              },
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -629,33 +657,34 @@ class _FormBuilderState extends State<FormBuilder> {
                       leading: Checkbox(
                         value: field.value
                             .contains(formControls[count].options[i].value),
-                        onChanged: (widget.readonly || formControl.readonly) ? null : (bool value) {
-                          if (value)
-                            formControls[count]
-                                .value
-                                .add(formControls[count].options[i].value);
-                          else
-                            formControls[count]
-                                .value
-                                .remove(formControls[count].options[i].value);
-                          field.didChange(formControls[count].value);
-                        },
+                        onChanged: (widget.readonly || formControl.readonly)
+                            ? null
+                            : (bool value) {
+                                if (value)
+                                  formControls[count].value.add(
+                                      formControls[count].options[i].value);
+                                else
+                                  formControls[count].value.remove(
+                                      formControls[count].options[i].value);
+                                field.didChange(formControls[count].value);
+                              },
                       ),
                       title: Text(
                           "${formControls[count].options[i].label ?? formControls[count].options[i].value}"),
-                      onTap: (widget.readonly || formControl.readonly) ? null : () {
-                        bool newValue = field.value
-                            .contains(formControls[count].options[i].value);
-                        if (!newValue)
-                          formControls[count]
-                              .value
-                              .add(formControls[count].options[i].value);
-                        else
-                          formControls[count]
-                              .value
-                              .remove(formControls[count].options[i].value);
-                        field.didChange(formControls[count].value);
-                      },
+                      onTap: (widget.readonly || formControl.readonly)
+                          ? null
+                          : () {
+                              bool newValue = field.value.contains(
+                                  formControls[count].options[i].value);
+                              if (!newValue)
+                                formControls[count]
+                                    .value
+                                    .add(formControls[count].options[i].value);
+                              else
+                                formControls[count].value.remove(
+                                    formControls[count].options[i].value);
+                              field.didChange(formControls[count].value);
+                            },
                     ),
                     Divider(
                       height: 0.0,
@@ -677,6 +706,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 );
               }));
           break;
+
         case FormBuilderInput.TYPE_CHIPS_INPUT:
           formControlsList.add(SizedBox(
             // height: 200.0,
@@ -712,6 +742,29 @@ class _FormBuilderState extends State<FormBuilder> {
                   suggestionBuilder: formControl.suggestionBuilder,
                 );
               },
+            ),
+          ));
+          break;
+
+        case FormBuilderInput.TYPE_SIGNATURE_PAD:
+          formControlsList.add(SizedBox(
+            // height: 200.0,
+            child: FormField<ui.Image>(
+              key: Key(formControl.attribute),
+              enabled: !(widget.readonly || formControl.readonly),
+              initialValue: formControl.value,
+              onSaved: (value) {
+                formData[formControl.attribute] = value;
+              },
+              validator: (value) {
+                if (formControl.require && value == null)
+                  return "${formControl.label} is required";
+                if (formControl.validator != null)
+                  return formControl.validator(value);
+              },
+              builder: (FormFieldState<dynamic> field) {
+                return SignaturePad();
+                },
             ),
           ));
           break;
@@ -764,23 +817,25 @@ class _FormBuilderState extends State<FormBuilder> {
         new TextEditingController(text: formControl.value);
     FocusNode _focusNode = FocusNode();
     return GestureDetector(
-      onTap: (formWidget.readonly || formControl.readonly) ? null : () {
-        FocusScope.of(context).requestFocus(_focusNode);
-        _showDatePickerDialog(
-          context,
-          initialDate: DateTime.tryParse(_inputController.value.text),
-          firstDate: formControl.firstDate,
-          lastDate: formControl.lastDate,
-        ).then((selectedDate) {
-          if (selectedDate != null) {
-            String selectedDateFormatted =
-                DateFormat(formControl.format ?? 'yyyy-MM-dd')
-                    .format(selectedDate);
-            _inputController.value =
-                TextEditingValue(text: selectedDateFormatted);
-          }
-        });
-      },
+      onTap: (formWidget.readonly || formControl.readonly)
+          ? null
+          : () {
+              FocusScope.of(context).requestFocus(_focusNode);
+              _showDatePickerDialog(
+                context,
+                initialDate: DateTime.tryParse(_inputController.value.text),
+                firstDate: formControl.firstDate,
+                lastDate: formControl.lastDate,
+              ).then((selectedDate) {
+                if (selectedDate != null) {
+                  String selectedDateFormatted =
+                      DateFormat(formControl.format ?? 'yyyy-MM-dd')
+                          .format(selectedDate);
+                  _inputController.value =
+                      TextEditingValue(text: selectedDateFormatted);
+                }
+              });
+            },
       child: AbsorbPointer(
         child: TextFormField(
           key: Key(formControl.attribute),
@@ -819,19 +874,21 @@ class _FormBuilderState extends State<FormBuilder> {
         new TextEditingController(text: formControl.value);
     FocusNode _focusNode = new FocusNode();
     return GestureDetector(
-      onTap: (formWidget.readonly || formControl.readonly) ? null : () {
-        FocusScope.of(context).requestFocus(_focusNode);
-        _showTimePickerDialog(
-          context,
-          // initialTime: new Time, //FIXME: Parse time from string
-        ).then((selectedTime) {
-          if (selectedTime != null) {
-            String selectedDateFormatted = selectedTime.format(context);
-            _inputController.value =
-                TextEditingValue(text: selectedDateFormatted);
-          }
-        });
-      },
+      onTap: (formWidget.readonly || formControl.readonly)
+          ? null
+          : () {
+              FocusScope.of(context).requestFocus(_focusNode);
+              _showTimePickerDialog(
+                context,
+                // initialTime: new Time, //FIXME: Parse time from string
+              ).then((selectedTime) {
+                if (selectedTime != null) {
+                  String selectedDateFormatted = selectedTime.format(context);
+                  _inputController.value =
+                      TextEditingValue(text: selectedDateFormatted);
+                }
+              });
+            },
       child: AbsorbPointer(
         child: TextFormField(
           key: Key(formControl.attribute),
@@ -889,3 +946,5 @@ class AlwaysDisabledFocusNode extends FocusNode {
   @override
   bool get hasFocus => false;
 }
+
+
