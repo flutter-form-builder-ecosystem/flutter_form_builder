@@ -418,7 +418,7 @@ class MyHomePage extends StatelessWidget {
                 type: FormBuilderInput.TYPE_PHONE,
                 attribute: "phone",
                 label: "Phone",
-                hint: "Including country code (+254)"
+                hint: "Including country code"
                 //require: true,
                 ),
             FormBuilderInput.password(
@@ -427,15 +427,24 @@ class MyHomePage extends StatelessWidget {
               min: 8,
             ),
             FormBuilderInput.datePicker(
-                label: "Date of Birth",
-                readonly: true,
-                attribute: "dob",
-                firstDate: DateTime(1970),
-                lastDate: DateTime.now().add(Duration(days: 1)),
-                format: 'dd, MM yyyy'),
+              label: "Date of Birth",
+              readonly: true,
+              attribute: "dob",
+              firstDate: DateTime(1970),
+              lastDate: DateTime.now().add(Duration(days: 1)),
+              format: 'dd, MM yyyy',
+            ),
             FormBuilderInput.timePicker(
+              label: "Alarm Time",
+              attribute: "alarm",
+              require: true,
+            ),
+            FormBuilderInput.dateTimePicker(
               label: "Appointment Time",
-              attribute: "time",
+              attribute: "appointment_time",
+              firstDate: DateTime(1970),
+              lastDate: DateTime.now().add(Duration(days: 1)),
+              // format: 'dd, MM yyyy hh:mm',
             ),
             FormBuilderInput.checkboxList(
               label: "The Languages of my people",

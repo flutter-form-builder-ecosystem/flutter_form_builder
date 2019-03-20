@@ -23,6 +23,7 @@ class FormBuilderInput {
   static const String TYPE_DROPDOWN = "Dropdown";
   static const String TYPE_DATE_PICKER = "DatePicker";
   static const String TYPE_TIME_PICKER = "TimePicker";
+  static const String TYPE_DATE_TIME_PICKER = "DateTimePicker";
   static const String TYPE_URL = "Url";
   static const String TYPE_TYPE_AHEAD = "TypeAhead";
   static const String TYPE_PHONE = "Phone";
@@ -260,13 +261,26 @@ class FormBuilderInput {
     type = FormBuilderInput.TYPE_DATE_PICKER;
   }
 
-  FormBuilderInput.timePicker({
+  FormBuilderInput.dateTimePicker({
     @required this.label,
     @required this.attribute,
     this.readonly = false,
     this.hint,
     this.firstDate,
     this.lastDate,
+    this.format,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) {
+    type = FormBuilderInput.TYPE_DATE_TIME_PICKER;
+  }
+
+  FormBuilderInput.timePicker({
+    @required this.label,
+    @required this.attribute,
+    this.readonly = false,
+    this.hint,
     this.value,
     this.require = false,
     this.validator,
