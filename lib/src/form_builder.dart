@@ -59,8 +59,6 @@ class _FormBuilderState extends State<FormBuilder> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Form(
       key: _formKey,
       onChanged: () {
@@ -81,7 +79,6 @@ class _FormBuilderState extends State<FormBuilder> {
   }
 
   List<Widget> formControlsToForm() {
-
     final formats = {
       InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
       InputType.date: DateFormat('yyyy-MM-dd'),
@@ -202,7 +199,9 @@ class _FormBuilderState extends State<FormBuilder> {
             DateTimePickerFormField(
               inputType: InputType.both,
               initialValue: formControl.value,
-              format: formControl.format != null ? DateFormat(formControl.format) : formats[InputType.both],
+              format: formControl.format != null
+                  ? DateFormat(formControl.format)
+                  : formats[InputType.both],
               editable: !(formControl.readonly || widget.readonly),
               firstDate: formControl.firstDate,
               lastDate: formControl.lastDate,
@@ -228,7 +227,9 @@ class _FormBuilderState extends State<FormBuilder> {
             DateTimePickerFormField(
               inputType: InputType.date,
               initialValue: formControl.value,
-              format: formControl.format != null ? DateFormat(formControl.format) : formats[InputType.date],
+              format: formControl.format != null
+                  ? DateFormat(formControl.format)
+                  : formats[InputType.date],
               editable: !(formControl.readonly || widget.readonly),
               firstDate: formControl.firstDate,
               lastDate: formControl.lastDate,
@@ -254,7 +255,9 @@ class _FormBuilderState extends State<FormBuilder> {
             DateTimePickerFormField(
               inputType: InputType.time,
               initialValue: formControl.value,
-              format: formControl.format != null ? DateFormat(formControl.format) : formats[InputType.time],
+              format: formControl.format != null
+                  ? DateFormat(formControl.format)
+                  : formats[InputType.time],
               editable: !(formControl.readonly || widget.readonly),
               decoration: InputDecoration(
                 labelText: formControl.label,
@@ -310,6 +313,24 @@ class _FormBuilderState extends State<FormBuilder> {
                 return formControl.validator(value);
             },
             onSaved: (value) => formData[formControl.attribute] = value,
+            getImmediateSuggestions: formControl.getImmediateSuggestions,
+            errorBuilder: formControl.errorBuilder,
+            noItemsFoundBuilder: formControl.noItemsFoundBuilder,
+            loadingBuilder: formControl.loadingBuilder,
+            debounceDuration: formControl.debounceDuration,
+            suggestionsBoxDecoration: formControl.suggestionsBoxDecoration,
+            suggestionsBoxVerticalOffset:
+                formControl.suggestionsBoxVerticalOffset,
+            // transitionBuilder: formControl.transitionBuilder,
+            animationDuration: formControl.animationDuration,
+            animationStart: formControl.animationStart,
+            direction: formControl.direction,
+            hideOnLoading: formControl.hideOnLoading,
+            hideOnEmpty: formControl.hideOnEmpty,
+            hideOnError: formControl.hideOnError,
+            hideSuggestionsOnKeyboardHide:
+                formControl.hideSuggestionsOnKeyboardHide,
+            keepSuggestionsOnLoading: formControl.keepSuggestionsOnLoading,
           ));
           break;
 
