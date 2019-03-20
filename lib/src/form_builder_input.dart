@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import './form_builder_input_option.dart';
 
@@ -55,6 +55,24 @@ class FormBuilderInput {
   ChipsBuilder suggestionBuilder;
   ChipsBuilder chipBuilder;
 
+  //Inputs for typeahead
+  bool getImmediateSuggestions;
+  ErrorBuilder errorBuilder;
+  WidgetBuilder noItemsFoundBuilder;
+  WidgetBuilder loadingBuilder;
+  Duration debounceDuration;
+  SuggestionsBoxDecoration suggestionsBoxDecoration;
+  double suggestionsBoxVerticalOffset;
+  AnimationTransitionBuilder transitionBuilder;
+  Duration animationDuration;
+  double animationStart;
+  AxisDirection direction;
+  bool hideOnLoading;
+  bool hideOnEmpty;
+  bool hideOnError;
+  bool hideSuggestionsOnKeyboardHide;
+  bool keepSuggestionsOnLoading;
+
   FormBuilderInput.textField({
     @required this.label,
     @required this.type,
@@ -95,6 +113,22 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
+    this.getImmediateSuggestions,
+    this.errorBuilder,
+    this.noItemsFoundBuilder,
+    this.loadingBuilder,
+    this.debounceDuration,
+    this.suggestionsBoxDecoration,
+    this.suggestionsBoxVerticalOffset,
+    this.transitionBuilder,
+    this.animationDuration,
+    this.animationStart,
+    this.direction,
+    this.hideOnLoading,
+    this.hideOnEmpty,
+    this.hideOnError,
+    this.hideSuggestionsOnKeyboardHide,
+    this.keepSuggestionsOnLoading,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
   }

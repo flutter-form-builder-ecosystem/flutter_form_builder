@@ -59,7 +59,7 @@ packages:
       name: flutter_typeahead
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "1.2.1"
   intl:
     dependency: "direct main"
     description:
@@ -67,6 +67,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.7"
+  keyboard_visibility:
+    dependency: transitive
+    description:
+      name: keyboard_visibility
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.2"
   matcher:
     dependency: transitive
     description:
@@ -172,4 +179,4 @@ packages:
     version: "2.0.8"
 sdks:
   dart: ">=2.1.0 <3.0.0"
-  flutter: ">=0.1.2 <2.0.0"
+  flutter: ">=0.1.4 <2.0.0"
