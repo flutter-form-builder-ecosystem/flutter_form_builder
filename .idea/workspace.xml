@@ -9,9 +9,106 @@
     <list default="true" id="3d516c1a-1e29-487d-a597-c4f4760b5e12" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/form_builder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/form_builder.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode-class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/AlwaysDisabledFocusNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/AlwaysDisabledFocusNode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/addListener.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/addListener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/consumeKeyboardToken.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/consumeKeyboardToken.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/dispose.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/dispose.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/hasFocus.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/hasFocus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/hasListeners.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/hasListeners.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/notifyListeners.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/notifyListeners.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/removeListener.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/removeListener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/toString.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/toString.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/unfocus.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/AlwaysDisabledFocusNode/unfocus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder-class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/FormBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/FormBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/autovalidate.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/autovalidate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/context.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/context.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/controls.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/controls.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/createElement.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/createElement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/createState.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/createState.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/debugFillProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/debugFillProperties.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/key.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/key.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onChanged.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onChanged.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onSubmit.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onSubmit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onWillPop.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/onWillPop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/readonly.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/readonly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/resetButtonContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/resetButtonContent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/showResetButton.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/showResetButton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/submitButtonContent.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/submitButtonContent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/toString.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/toString.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/toStringShort.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilder/toStringShort.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput-class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.checkbox.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.checkbox.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.checkboxList.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.checkboxList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.chipsInput.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.chipsInput.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.datePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.datePicker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.dropdown.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.dropdown.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.number.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.number.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.password.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.radio.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.radio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.rate.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.rate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.segmentedControl.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.segmentedControl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.slider.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.slider.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.stepper.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.stepper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.switchInput.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.switchInput.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.textField.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.textField.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.timePicker.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.timePicker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.typeAhead.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/FormBuilderInput.typeAhead.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_CHECKBOX-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_CHECKBOX-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_CHECKBOX_LIST-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_CHECKBOX_LIST-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_CHIPS_INPUT-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_CHIPS_INPUT-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_DATE_PICKER-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_DATE_PICKER-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_DROPDOWN-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_DROPDOWN-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_EMAIL-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_EMAIL-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_MULTILINE_TEXT-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_MULTILINE_TEXT-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_NUMBER-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_NUMBER-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_PASSWORD-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_PASSWORD-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_PHONE-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_PHONE-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_RADIO-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_RADIO-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_RATE-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_RATE-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_SEGMENTED_CONTROL-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_SEGMENTED_CONTROL-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_SLIDER-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_SLIDER-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_STEPPER-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_STEPPER-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_SWITCH-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_SWITCH-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_TEXT-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_TEXT-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_TIME_PICKER-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_TIME_PICKER-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_TYPE_AHEAD-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_TYPE_AHEAD-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_URL-constant.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/TYPE_URL-constant.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/attribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/attribute.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/chipBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/chipBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/divisions.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/divisions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/firstDate.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/firstDate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/format.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/format.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/hasHint.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/hasHint.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/hint.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/hint.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/icon.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/icon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/iconSize.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/iconSize.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/itemBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/itemBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/label.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/label.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/lastDate.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/lastDate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/max.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/max.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/min.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/min.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/options.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/readonly.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/readonly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/require.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/require.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/step.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/step.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/suggestionBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/suggestionBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/suggestionsCallback.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/suggestionsCallback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/type.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/type.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/validator.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/validator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/value.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInput/value.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption-class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption/FormBuilderInputOption.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption/FormBuilderInputOption.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption/label.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption/label.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption/value.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderInputOption/value.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/flutter_form_builder-library.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/flutter_form_builder-library.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/static-assets/highlight.pack.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/static-assets/highlight.pack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/static-assets/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/static-assets/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/static-assets/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/static-assets/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/src/form_builder_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/form_builder_input.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -62,14 +159,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dart" value="1675" />
-          <entry key="md" value="590" />
+          <entry key="md" value="597" />
           <entry key="yaml" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Dart" value="1675" />
-          <entry key="Markdown" value="590" />
+          <entry key="Markdown" value="597" />
           <entry key="YAML" value="21" />
         </counts>
       </usages-collector>
@@ -84,20 +181,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="322" column="57" lean-forward="true" selection-start-line="322" selection-start-column="57" selection-end-line="322" selection-end-column="57" />
+            <state relative-caret-position="162">
+              <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/form_builder_input.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1015">
-              <caret line="131" column="34" lean-forward="true" selection-start-line="116" selection-start-column="4" selection-end-line="131" selection-end-column="34" />
+            <state relative-caret-position="916">
+              <caret line="130" column="34" selection-start-line="115" selection-start-column="4" selection-end-line="130" selection-end-column="34" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -152,8 +249,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="4" selection-end-column="91" />
+            <state relative-caret-position="60">
+              <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -243,9 +340,9 @@
         <option value="$PROJECT_DIR$/lib/src/signature_pad.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/CHANGELOG.md" />
         <option value="$PROJECT_DIR$/lib/src/form_builder_input.dart" />
         <option value="$PROJECT_DIR$/lib/src/form_builder.dart" />
+        <option value="$PROJECT_DIR$/CHANGELOG.md" />
       </list>
     </option>
   </component>
@@ -376,7 +473,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="138" y="23" width="1542" height="942" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19266666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -388,14 +484,14 @@
       <window_info id="Designer" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290398" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49958017" visible="true" weight="0.38705882" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49958017" weight="0.38705882" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3116883" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3293979" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50125945" side_tool="true" weight="0.31529412" />
       <window_info anchor="bottom" id="Dart Analysis" order="8" weight="0.3289941" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49874055" weight="0.31411764" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49874055" visible="true" weight="0.31411764" />
       <window_info anchor="bottom" id="Logcat" order="10" />
       <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
@@ -720,6 +816,13 @@
     <entry file="file://$PROJECT_DIR$/pubspec.lock">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="78" selection-start-line="4" selection-start-column="78" selection-end-line="4" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -727,27 +830,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
+    <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" selection-end-column="91" />
+        <state relative-caret-position="162">
+          <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/form_builder_input.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1015">
-          <caret line="131" column="34" lean-forward="true" selection-start-line="116" selection-start-column="4" selection-end-line="131" selection-end-column="34" />
+        <state relative-caret-position="916">
+          <caret line="130" column="34" selection-start-line="115" selection-start-column="4" selection-end-line="130" selection-end-column="34" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="322" column="57" lean-forward="true" selection-start-line="322" selection-start-column="57" selection-end-line="322" selection-end-column="57" />
         </state>
       </provider>
     </entry>

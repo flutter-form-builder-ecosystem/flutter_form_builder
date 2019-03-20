@@ -113,7 +113,6 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-
     this.getImmediateSuggestions,
     this.errorBuilder,
     this.noItemsFoundBuilder,

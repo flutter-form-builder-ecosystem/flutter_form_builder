@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the HttpStatus class from the dart:io library, for the Dart programming language.">
+  <title>HttpStatus class - dart:io library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">flutter_form_builder</a></li>
+    <li><a href="dart-io/dart-io-library.html">dart:io</a></li>
+    <li class="self-crumb">HttpStatus abstract class</li>
+  </ol>
+  <div class="self-name">HttpStatus</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">flutter_form_builder</a></li>
+      <li><a href="dart-io/dart-io-library.html">dart:io</a></li>
+      <li class="self-crumb">HttpStatus abstract class</li>
+    </ol>
+    
+    <h5>dart:io library</h5>
+    <ol>
+      <li class="section-title"><a href="dart-io/dart-io-library.html#classes">Classes</a></li>
+      <li><a href="dart-io/BytesBuilder-class.html">BytesBuilder</a></li>
+      <li><a href="dart-io/CompressionOptions-class.html">CompressionOptions</a></li>
+      <li><a href="dart-io/ConnectionTask-class.html">ConnectionTask</a></li>
+      <li><a href="dart-io/ContentType-class.html">ContentType</a></li>
+      <li><a href="dart-io/Cookie-class.html">Cookie</a></li>
+      <li><a href="dart-io/Datagram-class.html">Datagram</a></li>
+      <li><a href="dart-io/DetachedSocket-class.html">DetachedSocket</a></li>
+      <li><a href="dart-io/Directory-class.html">Directory</a></li>
+      <li><a href="dart-io/File-class.html">File</a></li>
+      <li><a href="dart-io/FileLock-class.html">FileLock</a></li>
+      <li><a href="dart-io/FileMode-class.html">FileMode</a></li>
+      <li><a href="dart-io/FileStat-class.html">FileStat</a></li>
+      <li><a href="dart-io/FileSystemCreateEvent-class.html">FileSystemCreateEvent</a></li>
+      <li><a href="dart-io/FileSystemDeleteEvent-class.html">FileSystemDeleteEvent</a></li>
+      <li><a href="dart-io/FileSystemEntity-class.html">FileSystemEntity</a></li>
+      <li><a href="dart-io/FileSystemEntityType-class.html">FileSystemEntityType</a></li>
+      <li><a href="dart-io/FileSystemEvent-class.html">FileSystemEvent</a></li>
+      <li><a href="dart-io/FileSystemModifyEvent-class.html">FileSystemModifyEvent</a></li>
+      <li><a href="dart-io/FileSystemMoveEvent-class.html">FileSystemMoveEvent</a></li>
+      <li><a href="dart-io/GZipCodec-class.html">GZipCodec</a></li>
+      <li><a href="dart-io/HeaderValue-class.html">HeaderValue</a></li>
+      <li><a href="dart-io/HttpClient-class.html">HttpClient</a></li>
+      <li><a href="dart-io/HttpClientBasicCredentials-class.html">HttpClientBasicCredentials</a></li>
+      <li><a href="dart-io/HttpClientCredentials-class.html">HttpClientCredentials</a></li>
+      <li><a href="dart-io/HttpClientDigestCredentials-class.html">HttpClientDigestCredentials</a></li>
+      <li><a href="dart-io/HttpClientRequest-class.html">HttpClientRequest</a></li>
+      <li><a href="dart-io/HttpClientResponse-class.html">HttpClientResponse</a></li>
+      <li><a href="dart-io/HttpConnectionInfo-class.html">HttpConnectionInfo</a></li>
+      <li><a href="dart-io/HttpConnectionsInfo-class.html">HttpConnectionsInfo</a></li>
+      <li><a href="dart-io/HttpDate-class.html">HttpDate</a></li>
+      <li><a href="dart-io/HttpHeaders-class.html">HttpHeaders</a></li>
+      <li><a href="dart-io/HttpOverrides-class.html">HttpOverrides</a></li>
+      <li><a href="dart-io/HttpRequest-class.html">HttpRequest</a></li>
+      <li><a href="dart-io/HttpResponse-class.html">HttpResponse</a></li>
+      <li><a href="dart-io/HttpServer-class.html">HttpServer</a></li>
+      <li><a href="dart-io/HttpSession-class.html">HttpSession</a></li>
+      <li><a href="dart-io/HttpStatus-class.html">HttpStatus</a></li>
+      <li><a href="dart-io/InternetAddress-class.html">InternetAddress</a></li>
+      <li><a href="dart-io/InternetAddressType-class.html">InternetAddressType</a></li>
+      <li><a href="dart-io/IOOverrides-class.html">IOOverrides</a></li>
+      <li><a href="dart-io/IOSink-class.html">IOSink</a></li>
+      <li><a href="dart-io/Link-class.html">Link</a></li>
+      <li><a href="dart-io/NetworkInterface-class.html">NetworkInterface</a></li>
+      <li><a href="dart-io/OSError-class.html">OSError</a></li>
+      <li><a href="dart-io/Platform-class.html">Platform</a></li>
+      <li><a href="dart-io/Process-class.html">Process</a></li>
+      <li><a href="dart-io/ProcessInfo-class.html">ProcessInfo</a></li>
+      <li><a href="dart-io/ProcessResult-class.html">ProcessResult</a></li>
+      <li><a href="dart-io/ProcessSignal-class.html">ProcessSignal</a></li>
+      <li><a href="dart-io/ProcessStartMode-class.html">ProcessStartMode</a></li>
+      <li><a href="dart-io/RandomAccessFile-class.html">RandomAccessFile</a></li>
+      <li><a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a></li>
+      <li><a href="dart-io/RawSecureServerSocket-class.html">RawSecureServerSocket</a></li>
+      <li><a href="dart-io/RawSecureSocket-class.html">RawSecureSocket</a></li>
+      <li><a href="dart-io/RawServerSocket-class.html">RawServerSocket</a></li>
+      <li><a href="dart-io/RawSocket-class.html">RawSocket</a></li>
+      <li><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></li>
+      <li><a href="dart-io/RawSocketOption-class.html">RawSocketOption</a></li>
+      <li><a href="dart-io/RawSynchronousSocket-class.html">RawSynchronousSocket</a></li>
+      <li><a href="dart-io/RawZLibFilter-class.html">RawZLibFilter</a></li>
+      <li><a href="dart-io/RedirectInfo-class.html">RedirectInfo</a></li>
+      <li><a href="dart-io/SecureServerSocket-class.html">SecureServerSocket</a></li>
+      <li><a href="dart-io/SecureSocket-class.html">SecureSocket</a></li>
+      <li><a href="dart-io/SecurityContext-class.html">SecurityContext</a></li>
+      <li><a href="dart-io/ServerSocket-class.html">ServerSocket</a></li>
+      <li><a href="dart-io/Socket-class.html">Socket</a></li>
+      <li><a href="dart-io/SocketDirection-class.html">SocketDirection</a></li>
+      <li><a href="dart-io/SocketOption-class.html">SocketOption</a></li>
+      <li><a href="dart-io/Stdin-class.html">Stdin</a></li>
+      <li><a href="dart-io/StdioType-class.html">StdioType</a></li>
+      <li><a href="dart-io/Stdout-class.html">Stdout</a></li>
+      <li><a href="dart-io/SystemEncoding-class.html">SystemEncoding</a></li>
+      <li><a href="dart-io/WebSocket-class.html">WebSocket</a></li>
+      <li><a href="dart-io/WebSocketStatus-class.html">WebSocketStatus</a></li>
+      <li><a href="dart-io/WebSocketTransformer-class.html">WebSocketTransformer</a></li>
+      <li><a href="dart-io/X509Certificate-class.html">X509Certificate</a></li>
+      <li><a href="dart-io/ZLibCodec-class.html">ZLibCodec</a></li>
+      <li><a href="dart-io/ZLibDecoder-class.html">ZLibDecoder</a></li>
+      <li><a href="dart-io/ZLibEncoder-class.html">ZLibEncoder</a></li>
+      <li><a href="dart-io/ZLibOption-class.html">ZLibOption</a></li>
+    
+    
+      <li class="section-title"><a href="dart-io/dart-io-library.html#constants">Constants</a></li>
+      <li><a class="deprecated" href="dart-io/APPEND-constant.html">APPEND</a></li>
+      <li><a class="deprecated" href="dart-io/GZIP-constant.html">GZIP</a></li>
+      <li><a href="dart-io/gzip-constant.html">gzip</a></li>
+      <li><a class="deprecated" href="dart-io/READ-constant.html">READ</a></li>
+      <li><a class="deprecated" href="dart-io/SYSTEM_ENCODING-constant.html">SYSTEM_ENCODING</a></li>
+      <li><a href="dart-io/systemEncoding-constant.html">systemEncoding</a></li>
+      <li><a class="deprecated" href="dart-io/WRITE-constant.html">WRITE</a></li>
+      <li><a class="deprecated" href="dart-io/WRITE_ONLY-constant.html">WRITE_ONLY</a></li>
+      <li><a class="deprecated" href="dart-io/WRITE_ONLY_APPEND-constant.html">WRITE_ONLY_APPEND</a></li>
+      <li><a class="deprecated" href="dart-io/ZLIB-constant.html">ZLIB</a></li>
+      <li><a href="dart-io/zlib-constant.html">zlib</a></li>
+    
+      <li class="section-title"><a href="dart-io/dart-io-library.html#properties">Properties</a></li>
+      <li><a href="dart-io/exitCode.html">exitCode</a></li>
+      <li><a href="dart-io/pid.html">pid</a></li>
+      <li><a href="dart-io/stderr.html">stderr</a></li>
+      <li><a href="dart-io/stdin.html">stdin</a></li>
+      <li><a href="dart-io/stdout.html">stdout</a></li>
+    
+      <li class="section-title"><a href="dart-io/dart-io-library.html#functions">Functions</a></li>
+      <li><a href="dart-io/exit.html">exit</a></li>
+      <li><a href="dart-io/sleep.html">sleep</a></li>
+      <li><a href="dart-io/stdioType.html">stdioType</a></li>
+    
+    
+      <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
+      <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
+    
+      <li class="section-title"><a href="dart-io/dart-io-library.html#exceptions">Exceptions</a></li>
+      <li><a href="dart-io/CertificateException-class.html">CertificateException</a></li>
+      <li><a href="dart-io/FileSystemException-class.html">FileSystemException</a></li>
+      <li><a href="dart-io/HandshakeException-class.html">HandshakeException</a></li>
+      <li><a href="dart-io/HttpException-class.html">HttpException</a></li>
+      <li><a href="dart-io/IOException-class.html">IOException</a></li>
+      <li><a href="dart-io/ProcessException-class.html">ProcessException</a></li>
+      <li><a href="dart-io/RedirectException-class.html">RedirectException</a></li>
+      <li><a href="dart-io/SignalException-class.html">SignalException</a></li>
+      <li><a href="dart-io/SocketException-class.html">SocketException</a></li>
+      <li><a href="dart-io/StdinException-class.html">StdinException</a></li>
+      <li><a href="dart-io/StdoutException-class.html">StdoutException</a></li>
+      <li><a href="dart-io/TlsException-class.html">TlsException</a></li>
+      <li><a href="dart-io/WebSocketException-class.html">WebSocketException</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1>HttpStatus class </h1></div>
+
+    <section class="desc markdown">
+      <p>HTTP status codes.  Exported in dart:io and dart:html.</p>
+    </section>
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="HttpStatus" class="callable">
+          <span class="name"><a href="dart-io/HttpStatus/HttpStatus.html">HttpStatus</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="dart-core/Object/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="dart-core/Object/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="dart-core/Object/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; <a href="dart-core/Type-class.html">Type</a></span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="dart-core/Object/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/bool-class.html">bool</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="dart-core/Object/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+
+
+    <section class="summary offset-anchor" id="constants">
+      <h2>Constants</h2>
+
+      <dl class="properties">
+        <dt id="ACCEPTED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/ACCEPTED-constant.html">ACCEPTED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use accepted instead&quot;)</div>
+  <div>
+            <span class="signature"><code>accepted</code></span>
+          </div>
+        </dd>
+        <dt id="accepted" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/accepted-constant.html">accepted</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>202</code></span>
+          </div>
+        </dd>
+        <dt id="alreadyReported" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/alreadyReported-constant.html">alreadyReported</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>208</code></span>
+          </div>
+        </dd>
+        <dt id="BAD_GATEWAY" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/BAD_GATEWAY-constant.html">BAD_GATEWAY</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use badGateway instead&quot;)</div>
+  <div>
+            <span class="signature"><code>badGateway</code></span>
+          </div>
+        </dd>
+        <dt id="BAD_REQUEST" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/BAD_REQUEST-constant.html">BAD_REQUEST</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use badRequest instead&quot;)</div>
+  <div>
+            <span class="signature"><code>badRequest</code></span>
+          </div>
+        </dd>
+        <dt id="badGateway" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/badGateway-constant.html">badGateway</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>502</code></span>
+          </div>
+        </dd>
+        <dt id="badRequest" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/badRequest-constant.html">badRequest</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>400</code></span>
+          </div>
+        </dd>
+        <dt id="clientClosedRequest" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/clientClosedRequest-constant.html">clientClosedRequest</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>499</code></span>
+          </div>
+        </dd>
+        <dt id="CONFLICT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/CONFLICT-constant.html">CONFLICT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use conflict instead&quot;)</div>
+  <div>
+            <span class="signature"><code>conflict</code></span>
+          </div>
+        </dd>
+        <dt id="conflict" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/conflict-constant.html">conflict</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>409</code></span>
+          </div>
+        </dd>
+        <dt id="connectionClosedWithoutResponse" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/connectionClosedWithoutResponse-constant.html">connectionClosedWithoutResponse</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>444</code></span>
+          </div>
+        </dd>
+        <dt id="CONTINUE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/CONTINUE-constant.html">CONTINUE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use continue_ instead&quot;)</div>
+  <div>
+            <span class="signature"><code>continue_</code></span>
+          </div>
+        </dd>
+        <dt id="continue_" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/continue_-constant.html">continue_</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>100</code></span>
+          </div>
+        </dd>
+        <dt id="CREATED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/CREATED-constant.html">CREATED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use created instead&quot;)</div>
+  <div>
+            <span class="signature"><code>created</code></span>
+          </div>
+        </dd>
+        <dt id="created" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/created-constant.html">created</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>201</code></span>
+          </div>
+        </dd>
+        <dt id="EXPECTATION_FAILED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/EXPECTATION_FAILED-constant.html">EXPECTATION_FAILED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use expectationFailed instead&quot;)</div>
+  <div>
+            <span class="signature"><code>expectationFailed</code></span>
+          </div>
+        </dd>
+        <dt id="expectationFailed" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/expectationFailed-constant.html">expectationFailed</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>417</code></span>
+          </div>
+        </dd>
+        <dt id="failedDependency" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/failedDependency-constant.html">failedDependency</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>424</code></span>
+          </div>
+        </dd>
+        <dt id="FORBIDDEN" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/FORBIDDEN-constant.html">FORBIDDEN</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use forbidden instead&quot;)</div>
+  <div>
+            <span class="signature"><code>forbidden</code></span>
+          </div>
+        </dd>
+        <dt id="forbidden" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/forbidden-constant.html">forbidden</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>403</code></span>
+          </div>
+        </dd>
+        <dt id="FOUND" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/FOUND-constant.html">FOUND</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use found instead&quot;)</div>
+  <div>
+            <span class="signature"><code>found</code></span>
+          </div>
+        </dd>
+        <dt id="found" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/found-constant.html">found</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>302</code></span>
+          </div>
+        </dd>
+        <dt id="GATEWAY_TIMEOUT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/GATEWAY_TIMEOUT-constant.html">GATEWAY_TIMEOUT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use gatewayTimeout instead&quot;)</div>
+  <div>
+            <span class="signature"><code>gatewayTimeout</code></span>
+          </div>
+        </dd>
+        <dt id="gatewayTimeout" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/gatewayTimeout-constant.html">gatewayTimeout</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>504</code></span>
+          </div>
+        </dd>
+        <dt id="GONE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/GONE-constant.html">GONE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use gone instead&quot;)</div>
+  <div>
+            <span class="signature"><code>gone</code></span>
+          </div>
+        </dd>
+        <dt id="gone" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/gone-constant.html">gone</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>410</code></span>
+          </div>
+        </dd>
+        <dt id="HTTP_VERSION_NOT_SUPPORTED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/HTTP_VERSION_NOT_SUPPORTED-constant.html">HTTP_VERSION_NOT_SUPPORTED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use httpVersionNotSupported instead&quot;)</div>
+  <div>
+            <span class="signature"><code>httpVersionNotSupported</code></span>
+          </div>
+        </dd>
+        <dt id="httpVersionNotSupported" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/httpVersionNotSupported-constant.html">httpVersionNotSupported</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>505</code></span>
+          </div>
+        </dd>
+        <dt id="imUsed" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/imUsed-constant.html">imUsed</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>226</code></span>
+          </div>
+        </dd>
+        <dt id="insufficientStorage" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/insufficientStorage-constant.html">insufficientStorage</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>507</code></span>
+          </div>
+        </dd>
+        <dt id="INTERNAL_SERVER_ERROR" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/INTERNAL_SERVER_ERROR-constant.html">INTERNAL_SERVER_ERROR</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use internalServerError instead&quot;)</div>
+  <div>
+            <span class="signature"><code>internalServerError</code></span>
+          </div>
+        </dd>
+        <dt id="internalServerError" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/internalServerError-constant.html">internalServerError</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>500</code></span>
+          </div>
+        </dd>
+        <dt id="LENGTH_REQUIRED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/LENGTH_REQUIRED-constant.html">LENGTH_REQUIRED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use lengthRequired instead&quot;)</div>
+  <div>
+            <span class="signature"><code>lengthRequired</code></span>
+          </div>
+        </dd>
+        <dt id="lengthRequired" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/lengthRequired-constant.html">lengthRequired</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>411</code></span>
+          </div>
+        </dd>
+        <dt id="locked" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/locked-constant.html">locked</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>423</code></span>
+          </div>
+        </dd>
+        <dt id="loopDetected" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/loopDetected-constant.html">loopDetected</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>508</code></span>
+          </div>
+        </dd>
+        <dt id="METHOD_NOT_ALLOWED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/METHOD_NOT_ALLOWED-constant.html">METHOD_NOT_ALLOWED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use methodNotAllowed instead&quot;)</div>
+  <div>
+            <span class="signature"><code>methodNotAllowed</code></span>
+          </div>
+        </dd>
+        <dt id="methodNotAllowed" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/methodNotAllowed-constant.html">methodNotAllowed</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>405</code></span>
+          </div>
+        </dd>
+        <dt id="misdirectedRequest" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/misdirectedRequest-constant.html">misdirectedRequest</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>421</code></span>
+          </div>
+        </dd>
+        <dt id="MOVED_PERMANENTLY" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/MOVED_PERMANENTLY-constant.html">MOVED_PERMANENTLY</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use movedPermanently instead&quot;)</div>
+  <div>
+            <span class="signature"><code>movedPermanently</code></span>
+          </div>
+        </dd>
+        <dt id="MOVED_TEMPORARILY" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/MOVED_TEMPORARILY-constant.html">MOVED_TEMPORARILY</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use movedTemporarily instead&quot;)</div>
+  <div>
+            <span class="signature"><code>movedTemporarily</code></span>
+          </div>
+        </dd>
+        <dt id="movedPermanently" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/movedPermanently-constant.html">movedPermanently</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>301</code></span>
+          </div>
+        </dd>
+        <dt id="movedTemporarily" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/movedTemporarily-constant.html">movedTemporarily</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>302</code></span>
+          </div>
+        </dd>
+        <dt id="MULTIPLE_CHOICES" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/MULTIPLE_CHOICES-constant.html">MULTIPLE_CHOICES</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use multipleChoices instead&quot;)</div>
+  <div>
+            <span class="signature"><code>multipleChoices</code></span>
+          </div>
+        </dd>
+        <dt id="multipleChoices" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/multipleChoices-constant.html">multipleChoices</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>300</code></span>
+          </div>
+        </dd>
+        <dt id="multiStatus" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/multiStatus-constant.html">multiStatus</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>207</code></span>
+          </div>
+        </dd>
+        <dt id="NETWORK_CONNECT_TIMEOUT_ERROR" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NETWORK_CONNECT_TIMEOUT_ERROR-constant.html">NETWORK_CONNECT_TIMEOUT_ERROR</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use networkConnectTimeoutError instead&quot;)</div>
+  <div>
+            <span class="signature"><code>networkConnectTimeoutError</code></span>
+          </div>
+        </dd>
+        <dt id="networkAuthenticationRequired" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/networkAuthenticationRequired-constant.html">networkAuthenticationRequired</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>511</code></span>
+          </div>
+        </dd>
+        <dt id="networkConnectTimeoutError" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/networkConnectTimeoutError-constant.html">networkConnectTimeoutError</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>599</code></span>
+          </div>
+        </dd>
+        <dt id="NO_CONTENT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NO_CONTENT-constant.html">NO_CONTENT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use noContent instead&quot;)</div>
+  <div>
+            <span class="signature"><code>noContent</code></span>
+          </div>
+        </dd>
+        <dt id="noContent" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/noContent-constant.html">noContent</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>204</code></span>
+          </div>
+        </dd>
+        <dt id="NON_AUTHORITATIVE_INFORMATION" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NON_AUTHORITATIVE_INFORMATION-constant.html">NON_AUTHORITATIVE_INFORMATION</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use nonAuthoritativeInformation instead&quot;)</div>
+  <div>
+            <span class="signature"><code>nonAuthoritativeInformation</code></span>
+          </div>
+        </dd>
+        <dt id="nonAuthoritativeInformation" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/nonAuthoritativeInformation-constant.html">nonAuthoritativeInformation</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>203</code></span>
+          </div>
+        </dd>
+        <dt id="NOT_ACCEPTABLE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NOT_ACCEPTABLE-constant.html">NOT_ACCEPTABLE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use notAcceptable instead&quot;)</div>
+  <div>
+            <span class="signature"><code>notAcceptable</code></span>
+          </div>
+        </dd>
+        <dt id="NOT_FOUND" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NOT_FOUND-constant.html">NOT_FOUND</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use notFound instead&quot;)</div>
+  <div>
+            <span class="signature"><code>notFound</code></span>
+          </div>
+        </dd>
+        <dt id="NOT_IMPLEMENTED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NOT_IMPLEMENTED-constant.html">NOT_IMPLEMENTED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use notImplemented instead&quot;)</div>
+  <div>
+            <span class="signature"><code>notImplemented</code></span>
+          </div>
+        </dd>
+        <dt id="NOT_MODIFIED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/NOT_MODIFIED-constant.html">NOT_MODIFIED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use notModified instead&quot;)</div>
+  <div>
+            <span class="signature"><code>notModified</code></span>
+          </div>
+        </dd>
+        <dt id="notAcceptable" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/notAcceptable-constant.html">notAcceptable</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>406</code></span>
+          </div>
+        </dd>
+        <dt id="notExtended" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/notExtended-constant.html">notExtended</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>510</code></span>
+          </div>
+        </dd>
+        <dt id="notFound" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/notFound-constant.html">notFound</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>404</code></span>
+          </div>
+        </dd>
+        <dt id="notImplemented" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/notImplemented-constant.html">notImplemented</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>501</code></span>
+          </div>
+        </dd>
+        <dt id="notModified" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/notModified-constant.html">notModified</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>304</code></span>
+          </div>
+        </dd>
+        <dt id="OK" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/OK-constant.html">OK</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use ok instead&quot;)</div>
+  <div>
+            <span class="signature"><code>ok</code></span>
+          </div>
+        </dd>
+        <dt id="ok" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/ok-constant.html">ok</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>200</code></span>
+          </div>
+        </dd>
+        <dt id="PARTIAL_CONTENT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/PARTIAL_CONTENT-constant.html">PARTIAL_CONTENT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use partialContent instead&quot;)</div>
+  <div>
+            <span class="signature"><code>partialContent</code></span>
+          </div>
+        </dd>
+        <dt id="partialContent" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/partialContent-constant.html">partialContent</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>206</code></span>
+          </div>
+        </dd>
+        <dt id="PAYMENT_REQUIRED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/PAYMENT_REQUIRED-constant.html">PAYMENT_REQUIRED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use paymentRequired instead&quot;)</div>
+  <div>
+            <span class="signature"><code>paymentRequired</code></span>
+          </div>
+        </dd>
+        <dt id="paymentRequired" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/paymentRequired-constant.html">paymentRequired</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>402</code></span>
+          </div>
+        </dd>
+        <dt id="permanentRedirect" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/permanentRedirect-constant.html">permanentRedirect</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>308</code></span>
+          </div>
+        </dd>
+        <dt id="PRECONDITION_FAILED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/PRECONDITION_FAILED-constant.html">PRECONDITION_FAILED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use preconditionFailed instead&quot;)</div>
+  <div>
+            <span class="signature"><code>preconditionFailed</code></span>
+          </div>
+        </dd>
+        <dt id="preconditionFailed" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/preconditionFailed-constant.html">preconditionFailed</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>412</code></span>
+          </div>
+        </dd>
+        <dt id="preconditionRequired" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/preconditionRequired-constant.html">preconditionRequired</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>428</code></span>
+          </div>
+        </dd>
+        <dt id="processing" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/processing-constant.html">processing</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>102</code></span>
+          </div>
+        </dd>
+        <dt id="PROXY_AUTHENTICATION_REQUIRED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/PROXY_AUTHENTICATION_REQUIRED-constant.html">PROXY_AUTHENTICATION_REQUIRED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use proxyAuthenticationRequired instead&quot;)</div>
+  <div>
+            <span class="signature"><code>proxyAuthenticationRequired</code></span>
+          </div>
+        </dd>
+        <dt id="proxyAuthenticationRequired" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/proxyAuthenticationRequired-constant.html">proxyAuthenticationRequired</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>407</code></span>
+          </div>
+        </dd>
+        <dt id="REQUEST_ENTITY_TOO_LARGE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/REQUEST_ENTITY_TOO_LARGE-constant.html">REQUEST_ENTITY_TOO_LARGE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use requestEntityTooLarge instead&quot;)</div>
+  <div>
+            <span class="signature"><code>requestEntityTooLarge</code></span>
+          </div>
+        </dd>
+        <dt id="REQUEST_TIMEOUT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/REQUEST_TIMEOUT-constant.html">REQUEST_TIMEOUT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use requestTimeout instead&quot;)</div>
+  <div>
+            <span class="signature"><code>requestTimeout</code></span>
+          </div>
+        </dd>
+        <dt id="REQUEST_URI_TOO_LONG" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/REQUEST_URI_TOO_LONG-constant.html">REQUEST_URI_TOO_LONG</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use requestUriTooLong instead&quot;)</div>
+  <div>
+            <span class="signature"><code>requestUriTooLong</code></span>
+          </div>
+        </dd>
+        <dt id="REQUESTED_RANGE_NOT_SATISFIABLE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/REQUESTED_RANGE_NOT_SATISFIABLE-constant.html">REQUESTED_RANGE_NOT_SATISFIABLE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use requestedRangeNotSatisfiable instead&quot;)</div>
+  <div>
+            <span class="signature"><code>requestedRangeNotSatisfiable</code></span>
+          </div>
+        </dd>
+        <dt id="requestedRangeNotSatisfiable" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/requestedRangeNotSatisfiable-constant.html">requestedRangeNotSatisfiable</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>416</code></span>
+          </div>
+        </dd>
+        <dt id="requestEntityTooLarge" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/requestEntityTooLarge-constant.html">requestEntityTooLarge</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>413</code></span>
+          </div>
+        </dd>
+        <dt id="requestHeaderFieldsTooLarge" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/requestHeaderFieldsTooLarge-constant.html">requestHeaderFieldsTooLarge</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>431</code></span>
+          </div>
+        </dd>
+        <dt id="requestTimeout" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/requestTimeout-constant.html">requestTimeout</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>408</code></span>
+          </div>
+        </dd>
+        <dt id="requestUriTooLong" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/requestUriTooLong-constant.html">requestUriTooLong</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>414</code></span>
+          </div>
+        </dd>
+        <dt id="RESET_CONTENT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/RESET_CONTENT-constant.html">RESET_CONTENT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use resetContent instead&quot;)</div>
+  <div>
+            <span class="signature"><code>resetContent</code></span>
+          </div>
+        </dd>
+        <dt id="resetContent" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/resetContent-constant.html">resetContent</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>205</code></span>
+          </div>
+        </dd>
+        <dt id="SEE_OTHER" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/SEE_OTHER-constant.html">SEE_OTHER</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use seeOther instead&quot;)</div>
+  <div>
+            <span class="signature"><code>seeOther</code></span>
+          </div>
+        </dd>
+        <dt id="seeOther" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/seeOther-constant.html">seeOther</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>303</code></span>
+          </div>
+        </dd>
+        <dt id="SERVICE_UNAVAILABLE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/SERVICE_UNAVAILABLE-constant.html">SERVICE_UNAVAILABLE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use serviceUnavailable instead&quot;)</div>
+  <div>
+            <span class="signature"><code>serviceUnavailable</code></span>
+          </div>
+        </dd>
+        <dt id="serviceUnavailable" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/serviceUnavailable-constant.html">serviceUnavailable</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>503</code></span>
+          </div>
+        </dd>
+        <dt id="SWITCHING_PROTOCOLS" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/SWITCHING_PROTOCOLS-constant.html">SWITCHING_PROTOCOLS</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use switchingProtocols instead&quot;)</div>
+  <div>
+            <span class="signature"><code>switchingProtocols</code></span>
+          </div>
+        </dd>
+        <dt id="switchingProtocols" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/switchingProtocols-constant.html">switchingProtocols</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>101</code></span>
+          </div>
+        </dd>
+        <dt id="TEMPORARY_REDIRECT" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/TEMPORARY_REDIRECT-constant.html">TEMPORARY_REDIRECT</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use temporaryRedirect instead&quot;)</div>
+  <div>
+            <span class="signature"><code>temporaryRedirect</code></span>
+          </div>
+        </dd>
+        <dt id="temporaryRedirect" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/temporaryRedirect-constant.html">temporaryRedirect</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>307</code></span>
+          </div>
+        </dd>
+        <dt id="tooManyRequests" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/tooManyRequests-constant.html">tooManyRequests</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>429</code></span>
+          </div>
+        </dd>
+        <dt id="UNAUTHORIZED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/UNAUTHORIZED-constant.html">UNAUTHORIZED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use unauthorized instead&quot;)</div>
+  <div>
+            <span class="signature"><code>unauthorized</code></span>
+          </div>
+        </dd>
+        <dt id="unauthorized" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/unauthorized-constant.html">unauthorized</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>401</code></span>
+          </div>
+        </dd>
+        <dt id="unavailableForLegalReasons" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/unavailableForLegalReasons-constant.html">unavailableForLegalReasons</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>451</code></span>
+          </div>
+        </dd>
+        <dt id="unprocessableEntity" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/unprocessableEntity-constant.html">unprocessableEntity</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>422</code></span>
+          </div>
+        </dd>
+        <dt id="UNSUPPORTED_MEDIA_TYPE" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/UNSUPPORTED_MEDIA_TYPE-constant.html">UNSUPPORTED_MEDIA_TYPE</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use unsupportedMediaType instead&quot;)</div>
+  <div>
+            <span class="signature"><code>unsupportedMediaType</code></span>
+          </div>
+        </dd>
+        <dt id="unsupportedMediaType" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/unsupportedMediaType-constant.html">unsupportedMediaType</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>415</code></span>
+          </div>
+        </dd>
+        <dt id="UPGRADE_REQUIRED" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/UPGRADE_REQUIRED-constant.html">UPGRADE_REQUIRED</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use upgradeRequired instead&quot;)</div>
+  <div>
+            <span class="signature"><code>upgradeRequired</code></span>
+          </div>
+        </dd>
+        <dt id="upgradeRequired" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/upgradeRequired-constant.html">upgradeRequired</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>426</code></span>
+          </div>
+        </dd>
+        <dt id="USE_PROXY" class="constant">
+          <span class="name deprecated"><a class="deprecated" href="dart-io/HttpStatus/USE_PROXY-constant.html">USE_PROXY</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use useProxy instead&quot;)</div>
+  <div>
+            <span class="signature"><code>useProxy</code></span>
+          </div>
+        </dd>
+        <dt id="useProxy" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/useProxy-constant.html">useProxy</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  
+  <div>
+            <span class="signature"><code>305</code></span>
+          </div>
+        </dd>
+        <dt id="variantAlsoNegotiates" class="constant">
+          <span class="name "><a href="dart-io/HttpStatus/variantAlsoNegotiates-constant.html">variantAlsoNegotiates</a></span>
+          <span class="signature">&#8594; const <a href="dart-core/int-class.html">int</a></span>
+                  </dt>
+        <dd>
+          
+                  <div class="features">@Since(&quot;2.1&quot;)</div>
+  <div>
+            <span class="signature"><code>506</code></span>
+          </div>
+        </dd>
+      </dl>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="dart-io/HttpStatus-class.html#constructors">Constructors</a></li>
+      <li><a href="dart-io/HttpStatus/HttpStatus.html">HttpStatus</a></li>
+    
+      <li class="section-title inherited">
+        <a href="dart-io/HttpStatus-class.html#instance-properties">Properties</a>
+      </li>
+      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title inherited"><a href="dart-io/HttpStatus-class.html#instance-methods">Methods</a></li>
+      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="dart-io/HttpStatus-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
+    
+      <li class="section-title"><a href="dart-io/HttpStatus-class.html#constants">Constants</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/ACCEPTED-constant.html">ACCEPTED</a></li>
+      <li><a href="dart-io/HttpStatus/accepted-constant.html">accepted</a></li>
+      <li><a href="dart-io/HttpStatus/alreadyReported-constant.html">alreadyReported</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/BAD_GATEWAY-constant.html">BAD_GATEWAY</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/BAD_REQUEST-constant.html">BAD_REQUEST</a></li>
+      <li><a href="dart-io/HttpStatus/badGateway-constant.html">badGateway</a></li>
+      <li><a href="dart-io/HttpStatus/badRequest-constant.html">badRequest</a></li>
+      <li><a href="dart-io/HttpStatus/clientClosedRequest-constant.html">clientClosedRequest</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/CONFLICT-constant.html">CONFLICT</a></li>
+      <li><a href="dart-io/HttpStatus/conflict-constant.html">conflict</a></li>
+      <li><a href="dart-io/HttpStatus/connectionClosedWithoutResponse-constant.html">connectionClosedWithoutResponse</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/CONTINUE-constant.html">CONTINUE</a></li>
+      <li><a href="dart-io/HttpStatus/continue_-constant.html">continue_</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/CREATED-constant.html">CREATED</a></li>
+      <li><a href="dart-io/HttpStatus/created-constant.html">created</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/EXPECTATION_FAILED-constant.html">EXPECTATION_FAILED</a></li>
+      <li><a href="dart-io/HttpStatus/expectationFailed-constant.html">expectationFailed</a></li>
+      <li><a href="dart-io/HttpStatus/failedDependency-constant.html">failedDependency</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/FORBIDDEN-constant.html">FORBIDDEN</a></li>
+      <li><a href="dart-io/HttpStatus/forbidden-constant.html">forbidden</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/FOUND-constant.html">FOUND</a></li>
+      <li><a href="dart-io/HttpStatus/found-constant.html">found</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/GATEWAY_TIMEOUT-constant.html">GATEWAY_TIMEOUT</a></li>
+      <li><a href="dart-io/HttpStatus/gatewayTimeout-constant.html">gatewayTimeout</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/GONE-constant.html">GONE</a></li>
+      <li><a href="dart-io/HttpStatus/gone-constant.html">gone</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/HTTP_VERSION_NOT_SUPPORTED-constant.html">HTTP_VERSION_NOT_SUPPORTED</a></li>
+      <li><a href="dart-io/HttpStatus/httpVersionNotSupported-constant.html">httpVersionNotSupported</a></li>
+      <li><a href="dart-io/HttpStatus/imUsed-constant.html">imUsed</a></li>
+      <li><a href="dart-io/HttpStatus/insufficientStorage-constant.html">insufficientStorage</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/INTERNAL_SERVER_ERROR-constant.html">INTERNAL_SERVER_ERROR</a></li>
+      <li><a href="dart-io/HttpStatus/internalServerError-constant.html">internalServerError</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/LENGTH_REQUIRED-constant.html">LENGTH_REQUIRED</a></li>
+      <li><a href="dart-io/HttpStatus/lengthRequired-constant.html">lengthRequired</a></li>
+      <li><a href="dart-io/HttpStatus/locked-constant.html">locked</a></li>
+      <li><a href="dart-io/HttpStatus/loopDetected-constant.html">loopDetected</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/METHOD_NOT_ALLOWED-constant.html">METHOD_NOT_ALLOWED</a></li>
+      <li><a href="dart-io/HttpStatus/methodNotAllowed-constant.html">methodNotAllowed</a></li>
+      <li><a href="dart-io/HttpStatus/misdirectedRequest-constant.html">misdirectedRequest</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/MOVED_PERMANENTLY-constant.html">MOVED_PERMANENTLY</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/MOVED_TEMPORARILY-constant.html">MOVED_TEMPORARILY</a></li>
+      <li><a href="dart-io/HttpStatus/movedPermanently-constant.html">movedPermanently</a></li>
+      <li><a href="dart-io/HttpStatus/movedTemporarily-constant.html">movedTemporarily</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/MULTIPLE_CHOICES-constant.html">MULTIPLE_CHOICES</a></li>
+      <li><a href="dart-io/HttpStatus/multipleChoices-constant.html">multipleChoices</a></li>
+      <li><a href="dart-io/HttpStatus/multiStatus-constant.html">multiStatus</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NETWORK_CONNECT_TIMEOUT_ERROR-constant.html">NETWORK_CONNECT_TIMEOUT_ERROR</a></li>
+      <li><a href="dart-io/HttpStatus/networkAuthenticationRequired-constant.html">networkAuthenticationRequired</a></li>
+      <li><a href="dart-io/HttpStatus/networkConnectTimeoutError-constant.html">networkConnectTimeoutError</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NO_CONTENT-constant.html">NO_CONTENT</a></li>
+      <li><a href="dart-io/HttpStatus/noContent-constant.html">noContent</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NON_AUTHORITATIVE_INFORMATION-constant.html">NON_AUTHORITATIVE_INFORMATION</a></li>
+      <li><a href="dart-io/HttpStatus/nonAuthoritativeInformation-constant.html">nonAuthoritativeInformation</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NOT_ACCEPTABLE-constant.html">NOT_ACCEPTABLE</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NOT_FOUND-constant.html">NOT_FOUND</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NOT_IMPLEMENTED-constant.html">NOT_IMPLEMENTED</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/NOT_MODIFIED-constant.html">NOT_MODIFIED</a></li>
+      <li><a href="dart-io/HttpStatus/notAcceptable-constant.html">notAcceptable</a></li>
+      <li><a href="dart-io/HttpStatus/notExtended-constant.html">notExtended</a></li>
+      <li><a href="dart-io/HttpStatus/notFound-constant.html">notFound</a></li>
+      <li><a href="dart-io/HttpStatus/notImplemented-constant.html">notImplemented</a></li>
+      <li><a href="dart-io/HttpStatus/notModified-constant.html">notModified</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/OK-constant.html">OK</a></li>
+      <li><a href="dart-io/HttpStatus/ok-constant.html">ok</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/PARTIAL_CONTENT-constant.html">PARTIAL_CONTENT</a></li>
+      <li><a href="dart-io/HttpStatus/partialContent-constant.html">partialContent</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/PAYMENT_REQUIRED-constant.html">PAYMENT_REQUIRED</a></li>
+      <li><a href="dart-io/HttpStatus/paymentRequired-constant.html">paymentRequired</a></li>
+      <li><a href="dart-io/HttpStatus/permanentRedirect-constant.html">permanentRedirect</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/PRECONDITION_FAILED-constant.html">PRECONDITION_FAILED</a></li>
+      <li><a href="dart-io/HttpStatus/preconditionFailed-constant.html">preconditionFailed</a></li>
+      <li><a href="dart-io/HttpStatus/preconditionRequired-constant.html">preconditionRequired</a></li>
+      <li><a href="dart-io/HttpStatus/processing-constant.html">processing</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/PROXY_AUTHENTICATION_REQUIRED-constant.html">PROXY_AUTHENTICATION_REQUIRED</a></li>
+      <li><a href="dart-io/HttpStatus/proxyAuthenticationRequired-constant.html">proxyAuthenticationRequired</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/REQUEST_ENTITY_TOO_LARGE-constant.html">REQUEST_ENTITY_TOO_LARGE</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/REQUEST_TIMEOUT-constant.html">REQUEST_TIMEOUT</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/REQUEST_URI_TOO_LONG-constant.html">REQUEST_URI_TOO_LONG</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/REQUESTED_RANGE_NOT_SATISFIABLE-constant.html">REQUESTED_RANGE_NOT_SATISFIABLE</a></li>
+      <li><a href="dart-io/HttpStatus/requestedRangeNotSatisfiable-constant.html">requestedRangeNotSatisfiable</a></li>
+      <li><a href="dart-io/HttpStatus/requestEntityTooLarge-constant.html">requestEntityTooLarge</a></li>
+      <li><a href="dart-io/HttpStatus/requestHeaderFieldsTooLarge-constant.html">requestHeaderFieldsTooLarge</a></li>
+      <li><a href="dart-io/HttpStatus/requestTimeout-constant.html">requestTimeout</a></li>
+      <li><a href="dart-io/HttpStatus/requestUriTooLong-constant.html">requestUriTooLong</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/RESET_CONTENT-constant.html">RESET_CONTENT</a></li>
+      <li><a href="dart-io/HttpStatus/resetContent-constant.html">resetContent</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/SEE_OTHER-constant.html">SEE_OTHER</a></li>
+      <li><a href="dart-io/HttpStatus/seeOther-constant.html">seeOther</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/SERVICE_UNAVAILABLE-constant.html">SERVICE_UNAVAILABLE</a></li>
+      <li><a href="dart-io/HttpStatus/serviceUnavailable-constant.html">serviceUnavailable</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/SWITCHING_PROTOCOLS-constant.html">SWITCHING_PROTOCOLS</a></li>
+      <li><a href="dart-io/HttpStatus/switchingProtocols-constant.html">switchingProtocols</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/TEMPORARY_REDIRECT-constant.html">TEMPORARY_REDIRECT</a></li>
+      <li><a href="dart-io/HttpStatus/temporaryRedirect-constant.html">temporaryRedirect</a></li>
+      <li><a href="dart-io/HttpStatus/tooManyRequests-constant.html">tooManyRequests</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/UNAUTHORIZED-constant.html">UNAUTHORIZED</a></li>
+      <li><a href="dart-io/HttpStatus/unauthorized-constant.html">unauthorized</a></li>
+      <li><a href="dart-io/HttpStatus/unavailableForLegalReasons-constant.html">unavailableForLegalReasons</a></li>
+      <li><a href="dart-io/HttpStatus/unprocessableEntity-constant.html">unprocessableEntity</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/UNSUPPORTED_MEDIA_TYPE-constant.html">UNSUPPORTED_MEDIA_TYPE</a></li>
+      <li><a href="dart-io/HttpStatus/unsupportedMediaType-constant.html">unsupportedMediaType</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/UPGRADE_REQUIRED-constant.html">UPGRADE_REQUIRED</a></li>
+      <li><a href="dart-io/HttpStatus/upgradeRequired-constant.html">upgradeRequired</a></li>
+      <li><a class="deprecated" href="dart-io/HttpStatus/USE_PROXY-constant.html">USE_PROXY</a></li>
+      <li><a href="dart-io/HttpStatus/useProxy-constant.html">useProxy</a></li>
+      <li><a href="dart-io/HttpStatus/variantAlsoNegotiates-constant.html">variantAlsoNegotiates</a></li>
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_form_builder 1.5.0
+  </span>
+
+  
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

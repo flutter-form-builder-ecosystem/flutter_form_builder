@@ -1,0 +1,83 @@
+[
+  {
+    "name": "dart:async",
+    "qualifiedName": "dart:async",
+    "href": "dart-async/dart-async-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  },
+  {
+    "name": "dart:collection",
+    "qualifiedName": "dart:collection",
+    "href": "dart-collection/dart-collection-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  },
+  {
+    "name": "dart:convert",
+    "qualifiedName": "dart:convert",
+    "href": "dart-convert/dart-convert-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  },
+  {
+    "name": "dart:core",
+    "qualifiedName": "dart:core",
+    "href": "dart-core/dart-core-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  },
+  {
+    "name": "dart:developer",
+    "qualifiedName": "dart:developer",
+    "href": "dart-developer/dart-developer-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  },
+  {
+    "name": "dart:io",
+    "qualifiedName": "dart:io",
+    "href": "dart-io/dart-io-library.html",
+    "type": "library",
+    "categories": [
+      "VM"
+    ]
+  },
+  {
+    "name": "dart:isolate",
+    "qualifiedName": "dart:isolate",
+    "href": "dart-isolate/dart-isolate-library.html",
+    "type": "library",
+    "categories": [
+      "VM"
+    ]
+  },
+  {
+    "name": "dart:math",
+    "qualifiedName": "dart:math",
+    "href": "dart-math/dart-math-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  },
+  {
+    "name": "dart:typed_data",
+    "qualifiedName": "dart:typed_data",
+    "href": "dart-typed_data/dart-typed_data-library.html",
+    "type": "library",
+    "categories": [
+      "Core"
+    ]
+  }
+]

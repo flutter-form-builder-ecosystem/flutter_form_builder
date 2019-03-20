@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="made with love by dartdoc 0.20.1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.28.1+2">
   <meta name="description" content="flutter_form_builder API docs, for the Dart programming language.">
   <title>flutter_form_builder - Dart API docs</title>
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-
+  
 </head>
 
 <body>
@@ -20,6 +21,7 @@
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="https://github.com/danvick/flutter_form_builder">flutter_form_builder package</a></li>
   </ol>
@@ -31,28 +33,52 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
-    <h5><span class="package-name">flutter_form_builder</span> <span class="package-kind">package</span></h5>
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://github.com/danvick/flutter_form_builder">flutter_form_builder package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">flutter_form_builder</span> <span class="package-kind">package</span></h5>
     <ol>
           <li class="section-title">Libraries</li>
           <li><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></li>
+          <li class="section-title">Dart</li>
+          <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
+          <li class="section-subtitle">Core</li>
+            <li class="section-subitem"><a href="dart-async/dart-async-library.html">dart:async</a></li>
+            <li class="section-subitem"><a href="dart-collection/dart-collection-library.html">dart:collection</a></li>
+            <li class="section-subitem"><a href="dart-convert/dart-convert-library.html">dart:convert</a></li>
+            <li class="section-subitem"><a href="dart-core/dart-core-library.html">dart:core</a></li>
+            <li class="section-subitem"><a href="dart-developer/dart-developer-library.html">dart:developer</a></li>
+            <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
+            <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
+          <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
+            <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
-        <h1>Flutter FormBuilder - flutter_form_builder</h1>
+        <h1 id="flutter-formbuilder---flutter_form_builder">Flutter FormBuilder - flutter_form_builder</h1>
 <p>This widget helps in generation of forms in <a href="https://flutter.io/">Flutter</a>. 
 Wraps common input types with FormField allowing validation, change detection, setting input value etc and have them in a single form</p>
 <p>Saves you some common validations  such as: required fields, number, email &amp; url validity, <code>min</code> and <code>max</code> values for numbers, <code>min</code> and <code>max</code> character length for string based fields
 as well as allow you to include your own custom validation</p>
 <p>On submission, the form returns a <code>Map&lt;String, dynamic&gt;</code> of form values if the form is valid or <code>null</code> otherwise.</p>
-<h2>Usage</h2>
+<h2 id="usage">Usage</h2>
 <p>To use this plugin, add <code>flutter_form_builder</code> as a <a href="https://flutter.io/platform-plugins/">dependency in your pubspec.yaml file</a>.</p>
-<h3>Example</h3>
+<h3 id="example">Example</h3>
 <pre class="language-dart"><code>FormBuilder(
   context,
   autovalidate: true,
+  // readonly: true,
   showResetButton: true,
   // resetButtonContent: Text("Clear Form"),
   controls: [
@@ -85,8 +111,8 @@ as well as allow you to include your own custom validation</p>
       attribute: 'chips_test',
       require: true,
       value: [
-        AppProfile('Andrew', 'stock@man.com',
-            'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg')
+        Contact('Andrew', 'stock@man.com',
+            'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
       ],
       suggestionsCallback: (String query) {
         if (query.length != 0) {
@@ -102,9 +128,10 @@ as well as allow you to include your own custom validation</p>
             ..sort((a, b) =&gt; a.name
                 .toLowerCase()
                 .indexOf(lowercaseQuery)
-                .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
+                .compareTo(
+                    b.name.toLowerCase().indexOf(lowercaseQuery)));
         } else {
-          return const &lt;AppProfile&gt;[];
+          return const &lt;Contact&gt;[];
         }
       },
       chipBuilder: (context, state, profile) {
@@ -134,7 +161,9 @@ as well as allow you to include your own custom validation</p>
       type: FormBuilderInput.TYPE_TEXT,
       attribute: "name",
       label: "Name",
+      value: "John Doe",
       require: true,
+      readonly: true,
       min: 3,
     ),
     FormBuilderInput.dropdown(
@@ -179,12 +208,12 @@ as well as allow you to include your own custom validation</p>
       min: 8,
     ),
     FormBuilderInput.datePicker(
-      label: "Date of Birth",
-      attribute: "dob",
-      firstDate: DateTime(1970),
-      lastDate: DateTime.now().add(Duration(days: 1)),
-      format: 'dd, MM yyyy'
-    ),
+        label: "Date of Birth",
+        readonly: true,
+        attribute: "dob",
+        firstDate: DateTime(1970),
+        lastDate: DateTime.now().add(Duration(days: 1)),
+        format: 'dd, MM yyyy'),
     FormBuilderInput.timePicker(
       label: "Appointment Time",
       attribute: "time",
@@ -222,6 +251,7 @@ as well as allow you to include your own custom validation</p>
     FormBuilderInput.switchInput(
         label: "I accept the terms and conditions",
         attribute: "accept_terms_switch",
+        value: true,
         hint:
             "Kindly make sure you've read all the terms and conditions",
         validator: (value) {
@@ -255,6 +285,7 @@ as well as allow you to include your own custom validation</p>
     FormBuilderInput.segmentedControl(
       label: "Movie Rating (Archer)",
       attribute: "movie_rating",
+      // value: 2,
       require: true,
       options: List.generate(5, (i) =&gt; i + 1)
           .map((number) =&gt; FormBuilderInputOption(value: number))
@@ -273,30 +304,98 @@ as well as allow you to include your own custom validation</p>
   },
 ),
 </code></pre>
-<h2>TODO:</h2><ul><li>Improve documentation by showing complete list of input types and their usage and options</li><li>Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li><li>Add more <code>FormBuilderInput</code> types:<ul><li>RangeSlider</li><li>ColorPicker</li><li>MaskedText</li></ul></li><li>Allow options for Checkboxes and Radios to appear left or right</li><li>Allow addition of custom input types</li><li>Fire <code>onChanged()</code> on every control allowing reaction to changes</li></ul>
-<h2>KNOWN ISSUES - HELP NEEDED (Send help ;-P)</h2><ul><li>Proper validation for URL <code>doesn't work without http(s)</code></li></ul>
+<h2 id="todo">TODO:</h2><ul><li>Improve documentation by showing complete list of input types and their usage and options</li><li>Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li><li>Add more <code>FormBuilderInput</code> types:<ul><li>RangeSlider</li><li>ColorPicker</li><li>MaskedText</li></ul></li><li>Allow options for Checkboxes and Radios to appear left or right</li><li>Allow addition of custom input types</li></ul>
+<h2 id="known-issues---help-needed-send-help--p">KNOWN ISSUES - HELP NEEDED (Send help ;-P)</h2><ul><li>Proper validation for URL <code>doesn't work without protocol - http(s)</code></li></ul>
       </section>
       
         <section class="summary">
             <h2>Libraries</h2>
           <dl>
             <dt id="flutter_form_builder">
-              <span class="name"><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></span>
+              <span class="name"><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></span>             
             </dt>
             <dd>
               
             </dd>          </dl>
         </section>
+        <section class="summary">
+            <h2>Dart</h2>
+          <dl>
+            <dt id="dart:ui">
+              <span class="name"><a href="dart-ui/dart-ui-library.html">dart:ui</a></span>             
+            </dt>
+            <dd>
+              Built-in types and core primitives for a Flutter application. <a href="dart-ui/dart-ui-library.html">[...]</a>
+            </dd>            <h3>Core</h3>
+              <dt id="dart:async">
+                <span class="name"><a href="dart-async/dart-async-library.html">dart:async</a></span>               
+              </dt>
+              <dd>
+                Support for asynchronous programming,
+with classes such as Future and Stream. <a href="dart-async/dart-async-library.html">[...]</a>
+              </dd>              <dt id="dart:collection">
+                <span class="name"><a href="dart-collection/dart-collection-library.html">dart:collection</a></span>               
+              </dt>
+              <dd>
+                Classes and utilities that supplement the collection support in dart:core. <a href="dart-collection/dart-collection-library.html">[...]</a>
+              </dd>              <dt id="dart:convert">
+                <span class="name"><a href="dart-convert/dart-convert-library.html">dart:convert</a></span>               
+              </dt>
+              <dd>
+                Encoders and decoders for converting between different data representations,
+including JSON and UTF-8. <a href="dart-convert/dart-convert-library.html">[...]</a>
+              </dd>              <dt id="dart:core">
+                <span class="name"><a href="dart-core/dart-core-library.html">dart:core</a></span>               
+              </dt>
+              <dd>
+                Built-in types, collections,
+and other core functionality for every Dart program. <a href="dart-core/dart-core-library.html">[...]</a>
+              </dd>              <dt id="dart:developer">
+                <span class="name"><a href="dart-developer/dart-developer-library.html">dart:developer</a></span>               
+              </dt>
+              <dd>
+                Interact with developer tools such as the debugger and inspector. <a href="dart-developer/dart-developer-library.html">[...]</a>
+              </dd>              <dt id="dart:math">
+                <span class="name"><a href="dart-math/dart-math-library.html">dart:math</a></span>               
+              </dt>
+              <dd>
+                Mathematical constants and functions, plus a random number generator. <a href="dart-math/dart-math-library.html">[...]</a>
+              </dd>              <dt id="dart:typed_data">
+                <span class="name"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></span>               
+              </dt>
+              <dd>
+                Lists that efficiently handle fixed sized data
+(for example, unsigned 8 byte integers) and SIMD numeric types. <a href="dart-typed_data/dart-typed_data-library.html">[...]</a>
+              </dd>            <h3>VM</h3>
+              <dt id="dart:io">
+                <span class="name"><a href="dart-io/dart-io-library.html">dart:io</a></span>               
+              </dt>
+              <dd>
+                File, socket, HTTP, and other I/O support for non-web applications. <a href="dart-io/dart-io-library.html">[...]</a>
+              </dd>              <dt id="dart:isolate">
+                <span class="name"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></span>               
+              </dt>
+              <dd>
+                Concurrent programming using <em>isolates</em>:
+independent workers that are similar to threads
+but don't share memory,
+communicating only via messages. <a href="dart-isolate/dart-isolate-library.html">[...]</a>
+              </dd>          </dl>
+        </section>
 
   </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
 
 </main>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.3.5
+    flutter_form_builder 1.5.0
   </span>
 
+  
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -2,7 +2,7 @@
 * Now using `datetime_picker_formfield` plugin from pub for DatePicker and TimePicker. Should close [#33](https://github.com/danvick/flutter_form_builder/issues/33)
 * Added new `FormBuilderInput` - DateTimePicker
 * **Breaking change**: DatePicker, TimePicker & DateTimePicker now return an object of type `DateTime` instead of `String`
-* Upgraded `flutter_typeahead` from v0.5.1 to v1.2.1 - comes with more optimization options
+* Upgraded `flutter_typeahead` from v0.5.1 to v1.2.1 - comes with more widgets options
 
 ## [1.4.0] - 29-Jan-2019
 * The entire form or individual controls can now be made readonly by making `readonly` property to `true`. Default value is `false`. Closes [#11](https://github.com/danvick/flutter_form_builder/issues/11) and[#16](https://github.com/danvick/flutter_form_builder/issues/16)
