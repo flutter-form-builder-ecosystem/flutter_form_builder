@@ -16,7 +16,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  MyHomePageState createState() {
+    return MyHomePageState();
+  }
+}
+
+class MyHomePageState extends State<MyHomePage> {
+  var data;
+
   @override
   Widget build(BuildContext context) {
     const mockResults = <Contact>[
@@ -296,9 +305,9 @@ class MyHomePage extends StatelessWidget {
         margin: EdgeInsets.all(15.0),
         child: FormBuilder(
           context,
-          autovalidate: true,
+          // autovalidate: true,
           // readonly: true,
-          showResetButton: true,
+          // showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [
             FormBuilderInput.typeAhead(
@@ -524,6 +533,9 @@ class MyHomePage extends StatelessWidget {
             print(formValue);
           },
           onSubmit: (formValue) {
+            setState((){
+              data = formValue;
+            });
             if (formValue != null) {
               print(formValue);
             } else {
