@@ -1,3 +1,6 @@
+## [1.5.1] - 21-March-2019
+* Fixed bugs originating from upgrading `flutter_typeahead` from v0.5.1 to v1.2.1
+
 ## [1.5.0] - 20-March-2019
 * Now using `datetime_picker_formfield` plugin from pub for DatePicker and TimePicker. Should close [#33](https://github.com/danvick/flutter_form_builder/issues/33)
 * Added new `FormBuilderInput` - DateTimePicker

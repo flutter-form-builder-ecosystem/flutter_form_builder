@@ -25,7 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   var data;
-
+  bool autoValidate = true;
   @override
   Widget build(BuildContext context) {
     const mockResults = <Contact>[
@@ -305,9 +305,9 @@ class MyHomePageState extends State<MyHomePage> {
         margin: EdgeInsets.all(15.0),
         child: FormBuilder(
           context,
-          // autovalidate: true,
+          autovalidate: autoValidate,
           // readonly: true,
-          // showResetButton: true,
+          showResetButton: true,
           // resetButtonContent: Text("Clear Form"),
           controls: [
             FormBuilderInput.typeAhead(
@@ -533,8 +533,9 @@ class MyHomePageState extends State<MyHomePage> {
             print(formValue);
           },
           onSubmit: (formValue) {
-            setState((){
+            setState(() {
               data = formValue;
+              autoValidate = !autoValidate;
             });
             if (formValue != null) {
               print(formValue);
