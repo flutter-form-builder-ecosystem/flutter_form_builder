@@ -201,7 +201,7 @@ class FormBuilderState extends State<FormBuilder> {
                   format: formControl.format != null
                       ? DateFormat(formControl.format)
                       : _dateTimeFormats[InputType.both],
-                  editable: !(formControl.readonly || widget.readonly),
+                  enabled: !(formControl.readonly || widget.readonly),
                   firstDate: formControl.firstDate,
                   lastDate: formControl.lastDate,
                   decoration: InputDecoration(
@@ -227,7 +227,7 @@ class FormBuilderState extends State<FormBuilder> {
                   format: formControl.format != null
                       ? DateFormat(formControl.format)
                       : _dateTimeFormats[InputType.date],
-                  editable: !(formControl.readonly || widget.readonly),
+                  enabled: !(formControl.readonly || widget.readonly),
                   firstDate: formControl.firstDate,
                   lastDate: formControl.lastDate,
                   decoration: InputDecoration(
@@ -253,7 +253,7 @@ class FormBuilderState extends State<FormBuilder> {
                   format: formControl.format != null
                       ? DateFormat(formControl.format)
                       : _dateTimeFormats[InputType.time],
-                  editable: !(formControl.readonly || widget.readonly),
+                  enabled: !(formControl.readonly || widget.readonly),
                   decoration: InputDecoration(
                     labelText: formControl.label,
                     helperText: formControl.hint,
