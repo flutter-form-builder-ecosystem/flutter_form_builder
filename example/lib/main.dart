@@ -399,8 +399,13 @@ class MyHomePageState extends State<MyHomePage> {
                     label: "Name",
                     value: "John Doe",
                     require: true,
-                    readonly: true,
+                    // readonly: true,
                     min: 3,
+                    onChanged: (newVal){
+                      print(newVal);
+                      print(_fbKey.currentState.findFieldByAttribute("story").currentState.value);
+                      _fbKey.currentState.findFieldByAttribute("story").currentState.didChange(newVal);
+                    }
                   ),
                   FormBuilderInput.dropdown(
                     attribute: "dropdown",
@@ -423,10 +428,11 @@ class MyHomePageState extends State<MyHomePage> {
                     type: FormBuilderInput.TYPE_MULTILINE_TEXT,
                     attribute: "story",
                     label: "Story",
-                    value: "John Doe",
+                    value: "Here's my story",
                     require: false,
                     min: 25,
                     maxLines: 10,
+                    autovalidate: true,
                   ),
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_EMAIL,

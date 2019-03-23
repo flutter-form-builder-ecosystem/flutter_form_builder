@@ -56,6 +56,7 @@ class FormBuilderInput {
   ChipsBuilder chipBuilder;
   int maxLines;
   bool autovalidate;
+  ValueChanged<dynamic> onChanged;
 
   //Inputs for typeahead
   bool getImmediateSuggestions;
@@ -88,6 +89,7 @@ class FormBuilderInput {
     this.max,
     this.maxLines = 5,
     this.autovalidate = false,
+    this.onChanged,
   })  : assert(min == null || min is int),
         assert(max == null || max is int);
 

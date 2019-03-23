@@ -16,6 +16,7 @@ class FormBuilder extends StatefulWidget {
   final List<FormBuilderInput> controls;
   final bool readonly;
   final bool autovalidate;
+  final Key key;
 
   const FormBuilder(
     this.context, {
@@ -27,11 +28,9 @@ class FormBuilder extends StatefulWidget {
     this.onWillPop,
   }) : super(key: key);
 
-  final Key key;
-
   // assert(duplicateAttributes(controls).length == 0, "Duplicate attribute names not allowed");
 
-  //TODO: Find way to assert no duplicates in control attributes
+  //FIXME: Find way to assert no duplicates in control attributes
   /*Function duplicateAttributes = (List<FormBuilderInput> controls) {
     List<String> attributeList = [];
     controls.forEach((c) {
@@ -49,6 +48,7 @@ class FormBuilderState extends State<FormBuilder> {
   final List<FormBuilderInput> formControls;
   final _formKey = GlobalKey<FormState>();
   Map<String, dynamic> value = {};
+  Map<String, GlobalKey<FormFieldState>> _fieldKeys = {};
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
@@ -59,6 +59,10 @@ class FormBuilderState extends State<FormBuilder> {
 
   save() {
     _formKey.currentState.save();
+  }
+
+  GlobalKey<FormFieldState> findFieldByAttribute(String attribute){
+    return _fieldKeys[attribute];
   }
 
   bool validate() {
@@ -85,7 +89,8 @@ class FormBuilderState extends State<FormBuilder> {
       child: SingleChildScrollView(
         child: Column(
           children: this.formControls.map((FormBuilderInput formControl) {
-            // FormBuilderInput formControl = formControl;
+            GlobalKey<FormFieldState> _fieldKey = GlobalKey(debugLabel:formControl.attribute);
+            _fieldKeys[formControl.attribute] = _fieldKey;
             switch (formControl.type) {
               case FormBuilderInput.TYPE_TEXT:
               case FormBuilderInput.TYPE_PASSWORD:
@@ -116,7 +121,7 @@ class FormBuilderState extends State<FormBuilder> {
                     break;
                 }
                 return TextFormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   enabled: !(widget.readonly || formControl.readonly),
                   style: (widget.readonly || formControl.readonly)
                       ? Theme.of(context).textTheme.subhead.copyWith(
@@ -132,7 +137,7 @@ class FormBuilderState extends State<FormBuilder> {
                     hintText: formControl.hint,
                     helperText: formControl.hint,
                   ),
-                  autovalidate: formControl.autovalidate,
+                  autovalidate: formControl.autovalidate ?? false,
                   initialValue:
                       formControl.value != null ? "${formControl.value}" : '',
                   maxLines:
@@ -149,6 +154,10 @@ class FormBuilderState extends State<FormBuilder> {
                         formControl.type == FormBuilderInput.TYPE_NUMBER
                             ? num.tryParse(val)
                             : val;
+                  },
+                  onFieldSubmitted: (data){
+                    if(formControl.onChanged != null)
+                      formControl.onChanged(data);
                   },
                   validator: (val) {
                     if (formControl.require && val.isEmpty)
@@ -275,7 +284,7 @@ class FormBuilderState extends State<FormBuilder> {
                 TextEditingController _typeAheadController =
                     TextEditingController(text: formControl.value);
                 return TypeAheadFormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   textFieldConfiguration: TextFieldConfiguration(
                     enabled: !(widget.readonly || formControl.readonly),
                     controller: _typeAheadController,
@@ -334,7 +343,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_DROPDOWN:
                 return FormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   enabled: !(widget.readonly || formControl.readonly),
                   initialValue: formControl.value,
                   validator: (val) {
@@ -380,7 +389,7 @@ class FormBuilderState extends State<FormBuilder> {
               //TODO: For TYPE_CHECKBOX, TYPE_CHECKBOX_LIST, TYPE_RADIO allow user to choose if checkbox/radio to appear before or after Label
               case FormBuilderInput.TYPE_RADIO:
                 return FormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   enabled: !widget.readonly && !formControl.readonly,
                   initialValue: formControl.value,
                   onSaved: (val) {
@@ -442,7 +451,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_SEGMENTED_CONTROL:
                 return FormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   initialValue: formControl.value,
                   enabled: !(widget.readonly || formControl.readonly),
                   onSaved: (val) {
@@ -503,7 +512,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_SWITCH:
                 return FormField(
-                    key: Key(formControl.attribute),
+                    key: _fieldKey,
                     enabled: !(widget.readonly || formControl.readonly),
                     initialValue: formControl.value ?? false,
                     validator: (value) {
@@ -553,7 +562,7 @@ class FormBuilderState extends State<FormBuilder> {
               case FormBuilderInput.TYPE_STEPPER:
                 return FormField(
                   enabled: !(widget.readonly || formControl.readonly),
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   initialValue: formControl.value,
                   validator: (value) {
                     if (formControl.require && value == null)
@@ -592,7 +601,7 @@ class FormBuilderState extends State<FormBuilder> {
               case FormBuilderInput.TYPE_RATE:
                 return FormField(
                   enabled: !(widget.readonly || formControl.readonly),
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   initialValue: formControl.value ?? 1,
                   validator: (value) {
                     if (formControl.require && value == null)
@@ -630,7 +639,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_CHECKBOX:
                 return FormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   enabled: !(widget.readonly || formControl.readonly),
                   initialValue: formControl.value ?? false,
                   validator: (value) {
@@ -680,7 +689,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_SLIDER:
                 return FormField(
-                  key: Key(formControl.attribute),
+                  key: _fieldKey,
                   enabled: !(widget.readonly || formControl.readonly),
                   initialValue: formControl.value,
                   validator: (value) {
@@ -735,7 +744,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_CHECKBOX_LIST:
                 return FormField(
-                    key: Key(formControl.attribute),
+                    key: _fieldKey,
                     enabled: !(widget.readonly || formControl.readonly),
                     initialValue: formControl.value ?? [],
                     onSaved: (val) {
@@ -808,7 +817,7 @@ class FormBuilderState extends State<FormBuilder> {
                 return SizedBox(
                   // height: 200.0,
                   child: FormField(
-                    key: Key(formControl.attribute),
+                    key: _fieldKey,
                     enabled: !(widget.readonly || formControl.readonly),
                     initialValue: formControl.value ?? [],
                     onSaved: (val) {
