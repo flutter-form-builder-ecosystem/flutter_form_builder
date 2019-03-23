@@ -132,7 +132,7 @@ class FormBuilderState extends State<FormBuilder> {
                     hintText: formControl.hint,
                     helperText: formControl.hint,
                   ),
-                  autovalidate: formControl.autovalidate,
+                  autovalidate: formControl.autovalidate ?? false,
                   initialValue:
                       formControl.value != null ? "${formControl.value}" : '',
                   maxLines:

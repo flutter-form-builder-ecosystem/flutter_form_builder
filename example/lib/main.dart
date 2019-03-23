@@ -27,6 +27,7 @@ class MyHomePageState extends State<MyHomePage> {
   var data;
   bool autoValidate = true;
   bool readOnly = false;
+  GlobalKey<FormBuilderState> _fbKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -298,7 +299,7 @@ class MyHomePageState extends State<MyHomePage> {
       "Zambia",
       "Zimbabwe"
     ];
-    GlobalKey<FormBuilderState> _fbKey = GlobalKey();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter FormBuilder Example'),
@@ -310,7 +311,7 @@ class MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: FormBuilder(
                 context,
-                // key: _fbKey,
+                key: _fbKey,
                 autovalidate: autoValidate,
                 readonly: readOnly,
                 // showResetButton: true,
@@ -555,6 +556,7 @@ class MyHomePageState extends State<MyHomePage> {
             MaterialButton(
               child: Text('External submit'),
               onPressed: () {
+                print(_fbKey);
                 _fbKey.currentState.save();
                 if (_fbKey.currentState.validate()) {
                   print(_fbKey.currentState.value);
