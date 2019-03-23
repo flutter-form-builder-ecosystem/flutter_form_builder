@@ -132,11 +132,12 @@ class FormBuilderState extends State<FormBuilder> {
                     hintText: formControl.hint,
                     helperText: formControl.hint,
                   ),
+                  autovalidate: formControl.autovalidate,
                   initialValue:
                       formControl.value != null ? "${formControl.value}" : '',
                   maxLines:
                       formControl.type == FormBuilderInput.TYPE_MULTILINE_TEXT
-                          ? 5
+                          ? formControl.maxLines
                           : 1,
                   keyboardType: keyboardType,
                   obscureText:
@@ -308,29 +309,26 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   onSaved: (val) => value[formControl.attribute] = val,
                   getImmediateSuggestions:
-                      formControl.getImmediateSuggestions ?? false,
+                      formControl.getImmediateSuggestions,
                   errorBuilder: formControl.errorBuilder,
                   noItemsFoundBuilder: formControl.noItemsFoundBuilder,
                   loadingBuilder: formControl.loadingBuilder,
-                  debounceDuration: formControl.debounceDuration ??
-                      const Duration(milliseconds: 300),
+                  debounceDuration: formControl.debounceDuration,
                   suggestionsBoxDecoration:
-                      formControl.suggestionsBoxDecoration ??
-                          const SuggestionsBoxDecoration(),
+                      formControl.suggestionsBoxDecoration,
                   suggestionsBoxVerticalOffset:
-                      formControl.suggestionsBoxVerticalOffset ?? 5.0,
+                      formControl.suggestionsBoxVerticalOffset,
                   // transitionBuilder: formControl.transitionBuilder,
-                  animationDuration: formControl.animationDuration ??
-                      const Duration(milliseconds: 500),
-                  animationStart: formControl.animationStart ?? 0.25,
-                  direction: formControl.direction ?? AxisDirection.down,
-                  hideOnLoading: formControl.hideOnLoading ?? false,
-                  hideOnEmpty: formControl.hideOnEmpty ?? false,
-                  hideOnError: formControl.hideOnError ?? false,
+                  animationDuration: formControl.animationDuration,
+                  animationStart: formControl.animationStart,
+                  direction: formControl.direction,
+                  hideOnLoading: formControl.hideOnLoading,
+                  hideOnEmpty: formControl.hideOnEmpty,
+                  hideOnError: formControl.hideOnError,
                   hideSuggestionsOnKeyboardHide:
-                      formControl.hideSuggestionsOnKeyboardHide ?? true,
+                      formControl.hideSuggestionsOnKeyboardHide,
                   keepSuggestionsOnLoading:
-                      formControl.keepSuggestionsOnLoading ?? true,
+                      formControl.keepSuggestionsOnLoading,
                 );
                 break;
 

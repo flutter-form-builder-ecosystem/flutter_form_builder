@@ -54,6 +54,8 @@ class FormBuilderInput {
   ItemBuilder itemBuilder;
   ChipsBuilder suggestionBuilder;
   ChipsBuilder chipBuilder;
+  int maxLines;
+  bool autovalidate;
 
   //Inputs for typeahead
   bool getImmediateSuggestions;
@@ -84,7 +86,8 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
-    //TODO: Include maxLines for multiline text
+    this.maxLines = 5,
+    this.autovalidate = false,
   })  : assert(min == null || min is int),
         assert(max == null || max is int);
 
@@ -113,22 +116,22 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-    this.getImmediateSuggestions,
+    this.getImmediateSuggestions = false,
     this.errorBuilder,
     this.noItemsFoundBuilder,
     this.loadingBuilder,
-    this.debounceDuration,
-    this.suggestionsBoxDecoration,
-    this.suggestionsBoxVerticalOffset,
+    this.debounceDuration = const Duration(milliseconds: 300),
+    this.suggestionsBoxDecoration = const SuggestionsBoxDecoration(),
+    this.suggestionsBoxVerticalOffset = 5.0,
     this.transitionBuilder,
-    this.animationDuration,
-    this.animationStart,
-    this.direction,
-    this.hideOnLoading,
-    this.hideOnEmpty,
-    this.hideOnError,
-    this.hideSuggestionsOnKeyboardHide,
-    this.keepSuggestionsOnLoading,
+    this.animationDuration = const Duration(milliseconds: 500),
+    this.animationStart = 0.25,
+    this.direction = AxisDirection.down,
+    this.hideOnLoading = false,
+    this.hideOnEmpty = false,
+    this.hideOnError = false,
+    this.hideSuggestionsOnKeyboardHide = true,
+    this.keepSuggestionsOnLoading = true,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
   }

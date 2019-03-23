@@ -26,6 +26,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   var data;
   bool autoValidate = true;
+  bool readOnly = false;
 
   @override
   Widget build(BuildContext context) {
@@ -311,7 +312,7 @@ class MyHomePageState extends State<MyHomePage> {
                 context,
                 // key: _fbKey,
                 autovalidate: autoValidate,
-                readonly: true,
+                readonly: readOnly,
                 // showResetButton: true,
                 // resetButtonContent: Text("Clear Form"),
                 controls: [
@@ -417,6 +418,15 @@ class MyHomePageState extends State<MyHomePage> {
                     label: "Age",
                     require: true,
                     min: 18,
+                  ),
+                  FormBuilderInput.textField(
+                    type: FormBuilderInput.TYPE_MULTILINE_TEXT,
+                    attribute: "story",
+                    label: "Story",
+                    value: "John Doe",
+                    require: false,
+                    min: 25,
+                    maxLines: 10,
                   ),
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_EMAIL,
