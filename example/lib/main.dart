@@ -27,7 +27,6 @@ class MyHomePageState extends State<MyHomePage> {
   var data;
   bool autoValidate = true;
   bool readOnly = false;
-  GlobalKey<FormBuilderState> _fbKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -299,7 +298,7 @@ class MyHomePageState extends State<MyHomePage> {
       "Zambia",
       "Zimbabwe"
     ];
-
+    GlobalKey<FormBuilderState> _fbKey = GlobalKey();
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter FormBuilder Example'),
@@ -314,13 +313,14 @@ class MyHomePageState extends State<MyHomePage> {
                 key: _fbKey,
                 autovalidate: autoValidate,
                 readonly: readOnly,
-                // showResetButton: true,
-                // resetButtonContent: Text("Clear Form"),
+                onChanged: (formValue) {
+                  print(formValue);
+                },
                 controls: [
                   FormBuilderInput.typeAhead(
                     label: 'Country',
                     attribute: 'country',
-                    require: true,
+                    // require: true,
                     itemBuilder: (context, country) {
                       return ListTile(
                         title: Text(country),
@@ -345,7 +345,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderInput.chipsInput(
                     label: 'Chips',
                     attribute: 'chips_test',
-                    require: true,
+                    // require: true,
                     value: [
                       Contact('Andrew', 'stock@man.com',
                           'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -399,61 +399,55 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: "name",
                     label: "Name",
                     value: "John Doe",
-                    require: true,
-                    readonly: true,
+                    // require: true,
+                    // readonly: true,
                     min: 3,
                   ),
-                  FormBuilderInput.signaturePad(
-              attribute: "signature",
-              label: "Signature:",
-              // value: "John Doe",
-              require: true,
-              // readonly: true,
-            ),
-            FormBuilderInput.dropdown(
-              attribute: "dropdown",
-              require: true,
-              label: "Dropdown",
-              hint: "Select Option",
-              options: [
-                FormBuilderInputOption(value: "Option 1"),
-                FormBuilderInputOption(value: "Option 2"),
-                FormBuilderInputOption(value: "Option 3"),
-              ],
-            ),
-            FormBuilderInput.number(
-              attribute: "age",
-              label: "Age",
-              require: true,
-              min: 18,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_MULTILINE_TEXT,
+                  FormBuilderInput.dropdown(
+                    attribute: "dropdown",
+                    // require: true,
+                    label: "Dropdown",
+                    hint: "Select Option",
+                    options: [
+                      FormBuilderInputOption(value: "Option 1"),
+                      FormBuilderInputOption(value: "Option 2"),
+                      FormBuilderInputOption(value: "Option 3"),
+                    ],
+                  ),
+                  FormBuilderInput.number(
+                    attribute: "age",
+                    label: "Age",
+                    // require: true,
+                    // min: 18,
+                  ),
+                  FormBuilderInput.textField(
+                    type: FormBuilderInput.TYPE_MULTILINE_TEXT,
                     attribute: "story",
                     label: "Story",
-                    value: "John Doe",
+                    value: "Here's my story",
                     require: false,
                     min: 25,
                     maxLines: 10,
+                    autovalidate: true,
                   ),
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_EMAIL,
                     attribute: "email",
                     label: "Email",
-                    require: true,
+                    // require: true,
                   ),
-                  /*FormBuilderInput.textField(
+                  FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_URL,
                     attribute: "url",
                     label: "URL",
-                    require: true,
+                    // require: true,
                   ),
                   FormBuilderInput.textField(
                       type: FormBuilderInput.TYPE_PHONE,
                       attribute: "phone",
                       label: "Phone",
                       hint: "Including country code"
-                      //require: true,
+                      //// require: true,
                       ),
                   FormBuilderInput.password(
                     attribute: "password",
@@ -472,7 +466,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderInput.timePicker(
                     label: "Alarm Time",
                     attribute: "alarm",
-                    require: true,
+                    // require: true,
                   ),
                   FormBuilderInput.dateTimePicker(
                     label: "Appointment Time",
@@ -498,7 +492,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderInput.radio(
                     label: "My Best Language",
                     attribute: "best_language",
-                    require: true,
+                    // require: true,
                     options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
                         .map((lang) => FormBuilderInputOption(value: lang))
                         .toList(growable: false),
@@ -525,7 +519,7 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: "slider",
                     hint: "Hint",
                     min: 0.0,
-                    require: true,
+                    // require: true,
                     max: 100.0,
                     value: 10.0,
                     divisions: 20,
@@ -535,6 +529,11 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: "stepper",
                     value: 10,
                     step: 1,
+                    hint: "Hint",
+                  ),
+                  FormBuilderInput.signaturePad(
+                    label: "Stepper",
+                    attribute: "signature",
                     hint: "Hint",
                   ),
                   FormBuilderInput.rate(
@@ -549,23 +548,20 @@ class MyHomePageState extends State<MyHomePage> {
                     label: "Movie Rating (Archer)",
                     attribute: "movie_rating",
                     // value: 2,
-                    require: true,
+                    // require: true,
                     options: List.generate(5, (i) => i + 1)
                         .map((number) => FormBuilderInputOption(value: number))
                         .toList(),
-                  ),*/
+                  ),
                 ],
-                onChanged: (formValue) {
-                  print(formValue);
-                },
               ),
             ),
             MaterialButton(
               child: Text('External submit'),
               onPressed: () {
-                print(_fbKey);
                 _fbKey.currentState.save();
                 if (_fbKey.currentState.validate()) {
+                  print('validationSucceded');
                   print(_fbKey.currentState.value);
                 } else {
                   print("External FormValidation failed");
