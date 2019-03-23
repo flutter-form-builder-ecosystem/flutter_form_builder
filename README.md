@@ -247,15 +247,19 @@ FormBuilder(
 ```
 
 ## TODO: 
-* Improve documentation by showing complete list of input types and their usage and options
-* Assert no duplicates in `FormBuilderInput`s `attribute` names
-* Add more `FormBuilderInput` types:
-    * RangeSlider
-    * ColorPicker
-    * MaskedText
-* Allow options for Checkboxes and Radios to appear left or right
-* Allow addition of custom input types
+[ ] Improve documentation by showing complete list of input types and their usage and options
+[ ] Assert no duplicates in `FormBuilderInput`s `attribute` names
+[ ] Allow options for Checkboxes and Radios to appear left or right
+[ ] Allow addition of custom input types
+[ ] Proper validation for URL [doesn't work without protocol - http(s)]
 
-## KNOWN ISSUES - HELP NEEDED (Send help ;-P)
-* Proper validation for URL [doesn't work without protocol - http(s)]
+[ ] MapInput
+[ ] ImagePicker
+[ ] DocumentPicker
+[ ] RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
+[ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
+[ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
+[ ] CodeInput - https://pub.dartlang.org/packages/code_input#-readme-tab- (Not Important)
+[ ] MaskedText - https://pub.dartlang.org/packages/flutter_masked_text#-changelog-tab- (Not Important)
+
 

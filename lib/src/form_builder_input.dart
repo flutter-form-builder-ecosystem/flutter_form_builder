@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import './form_builder_input_option.dart';
 
@@ -23,6 +23,7 @@ class FormBuilderInput {
   static const String TYPE_DROPDOWN = "Dropdown";
   static const String TYPE_DATE_PICKER = "DatePicker";
   static const String TYPE_TIME_PICKER = "TimePicker";
+  static const String TYPE_DATE_TIME_PICKER = "DateTimePicker";
   static const String TYPE_URL = "Url";
   static const String TYPE_TYPE_AHEAD = "TypeAhead";
   static const String TYPE_PHONE = "Phone";
@@ -57,6 +58,26 @@ class FormBuilderInput {
   ItemBuilder itemBuilder;
   ChipsBuilder suggestionBuilder;
   ChipsBuilder chipBuilder;
+  int maxLines;
+  bool autovalidate;
+
+  //Inputs for typeahead
+  bool getImmediateSuggestions;
+  ErrorBuilder errorBuilder;
+  WidgetBuilder noItemsFoundBuilder;
+  WidgetBuilder loadingBuilder;
+  Duration debounceDuration;
+  SuggestionsBoxDecoration suggestionsBoxDecoration;
+  double suggestionsBoxVerticalOffset;
+  AnimationTransitionBuilder transitionBuilder;
+  Duration animationDuration;
+  double animationStart;
+  AxisDirection direction;
+  bool hideOnLoading;
+  bool hideOnEmpty;
+  bool hideOnError;
+  bool hideSuggestionsOnKeyboardHide;
+  bool keepSuggestionsOnLoading;
 
   FormBuilderInput.textField({
     @required this.label,
@@ -69,7 +90,8 @@ class FormBuilderInput {
     this.validator,
     this.min,
     this.max,
-    //TODO: Include maxLines for multiline text
+    this.maxLines = 5,
+    this.autovalidate = false,
   })  : assert(min == null || min is int),
         assert(max == null || max is int);
 
@@ -98,6 +120,22 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
+    this.getImmediateSuggestions = false,
+    this.errorBuilder,
+    this.noItemsFoundBuilder,
+    this.loadingBuilder,
+    this.debounceDuration = const Duration(milliseconds: 300),
+    this.suggestionsBoxDecoration = const SuggestionsBoxDecoration(),
+    this.suggestionsBoxVerticalOffset = 5.0,
+    this.transitionBuilder,
+    this.animationDuration = const Duration(milliseconds: 500),
+    this.animationStart = 0.25,
+    this.direction = AxisDirection.down,
+    this.hideOnLoading = false,
+    this.hideOnEmpty = false,
+    this.hideOnError = false,
+    this.hideSuggestionsOnKeyboardHide = true,
+    this.keepSuggestionsOnLoading = true,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
   }
@@ -279,13 +317,26 @@ class FormBuilderInput {
     type = FormBuilderInput.TYPE_DATE_PICKER;
   }
 
-  FormBuilderInput.timePicker({
+  FormBuilderInput.dateTimePicker({
     @required this.label,
     @required this.attribute,
     this.readonly = false,
     this.hint,
     this.firstDate,
     this.lastDate,
+    this.format,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) {
+    type = FormBuilderInput.TYPE_DATE_TIME_PICKER;
+  }
+
+  FormBuilderInput.timePicker({
+    @required this.label,
+    @required this.attribute,
+    this.readonly = false,
+    this.hint,
     this.value,
     this.require = false,
     this.validator,

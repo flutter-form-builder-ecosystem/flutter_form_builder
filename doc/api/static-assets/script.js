@@ -27,7 +27,66 @@ function initSideNav() {
   }
 }
 
-function initSearch() {
+function saveLeftScroll() {
+  var leftSidebar = document.getElementById('dartdoc-sidebar-left');
+  sessionStorage.setItem('dartdoc-sidebar-left-scrollt' + window.location.pathname, leftSidebar.scrollTop);
+  sessionStorage.setItem('dartdoc-sidebar-left-scrolll' + window.location.pathname, leftSidebar.scrollLeft);
+}
+
+function saveMainContentScroll() {
+  var mainContent = document.getElementById('dartdoc-main-content');
+  sessionStorage.setItem('dartdoc-main-content-scrollt' + window.location.pathname, mainContent.scrollTop);
+  sessionStorage.setItem('dartdoc-main-content-scrolll' + window.location.pathname, mainContent.scrollLeft);
+}
+
+function saveRightScroll() {
+  var rightSidebar = document.getElementById('dartdoc-sidebar-right');
+  sessionStorage.setItem('dartdoc-sidebar-right-scrollt' + window.location.pathname, rightSidebar.scrollTop);
+  sessionStorage.setItem('dartdoc-sidebar-right-scrolll' + window.location.pathname, rightSidebar.scrollLeft);
+}
+
+function restoreScrolls() {
+  var leftSidebar = document.getElementById('dartdoc-sidebar-left');
+  var mainContent = document.getElementById('dartdoc-main-content');
+  var rightSidebar = document.getElementById('dartdoc-sidebar-right');
+
+  try {
+    var leftSidebarX = sessionStorage.getItem('dartdoc-sidebar-left-scrolll' + window.location.pathname);
+    var leftSidebarY = sessionStorage.getItem('dartdoc-sidebar-left-scrollt' + window.location.pathname);
+
+    var mainContentX = sessionStorage.getItem('dartdoc-main-content-scrolll' + window.location.pathname);
+    var mainContentY = sessionStorage.getItem('dartdoc-main-content-scrollt' + window.location.pathname);
+
+    var rightSidebarX = sessionStorage.getItem('dartdoc-sidebar-right-scrolll' + window.location.pathname);
+    var rightSidebarY = sessionStorage.getItem('dartdoc-sidebar-right-scrollt' + window.location.pathname);
+
+    leftSidebar.scrollTo(leftSidebarX, leftSidebarY);
+    mainContent.scrollTo(mainContentX, mainContentY);
+    rightSidebar.scrollTo(rightSidebarX, rightSidebarY);
+  } finally {
+    // Set visibility to visible after scroll to prevent the brief appearance of the
+    // panel in the wrong position.
+    leftSidebar.style.visibility = 'visible';
+    mainContent.style.visibility = 'visible';
+    rightSidebar.style.visibility = 'visible';
+  }
+}
+
+function initScrollSave() {
+  var leftSidebar = document.getElementById('dartdoc-sidebar-left');
+  var mainContent = document.getElementById('dartdoc-main-content');
+  var rightSidebar = document.getElementById('dartdoc-sidebar-right');
+
+  // For portablility, use two different ways of attaching saveLeftScroll to events.
+  leftSidebar.onscroll = saveLeftScroll;
+  leftSidebar.addEventListener("scroll", saveLeftScroll, true);
+  mainContent.onscroll = saveMainContentScroll;
+  mainContent.addEventListener("scroll", saveMainContentScroll, true);
+  rightSidebar.onscroll = saveRightScroll;
+  rightSidebar.addEventListener("scroll", saveRightScroll, true);
+}
+
+function initSearch(name) {
   var searchIndex;  // the JSON data
 
   var weights = {
@@ -120,16 +179,16 @@ function initSearch() {
       }
     }
 
-    $('#search-box').prop('disabled', false);
-    $('#search-box').prop('placeholder', 'Search');
+    $('#' + name).prop('disabled', false);
+    $('#' + name).prop('placeholder', 'Search API Docs');
     $(document).keypress(function(event) {
       if (event.which == 47 /* / */) {
         event.preventDefault();
-        $('#search-box').focus();
+        $('#' + name).focus();
       }
     });
 
-    $('#search-box.typeahead').typeahead({
+    $('#' + name + '.typeahead').typeahead({
       hint: true,
       highlight: true,
       minLength: 1
@@ -156,7 +215,7 @@ function initSearch() {
       }
     });
 
-    var typeaheadElement = $('#search-box.typeahead');
+    var typeaheadElement = $('#' + name + '.typeahead');
     var typeaheadElementParent = typeaheadElement.parent();
     var selectedSuggestion;
 
@@ -187,13 +246,18 @@ function initSearch() {
     initTypeahead();
   });
   jsonReq.addEventListener('error', function() {
-    $('#search-box').prop('placeholder', 'Error loading search index');
+    $('#' + name).prop('placeholder', 'Error loading search index');
   });
   jsonReq.send();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  // Place this first so that unexpected exceptions in other JavaScript do not block page visibility.
+  restoreScrolls();
   hljs.initHighlightingOnLoad();
   initSideNav();
-  initSearch();
+  initScrollSave();
+  initSearch("search-box");
+  initSearch("search-body");
+  initSearch("search-sidebar");
 });
