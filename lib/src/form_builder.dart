@@ -228,6 +228,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
             case FormBuilderInput.TYPE_DATE_TIME_PICKER:
               return DateTimePickerFormField(
+                key: Key(formControl.attribute),
                 inputType: InputType.both,
                 initialValue: formControl.value,
                 format: formControl.format != null
@@ -254,6 +255,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
             case FormBuilderInput.TYPE_DATE_PICKER:
               return DateTimePickerFormField(
+                key: Key(formControl.attribute),
                 inputType: InputType.date,
                 initialValue: formControl.value,
                 format: formControl.format != null
@@ -280,6 +282,7 @@ class _FormBuilderState extends State<FormBuilder> {
 
             case FormBuilderInput.TYPE_TIME_PICKER:
               return DateTimePickerFormField(
+                key: Key(formControl.attribute),
                 inputType: InputType.time,
                 initialValue: formControl.value,
                 format: formControl.format != null
