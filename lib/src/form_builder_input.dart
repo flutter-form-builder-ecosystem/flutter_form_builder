@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:signature/signature.dart';
 
 import './form_builder_input_option.dart';
 
@@ -31,6 +34,7 @@ class FormBuilderInput {
   static const String TYPE_RATE = "Rate";
   static const String TYPE_SEGMENTED_CONTROL = "SegmentedControl";
   static const String TYPE_CHIPS_INPUT = "ChipsInput";
+  static const String TYPE_SIGNATURE_PAD = "DrawingPad";
 
   String label;
   String attribute;
@@ -42,6 +46,12 @@ class FormBuilderInput {
   dynamic min;
   dynamic max;
   int divisions;
+  Color penColor;
+  Color backgroundColor;
+  double penStrokeWidth;
+  double height;
+  double width;
+  List<Point> points;
   num step;
   String format;
   IconData icon;
@@ -136,6 +146,24 @@ class FormBuilderInput {
     this.keepSuggestionsOnLoading = true,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
+  }
+
+  FormBuilderInput.signaturePad({
+    @required this.label,
+    @required this.attribute,
+    this.readonly = false,
+    this.penColor = Colors.black,
+    this.penStrokeWidth = 3,
+    this.width,
+    this.points,
+    this.height = 250,
+    this.backgroundColor = Colors.white70,
+    this.hint,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) {
+    type = FormBuilderInput.TYPE_SIGNATURE_PAD;
   }
 
   FormBuilderInput.number({

@@ -310,16 +310,17 @@ class MyHomePageState extends State<MyHomePage> {
             Expanded(
               child: FormBuilder(
                 context,
-                // key: _fbKey,
+                key: _fbKey,
                 autovalidate: autoValidate,
                 readonly: readOnly,
-                // showResetButton: true,
-                // resetButtonContent: Text("Clear Form"),
+                onChanged: (formValue) {
+                  print(formValue);
+                },
                 controls: [
                   FormBuilderInput.typeAhead(
                     label: 'Country',
                     attribute: 'country',
-                    require: true,
+                    // require: true,
                     itemBuilder: (context, country) {
                       return ListTile(
                         title: Text(country),
@@ -344,7 +345,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderInput.chipsInput(
                     label: 'Chips',
                     attribute: 'chips_test',
-                    require: true,
+                    // require: true,
                     value: [
                       Contact('Andrew', 'stock@man.com',
                           'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -398,6 +399,8 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: "name",
                     label: "Name",
                     value: "John Doe",
+                    // require: true,
+                    // readonly: true,
                     require: true,
                     // readonly: true,
                     min: 3,
@@ -409,7 +412,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   FormBuilderInput.dropdown(
                     attribute: "dropdown",
-                    require: true,
+                    // require: true,
                     label: "Dropdown",
                     hint: "Select Option",
                     options: [
@@ -421,8 +424,8 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderInput.number(
                     attribute: "age",
                     label: "Age",
-                    require: true,
-                    min: 18,
+                    // require: true,
+                    // min: 18,
                   ),
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_MULTILINE_TEXT,
@@ -535,6 +538,12 @@ class MyHomePageState extends State<MyHomePage> {
                     step: 1,
                     hint: "Hint",
                   ),
+                  FormBuilderInput.signaturePad(
+                    label: "Signature",
+                    attribute: "signature",
+                    hint: "Hint",
+                    require: true,
+                  ),
                   FormBuilderInput.rate(
                     label: "Rate",
                     attribute: "rate",
@@ -553,9 +562,6 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(),
                   ),
                 ],
-                onChanged: (formValue) {
-                  print(formValue);
-                },
               ),
             ),
             MaterialButton(
@@ -563,6 +569,7 @@ class MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 _fbKey.currentState.save();
                 if (_fbKey.currentState.validate()) {
+                  print('validationSucceded');
                   print(_fbKey.currentState.value);
                 } else {
                   print("External FormValidation failed");

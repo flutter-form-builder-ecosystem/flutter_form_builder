@@ -1,9 +1,14 @@
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
+import 'package:flutter_form_builder/src/form_builder_input.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl/intl.dart';
+import 'package:signature/signature.dart';
 import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
 
 import './form_builder_input.dart';
@@ -193,8 +198,8 @@ class FormBuilderState extends State<FormBuilder> {
                         val.isNotEmpty) {
                       Pattern pattern =
                           r"(https?|ftp)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
-                      if (!RegExp(pattern, caseSensitive: false)
-                          .hasMatch(val)) return '$val is not a valid URL';
+                      if (!RegExp(pattern, caseSensitive: false).hasMatch(val))
+                        return '$val is not a valid URL';
                     }
 
                     if (formControl.validator != null)
@@ -317,8 +322,7 @@ class FormBuilderState extends State<FormBuilder> {
                       return formControl.validator(val);
                   },
                   onSaved: (val) => value[formControl.attribute] = val,
-                  getImmediateSuggestions:
-                      formControl.getImmediateSuggestions,
+                  getImmediateSuggestions: formControl.getImmediateSuggestions,
                   errorBuilder: formControl.errorBuilder,
                   noItemsFoundBuilder: formControl.noItemsFoundBuilder,
                   loadingBuilder: formControl.loadingBuilder,
@@ -850,6 +854,72 @@ class FormBuilderState extends State<FormBuilder> {
                     },
                   ),
                 );
+                break;
+
+              case FormBuilderInput.TYPE_SIGNATURE_PAD:
+                var _signatureCanvas = Signature(
+                  points: formControl.points,
+                  width: formControl.width,
+                  height: formControl.height,
+                  backgroundColor: formControl.backgroundColor,
+                  penColor: formControl.penColor,
+                  penStrokeWidth: formControl.penStrokeWidth,
+                );
+                
+                return FormField<Image>(
+                  key: Key(formControl.attribute),
+                  enabled: !(widget.readonly || formControl.readonly),
+                  initialValue: formControl.value,
+                  onSaved: (val) async {
+                    Uint8List signature = await _signatureCanvas.exportBytes();
+                    var image = Image.memory(signature).image;
+                    print(image);
+                    value[formControl.attribute] = image;
+                  },
+                  validator: (value) {
+                    if (formControl.require && _signatureCanvas.isEmpty)
+                      return "${formControl.label} is required";
+                    if (formControl.validator != null)
+                      return formControl.validator(value);
+                  },
+                  builder: (FormFieldState<dynamic> field) {
+
+                    return InputDecorator(
+                      decoration: InputDecoration(
+                        // icon: const Icon(Icons.person),
+                        enabled: !(widget.readonly || formControl.readonly),
+                        hintText: formControl.hint,
+                        labelText: formControl.label,
+                        errorText: field.errorText,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                            ),
+                            child: GestureDetector(
+                              onVerticalDragUpdate: (_) {},
+                              child: _signatureCanvas,
+                            ),
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Expanded(child: SizedBox()),
+                              FlatButton(
+                                  onPressed: () {
+                                    _signatureCanvas.clear();
+                                    field.didChange(null);
+                                  },
+                                  child: Text('Clear')),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+
                 break;
             }
           }).toList(),
