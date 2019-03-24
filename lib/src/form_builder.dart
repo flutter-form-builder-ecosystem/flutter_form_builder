@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,7 +65,7 @@ class FormBuilderState extends State<FormBuilder> {
     _formKey.currentState.save();
   }
 
-  GlobalKey<FormFieldState> findFieldByAttribute(String attribute){
+  GlobalKey<FormFieldState> findFieldByAttribute(String attribute) {
     return _fieldKeys[attribute];
   }
 
@@ -94,7 +93,8 @@ class FormBuilderState extends State<FormBuilder> {
       child: SingleChildScrollView(
         child: Column(
           children: this.formControls.map((FormBuilderInput formControl) {
-            GlobalKey<FormFieldState> _fieldKey = GlobalKey(debugLabel:formControl.attribute);
+            GlobalKey<FormFieldState> _fieldKey =
+                GlobalKey(debugLabel: formControl.attribute);
             _fieldKeys[formControl.attribute] = _fieldKey;
             switch (formControl.type) {
               case FormBuilderInput.TYPE_TEXT:
@@ -136,11 +136,8 @@ class FormBuilderState extends State<FormBuilder> {
                   focusNode: (widget.readonly || formControl.readonly)
                       ? AlwaysDisabledFocusNode()
                       : null,
-                  decoration: InputDecoration(
-                    labelText: formControl.label,
+                  decoration: formControl.decoration.copyWith(
                     enabled: !(widget.readonly || formControl.readonly),
-                    hintText: formControl.hint,
-                    helperText: formControl.hint,
                   ),
                   autovalidate: formControl.autovalidate ?? false,
                   initialValue:
@@ -160,30 +157,30 @@ class FormBuilderState extends State<FormBuilder> {
                             ? num.tryParse(val)
                             : val;
                   },
-                  onFieldSubmitted: (data){
-                    if(formControl.onChanged != null)
+                  onFieldSubmitted: (data) {
+                    if (formControl.onChanged != null)
                       formControl.onChanged(data);
                   },
                   validator: (val) {
                     if (formControl.require && val.isEmpty)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
 
                     if (formControl.type == FormBuilderInput.TYPE_NUMBER) {
                       if (num.tryParse(val) == null && val.isNotEmpty)
                         return "$val is not a valid number";
                       if (formControl.max != null &&
                           num.tryParse(val) > formControl.max)
-                        return "${formControl.label} should not be greater than ${formControl.max}";
+                        return "${formControl.attribute} should not be greater than ${formControl.max}";
                       if (formControl.min != null &&
                           num.tryParse(val) < formControl.min)
-                        return "${formControl.label} should not be less than ${formControl.min}";
+                        return "${formControl.attribute} should not be less than ${formControl.min}";
                     } else {
                       if (formControl.max != null &&
                           val.length > formControl.max)
-                        return "${formControl.label} should have ${formControl.max} character(s) or less";
+                        return "${formControl.attribute} should have ${formControl.max} character(s) or less";
                       if (formControl.min != null &&
                           val.length < formControl.min)
-                        return "${formControl.label} should have ${formControl.min} character(s) or more";
+                        return "${formControl.attribute} should have ${formControl.min} character(s) or more";
                     }
 
                     if (formControl.type == FormBuilderInput.TYPE_EMAIL &&
@@ -219,16 +216,15 @@ class FormBuilderState extends State<FormBuilder> {
                   enabled: !(formControl.readonly || widget.readonly),
                   firstDate: formControl.firstDate,
                   lastDate: formControl.lastDate,
-                  decoration: InputDecoration(
-                    labelText: formControl.label,
-                    helperText: formControl.hint,
+                  decoration: formControl.decoration.copyWith(
+                    enabled: !(widget.readonly || formControl.readonly),
                   ),
                   onSaved: (val) {
                     value[formControl.attribute] = val;
                   },
                   validator: (val) {
                     if (formControl.require && val == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(val);
                   },
@@ -245,16 +241,15 @@ class FormBuilderState extends State<FormBuilder> {
                   enabled: !(formControl.readonly || widget.readonly),
                   firstDate: formControl.firstDate,
                   lastDate: formControl.lastDate,
-                  decoration: InputDecoration(
-                    labelText: formControl.label,
-                    helperText: formControl.hint,
+                  decoration: formControl.decoration.copyWith(
+                    enabled: !(widget.readonly || formControl.readonly),
                   ),
                   onSaved: (val) {
                     value[formControl.attribute] = val;
                   },
                   validator: (val) {
                     if (formControl.require && val == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(val);
                   },
@@ -269,16 +264,15 @@ class FormBuilderState extends State<FormBuilder> {
                       ? DateFormat(formControl.format)
                       : _dateTimeFormats[InputType.time],
                   enabled: !(formControl.readonly || widget.readonly),
-                  decoration: InputDecoration(
-                    labelText: formControl.label,
-                    helperText: formControl.hint,
+                  decoration: formControl.decoration.copyWith(
+                    enabled: !(widget.readonly || formControl.readonly),
                   ),
                   onSaved: (val) {
                     value[formControl.attribute] = val;
                   },
                   validator: (val) {
                     if (formControl.require && val == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(val);
                   },
@@ -301,10 +295,8 @@ class FormBuilderState extends State<FormBuilder> {
                     focusNode: (widget.readonly || formControl.readonly)
                         ? AlwaysDisabledFocusNode()
                         : null,
-                    decoration: InputDecoration(
-                      labelText: formControl.label,
+                    decoration: formControl.decoration.copyWith(
                       enabled: !(widget.readonly || formControl.readonly),
-                      hintText: formControl.hint,
                     ),
                   ),
                   suggestionsCallback: formControl.suggestionsCallback,
@@ -316,7 +308,7 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   validator: (val) {
                     if (formControl.require && val.isEmpty)
-                      return '${formControl.label} is required';
+                      return '${formControl.attribute} is required';
 
                     if (formControl.validator != null)
                       return formControl.validator(val);
@@ -352,7 +344,7 @@ class FormBuilderState extends State<FormBuilder> {
                   initialValue: formControl.value,
                   validator: (val) {
                     if (formControl.require && val == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(val);
                   },
@@ -361,17 +353,15 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   builder: (FormFieldState<dynamic> field) {
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint,
                         errorText: field.errorText,
                         contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
                         border: InputBorder.none,
                       ),
                       child: DropdownButton(
                         isExpanded: true,
-                        hint: Text(formControl.hint ?? ''),
+                        // hint: Text(formControl.hint ?? ''), //TODO: Dropdown may require hint
                         items: formControl.options.map((option) {
                           return DropdownMenuItem(
                             child: Text("${option.label ?? option.value}"),
@@ -401,7 +391,7 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   validator: (value) {
                     if (formControl.require && value == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
@@ -437,10 +427,8 @@ class FormBuilderState extends State<FormBuilder> {
                       ]);
                     }
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint ?? "",
                         errorText: field.errorText,
                         contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
                         border: InputBorder.none,
@@ -463,16 +451,14 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   validator: (value) {
                     if (formControl.require && value == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.require} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
                   builder: (FormFieldState<dynamic> field) {
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint,
                         errorText: field.errorText,
                         contentPadding:
                             EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -521,7 +507,7 @@ class FormBuilderState extends State<FormBuilder> {
                     initialValue: formControl.value ?? false,
                     validator: (value) {
                       if (formControl.require && value == null)
-                        return "${formControl.label} is required";
+                        return "${formControl.attribute} is required";
                       /*if (formControl.validator != null)
                     return formControl.validator(value);*/
                     },
@@ -530,20 +516,15 @@ class FormBuilderState extends State<FormBuilder> {
                     },
                     builder: (FormFieldState<dynamic> field) {
                       return InputDecorator(
-                        decoration: InputDecoration(
-                          // labelText: formControl.label,
+                        decoration: formControl.decoration.copyWith(
                           enabled: !(widget.readonly || formControl.readonly),
-                          helperText: formControl.hint ?? "",
                           errorText: field.errorText,
                         ),
                         child: ListTile(
                           dense: true,
                           isThreeLine: false,
                           contentPadding: EdgeInsets.all(0.0),
-                          title: Text(
-                            formControl.label,
-                            style: TextStyle(color: Colors.grey),
-                          ),
+                          title: formControl.label,
                           trailing: Switch(
                             value: field.value,
                             onChanged: (widget.readonly || formControl.readonly)
@@ -570,7 +551,7 @@ class FormBuilderState extends State<FormBuilder> {
                   initialValue: formControl.value,
                   validator: (value) {
                     if (formControl.require && value == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
@@ -579,10 +560,8 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   builder: (FormFieldState<dynamic> field) {
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint ?? "",
                         errorText: field.errorText,
                       ),
                       child: SyStepper(
@@ -609,7 +588,7 @@ class FormBuilderState extends State<FormBuilder> {
                   initialValue: formControl.value ?? 1,
                   validator: (value) {
                     if (formControl.require && value == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
@@ -618,10 +597,8 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   builder: (FormFieldState<dynamic> field) {
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint ?? "",
                         errorText: field.errorText,
                       ),
                       child: SyRate(
@@ -648,7 +625,7 @@ class FormBuilderState extends State<FormBuilder> {
                   initialValue: formControl.value ?? false,
                   validator: (value) {
                     if (formControl.require && value == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
@@ -657,20 +634,15 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   builder: (FormFieldState<dynamic> field) {
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        // labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint ?? "",
                         errorText: field.errorText,
                       ),
                       child: ListTile(
                         dense: true,
                         isThreeLine: false,
                         contentPadding: EdgeInsets.all(0.0),
-                        title: Text(
-                          formControl.label,
-                          style: TextStyle(color: Colors.grey),
-                        ),
+                        title: formControl.label,
                         trailing: Checkbox(
                           value: field.value ?? false,
                           onChanged: (widget.readonly || formControl.readonly)
@@ -698,7 +670,7 @@ class FormBuilderState extends State<FormBuilder> {
                   initialValue: formControl.value,
                   validator: (value) {
                     if (formControl.require && value == null)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
@@ -707,10 +679,8 @@ class FormBuilderState extends State<FormBuilder> {
                   },
                   builder: (FormFieldState<dynamic> field) {
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        labelText: formControl.label,
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        helperText: formControl.hint,
                         errorText: field.errorText,
                       ),
                       child: Container(
@@ -802,10 +772,8 @@ class FormBuilderState extends State<FormBuilder> {
                         ]);
                       }
                       return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: formControl.label,
+                        decoration: formControl.decoration.copyWith(
                           enabled: !(widget.readonly || formControl.readonly),
-                          helperText: formControl.hint ?? "",
                           errorText: field.errorText,
                           contentPadding:
                               EdgeInsets.only(top: 10.0, bottom: 0.0),
@@ -829,7 +797,7 @@ class FormBuilderState extends State<FormBuilder> {
                     },
                     validator: (value) {
                       if (formControl.require && value.length == 0)
-                        return "${formControl.label} is required";
+                        return "${formControl.attribute} is required";
                       if (formControl.validator != null)
                         return formControl.validator(value);
                     },
@@ -837,11 +805,8 @@ class FormBuilderState extends State<FormBuilder> {
                       return ChipsInput(
                         initialValue: field.value,
                         enabled: !(widget.readonly || formControl.readonly),
-                        decoration: InputDecoration(
-                          // prefixIcon: Icon(Icons.search),
+                        decoration: formControl.decoration.copyWith(
                           enabled: !(widget.readonly || formControl.readonly),
-                          hintText: formControl.hint,
-                          labelText: formControl.label,
                           errorText: field.errorText,
                         ),
                         findSuggestions: formControl.suggestionsCallback,
@@ -865,7 +830,7 @@ class FormBuilderState extends State<FormBuilder> {
                   penColor: formControl.penColor,
                   penStrokeWidth: formControl.penStrokeWidth,
                 );
-                
+
                 return FormField<Image>(
                   key: Key(formControl.attribute),
                   enabled: !(widget.readonly || formControl.readonly),
@@ -873,23 +838,18 @@ class FormBuilderState extends State<FormBuilder> {
                   onSaved: (val) async {
                     Uint8List signature = await _signatureCanvas.exportBytes();
                     var image = Image.memory(signature).image;
-                    print(image);
                     value[formControl.attribute] = image;
                   },
                   validator: (value) {
                     if (formControl.require && _signatureCanvas.isEmpty)
-                      return "${formControl.label} is required";
+                      return "${formControl.attribute} is required";
                     if (formControl.validator != null)
                       return formControl.validator(value);
                   },
                   builder: (FormFieldState<dynamic> field) {
-
                     return InputDecorator(
-                      decoration: InputDecoration(
-                        // icon: const Icon(Icons.person),
+                      decoration: formControl.decoration.copyWith(
                         enabled: !(widget.readonly || formControl.readonly),
-                        hintText: formControl.hint,
-                        labelText: formControl.label,
                         errorText: field.errorText,
                       ),
                       child: Column(

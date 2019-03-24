@@ -318,7 +318,7 @@ class MyHomePageState extends State<MyHomePage> {
                 },
                 controls: [
                   FormBuilderInput.typeAhead(
-                    label: 'Country',
+                    decoration: InputDecoration(labelText: "Country"),
                     attribute: 'country',
                     // require: true,
                     itemBuilder: (context, country) {
@@ -343,7 +343,7 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                   FormBuilderInput.chipsInput(
-                    label: 'Chips',
+                    decoration: InputDecoration(labelText: "Chils"),
                     attribute: 'chips_test',
                     // require: true,
                     value: [
@@ -395,26 +395,30 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                   FormBuilderInput.textField(
-                    type: FormBuilderInput.TYPE_TEXT,
-                    attribute: "name",
-                    label: "Name",
-                    value: "John Doe",
-                    // require: true,
-                    // readonly: true,
-                    require: true,
-                    // readonly: true,
-                    min: 3,
-                    onChanged: (newVal){
-                      print(newVal);
-                      print(_fbKey.currentState.findFieldByAttribute("story").currentState.value);
-                      _fbKey.currentState.findFieldByAttribute("story").currentState.didChange(newVal);
-                    }
-                  ),
+                      type: FormBuilderInput.TYPE_TEXT,
+                      attribute: "name",
+                      decoration: InputDecoration(labelText: "Full Name"),
+                      value: "John Doe",
+                      // require: true,
+                      // readonly: true,
+                      require: true,
+                      // readonly: true,
+                      min: 3,
+                      onChanged: (newVal) {
+                        print(newVal);
+                        print(_fbKey.currentState
+                            .findFieldByAttribute("story")
+                            .currentState
+                            .value);
+                        _fbKey.currentState
+                            .findFieldByAttribute("story")
+                            .currentState
+                            .didChange(newVal);
+                      }),
                   FormBuilderInput.dropdown(
                     attribute: "dropdown",
                     // require: true,
-                    label: "Dropdown",
-                    hint: "Select Option",
+                    decoration: InputDecoration(labelText: "Select options"),
                     options: [
                       FormBuilderInputOption(value: "Option 1"),
                       FormBuilderInputOption(value: "Option 2"),
@@ -423,14 +427,14 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   FormBuilderInput.number(
                     attribute: "age",
-                    label: "Age",
+                    decoration: InputDecoration(labelText: "Your Age"),
                     // require: true,
                     // min: 18,
                   ),
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_MULTILINE_TEXT,
                     attribute: "story",
-                    label: "Story",
+                    decoration: InputDecoration(labelText: "Story"),
                     value: "Here's my story",
                     require: false,
                     min: 25,
@@ -440,29 +444,28 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_EMAIL,
                     attribute: "email",
-                    label: "Email",
+                    decoration: InputDecoration(labelText: "Email"),
                     require: true,
                   ),
                   FormBuilderInput.textField(
                     type: FormBuilderInput.TYPE_URL,
                     attribute: "url",
-                    label: "URL",
+                    decoration: InputDecoration(labelText: "Website"),
                     require: true,
                   ),
                   FormBuilderInput.textField(
-                      type: FormBuilderInput.TYPE_PHONE,
-                      attribute: "phone",
-                      label: "Phone",
-                      hint: "Including country code"
-                      //require: true,
-                      ),
+                    type: FormBuilderInput.TYPE_PHONE,
+                    attribute: "phone",
+                    decoration: InputDecoration(labelText: "Phone Number"),
+                    //require: true,
+                  ),
                   FormBuilderInput.password(
                     attribute: "password",
-                    label: "Password",
+                    decoration: InputDecoration(labelText: "Password"),
                     min: 8,
                   ),
                   FormBuilderInput.datePicker(
-                    label: "Date of Birth",
+                    decoration: InputDecoration(labelText: "Date of Birth"),
                     readonly: true,
                     attribute: "dob",
                     firstDate: DateTime(1970),
@@ -471,20 +474,20 @@ class MyHomePageState extends State<MyHomePage> {
                     format: 'dd, MM yyyy',
                   ),
                   FormBuilderInput.timePicker(
-                    label: "Alarm Time",
+                    decoration: InputDecoration(labelText: "Alarm Time"),
                     attribute: "alarm",
                     require: true,
                   ),
                   FormBuilderInput.dateTimePicker(
-                    label: "Appointment Time",
+                    decoration: InputDecoration(labelText: "Appointment Time"),
                     attribute: "appointment_time",
                     firstDate: DateTime(1970),
                     lastDate: DateTime.now().add(Duration(days: 1)),
                     // format: 'dd, MM yyyy hh:mm',
                   ),
                   FormBuilderInput.checkboxList(
-                    label: "The Languages of my people",
-                    hint: "The Languages of my people",
+                    decoration:
+                        InputDecoration(labelText: "The language of my people"),
                     attribute: "languages",
                     require: false,
                     value: ["Dart"],
@@ -497,7 +500,8 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   FormBuilderInput.radio(
-                    label: "My Best Language",
+                    decoration:
+                        InputDecoration(labelText: 'My chosen language'),
                     attribute: "best_language",
                     require: true,
                     options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
@@ -505,26 +509,21 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(growable: false),
                   ),
                   FormBuilderInput.checkbox(
-                      label: "I accept the terms and conditions",
+                      label: Text('I Accept the tems and conditions'),
                       attribute: "accept_terms",
-                      hint:
-                          "Kindly make sure you've read all the terms and conditions",
                       validator: (value) {
                         if (!value) return "Accept terms to continue";
                       }),
                   FormBuilderInput.switchInput(
-                      label: "I accept the terms and conditions",
+                      label: Text('I Accept the tems and conditions'),
                       attribute: "accept_terms_switch",
                       value: true,
-                      hint:
-                          "Kindly make sure you've read all the terms and conditions",
                       validator: (value) {
                         if (!value) return "Accept terms to continue";
                       }),
                   FormBuilderInput.slider(
-                    label: "Slider",
+                    decoration: InputDecoration(labelText: "Slider"),
                     attribute: "slider",
-                    hint: "Hint",
                     min: 0.0,
                     require: true,
                     max: 100.0,
@@ -532,28 +531,26 @@ class MyHomePageState extends State<MyHomePage> {
                     divisions: 20,
                   ),
                   FormBuilderInput.stepper(
-                    label: "Stepper",
+                    decoration: InputDecoration(labelText: "Stepper"),
                     attribute: "stepper",
                     value: 10,
                     step: 1,
-                    hint: "Hint",
                   ),
                   FormBuilderInput.signaturePad(
-                    label: "Signature",
+                    decoration: InputDecoration(labelText: "Stepper"),
                     attribute: "signature",
-                    hint: "Hint",
                     require: true,
                   ),
                   FormBuilderInput.rate(
-                    label: "Rate",
+                    decoration: InputDecoration(labelText: "Rate this form"),
                     attribute: "rate",
                     iconSize: 32.0,
                     value: 1,
                     max: 5,
-                    hint: "Hint",
                   ),
                   FormBuilderInput.segmentedControl(
-                    label: "Movie Rating (Archer)",
+                    decoration:
+                        InputDecoration(labelText: "Movie Rating (Archer)"),
                     attribute: "movie_rating",
                     // value: 2,
                     require: true,

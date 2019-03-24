@@ -251,8 +251,10 @@ FormBuilder(
 [ ] Assert no duplicates in `FormBuilderInput`s `attribute` names
 [ ] Allow options for Checkboxes and Radios to appear left or right
 [ ] Allow addition of custom input types
-[ ] Proper validation for URL [doesn't work without protocol - http(s)]
+[ ] Proper validation for URL - does not work without protocol - http(s)
 
+### FormBuilderInputs
+[X] SignaturePad
 [ ] MapInput
 [ ] ImagePicker
 [ ] DocumentPicker
