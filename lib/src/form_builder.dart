@@ -861,11 +861,14 @@ class FormBuilderState extends State<FormBuilder> {
                       return formControl.validator(value);
                   },
                   builder: (FormFieldState<dynamic> field) {
-                    return SignaturePad(onChanged: (image){
-                      field.didChange(image);
-                    },);
+                    return SignaturePad(
+                      onChanged: (image) {
+                        field.didChange(image);
+                      },
+                    );
                   },
                 );
+
                 break;
             }
           }).toList(),

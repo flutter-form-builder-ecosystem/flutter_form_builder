@@ -57,7 +57,7 @@ class _SignaturePadState extends State<SignaturePad> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+       height: 250,
       child: Column(
         children: <Widget>[
           Container(
@@ -65,6 +65,7 @@ class _SignaturePadState extends State<SignaturePad> {
               color: Colors.white,
               border: Border.all(color: Colors.grey),
             ),
+            height: 200,
             child: GestureDetector(
               onPanUpdate: (DragUpdateDetails details) {
                 setState(() {
@@ -82,9 +83,13 @@ class _SignaturePadState extends State<SignaturePad> {
                   getImage();
                 });
               },
-              child: CustomPaint(
-                painter: SignaturePainter(paint, points: _points),
-                size: Size.fromHeight(150),
+              onVerticalDragUpdate: (_) {},
+              child: ClipRect(
+               //  borderRadius: BorderRadius.all(0),
+                child: CustomPaint(
+                  painter: SignaturePainter(paint, points: _points),
+                  size: Size.fromHeight(150),
+                ),
               ),
               // color: Colors.white,
             ),
