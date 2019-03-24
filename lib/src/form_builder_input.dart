@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:signature/signature.dart';
 
 import './form_builder_input_option.dart';
 
@@ -43,9 +46,12 @@ class FormBuilderInput {
   dynamic min;
   dynamic max;
   int divisions;
-  Color color;
-  double strokeWidth;
+  Color penColor;
+  Color backgroundColor;
+  double penStrokeWidth;
   double height;
+  double width;
+  List<Point> points;
   num step;
   String format;
   IconData icon;
@@ -144,9 +150,12 @@ class FormBuilderInput {
     @required this.label,
     @required this.attribute,
     this.readonly = false,
-    this.color = Colors.black,
-    this.strokeWidth = 5,
-    this.height = 200,
+    this.penColor = Colors.black,
+    this.penStrokeWidth = 3,
+    this.width,
+    this.points,
+    this.height = 250,
+    this.backgroundColor = Colors.white70,
     this.hint,
     this.value,
     this.require = false,

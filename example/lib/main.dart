@@ -532,9 +532,10 @@ class MyHomePageState extends State<MyHomePage> {
                     hint: "Hint",
                   ),
                   FormBuilderInput.signaturePad(
-                    label: "Stepper",
+                    label: "Signature",
                     attribute: "signature",
                     hint: "Hint",
+                    require: true,
                   ),
                   FormBuilderInput.rate(
                     label: "Rate",
