@@ -90,7 +90,6 @@ class FormBuilderState extends State<FormBuilder> {
       },
       onWillPop: widget.onWillPop,
       autovalidate: widget.autovalidate,
-      child: SingleChildScrollView(
         child: Column(
           children: this.formControls.map((FormBuilderInput formControl) {
             GlobalKey<FormFieldState> _fieldKey =
@@ -883,7 +882,6 @@ class FormBuilderState extends State<FormBuilder> {
                 break;
             }
           }).toList(),
-        ),
       ),
     );
   }
