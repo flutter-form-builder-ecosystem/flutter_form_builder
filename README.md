@@ -24,8 +24,8 @@ SingleChildScrollView(
         FormBuilder(
           context,
           key: _fbKey,
-          autovalidate: autoValidate,
-          readonly: readOnly,
+          autovalidate: true,
+          readonly: false,
           /*onChanged: (formValue) {
             print(formValue);
           },*/
@@ -293,21 +293,21 @@ SingleChildScrollView(
 
 ## TODO: 
 ### Improvements
-[ ] Improve documentation by showing complete list of input types and their usage and options
-[ ] Assert no duplicates in `FormBuilderInput`s `attribute` names
-[ ] Allow options for Checkboxes and Radios to appear left or right
-[ ] Allow addition of custom input types
-[ ] Proper validation for URL - does not work without protocol - http(s)
+- [ ] Improve documentation by showing complete list of input types and their usage and options
+- [ ] Assert no duplicates in `FormBuilderInput`s `attribute` names
+- [ ] Allow options for Checkboxes and Radios to appear left or right
+- [ ] Allow addition of custom input types
+- [ ] Proper validation for URL - does not work without protocol - http(s)
 
-### FormBuilderInputs
-[X] SignaturePad
-[ ] MapInput
-[ ] ImagePicker
-[ ] DocumentPicker
-[ ] RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
-[ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
-[ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
-[ ] CodeInput - https://pub.dartlang.org/packages/code_input#-readme-tab- (Not Important)
-[ ] MaskedText - https://pub.dartlang.org/packages/flutter_masked_text#-changelog-tab- (Not Important)
+### New FormBuilder inputs
+- [X] SignaturePad
+- [ ] MapInput
+- [ ] ImagePicker
+- [ ] DocumentPicker
+- [ ] RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
+- [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
+- [ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
+- [ ] CodeInput - https://pub.dartlang.org/packages/code_input#-readme-tab- (Not Important)
+- [ ] MaskedText - https://pub.dartlang.org/packages/flutter_masked_text#-changelog-tab- (Not Important)
 
 

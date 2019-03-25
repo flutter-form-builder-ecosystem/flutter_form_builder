@@ -9,7 +9,8 @@ state of the form enabling saving and resetting. Similar to using Flutter's `For
 * Fixed bug where readonly not working to Date, Time and DateTime Pickers
 
 ### Breaking Changes
-* Removed reset/submit buttons, access form state using a `GlobalKey<FormBilderState>`
+* Removed reset/submit buttons and corresponding attributes: `showResetButton`, `resetButtonContent`
+Access form state using a `GlobalKey<FormBilderState>`
 * Removed `label` and `hint` attributes to be replaced by `decoration`
 
 
