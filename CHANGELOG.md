@@ -1,3 +1,19 @@
+## [2.0.0] - 25-March-2019
+### New Features and fixes
+* New attribute `decoration` for `FormBuilderInput`. Enables one to customize `InputDecoration` like icons, labelStyles etc
+* Added ability to add `GlobalKey` of type `FormBuilderState` to FormBuilder that will be the handle to the
+state of the form enabling saving and resetting. Similar to using Flutter's `Form`.
+* Added new input type `FormBuilder.signaturePad` which provides a drawing pad for user signature
+* Added `max` attribute to `chipsInput` to limit the number of chips users can add
+* Added new attribute `maxLines` to be used with textFields with multiple lines
+* Fixed bug where readonly not working to Date, Time and DateTime Pickers
+
+### Breaking Changes
+* Removed reset/submit buttons and corresponding attributes: `showResetButton`, `resetButtonContent`
+Access form state using a `GlobalKey<FormBilderState>`
+* Removed `label` and `hint` attributes to be replaced by `decoration`
+
+
 ## [1.5.1] - 21-March-2019
 * Fixed bugs originating from upgrading `flutter_typeahead` from v0.5.1 to v1.2.1
 

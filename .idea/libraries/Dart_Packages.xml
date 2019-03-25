@@ -54,7 +54,7 @@
         <entry key="flutter_chips_input">
           <value>
             <list>
-              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_chips_input-1.1.0/lib" />
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_chips_input-1.2.0/lib" />
             </list>
           </value>
         </entry>
@@ -118,6 +118,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="signature">
+          <value>
+            <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/signature-2.0.0/lib" />
             </list>
           </value>
         </entry>
@@ -200,7 +207,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.14.11/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-0.1.8/lib" />
-      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_chips_input-1.1.0/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_chips_input-1.2.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-1.2.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.15.7/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/keyboard_visibility-0.5.2/lib" />
@@ -209,6 +216,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.4.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.1/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/signature-2.0.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.5.3/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.9.3/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-1.6.8/lib" />

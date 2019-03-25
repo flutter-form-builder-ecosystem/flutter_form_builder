@@ -47,7 +47,7 @@ packages:
       name: flutter_chips_input
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -109,6 +109,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  signature:
+    dependency: "direct main"
+    description:
+      name: signature
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -179,4 +186,4 @@ packages:
     version: "2.0.8"
 sdks:
   dart: ">=2.1.0 <3.0.0"
-  flutter: ">=0.1.4 <2.0.0"
+  flutter: ">=0.6.0 <2.0.0"

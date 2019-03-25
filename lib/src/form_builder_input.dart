@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:signature/signature.dart';
 
 import './form_builder_input_option.dart';
 
@@ -31,17 +34,25 @@ class FormBuilderInput {
   static const String TYPE_RATE = "Rate";
   static const String TYPE_SEGMENTED_CONTROL = "SegmentedControl";
   static const String TYPE_CHIPS_INPUT = "ChipsInput";
+  static const String TYPE_SIGNATURE_PAD = "DrawingPad";
 
-  String label;
+  Widget label;
   String attribute;
   String type;
   bool readonly;
-  String hint;
+  String helperText;
+  InputDecoration decoration;
   dynamic value;
   bool require;
   dynamic min;
   dynamic max;
   int divisions;
+  Color penColor;
+  Color backgroundColor;
+  double penStrokeWidth;
+  double height;
+  double width;
+  List<Point> points;
   num step;
   String format;
   IconData icon;
@@ -54,6 +65,9 @@ class FormBuilderInput {
   ItemBuilder itemBuilder;
   ChipsBuilder suggestionBuilder;
   ChipsBuilder chipBuilder;
+  int maxLines;
+  bool autovalidate;
+  ValueChanged<dynamic> onChanged;
 
   //Inputs for typeahead
   bool getImmediateSuggestions;
@@ -74,25 +88,25 @@ class FormBuilderInput {
   bool keepSuggestionsOnLoading;
 
   FormBuilderInput.textField({
-    @required this.label,
+    @required this.decoration,
     @required this.type,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
     this.min,
     this.max,
-    //TODO: Include maxLines for multiline text
+    this.maxLines = 5,
+    this.autovalidate = false,
+    this.onChanged,
   })  : assert(min == null || min is int),
         assert(max == null || max is int);
 
   FormBuilderInput.password({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -104,41 +118,57 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.typeAhead({
-    @required this.label,
+    @required this.decoration,
+    this.label,
     @required this.attribute,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
-    this.getImmediateSuggestions,
+    this.getImmediateSuggestions = false,
     this.errorBuilder,
     this.noItemsFoundBuilder,
     this.loadingBuilder,
-    this.debounceDuration,
-    this.suggestionsBoxDecoration,
-    this.suggestionsBoxVerticalOffset,
+    this.debounceDuration = const Duration(milliseconds: 300),
+    this.suggestionsBoxDecoration = const SuggestionsBoxDecoration(),
+    this.suggestionsBoxVerticalOffset = 5.0,
     this.transitionBuilder,
-    this.animationDuration,
-    this.animationStart,
-    this.direction,
-    this.hideOnLoading,
-    this.hideOnEmpty,
-    this.hideOnError,
-    this.hideSuggestionsOnKeyboardHide,
-    this.keepSuggestionsOnLoading,
+    this.animationDuration = const Duration(milliseconds: 500),
+    this.animationStart = 0.25,
+    this.direction = AxisDirection.down,
+    this.hideOnLoading = false,
+    this.hideOnEmpty = false,
+    this.hideOnError = false,
+    this.hideSuggestionsOnKeyboardHide = true,
+    this.keepSuggestionsOnLoading = true,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
   }
 
+  FormBuilderInput.signaturePad({
+    @required this.decoration,
+    @required this.attribute,
+    this.readonly = false,
+    this.penColor = Colors.black,
+    this.penStrokeWidth = 3,
+    this.width,
+    this.points,
+    this.height = 250,
+    this.backgroundColor = Colors.white70,
+    this.value,
+    this.require = false,
+    this.validator,
+  }) {
+    type = FormBuilderInput.TYPE_SIGNATURE_PAD;
+  }
+
   FormBuilderInput.number({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     this.readonly = false,
     this.value,
-    this.hint,
     this.min,
     this.max,
     this.require = false,
@@ -151,11 +181,10 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.stepper({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     this.readonly = false,
     this.value,
-    this.hint,
     this.min,
     this.max,
     this.step,
@@ -169,14 +198,13 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.rate({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     @required this.max,
     this.readonly = false,
     this.value,
     this.icon,
     this.iconSize,
-    this.hint,
     this.require = false,
     this.validator,
   })  : assert(max == null || max is num),
@@ -186,14 +214,13 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.slider({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     @required this.min,
     @required this.max,
     @required this.value,
     this.readonly = false,
     this.divisions,
-    this.hint,
     this.require = false,
     this.validator,
   })  : assert(min == null || min is num),
@@ -202,11 +229,11 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.dropdown({
-    @required this.label,
+    @required this.decoration,
     @required this.options,
     @required this.attribute,
+    this.helperText,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -215,11 +242,10 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.radio({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     @required this.options,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -228,11 +254,10 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.segmentedControl({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     @required this.options,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -241,10 +266,10 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.checkbox({
+    this.decoration = const InputDecoration(),
     @required this.label,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -254,10 +279,10 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.switchInput({
+    this.decoration = const InputDecoration(),
     @required this.label,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -267,11 +292,10 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.checkboxList({
-    @required this.label,
+    @required this.decoration,
     @required this.options,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -281,40 +305,53 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.datePicker({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
+    // @Deprecated('Use attribute: min')
     this.firstDate,
+    // this.min,
+    // @Deprecated('Use attribute: max')
     this.lastDate,
+    this.max,
     this.format,
     this.value,
     this.require = false,
     this.validator,
-  }) {
+  }) /*: assert(min == null || min is DateTime),
+        assert(max == null || max is DateTime),
+        assert(min == null || firstDate == null),
+        assert(max == null || lastDate == null)*/
+  {
     type = FormBuilderInput.TYPE_DATE_PICKER;
   }
 
   FormBuilderInput.dateTimePicker({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
+    // @Deprecated('Use attribute: min')
     this.firstDate,
+    // this.min,
+    // @Deprecated('Use attribute: max')
     this.lastDate,
+    // this.max,
     this.format,
     this.value,
     this.require = false,
     this.validator,
-  }) {
+  }) /*: assert(min == null || min is DateTime),
+        assert(max == null || max is DateTime),
+        assert(min == null || firstDate == null),
+        assert(max == null || lastDate == null) */
+  {
     type = FormBuilderInput.TYPE_DATE_TIME_PICKER;
   }
 
   FormBuilderInput.timePicker({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
     this.validator,
@@ -323,21 +360,18 @@ class FormBuilderInput {
   }
 
   FormBuilderInput.chipsInput({
-    @required this.label,
+    @required this.decoration,
     @required this.attribute,
     @required this.suggestionsCallback,
     @required this.suggestionBuilder,
     @required this.chipBuilder,
     this.readonly = false,
-    this.hint,
     this.value,
     this.require = false,
+    this.max,
     this.validator,
-  }) : assert(value == null || value is List) {
+  })  : assert(value == null || value is List),
+        assert(max == null || max is int) {
     type = FormBuilderInput.TYPE_CHIPS_INPUT;
-  }
-
-  hasHint() {
-    return hint != null;
   }
 }
