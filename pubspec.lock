@@ -47,14 +47,7 @@ packages:
       name: flutter_chips_input
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
-  flutter_signature_pad:
-    dependency: "direct main"
-    description:
-      name: flutter_signature_pad
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
+    version: "1.2.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

@@ -207,6 +207,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_DATE_TIME_PICKER:
                 return DateTimePickerFormField(
+                  key: _fieldKey,
                   inputType: InputType.both,
                   initialValue: formControl.value,
                   format: formControl.format != null
@@ -232,6 +233,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_DATE_PICKER:
                 return DateTimePickerFormField(
+                  key: _fieldKey,
                   inputType: InputType.date,
                   initialValue: formControl.value,
                   format: formControl.format != null
@@ -257,6 +259,7 @@ class FormBuilderState extends State<FormBuilder> {
 
               case FormBuilderInput.TYPE_TIME_PICKER:
                 return DateTimePickerFormField(
+                  key: _fieldKey,
                   inputType: InputType.time,
                   initialValue: formControl.value,
                   format: formControl.format != null
@@ -812,6 +815,7 @@ class FormBuilderState extends State<FormBuilder> {
                         onChanged: (data) {
                           field.didChange(data);
                         },
+                        maxChips: formControl.max,
                         chipBuilder: formControl.chipBuilder,
                         suggestionBuilder: formControl.suggestionBuilder,
                       );

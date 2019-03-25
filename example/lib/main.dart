@@ -350,6 +350,7 @@ class MyHomePageState extends State<MyHomePage> {
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
                       ],
+                      max: 1,
                       suggestionsCallback: (String query) {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
@@ -537,8 +538,9 @@ class MyHomePageState extends State<MyHomePage> {
                       step: 1,
                     ),
                     FormBuilderInput.signaturePad(
-                      decoration: InputDecoration(labelText: "Stepper"),
+                      decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
+                      height: 100,
                       require: true,
                     ),
                     FormBuilderInput.rate(
@@ -602,3 +604,5 @@ class Contact {
     return name;
   }
 }
+
+

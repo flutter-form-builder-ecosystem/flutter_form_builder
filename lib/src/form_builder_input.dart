@@ -318,10 +318,11 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-  })  /*: assert(min == null || min is DateTime),
+  }) /*: assert(min == null || min is DateTime),
         assert(max == null || max is DateTime),
         assert(min == null || firstDate == null),
-        assert(max == null || lastDate == null)*/ {
+        assert(max == null || lastDate == null)*/
+  {
     type = FormBuilderInput.TYPE_DATE_PICKER;
   }
 
@@ -339,10 +340,11 @@ class FormBuilderInput {
     this.value,
     this.require = false,
     this.validator,
-  })  /*: assert(min == null || min is DateTime),
+  }) /*: assert(min == null || min is DateTime),
         assert(max == null || max is DateTime),
         assert(min == null || firstDate == null),
-        assert(max == null || lastDate == null) */{
+        assert(max == null || lastDate == null) */
+  {
     type = FormBuilderInput.TYPE_DATE_TIME_PICKER;
   }
 
@@ -366,8 +368,10 @@ class FormBuilderInput {
     this.readonly = false,
     this.value,
     this.require = false,
+    this.max,
     this.validator,
-  }) : assert(value == null || value is List) {
+  })  : assert(value == null || value is List),
+        assert(max == null || max is int) {
     type = FormBuilderInput.TYPE_CHIPS_INPUT;
   }
 }
