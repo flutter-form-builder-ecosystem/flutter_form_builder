@@ -15,7 +15,7 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 
 ### Example
 
-```
+```dart
 FormBuilder(
   context,
   autovalidate: true,
