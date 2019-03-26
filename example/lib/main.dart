@@ -405,7 +405,7 @@ class MyHomePageState extends State<MyHomePage> {
                         require: true,
                         // readonly: true,
                         min: 3,
-                        onChanged: (newVal) {
+                        /*onChanged: (newVal) {
                           print(newVal);
                           print(_fbKey.currentState
                               .findFieldByAttribute("story")
@@ -415,7 +415,8 @@ class MyHomePageState extends State<MyHomePage> {
                               .findFieldByAttribute("story")
                               .currentState
                               .didChange(newVal);
-                        }),
+                        }*/
+                        ),
                     FormBuilderInput.dropdown(
                       attribute: "dropdown",
                       // require: true,

@@ -1,3 +1,6 @@
+## [2.0.1] - 26-March-2019
+* Fixed bug where fields keep losing focus
+
 ## [2.0.0] - 25-March-2019
 ### New Features and fixes
 * New attribute `decoration` for `FormBuilderInput`. Enables one to customize `InputDecoration` like icons, labelStyles etc

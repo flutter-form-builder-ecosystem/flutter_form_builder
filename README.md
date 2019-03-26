@@ -118,17 +118,6 @@ SingleChildScrollView(
                 require: true,
                 // readonly: true,
                 min: 3,
-                onChanged: (newVal) {
-                  print(newVal);
-                  print(_fbKey.currentState
-                      .findFieldByAttribute("story")
-                      .currentState
-                      .value);
-                  _fbKey.currentState
-                      .findFieldByAttribute("story")
-                      .currentState
-                      .didChange(newVal);
-                }),
             FormBuilderInput.dropdown(
               attribute: "dropdown",
               // require: true,
