@@ -1,3 +1,9 @@
+## [2.0.2] - 26-March-2019
+* Allow `null`s in `FormBuilder` controls `attribute`
+
+## [2.0.1] - 26-March-2019
+* Minor fix in documentation
+
 ## [2.0.1] - 26-March-2019
 * Fixed bug where fields keep losing focus
 

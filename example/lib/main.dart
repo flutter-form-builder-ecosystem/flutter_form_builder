@@ -27,6 +27,7 @@ class MyHomePageState extends State<MyHomePage> {
   var data;
   bool autoValidate = true;
   bool readOnly = false;
+  bool showSegmentedControl = true;
 
   @override
   Widget build(BuildContext context) {
@@ -551,7 +552,7 @@ class MyHomePageState extends State<MyHomePage> {
                       value: 1,
                       max: 5,
                     ),
-                    FormBuilderInput.segmentedControl(
+                    showSegmentedControl ? FormBuilderInput.segmentedControl(
                       decoration:
                           InputDecoration(labelText: "Movie Rating (Archer)"),
                       attribute: "movie_rating",
@@ -560,7 +561,7 @@ class MyHomePageState extends State<MyHomePage> {
                       options: List.generate(5, (i) => i + 1)
                           .map((number) => FormBuilderInputOption(value: number))
                           .toList(),
-                    ),
+                    ) : null,
                   ],
               ),
               MaterialButton(
