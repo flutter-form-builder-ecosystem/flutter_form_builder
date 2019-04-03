@@ -18,266 +18,268 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 ```dart
 GlobalKey<FormBuilderState> _fbKey = GlobalKey();
 
-SingleChildScrollView(
-  Column(
-    children: <Widget>[
-        FormBuilder(
-          context,
-          key: _fbKey,
-          autovalidate: true,
-          readonly: false,
-          /*onChanged: (formValue) {
-            print(formValue);
-          },*/
-          controls: [
-            FormBuilderInput.typeAhead(
-              decoration: InputDecoration(labelText: "Country"),
-              attribute: 'country',
-              // require: true,
-              itemBuilder: (context, country) {
-                return ListTile(
-                  title: Text(country),
-                );
-              },
-              suggestionsCallback: (query) {
-                if (query.length != 0) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return allCountries.where((country) {
-                    return country.toLowerCase().contains(lowercaseQuery);
-                  }).toList(growable: false)
-                    ..sort((a, b) => a
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(
-                            b.toLowerCase().indexOf(lowercaseQuery)));
-                } else {
-                  return allCountries;
-                }
-              },
-            ),
-            FormBuilderInput.chipsInput(
-              decoration: InputDecoration(labelText: "Chils"),
-              attribute: 'chips_test',
-              // require: true,
-              value: [
-                Contact('Andrew', 'stock@man.com',
-                    'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-              ],
-              max: 1,
-              suggestionsCallback: (String query) {
-                if (query.length != 0) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return mockResults.where((profile) {
-                    return profile.name
-                            .toLowerCase()
-                            .contains(query.toLowerCase()) ||
-                        profile.email
-                            .toLowerCase()
-                            .contains(query.toLowerCase());
-                  }).toList(growable: false)
-                    ..sort((a, b) => a.name
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(b.name
-                            .toLowerCase()
-                            .indexOf(lowercaseQuery)));
-                } else {
-                  return const <Contact>[];
-                }
-              },
-              chipBuilder: (context, state, profile) {
-                return InputChip(
-                  key: ObjectKey(profile),
-                  label: Text(profile.name),
-                  avatar: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
+          Column(
+            children: <Widget>[
+              FormBuilder(
+                context,
+                key: _fbKey,
+                autovalidate: true,
+                child: Column(
+                  children: <Widget>[
+                    FormBuilderField(
+                      attribute: "name",
+                      validators: [
+                        FormBuilderValidators.required(),
+                      ],
+                      formField: FormField(
+                        // key: _fieldKey,
+                        enabled: true,
+                        builder: (FormFieldState<dynamic> field) {
+                          return InputDecorator(
+                            decoration: InputDecoration(
+                              errorText: field.errorText,
+                              contentPadding:
+                                  EdgeInsets.only(top: 10.0, bottom: 0.0),
+                              border: InputBorder.none,
+                            ),
+                            child: DropdownButton(
+                              isExpanded: true,
+                              items: ["One", "Two"].map((option) {
+                                return DropdownMenuItem(
+                                  child: Text("$option"),
+                                  value: option,
+                                );
+                              }).toList(),
+                              value: field.value,
+                              onChanged: (value) {
+                                field.didChange(value);
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    FormBuilderChipsInput(
+                      decoration: InputDecoration(labelText: "Chips"),
+                      attribute: 'chips_test',
+                      // require: true,
+                      initialValue: [
+                        Contact('Andrew', 'stock@man.com',
+                            'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
+                      ],
+                      maxChips: 5,
+                      findSuggestions: (String query) {
+                        if (query.length != 0) {
+                          var lowercaseQuery = query.toLowerCase();
+                          return mockResults.where((profile) {
+                            return profile.name
+                                .toLowerCase()
+                                .contains(query.toLowerCase()) ||
+                                profile.email
+                                    .toLowerCase()
+                                    .contains(query.toLowerCase());
+                          }).toList(growable: false)
+                            ..sort((a, b) => a.name
+                                .toLowerCase()
+                                .indexOf(lowercaseQuery)
+                                .compareTo(b.name
+                                .toLowerCase()
+                                .indexOf(lowercaseQuery)));
+                        } else {
+                          return const <Contact>[];
+                        }
+                      },
+                      chipBuilder: (context, state, profile) {
+                        return InputChip(
+                          key: ObjectKey(profile),
+                          label: Text(profile.name),
+                          avatar: CircleAvatar(
+                            backgroundImage: NetworkImage(profile.imageUrl),
+                          ),
+                          onDeleted: () => state.deleteChip(profile),
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        );
+                      },
+                      suggestionBuilder: (context, state, profile) {
+                        return ListTile(
+                          key: ObjectKey(profile),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(profile.imageUrl),
+                          ),
+                          title: Text(profile.name),
+                          subtitle: Text(profile.email),
+                          onTap: () => state.selectSuggestion(profile),
+                        );
+                      },
+                    ),
+                    FormBuilderDateTimePicker(
+                      attribute: "date",
+                      inputType: InputType.date,
+                      format: DateFormat("yyyy-MM-dd"),
+                      decoration:
+                          InputDecoration(labelText: "Appointment Time"),
+                    ),
+                    FormBuilderSlider(
+                      attribute: "slider",
+                      validators: [FormBuilderValidators.min(6)],
+                      min: 0.0,
+                      max: 10.0,
+                      initialValue: 1.0,
+                      divisions: 20,
+                      decoration:
+                          InputDecoration(labelText: "Number of somethings"),
+                    ),
+                    FormBuilderCheckbox(
+                      attribute: 'accept_terms',
+                      initialValue: false,
+                      label: Text(
+                          "I have read and agree to the terms and conditions"),
+                      validators: [
+                        FormBuilderValidators.requiredTrue(
+                          errorMessage:
+                              "You must accept terms and conditions to continue",
+                        ),
+                      ],
+                    ),
+                    FormBuilderDropdown(
+                      attribute: "gender",
+                      decoration: InputDecoration(labelText: "Gender"),
+                      // initialValue: 'Male',
+                      hint: Text('Select Gender'),
+                      validators: [FormBuilderValidators.required()],
+                      items: [
+                        DropdownMenuItem(
+                          value: 'Male',
+                          child: Text('Male'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Female',
+                          child: Text('Female'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Other',
+                          child: Text('Other'),
+                        ),
+                      ],
+                    ),
+                    FormBuilderTextField(
+                      attribute: "age",
+                      decoration: InputDecoration(labelText: "Age"),
+                      validators: [
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.max(70)
+                      ],
+                    ),
+                    FormBuilderTypeAhead(
+                      decoration: InputDecoration(labelText: "Country"),
+                      attribute: 'country',
+                      itemBuilder: (context, country) {
+                        return ListTile(
+                          title: Text(country),
+                        );
+                      },
+                      suggestionsCallback: (query) {
+                        if (query.length != 0) {
+                          var lowercaseQuery = query.toLowerCase();
+                          return allCountries.where((country) {
+                            return country
+                                .toLowerCase()
+                                .contains(lowercaseQuery);
+                          }).toList(growable: false)
+                            ..sort((a, b) => a
+                                .toLowerCase()
+                                .indexOf(lowercaseQuery)
+                                .compareTo(
+                                    b.toLowerCase().indexOf(lowercaseQuery)));
+                        } else {
+                          return allCountries;
+                        }
+                      },
+                    ),
+                    FormBuilderRadio(
+                      decoration:
+                          InputDecoration(labelText: 'My chosen language'),
+                      attribute: "best_language",
+                      validators: [FormBuilderValidators.required()],
+                      options: [
+                        "Dart",
+                        "Kotlin",
+                        "Java",
+                        "Swift",
+                        "Objective-C"
+                      ]
+                          .map((lang) => FormBuilderInputOption(value: lang))
+                          .toList(growable: false),
+                    ),
+                    FormBuilderSegmentedControl(
+                      decoration:
+                          InputDecoration(labelText: "Movie Rating (Archer)"),
+                      attribute: "movie_rating",
+                      options: List.generate(5, (i) => i + 1)
+                          .map(
+                              (number) => FormBuilderInputOption(value: number))
+                          .toList(),
+                    ),
+                    FormBuilderSwitch(
+                      label: Text('I Accept the tems and conditions'),
+                      attribute: "accept_terms_switch",
+                      initialValue: true,
+                    ),
+                    FormBuilderStepper(
+                      decoration: InputDecoration(labelText: "Stepper"),
+                      attribute: "stepper",
+                      initialValue: 10,
+                      step: 1,
+                    ),
+                    FormBuilderRate(
+                      decoration: InputDecoration(labelText: "Rate this form"),
+                      attribute: "rate",
+                      iconSize: 32.0,
+                      initialValue: 1,
+                      max: 5,
+                    ),
+                    FormBuilderCheckboxList(
+                      decoration:
+                      InputDecoration(labelText: "The language of my people"),
+                      attribute: "languages",
+                      initialValue: ["Dart"],
+                      options: [
+                        FormBuilderInputOption(value: "Dart"),
+                        FormBuilderInputOption(value: "Kotlin"),
+                        FormBuilderInputOption(value: "Java"),
+                        FormBuilderInputOption(value: "Swift"),
+                        FormBuilderInputOption(value: "Objective-C"),
+                      ],
+                    ),
+                    FormBuilderSignaturePad(
+                      decoration: InputDecoration(labelText: "Signature"),
+                      attribute: "signature",
+                      height: 100,
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  MaterialButton(
+                    child: Text("Submit"),
+                    onPressed: () {
+                      _fbKey.currentState.save();
+                      if (_fbKey.currentState.validate()) {
+                        print(_fbKey.currentState.value);
+                      }
+                    },
                   ),
-                  onDeleted: () => state.deleteChip(profile),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                );
-              },
-              suggestionBuilder: (context, state, profile) {
-                return ListTile(
-                  key: ObjectKey(profile),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
+                  MaterialButton(
+                    child: Text("Reset"),
+                    onPressed: () {
+                      _fbKey.currentState.reset();
+                    },
                   ),
-                  title: Text(profile.name),
-                  subtitle: Text(profile.email),
-                  onTap: () => state.selectSuggestion(profile),
-                );
-              },
-            ),
-            FormBuilderInput.textField(
-                type: FormBuilderInput.TYPE_TEXT,
-                attribute: "name",
-                decoration: InputDecoration(labelText: "Full Name"),
-                value: "John Doe",
-                // require: true,
-                // readonly: true,
-                require: true,
-                // readonly: true,
-                min: 3,
-            FormBuilderInput.dropdown(
-              attribute: "dropdown",
-              // require: true,
-              decoration: InputDecoration(labelText: "Select options"),
-              options: [
-                FormBuilderInputOption(value: "Option 1"),
-                FormBuilderInputOption(value: "Option 2"),
-                FormBuilderInputOption(value: "Option 3"),
-              ],
-            ),
-            FormBuilderInput.number(
-              attribute: "age",
-              decoration: InputDecoration(labelText: "Your Age"),
-              // require: true,
-              // min: 18,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_MULTILINE_TEXT,
-              attribute: "story",
-              decoration: InputDecoration(labelText: "Story"),
-              value: "Here's my story",
-              require: false,
-              min: 25,
-              maxLines: 10,
-              autovalidate: true,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_EMAIL,
-              attribute: "email",
-              decoration: InputDecoration(labelText: "Email"),
-              require: true,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_URL,
-              attribute: "url",
-              decoration: InputDecoration(labelText: "Website"),
-              require: true,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_PHONE,
-              attribute: "phone",
-              decoration: InputDecoration(labelText: "Phone Number"),
-              //require: true,
-            ),
-            FormBuilderInput.password(
-              attribute: "password",
-              decoration: InputDecoration(labelText: "Password"),
-              min: 8,
-            ),
-            FormBuilderInput.datePicker(
-              decoration: InputDecoration(labelText: "Date of Birth"),
-              readonly: true,
-              attribute: "dob",
-              firstDate: DateTime(1970),
-              value: DateTime.now(),
-              lastDate: DateTime.now().add(Duration(days: 1)),
-              format: 'dd, MM yyyy',
-            ),
-            FormBuilderInput.timePicker(
-              decoration: InputDecoration(labelText: "Alarm Time"),
-              attribute: "alarm",
-              require: true,
-            ),
-            FormBuilderInput.dateTimePicker(
-              decoration: InputDecoration(labelText: "Appointment Time"),
-              attribute: "appointment_time",
-              firstDate: DateTime(1970),
-              lastDate: DateTime.now().add(Duration(days: 1)),
-              // format: 'dd, MM yyyy hh:mm',
-            ),
-            FormBuilderInput.checkboxList(
-              decoration:
-                  InputDecoration(labelText: "The language of my people"),
-              attribute: "languages",
-              require: false,
-              value: ["Dart"],
-              options: [
-                FormBuilderInputOption(value: "Dart"),
-                FormBuilderInputOption(value: "Kotlin"),
-                FormBuilderInputOption(value: "Java"),
-                FormBuilderInputOption(value: "Swift"),
-                FormBuilderInputOption(value: "Objective-C"),
-              ],
-            ),
-            FormBuilderInput.radio(
-              decoration:
-                  InputDecoration(labelText: 'My chosen language'),
-              attribute: "best_language",
-              require: true,
-              options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
-                  .map((lang) => FormBuilderInputOption(value: lang))
-                  .toList(growable: false),
-            ),
-            FormBuilderInput.checkbox(
-                label: Text('I Accept the tems and conditions'),
-                attribute: "accept_terms",
-                validator: (value) {
-                  if (!value) return "Accept terms to continue";
-                }),
-            FormBuilderInput.switchInput(
-                label: Text('I Accept the tems and conditions'),
-                attribute: "accept_terms_switch",
-                value: true,
-                validator: (value) {
-                  if (!value) return "Accept terms to continue";
-                }),
-            FormBuilderInput.slider(
-              decoration: InputDecoration(labelText: "Slider"),
-              attribute: "slider",
-              min: 0.0,
-              require: true,
-              max: 100.0,
-              value: 10.0,
-              divisions: 20,
-            ),
-            FormBuilderInput.stepper(
-              decoration: InputDecoration(labelText: "Stepper"),
-              attribute: "stepper",
-              value: 10,
-              step: 1,
-            ),
-            FormBuilderInput.signaturePad(
-              decoration: InputDecoration(labelText: "Signature"),
-              attribute: "signature",
-              require: true,
-            ),
-            FormBuilderInput.rate(
-              decoration: InputDecoration(labelText: "Rate this form"),
-              attribute: "rate",
-              iconSize: 32.0,
-              value: 1,
-              max: 5,
-            ),
-            FormBuilderInput.segmentedControl(
-              decoration:
-                  InputDecoration(labelText: "Movie Rating (Archer)"),
-              attribute: "movie_rating",
-              // value: 2,
-              require: true,
-              options: List.generate(5, (i) => i + 1)
-                  .map((number) => FormBuilderInputOption(value: number))
-                  .toList(),
-            ),
-          ],
-      ),
-      MaterialButton(
-        child: Text('External submit'),
-        onPressed: () {
-          _fbKey.currentState.save();
-          if (_fbKey.currentState.validate()) {
-            print('validationSucceded');
-            print(_fbKey.currentState.value);
-          } else {
-            print("External FormValidation failed");
-          }
-        },
-      ),
-    ],
-  ),
-)
+                ],
+              )
+            ],
+          )
 ```
 
 ## TODO: 
