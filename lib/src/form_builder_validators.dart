@@ -26,7 +26,11 @@ class FormBuilderValidators {
     String errorMessage,
   }) {
     return (val) {
-      if (val < min) {
+      if (val != null &&
+          ((val is num && val < min) ||
+              (val is String &&
+                  num.tryParse(val) != null &&
+                  num.tryParse(val) < min))) {
         return errorMessage ?? "Value must be greater than or equal to $min";
       }
     };
@@ -37,8 +41,13 @@ class FormBuilderValidators {
     String errorMessage,
   }) {
     return (val) {
-      if (val > max) {
-        return errorMessage ?? "Value must be less than or equal to $max";
+      if (val != null) {
+        if ((val is num && val > max) ||
+            (val is String &&
+                num.tryParse(val) != null &&
+                num.tryParse(val) > max)) {
+          return errorMessage ?? "Value must be less than or equal to $max";
+        }
       }
     };
   }
@@ -91,13 +100,22 @@ class FormBuilderValidators {
     };
   }
 
-  static FormFieldValidator pattern(Pattern pattern, {
+  static FormFieldValidator pattern(
+    Pattern pattern, {
     String errorMessage = "Value does not match pattern.",
   }) {
     return (val) {
       if (val != null && val.isNotEmpty) {
         if (!RegExp(pattern).hasMatch(val)) return errorMessage;
       }
+    };
+  }
+
+  static FormFieldValidator numeric({
+    String errorMessage = "Value must be numeric.",
+  }) {
+    return (val) {
+      if (num.tryParse(val) == null && val.isNotEmpty) return errorMessage;
     };
   }
 }

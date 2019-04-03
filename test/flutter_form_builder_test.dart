@@ -14,4 +14,9 @@ void main() {
     expect(FormBuilderValidators.email()(null), equals(null));
     expect(FormBuilderValidators.email()(""), equals(null));
   });
+
+  test('FormBuilderValidators.max', () {
+    expect(FormBuilderValidators.max(20)("70"), equals("Value must be less than or equal to 20"));
+    expect(FormBuilderValidators.max(30)(70), equals("Value must be less than or equal to 30"));
+  });
 }

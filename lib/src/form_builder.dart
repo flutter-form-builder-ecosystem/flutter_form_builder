@@ -4,14 +4,14 @@ class FormBuilder extends StatefulWidget {
   final BuildContext context;
   final Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
-  final List<Widget> controls;
+  final Widget child;
   final bool readonly;
   final bool autovalidate;
   final Key key;
 
   const FormBuilder(
     this.context, {
-    @required this.controls,
+    @required this.child,
     this.readonly = false,
     this.key,
     this.onChanged,
@@ -27,6 +27,7 @@ class FormBuilder extends StatefulWidget {
 }
 
 class FormBuilderState extends State<FormBuilder> {
+  //FIXME: Find way to assert no duplicates in control attributes
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Map<String, dynamic> _value = {};
 
@@ -54,9 +55,15 @@ class FormBuilderState extends State<FormBuilder> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Column(
-        children: widget.controls,
-      ),
+      child: widget.child,
+      autovalidate: widget.autovalidate,
+      onWillPop: widget.onWillPop,
+      onChanged: (){
+        if(widget.onChanged != null){
+          save();
+          widget.onChanged(value);
+        }
+      },
     );
   }
 }
