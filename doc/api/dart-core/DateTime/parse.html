@@ -138,7 +138,8 @@
     </section>
     <section class="desc markdown">
       <p>Constructs a new <a href="dart-core/DateTime-class.html">DateTime</a> instance based on <code>formattedString</code>.</p>
-<p>Throws a <a href="dart-core/FormatException-class.html">FormatException</a> if the input cannot be parsed.</p>
+<p>The <code>formattedString</code> must not be <code>null</code>.
+Throws a <a href="dart-core/FormatException-class.html">FormatException</a> if the input string cannot be parsed.</p>
 <p>The function parses a subset of ISO 8601
 which includes the subset accepted by RFC 3339.</p>
 <p>The accepted inputs are currently:</p><ul><li>A date: A signed four-to-six digit year, two digit month and
@@ -243,7 +244,7 @@ static DateTime parse(String formattedString) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

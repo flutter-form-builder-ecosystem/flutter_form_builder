@@ -120,16 +120,12 @@ assert(identical(const Symbol("foo.bar"), #foo.bar));
 <p>This constructor cannot create a <a href="dart-core/Symbol-class.html">Symbol</a> instance that is equal to
 a private symbol literal like <code>#_foo</code>.</p>
 <pre class="language-dart"><code class="language-dart">const Symbol("_foo") // Invalid
-``
-
-The created instance overrides [Object.==].
-
-The following text is non-normative:
-
-Creating non-const Symbol instances may result in larger output.  If
-possible, use `MirrorsUsed` from "dart:mirrors" to specify which names
-might be passed to this constructor.
 </code></pre>
+<p>The created instance overrides <a href="dart-core/Symbol/operator_equals.html">Object.==</a>.</p>
+<p>The following text is non-normative:</p>
+<p>Creating non-const Symbol instances may result in larger output.  If
+possible, use <code>MirrorsUsed</code> from "dart:mirrors" to specify which names
+might be passed to this constructor.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -146,7 +142,7 @@ might be passed to this constructor.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

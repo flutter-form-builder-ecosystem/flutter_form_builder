@@ -98,11 +98,13 @@
       <li><a href="dart-ui/Shader-class.html">Shader</a></li>
       <li><a href="dart-ui/Shadow-class.html">Shadow</a></li>
       <li><a href="dart-ui/Size-class.html">Size</a></li>
+      <li><a href="dart-ui/StrutStyle-class.html">StrutStyle</a></li>
       <li><a href="dart-ui/Tangent-class.html">Tangent</a></li>
       <li><a href="dart-ui/TextBox-class.html">TextBox</a></li>
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
+      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -110,6 +112,7 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
+      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -128,6 +131,7 @@
       <li><a href="dart-ui/BlurStyle-class.html">BlurStyle</a></li>
       <li><a href="dart-ui/BoxHeightStyle-class.html">BoxHeightStyle</a></li>
       <li><a href="dart-ui/BoxWidthStyle-class.html">BoxWidthStyle</a></li>
+      <li><a href="dart-ui/Brightness-class.html">Brightness</a></li>
       <li><a href="dart-ui/Clip-class.html">Clip</a></li>
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
@@ -167,14 +171,14 @@
 
     <section class="desc markdown">
       <p>A complex, one-dimensional subset of a plane.</p>
-<p>A path consists of a number of subpaths, and a <em>current point</em>.</p>
-<p>Subpaths consist of segments of various types, such as lines,
-arcs, or beziers. Subpaths can be open or closed, and can
+<p>A path consists of a number of sub-paths, and a <em>current point</em>.</p>
+<p>Sub-paths consist of segments of various types, such as lines,
+arcs, or beziers. Sub-paths can be open or closed, and can
 self-intersect.</p>
-<p>Closed subpaths enclose a (possibly discontiguous) region of the
+<p>Closed sub-paths enclose a (possibly discontiguous) region of the
 plane based on the current <a href="dart-ui/Path/fillType.html">fillType</a>.</p>
 <p>The <em>current point</em> is initially at the origin. After each
-operation adding a segment to a subpath, the current point is
+operation adding a segment to a sub-path, the current point is
 updated to the end of that segment.</p>
 <p>Paths can be drawn on canvases using <a href="dart-ui/Canvas/drawPath.html">Canvas.drawPath</a>, and can
 used to create clip regions using <a href="dart-ui/Canvas/clipPath.html">Canvas.clipPath</a>.</p>
@@ -241,7 +245,7 @@ used to create clip regions using <a href="dart-ui/Canvas/clipPath.html">Canvas.
           </span>
                   </dt>
         <dd>
-          Adds a new subpath with one arc segment that consists of the arc
+          Adds a new sub-path with one arc segment that consists of the arc
 that follows the edge of the oval bounded by the given
 rectangle, from startAngle radians around the oval up to
 startAngle + sweepAngle radians around the oval, with zero
@@ -257,7 +261,7 @@ oval.
           </span>
                   </dt>
         <dd>
-          Adds a new subpath that consists of a curve that forms the
+          Adds a new sub-path that consists of a curve that forms the
 ellipse that fills the given rectangle. <a href="dart-ui/Path/addOval.html">[...]</a>
                   
 </dd>
@@ -267,7 +271,7 @@ ellipse that fills the given rectangle. <a href="dart-ui/Path/addOval.html">[...
           </span>
                   </dt>
         <dd>
-          Adds a new subpath that consists of the given <code>path</code> offset by the given
+          Adds a new sub-path that consists of the given <code>path</code> offset by the given
 <code>offset</code>. <a href="dart-ui/Path/addPath.html">[...]</a>
                   
 </dd>
@@ -277,7 +281,7 @@ ellipse that fills the given rectangle. <a href="dart-ui/Path/addOval.html">[...
           </span>
                   </dt>
         <dd>
-          Adds a new subpath with a sequence of line segments that connect the given
+          Adds a new sub-path with a sequence of line segments that connect the given
 points. <a href="dart-ui/Path/addPolygon.html">[...]</a>
                   
 </dd>
@@ -287,7 +291,7 @@ points. <a href="dart-ui/Path/addPolygon.html">[...]</a>
           </span>
                   </dt>
         <dd>
-          Adds a new subpath that consists of four lines that outline the
+          Adds a new sub-path that consists of four lines that outline the
 given rectangle.
                   
 </dd>
@@ -297,7 +301,7 @@ given rectangle.
           </span>
                   </dt>
         <dd>
-          Adds a new subpath that consists of the straight lines and
+          Adds a new sub-path that consists of the straight lines and
 curves needed to form the rounded rectangle described by the
 argument.
                   
@@ -328,8 +332,8 @@ and rotated by <code>rotation</code>. <a href="dart-ui/Path/arcToPoint.html">[..
           </span>
                   </dt>
         <dd>
-          Closes the last subpath, as if a straight line had been drawn
-from the current point to the first point of the subpath.
+          Closes the last sub-path, as if a straight line had been drawn
+from the current point to the first point of the sub-path.
                   
 </dd>
         <dt id="computeMetrics" class="callable">
@@ -411,7 +415,7 @@ point.
           </span>
                   </dt>
         <dd>
-          Starts a new subpath at the given coordinate.
+          Starts a new sub-path at the given coordinate.
                   
 </dd>
         <dt id="quadraticBezierTo" class="callable">
@@ -477,7 +481,7 @@ at the given offset from the current point.
           </span>
                   </dt>
         <dd>
-          Starts a new subpath at the given offset from the current point.
+          Starts a new sub-path at the given offset from the current point.
                   
 </dd>
         <dt id="relativeQuadraticBezierTo" class="callable">
@@ -498,7 +502,7 @@ point.
           </span>
                   </dt>
         <dd>
-          Clears the <a href="dart-ui/Path-class.html">Path</a> object of all subpaths, returning it to the
+          Clears the <a href="dart-ui/Path-class.html">Path</a> object of all sub-paths, returning it to the
 same state it had when it was created. The <em>current point</em> is
 reset to the origin.
                   
@@ -510,7 +514,7 @@ reset to the origin.
                   </dt>
         <dd>
           Returns a copy of the path with all the segments of every
-subpath translated by the given offset.
+sub-path translated by the given offset.
                   
 </dd>
         <dt id="transform" class="callable">
@@ -520,7 +524,7 @@ subpath translated by the given offset.
                   </dt>
         <dd>
           Returns a copy of the path with all the segments of every
-subpath transformed by the given matrix.
+sub-path transformed by the given matrix.
                   
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -637,7 +641,7 @@ subpath transformed by the given matrix.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

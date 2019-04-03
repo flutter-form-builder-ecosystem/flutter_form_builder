@@ -98,11 +98,13 @@
       <li><a href="dart-ui/Shader-class.html">Shader</a></li>
       <li><a href="dart-ui/Shadow-class.html">Shadow</a></li>
       <li><a href="dart-ui/Size-class.html">Size</a></li>
+      <li><a href="dart-ui/StrutStyle-class.html">StrutStyle</a></li>
       <li><a href="dart-ui/Tangent-class.html">Tangent</a></li>
       <li><a href="dart-ui/TextBox-class.html">TextBox</a></li>
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
+      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -110,6 +112,7 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
+      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -128,6 +131,7 @@
       <li><a href="dart-ui/BlurStyle-class.html">BlurStyle</a></li>
       <li><a href="dart-ui/BoxHeightStyle-class.html">BoxHeightStyle</a></li>
       <li><a href="dart-ui/BoxWidthStyle-class.html">BoxWidthStyle</a></li>
+      <li><a href="dart-ui/Brightness-class.html">Brightness</a></li>
       <li><a href="dart-ui/Clip-class.html">Clip</a></li>
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
@@ -234,7 +238,7 @@ the Nexus 6 has a device pixel ratio of 3.5. <a href="dart-ui/Window/devicePixel
           <span class="signature">&#8596; <a href="dart-ui/VoidCallback.html">VoidCallback</a></span>         
         </dt>
         <dd>
-          A callback that is invoked when the value of <code>accessibilityFlags</code> changes. <a href="dart-ui/Window/onAccessibilityFeaturesChanged.html">[...]</a>
+          A callback that is invoked when the value of <a href="dart-ui/Window/accessibilityFeatures.html">accessibilityFeatures</a> changes. <a href="dart-ui/Window/onAccessibilityFeaturesChanged.html">[...]</a>
                   <div class="features">read / write</div>
 </dd>
         <dt id="onBeginFrame" class="property">
@@ -277,6 +281,14 @@ after any deferred work queued by the <a href="dart-ui/Window/onBeginFrame.html"
 <a href="dart-ui/Window/physicalSize.html">physicalSize</a>, <a href="dart-ui/Window/padding.html">padding</a>, or <a href="dart-ui/Window/viewInsets.html">viewInsets</a> values change, for example
 when the device is rotated or when the application is resized (e.g. when
 showing applications side-by-side on Android). <a href="dart-ui/Window/onMetricsChanged.html">[...]</a>
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="onPlatformBrightnessChanged" class="property">
+          <span class="name"><a href="dart-ui/Window/onPlatformBrightnessChanged.html">onPlatformBrightnessChanged</a></span>
+          <span class="signature">&#8596; <a href="dart-ui/VoidCallback.html">VoidCallback</a></span>         
+        </dt>
+        <dd>
+          A callback that is invoked whenever <a href="dart-ui/Window/platformBrightness.html">platformBrightness</a> changes value. <a href="dart-ui/Window/onPlatformBrightnessChanged.html">[...]</a>
                   <div class="features">read / write</div>
 </dd>
         <dt id="onPlatformMessage" class="property">
@@ -340,6 +352,15 @@ phone sensor housings). <a href="dart-ui/Window/padding.html">[...]</a>
         <dd>
           The dimensions of the rectangle into which the application will be drawn,
 in physical pixels. <a href="dart-ui/Window/physicalSize.html">[...]</a>
+                  <div class="features">read-only</div>
+</dd>
+        <dt id="platformBrightness" class="property">
+          <span class="name"><a href="dart-ui/Window/platformBrightness.html">platformBrightness</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/Brightness-class.html">Brightness</a></span>         
+        </dt>
+        <dd>
+          The setting indicating the current brightness mode of the host platform.
+If the platform has no preference, <a href="dart-ui/Window/platformBrightness.html">platformBrightness</a> defaults to <a href="dart-ui/Brightness-class.html">Brightness.light</a>.
                   <div class="features">read-only</div>
 </dd>
         <dt id="semanticsEnabled" class="property">
@@ -501,6 +522,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
       <li><a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a></li>
       <li><a href="dart-ui/Window/onLocaleChanged.html">onLocaleChanged</a></li>
       <li><a href="dart-ui/Window/onMetricsChanged.html">onMetricsChanged</a></li>
+      <li><a href="dart-ui/Window/onPlatformBrightnessChanged.html">onPlatformBrightnessChanged</a></li>
       <li><a href="dart-ui/Window/onPlatformMessage.html">onPlatformMessage</a></li>
       <li><a href="dart-ui/Window/onPointerDataPacket.html">onPointerDataPacket</a></li>
       <li><a href="dart-ui/Window/onSemanticsAction.html">onSemanticsAction</a></li>
@@ -508,6 +530,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
       <li><a href="dart-ui/Window/onTextScaleFactorChanged.html">onTextScaleFactorChanged</a></li>
       <li><a href="dart-ui/Window/padding.html">padding</a></li>
       <li><a href="dart-ui/Window/physicalSize.html">physicalSize</a></li>
+      <li><a href="dart-ui/Window/platformBrightness.html">platformBrightness</a></li>
       <li><a href="dart-ui/Window/semanticsEnabled.html">semanticsEnabled</a></li>
       <li><a href="dart-ui/Window/textScaleFactor.html">textScaleFactor</a></li>
       <li><a href="dart-ui/Window/viewInsets.html">viewInsets</a></li>
@@ -535,7 +558,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

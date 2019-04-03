@@ -104,7 +104,7 @@ String toString() {
            &#39;maxLines: ${      _encoded[0] &amp; 0x020 == 0x020 ? _encoded[5]                       : &quot;unspecified&quot;}, &#39;
            &#39;fontFamily: ${    _encoded[0] &amp; 0x040 == 0x040 ? _fontFamily                       : &quot;unspecified&quot;}, &#39;
            &#39;fontSize: ${      _encoded[0] &amp; 0x080 == 0x080 ? _fontSize                         : &quot;unspecified&quot;}, &#39;
-           &#39;lineHeight: ${    _encoded[0] &amp; 0x100 == 0x100 ? &quot;${_lineHeight}x&quot;                 : &quot;unspecified&quot;}, &#39;
+           &#39;height: ${        _encoded[0] &amp; 0x100 == 0x100 ? &quot;${_height}x&quot;                     : &quot;unspecified&quot;}, &#39;
            &#39;ellipsis: ${      _encoded[0] &amp; 0x200 == 0x200 ? &quot;\&quot;$_ellipsis\&quot;&quot;                  : &quot;unspecified&quot;}, &#39;
            &#39;locale: ${        _encoded[0] &amp; 0x400 == 0x400 ? _locale                           : &quot;unspecified&quot;}&#39;
          &#39;)&#39;;
@@ -120,7 +120,7 @@ String toString() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

@@ -94,7 +94,17 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@pragma(&#39;vm:entry-point&#39;)
-ParagraphBuilder(ParagraphStyle style) { _constructor(style._encoded, style._fontFamily, style._fontSize, style._lineHeight, style._ellipsis, _encodeLocale(style._locale)); }</code></pre>
+ParagraphBuilder(ParagraphStyle style) {
+  List&lt;String&gt; strutFontFamilies;
+  if (style._strutStyle != null) {
+    strutFontFamilies = &lt;String&gt;[];
+    if (style._strutStyle._fontFamily != null)
+      strutFontFamilies.add(style._strutStyle._fontFamily);
+    if (style._strutStyle._fontFamilyFallback != null)
+      strutFontFamilies.addAll(style._strutStyle._fontFamilyFallback);
+  }
+  _constructor(style._encoded, style._strutStyle?._encoded, style._fontFamily, strutFontFamilies, style._fontSize, style._height, style._ellipsis, _encodeLocale(style._locale));
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -106,7 +116,7 @@ ParagraphBuilder(ParagraphStyle style) { _constructor(style._encoded, style._fon
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

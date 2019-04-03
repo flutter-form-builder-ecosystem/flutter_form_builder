@@ -57,6 +57,7 @@
       <li class="section-title">
         <a href="dart-ui/PathMetric-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-ui/PathMetric/contourIndex.html">contourIndex</a></li>
       <li><a href="dart-ui/PathMetric/isClosed.html">isClosed</a></li>
       <li><a href="dart-ui/PathMetric/length.html">length</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -65,8 +66,8 @@
       <li class="section-title"><a href="dart-ui/PathMetric-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/PathMetric/extractPath.html">extractPath</a></li>
       <li><a href="dart-ui/PathMetric/getTangentForOffset.html">getTangentForOffset</a></li>
+      <li><a href="dart-ui/PathMetric/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
       <li class="section-title inherited"><a href="dart-ui/PathMetric-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -86,7 +87,7 @@
       
     </section>
     <section class="desc markdown">
-      <p>Computes the position of hte current contour at the given offset, and the
+      <p>Computes the position of the current contour at the given offset, and the
 angle of the path at that point.</p>
 <p>For example, calling this method with a distance of 1.41 for a line from
 0.0,0.0 to 2.0,2.0 would give a point 1.0,1.0 and the angle 45 degrees
@@ -98,16 +99,7 @@ angle of the path at that point.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">Tangent getTangentForOffset(double distance) {
-  final Float32List posTan = _getPosTan(distance);
-  &#47;&#47; first entry == 0 indicates that Skia returned false
-  if (posTan[0] == 0.0) {
-    return null;
-  } else {
-    return new Tangent(
-      new Offset(posTan[1], posTan[2]),
-      new Offset(posTan[3], posTan[4])
-    );
-  }
+  return _measure.getTangentForOffset(contourIndex, distance);
 }</code></pre>
     </section>
 
@@ -120,7 +112,7 @@ angle of the path at that point.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

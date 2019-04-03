@@ -73,6 +73,9 @@
       <li class="section-title"><a href="dart-ui/Locale-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/Locale/operator_equals.html">operator ==</a></li>
     
+      <li class="section-title"><a href="dart-ui/Locale-class.html#static-properties">Static properties</a></li>
+      <li><a href="dart-ui/Locale/cachedLocale.html">cachedLocale</a></li>
+      <li><a href="dart-ui/Locale/cachedLocaleString.html">cachedLocaleString</a></li>
     
     
     </ol>
@@ -107,7 +110,7 @@ replaced by the subtag <code>DE</code>.</p>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
-          <pre class="language-dart"><code class="language-dart">String get countryCode =&gt; _replaceDeprecatedRegionSubtag(_countryCode);</code></pre>
+          <pre class="language-dart"><code class="language-dart">String get countryCode =&gt; _deprecatedRegionSubtagMap[_countryCode] ?? _countryCode;</code></pre>
         </section>
 </section>
         
@@ -120,7 +123,7 @@ replaced by the subtag <code>DE</code>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   

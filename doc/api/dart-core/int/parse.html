@@ -136,8 +136,9 @@
     </section>
     <section class="desc markdown">
       <p>Parse <code>source</code> as a, possibly signed, integer literal and return its value.</p>
-<p>The <code>source</code> must be either a non-empty sequence of base-<code>radix</code> digits,
-optionally prefixed with a minus or plus sign ('-' or '+').</p>
+<p>The <code>source</code> must be a non-empty sequence of base-<code>radix</code> digits,
+optionally prefixed with a minus or plus sign ('-' or '+').
+It must not be <code>null</code>.</p>
 <p>The <code>radix</code> must be in the range 2..36. The digits used are
 first the decimal digits 0..9, and then the letters 'a'..'z' with
 values 10 through 35. Also accepts upper-case letters with the same
@@ -152,7 +153,7 @@ hexadecimal integer literals may represent values larger than
 signed integer value.</p>
 <p>For any int <code>n</code> and valid radix <code>r</code>, it is guaranteed that
 <code>n == int.parse(n.toRadixString(r), radix: r)</code>.</p>
-<p>If the <code>source</code> does not contain a valid integer literal,
+<p>If the <code>source</code> string does not contain a valid integer literal,
 optionally prefixed by a sign, a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown
 (unless the deprecated <code>onError</code> parameter is used, see below).</p>
 <p>Instead of throwing and immediately catching the <a href="dart-core/FormatException-class.html">FormatException</a>,
@@ -164,7 +165,7 @@ if (value == null) ... handle the problem
 <p>The <code>onError</code> parameter is deprecated and will be removed.
 Instead of <code>int.parse(string, onError: (string) =&gt; ...)</code>,
 you should use <code>int.tryParse(string) ?? (...)</code>.</p>
-<p>When source is not valid and <code>onError</code> is provided,
+<p>When the source string is not valid and <code>onError</code> is provided,
 whenever a <a href="dart-core/FormatException-class.html">FormatException</a> would be thrown,
 <code>onError</code> is instead called with <code>source</code> as argument,
 and the result of that call is returned by <a href="dart-core/int/parse.html">parse</a>.</p>
@@ -185,7 +186,7 @@ and the result of that call is returned by <a href="dart-core/int/parse.html">pa
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 3.0.0
   </span>
 
   
