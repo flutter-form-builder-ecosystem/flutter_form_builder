@@ -20,7 +20,7 @@ class FormBuilderSlider extends StatefulWidget {
     @required this.initialValue,
     this.validators = const [],
     this.readonly = false,
-    this.decoration,
+    this.decoration = const InputDecoration(),
     this.divisions,
   });
 

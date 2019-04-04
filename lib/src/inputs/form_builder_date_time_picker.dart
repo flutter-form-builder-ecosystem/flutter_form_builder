@@ -24,7 +24,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.format,
     this.firstDate,
     this.lastDate,
-    this.decoration,
+    this.decoration = const InputDecoration(),
   });
 
   @override
