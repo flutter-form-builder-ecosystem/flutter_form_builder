@@ -32,6 +32,8 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool hideOnError;
   final bool hideSuggestionsOnKeyboardHide;
   final bool keepSuggestionsOnLoading;
+  final bool autoFlipDirection;
+
 
   FormBuilderTypeAhead({
     @required this.attribute,
@@ -60,6 +62,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.hideOnError = false,
     this.hideSuggestionsOnKeyboardHide = true,
     this.keepSuggestionsOnLoading = true,
+    this.autoFlipDirection = false,
   });
 
   @override
@@ -91,7 +94,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       onSaved: (val) {
         FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
-      // initialValue: widget.initialValue,
+      initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,
       textFieldConfiguration: TextFieldConfiguration(
         enabled: !_readonly,
@@ -128,6 +131,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       hideOnError: widget.hideOnError,
       hideSuggestionsOnKeyboardHide: widget.hideSuggestionsOnKeyboardHide,
       keepSuggestionsOnLoading: widget.keepSuggestionsOnLoading,
+      autoFlipDirection: widget.autoFlipDirection,
     );
   }
 }

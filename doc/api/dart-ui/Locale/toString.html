@@ -73,9 +73,6 @@
       <li class="section-title"><a href="dart-ui/Locale-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/Locale/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/Locale-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/Locale/cachedLocale.html">cachedLocale</a></li>
-      <li><a href="dart-ui/Locale/cachedLocaleString.html">cachedLocaleString</a></li>
     
     
     </ol>
@@ -103,11 +100,12 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 String toString() {
-  if (!identical(cachedLocale, this)) {
-    cachedLocale = this;
-    cachedLocaleString = _rawToString();
-  }
-  return cachedLocaleString;
+  final StringBuffer out = StringBuffer(languageCode);
+  if (scriptCode != null)
+    out.write(&#39;_$scriptCode&#39;);
+  if (_countryCode != null)
+    out.write(&#39;_$countryCode&#39;);
+  return out.toString();
 }</code></pre>
     </section>
 
@@ -120,7 +118,7 @@ String toString() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0
+    flutter_form_builder 3.0.0-beta.2
   </span>
 
   

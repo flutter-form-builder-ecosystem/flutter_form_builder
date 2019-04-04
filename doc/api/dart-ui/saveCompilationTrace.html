@@ -176,13 +176,11 @@
     </section>
     <section class="desc markdown">
       <p>Returns runtime Dart compilation trace as a UTF-8 encoded memory buffer.</p>
-<p>The buffer contains a list of symbols compiled by the Dart JIT at runtime up
-to the point when this function was called. This list can be saved to a text
-file and passed to tools such as <code>flutter build</code> or Dart <code>gen_snapshot</code> in
-order to pre-compile this code offline.</p>
-<p>The list has one symbol per line of the following format:
-<code>&lt;namespace&gt;,&lt;class&gt;,&lt;symbol&gt;\n</code>.</p>
-<p>Here are some examples:</p>
+<p>The buffer contains a list of symbols compiled by the Dart JIT at runtime up to the point
+when this function was called. This list can be saved to a text file and passed to tools
+such as <code>flutter build</code> or Dart <code>gen_snapshot</code> in order to precompile this code offline.</p>
+<p>The list has one symbol per line of the following format: <code>&lt;namespace&gt;,&lt;class&gt;,&lt;symbol&gt;\n</code>.
+Here are some examples:</p>
 <pre class="language-dart"><code>dart:core,Duration,get:inMilliseconds
 package:flutter/src/widgets/binding.dart,::,runApp
 file:///.../my_app.dart,::,main
@@ -209,7 +207,7 @@ file:///.../my_app.dart,::,main
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0
+    flutter_form_builder 3.0.0-beta.2
   </span>
 
   

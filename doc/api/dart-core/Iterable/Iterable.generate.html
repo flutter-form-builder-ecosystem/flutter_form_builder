@@ -123,8 +123,8 @@ and the element at index <code>n</code> is computed by calling <code>generator(n
 Values are not cached, so each iteration computes the values again.</p>
 <p>If <code>generator</code> is omitted, it defaults to an identity function
 on integers <code>(int x) =&gt; x</code>, so it may only be omitted if the type
-parameter allows integer values. That is, if <code>E</code> is a super-type
-of <a href="dart-core/int-class.html">int</a>.</p>
+parameter allows integer values. That is, if <code>E</code> is one of
+<code>int</code>, <code>num</code>, <code>Object</code> or <code>dynamic</code>.</p>
 <p>As an <code>Iterable</code>, <code>new Iterable.generate(n, generator))</code> is equivalent to
 <code>const [0, ..., n - 1].map(generator)</code>.</p>
     </section>
@@ -146,7 +146,7 @@ of <a href="dart-core/int-class.html">int</a>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0
+    flutter_form_builder 3.0.0-beta.2
   </span>
 
   
