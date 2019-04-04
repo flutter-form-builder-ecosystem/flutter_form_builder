@@ -91,18 +91,21 @@
     <section class="multi-line-signature">
       <span class="returntype">FormFieldValidator</span>
             <span class="name ">required</span>
-(<wbr>{<span class="parameter" id="required-param-errorMessage"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorMessage</span>: <span class="default-value">"This field cannot be empty."</span></span> })
+(<wbr>{<span class="parameter" id="required-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field cannot be empty."</span></span> })
       
+    </section>
+    <section class="desc markdown">
+      <p><code>FormFieldValidator</code> that requires the field have a non-empty value.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator required({
-  String errorMessage = &quot;This field cannot be empty.&quot;,
+  String errorText = &quot;This field cannot be empty.&quot;,
 }) {
   return (val) {
     if (val == null || val.isEmpty) {
-      return errorMessage;
+      return errorText;
     }
   };
 }</code></pre>

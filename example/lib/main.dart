@@ -49,7 +49,7 @@ class MyHomePageState extends State<MyHomePage> {
                 context,
                 key: _fbKey,
                 autovalidate: true,
-                readonly: true,
+                // readonly: true,
                 child: Column(
                   children: <Widget>[
                     FormBuilderField(
@@ -163,7 +163,7 @@ class MyHomePageState extends State<MyHomePage> {
                           "I have read and agree to the terms and conditions"),
                       validators: [
                         FormBuilderValidators.requiredTrue(
-                          errorMessage:
+                          errorText:
                               "You must accept terms and conditions to continue",
                         ),
                       ],
@@ -281,7 +281,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
-                      height: 100,
+                      height: 200,
                     ),
                   ],
                 ),

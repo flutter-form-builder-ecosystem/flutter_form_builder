@@ -91,17 +91,20 @@
     <section class="multi-line-signature">
       <span class="returntype">FormFieldValidator</span>
             <span class="name ">numeric</span>
-(<wbr>{<span class="parameter" id="numeric-param-errorMessage"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorMessage</span>: <span class="default-value">"Value must be numeric."</span></span> })
+(<wbr>{<span class="parameter" id="numeric-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"Value must be numeric."</span></span> })
       
+    </section>
+    <section class="desc markdown">
+      <p><code>FormFieldValidator</code> that requires the field's value to be a valid number.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator numeric({
-  String errorMessage = &quot;Value must be numeric.&quot;,
+  String errorText = &quot;Value must be numeric.&quot;,
 }) {
   return (val) {
-    if (num.tryParse(val) == null &amp;&amp; val.isNotEmpty) return errorMessage;
+    if (num.tryParse(val) == null &amp;&amp; val.isNotEmpty) return errorText;
   };
 }</code></pre>
     </section>

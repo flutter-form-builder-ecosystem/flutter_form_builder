@@ -91,19 +91,23 @@
     <section class="multi-line-signature">
       <span class="returntype">FormFieldValidator</span>
             <span class="name ">pattern</span>
-(<wbr><span class="parameter" id="pattern-param-pattern"><span class="type-annotation"><a href="dart-core/Pattern-class.html">Pattern</a></span> <span class="parameter-name">pattern</span>, {</span> <span class="parameter" id="pattern-param-errorMessage"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorMessage</span>: <span class="default-value">"Value does not match pattern."</span></span> })
+(<wbr><span class="parameter" id="pattern-param-pattern"><span class="type-annotation"><a href="dart-core/Pattern-class.html">Pattern</a></span> <span class="parameter-name">pattern</span>, {</span> <span class="parameter" id="pattern-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"Value does not match pattern."</span></span> })
       
+    </section>
+    <section class="desc markdown">
+      <p><code>FormFieldValidator</code> that requires the field's value to match a regex
+pattern.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator pattern(
   Pattern pattern, {
-  String errorMessage = &quot;Value does not match pattern.&quot;,
+  String errorText = &quot;Value does not match pattern.&quot;,
 }) {
   return (val) {
     if (val != null &amp;&amp; val.isNotEmpty) {
-      if (!RegExp(pattern).hasMatch(val)) return errorMessage;
+      if (!RegExp(pattern).hasMatch(val)) return errorText;
     }
   };
 }</code></pre>

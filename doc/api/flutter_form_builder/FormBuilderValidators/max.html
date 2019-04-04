@@ -91,15 +91,19 @@
     <section class="multi-line-signature">
       <span class="returntype">FormFieldValidator</span>
             <span class="name ">max</span>
-(<wbr><span class="parameter" id="max-param-max"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">max</span>, {</span> <span class="parameter" id="max-param-errorMessage"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorMessage</span></span> })
+(<wbr><span class="parameter" id="max-param-max"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">max</span>, {</span> <span class="parameter" id="max-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span></span> })
       
+    </section>
+    <section class="desc markdown">
+      <p><code>FormFieldValidator</code> that requires the field's value to be less than
+or equal to the provided number.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator max(
   num max, {
-  String errorMessage,
+  String errorText,
 }) {
   return (val) {
     if (val != null) {
@@ -107,7 +111,7 @@
           (val is String &amp;&amp;
               num.tryParse(val) != null &amp;&amp;
               num.tryParse(val) &gt; max)) {
-        return errorMessage ?? &quot;Value must be less than or equal to $max&quot;;
+        return errorText ?? &quot;Value must be less than or equal to $max&quot;;
       }
     }
   };

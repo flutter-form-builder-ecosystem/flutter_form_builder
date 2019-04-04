@@ -91,20 +91,23 @@
     <section class="multi-line-signature">
       <span class="returntype">FormFieldValidator</span>
             <span class="name ">url</span>
-(<wbr>{<span class="parameter" id="url-param-errorMessage"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorMessage</span>: <span class="default-value">"This field requires a valid email address."</span></span> })
+(<wbr>{<span class="parameter" id="url-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid email address."</span></span> })
       
+    </section>
+    <section class="desc markdown">
+      <p><code>FormFieldValidator</code> that requires the field's value to be a valid url.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator url({
-  String errorMessage = &quot;This field requires a valid email address.&quot;,
+  String errorText = &quot;This field requires a valid email address.&quot;,
 }) {
   return (val) {
     if (val != null &amp;&amp; val.isNotEmpty) {
       Pattern pattern =
           r&quot;(https?|ftp):&#47;&#47;([-A-Z0-9.]+)(&#47;[-A-Z0-9+&amp;@#&#47;%=~_|!:,.;]*)?(\?[A-Z0-9+&amp;@#&#47;%=~_|!:‌​,.;]*)?&quot;;
-      if (!RegExp(pattern).hasMatch(val)) return errorMessage;
+      if (!RegExp(pattern).hasMatch(val)) return errorText;
     }
   };
 }</code></pre>

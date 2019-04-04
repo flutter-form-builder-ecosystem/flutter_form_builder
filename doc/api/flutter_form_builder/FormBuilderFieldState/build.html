@@ -184,7 +184,7 @@ prints green, as expected.</p>
 Widget build(BuildContext context) {
   &#47;*return widget.formField
     ..onSaved = (T val) {
-      FormBuilder.of(context).setValue(widget.attribute, val);
+      FormBuilder.of(context)?.setValue(widget.attribute, val);
       if (widget.formField.onSaved != null) widget.formField.onSaved(val);
     }
     ..validator = (val) {
@@ -199,7 +199,7 @@ Widget build(BuildContext context) {
     key: Key(widget.attribute),
     child: FormField(
       onSaved: (val) {
-        FormBuilder.of(context).setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
         if (widget.formField.onSaved != null) widget.formField.onSaved(val);
       },
       validator: (val) {
