@@ -124,7 +124,7 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
       maxLengthEnforced: widget.maxLengthEnforced,
       onFieldSubmitted: widget.onFieldSubmitted,
       scrollPadding: widget.scrollPadding,
-      strutStyle: widget.strutStyle,
+      // strutStyle: widget.strutStyle,
       textAlign: widget.textAlign,
       textCapitalization: widget.textCapitalization,
       textDirection: widget.textDirection,

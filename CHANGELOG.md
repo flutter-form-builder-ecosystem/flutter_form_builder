@@ -1,3 +1,6 @@
+## [3.0.0-beta.2] - 04-April-2019
+* Disabled `TextFormField.strutStyle` from `FormBuilderTextField` breaks in v1.2.1 - current stable at release
+
 ## [3.0.0-beta.1] - 04-April-2019
 * Complete rewrite of the package - stateful
 * Contains `FormBuilderField` for creation of custom `FormField`s
