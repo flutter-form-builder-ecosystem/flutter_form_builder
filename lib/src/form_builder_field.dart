@@ -47,7 +47,8 @@ class FormBuilderFieldState<T> extends State<FormBuilderField<T>> {
           if (widget.formField.validator != null)
             return widget.formField.validator(val);
         },
-        builder: widget.formField.builder ?? (FormField<T> field) => Container(),
+        builder:
+            widget.formField.builder ?? (FormField<T> field) => Container(),
         enabled: widget.formField.enabled,
         autovalidate: widget.formField.autovalidate,
         initialValue: widget.formField.initialValue,

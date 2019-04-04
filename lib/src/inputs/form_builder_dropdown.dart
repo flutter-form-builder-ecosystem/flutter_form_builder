@@ -78,9 +78,11 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             disabledHint: widget.disabledHint,
             elevation: widget.elevation,
             iconSize: widget.iconSize,
-            onChanged: _readonly ? null : (value) {
-              field.didChange(value);
-            },
+            onChanged: _readonly
+                ? null
+                : (value) {
+                    field.didChange(value);
+                  },
           ),
         );
       },

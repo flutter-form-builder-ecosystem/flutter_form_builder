@@ -2,6 +2,9 @@
   <dictionary name="danvick">
     <words>
       <w>autovalidate</w>
+      <w>composability</w>
+      <w>composable</w>
+      <w>reusability</w>
     </words>
   </dictionary>
 </component>
