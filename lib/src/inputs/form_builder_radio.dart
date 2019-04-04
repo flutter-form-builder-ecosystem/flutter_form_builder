@@ -47,7 +47,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       builder: (FormFieldState<dynamic> field) {
         List<Widget> radioList = [];

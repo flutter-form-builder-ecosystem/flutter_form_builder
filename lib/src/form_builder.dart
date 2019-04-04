@@ -36,7 +36,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool get readonly => widget.readonly;
 
-  setValue(String attribute, dynamic value) {
+  setAttributeValue(String attribute, dynamic value) {
     setState(() {
       _value[attribute] = value;
     });

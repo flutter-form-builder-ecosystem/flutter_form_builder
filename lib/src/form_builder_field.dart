@@ -36,7 +36,7 @@ class FormBuilderFieldState<T> extends State<FormBuilderField<T>> {
       key: Key(widget.attribute),
       child: FormField(
         onSaved: (val) {
-          FormBuilder.of(context)?.setValue(widget.attribute, val);
+          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
           if (widget.formField.onSaved != null) widget.formField.onSaved(val);
         },
         validator: (val) {

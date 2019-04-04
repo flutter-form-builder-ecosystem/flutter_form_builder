@@ -51,7 +51,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

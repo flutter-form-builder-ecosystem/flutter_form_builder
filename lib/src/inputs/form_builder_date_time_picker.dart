@@ -63,7 +63,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         enabled: !_readonly,
       ),
       onSaved: (val) {
-        FormBuilder.of(context)?.setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

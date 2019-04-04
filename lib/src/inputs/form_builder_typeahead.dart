@@ -89,7 +89,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       // initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,

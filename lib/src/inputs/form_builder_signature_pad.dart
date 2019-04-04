@@ -72,7 +72,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       onSaved: (val) async {
         Uint8List signature = await _signatureCanvas.exportBytes();
         var image = Image.memory(signature).image;
-        FormBuilder.of(context)?.setValue(widget.attribute, image);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, image);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

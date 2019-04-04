@@ -96,7 +96,7 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       enabled: !_readonly,
       style: widget.style,
