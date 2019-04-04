@@ -25,11 +25,20 @@ class FormBuilderRadio extends StatefulWidget {
 }
 
 class _FormBuilderRadioState extends State<FormBuilderRadio> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
       // key: _fieldKey,
-      enabled: !widget.readonly && !widget.readonly,
+      enabled: !_readonly && !_readonly,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -49,22 +58,22 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
               isThreeLine: false,
               contentPadding: EdgeInsets.all(0.0),
               leading: null,
-              title: Text(
-                  "${widget.options[i].label ?? widget.options[i].value}"),
+              title:
+                  Text("${widget.options[i].label ?? widget.options[i].value}"),
               trailing: Radio<dynamic>(
                 value: widget.options[i].value,
                 groupValue: field.value,
-                onChanged: (widget.readonly || widget.readonly)
+                onChanged: _readonly
                     ? null
                     : (dynamic value) {
-                  field.didChange(value);
-                },
+                        field.didChange(value);
+                      },
               ),
-              onTap: (widget.readonly || widget.readonly)
+              onTap: _readonly
                   ? null
                   : () {
-                field.didChange(widget.options[i].value);
-              },
+                      field.didChange(widget.options[i].value);
+                    },
             ),
             Divider(
               height: 0.0,
@@ -73,7 +82,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
         }
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly || widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
             contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
             border: InputBorder.none,

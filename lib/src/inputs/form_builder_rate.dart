@@ -30,10 +30,19 @@ class FormBuilderRate extends StatefulWidget {
 }
 
 class _FormBuilderRateState extends State<FormBuilderRate> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-      enabled: !(widget.readonly),
+      enabled: !_readonly,
       // key: _fieldKey,
       initialValue: widget.initialValue,
       validator: (val) {
@@ -48,15 +57,16 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
           ),
           child: SyRate(
             value: field.value,
             total: widget.max,
             icon: widget.icon,
-            iconSize: widget.iconSize, //TODO: When disabled change icon color (Probably deep grey)
-            onTap: (widget.readonly)
+            iconSize: widget.iconSize,
+            //TODO: When disabled change icon color (Probably deep grey)
+            onTap: _readonly
                 ? null
                 : (value) {
                     field.didChange(value);

@@ -29,11 +29,14 @@ class FormBuilder extends StatefulWidget {
 class FormBuilderState extends State<FormBuilder> {
   //FIXME: Find way to assert no duplicates in control attributes
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   Map<String, dynamic> _value = {};
 
   Map<String, dynamic> get value => _value;
 
-  setValue(String attribute, dynamic value){
+  bool get readonly => widget.readonly;
+
+  setValue(String attribute, dynamic value) {
     setState(() {
       _value[attribute] = value;
     });
@@ -58,8 +61,8 @@ class FormBuilderState extends State<FormBuilder> {
       child: widget.child,
       autovalidate: widget.autovalidate,
       onWillPop: widget.onWillPop,
-      onChanged: (){
-        if(widget.onChanged != null){
+      onChanged: () {
+        if (widget.onChanged != null) {
           save();
           widget.onChanged(value);
         }

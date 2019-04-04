@@ -49,6 +49,7 @@ class MyHomePageState extends State<MyHomePage> {
                 context,
                 key: _fbKey,
                 autovalidate: true,
+                readonly: true,
                 child: Column(
                   children: <Widget>[
                     FormBuilderField(
@@ -62,7 +63,7 @@ class MyHomePageState extends State<MyHomePage> {
                         builder: (FormFieldState<dynamic> field) {
                           return InputDecorator(
                             decoration: InputDecoration(
-                              errorText: field.errorText,
+                              labelText: "Select option",
                               contentPadding:
                                   EdgeInsets.only(top: 10.0, bottom: 0.0),
                               border: InputBorder.none,
@@ -87,7 +88,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderChipsInput(
                       decoration: InputDecoration(labelText: "Chips"),
                       attribute: 'chips_test',
-                      // require: true,
+                      readonly: true,
                       initialValue: [
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -143,6 +144,7 @@ class MyHomePageState extends State<MyHomePage> {
                       format: DateFormat("yyyy-MM-dd"),
                       decoration:
                           InputDecoration(labelText: "Appointment Time"),
+                      readonly: true,
                     ),
                     FormBuilderSlider(
                       attribute: "slider",

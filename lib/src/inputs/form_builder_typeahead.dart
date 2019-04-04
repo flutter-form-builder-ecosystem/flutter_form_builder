@@ -17,7 +17,8 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
   final Duration debounceDuration;
   final SuggestionsBoxDecoration suggestionsBoxDecoration;
-  final SuggestionSelectionCallback<T> onSuggestionSelected;
+
+  // final SuggestionSelectionCallback<T> onSuggestionSelected;
   final ItemBuilder<T> itemBuilder;
   final SuggestionsCallback<T> suggestionsCallback;
   final double suggestionsBoxVerticalOffset;
@@ -34,7 +35,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
 
   FormBuilderTypeAhead({
     @required this.attribute,
-    @required this.onSuggestionSelected,
+    // @required this.onSuggestionSelected,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.initialValue,
@@ -67,11 +68,13 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
 
 class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   TextEditingController _typeAheadController;
+  bool _readonly = false;
 
   @override
   void initState() {
-    _typeAheadController =
-        TextEditingController(text: widget.initialValue);
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    _typeAheadController = TextEditingController(text: widget.initialValue);
     super.initState();
   }
 
@@ -91,30 +94,22 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       // initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,
       textFieldConfiguration: TextFieldConfiguration(
-        enabled: !(widget.readonly || widget.readonly),
+        enabled: !_readonly,
         controller: _typeAheadController,
-        style: (widget.readonly || widget.readonly)
-            ? Theme
-            .of(context)
-            .textTheme
-            .subhead
-            .copyWith(
-          color: Theme
-              .of(context)
-              .disabledColor,
-        )
+        style: _readonly
+            ? Theme.of(context).textTheme.subhead.copyWith(
+                  color: Theme.of(context).disabledColor,
+                )
             : null,
-        focusNode: (widget.readonly || widget.readonly)
-            ? AlwaysDisabledFocusNode()
-            : null,
+        focusNode: _readonly ? AlwaysDisabledFocusNode() : null,
         decoration: widget.decoration.copyWith(
-          enabled: !(widget.readonly),
+          enabled: !_readonly,
         ),
       ),
       suggestionsCallback: widget.suggestionsCallback,
       itemBuilder: widget.itemBuilder,
       transitionBuilder: (context, suggestionsBox, controller) =>
-      suggestionsBox,
+          suggestionsBox,
       onSuggestionSelected: (suggestion) {
         _typeAheadController.text = suggestion;
       },

@@ -25,11 +25,20 @@ class FormBuilderCheckbox extends StatefulWidget {
 }
 
 class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
       // key: _fieldKey,
-      enabled: !(widget.readonly),
+      enabled: !_readonly,
       initialValue: widget.initialValue ?? false,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -43,7 +52,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
           ),
           child: ListTile(
@@ -53,18 +62,18 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
             title: widget.label,
             trailing: Checkbox(
               value: field.value ?? false,
-              onChanged: (widget.readonly)
+              onChanged: _readonly
                   ? null
                   : (bool value) {
-                field.didChange(value);
-              },
+                      field.didChange(value);
+                    },
             ),
-            onTap: (widget.readonly)
+            onTap: _readonly
                 ? null
                 : () {
-              bool newValue = !(field.value ?? false);
-              field.didChange(newValue);
-            },
+                    bool newValue = !(field.value ?? false);
+                    field.didChange(newValue);
+                  },
           ),
         );
       },

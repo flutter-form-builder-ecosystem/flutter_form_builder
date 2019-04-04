@@ -77,6 +77,15 @@ class FormBuilderTextField extends StatefulWidget {
 }
 
 class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -89,11 +98,11 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
       onSaved: (val) {
         FormBuilder.of(context)?.setValue(widget.attribute, val);
       },
-      enabled: !(widget.readonly),
+      enabled: !_readonly,
       style: widget.style,
-      focusNode: (widget.readonly) ? AlwaysDisabledFocusNode() : null,
+      focusNode: _readonly ? AlwaysDisabledFocusNode() : null,
       decoration: widget.decoration.copyWith(
-        enabled: !(widget.readonly),
+        enabled: !_readonly,
       ),
       autovalidate: widget.autovalidate ?? false,
       initialValue: widget.initialValue != null ? "${widget.initialValue}" : '',

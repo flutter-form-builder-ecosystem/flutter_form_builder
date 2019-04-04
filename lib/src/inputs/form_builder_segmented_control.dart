@@ -22,16 +22,27 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   });
 
   @override
-  _FormBuilderSegmentedControlState createState() => _FormBuilderSegmentedControlState();
+  _FormBuilderSegmentedControlState createState() =>
+      _FormBuilderSegmentedControlState();
 }
 
-class _FormBuilderSegmentedControlState extends State<FormBuilderSegmentedControl> {
+class _FormBuilderSegmentedControlState
+    extends State<FormBuilderSegmentedControl> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
       // key: _fieldKey,
       initialValue: widget.initialValue,
-      enabled: !(widget.readonly || widget.readonly),
+      enabled: !_readonly,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
@@ -44,7 +55,7 @@ class _FormBuilderSegmentedControlState extends State<FormBuilderSegmentedContro
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
             contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
             border: InputBorder.none,
@@ -52,13 +63,13 @@ class _FormBuilderSegmentedControlState extends State<FormBuilderSegmentedContro
           child: Padding(
             padding: EdgeInsets.only(top: 10.0),
             child: CupertinoSegmentedControl(
-              borderColor: (widget.readonly)
+              borderColor: _readonly
                   ? Theme.of(context).disabledColor
                   : Theme.of(context).primaryColor,
-              selectedColor: (widget.readonly)
+              selectedColor: _readonly
                   ? Theme.of(context).disabledColor
                   : Theme.of(context).primaryColor,
-              pressedColor: (widget.readonly)
+              pressedColor: _readonly
                   ? Theme.of(context).disabledColor
                   : Theme.of(context).primaryColor,
               groupValue: field.value,
@@ -71,7 +82,7 @@ class _FormBuilderSegmentedControlState extends State<FormBuilderSegmentedContro
                     ),
               ),
               onValueChanged: (dynamic value) {
-                if (widget.readonly) {
+                if (_readonly) {
                   field.reset();
                 } else
                   field.didChange(value);

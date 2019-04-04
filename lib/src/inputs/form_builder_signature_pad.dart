@@ -39,6 +39,15 @@ class FormBuilderSignaturePad extends StatefulWidget {
 }
 
 class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var _signatureCanvas = Signature(
@@ -52,7 +61,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
 
     return FormField<Image>(
       key: Key(widget.attribute),
-      enabled: !(widget.readonly || widget.readonly),
+      enabled: !_readonly,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -68,7 +77,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly || widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
           ),
           child: Column(
@@ -85,12 +94,20 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
               Row(
                 children: <Widget>[
                   Expanded(child: SizedBox()),
-                  FlatButton(
-                      onPressed: () {
-                        _signatureCanvas.clear();
-                        field.didChange(null);
-                      },
-                      child: Text('Clear')),
+                  FlatButton.icon(
+                    onPressed: () {
+                      _signatureCanvas.clear();
+                      field.didChange(null);
+                    },
+                    label: Text(
+                      "Clear",
+                      style: TextStyle(color: Theme.of(context).errorColor),
+                    ),
+                    icon: Icon(
+                      Icons.clear,
+                      color: Theme.of(context).errorColor,
+                    ),
+                  ),
                 ],
               ),
             ],

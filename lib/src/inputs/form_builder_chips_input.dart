@@ -11,6 +11,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final InputDecoration decoration;
 
   final ChipsInputSuggestions findSuggestions;
+
   // final ValueChanged<List<T>> onChanged;
   final ValueChanged<T> onChipTapped;
   final ChipsBuilder<T> chipBuilder;
@@ -35,13 +36,22 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
 }
 
 class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       // height: 200.0,
       child: FormField(
         // key: _fieldKey,
-        enabled: !(widget.readonly || widget.readonly),
+        enabled: !_readonly,
         initialValue: widget.initialValue,
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
@@ -55,9 +65,9 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
         builder: (FormFieldState<dynamic> field) {
           return ChipsInput(
             initialValue: field.value,
-            enabled: !(widget.readonly || widget.readonly),
+            enabled: !_readonly,
             decoration: widget.decoration.copyWith(
-              enabled: !(widget.readonly || widget.readonly),
+              enabled: !_readonly,
               errorText: field.errorText,
             ),
             findSuggestions: widget.findSuggestions,

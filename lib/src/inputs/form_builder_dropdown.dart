@@ -39,10 +39,19 @@ class FormBuilderDropdown extends StatefulWidget {
 }
 
 class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-      enabled: !(widget.readonly),
+      enabled: !_readonly,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -69,7 +78,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             disabledHint: widget.disabledHint,
             elevation: widget.elevation,
             iconSize: widget.iconSize,
-            onChanged: (value) {
+            onChanged: _readonly ? null : (value) {
               field.didChange(value);
             },
           ),

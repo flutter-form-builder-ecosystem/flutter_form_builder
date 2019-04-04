@@ -25,11 +25,20 @@ class FormBuilderSwitch extends StatefulWidget {
 }
 
 class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-      // key: _fieldKey,
-        enabled: !(widget.readonly),
+        // key: _fieldKey,
+        enabled: !_readonly,
         initialValue: widget.initialValue ?? false,
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
@@ -43,7 +52,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
         builder: (FormFieldState<dynamic> field) {
           return InputDecorator(
             decoration: widget.decoration.copyWith(
-              enabled: !(widget.readonly || widget.readonly),
+              enabled: !_readonly,
               errorText: field.errorText,
             ),
             child: ListTile(
@@ -53,18 +62,18 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
               title: widget.label,
               trailing: Switch(
                 value: field.value,
-                onChanged: (widget.readonly || widget.readonly)
+                onChanged: _readonly
                     ? null
                     : (bool value) {
-                  field.didChange(value);
-                },
+                        field.didChange(value);
+                      },
               ),
-              onTap: (widget.readonly || widget.readonly)
+              onTap: _readonly
                   ? null
                   : () {
-                bool newValue = !(field.value ?? false);
-                field.didChange(newValue);
-              },
+                      bool newValue = !(field.value ?? false);
+                      field.didChange(newValue);
+                    },
             ),
           );
         });

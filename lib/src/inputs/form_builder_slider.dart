@@ -29,11 +29,20 @@ class FormBuilderSlider extends StatefulWidget {
 }
 
 class _FormBuilderSliderState extends State<FormBuilderSlider> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
       // key: _fieldKey,
-      enabled: !(widget.readonly),
+      enabled: !_readonly,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -47,7 +56,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
           ),
           child: Container(
@@ -60,7 +69,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   min: widget.min,
                   max: widget.max,
                   divisions: widget.divisions,
-                  onChanged: (widget.readonly)
+                  onChanged: _readonly
                       ? null
                       : (double value) {
                           field.didChange(value);

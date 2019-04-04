@@ -33,6 +33,15 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 }
 
 class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
@@ -47,14 +56,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       format: widget.format != null
           ? widget.format
           : _dateTimeFormats[widget.inputType],
-      enabled: !widget.readonly,
+      enabled: !_readonly,
       firstDate: widget.firstDate,
       lastDate: widget.lastDate,
       decoration: widget.decoration.copyWith(
-        enabled: !(widget.readonly),
+        enabled: !_readonly,
       ),
       onSaved: (val) {
-        FormBuilder.of(context).setValue(widget.attribute, val);
+        FormBuilder.of(context)?.setValue(widget.attribute, val);
       },
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

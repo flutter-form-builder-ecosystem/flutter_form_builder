@@ -32,10 +32,19 @@ class FormBuilderStepper extends StatefulWidget {
 }
 
 class _FormBuilderStepperState extends State<FormBuilderStepper> {
+  bool _readonly = false;
+
+  @override
+  void initState() {
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-      enabled: !(widget.readonly || widget.readonly),
+      enabled: !_readonly,
       // key: _fieldKey,
       initialValue: widget.initialValue,
       validator: (val) {
@@ -50,7 +59,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !(widget.readonly || widget.readonly),
+            enabled: !_readonly,
             errorText: field.errorText,
           ),
           child: SyStepper(
@@ -59,7 +68,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
             min: widget.min ?? 0,
             max: widget.max ?? 9999999,
             size: widget.size,
-            onChange: (widget.readonly)
+            onChange: _readonly
                 ? null
                 : (value) {
                     field.didChange(value);
