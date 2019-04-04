@@ -88,7 +88,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderChipsInput(
                       decoration: InputDecoration(labelText: "Chips"),
                       attribute: 'chips_test',
-                      readonly: true,
+                      // readonly: true,
                       initialValue: [
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -99,8 +99,8 @@ class MyHomePageState extends State<MyHomePage> {
                           var lowercaseQuery = query.toLowerCase();
                           return mockResults.where((profile) {
                             return profile.name
-                                .toLowerCase()
-                                .contains(query.toLowerCase()) ||
+                                    .toLowerCase()
+                                    .contains(query.toLowerCase()) ||
                                 profile.email
                                     .toLowerCase()
                                     .contains(query.toLowerCase());
@@ -109,8 +109,8 @@ class MyHomePageState extends State<MyHomePage> {
                                 .toLowerCase()
                                 .indexOf(lowercaseQuery)
                                 .compareTo(b.name
-                                .toLowerCase()
-                                .indexOf(lowercaseQuery)));
+                                    .toLowerCase()
+                                    .indexOf(lowercaseQuery)));
                         } else {
                           return const <Contact>[];
                         }
@@ -123,7 +123,8 @@ class MyHomePageState extends State<MyHomePage> {
                             backgroundImage: NetworkImage(profile.imageUrl),
                           ),
                           onDeleted: () => state.deleteChip(profile),
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
                         );
                       },
                       suggestionBuilder: (context, state, profile) {
@@ -266,8 +267,8 @@ class MyHomePageState extends State<MyHomePage> {
                       max: 5,
                     ),
                     FormBuilderCheckboxList(
-                      decoration:
-                      InputDecoration(labelText: "The language of my people"),
+                      decoration: InputDecoration(
+                          labelText: "The language of my people"),
                       attribute: "languages",
                       initialValue: ["Dart"],
                       options: [
@@ -288,20 +289,33 @@ class MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 children: <Widget>[
-                  MaterialButton(
-                    child: Text("Submit"),
-                    onPressed: () {
-                      _fbKey.currentState.save();
-                      if (_fbKey.currentState.validate()) {
-                        print(_fbKey.currentState.value);
-                      }
-                    },
+                  Expanded(
+                    child: MaterialButton(
+                      color: Theme.of(context).accentColor,
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        _fbKey.currentState.save();
+                        if (_fbKey.currentState.validate()) {
+                          print(_fbKey.currentState.value);
+                        }
+                      },
+                    ),
                   ),
-                  MaterialButton(
-                    child: Text("Reset"),
-                    onPressed: () {
-                      _fbKey.currentState.reset();
-                    },
+                  SizedBox(width: 20,),
+                  Expanded(
+                    child: MaterialButton(
+                      color: Theme.of(context).accentColor,
+                      child: Text(
+                        "Reset",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        _fbKey.currentState.reset();
+                      },
+                    ),
                   ),
                 ],
               )
