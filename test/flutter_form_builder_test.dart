@@ -9,14 +9,37 @@ void main() {
   });
 
   test('FormBuilderValidators.email', () {
-    expect(FormBuilderValidators.email()("john@flutter"), equals("This field requires a valid email address."));
-    expect(FormBuilderValidators.email()("john@flutter.dev"), equals(null));
-    expect(FormBuilderValidators.email()(null), equals(null));
-    expect(FormBuilderValidators.email()(""), equals(null));
+    expect(FormBuilderValidators.email()("john@flutter"), isNotNull);
+    expect(FormBuilderValidators.email()("john@flutter.dev"), isNull);
+    expect(FormBuilderValidators.email()(null), isNull);
+    expect(FormBuilderValidators.email()(""),isNull);
   });
 
   test('FormBuilderValidators.max', () {
-    expect(FormBuilderValidators.max(20)("70"), equals("Value must be less than or equal to 20"));
-    expect(FormBuilderValidators.max(30)(70), equals("Value must be less than or equal to 30"));
+    expect(FormBuilderValidators.max(20)("70"), isNotNull);
+    expect(FormBuilderValidators.max(30)(70), isNotNull);
+    expect(FormBuilderValidators.max(30)(20), isNull);
+  });
+
+  test('FormBuilderValidators.min', () {
+    expect(FormBuilderValidators.min(30)("10"), isNotNull);
+    expect(FormBuilderValidators.min(30)(10), isNotNull);
+    expect(FormBuilderValidators.min(30)(70), isNull);
+  });
+
+  test('FormBuilderValidators.url', () {
+    expect(FormBuilderValidators.url()(null), isNull);
+    expect(FormBuilderValidators.url()("https://www.google.com"), isNull);
+    expect(FormBuilderValidators.url()("www.google.com"), isNull);
+    expect(FormBuilderValidators.url()("google.com"), isNull);
+    expect(FormBuilderValidators.url()("http://google.com"), isNull);
+    expect(FormBuilderValidators.url()(".com"), isNotNull);
+    expect(FormBuilderValidators.url(protocols: ['https', 'http'], errorText: "Only HTTP and HTTPS allowed")("ftp://www.google.com"), isNotNull);
+  });
+
+  test('FormBuilderValidators.IP', () {
+    expect(FormBuilderValidators.IP()(null), isNull);
+    expect(FormBuilderValidators.IP()("192.168.0.1"), isNull);
+    expect(FormBuilderValidators.IP()("256.168.0.1"), isNotNull);
   });
 }

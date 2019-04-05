@@ -394,6 +394,13 @@
             </list>
           </value>
         </entry>
+        <entry key="validators">
+          <value>
+            <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/validators-2.0.0+1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="vector_math">
           <value>
             <list>
@@ -485,6 +492,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.1+1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.1.6/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/validators-2.0.0+1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.0.8/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/vm_service_client-0.2.6+1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+10/lib" />

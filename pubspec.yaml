@@ -18,6 +18,7 @@ dependencies:
   datetime_picker_formfield: ^0.1.8
   signature: ^2.0.0
   expandable: ^2.0.0
+  validators: ^2.0.0
 
 dev_dependencies:
   flutter_test:

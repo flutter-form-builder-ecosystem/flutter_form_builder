@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field have a non-empty value.
@@ -93,22 +94,29 @@ class FormBuilderValidators {
   }) {
     return (val) {
       if (val != null && val.isNotEmpty) {
-        Pattern pattern =
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-        if (!RegExp(pattern).hasMatch(val)) return errorText;
+        if (!isEmail(val)) return errorText;
       }
     };
   }
 
   /// [FormFieldValidator] that requires the field's value to be a valid url.
-  static FormFieldValidator url({
-    String errorText = "This field requires a valid email address.",
-  }) {
+  static FormFieldValidator url(
+      {String errorText = "This field requires a valid URL address.",
+      List<String> protocols = const ['http', 'https', 'ftp'],
+      bool requireTld = true,
+      bool requireProtocol = false,
+      bool allowUnderscore = false,
+      List<String> hostWhitelist = const [],
+      List<String> hostBlacklist = const []}) {
     return (val) {
       if (val != null && val.isNotEmpty) {
-        Pattern pattern =
-            r"(https?|ftp)://([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:‌​,.;]*)?";
-        if (!RegExp(pattern).hasMatch(val)) return errorText;
+        if (!isURL(val,
+            protocols: protocols,
+            requireTld: requireTld,
+            requireProtocol: requireProtocol,
+            allowUnderscore: allowUnderscore,
+            hostWhitelist: hostWhitelist,
+            hostBlacklist: hostBlacklist)) return errorText;
       }
     };
   }
@@ -132,6 +140,41 @@ class FormBuilderValidators {
   }) {
     return (val) {
       if (num.tryParse(val) == null && val.isNotEmpty) return errorText;
+    };
+  }
+
+  /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
+  static FormFieldValidator creditCard({
+    String errorText = "This field requires a valid credit card number.",
+  }) {
+    return (val) {
+      if (val != null && val.isNotEmpty) {
+        if (!isCreditCard(val)) return errorText;
+      }
+    };
+  }
+
+  /// [FormFieldValidator] that requires the field's value to be a valid IP.
+  // ignore: non_constant_identifier_names
+  static FormFieldValidator IP({
+    dynamic version,
+    String errorText = "This field requires a valid IP.",
+  }) {
+    return (val) {
+      if (val != null && val.isNotEmpty) {
+        if (!isIP(val, version)) return errorText;
+      }
+    };
+  }
+
+  /// [FormFieldValidator] that requires the field's value to be a valid date string.
+  static FormFieldValidator date({
+    String errorText = "This field requires a valid date string.",
+  }) {
+    return (val) {
+      if (val != null && val.isNotEmpty) {
+        if (!isDate(val)) return errorText;
+      }
     };
   }
 }

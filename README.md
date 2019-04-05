@@ -288,7 +288,6 @@ GlobalKey<FormBuilderState> _fbKey = GlobalKey();
 - [ ] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [ ] Allow options for Checkboxes and Radios to appear left or right
 - [ ] Allow addition of custom input types
-- [ ] Proper validation for URL - does not work without protocol - http(s)
 
 ### New FormBuilder inputs
 - [X] SignaturePad
