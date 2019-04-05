@@ -79,7 +79,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">ParagraphStyle</span>(<wbr>{<span class="parameter" id="-param-textAlign"><span class="type-annotation"><a href="dart-ui/TextAlign-class.html">TextAlign</a></span> <span class="parameter-name">textAlign</span>, </span> <span class="parameter" id="-param-textDirection"><span class="type-annotation"><a href="dart-ui/TextDirection-class.html">TextDirection</a></span> <span class="parameter-name">textDirection</span>, </span> <span class="parameter" id="-param-fontWeight"><span class="type-annotation"><a href="dart-ui/FontWeight-class.html">FontWeight</a></span> <span class="parameter-name">fontWeight</span>, </span> <span class="parameter" id="-param-fontStyle"><span class="type-annotation"><a href="dart-ui/FontStyle-class.html">FontStyle</a></span> <span class="parameter-name">fontStyle</span>, </span> <span class="parameter" id="-param-maxLines"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">maxLines</span>, </span> <span class="parameter" id="-param-fontFamily"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">fontFamily</span>, </span> <span class="parameter" id="-param-fontSize"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">fontSize</span>, </span> <span class="parameter" id="-param-lineHeight"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">lineHeight</span>, </span> <span class="parameter" id="-param-ellipsis"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">ellipsis</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation"><a href="dart-ui/Locale-class.html">Locale</a></span> <span class="parameter-name">locale</span></span> })
+      <span class="name ">ParagraphStyle</span>(<wbr>{<span class="parameter" id="-param-textAlign"><span class="type-annotation"><a href="dart-ui/TextAlign-class.html">TextAlign</a></span> <span class="parameter-name">textAlign</span>, </span> <span class="parameter" id="-param-textDirection"><span class="type-annotation"><a href="dart-ui/TextDirection-class.html">TextDirection</a></span> <span class="parameter-name">textDirection</span>, </span> <span class="parameter" id="-param-maxLines"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">maxLines</span>, </span> <span class="parameter" id="-param-fontFamily"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">fontFamily</span>, </span> <span class="parameter" id="-param-fontSize"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">fontSize</span>, </span> <span class="parameter" id="-param-height"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="-param-fontWeight"><span class="type-annotation"><a href="dart-ui/FontWeight-class.html">FontWeight</a></span> <span class="parameter-name">fontWeight</span>, </span> <span class="parameter" id="-param-fontStyle"><span class="type-annotation"><a href="dart-ui/FontStyle-class.html">FontStyle</a></span> <span class="parameter-name">fontStyle</span>, </span> <span class="parameter" id="-param-strutStyle"><span class="type-annotation"><a href="dart-ui/StrutStyle-class.html">StrutStyle</a></span> <span class="parameter-name">strutStyle</span>, </span> <span class="parameter" id="-param-ellipsis"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">ellipsis</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation"><a href="dart-ui/Locale-class.html">Locale</a></span> <span class="parameter-name">locale</span></span> })
     </section>
 
     <section class="desc markdown">
@@ -92,10 +92,6 @@ the ellipsis has been added.</p></li><li>
 Norwegian) or right-to-left (e.g. Hebrew). This controls the overall
 directionality of the paragraph, as well as the meaning of
 <a href="dart-ui/TextAlign-class.html">TextAlign.start</a> and <a href="dart-ui/TextAlign-class.html">TextAlign.end</a> in the <code>textAlign</code> field.</p></li><li>
-<p><code>fontWeight</code>: The typeface thickness to use when painting the text
-(e.g., bold).</p></li><li>
-<p><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g.,
-italics).</p></li><li>
 <p><code>maxLines</code>: The maximum number of lines painted. Lines beyond this
 number are silently dropped. For example, if <code>maxLines</code> is 1, then only
 one line is rendered. If <code>maxLines</code> is null, but <code>ellipsis</code> is not null,
@@ -106,8 +102,20 @@ dropped. The width constraints are those set in the
 Roboto).</p></li><li>
 <p><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting
 the text.</p></li><li>
-<p><code>lineHeight</code>: The minimum height of the line boxes, as a multiple of the
-font size.</p></li><li>
+<p><code>height</code>: The minimum height of the line boxes, as a multiple of the
+font size. The lines of the paragraph will be at least
+<code>(height + leading) * fontSize</code> tall when fontSize
+is not null. When fontSize is null, there is no minimum line height. Tall
+glyphs due to baseline alignment or large <code>TextStyle.fontSize</code> may cause
+the actual line height after layout to be taller than specified here.
+<code>fontSize</code> must be provided for this property to take effect.</p></li><li>
+<p><code>fontWeight</code>: The typeface thickness to use when painting the text
+(e.g., bold).</p></li><li>
+<p><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g.,
+italics).</p></li><li>
+<p><code>strutStyle</code>: The properties of the strut. Strut defines a set of minimum
+vertical line height related metrics and can be used to obtain more
+advanced line spacing behavior.</p></li><li>
 <p><code>ellipsis</code>: String used to ellipsize overflowing text. If <code>maxLines</code> is
 not null, then the <code>ellipsis</code>, if any, is applied to the last rendered
 line, if that line overflows the width constraints. If <code>maxLines</code> is
@@ -128,12 +136,6 @@ considered equivalent and turn off this behavior.</p></li><li>
 &#47;&#47;&#47;   directionality of the paragraph, as well as the meaning of
 &#47;&#47;&#47;   [TextAlign.start] and [TextAlign.end] in the `textAlign` field.
 &#47;&#47;&#47;
-&#47;&#47;&#47; * `fontWeight`: The typeface thickness to use when painting the text
-&#47;&#47;&#47;   (e.g., bold).
-&#47;&#47;&#47;
-&#47;&#47;&#47; * `fontStyle`: The typeface variant to use when drawing the letters (e.g.,
-&#47;&#47;&#47;   italics).
-&#47;&#47;&#47;
 &#47;&#47;&#47; * `maxLines`: The maximum number of lines painted. Lines beyond this
 &#47;&#47;&#47;   number are silently dropped. For example, if `maxLines` is 1, then only
 &#47;&#47;&#47;   one line is rendered. If `maxLines` is null, but `ellipsis` is not null,
@@ -147,8 +149,23 @@ considered equivalent and turn off this behavior.</p></li><li>
 &#47;&#47;&#47; * `fontSize`: The size of glyphs (in logical pixels) to use when painting
 &#47;&#47;&#47;   the text.
 &#47;&#47;&#47;
-&#47;&#47;&#47; * `lineHeight`: The minimum height of the line boxes, as a multiple of the
-&#47;&#47;&#47;   font size.
+&#47;&#47;&#47; * `height`: The minimum height of the line boxes, as a multiple of the
+&#47;&#47;&#47;   font size. The lines of the paragraph will be at least
+&#47;&#47;&#47;   `(height + leading) * fontSize` tall when fontSize
+&#47;&#47;&#47;   is not null. When fontSize is null, there is no minimum line height. Tall
+&#47;&#47;&#47;   glyphs due to baseline alignment or large [TextStyle.fontSize] may cause
+&#47;&#47;&#47;   the actual line height after layout to be taller than specified here.
+&#47;&#47;&#47;   [fontSize] must be provided for this property to take effect.
+&#47;&#47;&#47;
+&#47;&#47;&#47; * `fontWeight`: The typeface thickness to use when painting the text
+&#47;&#47;&#47;   (e.g., bold).
+&#47;&#47;&#47;
+&#47;&#47;&#47; * `fontStyle`: The typeface variant to use when drawing the letters (e.g.,
+&#47;&#47;&#47;   italics).
+&#47;&#47;&#47;
+&#47;&#47;&#47; * `strutStyle`: The properties of the strut. Strut defines a set of minimum
+&#47;&#47;&#47;   vertical line height related metrics and can be used to obtain more
+&#47;&#47;&#47;   advanced line spacing behavior.
 &#47;&#47;&#47;
 &#47;&#47;&#47; * `ellipsis`: String used to ellipsize overflowing text. If `maxLines` is
 &#47;&#47;&#47;   not null, then the `ellipsis`, if any, is applied to the last rendered
@@ -163,29 +180,32 @@ considered equivalent and turn off this behavior.</p></li><li>
 ParagraphStyle({
   TextAlign textAlign,
   TextDirection textDirection,
-  FontWeight fontWeight,
-  FontStyle fontStyle,
   int maxLines,
   String fontFamily,
   double fontSize,
-  double lineHeight,
+  double height,
+  FontWeight fontWeight,
+  FontStyle fontStyle,
+  StrutStyle strutStyle,
   String ellipsis,
   Locale locale,
 }) : _encoded = _encodeParagraphStyle(
        textAlign,
        textDirection,
-       fontWeight,
-       fontStyle,
        maxLines,
        fontFamily,
        fontSize,
-       lineHeight,
+       height,
+       fontWeight,
+       fontStyle,
+       strutStyle,
        ellipsis,
        locale,
      ),
      _fontFamily = fontFamily,
      _fontSize = fontSize,
-     _lineHeight = lineHeight,
+     _height = height,
+     _strutStyle = strutStyle,
      _ellipsis = ellipsis,
      _locale = locale;</code></pre>
     </section>
@@ -199,7 +219,7 @@ ParagraphStyle({
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

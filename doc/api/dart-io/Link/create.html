@@ -116,11 +116,11 @@ only if all directories in its path exist.
 If <code>recursive</code> is true, all non-existing path
 components are created. The directories in the path of <code>target</code> are
 not affected, unless they are also in <a href="dart-io/FileSystemEntity/path.html">path</a>.</p>
-<p>On the Windows platform, this will only work with directories, and the
-target directory must exist. The link will be created as a Junction.
-Only absolute links will be created, and relative paths to the target
-will be converted to absolute paths by joining them with the path of the
-directory the link is contained in.</p>
+<p>On the Windows platform, this call will create a true symbolic link
+instead of a Junction. In order to create a symbolic link on Windows, Dart
+must be run in Administrator mode or the system must have Developer Mode
+enabled, otherwise a <a href="dart-io/FileSystemException-class.html">FileSystemException</a> will be raised with 
+<code>ERROR_PRIVILEGE_NOT_HELD</code> set as the errno when this call is made.</p>
 <p>On other platforms, the posix symlink() call is used to make a symbolic
 link containing the string <code>target</code>.  If <code>target</code> is a relative path,
 it will be interpreted relative to the directory containing the link.</p>
@@ -140,7 +140,7 @@ it will be interpreted relative to the directory containing the link.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

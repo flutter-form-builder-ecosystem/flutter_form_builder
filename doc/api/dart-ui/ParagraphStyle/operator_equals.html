@@ -120,7 +120,8 @@ bool operator ==(dynamic other) {
   final ParagraphStyle typedOther = other;
   if (_fontFamily != typedOther._fontFamily ||
       _fontSize != typedOther._fontSize ||
-      _lineHeight != typedOther._lineHeight ||
+      _height != typedOther._height ||
+      _strutStyle != typedOther._strutStyle ||
       _ellipsis != typedOther._ellipsis ||
       _locale != typedOther._locale)
    return false;
@@ -141,7 +142,7 @@ bool operator ==(dynamic other) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

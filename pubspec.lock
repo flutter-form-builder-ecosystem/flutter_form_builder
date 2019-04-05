@@ -59,7 +59,7 @@ packages:
       name: flutter_typeahead
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.4.0"
   intl:
     dependency: "direct main"
     description:
@@ -127,7 +127,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.3"
+    version: "1.5.4"
   stack_trace:
     dependency: transitive
     description:

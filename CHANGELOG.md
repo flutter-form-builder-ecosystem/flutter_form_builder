@@ -1,3 +1,6 @@
+## [2.1.0] - 05-April-2019
+* Bumped up `flutter_typeahead` dependency to `^1.4.0` from `^1.2.0`
+
 ## [2.0.3] - 26-March-2019
 * Allow `null`s in `FormBuilder` controls `attribute`
 

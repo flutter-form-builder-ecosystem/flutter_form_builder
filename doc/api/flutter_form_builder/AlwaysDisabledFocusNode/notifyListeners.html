@@ -89,12 +89,13 @@
       <div>
         <ol class="annotation-list">
           <li>@protected</li>
+          <li>@visibleForTesting</li>
         </ol>
       </div>
       <span class="returntype">void</span>
             <span class="name ">notifyListeners</span>
 (<wbr>)
-      <div class="features">@protected, inherited</div>
+      <div class="features">@protected, @visibleForTesting, inherited</div>
     </section>
     <section class="desc markdown">
       <p>Call all the registered listeners.</p>
@@ -113,6 +114,7 @@ See the discussion at <a href="flutter_form_builder/AlwaysDisabledFocusNode/remo
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@protected
+@visibleForTesting
 void notifyListeners() {
   assert(_debugAssertNotDisposed());
   if (_listeners != null) {
@@ -147,7 +149,7 @@ void notifyListeners() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

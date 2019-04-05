@@ -103,12 +103,8 @@ changing the underlying collection.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 bool moveNext() {
-  &#47;&#47; PathMetric isn&#39;t a normal iterable - it&#39;s already initialized to its
-  &#47;&#47; first Path.  Should only call _moveNext when done with the first one.
-  if (_firstTime == true) {
-    _firstTime = false;
-    return true;
-  } else if (_pathMetric?._moveNext() == true) {
+  if (_pathMeasure._nextContour()) {
+    _pathMetric = PathMetric._(_pathMeasure);
     return true;
   }
   _pathMetric = null;
@@ -125,7 +121,7 @@ bool moveNext() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

@@ -86,6 +86,7 @@ class FormBuilderInput {
   bool hideOnError;
   bool hideSuggestionsOnKeyboardHide;
   bool keepSuggestionsOnLoading;
+  bool autoFlipDirection;
 
   FormBuilderInput.textField({
     @required this.decoration,
@@ -124,6 +125,7 @@ class FormBuilderInput {
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.readonly = false,
+    this.autovalidate = false,
     this.value,
     this.require = false,
     this.validator,
@@ -143,6 +145,7 @@ class FormBuilderInput {
     this.hideOnError = false,
     this.hideSuggestionsOnKeyboardHide = true,
     this.keepSuggestionsOnLoading = true,
+    this.autoFlipDirection = true,
   }) {
     type = FormBuilderInput.TYPE_TYPE_AHEAD;
   }

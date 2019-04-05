@@ -337,6 +337,9 @@ class FormBuilderState extends State<FormBuilder> {
                       formControl.hideSuggestionsOnKeyboardHide,
                   keepSuggestionsOnLoading:
                       formControl.keepSuggestionsOnLoading,
+                  autoFlipDirection: formControl.autoFlipDirection,
+                  autovalidate:
+                      (formControl.autovalidate || widget.autovalidate),
                 );
                 break;
 

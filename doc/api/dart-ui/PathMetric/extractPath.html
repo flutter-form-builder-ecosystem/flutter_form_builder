@@ -57,6 +57,7 @@
       <li class="section-title">
         <a href="dart-ui/PathMetric-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-ui/PathMetric/contourIndex.html">contourIndex</a></li>
       <li><a href="dart-ui/PathMetric/isClosed.html">isClosed</a></li>
       <li><a href="dart-ui/PathMetric/length.html">length</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -65,8 +66,8 @@
       <li class="section-title"><a href="dart-ui/PathMetric-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/PathMetric/extractPath.html">extractPath</a></li>
       <li><a href="dart-ui/PathMetric/getTangentForOffset.html">getTangentForOffset</a></li>
+      <li><a href="dart-ui/PathMetric/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
       <li class="section-title inherited"><a href="dart-ui/PathMetric-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -94,7 +95,9 @@ Begin the segment with a moveTo if <code>startWithMoveTo</code> is true.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Path extractPath(double start, double end, {bool startWithMoveTo: true}) native &#39;PathMeasure_getSegment&#39;;</code></pre>
+      <pre class="language-dart"><code class="language-dart">Path extractPath(double start, double end, {bool startWithMoveTo: true}) {
+  return _measure.extractPath(contourIndex, start, end, startWithMoveTo: startWithMoveTo);
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -106,7 +109,7 @@ Begin the segment with a moveTo if <code>startWithMoveTo</code> is true.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

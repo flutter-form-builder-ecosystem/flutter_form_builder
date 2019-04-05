@@ -57,6 +57,7 @@
       <li class="section-title">
         <a href="dart-ui/PathMetric-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-ui/PathMetric/contourIndex.html">contourIndex</a></li>
       <li><a href="dart-ui/PathMetric/isClosed.html">isClosed</a></li>
       <li><a href="dart-ui/PathMetric/length.html">length</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -65,8 +66,8 @@
       <li class="section-title"><a href="dart-ui/PathMetric-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/PathMetric/extractPath.html">extractPath</a></li>
       <li><a href="dart-ui/PathMetric/getTangentForOffset.html">getTangentForOffset</a></li>
+      <li><a href="dart-ui/PathMetric/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
       <li class="section-title inherited"><a href="dart-ui/PathMetric-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -79,16 +80,12 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <div><h1>isClosed property</h1></div>
 
-
-        <section id="getter">
-        
         <section class="multi-line-signature">
           <span class="returntype"><a href="dart-core/bool-class.html">bool</a></span>
-                  <span class="name ">isClosed</span>
-          
-</section>
-        
-                <section class="desc markdown">
+          <span class="name ">isClosed</span>
+          <div class="features">final</div>
+        </section>
+        <section class="desc markdown">
           <p>Whether the contour is closed.</p>
 <p>Returns true if the contour ends with a call to <a href="dart-ui/Path/close.html">Path.close</a> (which may
 have been implied when using <a href="dart-ui/Path/addRect.html">Path.addRect</a>) or if <code>forceClosed</code> was
@@ -97,10 +94,11 @@ otherwise.</p>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
-          <pre class="language-dart"><code class="language-dart">bool get isClosed native &#39;PathMeasure_isClosed&#39;;</code></pre>
+          <pre class="language-dart"><code class="language-dart">final bool isClosed
+
+</code></pre>
         </section>
-</section>
-        
+
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
@@ -110,7 +108,7 @@ otherwise.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   

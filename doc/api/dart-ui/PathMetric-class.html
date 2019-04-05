@@ -98,11 +98,13 @@
       <li><a href="dart-ui/Shader-class.html">Shader</a></li>
       <li><a href="dart-ui/Shadow-class.html">Shadow</a></li>
       <li><a href="dart-ui/Size-class.html">Size</a></li>
+      <li><a href="dart-ui/StrutStyle-class.html">StrutStyle</a></li>
       <li><a href="dart-ui/Tangent-class.html">Tangent</a></li>
       <li><a href="dart-ui/TextBox-class.html">TextBox</a></li>
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
+      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -110,6 +112,7 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
+      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -128,6 +131,7 @@
       <li><a href="dart-ui/BlurStyle-class.html">BlurStyle</a></li>
       <li><a href="dart-ui/BoxHeightStyle-class.html">BoxHeightStyle</a></li>
       <li><a href="dart-ui/BoxWidthStyle-class.html">BoxWidthStyle</a></li>
+      <li><a href="dart-ui/Brightness-class.html">Brightness</a></li>
       <li><a href="dart-ui/Clip-class.html">Clip</a></li>
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
@@ -169,9 +173,11 @@
       <p>Utilities for measuring a <a href="dart-ui/Path-class.html">Path</a> and extracting subpaths.</p>
 <p>Iterate over the object returned by <a href="dart-ui/Path/computeMetrics.html">Path.computeMetrics</a> to obtain
 <a href="dart-ui/PathMetric-class.html">PathMetric</a> objects.</p>
-<p>Once created, metrics will only be valid while the iterator is at the given
-contour. When the next contour's <a href="dart-ui/PathMetric-class.html">PathMetric</a> is obtained, this object
-becomes invalid.</p>
+<p>Once created, the methods on this class will only be valid while the
+iterator is at the contour for which they were created. It will also only be
+valid for the path as it was specifed when <a href="dart-ui/Path/computeMetrics.html">Path.computeMetrics</a> was called.
+If additional contours are added or any contours are updated, the metrics
+need to be recomputed.</p>
     </section>
     
 
@@ -180,13 +186,21 @@ becomes invalid.</p>
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="contourIndex" class="property">
+          <span class="name"><a href="dart-ui/PathMetric/contourIndex.html">contourIndex</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd>
+          The zero-based index of the contour. <a href="dart-ui/PathMetric/contourIndex.html">[...]</a>
+                  <div class="features">final</div>
+</dd>
         <dt id="isClosed" class="property">
           <span class="name"><a href="dart-ui/PathMetric/isClosed.html">isClosed</a></span>
           <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
           Whether the contour is closed. <a href="dart-ui/PathMetric/isClosed.html">[...]</a>
-                  <div class="features">read-only</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="length" class="property">
           <span class="name"><a href="dart-ui/PathMetric/length.html">length</a></span>
@@ -194,7 +208,7 @@ becomes invalid.</p>
         </dt>
         <dd>
           Return the total length of the current contour.
-                  <div class="features">read-only</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="hashCode" class="property inherited">
           <span class="name"><a href="dart-core/Object/hashCode.html">hashCode</a></span>
@@ -237,6 +251,15 @@ becomes invalid.</p>
 angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset.html">[...]</a>
                   
 </dd>
+        <dt id="toString" class="callable">
+          <span class="name"><a href="dart-ui/PathMetric/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns a string representation of this object.
+                  <div class="features">override</div>
+</dd>
         <dt id="noSuchMethod" class="callable inherited">
           <span class="name"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
@@ -244,15 +267,6 @@ angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset
                   </dt>
         <dd class="inherited">
           Invoked when a non-existent method or property is accessed. <a href="dart-core/Object/noSuchMethod.html">[...]</a>
-                  <div class="features">inherited</div>
-</dd>
-        <dt id="toString" class="callable inherited">
-          <span class="name"><a href="dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
-          </span>
-                  </dt>
-        <dd class="inherited">
-          Returns a string representation of this object.
                   <div class="features">inherited</div>
 </dd>
       </dl>
@@ -284,6 +298,7 @@ angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset
       <li class="section-title">
         <a href="dart-ui/PathMetric-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-ui/PathMetric/contourIndex.html">contourIndex</a></li>
       <li><a href="dart-ui/PathMetric/isClosed.html">isClosed</a></li>
       <li><a href="dart-ui/PathMetric/length.html">length</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -292,8 +307,8 @@ angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset
       <li class="section-title"><a href="dart-ui/PathMetric-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/PathMetric/extractPath.html">extractPath</a></li>
       <li><a href="dart-ui/PathMetric/getTangentForOffset.html">getTangentForOffset</a></li>
+      <li><a href="dart-ui/PathMetric/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
       <li class="section-title inherited"><a href="dart-ui/PathMetric-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -307,7 +322,7 @@ angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 1.5.0
+    flutter_form_builder 2.1.0
   </span>
 
   
