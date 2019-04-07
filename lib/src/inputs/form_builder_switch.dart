@@ -8,6 +8,7 @@ class FormBuilderSwitch extends StatefulWidget {
   final bool initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final Widget label;
 
@@ -18,6 +19,7 @@ class FormBuilderSwitch extends StatefulWidget {
     this.validators = const [],
     this.readonly = false,
     this.decoration = const InputDecoration(),
+    this.onChanged,
   });
 
   @override
@@ -66,6 +68,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                     ? null
                     : (bool value) {
                         field.didChange(value);
+                        if (widget.onChanged != null) widget.onChanged(value);
                       },
               ),
               onTap: _readonly
@@ -73,6 +76,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                   : () {
                       bool newValue = !(field.value ?? false);
                       field.didChange(newValue);
+                      if (widget.onChanged != null) widget.onChanged(newValue);
                     },
             ),
           );

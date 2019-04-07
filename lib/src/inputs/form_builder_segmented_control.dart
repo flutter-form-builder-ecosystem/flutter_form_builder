@@ -9,6 +9,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final dynamic initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final List<FormBuilderInputOption> options;
 
@@ -19,6 +20,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     this.validators = const [],
     this.readonly = false,
     this.decoration = const InputDecoration(),
+    this.onChanged,
   });
 
   @override
@@ -84,8 +86,10 @@ class _FormBuilderSegmentedControlState
               onValueChanged: (dynamic value) {
                 if (_readonly) {
                   field.reset();
-                } else
+                } else {
                   field.didChange(value);
+                  if (widget.onChanged != null) widget.onChanged(value);
+                }
               },
             ),
           ),

@@ -8,6 +8,7 @@ class FormBuilderSlider extends StatefulWidget {
   final num initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final num max;
   final num min;
@@ -21,7 +22,7 @@ class FormBuilderSlider extends StatefulWidget {
     this.validators = const [],
     this.readonly = false,
     this.decoration = const InputDecoration(),
-    this.divisions,
+    this.divisions, this.onChanged,
   });
 
   @override
@@ -71,8 +72,9 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   divisions: widget.divisions,
                   onChanged: _readonly
                       ? null
-                      : (double value) {
+                      : (num value) {
                           field.didChange(value);
+                          if (widget.onChanged != null) widget.onChanged(value);
                         },
                 ),
                 Row(

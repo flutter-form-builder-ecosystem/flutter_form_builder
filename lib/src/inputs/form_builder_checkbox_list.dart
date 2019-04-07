@@ -8,6 +8,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final dynamic initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final List<FormBuilderInputOption> options;
 
@@ -18,6 +19,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
     this.validators = const [],
     this.readonly = false,
     this.decoration = const InputDecoration(),
+    this.onChanged,
   });
 
   @override
@@ -69,6 +71,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                           else
                             currValue.remove(widget.options[i].value);
                           field.didChange(currValue);
+                          if (widget.onChanged != null) widget.onChanged(currValue);
                         },
                 ),
                 title: Text(
@@ -82,6 +85,8 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                         else
                           currentValue.remove(widget.options[i].value);
                         field.didChange(currentValue);
+                        if (widget.onChanged != null)
+                          widget.onChanged(currentValue);
                       },
               ),
               Divider(

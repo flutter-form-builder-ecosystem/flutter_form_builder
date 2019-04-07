@@ -8,6 +8,7 @@ class FormBuilderRadio extends StatefulWidget {
   final dynamic initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final List<FormBuilderInputOption> options;
 
@@ -17,7 +18,7 @@ class FormBuilderRadio extends StatefulWidget {
     this.initialValue,
     this.validators = const [],
     this.readonly = false,
-    this.decoration = const InputDecoration(),
+    this.decoration = const InputDecoration(), this.onChanged,
   });
 
   @override
@@ -67,12 +68,14 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
                     ? null
                     : (dynamic value) {
                         field.didChange(value);
+                        if (widget.onChanged != null) widget.onChanged(value);
                       },
               ),
               onTap: _readonly
                   ? null
                   : () {
                       field.didChange(widget.options[i].value);
+                      if (widget.onChanged != null) widget.onChanged(widget.options[i].value);
                     },
             ),
             Divider(

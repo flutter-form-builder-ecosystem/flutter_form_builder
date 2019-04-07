@@ -9,6 +9,7 @@ class FormBuilderTextField extends StatefulWidget {
   final String initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
   final bool autovalidate;
   final int maxLines;
   final TextInputType keyboardType;
@@ -70,6 +71,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
+    this.onChanged,
   });
 
   @override
@@ -78,11 +80,22 @@ class FormBuilderTextField extends StatefulWidget {
 
 class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
   bool _readonly = false;
+  TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    if (widget.controller != null)
+      _textEditingController = widget.controller;
+    else
+      _textEditingController = TextEditingController(
+        text: widget.initialValue != null ? "${widget.initialValue}" : '',
+      );
+    _textEditingController.addListener(() {
+      if (widget.onChanged != null)
+        widget.onChanged(_textEditingController.text);
+    });
     super.initState();
   }
 
@@ -105,12 +118,12 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
         enabled: !_readonly,
       ),
       autovalidate: widget.autovalidate ?? false,
-      initialValue: widget.initialValue != null ? "${widget.initialValue}" : '',
+      // initialValue: widget.initialValue != null ? "${widget.initialValue}" : '',
       maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
       onEditingComplete: widget.onEditingComplete,
-      controller: widget.controller,
+      controller: _textEditingController,
       autocorrect: widget.autocorrect,
       autofocus: widget.autofocus,
       buildCounter: widget.buildCounter,
@@ -130,6 +143,12 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
       textDirection: widget.textDirection,
       textInputAction: widget.textInputAction,
     );
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 }
 

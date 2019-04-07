@@ -8,6 +8,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final dynamic initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final Widget hint;
   final List<DropdownMenuItem> items;
@@ -31,7 +32,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.hint,
     this.initialValue,
     this.style,
-    this.disabledHint,
+    this.disabledHint, this.onChanged,
   });
 
   @override
@@ -82,6 +83,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                 ? null
                 : (value) {
                     field.didChange(value);
+                    if (widget.onChanged != null) widget.onChanged(value);
                   },
           ),
         );

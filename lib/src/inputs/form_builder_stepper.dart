@@ -9,6 +9,7 @@ class FormBuilderStepper extends StatefulWidget {
   final num initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final num step;
   final num min;
@@ -24,7 +25,7 @@ class FormBuilderStepper extends StatefulWidget {
     this.step,
     this.min,
     this.max,
-    this.size = 24.0,
+    this.size = 24.0, this.onChanged,
   });
 
   @override
@@ -72,6 +73,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
                 ? null
                 : (value) {
                     field.didChange(value);
+                    if (widget.onChanged != null) widget.onChanged(value);
                   },
           ),
         );

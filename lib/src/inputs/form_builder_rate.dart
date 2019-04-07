@@ -9,6 +9,7 @@ class FormBuilderRate extends StatefulWidget {
   final num initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final num max;
   final IconData icon;
@@ -22,7 +23,7 @@ class FormBuilderRate extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.max,
     this.icon = Icons.star,
-    this.iconSize = 24.0,
+    this.iconSize = 24.0, this.onChanged,
   });
 
   @override
@@ -70,6 +71,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
                 ? null
                 : (value) {
                     field.didChange(value);
+                    if (widget.onChanged != null) widget.onChanged(value);
                   },
           ),
         );

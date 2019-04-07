@@ -9,6 +9,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final String initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueChanged onChanged;
 
   final bool getImmediateSuggestions;
   final bool autovalidate;
@@ -33,7 +34,6 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool hideSuggestionsOnKeyboardHide;
   final bool keepSuggestionsOnLoading;
   final bool autoFlipDirection;
-
 
   FormBuilderTypeAhead({
     @required this.attribute,
@@ -63,6 +63,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.hideSuggestionsOnKeyboardHide = true,
     this.keepSuggestionsOnLoading = true,
     this.autoFlipDirection = false,
+    this.onChanged,
   });
 
   @override
@@ -78,6 +79,10 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     _typeAheadController = TextEditingController(text: widget.initialValue);
+    _typeAheadController.addListener(() {
+      if (widget.onChanged != null)
+        widget.onChanged(_typeAheadController.text);
+    });
     super.initState();
   }
 
@@ -94,7 +99,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       onSaved: (val) {
         FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
-      initialValue: widget.initialValue,
+      // initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,
       textFieldConfiguration: TextFieldConfiguration(
         enabled: !_readonly,
@@ -133,5 +138,11 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       keepSuggestionsOnLoading: widget.keepSuggestionsOnLoading,
       autoFlipDirection: widget.autoFlipDirection,
     );
+  }
+
+  @override
+  void dispose() {
+    _typeAheadController.dispose();
+    super.dispose();
   }
 }
