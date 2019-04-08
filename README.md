@@ -176,7 +176,8 @@ email, urls etc by using different configurations and validators
 
 In order to create an input field in the form, along with the label, and any applicable validation,
 there are several attributes that will be added to the different types of fields namely:
-| Attribute | Type  | Default | Required |Description |
+
+| Attribute | Type  | Default | Required | Description |
 |-----------|-------|---------|-------------|----------|
 | `attribute` | `String` | `null` | `true` | This will form the key in the form value Map |
 | `initialValue` | `dynamic` | `null`  | `false` | The initial value of the input field |
@@ -253,7 +254,7 @@ FormBuilderTextField(
     validators: [
         FormBuilderValidators.required(),
         (val){
-            if(val != "Yes")
+            if(val.toLowerCase() != "yes")
                 return "The answer must be Yes";
         },
     ],
