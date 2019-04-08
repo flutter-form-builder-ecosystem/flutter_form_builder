@@ -25,14 +25,14 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.validators = const [],
     this.readonly = false,
     this.decoration = const InputDecoration(),
-    this.backgroundColor = Colors.grey,
+    this.backgroundColor = Colors.white,
     this.penColor = Colors.black,
     this.penStrokeWidth = 3.0,
     this.clearButtonText = "Clear",
     this.initialValue,
     this.points,
     this.width,
-    this.height,
+    this.height = 200,
   });
 
   @override
