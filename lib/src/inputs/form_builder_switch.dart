@@ -9,6 +9,7 @@ class FormBuilderSwitch extends StatefulWidget {
   final bool readonly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
 
   final Widget label;
 
@@ -20,6 +21,7 @@ class FormBuilderSwitch extends StatefulWidget {
     this.readonly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
+    this.valueTransformer,
   });
 
   @override
@@ -49,7 +51,11 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
           }
         },
         onSaved: (val) {
-          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+          var transformed = val;
+          if (widget.valueTransformer != null)
+            transformed = widget.valueTransformer(val);
+          FormBuilder.of(context)
+              ?.setAttributeValue(widget.attribute, transformed);
         },
         builder: (FormFieldState<dynamic> field) {
           return InputDecorator(

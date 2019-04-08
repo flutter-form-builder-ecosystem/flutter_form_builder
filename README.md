@@ -184,6 +184,7 @@ there are several attributes that will be added to the different types of fields
 | `decoration` | `InputDecoration` | `InputDecoration()` | `false` | |
 | `validators` | `List<FormFieldValidator>` | `[]` | `false` | List of `FormFieldValidator`s that will check the validity of value candidate in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `false` | This event function will fire immediately the the field value changes |
+| `valueTransformer` | `ValueTransformer<T>` | `null` | `false` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
 
 The rest of the attributes will be determined by the type of Widget being used as a `FormField`
 

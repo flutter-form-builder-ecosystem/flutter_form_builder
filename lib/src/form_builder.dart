@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+typedef ValueTransformer<T> = dynamic Function(T value);
+
 class FormBuilder extends StatefulWidget {
   final BuildContext context;
   final Function(Map<String, dynamic>) onChanged;

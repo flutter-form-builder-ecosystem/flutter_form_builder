@@ -11,6 +11,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final Image initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueTransformer valueTransformer;
 
   final List<Point> points;
   final double width;
@@ -33,6 +34,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.points,
     this.width,
     this.height = 200,
+    this.valueTransformer,
   });
 
   @override
@@ -74,7 +76,11 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       onSaved: (val) async {
         Uint8List signature = await _signatureCanvas.exportBytes();
         var image = Image.memory(signature).image;
-        FormBuilder.of(context)?.setAttributeValue(widget.attribute, image);
+        var transformed = image;
+        if (widget.valueTransformer != null)
+          transformed = widget.valueTransformer(val);
+        FormBuilder.of(context)
+            ?.setAttributeValue(widget.attribute, transformed);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

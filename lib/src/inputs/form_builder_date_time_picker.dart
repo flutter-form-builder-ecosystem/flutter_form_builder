@@ -11,6 +11,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final DateTime initialValue;
   final bool readonly;
   final InputDecoration decoration;
+  final ValueTransformer valueTransformer;
 
   /// The date/time picker dialogs to show.
   final InputType inputType;
@@ -129,6 +130,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.maxLines = 1,
     this.maxLength,
     this.inputFormatters,
+    this.valueTransformer,
   });
 
   @override
@@ -167,7 +169,11 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         enabled: !_readonly,
       ),
       onSaved: (val) {
-        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+        var transformed = val;
+        if (widget.valueTransformer != null)
+          transformed = widget.valueTransformer(val);
+        FormBuilder.of(context)
+            ?.setAttributeValue(widget.attribute, transformed);
       },
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

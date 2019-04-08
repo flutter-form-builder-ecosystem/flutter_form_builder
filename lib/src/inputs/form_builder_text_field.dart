@@ -10,6 +10,8 @@ class FormBuilderTextField extends StatefulWidget {
   final bool readonly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
+
   final bool autovalidate;
   final int maxLines;
   final TextInputType keyboardType;
@@ -72,6 +74,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.keyboardAppearance,
     this.buildCounter,
     this.onChanged,
+    this.valueTransformer,
   });
 
   @override
@@ -109,7 +112,11 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+        var transformed = val;
+        if (widget.valueTransformer != null)
+          transformed = widget.valueTransformer(val);
+        FormBuilder.of(context)
+            ?.setAttributeValue(widget.attribute, transformed);
       },
       enabled: !_readonly,
       style: widget.style,

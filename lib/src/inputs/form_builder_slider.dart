@@ -9,6 +9,7 @@ class FormBuilderSlider extends StatefulWidget {
   final bool readonly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
 
   final num max;
   final num min;
@@ -24,6 +25,7 @@ class FormBuilderSlider extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.divisions,
     this.onChanged,
+    this.valueTransformer,
   });
 
   @override
@@ -53,7 +55,11 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+        var transformed = val;
+        if (widget.valueTransformer != null)
+          transformed = widget.valueTransformer(val);
+        FormBuilder.of(context)
+            ?.setAttributeValue(widget.attribute, transformed);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

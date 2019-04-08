@@ -9,6 +9,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final bool readonly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
 
   final Widget hint;
   final List<DropdownMenuItem> items;
@@ -34,6 +35,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.style,
     this.disabledHint,
     this.onChanged,
+    this.valueTransformer,
   });
 
   @override
@@ -62,7 +64,11 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+        var transformed = val;
+        if (widget.valueTransformer != null)
+          transformed = widget.valueTransformer(val);
+        FormBuilder.of(context)
+            ?.setAttributeValue(widget.attribute, transformed);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

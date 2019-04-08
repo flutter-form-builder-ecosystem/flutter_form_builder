@@ -69,6 +69,7 @@ class MyHomePageState extends State<MyHomePage> {
                               contentPadding:
                                   EdgeInsets.only(top: 10.0, bottom: 0.0),
                               border: InputBorder.none,
+                              errorText: field.errorText,
                             ),
                             child: DropdownButton(
                               isExpanded: true,
@@ -92,6 +93,7 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: 'chips_test',
                       // readonly: true,
                       onChanged: _onChanged,
+                      // valueTransformer: (val) => val.length > 0 ? val[0] : null,
                       initialValue: [
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -193,9 +195,10 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "age",
                       decoration: InputDecoration(labelText: "Age"),
                       onChanged: _onChanged,
+                      valueTransformer: (text) => num.tryParse(text),
                       validators: [
                         FormBuilderValidators.numeric(),
-                        FormBuilderValidators.max(70)
+                        FormBuilderValidators.max(70),
                       ],
                     ),
                     FormBuilderTypeAhead(
@@ -290,7 +293,8 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
-                      height: 250,
+                      // height: 250,
+                      clearButtonText: "Start Over",
                       // onChanged: _onChanged,
                     ),
                   ],
@@ -309,6 +313,8 @@ class MyHomePageState extends State<MyHomePage> {
                         _fbKey.currentState.save();
                         if (_fbKey.currentState.validate()) {
                           print(_fbKey.currentState.value);
+                        } else {
+                          print("validation failed");
                         }
                       },
                     ),

@@ -10,9 +10,9 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final bool readonly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
 
   final ChipsInputSuggestions findSuggestions;
-
   // final ValueChanged<List<T>> onChanged;
   final ValueChanged<T> onChipTapped;
   final ChipsBuilder<T> chipBuilder;
@@ -31,6 +31,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.onChipTapped,
     this.maxChips,
     this.onChanged,
+    this.valueTransformer,
   });
 
   @override
@@ -62,7 +63,11 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
           }
         },
         onSaved: (val) {
-          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+          var transformed = val;
+          if (widget.valueTransformer != null)
+            transformed = widget.valueTransformer(val);
+          FormBuilder.of(context)
+              ?.setAttributeValue(widget.attribute, transformed);
         },
         builder: (FormFieldState<dynamic> field) {
           return ChipsInput(

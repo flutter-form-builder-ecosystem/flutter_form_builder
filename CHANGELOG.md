@@ -1,3 +1,19 @@
+## [3.0.0-beta.4] - 08-April-2019
+* **Breaking changes:**
+    * `FormBuilderInputOption` becomes `FormBuilderFieldOption`
+    * `FormBuilderField` becomes `FormBuilderCustomField`
+* Improved documentation
+* added `valueTransformer` - transforms field value before saving to form value
+
+## [3.0.0-beta.3] - 07-April-2019
+* Bumped up `flutter_typeahead` dependency from `^1.2.1` to `^1.4.0`
+* Fixed URL validator works correctly - tested
+* Added more validators:
+    * IP
+    * Credit Card
+    * Date
+* Added requested `onChanged` value notifier event on fields. Closes [#45](https://github.com/danvick/flutter_form_builder/issues/45)
+
 ## [3.0.0-beta.2] - 04-April-2019
 * Disabled `TextFormField.strutStyle` from `FormBuilderTextField` breaks in v1.2.1 of Flutter - current stable at release
 

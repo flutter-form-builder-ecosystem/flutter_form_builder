@@ -228,7 +228,8 @@ there are several attributes that will be added to the different types of fields
 | <code>readonly</code> | <code>bool</code> | <code>false</code> | <code>false</code> | Determines whether the field widget will accept user input. This value will be ignored if the <code>readonly</code> attribute of <code>FormBuilder</code> widget is set to <code>true</code> |
 | <code>decoration</code> | <code>InputDecoration</code> | <code>InputDecoration()</code> | <code>false</code> | |
 | <code>validators</code> | <code>List&lt;FormFieldValidator&gt;</code> | <code>[]</code> | <code>false</code> | List of <code>FormFieldValidator</code>s that will check the validity of value candidate in the <code>FormField</code> |
-| <code>onChanged</code> | <code>ValueChanged&lt;T&gt;</code> | <code>null</code> | <code>false</code> | This event function will fire immediately the the field value changes |</p>
+| <code>onChanged</code> | <code>ValueChanged&lt;T&gt;</code> | <code>null</code> | <code>false</code> | This event function will fire immediately the the field value changes |
+| <code>valueTransformer</code> | <code>ValueTransformer&lt;T&gt;</code> | <code>null</code> | <code>false</code> | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from <code>String</code> to <code>num</code> |</p>
 <p>The rest of the attributes will be determined by the type of Widget being used as a <code>FormField</code></p>
 <h3 id="building-your-own-custom-formfield">Building your own custom <code>FormField</code></h3>
 <pre class="language-dart"><code class="language-dart">FormBuilderCustomField(
@@ -384,7 +385,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.3
+    flutter_form_builder 3.0.0-beta.4
   </span>
 
   

@@ -10,6 +10,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool readonly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
 
   final bool getImmediateSuggestions;
   final bool autovalidate;
@@ -64,6 +65,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.keepSuggestionsOnLoading = true,
     this.autoFlipDirection = false,
     this.onChanged,
+    this.valueTransformer,
   });
 
   @override
@@ -96,7 +98,11 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
         }
       },
       onSaved: (val) {
-        FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+        var transformed = val;
+        if (widget.valueTransformer != null)
+          transformed = widget.valueTransformer(val);
+        FormBuilder.of(context)
+            ?.setAttributeValue(widget.attribute, transformed);
       },
       // initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,
