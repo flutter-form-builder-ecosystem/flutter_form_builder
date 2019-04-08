@@ -10,7 +10,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
 
-  final List<FormBuilderInputOption> options;
+  final List<FormBuilderFieldOption> options;
 
   FormBuilderCheckboxList({
     @required this.attribute,
@@ -71,7 +71,8 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                           else
                             currValue.remove(widget.options[i].value);
                           field.didChange(currValue);
-                          if (widget.onChanged != null) widget.onChanged(currValue);
+                          if (widget.onChanged != null)
+                            widget.onChanged(currValue);
                         },
                 ),
                 title: Text(

@@ -11,7 +11,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
 
-  final List<FormBuilderInputOption> options;
+  final List<FormBuilderFieldOption> options;
 
   FormBuilderSegmentedControl({
     @required this.attribute,

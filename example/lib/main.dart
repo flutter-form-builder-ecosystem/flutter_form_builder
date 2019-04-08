@@ -34,6 +34,8 @@ class MyHomePageState extends State<MyHomePage> {
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey();
 
+  ValueChanged _onChanged = (val) => print(val);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +54,7 @@ class MyHomePageState extends State<MyHomePage> {
                 // readonly: true,
                 child: Column(
                   children: <Widget>[
-                    FormBuilderField(
+                    FormBuilderCustomField(
                       attribute: "name",
                       validators: [
                         FormBuilderValidators.required(),
@@ -89,6 +91,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration: InputDecoration(labelText: "Chips"),
                       attribute: 'chips_test',
                       // readonly: true,
+                      onChanged: _onChanged,
                       initialValue: [
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -141,6 +144,7 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     FormBuilderDateTimePicker(
                       attribute: "date",
+                      onChanged: _onChanged,
                       inputType: InputType.date,
                       format: DateFormat("yyyy-MM-dd"),
                       decoration:
@@ -150,6 +154,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderSlider(
                       attribute: "slider",
                       validators: [FormBuilderValidators.min(6)],
+                      onChanged: _onChanged,
                       min: 0.0,
                       max: 10.0,
                       initialValue: 1.0,
@@ -160,6 +165,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderCheckbox(
                       attribute: 'accept_terms',
                       initialValue: false,
+                      onChanged: _onChanged,
                       label: Text(
                           "I have read and agree to the terms and conditions"),
                       validators: [
@@ -173,34 +179,30 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "gender",
                       decoration: InputDecoration(labelText: "Gender"),
                       // initialValue: 'Male',
+                      onChanged: _onChanged,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
-                      items: [
-                        DropdownMenuItem(
-                          value: 'Male',
-                          child: Text('Male'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Female',
-                          child: Text('Female'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Other',
-                          child: Text('Other'),
-                        ),
-                      ],
+                      items: ['Male', 'Female', 'Other']
+                          .map((gender) => DropdownMenuItem(
+                                value: gender,
+                                child: Text('$gender'),
+                              ))
+                          .toList(),
                     ),
                     FormBuilderTextField(
                       attribute: "age",
                       decoration: InputDecoration(labelText: "Age"),
+                      onChanged: _onChanged,
                       validators: [
                         FormBuilderValidators.numeric(),
                         FormBuilderValidators.max(70)
                       ],
                     ),
                     FormBuilderTypeAhead(
+                      // initialValue: "Canada",
                       decoration: InputDecoration(labelText: "Country"),
                       attribute: 'country',
+                      onChanged: _onChanged,
                       itemBuilder: (context, country) {
                         return ListTile(
                           title: Text(country),
@@ -228,6 +230,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration:
                           InputDecoration(labelText: 'My chosen language'),
                       attribute: "best_language",
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options: [
                         "Dart",
@@ -236,7 +239,7 @@ class MyHomePageState extends State<MyHomePage> {
                         "Swift",
                         "Objective-C"
                       ]
-                          .map((lang) => FormBuilderInputOption(value: lang))
+                          .map((lang) => FormBuilderFieldOption(value: lang))
                           .toList(growable: false),
                     ),
                     FormBuilderSegmentedControl(
@@ -245,19 +248,22 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "movie_rating",
                       options: List.generate(5, (i) => i + 1)
                           .map(
-                              (number) => FormBuilderInputOption(value: number))
+                              (number) => FormBuilderFieldOption(value: number))
                           .toList(),
+                      onChanged: _onChanged,
                     ),
                     FormBuilderSwitch(
                       label: Text('I Accept the tems and conditions'),
                       attribute: "accept_terms_switch",
                       initialValue: true,
+                      onChanged: _onChanged,
                     ),
                     FormBuilderStepper(
                       decoration: InputDecoration(labelText: "Stepper"),
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
+                      onChanged: _onChanged,
                     ),
                     FormBuilderRate(
                       decoration: InputDecoration(labelText: "Rate this form"),
@@ -265,6 +271,7 @@ class MyHomePageState extends State<MyHomePage> {
                       iconSize: 32.0,
                       initialValue: 1,
                       max: 5,
+                      onChanged: _onChanged,
                     ),
                     FormBuilderCheckboxList(
                       decoration: InputDecoration(
@@ -272,17 +279,19 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "languages",
                       initialValue: ["Dart"],
                       options: [
-                        FormBuilderInputOption(value: "Dart"),
-                        FormBuilderInputOption(value: "Kotlin"),
-                        FormBuilderInputOption(value: "Java"),
-                        FormBuilderInputOption(value: "Swift"),
-                        FormBuilderInputOption(value: "Objective-C"),
+                        FormBuilderFieldOption(value: "Dart"),
+                        FormBuilderFieldOption(value: "Kotlin"),
+                        FormBuilderFieldOption(value: "Java"),
+                        FormBuilderFieldOption(value: "Swift"),
+                        FormBuilderFieldOption(value: "Objective-C"),
                       ],
+                      onChanged: _onChanged,
                     ),
                     FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
                       height: 200,
+                      // onChanged: _onChanged,
                     ),
                   ],
                 ),
@@ -304,7 +313,9 @@ class MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  SizedBox(
+                    width: 20,
+                  ),
                   Expanded(
                     child: MaterialButton(
                       color: Theme.of(context).accentColor,

@@ -22,7 +22,8 @@ class FormBuilderSlider extends StatefulWidget {
     this.validators = const [],
     this.readonly = false,
     this.decoration = const InputDecoration(),
-    this.divisions, this.onChanged,
+    this.divisions,
+    this.onChanged,
   });
 
   @override

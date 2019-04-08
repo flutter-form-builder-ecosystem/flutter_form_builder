@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderField<T> extends StatefulWidget {
+class FormBuilderCustomField<T> extends StatefulWidget {
   final String attribute;
   final FormField<T> formField;
   final List<FormFieldValidator> validators;
 
-  FormBuilderField({
+  FormBuilderCustomField({
     @required this.attribute,
     @required this.formField,
     this.validators = const [],
   });
 
   @override
-  FormBuilderFieldState<T> createState() => FormBuilderFieldState<T>();
+  FormBuilderCustomFieldState<T> createState() => FormBuilderCustomFieldState<T>();
 }
 
-class FormBuilderFieldState<T> extends State<FormBuilderField<T>> {
+class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
   @override
   Widget build(BuildContext context) {
     /*return widget.formField
@@ -47,8 +47,7 @@ class FormBuilderFieldState<T> extends State<FormBuilderField<T>> {
           if (widget.formField.validator != null)
             return widget.formField.validator(val);
         },
-        builder:
-            widget.formField.builder ?? (FormField<T> field) => Container(),
+        builder: widget.formField.builder ?? (FormField<T> field) => Container(),
         enabled: widget.formField.enabled,
         autovalidate: widget.formField.autovalidate,
         initialValue: widget.formField.initialValue,

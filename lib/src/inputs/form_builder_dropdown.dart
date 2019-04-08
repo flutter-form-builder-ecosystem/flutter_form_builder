@@ -32,7 +32,8 @@ class FormBuilderDropdown extends StatefulWidget {
     this.hint,
     this.initialValue,
     this.style,
-    this.disabledHint, this.onChanged,
+    this.disabledHint,
+    this.onChanged,
   });
 
   @override

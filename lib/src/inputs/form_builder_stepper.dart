@@ -25,7 +25,8 @@ class FormBuilderStepper extends StatefulWidget {
     this.step,
     this.min,
     this.max,
-    this.size = 24.0, this.onChanged,
+    this.size = 24.0,
+    this.onChanged,
   });
 
   @override

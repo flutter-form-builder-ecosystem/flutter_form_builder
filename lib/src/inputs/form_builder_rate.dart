@@ -23,7 +23,8 @@ class FormBuilderRate extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.max,
     this.icon = Icons.star,
-    this.iconSize = 24.0, this.onChanged,
+    this.iconSize = 24.0,
+    this.onChanged,
   });
 
   @override

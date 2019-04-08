@@ -80,8 +80,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     _typeAheadController = TextEditingController(text: widget.initialValue);
     _typeAheadController.addListener(() {
-      if (widget.onChanged != null)
-        widget.onChanged(_typeAheadController.text);
+      if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
     });
     super.initState();
   }

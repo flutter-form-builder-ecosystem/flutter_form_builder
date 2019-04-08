@@ -10,7 +10,7 @@ class FormBuilderRadio extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
 
-  final List<FormBuilderInputOption> options;
+  final List<FormBuilderFieldOption> options;
 
   FormBuilderRadio({
     @required this.attribute,
@@ -18,7 +18,8 @@ class FormBuilderRadio extends StatefulWidget {
     this.initialValue,
     this.validators = const [],
     this.readonly = false,
-    this.decoration = const InputDecoration(), this.onChanged,
+    this.decoration = const InputDecoration(),
+    this.onChanged,
   });
 
   @override
@@ -75,7 +76,8 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
                   ? null
                   : () {
                       field.didChange(widget.options[i].value);
-                      if (widget.onChanged != null) widget.onChanged(widget.options[i].value);
+                      if (widget.onChanged != null)
+                        widget.onChanged(widget.options[i].value);
                     },
             ),
             Divider(

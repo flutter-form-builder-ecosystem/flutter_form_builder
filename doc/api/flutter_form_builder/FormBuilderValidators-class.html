@@ -57,11 +57,11 @@
       <li><a href="flutter_form_builder/FormBuilderCheckbox-class.html">FormBuilderCheckbox</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckboxList-class.html">FormBuilderCheckboxList</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput-class.html">FormBuilderChipsInput</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomField-class.html">FormBuilderCustomField</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomFieldState-class.html">FormBuilderCustomFieldState</a></li>
       <li><a href="flutter_form_builder/FormBuilderDateTimePicker-class.html">FormBuilderDateTimePicker</a></li>
       <li><a href="flutter_form_builder/FormBuilderDropdown-class.html">FormBuilderDropdown</a></li>
-      <li><a href="flutter_form_builder/FormBuilderField-class.html">FormBuilderField</a></li>
-      <li><a href="flutter_form_builder/FormBuilderFieldState-class.html">FormBuilderFieldState</a></li>
-      <li><a href="flutter_form_builder/FormBuilderInputOption-class.html">FormBuilderInputOption</a></li>
+      <li><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></li>
       <li><a href="flutter_form_builder/FormBuilderRadio-class.html">FormBuilderRadio</a></li>
       <li><a href="flutter_form_builder/FormBuilderRate-class.html">FormBuilderRate</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl-class.html">FormBuilderSegmentedControl</a></li>
@@ -167,6 +167,24 @@
     <section class="summary offset-anchor" id="static-methods">
       <h2>Static Methods</h2>
       <dl class="callables">
+        <dt id="creditCard" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderValidators/creditCard.html">creditCard</a></span><span class="signature">(<wbr>{<span class="parameter" id="creditCard-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid credit card number."</span></span> })
+            <span class="returntype parameter">&#8594; FormFieldValidator</span>
+          </span>
+                  </dt>
+        <dd>
+          <code>FormFieldValidator</code> that requires the field's value to be a valid credit card number.
+                  
+</dd>
+        <dt id="date" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderValidators/date.html">date</a></span><span class="signature">(<wbr>{<span class="parameter" id="date-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid date string."</span></span> })
+            <span class="returntype parameter">&#8594; FormFieldValidator</span>
+          </span>
+                  </dt>
+        <dd>
+          <code>FormFieldValidator</code> that requires the field's value to be a valid date string.
+                  
+</dd>
         <dt id="email" class="callable">
           <span class="name"><a href="flutter_form_builder/FormBuilderValidators/email.html">email</a></span><span class="signature">(<wbr>{<span class="parameter" id="email-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid email address."</span></span> })
             <span class="returntype parameter">&#8594; FormFieldValidator</span>
@@ -174,6 +192,15 @@
                   </dt>
         <dd>
           <code>FormFieldValidator</code> that requires the field's value to be a valid url.
+                  
+</dd>
+        <dt id="IP" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderValidators/IP.html">IP</a></span><span class="signature">(<wbr>{<span class="parameter" id="IP-param-version"><span class="type-annotation">dynamic</span> <span class="parameter-name">version</span>, </span> <span class="parameter" id="IP-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid IP."</span></span> })
+            <span class="returntype parameter">&#8594; FormFieldValidator</span>
+          </span>
+                  </dt>
+        <dd>
+          <code>FormFieldValidator</code> that requires the field's value to be a valid IP.
                   
 </dd>
         <dt id="max" class="callable">
@@ -255,7 +282,7 @@ Commonly used for required checkboxes.
                   
 </dd>
         <dt id="url" class="callable">
-          <span class="name"><a href="flutter_form_builder/FormBuilderValidators/url.html">url</a></span><span class="signature">(<wbr>{<span class="parameter" id="url-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid email address."</span></span> })
+          <span class="name"><a href="flutter_form_builder/FormBuilderValidators/url.html">url</a></span><span class="signature">(<wbr>{<span class="parameter" id="url-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid URL address."</span>, </span> <span class="parameter" id="url-param-protocols"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">protocols</span>: <span class="default-value">const ['http', 'https', 'ftp']</span>, </span> <span class="parameter" id="url-param-requireTld"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">requireTld</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="url-param-requireProtocol"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">requireProtocol</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="url-param-allowUnderscore"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">allowUnderscore</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="url-param-hostWhitelist"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">hostWhitelist</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="url-param-hostBlacklist"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">hostBlacklist</span>: <span class="default-value">const []</span></span> })
             <span class="returntype parameter">&#8594; FormFieldValidator</span>
           </span>
                   </dt>
@@ -289,7 +316,10 @@ Commonly used for required checkboxes.
     
     
       <li class="section-title"><a href="flutter_form_builder/FormBuilderValidators-class.html#static-methods">Static methods</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators/creditCard.html">creditCard</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators/date.html">date</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/email.html">email</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators/IP.html">IP</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/max.html">max</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/maxLength.html">maxLength</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/min.html">min</a></li>
@@ -307,7 +337,7 @@ Commonly used for required checkboxes.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.2
+    flutter_form_builder 3.0.0-beta.3
   </span>
 
   

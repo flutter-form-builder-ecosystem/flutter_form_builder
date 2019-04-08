@@ -29,7 +29,8 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.readonly = false,
     this.decoration = const InputDecoration(),
     this.onChipTapped,
-    this.maxChips, this.onChanged,
+    this.maxChips,
+    this.onChanged,
   });
 
   @override

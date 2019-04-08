@@ -71,7 +71,10 @@
     
     
       <li class="section-title"><a href="flutter_form_builder/FormBuilderValidators-class.html#static-methods">Static methods</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators/creditCard.html">creditCard</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators/date.html">date</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/email.html">email</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators/IP.html">IP</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/max.html">max</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/maxLength.html">maxLength</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators/min.html">min</a></li>
@@ -91,7 +94,7 @@
     <section class="multi-line-signature">
       <span class="returntype">FormFieldValidator</span>
             <span class="name ">url</span>
-(<wbr>{<span class="parameter" id="url-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid email address."</span></span> })
+(<wbr>{<span class="parameter" id="url-param-errorText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">errorText</span>: <span class="default-value">"This field requires a valid URL address."</span>, </span> <span class="parameter" id="url-param-protocols"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">protocols</span>: <span class="default-value">const ['http', 'https', 'ftp']</span>, </span> <span class="parameter" id="url-param-requireTld"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">requireTld</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="url-param-requireProtocol"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">requireProtocol</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="url-param-allowUnderscore"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">allowUnderscore</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="url-param-hostWhitelist"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">hostWhitelist</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="url-param-hostBlacklist"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">hostBlacklist</span>: <span class="default-value">const []</span></span> })
       
     </section>
     <section class="desc markdown">
@@ -100,14 +103,23 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">static FormFieldValidator url({
-  String errorText = &quot;This field requires a valid email address.&quot;,
-}) {
+      <pre class="language-dart"><code class="language-dart">static FormFieldValidator url(
+    {String errorText = &quot;This field requires a valid URL address.&quot;,
+    List&lt;String&gt; protocols = const [&#39;http&#39;, &#39;https&#39;, &#39;ftp&#39;],
+    bool requireTld = true,
+    bool requireProtocol = false,
+    bool allowUnderscore = false,
+    List&lt;String&gt; hostWhitelist = const [],
+    List&lt;String&gt; hostBlacklist = const []}) {
   return (val) {
     if (val != null &amp;&amp; val.isNotEmpty) {
-      Pattern pattern =
-          r&quot;(https?|ftp):&#47;&#47;([-A-Z0-9.]+)(&#47;[-A-Z0-9+&amp;@#&#47;%=~_|!:,.;]*)?(\?[A-Z0-9+&amp;@#&#47;%=~_|!:‌​,.;]*)?&quot;;
-      if (!RegExp(pattern).hasMatch(val)) return errorText;
+      if (!isURL(val,
+          protocols: protocols,
+          requireTld: requireTld,
+          requireProtocol: requireProtocol,
+          allowUnderscore: allowUnderscore,
+          hostWhitelist: hostWhitelist,
+          hostBlacklist: hostBlacklist)) return errorText;
     }
   };
 }</code></pre>
@@ -122,7 +134,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.2
+    flutter_form_builder 3.0.0-beta.3
   </span>
 
   

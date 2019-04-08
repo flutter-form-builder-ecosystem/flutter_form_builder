@@ -57,11 +57,11 @@
       <li><a href="flutter_form_builder/FormBuilderCheckbox-class.html">FormBuilderCheckbox</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckboxList-class.html">FormBuilderCheckboxList</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput-class.html">FormBuilderChipsInput</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomField-class.html">FormBuilderCustomField</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomFieldState-class.html">FormBuilderCustomFieldState</a></li>
       <li><a href="flutter_form_builder/FormBuilderDateTimePicker-class.html">FormBuilderDateTimePicker</a></li>
       <li><a href="flutter_form_builder/FormBuilderDropdown-class.html">FormBuilderDropdown</a></li>
-      <li><a href="flutter_form_builder/FormBuilderField-class.html">FormBuilderField</a></li>
-      <li><a href="flutter_form_builder/FormBuilderFieldState-class.html">FormBuilderFieldState</a></li>
-      <li><a href="flutter_form_builder/FormBuilderInputOption-class.html">FormBuilderInputOption</a></li>
+      <li><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></li>
       <li><a href="flutter_form_builder/FormBuilderRadio-class.html">FormBuilderRadio</a></li>
       <li><a href="flutter_form_builder/FormBuilderRate-class.html">FormBuilderRate</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl-class.html">FormBuilderSegmentedControl</a></li>
@@ -93,7 +93,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="FormBuilderChipsInput" class="callable">
-          <span class="name"><a href="flutter_form_builder/FormBuilderChipsInput/FormBuilderChipsInput.html">FormBuilderChipsInput</a></span><span class="signature">({<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-chipBuilder"><span>@required</span> <span class="type-annotation">ChipsBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">chipBuilder</span>, </span> <span class="parameter" id="-param-suggestionBuilder"><span>@required</span> <span class="type-annotation">ChipsBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">suggestionBuilder</span>, </span> <span class="parameter" id="-param-findSuggestions"><span>@required</span> <span class="type-annotation">ChipsInputSuggestions</span> <span class="parameter-name">findSuggestions</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">initialValue</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-onChipTapped"><span class="type-annotation">ValueChanged<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onChipTapped</span>, </span> <span class="parameter" id="-param-maxChips"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">maxChips</span></span> })</span>
+          <span class="name"><a href="flutter_form_builder/FormBuilderChipsInput/FormBuilderChipsInput.html">FormBuilderChipsInput</a></span><span class="signature">({<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-chipBuilder"><span>@required</span> <span class="type-annotation">ChipsBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">chipBuilder</span>, </span> <span class="parameter" id="-param-suggestionBuilder"><span>@required</span> <span class="type-annotation">ChipsBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">suggestionBuilder</span>, </span> <span class="parameter" id="-param-findSuggestions"><span>@required</span> <span class="type-annotation">ChipsInputSuggestions</span> <span class="parameter-name">findSuggestions</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">initialValue</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-onChipTapped"><span class="type-annotation">ValueChanged<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onChipTapped</span>, </span> <span class="parameter" id="-param-maxChips"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">maxChips</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span></span> })</span>
         </dt>
         <dd>
           
@@ -148,6 +148,14 @@
         <dt id="maxChips" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderChipsInput/maxChips.html">maxChips</a></span>
           <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="onChanged" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderChipsInput/onChanged.html">onChanged</a></span>
+          <span class="signature">&#8594; ValueChanged</span>         
         </dt>
         <dd>
           
@@ -344,6 +352,7 @@ tools and by <a href="flutter_form_builder/FormBuilderChipsInput/toStringDeep.ht
       <li><a href="flutter_form_builder/FormBuilderChipsInput/findSuggestions.html">findSuggestions</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput/initialValue.html">initialValue</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput/maxChips.html">maxChips</a></li>
+      <li><a href="flutter_form_builder/FormBuilderChipsInput/onChanged.html">onChanged</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput/onChipTapped.html">onChipTapped</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput/readonly.html">readonly</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput/suggestionBuilder.html">suggestionBuilder</a></li>
@@ -376,7 +385,7 @@ tools and by <a href="flutter_form_builder/FormBuilderChipsInput/toStringDeep.ht
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.2
+    flutter_form_builder 3.0.0-beta.3
   </span>
 
   
