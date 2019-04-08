@@ -18,6 +18,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final Color backgroundColor;
   final Color penColor;
   final double penStrokeWidth;
+  final String clearButtonText;
 
   FormBuilderSignaturePad({
     @required this.attribute,
@@ -27,6 +28,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.backgroundColor = Colors.grey,
     this.penColor = Colors.black,
     this.penStrokeWidth = 3.0,
+    this.clearButtonText = "Clear",
     this.initialValue,
     this.points,
     this.width,
@@ -100,7 +102,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                       field.didChange(null);
                     },
                     label: Text(
-                      "Clear",
+                      widget.clearButtonText,
                       style: TextStyle(color: Theme.of(context).errorColor),
                     ),
                     icon: Icon(

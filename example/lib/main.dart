@@ -290,7 +290,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
-                      height: 200,
+                      height: 250,
                       // onChanged: _onChanged,
                     ),
                   ],
