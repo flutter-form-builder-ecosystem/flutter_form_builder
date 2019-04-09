@@ -1,3 +1,10 @@
+## [3.0.0-beta.6] - 09-April-2019
+* Properly hooked up SignaturePad to form, added onChanged to it
+* SignaturePad now returns `Uint8List` object from `png` image
+
+## [3.0.0-beta.5] - 08-April-2019
+* Minor documentation improvements - hint for GlobalKey definition, table rendering issue in README
+
 ## [3.0.0-beta.4] - 08-April-2019
 * **Breaking changes:**
     * `FormBuilderInputOption` becomes `FormBuilderFieldOption`

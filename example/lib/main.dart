@@ -295,7 +295,7 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "signature",
                       // height: 250,
                       clearButtonText: "Start Over",
-                      // onChanged: _onChanged,
+                      onChanged: _onChanged,
                     ),
                   ],
                 ),

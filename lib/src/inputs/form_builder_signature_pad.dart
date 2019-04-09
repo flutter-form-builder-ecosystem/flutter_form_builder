@@ -3,15 +3,17 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:signature/signature.dart';
+import 'package:flutter_form_builder/src/widgets/signature.dart';
+// import 'package:signature/signature.dart';
 
 class FormBuilderSignaturePad extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  final Image initialValue;
+  final Uint8List initialValue;
   final bool readonly;
   final InputDecoration decoration;
   final ValueTransformer valueTransformer;
+  final ValueChanged onChanged;
 
   final List<Point> points;
   final double width;
@@ -35,6 +37,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.width,
     this.height = 200,
     this.valueTransformer,
+    this.onChanged,
   });
 
   @override
@@ -44,39 +47,32 @@ class FormBuilderSignaturePad extends StatefulWidget {
 
 class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
   bool _readonly = false;
+  Uint8List _value;
+  List<Point> _points;
+  final GlobalKey<SignatureState> _signatureKey = GlobalKey<SignatureState>();
 
   @override
   void initState() {
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    _points = widget.points;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var _signatureCanvas = Signature(
-      points: widget.points,
-      width: widget.width,
-      height: widget.height,
-      backgroundColor: widget.backgroundColor,
-      penColor: widget.penColor,
-      penStrokeWidth: widget.penStrokeWidth,
-    );
-
-    return FormField<Image>(
+    return FormField<Uint8List>(
       key: Key(widget.attribute),
       enabled: !_readonly,
-      initialValue: widget.initialValue,
+      initialValue: _value,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
             return widget.validators[i](val);
         }
       },
-      onSaved: (val) async {
-        Uint8List signature = await _signatureCanvas.exportBytes();
-        var image = Image.memory(signature).image;
-        var transformed = image;
+      onSaved: (val) {
+        var transformed = val;
         if (widget.valueTransformer != null)
           transformed = widget.valueTransformer(val);
         FormBuilder.of(context)
@@ -96,7 +92,25 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                 ),
                 child: GestureDetector(
                   onVerticalDragUpdate: (_) {},
-                  child: _signatureCanvas,
+                  child: Signature(
+                    key: _signatureKey,
+                    points: _points,
+                    width: widget.width,
+                    height: widget.height,
+                    backgroundColor: widget.backgroundColor,
+                    penColor: widget.penColor,
+                    penStrokeWidth: widget.penStrokeWidth,
+                    onChanged: (points) async {
+                      var signature =
+                          await _signatureKey.currentState.exportBytes();
+                      setState(() {
+                        _value = signature;
+                        _points = _signatureKey.currentState.exportPoints();
+                      });
+                      field.didChange(_value);
+                      if (widget.onChanged != null) widget.onChanged(_value);
+                    },
+                  ),
                 ),
               ),
               Row(
@@ -104,8 +118,12 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                   Expanded(child: SizedBox()),
                   FlatButton.icon(
                     onPressed: () {
-                      _signatureCanvas.clear();
-                      field.didChange(null);
+                      _signatureKey.currentState.clear();
+                      setState(() {
+                        _points = _signatureKey.currentState.exportPoints();
+                        _value = null;
+                      });
+                      field.didChange(_value);
                     },
                     label: Text(
                       widget.clearButtonText,

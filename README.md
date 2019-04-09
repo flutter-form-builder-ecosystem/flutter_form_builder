@@ -11,6 +11,7 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 ```dart
 final GlobalKey<FormBuilderState> _fbKey = GlobalKey();
 ```
+**Note:** Avoid defining the GlobalKey inside your build method because this will create a new GlobalKey on every build cycle bringing about some erratic behavior.
 
 ```dart
 Column(
@@ -174,8 +175,7 @@ The currently supported fields include:
 email, urls etc by using different configurations and validators
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
-In order to create an input field in the form, along with the label, and any applicable validation,
-there are several attributes that will be added to the different types of fields namely:
+In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
 | Attribute | Type  | Default | Required | Description |
 |-----------|-------|---------|-------------|----------|
@@ -187,7 +187,7 @@ there are several attributes that will be added to the different types of fields
 | `onChanged` | `ValueChanged<T>` | `null` | `false` | This event function will fire immediately the the field value changes |
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `false` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
 
-The rest of the attributes will be determined by the type of Widget being used as a `FormField`
+The rest of the attributes will be determined by the type of Widget being used.
 
 ### Building your own custom `FormField`
 ```dart
@@ -277,5 +277,8 @@ FormBuilderTextField(
 - [ ] RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
 - [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
 - [ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
+
+## KNOWN ISSUES
+Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 
