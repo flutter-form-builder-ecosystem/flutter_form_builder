@@ -6,8 +6,8 @@ class FormBuilderValidators {
   static FormFieldValidator required({
     String errorText = "This field cannot be empty.",
   }) {
-    return (val) {
-      if (val == null || val.isEmpty) {
+    return (val) { //FIXME: Change all val instances to valueCandidate
+      if (val == null || ((val is Iterable || val is String || val is Map) && val.length == 0)) {
         return errorText;
       }
     };

@@ -2,6 +2,14 @@ import 'package:test/test.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 void main() {
+  test('FormBuilderValidators.required', () {
+    expect(FormBuilderValidators.required()("something long"), isNull);
+    expect(FormBuilderValidators.required()(DateTime.now()), isNull);
+    expect(FormBuilderValidators.required()(''), isNotNull);
+    expect(FormBuilderValidators.required()([]), isNotNull);
+    // expect(FormBuilderValidators.maxLength(5)(5), equals(null));
+  });
+
   test('FormBuilderValidators.maxLength', () {
     expect(FormBuilderValidators.maxLength(5)("something long"), equals("Value must have a length less than or equal to 5"));
     expect(FormBuilderValidators.maxLength(5)("two"), equals(null));
