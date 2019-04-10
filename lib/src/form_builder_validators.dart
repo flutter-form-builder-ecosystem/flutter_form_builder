@@ -6,8 +6,12 @@ class FormBuilderValidators {
   static FormFieldValidator required({
     String errorText = "This field cannot be empty.",
   }) {
-    return (val) { //FIXME: Change all val instances to valueCandidate
-      if (val == null || ((val is Iterable || val is String || val is Map) && val.length == 0)) {
+    return (valueCandidate) {
+      if (valueCandidate == null ||
+          ((valueCandidate is Iterable ||
+                  valueCandidate is String ||
+                  valueCandidate is Map) &&
+              valueCandidate.length == 0)) {
         return errorText;
       }
     };
@@ -18,8 +22,8 @@ class FormBuilderValidators {
   static FormFieldValidator requiredTrue({
     String errorText = "This field must be set to true",
   }) {
-    return (val) {
-      if (val != true) {
+    return (valueCandidate) {
+      if (valueCandidate != true) {
         return errorText;
       }
     };
@@ -31,12 +35,12 @@ class FormBuilderValidators {
     num min, {
     String errorText,
   }) {
-    return (val) {
-      if (val != null &&
-          ((val is num && val < min) ||
-              (val is String &&
-                  num.tryParse(val) != null &&
-                  num.tryParse(val) < min))) {
+    return (valueCandidate) {
+      if (valueCandidate != null &&
+          ((valueCandidate is num && valueCandidate < min) ||
+              (valueCandidate is String &&
+                  num.tryParse(valueCandidate) != null &&
+                  num.tryParse(valueCandidate) < min))) {
         return errorText ?? "Value must be greater than or equal to $min";
       }
     };
@@ -48,12 +52,12 @@ class FormBuilderValidators {
     num max, {
     String errorText,
   }) {
-    return (val) {
-      if (val != null) {
-        if ((val is num && val > max) ||
-            (val is String &&
-                num.tryParse(val) != null &&
-                num.tryParse(val) > max)) {
+    return (valueCandidate) {
+      if (valueCandidate != null) {
+        if ((valueCandidate is num && valueCandidate > max) ||
+            (valueCandidate is String &&
+                num.tryParse(valueCandidate) != null &&
+                num.tryParse(valueCandidate) > max)) {
           return errorText ?? "Value must be less than or equal to $max";
         }
       }
@@ -66,8 +70,8 @@ class FormBuilderValidators {
     num minLength, {
     String errorText,
   }) {
-    return (val) {
-      if (val != null && val.length < minLength) {
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.length < minLength) {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
       }
@@ -80,8 +84,8 @@ class FormBuilderValidators {
     num maxLength, {
     String errorText,
   }) {
-    return (val) {
-      if (val != null && val.length > maxLength) {
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.length > maxLength) {
         return errorText ??
             "Value must have a length less than or equal to $maxLength";
       }
@@ -92,9 +96,9 @@ class FormBuilderValidators {
   static FormFieldValidator email({
     String errorText = "This field requires a valid email address.",
   }) {
-    return (val) {
-      if (val != null && val.isNotEmpty) {
-        if (!isEmail(val)) return errorText;
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.isNotEmpty) {
+        if (!isEmail(valueCandidate)) return errorText;
       }
     };
   }
@@ -108,9 +112,9 @@ class FormBuilderValidators {
       bool allowUnderscore = false,
       List<String> hostWhitelist = const [],
       List<String> hostBlacklist = const []}) {
-    return (val) {
-      if (val != null && val.isNotEmpty) {
-        if (!isURL(val,
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.isNotEmpty) {
+        if (!isURL(valueCandidate,
             protocols: protocols,
             requireTld: requireTld,
             requireProtocol: requireProtocol,
@@ -127,9 +131,9 @@ class FormBuilderValidators {
     Pattern pattern, {
     String errorText = "Value does not match pattern.",
   }) {
-    return (val) {
-      if (val != null && val.isNotEmpty) {
-        if (!RegExp(pattern).hasMatch(val)) return errorText;
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.isNotEmpty) {
+        if (!RegExp(pattern).hasMatch(valueCandidate)) return errorText;
       }
     };
   }
@@ -138,8 +142,9 @@ class FormBuilderValidators {
   static FormFieldValidator numeric({
     String errorText = "Value must be numeric.",
   }) {
-    return (val) {
-      if (num.tryParse(val) == null && val.isNotEmpty) return errorText;
+    return (valueCandidate) {
+      if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty)
+        return errorText;
     };
   }
 
@@ -147,9 +152,9 @@ class FormBuilderValidators {
   static FormFieldValidator creditCard({
     String errorText = "This field requires a valid credit card number.",
   }) {
-    return (val) {
-      if (val != null && val.isNotEmpty) {
-        if (!isCreditCard(val)) return errorText;
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.isNotEmpty) {
+        if (!isCreditCard(valueCandidate)) return errorText;
       }
     };
   }
@@ -160,9 +165,9 @@ class FormBuilderValidators {
     dynamic version,
     String errorText = "This field requires a valid IP.",
   }) {
-    return (val) {
-      if (val != null && val.isNotEmpty) {
-        if (!isIP(val, version)) return errorText;
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.isNotEmpty) {
+        if (!isIP(valueCandidate, version)) return errorText;
       }
     };
   }
@@ -171,9 +176,9 @@ class FormBuilderValidators {
   static FormFieldValidator date({
     String errorText = "This field requires a valid date string.",
   }) {
-    return (val) {
-      if (val != null && val.isNotEmpty) {
-        if (!isDate(val)) return errorText;
+    return (valueCandidate) {
+      if (valueCandidate != null && valueCandidate.isNotEmpty) {
+        if (!isDate(valueCandidate)) return errorText;
       }
     };
   }
