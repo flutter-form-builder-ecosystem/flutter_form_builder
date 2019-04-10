@@ -98,11 +98,12 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
         }
       },
       onSaved: (val) {
-        var transformed = val;
-        if (widget.valueTransformer != null)
-          transformed = widget.valueTransformer(val);
-        FormBuilder.of(context)
-            ?.setAttributeValue(widget.attribute, transformed);
+        if (widget.valueTransformer != null) {
+          var transformed = widget.valueTransformer(val);
+          FormBuilder.of(context)
+              ?.setAttributeValue(widget.attribute, transformed);
+        } else
+          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       // initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,

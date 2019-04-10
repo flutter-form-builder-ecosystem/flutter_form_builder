@@ -169,11 +169,12 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         enabled: !_readonly,
       ),
       onSaved: (val) {
-        var transformed = val;
-        if (widget.valueTransformer != null)
-          transformed = widget.valueTransformer(val);
-        FormBuilder.of(context)
-            ?.setAttributeValue(widget.attribute, transformed);
+        if (widget.valueTransformer != null) {
+          var transformed = widget.valueTransformer(val);
+          FormBuilder.of(context)
+              ?.setAttributeValue(widget.attribute, transformed);
+        } else
+          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

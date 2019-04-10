@@ -112,11 +112,12 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
         }
       },
       onSaved: (val) {
-        var transformed = val;
-        if (widget.valueTransformer != null)
-          transformed = widget.valueTransformer(val);
-        FormBuilder.of(context)
-            ?.setAttributeValue(widget.attribute, transformed);
+        if (widget.valueTransformer != null) {
+          var transformed = widget.valueTransformer(val);
+          FormBuilder.of(context)
+              ?.setAttributeValue(widget.attribute, transformed);
+        } else
+          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
       },
       enabled: !_readonly,
       style: widget.style,

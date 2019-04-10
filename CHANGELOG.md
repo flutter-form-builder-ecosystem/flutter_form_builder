@@ -1,4 +1,7 @@
-## [3.0.0-beta.6] - 07-April-2019
+## [3.0.0-beta.8] - 10-April-2019
+* Fixed unhandled exception when `valueTransformer` tries to convert value from predefined `FormField` type
+
+## [3.0.0-beta.7] - 09-April-2019
 * Check if value candidate is of type String, Iterable or Map before checking length to determine empty in `FormValidators.required`
 
 ## [3.0.0-beta.6] - 09-April-2019
