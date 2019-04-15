@@ -49,20 +49,27 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
   bool _readonly = false;
   Uint8List _value;
   List<Point> _points;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   final GlobalKey<SignatureState> _signatureKey = GlobalKey<SignatureState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     _points = widget.points;
     super.initState();
   }
 
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField<Uint8List>(
-      key: Key(widget.attribute),
+      key: _fieldKey,
       enabled: !_readonly,
       initialValue: _value,
       validator: (val) {

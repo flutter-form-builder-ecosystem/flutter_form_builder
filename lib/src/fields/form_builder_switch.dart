@@ -30,18 +30,25 @@ class FormBuilderSwitch extends StatefulWidget {
 
 class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
   bool _readonly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-        // key: _fieldKey,
+        key: _fieldKey,
         enabled: !_readonly,
         initialValue: widget.initialValue ?? false,
         validator: (val) {

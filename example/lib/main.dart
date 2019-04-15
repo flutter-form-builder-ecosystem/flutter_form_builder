@@ -266,7 +266,13 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
-                      onChanged: _onChanged,
+                      validators: [
+                        (val){
+                          if(!_fbKey.currentState.fields["accept_terms_switch"].currentState.value && val >= 10){
+                            return "You can only put more than 10 if you've accepted terms";
+                          }
+                        }
+                      ],
                     ),
                     FormBuilderRate(
                       decoration: InputDecoration(labelText: "Rate this form"),

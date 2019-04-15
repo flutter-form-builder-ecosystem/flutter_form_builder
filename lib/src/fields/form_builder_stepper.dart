@@ -37,19 +37,26 @@ class FormBuilderStepper extends StatefulWidget {
 
 class _FormBuilderStepperState extends State<FormBuilderStepper> {
   bool _readonly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     super.initState();
+  }
+
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
   }
 
   @override
   Widget build(BuildContext context) {
     return FormField(
       enabled: !_readonly,
-      // key: _fieldKey,
+      key: _fieldKey,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

@@ -78,15 +78,17 @@ class FormBuilderTextField extends StatefulWidget {
   });
 
   @override
-  _FormBuilderTextFieldState createState() => _FormBuilderTextFieldState();
+  FormBuilderTextFieldState createState() => FormBuilderTextFieldState();
 }
 
-class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
+class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   bool _readonly = false;
   TextEditingController _textEditingController = TextEditingController();
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     if (widget.controller != null)
@@ -102,9 +104,15 @@ class _FormBuilderTextFieldState extends State<FormBuilderTextField> {
     super.initState();
   }
 
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: _fieldKey,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)

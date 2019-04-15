@@ -31,20 +31,52 @@ class FormBuilder extends StatefulWidget {
 class FormBuilderState extends State<FormBuilder> {
   //FIXME: Find way to assert no duplicates in control attributes
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  Map<String, dynamic> _value = {};
+  Map<String, GlobalKey<FormFieldState>> _fieldKeys;
+  Map<String, dynamic> _value;
 
   Map<String, dynamic> get value => _value;
 
+  Map<String, GlobalKey<FormFieldState>> get fields => _fieldKeys;
+
   bool get readonly => widget.readonly;
 
-  setAttributeValue(String attribute, dynamic value) {
+  @override
+  void initState() {
+    _fieldKeys = {};
+    _value = {};
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _fieldKeys = null;
+    super.dispose();
+  }
+
+  void setAttributeValue(String attribute, dynamic value) {
     setState(() {
       _value[attribute] = value;
     });
   }
 
-  save() {
+  registerFieldKey(String attribute, GlobalKey key) {
+    print("Contains key $attribute: ${_fieldKeys.containsKey(attribute)}");
+    assert(_fieldKeys.containsKey(attribute) == false,
+        "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
+    this._fieldKeys[attribute] = key;
+  }
+
+  /*changeAttributeValue(String attribute, dynamic newValue) {
+    print(this.fieldKeys[attribute]);
+    if (this.fieldKeys[attribute] != null){
+      print("Current $attribute value: ${this.fieldKeys[attribute].currentState.value}");
+      print("Trying to change $attribute to $newValue");
+      this.fieldKeys[attribute].currentState.didChange(newValue);
+      print("$attribute value after: ${this.fieldKeys[attribute].currentState.value}");
+    }
+  }*/
+
+  void save() {
     _formKey.currentState.save();
   }
 
@@ -52,7 +84,7 @@ class FormBuilderState extends State<FormBuilder> {
     return _formKey.currentState.validate();
   }
 
-  reset() {
+  void reset() {
     _formKey.currentState.reset();
   }
 

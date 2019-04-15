@@ -20,6 +20,19 @@ class FormBuilderCustomField<T> extends StatefulWidget {
 }
 
 class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+
+  @override
+  void initState() {
+    registerFieldKey();
+    super.initState();
+  }
+
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     /*return widget.formField
@@ -38,6 +51,7 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
     return Container(
       key: Key(widget.attribute),
       child: FormField(
+        key: _fieldKey,
         onSaved: (val) {
           if (widget.formField.onSaved != null) widget.formField.onSaved(val);
           if (widget.valueTransformer != null) {
@@ -60,7 +74,6 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
         enabled: widget.formField.enabled,
         autovalidate: widget.formField.autovalidate,
         initialValue: widget.formField.initialValue,
-        key: widget.formField.key,
       ), //widget.formField,
     );
   }

@@ -30,18 +30,25 @@ class FormBuilderRadio extends StatefulWidget {
 
 class _FormBuilderRadioState extends State<FormBuilderRadio> {
   bool _readonly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-      // key: _fieldKey,
+      key: _fieldKey,
       enabled: !_readonly && !_readonly,
       initialValue: widget.initialValue,
       validator: (val) {

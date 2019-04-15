@@ -33,18 +33,25 @@ class FormBuilderSegmentedControl extends StatefulWidget {
 class _FormBuilderSegmentedControlState
     extends State<FormBuilderSegmentedControl> {
   bool _readonly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
-      // key: _fieldKey,
+      key: _fieldKey,
       initialValue: widget.initialValue,
       enabled: !_readonly,
       validator: (val) {

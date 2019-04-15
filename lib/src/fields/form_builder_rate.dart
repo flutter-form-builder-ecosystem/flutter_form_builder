@@ -35,19 +35,26 @@ class FormBuilderRate extends StatefulWidget {
 
 class _FormBuilderRateState extends State<FormBuilderRate> {
   bool _readonly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FormField(
+      key: _fieldKey,
       enabled: !_readonly,
-      // key: _fieldKey,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

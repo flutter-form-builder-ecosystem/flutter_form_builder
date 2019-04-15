@@ -140,13 +140,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
 class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   bool _readonly = false;
-
-  @override
-  void initState() {
-    _readonly =
-        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
-    super.initState();
-  }
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
@@ -155,8 +149,22 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   };
 
   @override
+  void initState() {
+    registerFieldKey();
+    _readonly =
+        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    super.initState();
+  }
+
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DateTimePickerFormField(
+      key: _fieldKey,
       inputType: widget.inputType,
       initialValue: widget.initialValue,
       format: widget.format != null

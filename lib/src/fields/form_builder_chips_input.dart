@@ -40,12 +40,19 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
 
 class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
   bool _readonly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   @override
   void initState() {
+    registerFieldKey();
     _readonly =
         (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
     super.initState();
+  }
+
+  registerFieldKey() {
+    if (FormBuilder.of(context) != null)
+      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
   }
 
   @override
@@ -53,7 +60,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
     return SizedBox(
       // height: 200.0,
       child: FormField(
-        // key: _fieldKey,
+        key: _fieldKey,
         enabled: !_readonly,
         initialValue: widget.initialValue,
         validator: (val) {
