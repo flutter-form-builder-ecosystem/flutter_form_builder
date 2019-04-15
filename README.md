@@ -9,7 +9,7 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 
 ### Example
 ```dart
-final GlobalKey<FormBuilderState> _fbKey = GlobalKey();
+final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 ```
 **Note:** Avoid defining the GlobalKey inside your build method because this will create a new GlobalKey on every build cycle bringing about some erratic behavior.
 
@@ -186,7 +186,6 @@ In order to create an input field in the form, along with the label, and any app
 | `validators` | `List<FormFieldValidator>` | `[]` | `false` | List of `FormFieldValidator`s that will check the validity of value candidate in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `false` | This event function will fire immediately the the field value changes |
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `false` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
-
 The rest of the attributes will be determined by the type of Widget being used.
 
 ### Building your own custom `FormField`
@@ -261,16 +260,55 @@ FormBuilderTextField(
 ),
 ```
 
+### Conditional validation
+You can now validate a field based on the value of another field
+```
+FormBuilderRadio(
+  decoration: InputDecoration(labelText: 'My best language'),
+  attribute: "best_language",
+  validators: [FormBuilderValidators.required()],
+  options: [
+    "Dart",
+    "Kotlin",
+    "Java",
+    "Swift",
+    "Objective-C",
+    "Other"
+  ]
+      .map((lang) => FormBuilderFieldOption(value: lang))
+      .toList(growable: false),
+),
+FormBuilderTextField(
+    attribute: "specify",
+    decoration: InputDecoration(labelText: "If Other, please specify"),
+    validators: [
+        (val){
+            if(_fbKey.currentState.fields['best_language'].currentState.value == "Other" && (val == null || val.isEmpty))
+                return "Kindly specify your language";
+        },
+    ],
+),
+```
+
+## CREDITS
+This package is dependent on the following packages and plugins:
+* [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [https://github.com/AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
+* [sy_flutter_widgets]((https://pub.dartlang.org/packages/sy_flutter_widgets)) by [Li Shuhao](https://github.com/lishuhao)
+* [datetime_picker_formfield](https://pub.dartlang.org/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
+* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :)](https://github.com/danvick)
+* [intl](https://pub.dartlang.org/packages/intl)
+* The SignaturePad is based on [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+
 ## TODO: 
 ### Improvements
 - [X] Allow addition of custom input types
 - [X] Improve documentation by showing complete list of input types and their usage and options
-- [ ] Create a `transformer` function option that will convert field value when field id saved - can be used to convert string to number, change to uppercase etc.
-- [ ] Assert no duplicates in `FormBuilderInput`s `attribute` names
+- [X] Create a `transformer` function option that will convert field value when field id saved - can be used to convert string to number, change to uppercase etc.
+- [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [ ] Allow options for Checkboxes and Radios to appear left or right
 
 ### New FormBuilder inputs
-- [X] SignaturePad
+- [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
 - [ ] MapInput
 - [ ] ImagePicker
 - [ ] DocumentPicker

@@ -1,3 +1,9 @@
+## [3.0.0-beta.9] - 15-April-2019
+* Added property `fields` to FormBuilder, gives access to the current state of each field through a Map of `GlobalKey<FormFieldState<dynamic>>`s. 
+This gives us access to the underlying FormField which in turn allows us: 
+    * Do conditional validation based on other fields (check readme)
+    * Dynamically update field values
+
 ## [3.0.0-beta.8] - 10-April-2019
 * Fixed unhandled exception when `valueTransformer` tries to convert value from predefined `FormField` type
 

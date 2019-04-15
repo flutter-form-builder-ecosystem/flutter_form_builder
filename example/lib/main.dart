@@ -32,7 +32,7 @@ class MyHomePageState extends State<MyHomePage> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
-  final GlobalKey<FormBuilderState> _fbKey = GlobalKey();
+  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
   ValueChanged _onChanged = (val) => print(val);
 
