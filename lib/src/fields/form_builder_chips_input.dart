@@ -41,18 +41,20 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
 class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
 
   @override
   void initState() {
-    registerFieldKey();
-    _readonly =
-        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
-  registerFieldKey() {
-    if (FormBuilder.of(context) != null)
-      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
   }
 
   @override
@@ -62,7 +64,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
       child: FormField(
         key: _fieldKey,
         enabled: !_readonly,
-        initialValue: widget.initialValue,
+        initialValue: widget.initialValue ?? [],
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
             if (widget.validators[i](val) != null)
@@ -75,7 +77,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
             FormBuilder.of(context)
                 ?.setAttributeValue(widget.attribute, transformed);
           } else
-            FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+            _formState?.setAttributeValue(widget.attribute, val);
         },
         builder: (FormFieldState<dynamic> field) {
           return ChipsInput(

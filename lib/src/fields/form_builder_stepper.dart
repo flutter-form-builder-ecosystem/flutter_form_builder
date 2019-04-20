@@ -38,18 +38,20 @@ class FormBuilderStepper extends StatefulWidget {
 class _FormBuilderStepperState extends State<FormBuilderStepper> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
 
   @override
   void initState() {
-    registerFieldKey();
-    _readonly =
-        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
-  registerFieldKey() {
-    if (FormBuilder.of(context) != null)
-      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
   }
 
   @override
@@ -70,7 +72,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
           FormBuilder.of(context)
               ?.setAttributeValue(widget.attribute, transformed);
         } else
-          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+          _formState?.setAttributeValue(widget.attribute, val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

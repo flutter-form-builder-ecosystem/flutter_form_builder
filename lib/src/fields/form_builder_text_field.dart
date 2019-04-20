@@ -85,12 +85,13 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   bool _readonly = false;
   TextEditingController _textEditingController = TextEditingController();
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
 
   @override
   void initState() {
-    registerFieldKey();
-    _readonly =
-        (FormBuilder.of(context)?.readonly == true) ? true : widget.readonly;
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     if (widget.controller != null)
       _textEditingController = widget.controller;
     else
@@ -102,11 +103,6 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         widget.onChanged(_textEditingController.text);
     });
     super.initState();
-  }
-
-  registerFieldKey() {
-    if (FormBuilder.of(context) != null)
-      FormBuilder.of(context).registerFieldKey(widget.attribute, _fieldKey);
   }
 
   @override
@@ -125,7 +121,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
           FormBuilder.of(context)
               ?.setAttributeValue(widget.attribute, transformed);
         } else
-          FormBuilder.of(context)?.setAttributeValue(widget.attribute, val);
+          _formState?.setAttributeValue(widget.attribute, val);
       },
       enabled: !_readonly,
       style: widget.style,
@@ -163,6 +159,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
 
   @override
   void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
     _textEditingController.dispose();
     super.dispose();
   }

@@ -292,12 +292,13 @@ FormBuilderTextField(
 
 ## CREDITS
 This package is dependent on the following packages and plugins:
-* [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [https://github.com/AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
-* [sy_flutter_widgets]((https://pub.dartlang.org/packages/sy_flutter_widgets)) by [Li Shuhao](https://github.com/lishuhao)
+* [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
+* [sy_flutter_widgets](https://pub.dartlang.org/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
 * [datetime_picker_formfield](https://pub.dartlang.org/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
-* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :)](https://github.com/danvick)
-* [intl](https://pub.dartlang.org/packages/intl)
+* [validators](https://pub.dartlang.org/packages/validators) by [dart-league](https://github.com/dart-league)
+* [intl](https://pub.dartlang.org/packages/intl) - Dart Package
 * The SignaturePad is based on [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :)](https://github.com/danvick)
 
 ## TODO: 
 ### Improvements
