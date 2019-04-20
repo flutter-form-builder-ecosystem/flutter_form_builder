@@ -33,7 +33,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.penStrokeWidth = 3.0,
     this.clearButtonText = "Clear",
     this.initialValue,
-    this.points = const [],
+    this.points,
     this.width,
     this.height = 200,
     this.valueTransformer,
