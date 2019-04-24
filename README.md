@@ -320,4 +320,9 @@ This package is dependent on the following packages and plugins:
 ## KNOWN ISSUES
 Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
+## Support
+If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
+
+[<img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png">](https://buymeacoff.ee/wb5M9y2Sz)
+
 
