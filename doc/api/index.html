@@ -67,280 +67,231 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="flutter-formbuilder---flutter_form_builder">Flutter FormBuilder - flutter_form_builder</h1>
-<p>This widget helps in generation of forms in <a href="https://flutter.io/">Flutter</a>. 
-Wraps common input types with FormField allowing validation, change detection, setting input value etc and have them in a single form</p>
-<p>Saves you some common validations  such as: required fields, number, email &amp; url validity, <code>min</code> and <code>max</code> values for numbers, <code>min</code> and <code>max</code> character length for string based fields
-as well as allow you to include your own custom validation</p>
-<p>On submission, the form returns a <code>Map&lt;String, dynamic&gt;</code> of form values if the form is valid or <code>null</code> otherwise.</p>
-<h2 id="usage">Usage</h2>
+<p>This package helps in generation of forms in <a href="https://flutter.io/">Flutter</a> by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form in the form of a map.</p>
+<p>The package also comes with common validation functions that can be easily composable to enforce the DRY Principle in code-base.</p>
+<h2 id="simple-usage">Simple Usage</h2>
 <p>To use this plugin, add <code>flutter_form_builder</code> as a <a href="https://flutter.io/platform-plugins/">dependency in your pubspec.yaml file</a>.</p>
 <h3 id="example">Example</h3>
-<pre class="language-dart"><code class="language-dart">GlobalKey&lt;FormBuilderState&gt; _fbKey = GlobalKey();
-
-SingleChildScrollView(
-  Column(
-    children: &lt;Widget&gt;[
-        FormBuilder(
-          context,
-          key: _fbKey,
-          autovalidate: true,
-          readonly: false,
-          /*onChanged: (formValue) {
-            print(formValue);
-          },*/
-          controls: [
-            FormBuilderInput.typeAhead(
-              decoration: InputDecoration(labelText: "Country"),
-              attribute: 'country',
-              // require: true,
-              itemBuilder: (context, country) {
-                return ListTile(
-                  title: Text(country),
-                );
-              },
-              suggestionsCallback: (query) {
-                if (query.length != 0) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return allCountries.where((country) {
-                    return country.toLowerCase().contains(lowercaseQuery);
-                  }).toList(growable: false)
-                    ..sort((a, b) =&gt; a
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(
-                            b.toLowerCase().indexOf(lowercaseQuery)));
-                } else {
-                  return allCountries;
-                }
-              },
-            ),
-            FormBuilderInput.chipsInput(
-              decoration: InputDecoration(labelText: "Chils"),
-              attribute: 'chips_test',
-              // require: true,
-              value: [
-                Contact('Andrew', 'stock@man.com',
-                    'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-              ],
-              max: 1,
-              suggestionsCallback: (String query) {
-                if (query.length != 0) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return mockResults.where((profile) {
-                    return profile.name
-                            .toLowerCase()
-                            .contains(query.toLowerCase()) ||
-                        profile.email
-                            .toLowerCase()
-                            .contains(query.toLowerCase());
-                  }).toList(growable: false)
-                    ..sort((a, b) =&gt; a.name
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(b.name
-                            .toLowerCase()
-                            .indexOf(lowercaseQuery)));
-                } else {
-                  return const &lt;Contact&gt;[];
-                }
-              },
-              chipBuilder: (context, state, profile) {
-                return InputChip(
-                  key: ObjectKey(profile),
-                  label: Text(profile.name),
-                  avatar: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
-                  ),
-                  onDeleted: () =&gt; state.deleteChip(profile),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                );
-              },
-              suggestionBuilder: (context, state, profile) {
-                return ListTile(
-                  key: ObjectKey(profile),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
-                  ),
-                  title: Text(profile.name),
-                  subtitle: Text(profile.email),
-                  onTap: () =&gt; state.selectSuggestion(profile),
-                );
-              },
-            ),
-            FormBuilderInput.textField(
-                type: FormBuilderInput.TYPE_TEXT,
-                attribute: "name",
-                decoration: InputDecoration(labelText: "Full Name"),
-                value: "John Doe",
-                // require: true,
-                // readonly: true,
-                require: true,
-                // readonly: true,
-                min: 3,
-            FormBuilderInput.dropdown(
-              attribute: "dropdown",
-              // require: true,
-              decoration: InputDecoration(labelText: "Select options"),
-              options: [
-                FormBuilderInputOption(value: "Option 1"),
-                FormBuilderInputOption(value: "Option 2"),
-                FormBuilderInputOption(value: "Option 3"),
-              ],
-            ),
-            FormBuilderInput.number(
-              attribute: "age",
-              decoration: InputDecoration(labelText: "Your Age"),
-              // require: true,
-              // min: 18,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_MULTILINE_TEXT,
-              attribute: "story",
-              decoration: InputDecoration(labelText: "Story"),
-              value: "Here's my story",
-              require: false,
-              min: 25,
-              maxLines: 10,
-              autovalidate: true,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_EMAIL,
-              attribute: "email",
-              decoration: InputDecoration(labelText: "Email"),
-              require: true,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_URL,
-              attribute: "url",
-              decoration: InputDecoration(labelText: "Website"),
-              require: true,
-            ),
-            FormBuilderInput.textField(
-              type: FormBuilderInput.TYPE_PHONE,
-              attribute: "phone",
-              decoration: InputDecoration(labelText: "Phone Number"),
-              //require: true,
-            ),
-            FormBuilderInput.password(
-              attribute: "password",
-              decoration: InputDecoration(labelText: "Password"),
-              min: 8,
-            ),
-            FormBuilderInput.datePicker(
-              decoration: InputDecoration(labelText: "Date of Birth"),
-              readonly: true,
-              attribute: "dob",
-              firstDate: DateTime(1970),
-              value: DateTime.now(),
-              lastDate: DateTime.now().add(Duration(days: 1)),
-              format: 'dd, MM yyyy',
-            ),
-            FormBuilderInput.timePicker(
-              decoration: InputDecoration(labelText: "Alarm Time"),
-              attribute: "alarm",
-              require: true,
-            ),
-            FormBuilderInput.dateTimePicker(
-              decoration: InputDecoration(labelText: "Appointment Time"),
-              attribute: "appointment_time",
-              firstDate: DateTime(1970),
-              lastDate: DateTime.now().add(Duration(days: 1)),
-              // format: 'dd, MM yyyy hh:mm',
-            ),
-            FormBuilderInput.checkboxList(
-              decoration:
-                  InputDecoration(labelText: "The language of my people"),
-              attribute: "languages",
-              require: false,
-              value: ["Dart"],
-              options: [
-                FormBuilderInputOption(value: "Dart"),
-                FormBuilderInputOption(value: "Kotlin"),
-                FormBuilderInputOption(value: "Java"),
-                FormBuilderInputOption(value: "Swift"),
-                FormBuilderInputOption(value: "Objective-C"),
-              ],
-            ),
-            FormBuilderInput.radio(
-              decoration:
-                  InputDecoration(labelText: 'My chosen language'),
-              attribute: "best_language",
-              require: true,
-              options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
-                  .map((lang) =&gt; FormBuilderInputOption(value: lang))
-                  .toList(growable: false),
-            ),
-            FormBuilderInput.checkbox(
-                label: Text('I Accept the tems and conditions'),
-                attribute: "accept_terms",
-                validator: (value) {
-                  if (!value) return "Accept terms to continue";
-                }),
-            FormBuilderInput.switchInput(
-                label: Text('I Accept the tems and conditions'),
-                attribute: "accept_terms_switch",
-                value: true,
-                validator: (value) {
-                  if (!value) return "Accept terms to continue";
-                }),
-            FormBuilderInput.slider(
-              decoration: InputDecoration(labelText: "Slider"),
-              attribute: "slider",
-              min: 0.0,
-              require: true,
-              max: 100.0,
-              value: 10.0,
-              divisions: 20,
-            ),
-            FormBuilderInput.stepper(
-              decoration: InputDecoration(labelText: "Stepper"),
-              attribute: "stepper",
-              value: 10,
-              step: 1,
-            ),
-            FormBuilderInput.signaturePad(
-              decoration: InputDecoration(labelText: "Signature"),
-              attribute: "signature",
-              require: true,
-            ),
-            FormBuilderInput.rate(
-              decoration: InputDecoration(labelText: "Rate this form"),
-              attribute: "rate",
-              iconSize: 32.0,
-              value: 1,
-              max: 5,
-            ),
-            FormBuilderInput.segmentedControl(
-              decoration:
-                  InputDecoration(labelText: "Movie Rating (Archer)"),
-              attribute: "movie_rating",
-              // value: 2,
-              require: true,
-              options: List.generate(5, (i) =&gt; i + 1)
-                  .map((number) =&gt; FormBuilderInputOption(value: number))
-                  .toList(),
-            ),
-          ],
+<pre class="language-dart"><code class="language-dart">final GlobalKey&lt;FormBuilderState&gt; _fbKey = GlobalKey();
+</code></pre>
+<p><strong>Note:</strong> Avoid defining the GlobalKey inside your build method and this will create a new GlobalKey on every build cycle and bring about some erratic behavior.</p>
+<pre class="language-dart"><code class="language-dart">Column(
+  children: &lt;Widget&gt;[
+    FormBuilder(
+      context,
+      key: _fbKey,
+      autovalidate: true,
+      child: Column(
+        children: &lt;Widget&gt;[
+          FormBuilderDateTimePicker(
+            attribute: "date",
+            inputType: InputType.date,
+            format: DateFormat("yyyy-MM-dd"),
+            decoration:
+                InputDecoration(labelText: "Appointment Time"),
+          ),
+          FormBuilderSlider(
+            attribute: "slider",
+            validators: [FormBuilderValidators.min(6)],
+            min: 0.0,
+            max: 10.0,
+            initialValue: 1.0,
+            divisions: 20,
+            decoration:
+                InputDecoration(labelText: "Number of somethings"),
+          ),
+          FormBuilderCheckbox(
+            attribute: 'accept_terms',
+            initialValue: false,
+            label: Text(
+                "I have read and agree to the terms and conditions"),
+            validators: [
+              FormBuilderValidators.requiredTrue(
+                errorMessage:
+                    "You must accept terms and conditions to continue",
+              ),
+            ],
+          ),
+          FormBuilderDropdown(
+            attribute: "gender",
+            decoration: InputDecoration(labelText: "Gender"),
+            // initialValue: 'Male',
+            hint: Text('Select Gender'),
+            validators: [FormBuilderValidators.required()],
+            items: ['Male', 'Female', 'Other']
+              .map((gender) =&gt; DropdownMenuItem(
+                 value: gender,
+                 child: Text("$gender")
+            )).toList(),
+          ),
+          FormBuilderTextField(
+            attribute: "age",
+            decoration: InputDecoration(labelText: "Age"),
+            validators: [
+              FormBuilderValidators.numeric(),
+              FormBuilderValidators.max(70),
+            ],
+          ),
+          FormBuilderRadio(
+            decoration:
+                InputDecoration(labelText: 'My chosen language'),
+            attribute: "best_language",
+            validators: [FormBuilderValidators.required()],
+            options: [
+              "Dart",
+              "Kotlin",
+              "Java",
+              "Swift",
+              "Objective-C"
+            ]
+                .map((lang) =&gt; FormBuilderFieldOption(value: lang))
+                .toList(growable: false),
+          ),
+          FormBuilderSegmentedControl(
+            decoration:
+                InputDecoration(labelText: "Movie Rating (Archer)"),
+            attribute: "movie_rating",
+            options: List.generate(5, (i) =&gt; i + 1)
+                .map(
+                    (number) =&gt; FormBuilderFieldOption(value: number))
+                .toList(),
+          ),
+          FormBuilderSwitch(
+            label: Text('I Accept the tems and conditions'),
+            attribute: "accept_terms_switch",
+            initialValue: true,
+          ),
+          FormBuilderStepper(
+            decoration: InputDecoration(labelText: "Stepper"),
+            attribute: "stepper",
+            initialValue: 10,
+            step: 1,
+          ),
+          FormBuilderRate(
+            decoration: InputDecoration(labelText: "Rate this form"),
+            attribute: "rate",
+            iconSize: 32.0,
+            initialValue: 1,
+            max: 5,
+          ),
+          FormBuilderCheckboxList(
+            decoration:
+            InputDecoration(labelText: "The language of my people"),
+            attribute: "languages",
+            initialValue: ["Dart"],
+            options: [
+              FormBuilderFieldOption(value: "Dart"),
+              FormBuilderFieldOption(value: "Kotlin"),
+              FormBuilderFieldOption(value: "Java"),
+              FormBuilderFieldOption(value: "Swift"),
+              FormBuilderFieldOption(value: "Objective-C"),
+            ],
+          ),
+          FormBuilderSignaturePad(
+            decoration: InputDecoration(labelText: "Signature"),
+            attribute: "signature",
+            height: 100,
+          ),
+        ],
       ),
-      MaterialButton(
-        child: Text('External submit'),
-        onPressed: () {
-          _fbKey.currentState.save();
-          if (_fbKey.currentState.validate()) {
-            print('validationSucceded');
-            print(_fbKey.currentState.value);
-          } else {
-            print("External FormValidation failed");
-          }
-        },
-      ),
-    ],
-  ),
+    ),
+    Row(
+      children: &lt;Widget&gt;[
+        MaterialButton(
+          child: Text("Submit"),
+          onPressed: () {
+            _fbKey.currentState.save();
+            if (_fbKey.currentState.validate()) {
+              print(_fbKey.currentState.value);
+            }
+          },
+        ),
+        MaterialButton(
+          child: Text("Reset"),
+          onPressed: () {
+            _fbKey.currentState.reset();
+          },
+        ),
+      ],
+    )
+  ],
 )
 </code></pre>
+<h2 id="input-widgets">Input widgets</h2>
+<p>The currently supported fields include:</p><ul><li><code>FormBuilderCheckbox</code> - Single Checkbox field</li><li><code>FormBuilderCheckboxList</code> - List of Checkboxes for multiple selection</li><li><code>FormBuilderChipsInput</code> - Takes a list of <code>Chip</code>s as input</li><li><code>FormBuilderDateTimePicker</code> - For Date, Time and DateTime input</li><li><code>FormBuilderDropdown</code> - Allow selection of one value from a list as a Dropdown</li><li><code>FormBuilderRadio</code> - Allow selection of one value from a list of Radio Widgets </li><li><code>FormBuilderRate</code> - For selection of a numerical value as a rating </li><li><code>FormBuilderSegmentedControl</code> - For selection of a value from the <code>CupertinoSegmentedControl</code> as an input</li><li><code>FormBuilderSignaturePad</code> - Presents a drawing pad on which user can doodle</li><li><code>FormBuilderSlider</code> - For selection of a numerical value on a slider</li><li><code>FormBuilderStepper</code> - Selection of a number by tapping on a plus or minus symbol</li><li><code>FormBuilderSwitch</code> - On/Off switch</li><li><code>FormBuilderTextField</code> - For text input. Allows input of single-line text, multi-line text, password,
+email, urls etc by using different configurations and validators</li><li><code>FormBuilderTypeAhead</code> - Auto-completes user input from a list of items</li></ul>
+<p>In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:</p><table><thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>attribute</code></td><td><code>String</code></td><td><code>null</code></td><td><code>true</code></td><td>This will form the key in the form value Map</td></tr><tr><td><code>initialValue</code></td><td><code>dynamic</code></td><td><code>null</code></td><td><code>false</code></td><td>The initial value of the input field</td></tr><tr><td><code>readonly</code></td><td><code>bool</code></td><td><code>false</code></td><td><code>false</code></td><td>Determines whether the field widget will accept user input. This value will be ignored if the <code>readonly</code> attribute of <code>FormBuilder</code> widget is set to <code>true</code></td></tr><tr><td><code>decoration</code></td><td><code>InputDecoration</code></td><td><code>InputDecoration()</code></td><td><code>false</code></td><td></td></tr><tr><td><code>validators</code></td><td><code>List&lt;FormFieldValidator&gt;</code></td><td><code>[]</code></td><td><code>false</code></td><td>List of <code>FormFieldValidator</code>s that will check the validity of value candidate in the <code>FormField</code></td></tr><tr><td><code>onChanged</code></td><td><code>ValueChanged&lt;T&gt;</code></td><td><code>null</code></td><td><code>false</code></td><td>This event function will fire immediately the the field value changes</td></tr><tr><td><code>valueTransformer</code></td><td><code>ValueTransformer&lt;T&gt;</code></td><td><code>null</code></td><td><code>false</code></td><td>Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from <code>String</code> to <code>num</code></td></tr></tbody></table>
+<p>The rest of the attributes will be determined by the type of Widget being used.</p>
+<h3 id="building-your-own-custom-formfield">Building your own custom <code>FormField</code></h3>
+<pre class="language-dart"><code class="language-dart">FormBuilderCustomField(
+  attribute: "name",
+  validators: [
+    FormBuilderValidators.required(),
+  ],
+  formField: FormField(
+    enabled: true,
+    builder: (FormFieldState&lt;dynamic&gt; field) {
+      return InputDecorator(
+        decoration: InputDecoration(
+          labelText: "Select option",
+          contentPadding:
+              EdgeInsets.only(top: 10.0, bottom: 0.0),
+          border: InputBorder.none,
+        ),
+        child: DropdownButton(
+          isExpanded: true,
+          items: ["One", "Two"].map((option) {
+            return DropdownMenuItem(
+              child: Text("$option"),
+              value: option,
+            );
+          }).toList(),
+          value: field.value,
+          onChanged: (value) {
+            field.didChange(value);
+          },
+        ),
+      );
+    },
+  ),
+),
+</code></pre>
+<h2 id="validation">Validation</h2>
+<p>The <code>validators</code> attribute in fields take in any number of <code>FormFieldValidator</code> allowing composability 
+of validation functions as well as allow reusability of already defined validator methods.</p>
+<h3 id="built-in-validators">Built-in Validators</h3>
+<p>The package comes with several most common <code>FormFieldValidator</code>s such as required, numeric, mail, URL, min, 
+max, minLength, maxLength, IP, credit card etc. with default <code>errorText</code> in English but with 
+ability to include you own error message that will display whenever validation fails.
+Validation example:</p>
+<pre class="language-dart"><code class="language-dart">FormBuilderTextField(
+  attribute: "age",
+  decoration: InputDecoration(labelText: "Age"),
+  validators: [
+    FormBuilderValidators.numeric(),
+    FormBuilderValidators.max(70),
+  ],
+),
+</code></pre>
+<h3 id="custom-validator-function">Custom validator function</h3>
+<p>As well as the built-in validators any function of type <code>FormFieldValidator</code> will be accepted into the list of <code>validators</code>.</p>
+<pre class="language-dart"><code class="language-dart">FormBuilderTextField(
+    attribute: "over_18",
+    decoration: InputDecoration(labelText: "Are you over 18?"),
+    validators: [
+        FormBuilderValidators.required(),
+        (val){
+            if(val.toLowerCase() != "yes")
+                return "The answer must be Yes";
+        },
+    ],
+),
+</code></pre>
 <h2 id="todo">TODO:</h2>
-<h3 id="improvements">Improvements</h3><ul><li><code> </code> Improve documentation by showing complete list of input types and their usage and options</li><li><code> </code> Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li><li><code> </code> Allow options for Checkboxes and Radios to appear left or right</li><li><code> </code> Allow addition of custom input types</li><li><code> </code> Proper validation for URL - does not work without protocol - http(s)</li></ul>
-<h3 id="new-formbuilder-inputs">New FormBuilder inputs</h3><ul><li><code>X</code> SignaturePad</li><li><code> </code> MapInput</li><li><code> </code> ImagePicker</li><li><code> </code> DocumentPicker</li><li><code> </code> RangeSlider - <a href="https://pub.dartlang.org/packages/flutter_range_slider">https://pub.dartlang.org/packages/flutter_range_slider</a></li><li><code> </code> ColorPicker - <a href="https://pub.dartlang.org/packages/flutter_colorpicker">https://pub.dartlang.org/packages/flutter_colorpicker</a></li><li><code> </code> DateRangePicker - <a href="https://pub.dartlang.org/packages/date_range_picker">https://pub.dartlang.org/packages/date_range_picker</a></li><li><code> </code> CodeInput - <a href="https://pub.dartlang.org/packages/code_input#-readme-tab-">https://pub.dartlang.org/packages/code_input#-readme-tab-</a> (Not Important)</li><li><code> </code> MaskedText - <a href="https://pub.dartlang.org/packages/flutter_masked_text#-changelog-tab-">https://pub.dartlang.org/packages/flutter_masked_text#-changelog-tab-</a> (Not Important)</li></ul>
+<h3 id="improvements">Improvements</h3><ul><li><code>X</code> Allow addition of custom input types</li><li><code>X</code> Improve documentation by showing complete list of input types and their usage and options</li><li><code> </code> Create a <code>transformer</code> function option that will convert field value when field id saved - can be used to convert string to number, change to uppercase etc.</li><li><code> </code> Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li><li><code> </code> Allow options for Checkboxes and Radios to appear left or right</li></ul>
+<h3 id="new-formbuilder-inputs">New FormBuilder inputs</h3><ul><li><code>X</code> SignaturePad</li><li><code> </code> MapInput</li><li><code> </code> ImagePicker</li><li><code> </code> DocumentPicker</li><li><code> </code> RangeSlider - <a href="https://pub.dartlang.org/packages/flutter_range_slider">https://pub.dartlang.org/packages/flutter_range_slider</a></li><li><code> </code> ColorPicker - <a href="https://pub.dartlang.org/packages/flutter_colorpicker">https://pub.dartlang.org/packages/flutter_colorpicker</a></li><li><code> </code> DateRangePicker - <a href="https://pub.dartlang.org/packages/date_range_picker">https://pub.dartlang.org/packages/date_range_picker</a></li></ul>
+<h2 id="known-issues">KNOWN ISSUES</h2>
+<p>Form's <code>reset()</code> doesn't clear SignaturePad - You'll be forced to clear manually</p>
       </section>
       
         <section class="summary">
@@ -427,7 +378,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 2.1.0
+    flutter_form_builder 3.0.0-beta.6
   </span>
 
   
