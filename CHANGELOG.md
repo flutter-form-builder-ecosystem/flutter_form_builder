@@ -25,6 +25,7 @@ required, min, max, minLength, maxLength, email, url, credit card etc.
 * Prevent duplicate `attribute` names in fields - assertion
 * **Breaking changes:**
     * `FormBuilderInputOption` becomes `FormBuilderFieldOption`
+    * BuildContext is not passed down into `FormBuilder`
 * Fixed URL validator works correctly - tested
 * Improved documentation
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 typedef ValueTransformer<T> = dynamic Function(T value);
 
 class FormBuilder extends StatefulWidget {
-  final BuildContext context;
+  //final BuildContext context;
   final Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
   final Widget child;
@@ -12,7 +12,8 @@ class FormBuilder extends StatefulWidget {
   final Key key;
 
   const FormBuilder(
-    this.context, {
+      //this.context,
+      {
     @required this.child,
     this.readonly = false,
     this.key,

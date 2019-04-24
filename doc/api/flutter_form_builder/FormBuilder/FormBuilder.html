@@ -61,7 +61,6 @@
       </li>
       <li><a href="flutter_form_builder/FormBuilder/autovalidate.html">autovalidate</a></li>
       <li><a href="flutter_form_builder/FormBuilder/child.html">child</a></li>
-      <li><a href="flutter_form_builder/FormBuilder/context.html">context</a></li>
       <li><a href="flutter_form_builder/FormBuilder/key.html">key</a></li>
       <li><a href="flutter_form_builder/FormBuilder/onChanged.html">onChanged</a></li>
       <li><a href="flutter_form_builder/FormBuilder/onWillPop.html">onWillPop</a></li>
@@ -96,14 +95,15 @@
 
     <section class="multi-line-signature">
       const
-      <span class="name ">FormBuilder</span>(<wbr><span class="parameter" id="-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span>, {</span> <span class="parameter" id="-param-child"><span>@required</span> <span class="type-annotation">Widget</span> <span class="parameter-name">child</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">dynamic</span> <span class="parameter-name">onChanged</span>(<span class="parameter" id="onChanged-param-"><span class="type-annotation"><a href="dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span></span>), </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onWillPop"><span class="type-annotation">WillPopCallback</span> <span class="parameter-name">onWillPop</span></span> })
+      <span class="name ">FormBuilder</span>(<wbr>{<span class="parameter" id="-param-child"><span>@required</span> <span class="type-annotation">Widget</span> <span class="parameter-name">child</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">dynamic</span> <span class="parameter-name">onChanged</span>(<span class="parameter" id="onChanged-param-"><span class="type-annotation"><a href="dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span></span>), </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onWillPop"><span class="type-annotation">WillPopCallback</span> <span class="parameter-name">onWillPop</span></span> })
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">const FormBuilder(
-  this.context, {
+    &#47;&#47;this.context,
+    {
   @required this.child,
   this.readonly = false,
   this.key,
