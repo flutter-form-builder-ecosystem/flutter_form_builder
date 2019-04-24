@@ -107,8 +107,8 @@ Commonly used for required checkboxes.</p>
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator requiredTrue({
   String errorText = &quot;This field must be set to true&quot;,
 }) {
-  return (val) {
-    if (val != true) {
+  return (valueCandidate) {
+    if (valueCandidate != true) {
       return errorText;
     }
   };
@@ -124,7 +124,7 @@ Commonly used for required checkboxes.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.6
+    flutter_form_builder 3.0.0
   </span>
 
   

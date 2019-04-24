@@ -106,8 +106,12 @@
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator required({
   String errorText = &quot;This field cannot be empty.&quot;,
 }) {
-  return (val) {
-    if (val == null || val.isEmpty) {
+  return (valueCandidate) {
+    if (valueCandidate == null ||
+        ((valueCandidate is Iterable ||
+                valueCandidate is String ||
+                valueCandidate is Map) &amp;&amp;
+            valueCandidate.length == 0)) {
       return errorText;
     }
   };
@@ -123,7 +127,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.6
+    flutter_form_builder 3.0.0
   </span>
 
   

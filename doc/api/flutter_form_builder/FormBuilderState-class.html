@@ -71,6 +71,7 @@
       <li><a href="flutter_form_builder/FormBuilderStepper-class.html">FormBuilderStepper</a></li>
       <li><a href="flutter_form_builder/FormBuilderSwitch-class.html">FormBuilderSwitch</a></li>
       <li><a href="flutter_form_builder/FormBuilderTextField-class.html">FormBuilderTextField</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTextFieldState-class.html">FormBuilderTextFieldState</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead-class.html">FormBuilderTypeAhead</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators-class.html">FormBuilderValidators</a></li>
     
@@ -107,6 +108,14 @@
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="fields" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderState/fields.html">fields</a></span>
+          <span class="signature">&#8594; <a href="dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>, <span class="type-parameter">GlobalKey<span class="signature">&lt;<wbr><span class="type-parameter">FormFieldState</span>&gt;</span></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read-only</div>
+</dd>
         <dt id="readonly" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderState/readonly.html">readonly</a></span>
           <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
@@ -178,9 +187,36 @@
           Describes the part of the user interface represented by this widget. <a href="flutter_form_builder/FormBuilderState/build.html">[...]</a>
                   
 </dd>
+        <dt id="dispose" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Called when this object is removed from the tree permanently. <a href="flutter_form_builder/FormBuilderState/dispose.html">[...]</a>
+                  
+</dd>
+        <dt id="initState" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderState/initState.html">initState</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Called when this object is inserted into the tree. <a href="flutter_form_builder/FormBuilderState/initState.html">[...]</a>
+                  
+</dd>
+        <dt id="registerFieldKey" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderState/registerFieldKey.html">registerFieldKey</a></span><span class="signature">(<wbr><span class="parameter" id="registerFieldKey-param-attribute"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="registerFieldKey-param-key"><span class="type-annotation">GlobalKey<span class="signature">&lt;<wbr><span class="type-parameter">State<span class="signature">&lt;<wbr><span class="type-parameter">StatefulWidget</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">key</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd>
+          
+                  
+</dd>
         <dt id="reset" class="callable">
           <span class="name"><a href="flutter_form_builder/FormBuilderState/reset.html">reset</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; dynamic</span>
+            <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
         <dd>
@@ -189,7 +225,7 @@
 </dd>
         <dt id="save" class="callable">
           <span class="name"><a href="flutter_form_builder/FormBuilderState/save.html">save</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; dynamic</span>
+            <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
         <dd>
@@ -198,6 +234,15 @@
 </dd>
         <dt id="setAttributeValue" class="callable">
           <span class="name"><a href="flutter_form_builder/FormBuilderState/setAttributeValue.html">setAttributeValue</a></span><span class="signature">(<wbr><span class="parameter" id="setAttributeValue-param-attribute"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="setAttributeValue-param-value"><span class="type-annotation">dynamic</span> <span class="parameter-name">value</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          
+                  
+</dd>
+        <dt id="unregisterFieldKey" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderState/unregisterFieldKey.html">unregisterFieldKey</a></span><span class="signature">(<wbr><span class="parameter" id="unregisterFieldKey-param-attribute"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
@@ -248,24 +293,6 @@
                   </dt>
         <dd class="inherited">
           Called whenever the widget configuration changes. <a href="flutter_form_builder/FormBuilderState/didUpdateWidget.html">[...]</a>
-                  <div class="features">@mustCallSuper, @protected, inherited</div>
-</dd>
-        <dt id="dispose" class="callable inherited">
-          <span class="name"><a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; void</span>
-          </span>
-                  </dt>
-        <dd class="inherited">
-          Called when this object is removed from the tree permanently. <a href="flutter_form_builder/FormBuilderState/dispose.html">[...]</a>
-                  <div class="features">@mustCallSuper, @protected, inherited</div>
-</dd>
-        <dt id="initState" class="callable inherited">
-          <span class="name"><a href="flutter_form_builder/FormBuilderState/initState.html">initState</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; void</span>
-          </span>
-                  </dt>
-        <dd class="inherited">
-          Called when this object is inserted into the tree. <a href="flutter_form_builder/FormBuilderState/initState.html">[...]</a>
                   <div class="features">@mustCallSuper, @protected, inherited</div>
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -356,6 +383,7 @@ tools and by <code>DiagnosticsNode.toStringDeep</code>. <a href="flutter_form_bu
       <li class="section-title">
         <a href="flutter_form_builder/FormBuilderState-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="flutter_form_builder/FormBuilderState/fields.html">fields</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/readonly.html">readonly</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/value.html">value</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/context.html">context</a></li>
@@ -366,16 +394,18 @@ tools and by <code>DiagnosticsNode.toStringDeep</code>. <a href="flutter_form_bu
     
       <li class="section-title"><a href="flutter_form_builder/FormBuilderState-class.html#instance-methods">Methods</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/build.html">build</a></li>
+      <li><a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a></li>
+      <li><a href="flutter_form_builder/FormBuilderState/initState.html">initState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderState/registerFieldKey.html">registerFieldKey</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/reset.html">reset</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/save.html">save</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/setAttributeValue.html">setAttributeValue</a></li>
+      <li><a href="flutter_form_builder/FormBuilderState/unregisterFieldKey.html">unregisterFieldKey</a></li>
       <li><a href="flutter_form_builder/FormBuilderState/validate.html">validate</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/deactivate.html">deactivate</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/debugFillProperties.html">debugFillProperties</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/didChangeDependencies.html">didChangeDependencies</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/didUpdateWidget.html">didUpdateWidget</a></li>
-      <li class="inherited"><a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a></li>
-      <li class="inherited"><a href="flutter_form_builder/FormBuilderState/initState.html">initState</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/reassemble.html">reassemble</a></li>
       <li class="inherited"><a href="flutter_form_builder/FormBuilderState/setState.html">setState</a></li>
@@ -395,7 +425,7 @@ tools and by <code>DiagnosticsNode.toStringDeep</code>. <a href="flutter_form_bu
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.6
+    flutter_form_builder 3.0.0
   </span>
 
   

@@ -108,12 +108,12 @@ or equal to the provided number.</p>
   num min, {
   String errorText,
 }) {
-  return (val) {
-    if (val != null &amp;&amp;
-        ((val is num &amp;&amp; val &lt; min) ||
-            (val is String &amp;&amp;
-                num.tryParse(val) != null &amp;&amp;
-                num.tryParse(val) &lt; min))) {
+  return (valueCandidate) {
+    if (valueCandidate != null &amp;&amp;
+        ((valueCandidate is num &amp;&amp; valueCandidate &lt; min) ||
+            (valueCandidate is String &amp;&amp;
+                num.tryParse(valueCandidate) != null &amp;&amp;
+                num.tryParse(valueCandidate) &lt; min))) {
       return errorText ?? &quot;Value must be greater than or equal to $min&quot;;
     }
   };
@@ -129,7 +129,7 @@ or equal to the provided number.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.6
+    flutter_form_builder 3.0.0
   </span>
 
   

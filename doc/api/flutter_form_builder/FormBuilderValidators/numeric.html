@@ -106,8 +106,9 @@
       <pre class="language-dart"><code class="language-dart">static FormFieldValidator numeric({
   String errorText = &quot;Value must be numeric.&quot;,
 }) {
-  return (val) {
-    if (num.tryParse(val) == null &amp;&amp; val.isNotEmpty) return errorText;
+  return (valueCandidate) {
+    if (num.tryParse(valueCandidate) == null &amp;&amp; valueCandidate.isNotEmpty)
+      return errorText;
   };
 }</code></pre>
     </section>
@@ -121,7 +122,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.6
+    flutter_form_builder 3.0.0
   </span>
 
   

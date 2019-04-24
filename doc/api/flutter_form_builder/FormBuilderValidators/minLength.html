@@ -108,8 +108,8 @@ greater than or equal to the provided minimum length.</p>
   num minLength, {
   String errorText,
 }) {
-  return (val) {
-    if (val != null &amp;&amp; val.length &lt; minLength) {
+  return (valueCandidate) {
+    if (valueCandidate != null &amp;&amp; valueCandidate.length &lt; minLength) {
       return errorText ??
           &quot;Value must have a length greater than or equal to $minLength&quot;;
     }
@@ -126,7 +126,7 @@ greater than or equal to the provided minimum length.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.0-beta.6
+    flutter_form_builder 3.0.0
   </span>
 
   

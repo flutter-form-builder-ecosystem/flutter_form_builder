@@ -1,3 +1,34 @@
+## [3.0.0] - 24-April-2019
+* Complete rewrite of the package - stateful field widgets
+    * `FormBuilderCheckbox` - Single Checkbox field
+    * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
+    * `FormBuilderChipsInput` - Takes a list of Flutter [Chip](https://docs.flutter.io/flutter/material/Chip-class.html) as inputs
+    * `FormBuilderDateTimePicker` - For Date, Time and DateTime input
+    * `FormBuilderDropdown` - Allow selection of one value from a list as a Dropdown
+    * `FormBuilderRadio` - Allow selection of one value from a list of Radio Widgets 
+    * `FormBuilderRate` - For selection of a numerical value as a rating 
+    * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
+    * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
+    * `FormBuilderSlider` - For selection of a numerical value on a slider
+    * `FormBuilderStepper` - Selection of a number by tapping on a plus or minus symbol
+    * `FormBuilderSwitch` - On/Off switch
+    * `FormBuilderTextField` - For text input. Allows input of single-line text, multi-line text, password,
+    email, urls etc by using different configurations and validators
+    * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
+* New `FormBuilderCustomField` to create of custom `FormField`s
+* New attribute `validators` allows composability and reusability of different `FormFieldValidator` 
+functions that do different validations
+* New Feature `FormBuilderValidators` comes with common validation functionality options such as: 
+required, min, max, minLength, maxLength, email, url, credit card etc.
+* Added `valueTransformer` - transforms field value before saving to the final form value
+* Added requested `onChanged` value notifier event on fields. Closes [#45](https://github.com/danvick/flutter_form_builder/issues/45)
+* Prevent duplicate `attribute` names in fields - assertion
+* **Breaking changes:**
+    * `FormBuilderInputOption` becomes `FormBuilderFieldOption`
+* Fixed URL validator works correctly - tested
+* Improved documentation
+
+
 ## [3.0.0-beta.10] - 20-April-2019
 * Unregister field from `Formbuilder` when its dispose method is called. Avoids assertion fail when re-added back to the widget tree
 
