@@ -6,7 +6,6 @@ A new Flutter project.
 
 ```
 FormBuilder(
-  context,
   autovalidate: true,
   controls: [
     FormBuilderInput.textField(

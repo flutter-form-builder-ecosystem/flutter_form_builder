@@ -2,8 +2,6 @@
 
 This package helps in generation of forms in [Flutter](https://flutter.io/) by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form in the form of a map.
 
-The package also comes with common validation functions that can be easily composable to enforce the DRY Principle in code-base.
-
 ## Simple Usage
 To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
@@ -17,7 +15,6 @@ final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 Column(
   children: <Widget>[
     FormBuilder(
-      context,
       key: _fbKey,
       autovalidate: true,
       child: Column(
@@ -323,6 +320,6 @@ Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 ## Support
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
 
-[<img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png">](https://buymeacoff.ee/wb5M9y2Sz)
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
 
 
