@@ -1,3 +1,7 @@
+## [3.0.1] - 28-April-2019
+* Fixed bug in where `focuNode` for `FormBuilderTextField` is ignored. Closes [#53](https://github.com/danvick/flutter_form_builder/issues/53)
+* Fixed bug in where `textEditingConfiguration` for `FormBuilderTypeAhead` ignored
+
 ## [3.0.0] - 24-April-2019
 * Complete rewrite of the package - stateful field widgets
     * `FormBuilderCheckbox` - Single Checkbox field
@@ -28,56 +32,6 @@ required, min, max, minLength, maxLength, email, url, credit card etc.
     * BuildContext is not passed down into `FormBuilder`
 * Fixed URL validator works correctly - tested
 * Improved documentation
-
-
-## [3.0.0-beta.10] - 20-April-2019
-* Unregister field from `Formbuilder` when its dispose method is called. Avoids assertion fail when re-added back to the widget tree
-
-## [3.0.0-beta.9] - 15-April-2019
-* Added property `fields` to FormBuilder, gives access to the current state of each field through a Map of `GlobalKey<FormFieldState<dynamic>>`s. 
-This gives us access to the underlying FormField which in turn allows us: 
-    * Do conditional validation based on other fields (check readme)
-    * Dynamically update field values
-
-## [3.0.0-beta.8] - 10-April-2019
-* Fixed unhandled exception when `valueTransformer` tries to convert value from predefined `FormField` type
-
-## [3.0.0-beta.7] - 09-April-2019
-* Check if value candidate is of type String, Iterable or Map before checking length to determine empty in `FormValidators.required`
-
-## [3.0.0-beta.6] - 09-April-2019
-* Properly hooked up SignaturePad to form, added onChanged to it
-* SignaturePad now returns `Uint8List` object from `png` image
-
-## [3.0.0-beta.5] - 08-April-2019
-* Minor documentation improvements - hint for GlobalKey definition, table rendering issue in README
-
-## [3.0.0-beta.4] - 08-April-2019
-* **Breaking changes:**
-    * `FormBuilderInputOption` becomes `FormBuilderFieldOption`
-    * `FormBuilderField` becomes `FormBuilderCustomField`
-* Improved documentation
-* added `valueTransformer` - transforms field value before saving to form value
-
-## [3.0.0-beta.3] - 07-April-2019
-* Bumped up `flutter_typeahead` dependency from `^1.2.1` to `^1.4.0`
-* Fixed URL validator works correctly - tested
-* Added more validators:
-    * IP
-    * Credit Card
-    * Date
-* Added requested `onChanged` value notifier event on fields. Closes [#45](https://github.com/danvick/flutter_form_builder/issues/45)
-
-## [3.0.0-beta.2] - 04-April-2019
-* Disabled `TextFormField.strutStyle` from `FormBuilderTextField` breaks in v1.2.1 of Flutter - current stable at release
-
-## [3.0.0-beta.1] - 04-April-2019
-* Complete rewrite of the package - stateful
-* Contains `FormBuilderField` for creation of custom `FormField`s
-* New attribute `validators` allows composability and reusability of different `FormFieldValidator` 
-functions that do different validations
-* New Feature `FormBuilderValidators` comes with common validation functionality options such as: 
-required, min, max, 
 
 ## [2.0.3] - 26-March-2019
 * Allow `null`s in `FormBuilder` controls `attribute`
