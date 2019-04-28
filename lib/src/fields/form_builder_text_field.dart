@@ -125,7 +125,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       },
       enabled: !_readonly,
       style: widget.style,
-      focusNode: _readonly ? AlwaysDisabledFocusNode() : null,
+      focusNode: _readonly ? AlwaysDisabledFocusNode() : widget.focusNode,
       decoration: widget.decoration.copyWith(
         enabled: !_readonly,
       ),
