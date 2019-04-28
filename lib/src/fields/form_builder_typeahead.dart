@@ -118,7 +118,9 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
                   color: Theme.of(context).disabledColor,
                 )
             : widget.textFieldConfiguration.style,
-        focusNode: _readonly ? AlwaysDisabledFocusNode() : widget.textFieldConfiguration.focusNode,
+        focusNode: _readonly
+            ? AlwaysDisabledFocusNode()
+            : widget.textFieldConfiguration.focusNode,
         decoration: widget.decoration.copyWith(
           enabled: !_readonly,
         ),
