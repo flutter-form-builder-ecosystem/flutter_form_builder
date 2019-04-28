@@ -110,15 +110,15 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       },
       // initialValue: widget.initialValue,
       autovalidate: widget.autovalidate,
-      textFieldConfiguration: TextFieldConfiguration(
+      textFieldConfiguration: widget.textFieldConfiguration.copyWith(
         enabled: !_readonly,
         controller: _typeAheadController,
         style: _readonly
             ? Theme.of(context).textTheme.subhead.copyWith(
                   color: Theme.of(context).disabledColor,
                 )
-            : null,
-        focusNode: _readonly ? AlwaysDisabledFocusNode() : null,
+            : widget.textFieldConfiguration.style,
+        focusNode: _readonly ? AlwaysDisabledFocusNode() : widget.textFieldConfiguration.focusNode,
         decoration: widget.decoration.copyWith(
           enabled: !_readonly,
         ),
