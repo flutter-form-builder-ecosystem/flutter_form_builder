@@ -10,6 +10,7 @@ class FormBuilderCheckbox extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
+  final bool leadingInput;
 
   final Widget label;
 
@@ -22,6 +23,7 @@ class FormBuilderCheckbox extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
+    this.leadingInput = false,
   });
 
   @override
@@ -45,6 +47,28 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
     super.dispose();
+  }
+
+  Widget _checkbox(FormFieldState<dynamic> field) {
+    return Checkbox(
+      value: field.value ?? false,
+      onChanged: _readonly
+          ? null
+          : (bool value) {
+              field.didChange(value);
+              if (widget.onChanged != null) widget.onChanged(value);
+            },
+    );
+  }
+
+  Widget _leading(FormFieldState<dynamic> field) {
+    if (widget.leadingInput) return _checkbox(field);
+    return null;
+  }
+
+  Widget _trailing(FormFieldState<dynamic> field) {
+    if (!widget.leadingInput) return _checkbox(field);
+    return null;
   }
 
   @override
@@ -78,15 +102,8 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
             isThreeLine: false,
             contentPadding: EdgeInsets.all(0.0),
             title: widget.label,
-            trailing: Checkbox(
-              value: field.value ?? false,
-              onChanged: _readonly
-                  ? null
-                  : (bool value) {
-                      field.didChange(value);
-                      if (widget.onChanged != null) widget.onChanged(value);
-                    },
-            ),
+            leading: _leading(field),
+            trailing: _trailing(field),
             onTap: _readonly
                 ? null
                 : () {
