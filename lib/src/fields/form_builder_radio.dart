@@ -10,6 +10,7 @@ class FormBuilderRadio extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
+  final bool leadingInput;
 
   final List<FormBuilderFieldOption> options;
 
@@ -22,6 +23,7 @@ class FormBuilderRadio extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
+    this.leadingInput = false,
   });
 
   @override
@@ -45,6 +47,29 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
     super.dispose();
+  }
+
+  Widget _radio(FormFieldState<dynamic> field, int i) {
+    return Radio<dynamic>(
+      value: widget.options[i].value,
+      groupValue: field.value,
+      onChanged: _readonly
+          ? null
+          : (dynamic value) {
+              field.didChange(value);
+              if (widget.onChanged != null) widget.onChanged(value);
+            },
+    );
+  }
+
+  Widget _leading(FormFieldState<dynamic> field, int i) {
+    if (widget.leadingInput) return _radio(field, i);
+    return null;
+  }
+
+  Widget _trailing(FormFieldState<dynamic> field, int i) {
+    if (!widget.leadingInput) return _radio(field, i);
+    return null;
   }
 
   @override
@@ -75,19 +100,10 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
               dense: true,
               isThreeLine: false,
               contentPadding: EdgeInsets.all(0.0),
-              leading: null,
+              leading: _leading(field, i),
               title:
                   Text("${widget.options[i].label ?? widget.options[i].value}"),
-              trailing: Radio<dynamic>(
-                value: widget.options[i].value,
-                groupValue: field.value,
-                onChanged: _readonly
-                    ? null
-                    : (dynamic value) {
-                        field.didChange(value);
-                        if (widget.onChanged != null) widget.onChanged(value);
-                      },
-              ),
+              trailing: _trailing(field, i),
               onTap: _readonly
                   ? null
                   : () {
