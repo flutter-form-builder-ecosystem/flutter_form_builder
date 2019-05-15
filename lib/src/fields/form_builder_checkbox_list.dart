@@ -12,6 +12,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final ValueTransformer valueTransformer;
 
   final List<FormBuilderFieldOption> options;
+  final bool leadingInput;
 
   FormBuilderCheckboxList({
     @required this.attribute,
@@ -19,6 +20,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
     this.initialValue = const [],
     this.validators = const [],
     this.readonly = false,
+    this.leadingInput = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
@@ -46,6 +48,34 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
     super.dispose();
+  }
+
+  Widget _checkbox(FormFieldState<dynamic> field, int i) {
+    return Checkbox(
+      value: field.value.contains(widget.options[i].value),
+      onChanged: _readonly
+          ? null
+          : (bool value) {
+        var currValue = field.value;
+        if (value)
+          currValue.add(widget.options[i].value);
+        else
+          currValue.remove(widget.options[i].value);
+        field.didChange(currValue);
+        if (widget.onChanged != null)
+          widget.onChanged(currValue);
+      },
+    );
+  }
+
+  Widget _leading(FormFieldState<dynamic> field, int i) {
+    if (widget.leadingInput) return _checkbox(field, i);
+    return null;
+  }
+
+  Widget _trailing(FormFieldState<dynamic> field, int i) {
+    if (!widget.leadingInput) return _checkbox(field, i);
+    return null;
   }
 
   @override
@@ -76,21 +106,8 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                 dense: true,
                 isThreeLine: false,
                 contentPadding: EdgeInsets.all(0.0),
-                leading: Checkbox(
-                  value: field.value.contains(widget.options[i].value),
-                  onChanged: _readonly
-                      ? null
-                      : (bool value) {
-                          var currValue = field.value;
-                          if (value)
-                            currValue.add(widget.options[i].value);
-                          else
-                            currValue.remove(widget.options[i].value);
-                          field.didChange(currValue);
-                          if (widget.onChanged != null)
-                            widget.onChanged(currValue);
-                        },
-                ),
+                leading: _leading(field, i),
+                trailing: _trailing(field, i),
                 title: Text(
                     "${widget.options[i].label ?? widget.options[i].value}"),
                 onTap: _readonly

@@ -1,3 +1,6 @@
+## [3.1.0] - 15-May-2019
+* Added `leadingInput` option for CheckboxList, Checkbox and Radio - Allows the option to have the input before its label (left)
+
 ## [3.0.1] - 28-April-2019
 * Fixed bug in where `focuNode` for `FormBuilderTextField` is ignored. Closes [#53](https://github.com/danvick/flutter_form_builder/issues/53)
 * Fixed bug in where `textEditingConfiguration` for `FormBuilderTypeAhead` ignored

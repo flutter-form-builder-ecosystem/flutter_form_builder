@@ -69,8 +69,8 @@ Column(
             ],
           ),
           FormBuilderRadio(
-            decoration:
-                InputDecoration(labelText: 'My chosen language'),
+            decoration: InputDecoration(labelText: 'My chosen language'),
+            leadingInput: true,
             attribute: "best_language",
             validators: [FormBuilderValidators.required()],
             options: [
@@ -303,7 +303,7 @@ This package is dependent on the following packages and plugins:
 - [X] Improve documentation by showing complete list of input types and their usage and options
 - [X] Create a `transformer` function option that will convert field value when field id saved - can be used to convert string to number, change to uppercase etc.
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
-- [ ] Allow options for Checkboxes and Radios to appear left or right
+- [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` by [Sven Schöne](https://github.com/SvenSchoene)
 
 ### New FormBuilder inputs
 - [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
