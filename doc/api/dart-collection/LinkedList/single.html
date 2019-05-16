@@ -129,10 +129,10 @@
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">E get single {
   if (isEmpty) {
-    throw new StateError(&#39;No such element&#39;);
+    throw StateError(&#39;No such element&#39;);
   }
   if (_length &gt; 1) {
-    throw new StateError(&#39;Too many elements&#39;);
+    throw StateError(&#39;Too many elements&#39;);
   }
   return _first;
 }</code></pre>
@@ -148,7 +148,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

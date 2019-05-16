@@ -130,6 +130,8 @@ does not allow invalid characters and requires padding.</p>
                              0x72, 0x67, 0x72, 0xc3, 0xb8, 0x64]);
 var decoded = base64.decode("YmzDpWLDpnJncsO4ZAo=");
 </code></pre>
+<p>The top-level <a href="dart-convert/base64Encode.html">base64Encode</a> and <a href="dart-convert/base64Decode.html">base64Decode</a> functions may be used
+instead if a local variable shadows the <a href="dart-convert/base64-constant.html">base64</a> constant.</p>
     </section>
         <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
@@ -145,7 +147,7 @@ var decoded = base64.decode("YmzDpWLDpnJncsO4ZAo=");
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

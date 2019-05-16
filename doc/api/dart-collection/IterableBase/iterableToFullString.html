@@ -133,7 +133,7 @@ to a string ends up converting <code>iterable</code> to a string again.</p>
   if (_isToStringVisiting(iterable)) {
     return &quot;$leftDelimiter...$rightDelimiter&quot;;
   }
-  StringBuffer buffer = new StringBuffer(leftDelimiter);
+  StringBuffer buffer = StringBuffer(leftDelimiter);
   _toStringVisiting.add(iterable);
   try {
     buffer.writeAll(iterable, &quot;, &quot;);
@@ -155,7 +155,7 @@ to a string ends up converting <code>iterable</code> to a string again.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

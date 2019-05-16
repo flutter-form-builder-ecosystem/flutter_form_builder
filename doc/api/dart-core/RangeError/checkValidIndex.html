@@ -114,7 +114,7 @@ otherwise the length is found as <code>indexable.length</code>.</p>
   &#47;&#47; Comparing with `0` as receiver produces better dart2js type inference.
   if (0 &gt; index || index &gt;= length) {
     name ??= &quot;index&quot;;
-    throw new RangeError.index(index, indexable, name, message, length);
+    throw RangeError.index(index, indexable, name, message, length);
   }
 }</code></pre>
     </section>
@@ -128,7 +128,7 @@ otherwise the length is found as <code>indexable.length</code>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

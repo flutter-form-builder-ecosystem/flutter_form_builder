@@ -111,8 +111,8 @@
 
     <section class="desc markdown">
       <p>Creates a <a href="dart-collection/HashMap-class.html">HashMap</a> associating the given <code>keys</code> to <code>values</code>.</p>
-<p>This constructor iterates over <code>keys</code> and <code>values</code> and maps each element of
-<code>keys</code> to the corresponding element of <code>values</code>.</p>
+<p>This constructor iterates over <code>keys</code> and <code>values</code> and maps each element
+of <code>keys</code> to the corresponding element of <code>values</code>.</p>
 <p>If <code>keys</code> contains the same object multiple times, the last occurrence
 overwrites the previous value.</p>
 <p>It is an error if the two <a href="dart-core/Iterable-class.html">Iterable</a>s don't have the same length.</p>
@@ -121,7 +121,7 @@ overwrites the previous value.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory HashMap.fromIterables(Iterable&lt;K&gt; keys, Iterable&lt;V&gt; values) {
-  Map&lt;K, V&gt; map = new HashMap&lt;K, V&gt;();
+  Map&lt;K, V&gt; map = HashMap&lt;K, V&gt;();
   MapBase._fillMapWithIterables(map, keys, values);
   return map;
 }</code></pre>
@@ -136,7 +136,7 @@ overwrites the previous value.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -124,11 +124,11 @@ other object to which one can subscribe to receive notifications, then
 be sure to subscribe and unsubscribe properly in <a href="flutter_form_builder/FormBuilderState/initState.html">initState</a>,
 <a href="flutter_form_builder/FormBuilderState/didUpdateWidget.html">didUpdateWidget</a>, and <a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a>:</p><ul><li>In <a href="flutter_form_builder/FormBuilderState/initState.html">initState</a>, subscribe to the object.</li><li>In <a href="flutter_form_builder/FormBuilderState/didUpdateWidget.html">didUpdateWidget</a> unsubscribe from the old object and subscribe
 to the new one if the updated widget configuration requires
-replacing the object.</li><li>In <a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a>, unsubscribe from the object.</li></ul>
-<p>You cannot use <code>BuildContext.inheritFromWidgetOfExactType</code> from this
+replacing the object.</li><li>In <a href="flutter_form_builder/FormBuilderState/dispose.html">dispose</a>, unsubscribe from the object.
+You cannot use <code>BuildContext.inheritFromWidgetOfExactType</code> from this
 method. However, <a href="flutter_form_builder/FormBuilderState/didChangeDependencies.html">didChangeDependencies</a> will be called immediately
 following this method, and <code>BuildContext.inheritFromWidgetOfExactType</code> can
-be used there.</p>
+be used there.</li></ul>
 <p>If you override this, make sure your method starts with a call to
 super.initState().</p>
     </section>
@@ -152,7 +152,7 @@ void initState() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -103,10 +103,10 @@ be more efficient if the <a href="dart-core/UriData/uri.html">uri</a> itself isn
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory UriData.fromBytes(List&lt;int&gt; bytes,
-    {mimeType: &quot;application&#47;octet-stream&quot;,
+    {mimeType = &quot;application&#47;octet-stream&quot;,
     Map&lt;String, String&gt; parameters,
-    percentEncoded: false}) {
-  StringBuffer buffer = new StringBuffer();
+    percentEncoded = false}) {
+  StringBuffer buffer = StringBuffer();
   List&lt;int&gt; indices = [_noScheme];
   _writeUri(mimeType, null, parameters, buffer, indices);
   indices.add(buffer.length);
@@ -117,12 +117,11 @@ be more efficient if the <a href="dart-core/UriData/uri.html">uri</a> itself isn
     buffer.write(&#39;;base64,&#39;);
     indices.add(buffer.length - 1);
     _base64.encoder
-        .startChunkedConversion(
-            new StringConversionSink.fromStringSink(buffer))
+        .startChunkedConversion(StringConversionSink.fromStringSink(buffer))
         .addSlice(bytes, 0, bytes.length, true);
   }
 
-  return new UriData._(buffer.toString(), indices, null);
+  return UriData._(buffer.toString(), indices, null);
 }</code></pre>
     </section>
 
@@ -135,7 +134,7 @@ be more efficient if the <a href="dart-core/UriData/uri.html">uri</a> itself isn
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

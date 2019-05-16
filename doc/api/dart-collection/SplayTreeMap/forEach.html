@@ -120,7 +120,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void forEach(void f(K key, V value)) {
-  Iterator&lt;_SplayTreeNode&lt;K&gt;&gt; nodes = new _SplayTreeNodeIterator&lt;K&gt;(this);
+  Iterator&lt;_SplayTreeNode&lt;K&gt;&gt; nodes = _SplayTreeNodeIterator&lt;K&gt;(this);
   while (nodes.moveNext()) {
     _SplayTreeMapNode&lt;K, V&gt; node = nodes.current;
     f(node.key, node.value);
@@ -137,7 +137,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

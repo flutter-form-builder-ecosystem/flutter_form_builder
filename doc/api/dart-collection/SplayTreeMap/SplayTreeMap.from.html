@@ -121,7 +121,7 @@ The <code>other</code> map itself can have any type.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory SplayTreeMap.from(Map other,
     [int compare(K key1, K key2), bool isValidKey(potentialKey)]) {
-  SplayTreeMap&lt;K, V&gt; result = new SplayTreeMap&lt;K, V&gt;(compare, isValidKey);
+  SplayTreeMap&lt;K, V&gt; result = SplayTreeMap&lt;K, V&gt;(compare, isValidKey);
   other.forEach((k, v) {
     result[k] = v;
   });
@@ -138,7 +138,7 @@ The <code>other</code> map itself can have any type.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

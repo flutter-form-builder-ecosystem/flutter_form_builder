@@ -108,9 +108,9 @@
       <p>Whether the platform can scroll the semantics node when the user attempts
 to move focus to an offscreen child.</p>
 <p>For example, a <code>ListView</code> widget has implicit scrolling so that users can
-easily move to the next visible set of children. A <code>TabBar</code> widget does
-not have implicit scrolling, so that users can navigate into the tab
-body when reaching the end of the tab bar.</p>
+easily move the accessibility focus to the next set of children. A
+<code>PageView</code> widget does not have implicit scrolling, so that users don't
+navigate to the next page when reaching the end of the current one.</p>
     </section>
         <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
@@ -128,7 +128,7 @@ body when reaching the end of the tab bar.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

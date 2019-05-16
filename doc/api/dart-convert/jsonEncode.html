@@ -126,7 +126,8 @@ with string keys), the <code>toEncodable</code> function is used to convert it t
 object that must be directly encodable.</p>
 <p>If <code>toEncodable</code> is omitted, it defaults to a function that returns the
 result of calling <code>.toJson()</code> on the unencodable object.</p>
-<p>Shorthand for <code>json.encode</code>.</p>
+<p>Shorthand for <code>json.encode</code>. Useful if a local variable shadows the global
+<a href="dart-convert/json-constant.html">json</a> constant.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -144,7 +145,7 @@ result of calling <code>.toJson()</code> on the unencodable object.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

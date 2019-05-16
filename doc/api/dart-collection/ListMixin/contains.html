@@ -162,7 +162,7 @@ should use the same equality that the <code>Map</code> uses for keys.</p>
   for (int i = 0; i &lt; length; i++) {
     if (this[i] == element) return true;
     if (length != this.length) {
-      throw new ConcurrentModificationError(this);
+      throw ConcurrentModificationError(this);
     }
   }
   return false;
@@ -178,7 +178,7 @@ should use the same equality that the <code>Map</code> uses for keys.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

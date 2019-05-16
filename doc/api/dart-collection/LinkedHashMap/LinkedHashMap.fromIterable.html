@@ -124,7 +124,7 @@ identity function.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory LinkedHashMap.fromIterable(Iterable iterable,
     {K key(element), V value(element)}) {
-  LinkedHashMap&lt;K, V&gt; map = new LinkedHashMap&lt;K, V&gt;();
+  LinkedHashMap&lt;K, V&gt; map = LinkedHashMap&lt;K, V&gt;();
   MapBase._fillMapWithMappedIterable(map, iterable, key, value);
   return map;
 }</code></pre>
@@ -139,7 +139,7 @@ identity function.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

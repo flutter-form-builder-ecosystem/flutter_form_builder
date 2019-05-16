@@ -108,7 +108,7 @@ The interval is from <code>minValue</code> to <code>maxValue</code>, both inclus
       <pre class="language-dart"><code class="language-dart">static void checkValueInInterval(int value, int minValue, int maxValue,
     [String name, String message]) {
   if (value &lt; minValue || value &gt; maxValue) {
-    throw new RangeError.range(value, minValue, maxValue, name, message);
+    throw RangeError.range(value, minValue, maxValue, name, message);
   }
 }</code></pre>
     </section>
@@ -122,7 +122,7 @@ The interval is from <code>minValue</code> to <code>maxValue</code>, both inclus
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -107,7 +107,7 @@ All the individual type arguments must be non-null.</p>
       <pre class="language-dart"><code class="language-dart">factory Invocation.genericMethod(Symbol memberName,
         Iterable&lt;Type&gt; typeArguments, Iterable&lt;Object&gt; positionalArguments,
         [Map&lt;Symbol, Object&gt; namedArguments]) =&gt;
-    new _Invocation.method(
+    _Invocation.method(
         memberName, typeArguments, positionalArguments, namedArguments);</code></pre>
     </section>
 
@@ -120,7 +120,7 @@ All the individual type arguments must be non-null.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

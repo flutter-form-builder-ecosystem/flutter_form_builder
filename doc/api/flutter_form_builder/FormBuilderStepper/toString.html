@@ -116,7 +116,12 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.debug }) {
-  return toDiagnosticsNode(style: DiagnosticsTreeStyle.singleLine).toString(minLevel: minLevel);
+  String fullString;
+  assert(() {
+    fullString = toDiagnosticsNode(style: DiagnosticsTreeStyle.singleLine).toString(minLevel: minLevel);
+    return true;
+  }());
+  return fullString ?? toStringShort();
 }</code></pre>
     </section>
 
@@ -129,7 +134,7 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.debug }) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -104,7 +104,6 @@
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -112,7 +111,6 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -143,6 +141,7 @@
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -184,6 +183,12 @@
         <dd>
           Creates a host for a child scene. <a href="dart-ui/SceneHost/SceneHost.html">[...]</a>
         </dd>
+        <dt id="SceneHost.fromViewHolderToken" class="callable">
+          <span class="name"><a href="dart-ui/SceneHost/SceneHost.fromViewHolderToken.html">SceneHost.fromViewHolderToken</a></span><span class="signature">(<span class="parameter" id="fromViewHolderToken-param-viewHolderTokenHandle"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderTokenHandle</span>, </span> <span class="parameter" id="fromViewHolderToken-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)</span>
+        </dt>
+        <dd>
+          
+        </dd>
       </dl>
     </section>
 
@@ -220,6 +225,16 @@
                   </dt>
         <dd>
           Releases the resources associated with the child scene host. <a href="dart-ui/SceneHost/dispose.html">[...]</a>
+                  
+</dd>
+        <dt id="setProperties" class="callable">
+          <span class="name"><a href="dart-ui/SceneHost/setProperties.html">setProperties</a></span><span class="signature">(<wbr><span class="parameter" id="setProperties-param-width"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="setProperties-param-height"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="setProperties-param-insetTop"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">insetTop</span>, </span> <span class="parameter" id="setProperties-param-insetRight"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">insetRight</span>, </span> <span class="parameter" id="setProperties-param-insetBottom"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">insetBottom</span>, </span> <span class="parameter" id="setProperties-param-insetLeft"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">insetLeft</span>, </span> <span class="parameter" id="setProperties-param-focusable"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">focusable</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Set properties on the linked scene.  These properties include its bounds,
+as well as whether it can be the target of focus events or not.
                   
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
@@ -267,6 +282,7 @@
     <ol>
       <li class="section-title"><a href="dart-ui/SceneHost-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/SceneHost/SceneHost.html">SceneHost</a></li>
+      <li><a href="dart-ui/SceneHost/SceneHost.fromViewHolderToken.html">fromViewHolderToken</a></li>
     
       <li class="section-title inherited">
         <a href="dart-ui/SceneHost-class.html#instance-properties">Properties</a>
@@ -276,6 +292,7 @@
     
       <li class="section-title"><a href="dart-ui/SceneHost-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/SceneHost/dispose.html">dispose</a></li>
+      <li><a href="dart-ui/SceneHost/setProperties.html">setProperties</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
@@ -291,7 +308,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

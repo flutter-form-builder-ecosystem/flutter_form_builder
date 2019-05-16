@@ -136,8 +136,8 @@ This method iterates the entry objects from first to last and calls
 <p>The entry objects can also be accessed using <a href="dart-collection/DoubleLinkedQueue/firstEntry.html">firstEntry</a> and <a href="dart-collection/DoubleLinkedQueue/lastEntry.html">lastEntry</a>,
 and iterated using <a href="dart-collection/DoubleLinkedQueueEntry/nextEntry.html">DoubleLinkedQueueEntry.nextEntry()</a> and
 <a href="dart-collection/DoubleLinkedQueueEntry/previousEntry.html">DoubleLinkedQueueEntry.previousEntry()</a>.</p>
-<p>The <code>action</code> function can use methods on <a href="dart-collection/DoubleLinkedQueueEntry-class.html">DoubleLinkedQueueEntry</a> to remove
-the entry or it can insert elements before or after then entry.
+<p>The <code>action</code> function can use methods on <a href="dart-collection/DoubleLinkedQueueEntry-class.html">DoubleLinkedQueueEntry</a> to
+remove the entry or it can insert elements before or after then entry.
 If the current entry is removed, iteration continues with the entry that
 was following the current entry when <code>action</code> was called. Any elements
 inserted after the current element before it is removed will not be
@@ -159,7 +159,7 @@ visited by the iteration.</p>
     if (identical(this, entry._queue)) {
       next = entry._nextLink;
     } else if (!identical(this, next._queue)) {
-      throw new ConcurrentModificationError(this);
+      throw ConcurrentModificationError(this);
     }
     entry = next;
   }
@@ -175,7 +175,7 @@ visited by the iteration.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

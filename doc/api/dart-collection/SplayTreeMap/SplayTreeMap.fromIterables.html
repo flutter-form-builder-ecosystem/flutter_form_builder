@@ -113,8 +113,8 @@
 
     <section class="desc markdown">
       <p>Creates a <a href="dart-collection/SplayTreeMap-class.html">SplayTreeMap</a> associating the given <code>keys</code> to <code>values</code>.</p>
-<p>This constructor iterates over <code>keys</code> and <code>values</code> and maps each element of
-<code>keys</code> to the corresponding element of <code>values</code>.</p>
+<p>This constructor iterates over <code>keys</code> and <code>values</code> and maps each element
+of <code>keys</code> to the corresponding element of <code>values</code>.</p>
 <p>If <code>keys</code> contains the same object multiple times, the last occurrence
 overwrites the previous value.</p>
 <p>It is an error if the two <a href="dart-core/Iterable-class.html">Iterable</a>s don't have the same length.</p>
@@ -124,7 +124,7 @@ overwrites the previous value.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory SplayTreeMap.fromIterables(Iterable&lt;K&gt; keys, Iterable&lt;V&gt; values,
     [int compare(K key1, K key2), bool isValidKey(potentialKey)]) {
-  SplayTreeMap&lt;K, V&gt; map = new SplayTreeMap&lt;K, V&gt;(compare, isValidKey);
+  SplayTreeMap&lt;K, V&gt; map = SplayTreeMap&lt;K, V&gt;(compare, isValidKey);
   MapBase._fillMapWithIterables(map, keys, values);
   return map;
 }</code></pre>
@@ -139,7 +139,7 @@ overwrites the previous value.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

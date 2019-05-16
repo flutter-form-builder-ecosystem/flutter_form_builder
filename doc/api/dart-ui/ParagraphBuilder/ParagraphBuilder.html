@@ -103,7 +103,16 @@ ParagraphBuilder(ParagraphStyle style) {
     if (style._strutStyle._fontFamilyFallback != null)
       strutFontFamilies.addAll(style._strutStyle._fontFamilyFallback);
   }
-  _constructor(style._encoded, style._strutStyle?._encoded, style._fontFamily, strutFontFamilies, style._fontSize, style._height, style._ellipsis, _encodeLocale(style._locale));
+  _constructor(
+    style._encoded,
+    style._strutStyle?._encoded,
+    style._fontFamily,
+    strutFontFamilies,
+    style._fontSize,
+    style._height,
+    style._ellipsis,
+    _encodeLocale(style._locale)
+  );
 }</code></pre>
     </section>
 
@@ -116,7 +125,7 @@ ParagraphBuilder(ParagraphStyle style) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

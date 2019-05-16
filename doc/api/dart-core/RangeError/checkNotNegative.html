@@ -105,7 +105,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static void checkNotNegative(int value, [String name, String message]) {
-  if (value &lt; 0) throw new RangeError.range(value, 0, null, name, message);
+  if (value &lt; 0) throw RangeError.range(value, 0, null, name, message);
 }</code></pre>
     </section>
 
@@ -118,7 +118,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

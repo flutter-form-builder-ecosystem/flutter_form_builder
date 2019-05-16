@@ -153,7 +153,7 @@ Expect.isTrue(identical(time1, set.first));
       <pre class="language-dart"><code class="language-dart">bool add(E element) {
   int compare = _splay(element);
   if (compare == 0) return false;
-  _addNewRoot(new _SplayTreeNode(element), compare);
+  _addNewRoot(_SplayTreeNode(element), compare);
   return true;
 }</code></pre>
     </section>
@@ -167,7 +167,7 @@ Expect.isTrue(identical(time1, set.first));
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

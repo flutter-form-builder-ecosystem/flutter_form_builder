@@ -109,8 +109,24 @@ If <code>end</code> is omitted, it defaults to <code>codeUnits.length</code>.</p
 
   var length = codeUnits.length;
   end = RangeError.checkValidRange(start, end, length);
-  var buffer = StringBuffer();
+
+  &#47;&#47; Fast case for ASCII strings avoids StringBuffer&#47;_Utf8Decoder.
+  int oneBytes = _scanOneByteCharacters(codeUnits, start, end);
+  StringBuffer buffer;
+  bool isFirstCharacter = true;
+  if (oneBytes &gt; 0) {
+    var firstPart = String.fromCharCodes(codeUnits, start, start + oneBytes);
+    start += oneBytes;
+    if (start == end) {
+      return firstPart;
+    }
+    buffer = StringBuffer(firstPart);
+    isFirstCharacter = false;
+  }
+
+  buffer ??= StringBuffer();
   var decoder = _Utf8Decoder(buffer, _allowMalformed);
+  decoder._isFirstCharacter = isFirstCharacter;
   decoder.convert(codeUnits, start, end);
   decoder.flush(codeUnits, end);
   return buffer.toString();
@@ -126,7 +142,7 @@ If <code>end</code> is omitted, it defaults to <code>codeUnits.length</code>.</p
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

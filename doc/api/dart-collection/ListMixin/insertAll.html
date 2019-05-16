@@ -165,7 +165,7 @@ An <a href="dart-core/UnsupportedError-class.html">UnsupportedError</a> occurs i
     &#47;&#47; If the iterable&#39;s length is linked to this list&#39;s length somehow,
     &#47;&#47; we can&#39;t insert one in the other.
     this.length -= insertionLength;
-    throw new ConcurrentModificationError(iterable);
+    throw ConcurrentModificationError(iterable);
   }
   setRange(index + insertionLength, this.length, this, index);
   setAll(index, iterable);
@@ -181,7 +181,7 @@ An <a href="dart-core/UnsupportedError-class.html">UnsupportedError</a> occurs i
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

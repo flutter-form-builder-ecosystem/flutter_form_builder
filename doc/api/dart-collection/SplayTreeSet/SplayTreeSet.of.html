@@ -137,7 +137,7 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory SplayTreeSet.of(Iterable&lt;E&gt; elements,
         [int compare(E key1, E key2), bool isValidKey(potentialKey)]) =&gt;
-    new SplayTreeSet(compare, isValidKey)..addAll(elements);</code></pre>
+    SplayTreeSet(compare, isValidKey)..addAll(elements);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -149,7 +149,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

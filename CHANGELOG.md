@@ -1,5 +1,9 @@
+## [3.1.1] - 16-May-2019
+* Fixed sample code in README for example project
+* Bumped up `flutter_typeahead` from v1.4.0 to 1.5.0
+
 ## [3.1.0] - 15-May-2019
-* Added `leadingInput` option for CheckboxList, Checkbox and Radio - Allows the option to have the input before its label (left)
+* Added `leadingInput` option for CheckboxList, Checkbox and Radio - Allows the option to have the input before its label (left). Courtesy of [Sven Schöne](https://github.com/SvenSchoene)
 
 ## [3.0.1] - 28-April-2019
 * Fixed bug in where `focuNode` for `FormBuilderTextField` is ignored. Closes [#53](https://github.com/danvick/flutter_form_builder/issues/53)

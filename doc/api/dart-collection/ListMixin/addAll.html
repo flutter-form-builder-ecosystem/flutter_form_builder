@@ -152,7 +152,7 @@ Throws an <a href="dart-core/UnsupportedError-class.html">UnsupportedError</a> i
       <pre class="language-dart"><code class="language-dart">void addAll(Iterable&lt;E&gt; iterable) {
   int i = this.length;
   for (E element in iterable) {
-    assert(this.length == i || (throw new ConcurrentModificationError(this)));
+    assert(this.length == i || (throw ConcurrentModificationError(this)));
     this.length = i + 1;
     this[i] = element;
     i++;
@@ -169,7 +169,7 @@ Throws an <a href="dart-core/UnsupportedError-class.html">UnsupportedError</a> i
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

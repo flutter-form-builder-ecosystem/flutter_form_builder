@@ -120,7 +120,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">K firstKeyAfter(K key) {
-  if (key == null) throw new ArgumentError(key);
+  if (key == null) throw ArgumentError(key);
   if (_root == null) return null;
   int comp = _splay(key);
   if (comp &gt; 0) return _root.key;
@@ -142,7 +142,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

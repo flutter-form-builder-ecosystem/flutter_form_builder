@@ -166,7 +166,7 @@ If <code>orElse</code> is omitted, it defaults to throwing a <a href="dart-core/
       match = element;
     }
     if (length != this.length) {
-      throw new ConcurrentModificationError(this);
+      throw ConcurrentModificationError(this);
     }
   }
   if (matchFound) return match;
@@ -184,7 +184,7 @@ If <code>orElse</code> is omitted, it defaults to throwing a <a href="dart-core/
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

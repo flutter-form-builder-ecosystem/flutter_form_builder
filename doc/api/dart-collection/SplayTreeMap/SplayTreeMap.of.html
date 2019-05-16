@@ -119,7 +119,7 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory SplayTreeMap.of(Map&lt;K, V&gt; other,
         [int compare(K key1, K key2), bool isValidKey(potentialKey)]) =&gt;
-    new SplayTreeMap&lt;K, V&gt;(compare, isValidKey)..addAll(other);</code></pre>
+    SplayTreeMap&lt;K, V&gt;(compare, isValidKey)..addAll(other);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -131,7 +131,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

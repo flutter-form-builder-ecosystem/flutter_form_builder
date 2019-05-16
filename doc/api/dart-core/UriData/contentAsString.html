@@ -115,7 +115,7 @@ decoded using <code>encoding</code>.</p>
     var charset = this.charset; &#47;&#47; Returns &quot;US-ASCII&quot; if not present.
     encoding = Encoding.getByName(charset);
     if (encoding == null) {
-      throw new UnsupportedError(&quot;Unknown charset: $charset&quot;);
+      throw UnsupportedError(&quot;Unknown charset: $charset&quot;);
     }
   }
   String text = _text;
@@ -137,7 +137,7 @@ decoded using <code>encoding</code>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

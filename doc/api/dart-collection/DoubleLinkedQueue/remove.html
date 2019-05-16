@@ -142,7 +142,7 @@ contained no element equal to <code>value</code>.</p>
     bool equals = (entry._element == o);
     if (!identical(this, entry._queue)) {
       &#47;&#47; Entry must still be in the queue.
-      throw new ConcurrentModificationError(this);
+      throw ConcurrentModificationError(this);
     }
     if (equals) {
       entry._remove();
@@ -164,7 +164,7 @@ contained no element equal to <code>value</code>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -126,14 +126,14 @@
 
     <section class="desc markdown">
       <p>Create a <code>ListQueue</code> from <code>elements</code>.</p>
-<p>The elements are added to the queue, as by <a href="dart-collection/ListQueue/addLast.html">addLast</a>, in the order given by
-<code>elements.iterator</code>.</p>
+<p>The elements are added to the queue, as by <a href="dart-collection/ListQueue/addLast.html">addLast</a>, in the order given
+by <code>elements.iterator</code>.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory ListQueue.of(Iterable&lt;E&gt; elements) =&gt;
-    new ListQueue&lt;E&gt;()..addAll(elements);</code></pre>
+    ListQueue&lt;E&gt;()..addAll(elements);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -145,7 +145,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

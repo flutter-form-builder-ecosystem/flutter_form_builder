@@ -100,7 +100,21 @@
     fullFontFamilies.add(style._fontFamily);
   if (style._fontFamilyFallback != null)
     fullFontFamilies.addAll(style._fontFamilyFallback);
-  _pushStyle(style._encoded, fullFontFamilies, style._fontSize, style._letterSpacing, style._wordSpacing, style._height, _encodeLocale(style._locale), style._background?._objects, style._background?._data, style._foreground?._objects, style._foreground?._data, Shadow._encodeShadows(style._shadows));
+  _pushStyle(
+    style._encoded,
+    fullFontFamilies,
+    style._fontSize,
+    style._letterSpacing,
+    style._wordSpacing,
+    style._height,
+    style._decorationThickness,
+    _encodeLocale(style._locale),
+    style._background?._objects,
+    style._background?._data,
+    style._foreground?._objects,
+    style._foreground?._data,
+    Shadow._encodeShadows(style._shadows)
+  );
 }</code></pre>
     </section>
 
@@ -113,7 +127,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

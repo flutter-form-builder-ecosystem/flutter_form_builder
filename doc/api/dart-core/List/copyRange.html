@@ -172,7 +172,7 @@ Otherwise the order of element copying is not guaranteed.</p>
   end = RangeError.checkValidRange(start, end, source.length);
   int length = end - start;
   if (target.length &lt; at + length) {
-    throw new ArgumentError.value(target, &quot;target&quot;,
+    throw ArgumentError.value(target, &quot;target&quot;,
         &quot;Not big enough to hold $length elements at position $at&quot;);
   }
   if (!identical(source, target) || start &gt;= at) {
@@ -196,7 +196,7 @@ Otherwise the order of element copying is not guaranteed.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

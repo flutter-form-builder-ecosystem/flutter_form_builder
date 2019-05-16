@@ -128,6 +128,8 @@ use cases.</p>
 <pre class="language-dart"><code>var encoded = json.encode([1, 2, { "a": null }]);
 var decoded = json.decode('["foo", { "bar": 499 }]');
 </code></pre>
+<p>The top-level <a href="dart-convert/jsonEncode.html">jsonEncode</a> and <a href="dart-convert/jsonDecode.html">jsonDecode</a> functions may be used instead if
+a local variable shadows the <a href="dart-convert/json-constant.html">json</a> constant.</p>
     </section>
         <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
@@ -143,7 +145,7 @@ var decoded = json.decode('["foo", { "bar": 499 }]');
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

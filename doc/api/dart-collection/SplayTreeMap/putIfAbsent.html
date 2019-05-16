@@ -131,7 +131,7 @@ scores['Sophena'];  //  7
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">V putIfAbsent(K key, V ifAbsent()) {
-  if (key == null) throw new ArgumentError(key);
+  if (key == null) throw ArgumentError(key);
   int comp = _splay(key);
   if (comp == 0) {
     return _root.value;
@@ -140,14 +140,14 @@ scores['Sophena'];  //  7
   int splayCount = _splayCount;
   V value = ifAbsent();
   if (modificationCount != _modificationCount) {
-    throw new ConcurrentModificationError(this);
+    throw ConcurrentModificationError(this);
   }
   if (splayCount != _splayCount) {
     comp = _splay(key);
     &#47;&#47; Key is still not there, otherwise _modificationCount would be changed.
     assert(comp != 0);
   }
-  _addNewRoot(new _SplayTreeMapNode(key, value), comp);
+  _addNewRoot(_SplayTreeMapNode(key, value), comp);
   return value;
 }</code></pre>
     </section>
@@ -161,7 +161,7 @@ scores['Sophena'];  //  7
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

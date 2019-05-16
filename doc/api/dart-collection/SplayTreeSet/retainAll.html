@@ -140,12 +140,12 @@ to any element in <code>elements</code> are removed.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void retainAll(Iterable&lt;Object&gt; elements) {
   &#47;&#47; Build a set with the same sense of equality as this set.
-  SplayTreeSet&lt;E&gt; retainSet = new SplayTreeSet&lt;E&gt;(_comparator, _validKey);
+  SplayTreeSet&lt;E&gt; retainSet = SplayTreeSet&lt;E&gt;(_comparator, _validKey);
   int modificationCount = _modificationCount;
   for (Object object in elements) {
     if (modificationCount != _modificationCount) {
       &#47;&#47; The iterator should not have side effects.
-      throw new ConcurrentModificationError(this);
+      throw ConcurrentModificationError(this);
     }
     &#47;&#47; Equivalent to this.contains(object).
     if (_validKey(object) &amp;&amp; _splay(object) == 0) {
@@ -170,7 +170,7 @@ to any element in <code>elements</code> are removed.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

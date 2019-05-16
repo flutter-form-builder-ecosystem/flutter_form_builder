@@ -143,7 +143,7 @@ Queue&lt;SubType&gt; subQueue =
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory DoubleLinkedQueue.from(Iterable elements) {
-  Queue&lt;E&gt; list = new DoubleLinkedQueue&lt;E&gt;();
+  Queue&lt;E&gt; list = DoubleLinkedQueue&lt;E&gt;();
   for (final e in elements) {
     list.addLast(e);
   }
@@ -160,7 +160,7 @@ Queue&lt;SubType&gt; subQueue =
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

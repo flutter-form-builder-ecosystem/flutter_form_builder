@@ -91,7 +91,7 @@
       <pre class="language-dart"><code class="language-dart">E next() {
   &#47;&#47; Call to hasNext is necessary to make sure we are positioned at the first
   &#47;&#47; element when we start iterating.
-  if (!hasNext) throw new StateError(&quot;No more elements&quot;);
+  if (!hasNext) throw StateError(&quot;No more elements&quot;);
   assert(_state == _HAS_NEXT_AND_NEXT_IN_CURRENT);
   E result = _iterator.current;
   _move();
@@ -108,7 +108,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

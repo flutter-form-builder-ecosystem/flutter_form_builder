@@ -142,7 +142,7 @@ UTF-8.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static String decodeQueryComponent(String encodedComponent,
-    {Encoding encoding: utf8}) {
+    {Encoding encoding = utf8}) {
   return _Uri._uriDecode(
       encodedComponent, 0, encodedComponent.length, encoding, true);
 }</code></pre>
@@ -157,7 +157,7 @@ UTF-8.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

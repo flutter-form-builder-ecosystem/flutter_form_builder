@@ -133,9 +133,10 @@
     </section>
     <section class="desc markdown">
       <p>Creates a new <code>Uri</code> object by parsing a URI string.</p>
-<p>If <code>start</code> and <code>end</code> are provided, only the substring from <code>start</code>
-to <code>end</code> is parsed as a URI.</p>
-<p>If the string is not valid as a URI or URI reference,
+<p>If <code>start</code> and <code>end</code> are provided, they must specify a valid substring
+of <code>uri</code>, and only the substring from <code>start</code> to <code>end</code> is parsed as a URI.</p>
+<p>The <code>uri</code> must not be <code>null</code>.
+If the <code>uri</code> string is not valid as a URI or URI reference,
 a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown.</p>
     </section>
     
@@ -213,7 +214,7 @@ a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown.<
   &#47;&#47; The following index-normalization belongs with the scanning, but is
   &#47;&#47; easier to do here because we already have extracted variables from the
   &#47;&#47; indices list.
-  var indices = new List&lt;int&gt;(8);
+  var indices = List&lt;int&gt;(8);
 
   &#47;&#47; Set default values for each position.
   &#47;&#47; The value will either be correct in some cases where it isn&#39;t set
@@ -421,11 +422,11 @@ a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown.<
       queryStart -= start;
       fragmentStart -= start;
     }
-    return new _SimpleUri(uri, schemeEnd, hostStart, portStart, pathStart,
+    return _SimpleUri(uri, schemeEnd, hostStart, portStart, pathStart,
         queryStart, fragmentStart, scheme);
   }
 
-  return new _Uri.notSimple(uri, start, end, schemeEnd, hostStart, portStart,
+  return _Uri.notSimple(uri, start, end, schemeEnd, hostStart, portStart,
       pathStart, queryStart, fragmentStart, scheme);
 }</code></pre>
     </section>
@@ -439,7 +440,7 @@ a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown.<
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -147,10 +147,10 @@ encoded.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory Uri.dataFromBytes(List&lt;int&gt; bytes,
-    {mimeType: &quot;application&#47;octet-stream&quot;,
+    {mimeType = &quot;application&#47;octet-stream&quot;,
     Map&lt;String, String&gt; parameters,
-    percentEncoded: false}) {
-  UriData data = new UriData.fromBytes(bytes,
+    percentEncoded = false}) {
+  UriData data = UriData.fromBytes(bytes,
       mimeType: mimeType,
       parameters: parameters,
       percentEncoded: percentEncoded);
@@ -167,7 +167,7 @@ encoded.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

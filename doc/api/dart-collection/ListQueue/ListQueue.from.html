@@ -126,8 +126,8 @@
 
     <section class="desc markdown">
       <p>Create a <code>ListQueue</code> containing all <code>elements</code>.</p>
-<p>The elements are added to the queue, as by <a href="dart-collection/ListQueue/addLast.html">addLast</a>, in the order given by
-<code>elements.iterator</code>.</p>
+<p>The elements are added to the queue, as by <a href="dart-collection/ListQueue/addLast.html">addLast</a>, in the order given
+by <code>elements.iterator</code>.</p>
 <p>All the <code>elements</code> should be instances of <code>E</code>.
 The <code>elements</code> iterable itself may have any element type, so this
 constructor can be used to down-cast a <code>Queue</code>, for example as:</p>
@@ -142,7 +142,7 @@ Queue&lt;SubType&gt; subQueue =
       <pre class="language-dart"><code class="language-dart">factory ListQueue.from(Iterable elements) {
   if (elements is List) {
     int length = elements.length;
-    ListQueue&lt;E&gt; queue = new ListQueue&lt;E&gt;(length + 1);
+    ListQueue&lt;E&gt; queue = ListQueue&lt;E&gt;(length + 1);
     assert(queue._table.length &gt; length);
     for (int i = 0; i &lt; length; i++) {
       queue._table[i] = elements[i];
@@ -154,7 +154,7 @@ Queue&lt;SubType&gt; subQueue =
     if (elements is EfficientLengthIterable) {
       capacity = elements.length;
     }
-    ListQueue&lt;E&gt; result = new ListQueue&lt;E&gt;(capacity);
+    ListQueue&lt;E&gt; result = ListQueue&lt;E&gt;(capacity);
     for (final element in elements) {
       result.addLast(element);
     }
@@ -172,7 +172,7 @@ Queue&lt;SubType&gt; subQueue =
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

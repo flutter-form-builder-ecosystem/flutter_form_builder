@@ -104,7 +104,6 @@
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -112,7 +111,6 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -143,6 +141,7 @@
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -171,6 +170,7 @@
 
     <section class="desc markdown">
       <p>An opaque object that determines the size, position, and rendering of text.</p>
+<p>See also:</p><ul><li><a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>, the class in the <code>painting</code> library.</li></ul>
     </section>
     
 
@@ -179,7 +179,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="TextStyle" class="callable">
-          <span class="name"><a href="dart-ui/TextStyle/TextStyle.html">TextStyle</a></span><span class="signature">({<span class="parameter" id="-param-color"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">color</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation"><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></span> <span class="parameter-name">decoration</span>, </span> <span class="parameter" id="-param-decorationColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">decorationColor</span>, </span> <span class="parameter" id="-param-decorationStyle"><span class="type-annotation"><a href="dart-ui/TextDecorationStyle-class.html">TextDecorationStyle</a></span> <span class="parameter-name">decorationStyle</span>, </span> <span class="parameter" id="-param-fontWeight"><span class="type-annotation"><a href="dart-ui/FontWeight-class.html">FontWeight</a></span> <span class="parameter-name">fontWeight</span>, </span> <span class="parameter" id="-param-fontStyle"><span class="type-annotation"><a href="dart-ui/FontStyle-class.html">FontStyle</a></span> <span class="parameter-name">fontStyle</span>, </span> <span class="parameter" id="-param-textBaseline"><span class="type-annotation"><a href="dart-ui/TextBaseline-class.html">TextBaseline</a></span> <span class="parameter-name">textBaseline</span>, </span> <span class="parameter" id="-param-fontFamily"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">fontFamily</span>, </span> <span class="parameter" id="-param-fontFamilyFallback"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">fontFamilyFallback</span>, </span> <span class="parameter" id="-param-fontSize"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">fontSize</span>, </span> <span class="parameter" id="-param-letterSpacing"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">letterSpacing</span>, </span> <span class="parameter" id="-param-wordSpacing"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">wordSpacing</span>, </span> <span class="parameter" id="-param-height"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation"><a href="dart-ui/Locale-class.html">Locale</a></span> <span class="parameter-name">locale</span>, </span> <span class="parameter" id="-param-background"><span class="type-annotation"><a href="dart-ui/Paint-class.html">Paint</a></span> <span class="parameter-name">background</span>, </span> <span class="parameter" id="-param-foreground"><span class="type-annotation"><a href="dart-ui/Paint-class.html">Paint</a></span> <span class="parameter-name">foreground</span>, </span> <span class="parameter" id="-param-shadows"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Shadow-class.html">Shadow</a></span>&gt;</span></span> <span class="parameter-name">shadows</span></span> })</span>
+          <span class="name"><a href="dart-ui/TextStyle/TextStyle.html">TextStyle</a></span><span class="signature">({<span class="parameter" id="-param-color"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">color</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation"><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></span> <span class="parameter-name">decoration</span>, </span> <span class="parameter" id="-param-decorationColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">decorationColor</span>, </span> <span class="parameter" id="-param-decorationStyle"><span class="type-annotation"><a href="dart-ui/TextDecorationStyle-class.html">TextDecorationStyle</a></span> <span class="parameter-name">decorationStyle</span>, </span> <span class="parameter" id="-param-decorationThickness"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">decorationThickness</span>, </span> <span class="parameter" id="-param-fontWeight"><span class="type-annotation"><a href="dart-ui/FontWeight-class.html">FontWeight</a></span> <span class="parameter-name">fontWeight</span>, </span> <span class="parameter" id="-param-fontStyle"><span class="type-annotation"><a href="dart-ui/FontStyle-class.html">FontStyle</a></span> <span class="parameter-name">fontStyle</span>, </span> <span class="parameter" id="-param-textBaseline"><span class="type-annotation"><a href="dart-ui/TextBaseline-class.html">TextBaseline</a></span> <span class="parameter-name">textBaseline</span>, </span> <span class="parameter" id="-param-fontFamily"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">fontFamily</span>, </span> <span class="parameter" id="-param-fontFamilyFallback"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">fontFamilyFallback</span>, </span> <span class="parameter" id="-param-fontSize"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">fontSize</span>, </span> <span class="parameter" id="-param-letterSpacing"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">letterSpacing</span>, </span> <span class="parameter" id="-param-wordSpacing"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">wordSpacing</span>, </span> <span class="parameter" id="-param-height"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation"><a href="dart-ui/Locale-class.html">Locale</a></span> <span class="parameter-name">locale</span>, </span> <span class="parameter" id="-param-background"><span class="type-annotation"><a href="dart-ui/Paint-class.html">Paint</a></span> <span class="parameter-name">background</span>, </span> <span class="parameter" id="-param-foreground"><span class="type-annotation"><a href="dart-ui/Paint-class.html">Paint</a></span> <span class="parameter-name">foreground</span>, </span> <span class="parameter" id="-param-shadows"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Shadow-class.html">Shadow</a></span>&gt;</span></span> <span class="parameter-name">shadows</span></span> })</span>
         </dt>
         <dd>
           Creates a new TextStyle object. <a href="dart-ui/TextStyle/TextStyle.html">[...]</a>
@@ -281,7 +281,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

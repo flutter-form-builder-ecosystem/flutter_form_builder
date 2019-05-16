@@ -105,14 +105,13 @@ as data URI content with the same rules as <a href="dart-core/UriData/parse.html
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory UriData.fromUri(Uri uri) {
   if (uri.scheme != &quot;data&quot;) {
-    throw new ArgumentError.value(uri, &quot;uri&quot;, &quot;Scheme must be &#39;data&#39;&quot;);
+    throw ArgumentError.value(uri, &quot;uri&quot;, &quot;Scheme must be &#39;data&#39;&quot;);
   }
   if (uri.hasAuthority) {
-    throw new ArgumentError.value(
-        uri, &quot;uri&quot;, &quot;Data uri must not have authority&quot;);
+    throw ArgumentError.value(uri, &quot;uri&quot;, &quot;Data uri must not have authority&quot;);
   }
   if (uri.hasFragment) {
-    throw new ArgumentError.value(
+    throw ArgumentError.value(
         uri, &quot;uri&quot;, &quot;Data uri must not have a fragment part&quot;);
   }
   if (!uri.hasQuery) {
@@ -132,7 +131,7 @@ as data URI content with the same rules as <a href="dart-core/UriData/parse.html
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

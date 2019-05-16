@@ -123,8 +123,8 @@ and the element at index <code>n</code> is computed by calling <code>generator(n
 Values are not cached, so each iteration computes the values again.</p>
 <p>If <code>generator</code> is omitted, it defaults to an identity function
 on integers <code>(int x) =&gt; x</code>, so it may only be omitted if the type
-parameter allows integer values. That is, if <code>E</code> is one of
-<code>int</code>, <code>num</code>, <code>Object</code> or <code>dynamic</code>.</p>
+parameter allows integer values. That is, if <code>E</code> is a super-type
+of <a href="dart-core/int-class.html">int</a>.</p>
 <p>As an <code>Iterable</code>, <code>new Iterable.generate(n, generator))</code> is equivalent to
 <code>const [0, ..., n - 1].map(generator)</code>.</p>
     </section>
@@ -132,8 +132,8 @@ parameter allows integer values. That is, if <code>E</code> is one of
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory Iterable.generate(int count, [E generator(int index)]) {
-  if (count &lt;= 0) return new EmptyIterable&lt;E&gt;();
-  return new _GeneratorIterable&lt;E&gt;(count, generator);
+  if (count &lt;= 0) return EmptyIterable&lt;E&gt;();
+  return _GeneratorIterable&lt;E&gt;(count, generator);
 }</code></pre>
     </section>
 
@@ -146,7 +146,7 @@ parameter allows integer values. That is, if <code>E</code> is one of
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

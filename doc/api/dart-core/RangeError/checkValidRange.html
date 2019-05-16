@@ -118,12 +118,12 @@ and <code>end</code> otherwise.</p>
   &#47;&#47; Ditto `start &gt; end` below.
   if (0 &gt; start || start &gt; length) {
     startName ??= &quot;start&quot;;
-    throw new RangeError.range(start, 0, length, startName, message);
+    throw RangeError.range(start, 0, length, startName, message);
   }
   if (end != null) {
     if (start &gt; end || end &gt; length) {
       endName ??= &quot;end&quot;;
-      throw new RangeError.range(end, start, length, endName, message);
+      throw RangeError.range(end, start, length, endName, message);
     }
     return end;
   }
@@ -140,7 +140,7 @@ and <code>end</code> otherwise.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

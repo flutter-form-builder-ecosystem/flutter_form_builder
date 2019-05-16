@@ -101,7 +101,8 @@
       <p>Linearly interpolates between two font weights.</p>
 <p>Rather than using fractional weights, the interpolation rounds to the
 nearest weight.</p>
-<p>Any null values for <code>a</code> or <code>b</code> are interpreted as equivalent to <a href="dart-ui/FontWeight/normal-constant.html">normal</a>
+<p>If both <code>a</code> and <code>b</code> are null, then this method will return null. Otherwise,
+any null values for <code>a</code> or <code>b</code> are interpreted as equivalent to <a href="dart-ui/FontWeight/normal-constant.html">normal</a>
 (also known as <a href="dart-ui/FontWeight/w400-constant.html">w400</a>).</p>
 <p>The <code>t</code> argument represents position on the timeline, with 0.0 meaning
 that the interpolation has not started, returning <code>a</code> (or something
@@ -120,6 +121,8 @@ an <code>AnimationController</code>.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FontWeight lerp(FontWeight a, FontWeight b, double t) {
   assert(t != null);
+  if (a == null &amp;&amp; b == null)
+    return null;
   return values[lerpDouble(a?.index ?? normal.index, b?.index ?? normal.index, t).round().clamp(0, 8)];
 }</code></pre>
     </section>
@@ -133,7 +136,7 @@ an <code>AnimationController</code>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -158,8 +158,8 @@ otherwise, it returns a fixed-length list.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">factory List.of(Iterable&lt;E&gt; elements, {bool growable: true}) =&gt;
-    new List&lt;E&gt;.from(elements, growable: growable);</code></pre>
+      <pre class="language-dart"><code class="language-dart">factory List.of(Iterable&lt;E&gt; elements, {bool growable = true}) =&gt;
+    List&lt;E&gt;.from(elements, growable: growable);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -171,7 +171,7 @@ otherwise, it returns a fixed-length list.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

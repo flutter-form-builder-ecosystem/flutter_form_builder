@@ -127,9 +127,9 @@ original iterables.</p>
   &#47;&#47; to EfficientLengthIterable&lt;E&gt;.
   Iterable&lt;E&gt; self = this;
   if (self is EfficientLengthIterable&lt;E&gt;) {
-    return new FollowedByIterable&lt;E&gt;.firstEfficient(self, other);
+    return FollowedByIterable&lt;E&gt;.firstEfficient(self, other);
   }
-  return new FollowedByIterable&lt;E&gt;(this, other);
+  return FollowedByIterable&lt;E&gt;(this, other);
 }</code></pre>
     </section>
 
@@ -142,7 +142,7 @@ original iterables.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

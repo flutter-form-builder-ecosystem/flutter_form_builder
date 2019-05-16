@@ -160,8 +160,8 @@ as an omitted <code>charset</code> parameter defaults to meaning <code>US-ASCII<
     {String mimeType,
     Encoding encoding,
     Map&lt;String, String&gt; parameters,
-    bool base64: false}) {
-  UriData data = new UriData.fromString(content,
+    bool base64 = false}) {
+  UriData data = UriData.fromString(content,
       mimeType: mimeType,
       encoding: encoding,
       parameters: parameters,
@@ -179,7 +179,7 @@ as an omitted <code>charset</code> parameter defaults to meaning <code>US-ASCII<
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

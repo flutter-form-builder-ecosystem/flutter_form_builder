@@ -104,7 +104,6 @@
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -112,7 +111,6 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -143,6 +141,7 @@
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -217,6 +216,14 @@ be a power of two. Indeed, it might not even be an integer. For example,
 the Nexus 6 has a device pixel ratio of 3.5. <a href="dart-ui/Window/devicePixelRatio.html">[...]</a>
                   <div class="features">read-only</div>
 </dd>
+        <dt id="initialLifecycleState" class="property">
+          <span class="name"><a href="dart-ui/Window/initialLifecycleState.html">initialLifecycleState</a></span>
+          <span class="signature">&#8594; <a href="dart-core/String-class.html">String</a></span>         
+        </dt>
+        <dd>
+          The lifecycle state immediately after dart isolate initialization. <a href="dart-ui/Window/initialLifecycleState.html">[...]</a>
+                  <div class="features">read-only</div>
+</dd>
         <dt id="locale" class="property">
           <span class="name"><a href="dart-ui/Window/locale.html">locale</a></span>
           <span class="signature">&#8594; <a href="dart-ui/Locale-class.html">Locale</a></span>         
@@ -238,7 +245,7 @@ the Nexus 6 has a device pixel ratio of 3.5. <a href="dart-ui/Window/devicePixel
           <span class="signature">&#8596; <a href="dart-ui/VoidCallback.html">VoidCallback</a></span>         
         </dt>
         <dd>
-          A callback that is invoked when the value of <code>accessibilityFlags</code> changes. <a href="dart-ui/Window/onAccessibilityFeaturesChanged.html">[...]</a>
+          A callback that is invoked when the value of <a href="dart-ui/Window/accessibilityFeatures.html">accessibilityFeatures</a> changes. <a href="dart-ui/Window/onAccessibilityFeaturesChanged.html">[...]</a>
                   <div class="features">read / write</div>
 </dd>
         <dt id="onBeginFrame" class="property">
@@ -515,6 +522,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
       <li><a href="dart-ui/Window/alwaysUse24HourFormat.html">alwaysUse24HourFormat</a></li>
       <li><a href="dart-ui/Window/defaultRouteName.html">defaultRouteName</a></li>
       <li><a href="dart-ui/Window/devicePixelRatio.html">devicePixelRatio</a></li>
+      <li><a href="dart-ui/Window/initialLifecycleState.html">initialLifecycleState</a></li>
       <li><a href="dart-ui/Window/locale.html">locale</a></li>
       <li><a href="dart-ui/Window/locales.html">locales</a></li>
       <li><a href="dart-ui/Window/onAccessibilityFeaturesChanged.html">onAccessibilityFeaturesChanged</a></li>
@@ -558,7 +566,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

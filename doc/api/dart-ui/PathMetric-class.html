@@ -104,7 +104,6 @@
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
-      <li><a href="dart-ui/Versions-class.html">Versions</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
       <li><a href="dart-ui/Window-class.html">Window</a></li>
       <li><a href="dart-ui/WindowPadding-class.html">WindowPadding</a></li>
@@ -112,7 +111,6 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
-      <li><a href="dart-ui/versions.html">versions</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -143,6 +141,7 @@
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
+      <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
       <li><a href="dart-ui/PointMode-class.html">PointMode</a></li>
       <li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a></li>
       <li><a href="dart-ui/StrokeJoin-class.html">StrokeJoin</a></li>
@@ -170,14 +169,16 @@
       <div><h1>PathMetric class </h1></div>
 
     <section class="desc markdown">
-      <p>Utilities for measuring a <a href="dart-ui/Path-class.html">Path</a> and extracting subpaths.</p>
+      <p>Utilities for measuring a <a href="dart-ui/Path-class.html">Path</a> and extracting sub-paths.</p>
 <p>Iterate over the object returned by <a href="dart-ui/Path/computeMetrics.html">Path.computeMetrics</a> to obtain
 <a href="dart-ui/PathMetric-class.html">PathMetric</a> objects.</p>
 <p>Once created, the methods on this class will only be valid while the
 iterator is at the contour for which they were created. It will also only be
-valid for the path as it was specifed when <a href="dart-ui/Path/computeMetrics.html">Path.computeMetrics</a> was called.
+valid for the path as it was specified when <a href="dart-ui/Path/computeMetrics.html">Path.computeMetrics</a> was called.
 If additional contours are added or any contours are updated, the metrics
-need to be recomputed.</p>
+need to be recomputed. Previously created metrics will still refer to a
+snapshot of the path at the time they were computed, rather than to the
+actual metrics for the new mutations to the path.</p>
     </section>
     
 
@@ -247,7 +248,7 @@ need to be recomputed.</p>
           </span>
                   </dt>
         <dd>
-          Computes the position of hte current contour at the given offset, and the
+          Computes the position of the current contour at the given offset, and the
 angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset.html">[...]</a>
                   
 </dd>
@@ -322,7 +323,7 @@ angle of the path at that point. <a href="dart-ui/PathMetric/getTangentForOffset
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

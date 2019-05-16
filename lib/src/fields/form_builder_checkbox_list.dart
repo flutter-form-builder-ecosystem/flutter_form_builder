@@ -56,15 +56,14 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
       onChanged: _readonly
           ? null
           : (bool value) {
-        var currValue = field.value;
-        if (value)
-          currValue.add(widget.options[i].value);
-        else
-          currValue.remove(widget.options[i].value);
-        field.didChange(currValue);
-        if (widget.onChanged != null)
-          widget.onChanged(currValue);
-      },
+              var currValue = field.value;
+              if (value)
+                currValue.add(widget.options[i].value);
+              else
+                currValue.remove(widget.options[i].value);
+              field.didChange(currValue);
+              if (widget.onChanged != null) widget.onChanged(currValue);
+            },
     );
   }
 

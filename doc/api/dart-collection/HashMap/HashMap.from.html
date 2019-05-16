@@ -118,7 +118,7 @@ The <code>other</code> map itself can have any type.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory HashMap.from(Map other) {
-  Map&lt;K, V&gt; result = new HashMap&lt;K, V&gt;();
+  Map&lt;K, V&gt; result = HashMap&lt;K, V&gt;();
   other.forEach((k, v) {
     result[k] = v;
   });
@@ -135,7 +135,7 @@ The <code>other</code> map itself can have any type.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

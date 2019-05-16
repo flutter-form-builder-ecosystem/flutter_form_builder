@@ -124,7 +124,7 @@ character. The bytes will not be, e.g., UTF-8 decoded.</p>
     }
   }
   &#47;&#47; Fill result array.
-  Uint8List result = new Uint8List(length);
+  Uint8List result = Uint8List(length);
   if (length == text.length) {
     result.setRange(0, length, text.codeUnits, start);
     return result;
@@ -143,7 +143,7 @@ character. The bytes will not be, e.g., UTF-8 decoded.</p>
           continue;
         }
       }
-      throw new FormatException(&quot;Invalid percent escape&quot;, text, i);
+      throw FormatException(&quot;Invalid percent escape&quot;, text, i);
     }
   }
   assert(index == result.length);
@@ -160,7 +160,7 @@ character. The bytes will not be, e.g., UTF-8 decoded.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

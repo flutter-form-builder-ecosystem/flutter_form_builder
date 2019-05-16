@@ -129,8 +129,8 @@ result as a new Duration object.</p>
       <pre class="language-dart"><code class="language-dart">Duration operator ~&#47;(int quotient) {
   &#47;&#47; By doing the check here instead of relying on &quot;~&#47;&quot; below we get the
   &#47;&#47; exception even with dart2js.
-  if (quotient == 0) throw new IntegerDivisionByZeroException();
-  return new Duration._microseconds(_duration ~&#47; quotient);
+  if (quotient == 0) throw IntegerDivisionByZeroException();
+  return Duration._microseconds(_duration ~&#47; quotient);
 }</code></pre>
     </section>
 
@@ -143,7 +143,7 @@ result as a new Duration object.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -154,7 +154,7 @@ defaults ot the end of the string.</p>
 
   &#47;&#47; Helper function for reporting a badly formatted IPv6 address.
   void error(String msg, [position]) {
-    throw new FormatException(&#39;Illegal IPv6 address, $msg&#39;, host, position);
+    throw FormatException(&#39;Illegal IPv6 address, $msg&#39;, host, position);
   }
 
   &#47;&#47; Parse a hex block.
@@ -225,7 +225,7 @@ defaults ot the end of the string.</p>
   } else if (parts.length != 8) {
     error(&#39;an address without a wildcard must contain exactly 8 parts&#39;);
   }
-  List&lt;int&gt; bytes = new Uint8List(16);
+  List&lt;int&gt; bytes = Uint8List(16);
   for (int i = 0, index = 0; i &lt; parts.length; i++) {
     int value = parts[i];
     if (value == -1) {
@@ -254,7 +254,7 @@ defaults ot the end of the string.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   

@@ -125,8 +125,8 @@ The list is fixed-length if <code>growable</code> is false.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">List&lt;E&gt; toList({bool growable: true}) {
-  return new List&lt;E&gt;.from(this, growable: growable);
+      <pre class="language-dart"><code class="language-dart">List&lt;E&gt; toList({bool growable = true}) {
+  return List&lt;E&gt;.from(this, growable: growable);
 }</code></pre>
     </section>
 
@@ -139,7 +139,7 @@ The list is fixed-length if <code>growable</code> is false.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.0.1
+    flutter_form_builder 3.1.1
   </span>
 
   
