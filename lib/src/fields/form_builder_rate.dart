@@ -87,6 +87,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
             onTap: _readonly
                 ? null
                 : (value) {
+                    FocusScope.of(context).requestFocus(FocusNode());
                     field.didChange(value);
                     if (widget.onChanged != null) widget.onChanged(value);
                   },

@@ -55,6 +55,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
       onChanged: _readonly
           ? null
           : (bool value) {
+              FocusScope.of(context).requestFocus(FocusNode());
               field.didChange(value);
               if (widget.onChanged != null) widget.onChanged(value);
             },
@@ -107,6 +108,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
             onTap: _readonly
                 ? null
                 : () {
+                    FocusScope.of(context).requestFocus(FocusNode());
                     bool newValue = !(field.value ?? false);
                     field.didChange(newValue);
                     if (widget.onChanged != null) widget.onChanged(newValue);

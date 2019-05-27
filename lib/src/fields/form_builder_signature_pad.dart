@@ -111,6 +111,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                     penColor: widget.penColor,
                     penStrokeWidth: widget.penStrokeWidth,
                     onChanged: (points) async {
+                      FocusScope.of(context).requestFocus(FocusNode());
                       var signature =
                           await _signatureKey.currentState.exportBytes();
                       setState(() {

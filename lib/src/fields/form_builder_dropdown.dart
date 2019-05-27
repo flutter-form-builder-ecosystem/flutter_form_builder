@@ -100,9 +100,11 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             onChanged: _readonly
                 ? null
                 : (value) {
+                    FocusScope.of(context).requestFocus(FocusNode());
                     field.didChange(value);
                     if (widget.onChanged != null) widget.onChanged(value);
                   },
+            //TODO: add icon, enabledColor, disabledColor
           ),
         );
       },

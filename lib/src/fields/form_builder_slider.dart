@@ -90,6 +90,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   onChanged: _readonly
                       ? null
                       : (num value) {
+                    FocusScope.of(context).requestFocus(FocusNode());
                           field.didChange(value);
                           if (widget.onChanged != null) widget.onChanged(value);
                         },

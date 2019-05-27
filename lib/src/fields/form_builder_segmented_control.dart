@@ -100,6 +100,7 @@ class _FormBuilderSegmentedControlState
                     ),
               ),
               onValueChanged: (dynamic value) {
+                FocusScope.of(context).requestFocus(FocusNode());
                 if (_readonly) {
                   field.reset();
                 } else {

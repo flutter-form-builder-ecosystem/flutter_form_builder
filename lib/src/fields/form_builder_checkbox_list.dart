@@ -56,6 +56,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
       onChanged: _readonly
           ? null
           : (bool value) {
+              FocusScope.of(context).requestFocus(FocusNode());
               var currValue = field.value;
               if (value)
                 currValue.add(widget.options[i].value);

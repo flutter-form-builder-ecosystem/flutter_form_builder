@@ -83,6 +83,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                 onChanged: _readonly
                     ? null
                     : (bool value) {
+                        FocusScope.of(context).requestFocus(FocusNode());
                         field.didChange(value);
                         if (widget.onChanged != null) widget.onChanged(value);
                       },
@@ -90,6 +91,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
               onTap: _readonly
                   ? null
                   : () {
+                      FocusScope.of(context).requestFocus(FocusNode());
                       bool newValue = !(field.value ?? false);
                       field.didChange(newValue);
                       if (widget.onChanged != null) widget.onChanged(newValue);
