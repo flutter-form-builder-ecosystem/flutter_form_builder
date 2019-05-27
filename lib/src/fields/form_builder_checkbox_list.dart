@@ -82,7 +82,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
     return FormField(
         key: _fieldKey,
         enabled: !_readonly,
-        initialValue: widget.initialValue,
+        initialValue: widget.initialValue ?? [],
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
             if (widget.validators[i](val) != null)
