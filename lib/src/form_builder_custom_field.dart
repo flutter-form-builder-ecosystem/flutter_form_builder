@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCustomField<T> extends StatefulWidget {
+  /// Identifier for the field input.
+  ///
+  /// Used as a key to final map returned when the form is submitted
   final String attribute;
+
+  /// The [FormField] widget that will house the custom input
   final FormField<T> formField;
+
+  /// An optional list of [FormFieldValidator]s that validates the input in the field.
   final List<FormFieldValidator> validators;
+
+  /// Called before field value is submitted.
+  ///
+  /// Can be used to convert the value to the output expected by the user.
   final ValueTransformer valueTransformer;
 
   FormBuilderCustomField({

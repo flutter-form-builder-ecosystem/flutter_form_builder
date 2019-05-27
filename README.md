@@ -185,7 +185,10 @@ In order to create an input field in the form, along with the label, and any app
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `false` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
 The rest of the attributes will be determined by the type of Widget being used.
 
-### Building your own custom `FormField`
+### Building your own custom field
+To build your own field within a `FormBuilder`, we use `FormBuilderCustomField` which will require that you define your own `FormField`.
+The `FormField` will not require a `validator` if the `validators` property is already defined in the `FormBuilderCustomField`.
+
 ```dart
 FormBuilderCustomField(
   attribute: "name",
