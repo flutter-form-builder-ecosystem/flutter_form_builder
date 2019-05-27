@@ -1,3 +1,7 @@
+## [3.1.2] - 27-May-2019
+* Attempted fix for `FormBuilderTextField` retaining focus even after moving to other fields causing the UI to jump back to the TextField
+* Improved documentation for `FormBuilderCustomField`
+
 ## [3.1.1] - 16-May-2019
 * Fixed sample code in README for example project
 * Bumped up `flutter_typeahead` from v1.4.0 to 1.5.0
