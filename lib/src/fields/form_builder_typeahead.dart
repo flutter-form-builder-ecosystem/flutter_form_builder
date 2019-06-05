@@ -20,7 +20,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final Duration debounceDuration;
   final SuggestionsBoxDecoration suggestionsBoxDecoration;
 
-  // final SuggestionSelectionCallback<T> onSuggestionSelected;
+  final SuggestionSelectionCallback<T> onSuggestionSelected;
   final ItemBuilder<T> itemBuilder;
   final SuggestionsCallback<T> suggestionsCallback;
   final double suggestionsBoxVerticalOffset;
@@ -39,7 +39,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
 
   FormBuilderTypeAhead({
     @required this.attribute,
-    // @required this.onSuggestionSelected,
+    this.onSuggestionSelected,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.initialValue,
@@ -132,6 +132,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       transitionBuilder: (context, suggestionsBox, controller) =>
           suggestionsBox,
       onSuggestionSelected: (suggestion) {
+        if (widget.onSuggestionSelected != null) widget.onSuggestionSelected(suggestion);
         _typeAheadController.text = suggestion;
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,
