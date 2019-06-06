@@ -132,7 +132,8 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       transitionBuilder: (context, suggestionsBox, controller) =>
           suggestionsBox,
       onSuggestionSelected: (suggestion) {
-        if (widget.onSuggestionSelected != null) widget.onSuggestionSelected(suggestion);
+        if (widget.onSuggestionSelected != null)
+          widget.onSuggestionSelected(suggestion);
         _typeAheadController.text = suggestion;
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,

@@ -1,3 +1,6 @@
+## [3.1.3] - 06-Jun-2019
+* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead`
+
 ## [3.1.2] - 27-May-2019
 * Attempted fix for `FormBuilderTextField` retaining focus even after moving to other fields causing the UI to jump back to the TextField
 * Improved documentation for `FormBuilderCustomField`
@@ -9,11 +12,11 @@
 ## [3.1.0] - 15-May-2019
 * Added `leadingInput` option for CheckboxList, Checkbox and Radio - Allows the option to have the input before its label (left). Courtesy of [Sven Schöne](https://github.com/SvenSchoene)
 
-## [3.0.1] - 28-April-2019
+## [3.0.1] - 28-Apr-2019
 * Fixed bug in where `focuNode` for `FormBuilderTextField` is ignored. Closes [#53](https://github.com/danvick/flutter_form_builder/issues/53)
 * Fixed bug in where `textEditingConfiguration` for `FormBuilderTypeAhead` ignored
 
-## [3.0.0] - 24-April-2019
+## [3.0.0] - 24-Apr-2019
 * Complete rewrite of the package - stateful field widgets
     * `FormBuilderCheckbox` - Single Checkbox field
     * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
@@ -44,16 +47,16 @@ required, min, max, minLength, maxLength, email, url, credit card etc.
 * Fixed URL validator works correctly - tested
 * Improved documentation
 
-## [2.0.3] - 26-March-2019
+## [2.0.3] - 26-Mar-2019
 * Allow `null`s in `FormBuilder` controls `attribute`
 
-## [2.0.2] - 26-March-2019
+## [2.0.2] - 26-Mar-2019
 * Minor fix in documentation
 
-## [2.0.1] - 26-March-2019
+## [2.0.1] - 26-Mar-2019
 * Fixed bug where fields keep losing focus
 
-## [2.0.0] - 25-March-2019
+## [2.0.0] - 25-Mar-2019
 ### New Features and fixes
 * New attribute `decoration` for `FormBuilderInput`. Enables one to customize `InputDecoration` 
 like icons, labelStyles etc
@@ -71,10 +74,10 @@ Access form state using a `GlobalKey<FormBilderState>`
 * Removed `label` and `hint` attributes to be replaced by `decoration`
 
 
-## [1.5.1] - 21-March-2019
+## [1.5.1] - 21-Mar-2019
 * Fixed bugs originating from upgrading `flutter_typeahead` from v0.5.1 to v1.2.1
 
-## [1.5.0] - 20-March-2019
+## [1.5.0] - 20-Mar-2019
 * Now using `datetime_picker_formfield` plugin from pub for DatePicker and TimePicker. 
 Should close [#33](https://github.com/danvick/flutter_form_builder/issues/33)
 * Added new `FormBuilderInput` - DateTimePicker
