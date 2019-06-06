@@ -1,5 +1,5 @@
 ## [3.1.3] - 06-Jun-2019
-* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead`
+* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead` - Closes [#73](https://github.com/danvick/flutter_form_builder/issues/73). Credit to [daWeed](https://github.com/psrcek)
 
 ## [3.1.2] - 27-May-2019
 * Attempted fix for `FormBuilderTextField` retaining focus even after moving to other fields causing the UI to jump back to the TextField
