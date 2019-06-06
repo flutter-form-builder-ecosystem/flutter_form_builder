@@ -238,7 +238,7 @@ FormBuilderTextField(
   attribute: "age",
   decoration: InputDecoration(labelText: "Age"),
   validators: [
-    FormBuilderValidators.numeric(),
+    FormBuilderValidators.numeric(errorText: "La edad debe ser numérica."),
     FormBuilderValidators.max(70),
   ],
 ),
