@@ -36,6 +36,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool keepSuggestionsOnLoading;
   final bool autoFlipDirection;
   final SuggestionsBoxController suggestionsBoxController;
+  final bool keepSuggestionsOnSuggestionSelected;
 
   FormBuilderTypeAhead({
     @required this.attribute,
@@ -68,6 +69,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.onChanged,
     this.valueTransformer,
     this.suggestionsBoxController,
+    this.keepSuggestionsOnSuggestionSelected = false,
   });
 
   @override
@@ -153,6 +155,8 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       keepSuggestionsOnLoading: widget.keepSuggestionsOnLoading,
       autoFlipDirection: widget.autoFlipDirection,
       suggestionsBoxController: widget.suggestionsBoxController,
+      keepSuggestionsOnSuggestionSelected:
+          widget.keepSuggestionsOnSuggestionSelected,
     );
   }
 

@@ -88,6 +88,19 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final int maxLength;
   final List<TextInputFormatter> inputFormatters;
   final bool enabled;
+  final TransitionBuilder builder;
+
+  /// Called when the time chooser dialog should be shown. In the future the
+  /// preferred way of using this widget will be to utilize the [datePicker] and
+  /// [timePicker] callback functions instead of adding their parameter list to
+  /// this widget.
+  final Future<TimeOfDay> Function(BuildContext context) timePicker;
+
+  /// Called when the date chooser dialog should be shown. In the future the
+  /// preferred way of using this widget will be to utilize the [datePicker] and
+  /// [timePicker] callback functions instead of adding their parameter list to
+  /// this widget.
+  final Future<DateTime> Function(BuildContext context) datePicker;
 
   /// Called whenever the state's value changes, e.g. after picker value(s)
   /// have been selected or when the field loses focus. To listen for all text
@@ -131,6 +144,9 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.maxLength,
     this.inputFormatters,
     this.valueTransformer,
+    this.builder,
+    this.timePicker,
+    this.datePicker,
   });
 
   @override
@@ -193,6 +209,9 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         }
       },
       onChanged: widget.onChanged,
+      builder: widget.builder,
+      datePicker: widget.datePicker,
+      timePicker: widget.timePicker,
       onFieldSubmitted: widget.onFieldSubmitted,
       autovalidate: widget.autovalidate,
       style: widget.style,

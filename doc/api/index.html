@@ -267,7 +267,7 @@ Validation example:</p>
   attribute: "age",
   decoration: InputDecoration(labelText: "Age"),
   validators: [
-    FormBuilderValidators.numeric(),
+    FormBuilderValidators.numeric(errorText: "La edad debe ser numérica."),
     FormBuilderValidators.max(70),
   ],
 ),
@@ -410,7 +410,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.1.2
+    flutter_form_builder 3.2.0
   </span>
 
   

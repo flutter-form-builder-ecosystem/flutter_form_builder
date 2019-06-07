@@ -1,3 +1,7 @@
+## [3.2.0] - 07-Jun-2019
+* Bumped up `flutter_typeahead` from v1.5.0 to 1.6.1
+* Bumped up `datetime_picker_formfield` from v0.1.8 to 0.2.0
+
 ## [3.1.3] - 06-Jun-2019
 * Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead` - Closes [#73](https://github.com/danvick/flutter_form_builder/issues/73). Credit to [daWeed](https://github.com/psrcek)
 
