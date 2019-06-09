@@ -19,6 +19,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final int elevation;
   final Widget disabledHint;
   final double iconSize;
+  final Widget underline;
 
   FormBuilderDropdown({
     @required this.attribute,
@@ -36,6 +37,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.disabledHint,
     this.onChanged,
     this.valueTransformer,
+    this.underline,
   });
 
   @override
@@ -97,6 +99,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             disabledHint: widget.disabledHint,
             elevation: widget.elevation,
             iconSize: widget.iconSize,
+            underline: widget.underline,
             onChanged: _readonly
                 ? null
                 : (value) {
