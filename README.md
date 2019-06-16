@@ -43,7 +43,7 @@ Column(
                 "I have read and agree to the terms and conditions"),
             validators: [
               FormBuilderValidators.requiredTrue(
-                errorMessage:
+                errorText:
                     "You must accept terms and conditions to continue",
               ),
             ],
