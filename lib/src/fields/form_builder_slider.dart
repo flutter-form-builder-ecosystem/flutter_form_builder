@@ -14,6 +14,12 @@ class FormBuilderSlider extends StatefulWidget {
   final num max;
   final num min;
   final int divisions;
+  final Color activeColor;
+  final Color inactiveColor;
+  final ValueChanged<double> onChangeStart;
+  final ValueChanged<double> onChangeEnd;
+  final String label;
+  final SemanticFormatterCallback semanticFormatterCallback;
 
   FormBuilderSlider({
     @required this.attribute,
@@ -26,6 +32,12 @@ class FormBuilderSlider extends StatefulWidget {
     this.divisions,
     this.onChanged,
     this.valueTransformer,
+    this.activeColor,
+    this.inactiveColor,
+    this.onChangeStart,
+    this.onChangeEnd,
+    this.label,
+    this.semanticFormatterCallback,
   });
 
   @override
@@ -87,6 +99,12 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   min: widget.min,
                   max: widget.max,
                   divisions: widget.divisions,
+                  activeColor: widget.activeColor,
+                  inactiveColor: widget.inactiveColor,
+                  onChangeEnd: widget.onChangeEnd,
+                  onChangeStart: widget.onChangeStart,
+                  label: widget.label,
+                  semanticFormatterCallback: widget.semanticFormatterCallback,
                   onChanged: _readonly
                       ? null
                       : (num value) {

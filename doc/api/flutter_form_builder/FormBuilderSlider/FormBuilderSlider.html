@@ -59,14 +59,20 @@
       <li class="section-title">
         <a href="flutter_form_builder/FormBuilderSlider-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="flutter_form_builder/FormBuilderSlider/activeColor.html">activeColor</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/attribute.html">attribute</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/decoration.html">decoration</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/divisions.html">divisions</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSlider/inactiveColor.html">inactiveColor</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/initialValue.html">initialValue</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSlider/label.html">label</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/max.html">max</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/min.html">min</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/onChanged.html">onChanged</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSlider/onChangeEnd.html">onChangeEnd</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSlider/onChangeStart.html">onChangeStart</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/readonly.html">readonly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSlider/semanticFormatterCallback.html">semanticFormatterCallback</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/validators.html">validators</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider/valueTransformer.html">valueTransformer</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -98,7 +104,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderSlider</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-min"><span>@required</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">min</span>, </span> <span class="parameter" id="-param-max"><span>@required</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">max</span>, </span> <span class="parameter" id="-param-initialValue"><span>@required</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-divisions"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">divisions</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span></span> })
+      <span class="name ">FormBuilderSlider</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-min"><span>@required</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">min</span>, </span> <span class="parameter" id="-param-max"><span>@required</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">max</span>, </span> <span class="parameter" id="-param-initialValue"><span>@required</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-divisions"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">divisions</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-activeColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">activeColor</span>, </span> <span class="parameter" id="-param-inactiveColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">inactiveColor</span>, </span> <span class="parameter" id="-param-onChangeStart"><span class="type-annotation">ValueChanged<span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/double-class.html">double</a></span>&gt;</span></span> <span class="parameter-name">onChangeStart</span>, </span> <span class="parameter" id="-param-onChangeEnd"><span class="type-annotation">ValueChanged<span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/double-class.html">double</a></span>&gt;</span></span> <span class="parameter-name">onChangeEnd</span>, </span> <span class="parameter" id="-param-label"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-semanticFormatterCallback"><span class="type-annotation">SemanticFormatterCallback</span> <span class="parameter-name">semanticFormatterCallback</span></span> })
     </section>
 
     
@@ -115,6 +121,12 @@
   this.divisions,
   this.onChanged,
   this.valueTransformer,
+  this.activeColor,
+  this.inactiveColor,
+  this.onChangeStart,
+  this.onChangeEnd,
+  this.label,
+  this.semanticFormatterCallback,
 });</code></pre>
     </section>
 
@@ -127,7 +139,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder 3.2.1
   </span>
 
   

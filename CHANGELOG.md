@@ -1,3 +1,8 @@
+## [3.2.1] - 22-Jun-2019
+* Add missing attributes for `FormBuilderSlider` to customize `Slider` Widget including `activeColor`, `inactiveColor`, `onChangeStart`, `onChangeEnd`, `label` and `semanticFormatterCallback`. Closes [#80](https://github.com/danvick/flutter_form_builder/issues/80).
+* Add support for `underline` to `FormBuilderDropdown`. Credit [Jordan Nelson](https://github.com/jrnelson333).
+* Minor fixes to README
+
 ## [3.2.0] - 07-Jun-2019
 * Bumped up `flutter_typeahead` from v1.5.0 to 1.6.1
 * Bumped up `datetime_picker_formfield` from v0.1.8 to 0.2.0

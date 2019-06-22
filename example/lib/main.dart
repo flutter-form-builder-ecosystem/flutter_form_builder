@@ -161,10 +161,13 @@ class MyHomePageState extends State<MyHomePage> {
                       onChanged: _onChanged,
                       min: 0.0,
                       max: 10.0,
-                      initialValue: 1.0,
+                      initialValue: 7.0,
                       divisions: 20,
-                      decoration:
-                          InputDecoration(labelText: "Number of somethings"),
+                      activeColor: Colors.red,
+                      inactiveColor: Colors.pink[100],
+                      decoration: InputDecoration(
+                        labelText: "Number of somethings",
+                      ),
                     ),
                     FormBuilderCheckbox(
                       attribute: 'accept_terms',
