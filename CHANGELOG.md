@@ -1,3 +1,6 @@
+## [3.2.2] - 22-Jun-2019
+* Bumped up `flutter_chips_input` from v1.2.0 to 1.3.0
+
 ## [3.2.1] - 22-Jun-2019
 * Add missing attributes for `FormBuilderSlider` to customize `Slider` Widget including `activeColor`, `inactiveColor`, `onChangeStart`, `onChangeEnd`, `label` and `semanticFormatterCallback`. Closes [#80](https://github.com/danvick/flutter_form_builder/issues/80).
 * Add support for `underline` to `FormBuilderDropdown`. Credit [Jordan Nelson](https://github.com/jrnelson333).

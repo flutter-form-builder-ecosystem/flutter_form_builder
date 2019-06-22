@@ -7,13 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d516c1a-1e29-487d-a597-c4f4760b5e12" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/underline.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/activeColor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/inactiveColor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/label.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChangeEnd.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChangeStart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/semanticFormatterCallback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/__404error.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/__404error.html" afterDir="false" />
@@ -5043,6 +5037,7 @@
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/toStringDeep.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/toStringDeep.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/toStringShallow.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/toStringShallow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/toStringShort.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/toStringShort.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/underline.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/underline.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/validators.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/validators.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/valueTransformer.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderDropdown/valueTransformer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderFieldOption-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderFieldOption-class.html" afterDir="false" />
@@ -5140,6 +5135,7 @@
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSignaturePad/width.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSignaturePad/width.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider-class.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider-class.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/FormBuilderSlider.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/FormBuilderSlider.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/activeColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/activeColor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/attribute.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/attribute.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/createElement.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/createElement.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/createState.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/createState.html" afterDir="false" />
@@ -5147,12 +5143,17 @@
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/debugFillProperties.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/debugFillProperties.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/decoration.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/decoration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/divisions.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/divisions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/inactiveColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/inactiveColor.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/initialValue.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/initialValue.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/key.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/key.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/label.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/label.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/max.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/max.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/min.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/min.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChangeEnd.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChangeEnd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChangeStart.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChangeStart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChanged.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/onChanged.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/readonly.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/readonly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/semanticFormatterCallback.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/semanticFormatterCallback.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/toDiagnosticsNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/toDiagnosticsNode.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/toString.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/toString.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/toStringDeep.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/FormBuilderSlider/toStringDeep.html" afterDir="false" />
@@ -5354,8 +5355,9 @@
       <change beforePath="$PROJECT_DIR$/doc/api/flutter_form_builder/flutter_form_builder-library.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/flutter_form_builder/flutter_form_builder-library.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/api/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/doc/api/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_slider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_slider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
@@ -5373,25 +5375,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/pubspec.yaml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_switch.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="84" column="36" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+            <state relative-caret-position="255">
+              <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -5399,46 +5387,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="166" column="52" selection-start-line="166" selection-start-column="52" selection-end-line="166" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#74#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_slider.dart">
+        <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="21" selection-end-column="60" />
+            <state relative-caret-position="5100">
+              <caret line="300" column="22" selection-start-line="300" selection-start-column="3" selection-end-line="300" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/material/slider.dart">
+        <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_switch.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4">
-              <caret line="303" selection-start-line="303" selection-end-line="303" />
+            <state relative-caret-position="1683">
+              <caret line="101" column="3" selection-start-line="101" selection-start-column="3" selection-end-line="101" selection-end-column="3" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/pubspec.lock">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pubspec.lock">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/flutter_form_builder.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="340">
               <caret line="20" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#31#64#0" expanded="true" />
@@ -5450,8 +5436,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1581">
-              <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+            <state relative-caret-position="17">
+              <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -5469,7 +5467,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>accept_terms_switch</find>
       <find>_register</find>
       <find>beta</find>
       <find>context</find>
@@ -5499,6 +5496,7 @@
       <find>validators</find>
       <find>date</find>
       <find>fillCol</find>
+      <find>future</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;${formControl.label} field is required&quot;</replace>
@@ -5572,7 +5570,6 @@
         <option value="$PROJECT_DIR$/example/lib/data.dart" />
         <option value="$PROJECT_DIR$/lib/src/form_builder_custom_field.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_checkbox_list.dart" />
-        <option value="$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_radio.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_rate.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_checkbox.dart" />
@@ -5583,18 +5580,19 @@
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_dropdown.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_text_field.dart" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_slider.dart" />
+        <option value="$PROJECT_DIR$/example/lib/main.dart" />
+        <option value="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" />
+        <option value="$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/CHANGELOG.md" />
-        <option value="$PROJECT_DIR$/example/lib/main.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1280" />
+    <option name="width" value="1657" />
     <option name="height" value="948" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -5605,6 +5603,46 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="fields" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="flutter_form_builder" type="1abcf292:AndroidViewProjectNode" />
+              <item name="flutter_form_builder" type="e9137016:NonAndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -5644,39 +5682,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="flutter_form_builder" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="example" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="lib" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="flutter_form_builder" type="1abcf292:AndroidViewProjectNode" />
-              <item name="flutter_form_builder" type="e9137016:NonAndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -5808,10 +5813,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="948" extended-state="0" />
+    <frame x="0" y="23" width="1657" height="948" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.24394184" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.17213622" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50089765" side_tool="true" weight="0.19892953" />
       <window_info id="Image Layers" order="3" />
@@ -5829,7 +5834,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3293979" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50125945" side_tool="true" weight="0.31529412" />
       <window_info anchor="bottom" id="Dart Analysis" order="8" weight="0.3289941" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49874055" visible="true" weight="0.34462616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49874055" visible="true" weight="0.34462616" />
       <window_info anchor="bottom" id="Logcat" order="10" />
       <window_info anchor="bottom" id="Android Profiler" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Flutter Performance" order="12" side_tool="true" />
@@ -5999,16 +6004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="91" column="63" selection-start-line="91" selection-start-column="63" selection-end-line="91" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_radio.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -6144,6 +6139,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/material/slider.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="303" selection-start-line="303" selection-end-line="303" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_slider.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="21" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="166" column="52" selection-start-line="166" selection-start-column="52" selection-end-line="166" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-1.6.1/lib/flutter_typeahead.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10251">
@@ -6151,10 +6170,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/example/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4097">
-          <caret line="241" column="34" selection-start-line="241" selection-start-column="34" selection-end-line="241" selection-end-column="34" />
+        <state relative-caret-position="5100">
+          <caret line="300" column="22" selection-start-line="300" selection-start-column="3" selection-end-line="300" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_switch.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="101" column="3" selection-start-line="101" selection-start-column="3" selection-end-line="101" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -6166,7 +6195,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/flutter_form_builder.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="340">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#31#64#0" expanded="true" />
@@ -6176,8 +6205,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
-          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+        <state relative-caret-position="17">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -6188,51 +6227,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_switch.dart">
+    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="84" column="36" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+        <state relative-caret-position="17">
+          <caret line="1" column="54" selection-start-line="1" selection-start-column="54" selection-end-line="1" selection-end-column="54" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/material/slider.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="303" selection-start-line="303" selection-end-line="303" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_slider.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="21" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="166" column="52" selection-start-line="166" selection-start-column="52" selection-end-line="166" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
         </state>
       </provider>
     </entry>

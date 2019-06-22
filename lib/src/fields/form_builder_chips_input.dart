@@ -13,11 +13,13 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final ValueTransformer valueTransformer;
 
   final ChipsInputSuggestions findSuggestions;
+
   // final ValueChanged<List<T>> onChanged;
   final ValueChanged<T> onChipTapped;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
   final int maxChips;
+  final TextStyle textStyle;
 
   FormBuilderChipsInput({
     @required this.attribute,
@@ -32,6 +34,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.maxChips,
     this.onChanged,
     this.valueTransformer,
+    this.textStyle,
   });
 
   @override
@@ -97,6 +100,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
             chipBuilder: widget.chipBuilder,
             suggestionBuilder: widget.suggestionBuilder,
             onChipTapped: widget.onChipTapped,
+            textStyle: widget.textStyle,
           );
         },
       ),
