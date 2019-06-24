@@ -53,7 +53,6 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
@@ -65,6 +64,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
 
   @override
   Widget build(BuildContext context) {
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     return FormField(
       key: _fieldKey,
       enabled: !_readonly,

@@ -86,7 +86,6 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     _typeAheadController = TextEditingController(text: widget.initialValue);
     _typeAheadController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
@@ -96,6 +95,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
 
   @override
   Widget build(BuildContext context) {
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     return TypeAheadFormField(
       key: _fieldKey,
       validator: (val) {

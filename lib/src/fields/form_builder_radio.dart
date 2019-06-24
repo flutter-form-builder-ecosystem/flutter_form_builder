@@ -39,7 +39,6 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
@@ -75,9 +74,10 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
 
   @override
   Widget build(BuildContext context) {
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     return FormField(
       key: _fieldKey,
-      enabled: !_readonly && !_readonly,
+      enabled: !_readonly,
       initialValue: widget.initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
