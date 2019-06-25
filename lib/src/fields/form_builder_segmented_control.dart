@@ -52,6 +52,7 @@ class _FormBuilderSegmentedControlState
   @override
   Widget build(BuildContext context) {
     _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+
     return FormField(
       key: _fieldKey,
       initialValue: widget.initialValue,

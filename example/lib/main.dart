@@ -187,7 +187,6 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "gender",
                       decoration: InputDecoration(labelText: "Gender"),
                       // initialValue: 'Male',
-                      onChanged: _onChanged,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
                       items: ['Male', 'Female', 'Other']
@@ -273,6 +272,10 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
+                      onChanged: (data) {
+                        //_fbKey.currentState.fields['age'].currentState.didChange("$data");
+                        //_fbKey.currentState.setAttributeValue("age", "$data");
+                      },
                       validators: [
                         (val) {
                           if (!_fbKey.currentState.fields["accept_terms_switch"]

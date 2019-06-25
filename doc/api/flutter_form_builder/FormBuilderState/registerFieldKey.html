@@ -110,8 +110,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">registerFieldKey(String attribute, GlobalKey key) {
-  assert(_fieldKeys.containsKey(attribute) == false,
-      &quot;Field with attribute &#39;$attribute&#39; already exists. Make sure that two or more fields don&#39;t have the same attribute name.&quot;);
+  &#47;&#47; assert(_fieldKeys.containsKey(attribute) == false, &quot;Field with attribute &#39;$attribute&#39; already exists. Make sure that two or more fields don&#39;t have the same attribute name.&quot;);
   this._fieldKeys[attribute] = key;
 }</code></pre>
     </section>
@@ -125,7 +124,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.2
+    flutter_form_builder 3.2.3
   </span>
 
   

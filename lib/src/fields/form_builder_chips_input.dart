@@ -62,6 +62,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
   @override
   Widget build(BuildContext context) {
     _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+
     return SizedBox(
       // height: 200.0,
       child: FormField(

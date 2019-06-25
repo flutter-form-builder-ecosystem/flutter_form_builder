@@ -1,3 +1,6 @@
+## [3.2.3] - 25-Jun-2019
+* Allow `readonly` attribute for fields to be changed at runtime. Credit [Daniel Acorsi](https://github.com/dhaalves). Closes [#75](https://github.com/danvick/flutter_form_builder/issues/75)
+
 ## [3.2.2] - 22-Jun-2019
 * Bumped up `flutter_chips_input` from v1.2.0 to 1.3.0
 

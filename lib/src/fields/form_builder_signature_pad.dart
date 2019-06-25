@@ -70,6 +70,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
   @override
   Widget build(BuildContext context) {
     _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+
     return FormField<Uint8List>(
       key: _fieldKey,
       enabled: !_readonly,

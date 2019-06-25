@@ -96,6 +96,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   @override
   Widget build(BuildContext context) {
     _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+
     return TypeAheadFormField(
       key: _fieldKey,
       validator: (val) {

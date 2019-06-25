@@ -74,6 +74,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
   @override
   Widget build(BuildContext context) {
     _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+
     return FormField(
       key: _fieldKey,
       enabled: !_readonly,

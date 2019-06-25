@@ -11,8 +11,7 @@ class FormBuilder extends StatefulWidget {
   final bool autovalidate;
   final Key key;
 
-  const FormBuilder(
-      //this.context,
+  const FormBuilder( //this.context,
       {
     @required this.child,
     this.readonly = false,
@@ -55,14 +54,15 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void setAttributeValue(String attribute, dynamic value) {
-    setState(() {
-      _value[attribute] = value;
-    });
+    if (_fieldKeys[attribute] != null) {
+      print("Trying to change value for $attribute to $value");
+      _fieldKeys[attribute].currentState.didChange(value);
+      print(_fieldKeys[attribute].currentState.value);
+    }
   }
 
   registerFieldKey(String attribute, GlobalKey key) {
-    assert(_fieldKeys.containsKey(attribute) == false,
-        "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
+    // assert(_fieldKeys.containsKey(attribute) == false, "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
     this._fieldKeys[attribute] = key;
   }
 
