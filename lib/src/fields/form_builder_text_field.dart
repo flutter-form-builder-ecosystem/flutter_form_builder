@@ -91,7 +91,6 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     if (widget.controller != null)
       _textEditingController = widget.controller;
     else
@@ -107,6 +106,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
 
   @override
   Widget build(BuildContext context) {
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     return TextFormField(
       key: _fieldKey,
       validator: (val) {

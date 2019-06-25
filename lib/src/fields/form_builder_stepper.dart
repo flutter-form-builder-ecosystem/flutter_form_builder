@@ -44,7 +44,6 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     super.initState();
   }
 
@@ -56,6 +55,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
 
   @override
   Widget build(BuildContext context) {
+    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
     return FormField(
       enabled: !_readonly,
       key: _fieldKey,
