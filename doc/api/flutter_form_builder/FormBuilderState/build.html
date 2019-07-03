@@ -189,21 +189,23 @@ prints green, as expected.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">@override
-Widget build(BuildContext context) {
-  return Form(
-    key: _formKey,
-    child: widget.child,
-    autovalidate: widget.autovalidate,
-    onWillPop: widget.onWillPop,
-    onChanged: () {
-      if (widget.onChanged != null) {
-        save();
-        widget.onChanged(value);
-      }
-    },
-  );
-}</code></pre>
+      <pre class="language-dart"><code class="language-dart">return _formKey.currentState.validate();
+  }
+
+  void reset() {
+_formKey.currentState.reset();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+return Form(
+  key: _formKey,
+  child: widget.child,
+  autovalidate: widget.autovalidate,
+  onWillPop: widget.onWillPop,
+  onChanged: () {
+    if (widget.onChanged != null) {
+      save</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -215,7 +217,7 @@ Widget build(BuildContext context) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.3
+    flutter_form_builder 3.2.4
   </span>
 
   

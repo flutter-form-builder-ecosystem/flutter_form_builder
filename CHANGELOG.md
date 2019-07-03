@@ -1,3 +1,6 @@
+## [3.2.4] - 03-Jul-2019
+* Fixed issue in saving form attribute values - Credit [Caciano Kroth](https://github.com/cacianokroth) & [eltonmorais](https://github.com/eltonmorais)
+
 ## [3.2.3] - 25-Jun-2019
 * Allow `readonly` attribute for fields to be changed at runtime. Credit [Daniel Acorsi](https://github.com/dhaalves). Closes [#75](https://github.com/danvick/flutter_form_builder/issues/75)
 
