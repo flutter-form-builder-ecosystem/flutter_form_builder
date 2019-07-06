@@ -94,8 +94,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
         onSaved: (val) {
           if (widget.valueTransformer != null) {
             var transformed = widget.valueTransformer(val);
-            FormBuilder.of(context)
-                ?.setAttributeValue(widget.attribute, transformed);
+            _formState?.setAttributeValue(widget.attribute, transformed);
           } else
             _formState?.setAttributeValue(widget.attribute, val);
         },

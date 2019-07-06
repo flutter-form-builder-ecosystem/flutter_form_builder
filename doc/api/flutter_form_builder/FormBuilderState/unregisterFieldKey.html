@@ -109,11 +109,9 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">&#47;&#47; assert(_fieldKeys.containsKey(attribute) == false, &quot;Field with attribute &#39;$attribute&#39; already exists. Make sure that two or more fields don&#39;t have the same attribute name.&quot;);
-this._fieldKeys[attribute] = key;
-  }
-
-  unregisterFie</code></pre>
+      <pre class="language-dart"><code class="language-dart">unregisterFieldKey(String attribute) {
+  this._fieldKeys.remove(attribute);
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -125,7 +123,7 @@ this._fieldKeys[attribute] = key;
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.4
+    flutter_form_builder 3.2.6
   </span>
 
   

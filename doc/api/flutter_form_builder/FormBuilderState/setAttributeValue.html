@@ -110,11 +110,10 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void setAttributeValue(String attribute, dynamic value) {
-  if (_fieldKeys[attribute] != null) {
-    print(&quot;Trying to change value for $attribute to $value&quot;);
-    _fieldKeys[attribute].currentState.didChange(value);
-    print(_fieldKeys[attribute].currentState.value);
-    _va</code></pre>
+  setState(() {
+    _value[attribute] = value;
+  });
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -126,7 +125,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.4
+    flutter_form_builder 3.2.6
   </span>
 
   

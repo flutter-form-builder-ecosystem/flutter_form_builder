@@ -79,12 +79,10 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
       onSaved: (val) {
         if (widget.valueTransformer != null) {
           var transformed = widget.valueTransformer(val);
-          FormBuilder.of(context)
-              ?.setAttributeValue(widget.attribute, transformed);
+          _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
       },
-
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
@@ -98,7 +96,9 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             value: field.value,
             style: widget.style,
             isDense: widget.isDense,
-            disabledHint: field.value != null ? Text("${field.value.toString()}") : widget.disabledHint,
+            disabledHint: field.value != null
+                ? Text("${field.value.toString()}")
+                : widget.disabledHint,
             elevation: widget.elevation,
             iconSize: widget.iconSize,
             underline: widget.underline,

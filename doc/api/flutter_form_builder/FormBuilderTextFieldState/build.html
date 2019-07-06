@@ -195,8 +195,7 @@ Widget build(BuildContext context) {
     onSaved: (val) {
       if (widget.valueTransformer != null) {
         var transformed = widget.valueTransformer(val);
-        FormBuilder.of(context)
-            ?.setAttributeValue(widget.attribute, transformed);
+        _formState?.setAttributeValue(widget.attribute, transformed);
       } else
         _formState?.setAttributeValue(widget.attribute, val);
     },
@@ -244,7 +243,7 @@ Widget build(BuildContext context) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.4
+    flutter_form_builder 3.2.6
   </span>
 
   

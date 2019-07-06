@@ -1,3 +1,6 @@
+## [3.2.7] - 06-Jul-2019
+* Fixed bug where `valueTransformer`s not working
+
 ## [3.2.6] - 06-Jul-2019
 * If disabled dropdown has value, show value instead of `disabledHint`
 

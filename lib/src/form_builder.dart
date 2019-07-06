@@ -54,9 +54,9 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void setAttributeValue(String attribute, dynamic value) {
-    if (_fieldKeys[attribute] != null) {
-      _value[attribute] = _fieldKeys[attribute].currentState.value;
-    }
+    setState(() {
+      _value[attribute] = value;
+    });
   }
 
   registerFieldKey(String attribute, GlobalKey key) {
