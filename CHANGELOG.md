@@ -1,3 +1,6 @@
+## [3.2.6] - 06-Jul-2019
+* If disabled dropdown has value, show value instead of `disabledHint`
+
 ## [3.2.5] - 05-Jul-2019
 * Fixed Stack Overflow bug in `setAttributeValue` function
 
