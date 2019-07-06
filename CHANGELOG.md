@@ -1,3 +1,6 @@
+## [3.2.5] - 05-Jul-2019
+* Fixed Stack Overflow bug in `setAttributeValue` function
+
 ## [3.2.4] - 03-Jul-2019
 * Fixed issue in saving form attribute values - Credit [Caciano Kroth](https://github.com/cacianokroth) & [eltonmorais](https://github.com/eltonmorais)
 

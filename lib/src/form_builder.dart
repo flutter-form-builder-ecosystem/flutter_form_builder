@@ -55,9 +55,6 @@ class FormBuilderState extends State<FormBuilder> {
 
   void setAttributeValue(String attribute, dynamic value) {
     if (_fieldKeys[attribute] != null) {
-      print("Trying to change value for $attribute to $value");
-      _fieldKeys[attribute].currentState.didChange(value);
-      print(_fieldKeys[attribute].currentState.value);
       _value[attribute] = _fieldKeys[attribute].currentState.value;
     }
   }
