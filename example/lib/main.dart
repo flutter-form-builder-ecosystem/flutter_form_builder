@@ -186,7 +186,8 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderDropdown(
                       attribute: "gender",
                       decoration: InputDecoration(labelText: "Gender"),
-                      // initialValue: 'Male',
+                      initialValue: 'Male',
+                      readonly: true,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
                       items: ['Male', 'Female', 'Other']
