@@ -284,6 +284,7 @@ class MyHomePageState extends State<MyHomePage> {
                               val >= 10) {
                             return "You can only put more than 10 if you've accepted terms";
                           }
+                          return null;
                         }
                       ],
                     ),

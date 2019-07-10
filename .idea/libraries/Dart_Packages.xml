@@ -19,6 +19,7 @@
         <entry key="async">
           <value>
             <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.2.0/lib" />
               <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.1.0/lib" />
             </list>
           </value>
@@ -250,6 +251,7 @@
         <entry key="pedantic">
           <value>
             <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.7.0/lib" />
               <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.5.0/lib" />
             </list>
           </value>
@@ -271,6 +273,7 @@
         <entry key="quiver">
           <value>
             <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.3/lib" />
               <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.2/lib" />
             </list>
           </value>
@@ -369,13 +372,14 @@
         <entry key="test">
           <value>
             <list>
-              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test-1.6.1/lib" />
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test-1.6.3/lib" />
             </list>
           </value>
         </entry>
         <entry key="test_api">
           <value>
             <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib" />
               <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.4/lib" />
             </list>
           </value>
@@ -383,7 +387,7 @@
         <entry key="test_core">
           <value>
             <list>
-              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.3/lib" />
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.5/lib" />
             </list>
           </value>
         </entry>
@@ -442,6 +446,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/analyzer-0.36.3/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/args-1.5.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.1.0/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.2.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-1.0.4/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.1.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.14.11/lib" />
@@ -473,9 +478,11 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/package_resolver-1.0.10/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.6.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.5.0/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.7.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pool-1.4.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/pub_semver-1.4.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.2/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.0.3/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/shelf-0.7.5/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_packages_handler-1.0.4/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_static-0.2.8/lib" />
@@ -488,9 +495,10 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/string_scanner-1.0.4/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/sy_flutter_widgets-0.1.4/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.1.0/lib" />
-      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test-1.6.1/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test-1.6.3/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.4/lib" />
-      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.3/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.5/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/typed_data-1.1.6/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/validators-2.0.0+1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.0.8/lib" />

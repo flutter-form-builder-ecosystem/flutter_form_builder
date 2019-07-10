@@ -209,6 +209,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           if (widget.validators[i](val) != null)
             return widget.validators[i](val);
         }
+        return null;
       },
       onChanged: widget.onChanged,
       builder: widget.builder,

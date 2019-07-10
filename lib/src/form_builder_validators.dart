@@ -14,6 +14,7 @@ class FormBuilderValidators {
               valueCandidate.length == 0)) {
         return errorText;
       }
+      return null;
     };
   }
 
@@ -26,6 +27,7 @@ class FormBuilderValidators {
       if (valueCandidate != true) {
         return errorText;
       }
+      return null;
     };
   }
 
@@ -43,6 +45,7 @@ class FormBuilderValidators {
                   num.tryParse(valueCandidate) < min))) {
         return errorText ?? "Value must be greater than or equal to $min";
       }
+      return null;
     };
   }
 
@@ -61,6 +64,7 @@ class FormBuilderValidators {
           return errorText ?? "Value must be less than or equal to $max";
         }
       }
+      return null;
     };
   }
 
@@ -75,6 +79,7 @@ class FormBuilderValidators {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
       }
+      return null;
     };
   }
 
@@ -89,6 +94,7 @@ class FormBuilderValidators {
         return errorText ??
             "Value must have a length less than or equal to $maxLength";
       }
+      return null;
     };
   }
 
@@ -100,6 +106,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isEmail(valueCandidate)) return errorText;
       }
+      return null;
     };
   }
 
@@ -122,6 +129,7 @@ class FormBuilderValidators {
             hostWhitelist: hostWhitelist,
             hostBlacklist: hostBlacklist)) return errorText;
       }
+      return null;
     };
   }
 
@@ -135,6 +143,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!RegExp(pattern).hasMatch(valueCandidate)) return errorText;
       }
+      return null;
     };
   }
 
@@ -145,6 +154,7 @@ class FormBuilderValidators {
     return (valueCandidate) {
       if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty)
         return errorText;
+      return null;
     };
   }
 
@@ -156,6 +166,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isCreditCard(valueCandidate)) return errorText;
       }
+      return null;
     };
   }
 
@@ -169,6 +180,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isIP(valueCandidate, version)) return errorText;
       }
+      return null;
     };
   }
 
@@ -180,6 +192,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isDate(valueCandidate)) return errorText;
       }
+      return null;
     };
   }
 }

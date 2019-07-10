@@ -62,6 +62,7 @@ class _FormBuilderSegmentedControlState
           if (widget.validators[i](val) != null)
             return widget.validators[i](val);
         }
+        return null;
       },
       onSaved: (val) {
         if (widget.valueTransformer != null) {
