@@ -1,3 +1,6 @@
+## [3.2.8] - 12-Jul-2019
+Added `activeColor`, `checkColor`, `materialTapTargetSize` & `tristate` options to `FormBuilderCheckbox` and `FormBuilderCheckboxList` fo checkbox customization
+
 ## [3.2.7] - 06-Jul-2019
 * Fixed bug where `valueTransformer`s not working
 

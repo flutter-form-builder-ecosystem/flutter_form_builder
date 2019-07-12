@@ -80,7 +80,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">Vertices.raw</span>(<wbr><span class="parameter" id="raw-param-mode"><span class="type-annotation"><a href="dart-ui/VertexMode-class.html">VertexMode</a></span> <span class="parameter-name">mode</span>, </span> <span class="parameter" id="raw-param-positions"><span class="type-annotation"><a href="dart-typed_data/Float32List-class.html">Float32List</a></span> <span class="parameter-name">positions</span>, {</span> <span class="parameter" id="raw-param-textureCoordinates"><span class="type-annotation"><a href="dart-typed_data/Float32List-class.html">Float32List</a></span> <span class="parameter-name">textureCoordinates</span>, </span> <span class="parameter" id="raw-param-colors"><span class="type-annotation"><a href="dart-typed_data/Int32List-class.html">Int32List</a></span> <span class="parameter-name">colors</span>, </span> <span class="parameter" id="raw-param-indices"><span class="type-annotation"><a href="dart-typed_data/Int32List-class.html">Int32List</a></span> <span class="parameter-name">indices</span></span> })
+      <span class="name ">Vertices.raw</span>(<wbr><span class="parameter" id="raw-param-mode"><span class="type-annotation"><a href="dart-ui/VertexMode-class.html">VertexMode</a></span> <span class="parameter-name">mode</span>, </span> <span class="parameter" id="raw-param-positions"><span class="type-annotation"><a href="dart-typed_data/Float32List-class.html">Float32List</a></span> <span class="parameter-name">positions</span>, {</span> <span class="parameter" id="raw-param-textureCoordinates"><span class="type-annotation"><a href="dart-typed_data/Float32List-class.html">Float32List</a></span> <span class="parameter-name">textureCoordinates</span>, </span> <span class="parameter" id="raw-param-colors"><span class="type-annotation"><a href="dart-typed_data/Int32List-class.html">Int32List</a></span> <span class="parameter-name">colors</span>, </span> <span class="parameter" id="raw-param-indices"><span class="type-annotation"><a href="dart-typed_data/Uint16List-class.html">Uint16List</a></span> <span class="parameter-name">indices</span></span> })
     </section>
 
     
@@ -91,7 +91,7 @@
   Float32List positions, {
   Float32List textureCoordinates,
   Int32List colors,
-  Int32List indices,
+  Uint16List indices,
 }) : assert(mode != null),
      assert(positions != null) {
   if (textureCoordinates != null &amp;&amp; textureCoordinates.length != positions.length)
@@ -102,7 +102,8 @@
     throw new ArgumentError(&#39;&quot;indices&quot; values must be valid indices in the positions list.&#39;);
 
   _constructor();
-  _init(mode.index, positions, textureCoordinates, colors, indices);
+  if (!_init(mode.index, positions, textureCoordinates, colors, indices))
+    throw new ArgumentError(&#39;Invalid configuration for vertices.&#39;);
 }</code></pre>
     </section>
 
@@ -115,7 +116,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.6
+    flutter_form_builder 3.2.8
   </span>
 
   

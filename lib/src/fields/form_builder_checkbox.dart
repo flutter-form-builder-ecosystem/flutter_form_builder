@@ -14,6 +14,11 @@ class FormBuilderCheckbox extends StatefulWidget {
 
   final Widget label;
 
+  final Color activeColor;
+  final Color checkColor;
+  final MaterialTapTargetSize materialTapTargetSize;
+  final bool tristate;
+
   FormBuilderCheckbox({
     @required this.attribute,
     @required this.label,
@@ -24,6 +29,10 @@ class FormBuilderCheckbox extends StatefulWidget {
     this.onChanged,
     this.valueTransformer,
     this.leadingInput = false,
+    this.activeColor,
+    this.checkColor,
+    this.materialTapTargetSize,
+    this.tristate = false,
   });
 
   @override
@@ -51,6 +60,10 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
   Widget _checkbox(FormFieldState<dynamic> field) {
     return Checkbox(
       value: field.value ?? false,
+      activeColor: widget.activeColor,
+      checkColor: widget.checkColor,
+      materialTapTargetSize: widget.materialTapTargetSize,
+      tristate: widget.tristate,
       onChanged: _readonly
           ? null
           : (bool value) {

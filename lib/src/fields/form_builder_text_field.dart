@@ -83,7 +83,7 @@ class FormBuilderTextField extends StatefulWidget {
 
 class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   bool _readonly = false;
-  TextEditingController _textEditingController;
+  TextEditingController _effectiveController;
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
@@ -92,14 +92,13 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     if (widget.controller != null)
-      _textEditingController = widget.controller;
+      _effectiveController = widget.controller;
     else
-      _textEditingController = TextEditingController(
+      _effectiveController = TextEditingController(
         text: widget.initialValue != null ? "${widget.initialValue}" : '',
       );
-    _textEditingController.addListener(() {
-      if (widget.onChanged != null)
-        widget.onChanged(_textEditingController.text);
+    _effectiveController.addListener(() {
+      if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
     });
     super.initState();
   }
@@ -136,7 +135,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
       onEditingComplete: widget.onEditingComplete,
-      controller: _textEditingController,
+      controller: _effectiveController,
       autocorrect: widget.autocorrect,
       autofocus: widget.autofocus,
       buildCounter: widget.buildCounter,
@@ -161,7 +160,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   @override
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
-    _textEditingController.dispose();
+    _effectiveController.dispose();
     super.dispose();
   }
 }

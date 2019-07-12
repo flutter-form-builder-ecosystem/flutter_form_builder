@@ -131,14 +131,13 @@ void initState() {
   _formState = FormBuilder.of(context);
   _formState?.registerFieldKey(widget.attribute, _fieldKey);
   if (widget.controller != null)
-    _textEditingController = widget.controller;
+    _effectiveController = widget.controller;
   else
-    _textEditingController = TextEditingController(
+    _effectiveController = TextEditingController(
       text: widget.initialValue != null ? &quot;${widget.initialValue}&quot; : &#39;&#39;,
     );
-  _textEditingController.addListener(() {
-    if (widget.onChanged != null)
-      widget.onChanged(_textEditingController.text);
+  _effectiveController.addListener(() {
+    if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
   });
   super.initState();
 }</code></pre>
@@ -153,7 +152,7 @@ void initState() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.6
+    flutter_form_builder 3.2.8
   </span>
 
   

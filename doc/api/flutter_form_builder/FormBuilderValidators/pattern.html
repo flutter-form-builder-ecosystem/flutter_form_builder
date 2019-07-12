@@ -112,6 +112,7 @@ pattern.</p>
     if (valueCandidate != null &amp;&amp; valueCandidate.isNotEmpty) {
       if (!RegExp(pattern).hasMatch(valueCandidate)) return errorText;
     }
+    return null;
   };
 }</code></pre>
     </section>
@@ -125,7 +126,7 @@ pattern.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.6
+    flutter_form_builder 3.2.8
   </span>
 
   
