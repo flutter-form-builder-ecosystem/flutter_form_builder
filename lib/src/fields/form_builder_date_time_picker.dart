@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
+enum InputType { date, time, both }
+
 class FormBuilderDateTimePicker extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -184,19 +186,12 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   Widget build(BuildContext context) {
     _readonly = (_formState?.readonly == true) ? true : widget.readonly;
 
-    return DateTimePickerFormField(
+    return DateTimeField(
       key: _fieldKey,
-      inputType: widget.inputType,
       initialValue: widget.initialValue,
       format: widget.format != null
           ? widget.format
           : _dateTimeFormats[widget.inputType],
-      enabled: !_readonly,
-      firstDate: widget.firstDate,
-      lastDate: widget.lastDate,
-      decoration: widget.decoration.copyWith(
-        enabled: !_readonly,
-      ),
       onSaved: (val) {
         if (widget.valueTransformer != null) {
           var transformed = widget.valueTransformer(val);
@@ -212,31 +207,65 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         return null;
       },
       onChanged: widget.onChanged,
-      builder: widget.builder,
-      datePicker: widget.datePicker,
-      timePicker: widget.timePicker,
-      onFieldSubmitted: widget.onFieldSubmitted,
       autovalidate: widget.autovalidate,
-      style: widget.style,
-      textDirection: widget.textDirection,
-      textAlign: widget.textAlign,
-      maxLength: widget.maxLength,
-      autofocus: widget.autofocus,
-      autocorrect: widget.autocorrect,
-      controller: widget.controller,
-      editable: widget.editable,
-      focusNode: widget.focusNode,
-      initialDate: widget.initialDate,
-      initialDatePickerMode: widget.initialDatePickerMode,
-      initialTime: widget.initialTime,
-      inputFormatters: widget.inputFormatters,
-      keyboardType: widget.keyboardType,
-      locale: widget.locale,
-      maxLengthEnforced: widget.maxLengthEnforced,
-      maxLines: widget.maxLines,
-      obscureText: widget.obscureText,
-      resetIcon: widget.resetIcon,
-      selectableDayPredicate: widget.selectableDayPredicate,
+      resetIcon: Icon(widget.resetIcon),
+      child: TextField(
+        textDirection: widget.textDirection,
+        textAlign: widget.textAlign,
+        maxLength: widget.maxLength,
+        autofocus: widget.autofocus,
+        decoration: widget.decoration,
+        enabled: widget.editable,
+        autocorrect: widget.autocorrect,
+        readOnly: widget.editable,
+        controller: widget.controller,
+        focusNode: widget.focusNode,
+        inputFormatters: widget.inputFormatters,
+        keyboardType: widget.keyboardType,
+        maxLengthEnforced: widget.maxLengthEnforced,
+        maxLines: widget.maxLines,
+        obscureText: widget.obscureText,
+      ),
+      onShowPicker: (ctx, time) async {
+        switch (widget.inputType) {
+          case InputType.date:
+            return _showDatePicker(context);
+          case InputType.time:
+            return DateTimeField.convert(await _showTimePicker(context));
+          case InputType.both:
+            final date = await _showDatePicker(context);
+            if (date != null) {
+              final time = await _showTimePicker(context);
+              return DateTimeField.combine(date, time);
+            }
+            return _fieldKey.currentState.value ?? widget.initialValue;
+          default:
+            throw "unexcepted input type ${widget.inputType}";
+        }
+      },
     );
+  }
+
+  Future<DateTime> _showDatePicker(BuildContext context) {
+    if (widget.datePicker != null) {
+      return widget.datePicker(context);
+    } else {
+      return showDatePicker(
+          context: context,
+          selectableDayPredicate: widget.selectableDayPredicate,
+          initialDatePickerMode:
+              widget.initialDatePickerMode ?? DatePickerMode.day,
+          initialDate: widget.initialDate,
+          firstDate: widget.firstDate,
+          lastDate: widget.lastDate);
+    }
+  }
+
+  Future<TimeOfDay> _showTimePicker(BuildContext context) {
+    if (widget.timePicker != null) {
+      return widget.timePicker(context);
+    } else {
+      return showTimePicker(context: context, initialTime: widget.initialTime);
+    }
   }
 }
