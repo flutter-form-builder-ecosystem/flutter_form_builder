@@ -1,4 +1,3 @@
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -149,7 +148,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderDateTimePicker(
                       attribute: "date",
                       onChanged: _onChanged,
-                      inputType: InputType.date,
+                      //         inputType: InputType.date,
                       format: DateFormat("yyyy-MM-dd"),
                       decoration:
                           InputDecoration(labelText: "Appointment Time"),
@@ -333,34 +332,34 @@ class MyHomePageState extends State<MyHomePage> {
                               children: languages
                                   .map(
                                     (lang) => Row(
-                                          children: <Widget>[
-                                            Radio<dynamic>(
-                                              value: lang,
-                                              groupValue: field.value,
-                                              onChanged: (dynamic value) {
-                                                field.didChange(lang);
-                                              },
-                                            ),
-                                            lang != "Other"
-                                                ? Text(lang)
-                                                : Expanded(
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Text(
-                                                          lang,
-                                                        ),
-                                                        SizedBox(width: 20),
-                                                        Expanded(
-                                                          child: TextFormField(
-                                                            key:
-                                                                _specifyTextFieldKey,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                          ],
+                                      children: <Widget>[
+                                        Radio<dynamic>(
+                                          value: lang,
+                                          groupValue: field.value,
+                                          onChanged: (dynamic value) {
+                                            field.didChange(lang);
+                                          },
                                         ),
+                                        lang != "Other"
+                                            ? Text(lang)
+                                            : Expanded(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                      lang,
+                                                    ),
+                                                    SizedBox(width: 20),
+                                                    Expanded(
+                                                      child: TextFormField(
+                                                        key:
+                                                            _specifyTextFieldKey,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                      ],
+                                    ),
                                   )
                                   .toList(growable: false),
                             ),
