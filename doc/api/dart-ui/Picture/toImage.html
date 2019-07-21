@@ -96,7 +96,7 @@ rasterized the first time the image is drawn and then cached.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">Future&lt;Image&gt; toImage(int width, int height) {
   if (width &lt;= 0 || height &lt;= 0)
-    throw new Exception(&#39;Invalid image dimensions.&#39;);
+    throw Exception(&#39;Invalid image dimensions.&#39;);
   return _futurize(
     (_Callback&lt;Image&gt; callback) =&gt; _toImage(width, height, callback)
   );

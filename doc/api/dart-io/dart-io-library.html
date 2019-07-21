@@ -231,8 +231,7 @@ end. <a href="dart-io/BytesBuilder-class.html">[...]</a>
           <span class="name "><a href="dart-io/CompressionOptions-class.html">CompressionOptions</a></span>         
         </dt>
         <dd>
-          The <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a> class allows you to control
-the options of WebSocket compression.
+          Options controlling compression in a <a href="dart-io/WebSocket-class.html">WebSocket</a>. <a href="dart-io/CompressionOptions-class.html">[...]</a>
         </dd>
         <dt id="ConnectionTask">
           <span class="name "><a href="dart-io/ConnectionTask-class.html">ConnectionTask</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>         
@@ -567,9 +566,7 @@ file. <a href="dart-io/RandomAccessFile-class.html">[...]</a>
           <span class="name "><a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a></span>         
         </dt>
         <dd>
-          The <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is a low-level interface to an UDP socket,
-exposing the raw events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of
-<a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s. <a href="dart-io/RawDatagramSocket-class.html">[...]</a>
+          A <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is an unbuffered interface to a UDP socket. <a href="dart-io/RawDatagramSocket-class.html">[...]</a>
         </dd>
         <dt id="RawSecureServerSocket">
           <span class="name "><a href="dart-io/RawSecureServerSocket-class.html">RawSecureServerSocket</a></span>         
@@ -604,8 +601,7 @@ made to the listening socket. <a href="dart-io/RawServerSocket-class.html">[...]
           <span class="name "><a href="dart-io/RawSocket-class.html">RawSocket</a></span>         
         </dt>
         <dd>
-          The <a href="dart-io/RawSocket-class.html">RawSocket</a> is a low-level interface to a socket, exposing the raw
-events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of <a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.
+          A <a href="dart-io/RawSocket-class.html">RawSocket</a> is an unbuffered interface to a TCP socket. <a href="dart-io/RawSocket-class.html">[...]</a>
         </dd>
         <dt id="RawSocketEvent">
           <span class="name "><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>         
@@ -992,6 +988,19 @@ something else.
       </dl>
     </section>
 
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+
+      <dl>
+        <dt id="HttpClientResponseCompressionState">
+          <span class="name "><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></span>         
+        </dt>
+        <dd>
+          Enum that specifies the compression state of the byte stream of an
+<a href="dart-io/HttpClientResponse-class.html">HttpClientResponse</a>. <a href="dart-io/HttpClientResponseCompressionState-class.html">[...]</a>
+        </dd>
+      </dl>
+    </section>
 
     <section class="summary offset-anchor" id="typedefs">
       <h2>Typedefs</h2>
@@ -1211,6 +1220,8 @@ a secure network connection.
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>

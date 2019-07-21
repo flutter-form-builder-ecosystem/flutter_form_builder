@@ -95,7 +95,7 @@ Begin the segment with a moveTo if <code>startWithMoveTo</code> is true.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Path extractPath(double start, double end, {bool startWithMoveTo: true}) {
+      <pre class="language-dart"><code class="language-dart">Path extractPath(double start, double end, {bool startWithMoveTo = true}) {
   return _measure.extractPath(contourIndex, start, end, startWithMoveTo: startWithMoveTo);
 }</code></pre>
     </section>

@@ -126,7 +126,7 @@ filled or stroked (or both) is controlled by <a href="dart-ui/Paint/style.html">
       <pre class="language-dart"><code class="language-dart">void drawRRect(RRect rrect, Paint paint) {
   assert(_rrectIsValid(rrect));
   assert(paint != null);
-  _drawRRect(rrect._value, paint._objects, paint._data);
+  _drawRRect(rrect._value32, paint._objects, paint._data);
 }</code></pre>
     </section>
 

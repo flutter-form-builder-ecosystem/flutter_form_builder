@@ -73,6 +73,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -110,12 +111,12 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -143,7 +144,7 @@ recreating the object each time.</p>
   if (point.dx &lt; left || point.dx &gt;= right || point.dy &lt; top || point.dy &gt;= bottom)
     return false; &#47;&#47; outside bounding box
 
-  _scaleRadii();
+  final RRect scaled = _scaleRadii();
 
   double x;
   double y;
@@ -151,30 +152,30 @@ recreating the object each time.</p>
   double radiusY;
   &#47;&#47; check whether point is in one of the rounded corner areas
   &#47;&#47; x, y -&gt; translate to ellipse center
-  if (point.dx &lt; left + _scaled.tlRadiusX &amp;&amp;
-      point.dy &lt; top + _scaled.tlRadiusY) {
-    x = point.dx - left - _scaled.tlRadiusX;
-    y = point.dy - top - _scaled.tlRadiusY;
-    radiusX = _scaled.tlRadiusX;
-    radiusY = _scaled.tlRadiusY;
-  } else if (point.dx &gt; right - _scaled.trRadiusX &amp;&amp;
-             point.dy &lt; top + _scaled.trRadiusY) {
-    x = point.dx - right + _scaled.trRadiusX;
-    y = point.dy - top - _scaled.trRadiusY;
-    radiusX = _scaled.trRadiusX;
-    radiusY = _scaled.trRadiusY;
-  } else if (point.dx &gt; right - _scaled.brRadiusX &amp;&amp;
-             point.dy &gt; bottom - _scaled.brRadiusY) {
-    x = point.dx - right + _scaled.brRadiusX;
-    y = point.dy - bottom + _scaled.brRadiusY;
-    radiusX = _scaled.brRadiusX;
-    radiusY = _scaled.brRadiusY;
-  } else if (point.dx &lt; left + _scaled.blRadiusX &amp;&amp;
-             point.dy &gt; bottom - _scaled.blRadiusY) {
-    x = point.dx - left - _scaled.blRadiusX;
-    y = point.dy - bottom + _scaled.blRadiusY;
-    radiusX = _scaled.blRadiusX;
-    radiusY = _scaled.blRadiusY;
+  if (point.dx &lt; left + scaled.tlRadiusX &amp;&amp;
+      point.dy &lt; top + scaled.tlRadiusY) {
+    x = point.dx - left - scaled.tlRadiusX;
+    y = point.dy - top - scaled.tlRadiusY;
+    radiusX = scaled.tlRadiusX;
+    radiusY = scaled.tlRadiusY;
+  } else if (point.dx &gt; right - scaled.trRadiusX &amp;&amp;
+             point.dy &lt; top + scaled.trRadiusY) {
+    x = point.dx - right + scaled.trRadiusX;
+    y = point.dy - top - scaled.trRadiusY;
+    radiusX = scaled.trRadiusX;
+    radiusY = scaled.trRadiusY;
+  } else if (point.dx &gt; right - scaled.brRadiusX &amp;&amp;
+             point.dy &gt; bottom - scaled.brRadiusY) {
+    x = point.dx - right + scaled.brRadiusX;
+    y = point.dy - bottom + scaled.brRadiusY;
+    radiusX = scaled.brRadiusX;
+    radiusY = scaled.brRadiusY;
+  } else if (point.dx &lt; left + scaled.blRadiusX &amp;&amp;
+             point.dy &gt; bottom - scaled.blRadiusY) {
+    x = point.dx - left - scaled.blRadiusX;
+    y = point.dy - bottom + scaled.blRadiusY;
+    radiusX = scaled.blRadiusX;
+    radiusY = scaled.blRadiusY;
   } else {
     return true; &#47;&#47; inside and not within the rounded corner area
   }

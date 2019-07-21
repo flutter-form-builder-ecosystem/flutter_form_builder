@@ -56,13 +56,16 @@
       <li class="section-title"><a href="dart-ui/ParagraphBuilder-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/ParagraphBuilder/ParagraphBuilder.html">ParagraphBuilder</a></li>
     
-      <li class="section-title inherited">
+      <li class="section-title">
         <a href="dart-ui/ParagraphBuilder-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-ui/ParagraphBuilder/placeholderCount.html">placeholderCount</a></li>
+      <li><a href="dart-ui/ParagraphBuilder/placeholderScales.html">placeholderScales</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
       <li class="section-title"><a href="dart-ui/ParagraphBuilder-class.html#instance-methods">Methods</a></li>
+      <li><a href="dart-ui/ParagraphBuilder/addPlaceholder.html">addPlaceholder</a></li>
       <li><a href="dart-ui/ParagraphBuilder/addText.html">addText</a></li>
       <li><a href="dart-ui/ParagraphBuilder/build.html">build</a></li>
       <li><a href="dart-ui/ParagraphBuilder/pop.html">pop</a></li>
@@ -99,7 +102,18 @@
   if (style._fontFamily != null)
     fullFontFamilies.add(style._fontFamily);
   if (style._fontFamilyFallback != null)
-    fullFontFamilies.addAll(style._fontFamilyFallback);
+  fullFontFamilies.addAll(style._fontFamilyFallback);
+
+  ByteData encodedFontFeatures;
+  if (style._fontFeatures != null) {
+    encodedFontFeatures = ByteData(style._fontFeatures.length * FontFeature._kEncodedSize);
+    int byteOffset = 0;
+    for (FontFeature feature in style._fontFeatures) {
+      feature._encode(ByteData.view(encodedFontFeatures.buffer, byteOffset, FontFeature._kEncodedSize));
+      byteOffset += FontFeature._kEncodedSize;
+    }
+  }
+
   _pushStyle(
     style._encoded,
     fullFontFamilies,
@@ -113,7 +127,8 @@
     style._background?._data,
     style._foreground?._objects,
     style._foreground?._data,
-    Shadow._encodeShadows(style._shadows)
+    Shadow._encodeShadows(style._shadows),
+    encodedFontFeatures,
   );
 }</code></pre>
     </section>

@@ -106,7 +106,7 @@ operand (a double), rounded towards zero.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Radius operator ~&#47;(double operand) =&gt; new Radius.elliptical((x ~&#47; operand).toDouble(), (y ~&#47; operand).toDouble());</code></pre>
+      <pre class="language-dart"><code class="language-dart">Radius operator ~&#47;(double operand) =&gt; Radius.elliptical((x ~&#47; operand).toDouble(), (y ~&#47; operand).toDouble());</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

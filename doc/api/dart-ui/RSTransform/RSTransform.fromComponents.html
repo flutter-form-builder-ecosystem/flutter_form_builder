@@ -118,7 +118,7 @@ use the more direct <a href="dart-ui/RSTransform/RSTransform.html">new RSTransfo
   final double ssin = math.sin(rotation) * scale;
   final double tx = translateX + -scos * anchorX + ssin * anchorY;
   final double ty = translateY + -ssin * anchorX - scos * anchorY;
-  return new RSTransform(scos, ssin, tx, ty);
+  return RSTransform(scos, ssin, tx, ty);
 }</code></pre>
     </section>
 

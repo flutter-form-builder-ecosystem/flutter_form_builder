@@ -113,7 +113,7 @@ data structures like <a href="dart-collection/HashSet-class.html">HashSet</a> or
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">@override
-int get hashCode =&gt; hashValues(hashList(_encoded), _fontFamily, _fontFamilyFallback, _fontSize, _letterSpacing, _wordSpacing, _height, _locale, _background, _foreground, _shadows, _decorationThickness);</code></pre>
+int get hashCode =&gt; hashValues(hashList(_encoded), _fontFamily, _fontFamilyFallback, _fontSize, _letterSpacing, _wordSpacing, _height, _locale, _background, _foreground, hashList(_shadows), _decorationThickness, hashList(_fontFeatures));</code></pre>
         </section>
 </section>
         

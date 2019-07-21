@@ -93,7 +93,12 @@
           <div class="features">final</div>
         </section>
         <section class="desc markdown">
-          <p>Determines the max window bits for the client.</p>
+          <p>The maximal window size bit count requested by the client.</p>
+<p>The windows size for the compression is always a power of two, so the
+number of bits precisely determines the window size.</p>
+<p>If set to <code>null</code>, the client has no preference, and the compression can
+use up to its default maximum window size of 15 bits depending on the
+server's preference.</p>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>

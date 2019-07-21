@@ -112,11 +112,11 @@ for this application.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void addChildScene({
-  Offset offset: Offset.zero,
-  double width: 0.0,
-  double height: 0.0,
+  Offset offset = Offset.zero,
+  double width = 0.0,
+  double height = 0.0,
   SceneHost sceneHost,
-  bool hitTestable: true
+  bool hitTestable = true
 }) {
   _addChildScene(offset.dx,
                  offset.dy,

@@ -118,7 +118,7 @@ certain that a frame with the new size is ready.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void addTexture(int textureId, { Offset offset: Offset.zero, double width: 0.0, double height: 0.0 , bool freeze: false}) {
+      <pre class="language-dart"><code class="language-dart">void addTexture(int textureId, { Offset offset = Offset.zero, double width = 0.0, double height = 0.0 , bool freeze = false}) {
   assert(offset != null, &#39;Offset argument was null&#39;);
   _addTexture(offset.dx, offset.dy, width, height, textureId, freeze);
 }</code></pre>

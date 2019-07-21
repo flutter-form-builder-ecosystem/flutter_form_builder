@@ -159,6 +159,8 @@
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
@@ -184,8 +186,12 @@
       <div><h1>CompressionOptions class </h1></div>
 
     <section class="desc markdown">
-      <p>The <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a> class allows you to control
-the options of WebSocket compression.</p>
+      <p>Options controlling compression in a <a href="dart-io/WebSocket-class.html">WebSocket</a>.</p>
+<p>A <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a> instance can be passed to <a href="dart-io/WebSocket/connect.html">WebSocket.connect</a>, or
+used in other similar places where <a href="dart-io/WebSocket-class.html">WebSocket</a> compression is configured.</p>
+<p>In most cases the default <a href="dart-io/CompressionOptions/compressionDefault-constant.html">compressionDefault</a> is sufficient, but in some
+situations, it might be desirable to use different compression parameters,
+for example to preserve memory on small devices.</p>
     </section>
     
 
@@ -212,7 +218,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
         </dt>
         <dd>
-          Determines the max window bits for the client.
+          The maximal window size bit count requested by the client. <a href="dart-io/CompressionOptions/clientMaxWindowBits.html">[...]</a>
                   <div class="features">final</div>
 </dd>
         <dt id="clientNoContextTakeover" class="property">
@@ -220,7 +226,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
-          Controls whether the client will reuse its compression instances.
+          Whether the client will reuse its compression instances.
                   <div class="features">final</div>
 </dd>
         <dt id="enabled" class="property">
@@ -228,7 +234,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
-          Enables or disables WebSocket compression.
+          Whether WebSocket compression is enabled. <a href="dart-io/CompressionOptions/enabled.html">[...]</a>
                   <div class="features">final</div>
 </dd>
         <dt id="serverMaxWindowBits" class="property">
@@ -236,7 +242,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
         </dt>
         <dd>
-          Determines the max window bits for the server.
+          The maximal window size bit count requested by the server. <a href="dart-io/CompressionOptions/serverMaxWindowBits.html">[...]</a>
                   <div class="features">final</div>
 </dd>
         <dt id="serverNoContextTakeover" class="property">
@@ -244,7 +250,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
-          Controls whether the server will reuse its compression instances.
+          Whether the server will reuse its compression instances.
                   <div class="features">final</div>
 </dd>
         <dt id="hashCode" class="property inherited">
@@ -316,7 +322,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; const <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a></span>
                   </dt>
         <dd>
-          Default WebSocket Compression options. <a href="dart-io/CompressionOptions/compressionDefault-constant.html">[...]</a>
+          Default <a href="dart-io/WebSocket-class.html">WebSocket</a> compression configuration. <a href="dart-io/CompressionOptions/compressionDefault-constant.html">[...]</a>
                   
   <div>
             <span class="signature"><code>const <a href="dart-io/CompressionOptions/CompressionOptions.html">CompressionOptions</a>()</code></span>
@@ -327,7 +333,7 @@ the options of WebSocket compression.</p>
           <span class="signature">&#8594; const <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a></span>
                   </dt>
         <dd>
-          Disables WebSocket Compression.
+          No-compression configuration. <a href="dart-io/CompressionOptions/compressionOff-constant.html">[...]</a>
                   
   <div>
             <span class="signature"><code>const <a href="dart-io/CompressionOptions/CompressionOptions.html">CompressionOptions</a>(enabled: false)</code></span>

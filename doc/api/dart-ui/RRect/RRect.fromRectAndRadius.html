@@ -73,6 +73,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -110,12 +111,12 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
@@ -134,21 +135,21 @@ the same in each corner.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">RRect.fromRectAndRadius(Rect rect, Radius radius) {
-  _value
-    ..[0] = rect.left
-    ..[1] = rect.top
-    ..[2] = rect.right
-    ..[3] = rect.bottom
-    ..[4] = radius.x
-    ..[5] = radius.y
-    ..[6] = radius.x
-    ..[7] = radius.y
-    ..[8] = radius.x
-    ..[9] = radius.y
-    ..[10] = radius.x
-    ..[11] = radius.y;
-}</code></pre>
+      <pre class="language-dart"><code class="language-dart">RRect.fromRectAndRadius(Rect rect, Radius radius)
+  : this._raw(
+      top: rect.top,
+      left: rect.left,
+      right: rect.right,
+      bottom: rect.bottom,
+      tlRadiusX: radius.x,
+      tlRadiusY: radius.y,
+      trRadiusX: radius.x,
+      trRadiusY: radius.y,
+      blRadiusX: radius.x,
+      blRadiusY: radius.y,
+      brRadiusX: radius.x,
+      brRadiusY: radius.y,
+    );</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

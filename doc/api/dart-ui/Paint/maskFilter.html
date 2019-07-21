@@ -111,7 +111,7 @@ drawn but before it has been composited into the image.</p>
     case MaskFilter._TypeNone:
       return null;
     case MaskFilter._TypeBlur:
-      return new MaskFilter.blur(
+      return MaskFilter.blur(
         BlurStyle.values[_data.getInt32(_kMaskFilterBlurStyleOffset, _kFakeHostEndian)],
         _data.getFloat32(_kMaskFilterSigmaOffset, _kFakeHostEndian),
       );

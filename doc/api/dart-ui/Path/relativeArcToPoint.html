@@ -131,10 +131,10 @@ describe an arc.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void relativeArcToPoint(Offset arcEndDelta, {
-  Radius radius: Radius.zero,
-  double rotation: 0.0,
-  bool largeArc: false,
-  bool clockwise: true,
+  Radius radius = Radius.zero,
+  double rotation = 0.0,
+  bool largeArc = false,
+  bool clockwise = true,
   }) {
   assert(_offsetIsValid(arcEndDelta));
   assert(_radiusIsValid(radius));

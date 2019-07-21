@@ -94,6 +94,12 @@
 when a transformed stream is listened to. At that time, the callback
 receives the input stream (the one passed to <a href="dart-async/StreamTransformer/bind.html">bind</a>) and a
 boolean flag <code>cancelOnError</code> to create a <a href="dart-async/StreamSubscription-class.html">StreamSubscription</a>.</p>
+<p>If the transformed stream is a broadcast stream, so is the stream
+returned by the <a href="dart-async/StreamTransformer/bind.html">StreamTransformer.bind</a> method by this transformer.</p>
+<p>If the transformed stream is listened to multiple times, the <code>onListen</code>
+callback is called again for each new <a href="dart-async/Stream/listen.html">Stream.listen</a> call.
+This happens whether the stream is a broadcast stream or not,
+but the call will usually fail for non-broadcast streams.</p>
 <p>The <code>onListen</code> callback does <em>not</em> receive the handlers that were passed
 to <a href="dart-async/Stream/listen.html">Stream.listen</a>. These are automatically set after the call to the
 <code>onListen</code> callback (using <a href="dart-async/StreamSubscription/onData.html">StreamSubscription.onData</a>,

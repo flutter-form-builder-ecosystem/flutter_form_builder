@@ -129,10 +129,10 @@ point if both are greater than zero but too small to describe an arc.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void arcToPoint(Offset arcEnd, {
-  Radius radius: Radius.zero,
-  double rotation: 0.0,
-  bool largeArc: false,
-  bool clockwise: true,
+  Radius radius = Radius.zero,
+  double rotation = 0.0,
+  bool largeArc = false,
+  bool clockwise = true,
   }) {
   assert(_offsetIsValid(arcEnd));
   assert(_radiusIsValid(radius));

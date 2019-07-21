@@ -96,7 +96,7 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 String toString() {
-  return &#39;$runtimeType(&#39;
+  return &#39;ParagraphStyle(&#39;
            &#39;textAlign: ${     _encoded[0] &amp; 0x002 == 0x002 ? TextAlign.values[_encoded[1]]     : &quot;unspecified&quot;}, &#39;
            &#39;textDirection: ${ _encoded[0] &amp; 0x004 == 0x004 ? TextDirection.values[_encoded[2]] : &quot;unspecified&quot;}, &#39;
            &#39;fontWeight: ${    _encoded[0] &amp; 0x008 == 0x008 ? FontWeight.values[_encoded[3]]    : &quot;unspecified&quot;}, &#39;

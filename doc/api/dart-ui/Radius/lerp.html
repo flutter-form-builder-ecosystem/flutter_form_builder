@@ -119,12 +119,12 @@ an <code>AnimationController</code>.</p>
   if (a == null &amp;&amp; b == null)
     return null;
   if (a == null)
-    return new Radius.elliptical(b.x * t, b.y * t);
+    return Radius.elliptical(b.x * t, b.y * t);
   if (b == null) {
     final double k = 1.0 - t;
-    return new Radius.elliptical(a.x * k, a.y * k);
+    return Radius.elliptical(a.x * k, a.y * k);
   }
-  return new Radius.elliptical(
+  return Radius.elliptical(
     lerpDouble(a.x, b.x, t),
     lerpDouble(a.y, b.y, t),
   );

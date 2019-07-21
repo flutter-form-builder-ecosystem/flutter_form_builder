@@ -95,8 +95,8 @@
 primary language subtag, the second is the region (also
 referred to as 'country') subtag.</p>
 <p>For example:</p>
-<pre class="language-dart"><code class="language-dart">const Locale swissFrench = const Locale('fr', 'CH');
-const Locale canadianFrench = const Locale('fr', 'CA');
+<pre class="language-dart"><code class="language-dart">const Locale swissFrench = Locale('fr', 'CH');
+const Locale canadianFrench = Locale('fr', 'CA');
 </code></pre>
 <p>The primary language subtag must not be null. The region subtag is
 optional. When there is no region/country subtag, the parameter should
@@ -112,7 +112,7 @@ Identifier</a>
 specification.</p>
 <p>Validity is not checked by default, but some methods may throw away
 invalid data.</p>
-<p>See also:</p><ul><li><a href="dart-ui/Locale/Locale.fromSubtags.html">new Locale.fromSubtags</a>, which also allows a <a href="dart-ui/Locale/scriptCode.html">scriptCode</a> to be
+<p>See also:</p><ul><li><a href="dart-ui/Locale/Locale.fromSubtags.html">Locale.fromSubtags</a>, which also allows a <a href="dart-ui/Locale/scriptCode.html">scriptCode</a> to be
 specified.</li></ul>
     </section>
     

@@ -133,7 +133,7 @@ given recorder.</p>
       <pre class="language-dart"><code class="language-dart">@pragma(&#39;vm:entry-point&#39;)
 Canvas(PictureRecorder recorder, [ Rect cullRect ]) : assert(recorder != null) {
   if (recorder.isRecording)
-    throw new ArgumentError(&#39;&quot;recorder&quot; must not already be associated with another Canvas.&#39;);
+    throw ArgumentError(&#39;&quot;recorder&quot; must not already be associated with another Canvas.&#39;);
   cullRect ??= Rect.largest;
   _constructor(recorder, cullRect.left, cullRect.top, cullRect.right, cullRect.bottom);
 }</code></pre>

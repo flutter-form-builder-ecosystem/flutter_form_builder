@@ -81,7 +81,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">Gradient.linear</span>(<wbr><span class="parameter" id="linear-param-from"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">from</span>, </span> <span class="parameter" id="linear-param-to"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">to</span>, </span> <span class="parameter" id="linear-param-colors"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Color-class.html">Color</a></span>&gt;</span></span> <span class="parameter-name">colors</span>, [</span> <span class="parameter" id="linear-param-colorStops"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/double-class.html">double</a></span>&gt;</span></span> <span class="parameter-name">colorStops</span>, </span> <span class="parameter" id="linear-param-tileMode"><span class="type-annotation"><a href="dart-ui/TileMode-class.html">TileMode</a></span> <span class="parameter-name">tileMode</span> = <span class="default-value">TileMode.clamp</span></span> ])
+      <span class="name ">Gradient.linear</span>(<wbr><span class="parameter" id="linear-param-from"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">from</span>, </span> <span class="parameter" id="linear-param-to"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">to</span>, </span> <span class="parameter" id="linear-param-colors"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Color-class.html">Color</a></span>&gt;</span></span> <span class="parameter-name">colors</span>, [</span> <span class="parameter" id="linear-param-colorStops"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/double-class.html">double</a></span>&gt;</span></span> <span class="parameter-name">colorStops</span>, </span> <span class="parameter" id="linear-param-tileMode"><span class="type-annotation"><a href="dart-ui/TileMode-class.html">TileMode</a></span> <span class="parameter-name">tileMode</span> = <span class="default-value">TileMode.clamp</span>, </span> <span class="parameter" id="linear-param-matrix4"><span class="type-annotation"><a href="dart-typed_data/Float64List-class.html">Float64List</a></span> <span class="parameter-name">matrix4</span></span> ])
     </section>
 
     <section class="desc markdown">
@@ -98,6 +98,9 @@ argument. For details, see the <a href="dart-ui/TileMode-class.html">TileMode</a
 <p>If <code>from</code>, <code>to</code>, <code>colors</code>, or <code>tileMode</code> are null, or if <code>colors</code> or
 <code>colorStops</code> contain null values, this constructor will throw a
 <a href="dart-core/NoSuchMethodError-class.html">NoSuchMethodError</a>.</p>
+<p>If <code>matrix4</code> is provided, the gradient fill will be transformed by the
+specified 4x4 matrix relative to the local coordinate system. <code>matrix4</code> must
+be a column-major matrix packed into a list of 16 values.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -108,17 +111,19 @@ argument. For details, see the <a href="dart-ui/TileMode-class.html">TileMode</a
   List&lt;Color&gt; colors, [
   List&lt;double&gt; colorStops,
   TileMode tileMode = TileMode.clamp,
+  Float64List matrix4,
 ]) : assert(_offsetIsValid(from)),
      assert(_offsetIsValid(to)),
      assert(colors != null),
      assert(tileMode != null),
+     assert(matrix4 == null || _matrix4IsValid(matrix4)),
      super._() {
   _validateColorStops(colors, colorStops);
   final Float32List endPointsBuffer = _encodeTwoPoints(from, to);
   final Int32List colorsBuffer = _encodeColorList(colors);
-  final Float32List colorStopsBuffer = colorStops == null ? null : new Float32List.fromList(colorStops);
+  final Float32List colorStopsBuffer = colorStops == null ? null : Float32List.fromList(colorStops);
   _constructor();
-  _initLinear(endPointsBuffer, colorsBuffer, colorStopsBuffer, tileMode.index);
+  _initLinear(endPointsBuffer, colorsBuffer, colorStopsBuffer, tileMode.index, matrix4);
 }</code></pre>
     </section>
 

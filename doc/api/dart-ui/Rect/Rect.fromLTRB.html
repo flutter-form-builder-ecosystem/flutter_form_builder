@@ -27,7 +27,7 @@
     <li><a href="index.html">flutter_form_builder</a></li>
     <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
     <li><a href="dart-ui/Rect-class.html">Rect</a></li>
-    <li class="self-crumb">Rect.fromLTRB constructor</li>
+    <li class="self-crumb">Rect.fromLTRB const constructor</li>
   </ol>
   <div class="self-name">Rect.fromLTRB</div>
   <form class="search navbar-right" role="search">
@@ -48,12 +48,13 @@
       <li><a href="index.html">flutter_form_builder</a></li>
       <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
       <li><a href="dart-ui/Rect-class.html">Rect</a></li>
-      <li class="self-crumb">Rect.fromLTRB constructor</li>
+      <li class="self-crumb">Rect.fromLTRB const constructor</li>
     </ol>
     
     <h5>Rect class</h5>
     <ol>
       <li class="section-title"><a href="dart-ui/Rect-class.html#constructors">Constructors</a></li>
+      <li><a href="dart-ui/Rect/Rect.fromCenter.html">fromCenter</a></li>
       <li><a href="dart-ui/Rect/Rect.fromCircle.html">fromCircle</a></li>
       <li><a href="dart-ui/Rect/Rect.fromLTRB.html">fromLTRB</a></li>
       <li><a href="dart-ui/Rect/Rect.fromLTWH.html">fromLTWH</a></li>
@@ -70,6 +71,7 @@
       <li><a href="dart-ui/Rect/centerLeft.html">centerLeft</a></li>
       <li><a href="dart-ui/Rect/centerRight.html">centerRight</a></li>
       <li><a href="dart-ui/Rect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/Rect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/Rect/height.html">height</a></li>
       <li><a href="dart-ui/Rect/isEmpty.html">isEmpty</a></li>
       <li><a href="dart-ui/Rect/isFinite.html">isFinite</a></li>
@@ -101,13 +103,13 @@
       <li class="section-title"><a href="dart-ui/Rect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/Rect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/Rect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/Rect/largest.html">largest</a></li>
-      <li><a href="dart-ui/Rect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/Rect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/Rect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/Rect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/Rect/largest-constant.html">largest</a></li>
+      <li><a href="dart-ui/Rect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
@@ -115,7 +117,7 @@
       <div><h1>Rect.fromLTRB constructor</h1></div>
 
     <section class="multi-line-signature">
-      
+      const
       <span class="name ">Rect.fromLTRB</span>(<wbr><span class="parameter" id="fromLTRB-param-left"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">left</span>, </span> <span class="parameter" id="fromLTRB-param-top"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">top</span>, </span> <span class="parameter" id="fromLTRB-param-right"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">right</span>, </span> <span class="parameter" id="fromLTRB-param-bottom"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">bottom</span></span>)
     </section>
 
@@ -126,13 +128,11 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@pragma(&#39;vm:entry-point&#39;)
-Rect.fromLTRB(double left, double top, double right, double bottom) {
-  _value
-    ..[0] = left
-    ..[1] = top
-    ..[2] = right
-    ..[3] = bottom;
-}</code></pre>
+const Rect.fromLTRB(this.left, this.top, this.right, this.bottom)
+  : assert(left != null),
+    assert(top != null),
+    assert(right != null),
+    assert(bottom != null);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

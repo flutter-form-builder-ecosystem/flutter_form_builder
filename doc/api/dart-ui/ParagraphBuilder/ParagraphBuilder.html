@@ -56,13 +56,16 @@
       <li class="section-title"><a href="dart-ui/ParagraphBuilder-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/ParagraphBuilder/ParagraphBuilder.html">ParagraphBuilder</a></li>
     
-      <li class="section-title inherited">
+      <li class="section-title">
         <a href="dart-ui/ParagraphBuilder-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-ui/ParagraphBuilder/placeholderCount.html">placeholderCount</a></li>
+      <li><a href="dart-ui/ParagraphBuilder/placeholderScales.html">placeholderScales</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
       <li class="section-title"><a href="dart-ui/ParagraphBuilder-class.html#instance-methods">Methods</a></li>
+      <li><a href="dart-ui/ParagraphBuilder/addPlaceholder.html">addPlaceholder</a></li>
       <li><a href="dart-ui/ParagraphBuilder/addText.html">addText</a></li>
       <li><a href="dart-ui/ParagraphBuilder/build.html">build</a></li>
       <li><a href="dart-ui/ParagraphBuilder/pop.html">pop</a></li>
@@ -87,7 +90,7 @@
     </section>
 
     <section class="desc markdown">
-      <p>Creates a <a href="dart-ui/ParagraphBuilder-class.html">ParagraphBuilder</a> object, which is used to create a
+      <p>Creates a new <a href="dart-ui/ParagraphBuilder-class.html">ParagraphBuilder</a> object, which is used to create a
 <a href="dart-ui/Paragraph-class.html">Paragraph</a>.</p>
     </section>
     
@@ -95,6 +98,7 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@pragma(&#39;vm:entry-point&#39;)
 ParagraphBuilder(ParagraphStyle style) {
+  _placeholderCount = 0;
   List&lt;String&gt; strutFontFamilies;
   if (style._strutStyle != null) {
     strutFontFamilies = &lt;String&gt;[];

@@ -127,11 +127,11 @@ quadratics, and quadratics maybe turned into lines.</p>
       <pre class="language-dart"><code class="language-dart">static Path combine(PathOperation operation, Path path1, Path path2) {
   assert(path1 != null);
   assert(path2 != null);
-  final Path path = new Path();
+  final Path path = Path();
   if (path._op(path1, path2, operation.index)) {
     return path;
   }
-  throw new StateError(&#39;Path.combine() failed.  This may be due an invalid path; in particular, check for NaN values.&#39;);
+  throw StateError(&#39;Path.combine() failed.  This may be due an invalid path; in particular, check for NaN values.&#39;);
 }</code></pre>
     </section>
 

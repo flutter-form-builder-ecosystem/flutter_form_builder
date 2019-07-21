@@ -122,8 +122,8 @@ as if they had been closed, even if they were not explicitly closed.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">PathMetrics computeMetrics({bool forceClosed: false}) {
-  return new PathMetrics._(this, forceClosed);
+      <pre class="language-dart"><code class="language-dart">PathMetrics computeMetrics({bool forceClosed = false}) {
+  return PathMetrics._(this, forceClosed);
 }</code></pre>
     </section>
 

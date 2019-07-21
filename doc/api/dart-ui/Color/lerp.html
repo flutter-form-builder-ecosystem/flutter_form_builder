@@ -131,7 +131,7 @@ an <code>AnimationController</code>.</p>
     return _scaleAlpha(b, t);
   if (b == null)
     return _scaleAlpha(a, 1.0 - t);
-  return new Color.fromARGB(
+  return Color.fromARGB(
     lerpDouble(a.alpha, b.alpha, t).toInt().clamp(0, 255),
     lerpDouble(a.red, b.red, t).toInt().clamp(0, 255),
     lerpDouble(a.green, b.green, t).toInt().clamp(0, 255),

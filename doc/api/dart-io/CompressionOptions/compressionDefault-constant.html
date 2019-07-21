@@ -95,8 +95,10 @@
     </section>
 
     <section class="desc markdown">
-      <p>Default WebSocket Compression options.</p>
-<p>Compression will be enabled with the following options:</p><ul><li><code>clientNoContextTakeover</code>: false</li><li><code>serverNoContextTakeover</code>: false</li><li><code>clientMaxWindowBits</code>: 15</li><li><code>serverMaxWindowBits</code>: 15</li></ul>
+      <p>Default <a href="dart-io/WebSocket-class.html">WebSocket</a> compression configuration.</p>
+<p>Enables compression with default window sizes and no reuse. This is the
+default options used by <a href="dart-io/WebSocket/connect.html">WebSocket.connect</a> if no <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a> is
+supplied.</p><ul><li><code>clientNoContextTakeover</code>: false</li><li><code>serverNoContextTakeover</code>: false</li><li><code>clientMaxWindowBits</code>: null (default maximal window size of 15 bits)</li><li><code>serverMaxWindowBits</code>: null (default maximal window size of 15 bits)</li></ul>
     </section>
         <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>

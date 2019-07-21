@@ -129,7 +129,7 @@ not be equal to <a href="dart-ui/Offset/zero-constant.html">Offset.zero</a>.</p>
   focalRadius ??= 0.0;
   _validateColorStops(colors, colorStops);
   final Int32List colorsBuffer = _encodeColorList(colors);
-  final Float32List colorStopsBuffer = colorStops == null ? null : new Float32List.fromList(colorStops);
+  final Float32List colorStopsBuffer = colorStops == null ? null : Float32List.fromList(colorStops);
 
   &#47;&#47; If focal is null or focal radius is null, this should be treated as a regular radial gradient
   &#47;&#47; If focal == center and the focal radius is 0.0, it&#39;s still a regular radial gradient

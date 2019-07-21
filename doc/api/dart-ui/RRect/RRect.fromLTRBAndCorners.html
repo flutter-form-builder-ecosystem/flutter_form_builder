@@ -73,6 +73,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -110,12 +111,12 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
@@ -130,7 +131,7 @@
     <section class="desc markdown">
       <p>Construct a rounded rectangle from its left, top, right, and bottom edges,
 and topLeft, topRight, bottomRight, and bottomLeft radii.</p>
-<p>The corner radii default to <a href="dart-ui/RRect/zero.html">Radius.zero</a>, i.e. right-angled corners.</p>
+<p>The corner radii default to <a href="dart-ui/RRect/zero-constant.html">Radius.zero</a>, i.e. right-angled corners.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -140,25 +141,24 @@ and topLeft, topRight, bottomRight, and bottomLeft radii.</p>
   double top,
   double right,
   double bottom, {
-  Radius topLeft: Radius.zero,
-  Radius topRight: Radius.zero,
-  Radius bottomRight: Radius.zero,
-  Radius bottomLeft: Radius.zero,
-}) {
-  _value
-    ..[0] = left
-    ..[1] = top
-    ..[2] = right
-    ..[3] = bottom
-    ..[4] = topLeft.x
-    ..[5] = topLeft.y
-    ..[6] = topRight.x
-    ..[7] = topRight.y
-    ..[8] = bottomRight.x
-    ..[9] = bottomRight.y
-    ..[10] = bottomLeft.x
-    ..[11] = bottomLeft.y;
-}</code></pre>
+  Radius topLeft = Radius.zero,
+  Radius topRight = Radius.zero,
+  Radius bottomRight = Radius.zero,
+  Radius bottomLeft = Radius.zero,
+}) : this._raw(
+       top: top,
+       left: left,
+       right: right,
+       bottom: bottom,
+       tlRadiusX: topLeft.x,
+       tlRadiusY: topLeft.y,
+       trRadiusX: topRight.x,
+       trRadiusY: topRight.y,
+       blRadiusX: bottomLeft.x,
+       blRadiusY: bottomLeft.y,
+       brRadiusX: bottomRight.x,
+       brRadiusY: bottomRight.y,
+     );</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

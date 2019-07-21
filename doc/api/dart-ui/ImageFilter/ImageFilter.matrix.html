@@ -85,16 +85,16 @@
 
     <section class="desc markdown">
       <p>Creates an image filter that applies a matrix transformation.</p>
-<p>For example, applying a positive scale matrix (see <code>new Matrix4.diagonal3</code>)
+<p>For example, applying a positive scale matrix (see <code>Matrix4.diagonal3</code>)
 when used with <code>BackdropFilter</code> would magnify the background image.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">ImageFilter.matrix(Float64List matrix4,
-                   { FilterQuality filterQuality: FilterQuality.low }) {
+                   { FilterQuality filterQuality = FilterQuality.low }) {
   if (matrix4.length != 16)
-    throw new ArgumentError(&#39;&quot;matrix4&quot; must have 16 entries.&#39;);
+    throw ArgumentError(&#39;&quot;matrix4&quot; must have 16 entries.&#39;);
   _constructor();
   _initMatrix(matrix4, filterQuality.index);
 }</code></pre>

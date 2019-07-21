@@ -59,8 +59,10 @@
       <li><a href="dart-ui/Color-class.html">Color</a></li>
       <li><a href="dart-ui/ColorFilter-class.html">ColorFilter</a></li>
       <li><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></li>
+      <li><a href="dart-ui/FontFeature-class.html">FontFeature</a></li>
       <li><a href="dart-ui/FontWeight-class.html">FontWeight</a></li>
       <li><a href="dart-ui/FrameInfo-class.html">FrameInfo</a></li>
+      <li><a href="dart-ui/FrameTiming-class.html">FrameTiming</a></li>
       <li><a href="dart-ui/Gradient-class.html">Gradient</a></li>
       <li><a href="dart-ui/Image-class.html">Image</a></li>
       <li><a href="dart-ui/ImageFilter-class.html">ImageFilter</a></li>
@@ -134,11 +136,13 @@
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
       <li><a href="dart-ui/FontStyle-class.html">FontStyle</a></li>
+      <li><a href="dart-ui/FramePhase-class.html">FramePhase</a></li>
       <li><a href="dart-ui/ImageByteFormat-class.html">ImageByteFormat</a></li>
       <li><a href="dart-ui/PaintingStyle-class.html">PaintingStyle</a></li>
       <li><a href="dart-ui/PathFillType-class.html">PathFillType</a></li>
       <li><a href="dart-ui/PathOperation-class.html">PathOperation</a></li>
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
+      <li><a href="dart-ui/PlaceholderAlignment-class.html">PlaceholderAlignment</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
       <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
@@ -160,6 +164,7 @@
       <li><a href="dart-ui/PlatformMessageResponseCallback.html">PlatformMessageResponseCallback</a></li>
       <li><a href="dart-ui/PointerDataPacketCallback.html">PointerDataPacketCallback</a></li>
       <li><a href="dart-ui/SemanticsActionCallback.html">SemanticsActionCallback</a></li>
+      <li><a href="dart-ui/TimingsCallback.html">TimingsCallback</a></li>
       <li><a href="dart-ui/VoidCallback.html">VoidCallback</a></li>
     
     </ol>
@@ -178,13 +183,13 @@
 
       <dl class="constructor-summary-list">
         <dt id="SceneHost" class="callable">
-          <span class="name"><a href="dart-ui/SceneHost/SceneHost.html">SceneHost</a></span><span class="signature">(<span class="parameter" id="-param-exportTokenHandle"><span class="type-annotation">dynamic</span> <span class="parameter-name">exportTokenHandle</span></span>)</span>
+          <span class="name"><a href="dart-ui/SceneHost/SceneHost.html">SceneHost</a></span><span class="signature">(<span class="parameter" id="-param-viewHolderToken"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderToken</span>, </span> <span class="parameter" id="-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)</span>
         </dt>
         <dd>
-          Creates a host for a child scene. <a href="dart-ui/SceneHost/SceneHost.html">[...]</a>
+          Creates a host for a child scene's content. <a href="dart-ui/SceneHost/SceneHost.html">[...]</a>
         </dd>
         <dt id="SceneHost.fromViewHolderToken" class="callable">
-          <span class="name"><a href="dart-ui/SceneHost/SceneHost.fromViewHolderToken.html">SceneHost.fromViewHolderToken</a></span><span class="signature">(<span class="parameter" id="fromViewHolderToken-param-viewHolderTokenHandle"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderTokenHandle</span>, </span> <span class="parameter" id="fromViewHolderToken-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)</span>
+          <span class="name"><a href="dart-ui/SceneHost/SceneHost.fromViewHolderToken.html">SceneHost.fromViewHolderToken</a></span><span class="signature">(<span class="parameter" id="fromViewHolderToken-param-viewHolderToken"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderToken</span>, </span> <span class="parameter" id="fromViewHolderToken-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)</span>
         </dt>
         <dd>
           
@@ -224,7 +229,17 @@
           </span>
                   </dt>
         <dd>
-          Releases the resources associated with the child scene host. <a href="dart-ui/SceneHost/dispose.html">[...]</a>
+          Releases the resources associated with the SceneHost. <a href="dart-ui/SceneHost/dispose.html">[...]</a>
+                  
+</dd>
+        <dt id="setOpacity" class="callable">
+          <span class="name"><a href="dart-ui/SceneHost/setOpacity.html">setOpacity</a></span><span class="signature">(<wbr><span class="parameter" id="setOpacity-param-opacity"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">opacity</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Set the opacity of the linked scene.  This opacity value is applied only
+once, when the child scene is composited into our own.
                   
 </dd>
         <dt id="setProperties" class="callable">
@@ -292,6 +307,7 @@ as well as whether it can be the target of focus events or not.
     
       <li class="section-title"><a href="dart-ui/SceneHost-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/SceneHost/dispose.html">dispose</a></li>
+      <li><a href="dart-ui/SceneHost/setOpacity.html">setOpacity</a></li>
       <li><a href="dart-ui/SceneHost/setProperties.html">setProperties</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>

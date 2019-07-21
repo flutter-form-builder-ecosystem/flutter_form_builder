@@ -116,13 +116,13 @@
 coordinate is the point given by adding this offset, the left-hand-side
 operand, to the origin, and whose size is the right-hand-side operand.</p>
 <pre class="language-dart"><code class="language-dart">Rect myRect = Offset.zero &amp; const Size(100.0, 100.0);
-// same as: new Rect.fromLTWH(0.0, 0.0, 100.0, 100.0)
+// same as: Rect.fromLTWH(0.0, 0.0, 100.0, 100.0)
 </code></pre>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Rect operator &amp;(Size other) =&gt; new Rect.fromLTWH(dx, dy, other.width, other.height);</code></pre>
+      <pre class="language-dart"><code class="language-dart">Rect operator &amp;(Size other) =&gt; Rect.fromLTWH(dx, dy, other.width, other.height);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->

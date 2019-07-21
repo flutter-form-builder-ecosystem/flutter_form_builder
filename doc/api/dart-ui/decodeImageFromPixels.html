@@ -59,8 +59,10 @@
       <li><a href="dart-ui/Color-class.html">Color</a></li>
       <li><a href="dart-ui/ColorFilter-class.html">ColorFilter</a></li>
       <li><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></li>
+      <li><a href="dart-ui/FontFeature-class.html">FontFeature</a></li>
       <li><a href="dart-ui/FontWeight-class.html">FontWeight</a></li>
       <li><a href="dart-ui/FrameInfo-class.html">FrameInfo</a></li>
+      <li><a href="dart-ui/FrameTiming-class.html">FrameTiming</a></li>
       <li><a href="dart-ui/Gradient-class.html">Gradient</a></li>
       <li><a href="dart-ui/Image-class.html">Image</a></li>
       <li><a href="dart-ui/ImageFilter-class.html">ImageFilter</a></li>
@@ -134,11 +136,13 @@
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
       <li><a href="dart-ui/FontStyle-class.html">FontStyle</a></li>
+      <li><a href="dart-ui/FramePhase-class.html">FramePhase</a></li>
       <li><a href="dart-ui/ImageByteFormat-class.html">ImageByteFormat</a></li>
       <li><a href="dart-ui/PaintingStyle-class.html">PaintingStyle</a></li>
       <li><a href="dart-ui/PathFillType-class.html">PathFillType</a></li>
       <li><a href="dart-ui/PathOperation-class.html">PathOperation</a></li>
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
+      <li><a href="dart-ui/PlaceholderAlignment-class.html">PlaceholderAlignment</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
       <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
@@ -160,6 +164,7 @@
       <li><a href="dart-ui/PlatformMessageResponseCallback.html">PlatformMessageResponseCallback</a></li>
       <li><a href="dart-ui/PointerDataPacketCallback.html">PointerDataPacketCallback</a></li>
       <li><a href="dart-ui/SemanticsActionCallback.html">SemanticsActionCallback</a></li>
+      <li><a href="dart-ui/TimingsCallback.html">TimingsCallback</a></li>
       <li><a href="dart-ui/VoidCallback.html">VoidCallback</a></li>
     
     </ol>
@@ -171,7 +176,7 @@
     <section class="multi-line-signature">
         <span class="returntype">void</span>
                 <span class="name ">decodeImageFromPixels</span>
-(<wbr><span class="parameter" id="decodeImageFromPixels-param-pixels"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">pixels</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-format"><span class="type-annotation"><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-callback"><span class="type-annotation"><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></span> <span class="parameter-name">callback</span>, {</span> <span class="parameter" id="decodeImageFromPixels-param-rowBytes"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">rowBytes</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-decodedCacheRatioCap"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">decodedCacheRatioCap</span>: <span class="default-value">double.infinity</span></span> })
+(<wbr><span class="parameter" id="decodeImageFromPixels-param-pixels"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">pixels</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-format"><span class="type-annotation"><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-callback"><span class="type-annotation"><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></span> <span class="parameter-name">callback</span>, {</span> <span class="parameter" id="decodeImageFromPixels-param-rowBytes"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">rowBytes</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-targetWidth"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetWidth</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-targetHeight"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetHeight</span></span> })
     </section>
     <section class="desc markdown">
       <p>Convert an array of pixel values into an <a href="dart-ui/Image-class.html">Image</a> object.</p>
@@ -179,14 +184,12 @@
 <p><code>rowBytes</code> is the number of bytes consumed by each row of pixels in the
 data buffer.  If unspecified, it defaults to <code>width</code> multiplied by the
 number of bytes per pixel in the provided <code>format</code>.</p>
-<p>The <code>decodedCacheRatioCap</code> is the default maximum multiple of the compressed
-image size to cache when decoding animated image frames. For example,
-setting this to <code>2.0</code> means that a 400KB GIF would be allowed at most to use
-800KB of memory caching unessential decoded frames. Caching decoded frames
-saves CPU but can result in out-of-memory crashes when decoding large (or
-multiple) animated images. Note that GIFs are highly compressed, and it's
-unlikely that a factor that low will be sufficient to cache all decoded
-frames. The default value is <code>25.0</code>.</p>
+<p>The <code>targetWidth</code> and <code>targetHeight</code> arguments specify the size of the output
+image, in image pixels. If they are not equal to the intrinsic dimensions of the
+image, then the image will be scaled after being decoded. If exactly one of
+these two arguments is specified, then the aspect ratio will be maintained
+while forcing the image to match the other given dimension. If neither is
+specified, then the image maintains its real size.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -197,11 +200,11 @@ frames. The default value is <code>25.0</code>.</p>
   int height,
   PixelFormat format,
   ImageDecoderCallback callback,
-  {int rowBytes, double decodedCacheRatioCap = double.infinity}
+  {int rowBytes, int targetWidth, int targetHeight}
 ) {
-  final _ImageInfo imageInfo = new _ImageInfo(width, height, format.index, rowBytes);
+  final _ImageInfo imageInfo = _ImageInfo(width, height, format.index, rowBytes);
   final Future&lt;Codec&gt; codecFuture = _futurize(
-    (_Callback&lt;Codec&gt; callback) =&gt; _instantiateImageCodec(pixels, callback, imageInfo, decodedCacheRatioCap)
+    (_Callback&lt;Codec&gt; callback) =&gt; _instantiateImageCodec(pixels, callback, imageInfo, targetWidth ?? _kDoNotResizeDimension, targetHeight ?? _kDoNotResizeDimension)
   );
   codecFuture.then((Codec codec) =&gt; codec.getNextFrame())
       .then((FrameInfo frameInfo) =&gt; callback(frameInfo.image));

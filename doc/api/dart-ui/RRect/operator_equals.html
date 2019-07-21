@@ -73,6 +73,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -110,12 +111,12 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -163,11 +164,18 @@ bool operator ==(dynamic other) {
   if (runtimeType != other.runtimeType)
     return false;
   final RRect typedOther = other;
-  for (int i = 0; i &lt; _kDataSize; i += 1) {
-    if (_value[i] != typedOther._value[i])
-      return false;
-  }
-  return true;
+  return left      == typedOther.left      &amp;&amp;
+         top       == typedOther.top       &amp;&amp;
+         right     == typedOther.right     &amp;&amp;
+         bottom    == typedOther.bottom    &amp;&amp;
+         tlRadiusX == typedOther.tlRadiusX &amp;&amp;
+         tlRadiusY == typedOther.tlRadiusY &amp;&amp;
+         trRadiusX == typedOther.trRadiusX &amp;&amp;
+         trRadiusY == typedOther.trRadiusY &amp;&amp;
+         blRadiusX == typedOther.blRadiusX &amp;&amp;
+         blRadiusY == typedOther.blRadiusY &amp;&amp;
+         brRadiusX == typedOther.brRadiusX &amp;&amp;
+         brRadiusY == typedOther.brRadiusY;
 }</code></pre>
     </section>
 

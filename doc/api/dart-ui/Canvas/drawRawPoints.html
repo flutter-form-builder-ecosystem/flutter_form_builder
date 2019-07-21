@@ -131,7 +131,7 @@ numbers, where each pair represents an x and y offset from the origin.</p>
   assert(points != null);
   assert(paint != null);
   if (points.length % 2 != 0)
-    throw new ArgumentError(&#39;&quot;points&quot; must have an even number of values.&#39;);
+    throw ArgumentError(&#39;&quot;points&quot; must have an even number of values.&#39;);
   _drawPoints(paint._objects, paint._data, pointMode.index, points);
 }</code></pre>
     </section>
