@@ -129,7 +129,7 @@ current clip.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void clipRect(Rect rect, { ClipOp clipOp: ClipOp.intersect, bool doAntiAlias = true }) {
+      <pre class="language-dart"><code class="language-dart">void clipRect(Rect rect, { ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true }) {
   assert(_rectIsValid(rect));
   assert(clipOp != null);
   assert(doAntiAlias != null);

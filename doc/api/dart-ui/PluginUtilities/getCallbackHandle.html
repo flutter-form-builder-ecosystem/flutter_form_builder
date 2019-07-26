@@ -100,7 +100,7 @@ null is returned.</p>
   assert(callback != null, &quot;&#39;callback&#39; must not be null.&quot;);
   return _forwardCache.putIfAbsent(callback, () {
     final int handle = _getCallbackHandle(callback);
-    return handle != null ? new CallbackHandle.fromRawHandle(handle) : null;
+    return handle != null ? CallbackHandle.fromRawHandle(handle) : null;
   });
 }</code></pre>
     </section>

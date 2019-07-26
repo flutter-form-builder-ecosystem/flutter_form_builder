@@ -111,7 +111,7 @@
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void addPicture(Offset offset, Picture picture, { bool isComplexHint: false, bool willChangeHint: false }) {
+      <pre class="language-dart"><code class="language-dart">void addPicture(Offset offset, Picture picture, { bool isComplexHint = false, bool willChangeHint = false }) {
   int hints = 0;
   if (isComplexHint)
     hints |= 1;

@@ -136,6 +136,8 @@ bool operator ==(dynamic other) {
     return false;
   if (!_listEquals&lt;String&gt;(_fontFamilyFallback, typedOther._fontFamilyFallback))
     return false;
+  if (!_listEquals&lt;FontFeature&gt;(_fontFeatures, typedOther._fontFeatures))
+    return false;
   return true;
 }</code></pre>
     </section>

@@ -85,6 +85,7 @@
       <li><a href="dart-ui/SemanticsFlag/isInMutuallyExclusiveGroup-constant.html">isInMutuallyExclusiveGroup</a></li>
       <li><a href="dart-ui/SemanticsFlag/isLiveRegion-constant.html">isLiveRegion</a></li>
       <li><a href="dart-ui/SemanticsFlag/isObscured-constant.html">isObscured</a></li>
+      <li><a href="dart-ui/SemanticsFlag/isReadOnly-constant.html">isReadOnly</a></li>
       <li><a href="dart-ui/SemanticsFlag/isSelected-constant.html">isSelected</a></li>
       <li><a href="dart-ui/SemanticsFlag/isTextField-constant.html">isTextField</a></li>
       <li><a href="dart-ui/SemanticsFlag/isToggled-constant.html">isToggled</a></li>
@@ -101,7 +102,7 @@
         <span class="returntype"><a href="dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/int-class.html">int</a></span>, <span class="type-parameter"><a href="dart-ui/SemanticsFlag-class.html">SemanticsFlag</a></span>&gt;</span></span>
         const <span class="name ">values</span>
         =
-        <span class="constant-value">const &lt;int, SemanticsFlag&gt; {_kHasCheckedStateIndex : hasCheckedState, _kIsCheckedIndex : isChecked, _kIsSelectedIndex : isSelected, _kIsButtonIndex : isButton, _kIsTextFieldIndex : isTextField, _kIsFocusedIndex : isFocused, _kHasEnabledStateIndex : hasEnabledState, _kIsEnabledIndex : isEnabled, _kIsInMutuallyExclusiveGroupIndex : isInMutuallyExclusiveGroup, _kIsHeaderIndex : isHeader, _kIsObscuredIndex : isObscured, _kScopesRouteIndex : scopesRoute, _kNamesRouteIndex : namesRoute, _kIsHiddenIndex : isHidden, _kIsImageIndex : isImage, _kIsLiveRegionIndex : isLiveRegion, _kHasToggledStateIndex : hasToggledState, _kIsToggledIndex : isToggled, _kHasImplicitScrollingIndex : hasImplicitScrolling}</span>
+        <span class="constant-value">const &lt;int, SemanticsFlag&gt; {_kHasCheckedStateIndex : hasCheckedState, _kIsCheckedIndex : isChecked, _kIsSelectedIndex : isSelected, _kIsButtonIndex : isButton, _kIsTextFieldIndex : isTextField, _kIsFocusedIndex : isFocused, _kHasEnabledStateIndex : hasEnabledState, _kIsEnabledIndex : isEnabled, _kIsInMutuallyExclusiveGroupIndex : isInMutuallyExclusiveGroup, _kIsHeaderIndex : isHeader, _kIsObscuredIndex : isObscured, _kScopesRouteIndex : scopesRoute, _kNamesRouteIndex : namesRoute, _kIsHiddenIndex : isHidden, _kIsImageIndex : isImage, _kIsLiveRegionIndex : isLiveRegion, _kHasToggledStateIndex : hasToggledState, _kIsToggledIndex : isToggled, _kHasImplicitScrollingIndex : hasImplicitScrolling, _kIsReadOnlyIndex : isReadOnly}</span>
     </section>
 
     <section class="desc markdown">
@@ -110,7 +111,7 @@
     </section>
         <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">static const Map&lt;int, SemanticsFlag&gt; values = const &lt;int, SemanticsFlag&gt;{
+      <pre class="language-dart"><code class="language-dart">static const Map&lt;int, SemanticsFlag&gt; values = &lt;int, SemanticsFlag&gt;{
   _kHasCheckedStateIndex: hasCheckedState,
   _kIsCheckedIndex: isChecked,
   _kIsSelectedIndex: isSelected,
@@ -130,6 +131,7 @@
   _kHasToggledStateIndex: hasToggledState,
   _kIsToggledIndex: isToggled,
   _kHasImplicitScrollingIndex: hasImplicitScrolling,
+  _kIsReadOnlyIndex: isReadOnly,
 }
 
 </code></pre>

@@ -95,15 +95,15 @@
 }) : assert(mode != null),
      assert(positions != null) {
   if (textureCoordinates != null &amp;&amp; textureCoordinates.length != positions.length)
-    throw new ArgumentError(&#39;&quot;positions&quot; and &quot;textureCoordinates&quot; lengths must match.&#39;);
+    throw ArgumentError(&#39;&quot;positions&quot; and &quot;textureCoordinates&quot; lengths must match.&#39;);
   if (colors != null &amp;&amp; colors.length * 2 != positions.length)
-    throw new ArgumentError(&#39;&quot;positions&quot; and &quot;colors&quot; lengths must match.&#39;);
+    throw ArgumentError(&#39;&quot;positions&quot; and &quot;colors&quot; lengths must match.&#39;);
   if (indices != null &amp;&amp; indices.any((int i) =&gt; i &lt; 0 || i &gt;= positions.length))
-    throw new ArgumentError(&#39;&quot;indices&quot; values must be valid indices in the positions list.&#39;);
+    throw ArgumentError(&#39;&quot;indices&quot; values must be valid indices in the positions list.&#39;);
 
   _constructor();
   if (!_init(mode.index, positions, textureCoordinates, colors, indices))
-    throw new ArgumentError(&#39;Invalid configuration for vertices.&#39;);
+    throw ArgumentError(&#39;Invalid configuration for vertices.&#39;);
 }</code></pre>
     </section>
 

@@ -1,5 +1,8 @@
+## [3.2.9] - 20-Jul-2019
+* Added `borderColor`, `selectedColor`, `pressedColor`, `textStyle` options to `FormBuilderSegmentedControl` for `CupertinoSegmentedControl` customization
+
 ## [3.2.8] - 12-Jul-2019
-Added `activeColor`, `checkColor`, `materialTapTargetSize` & `tristate` options to `FormBuilderCheckbox` and `FormBuilderCheckboxList` fo checkbox customization
+* Added `activeColor`, `checkColor`, `materialTapTargetSize` & `tristate` options to `FormBuilderCheckbox` and `FormBuilderCheckboxList` for checkbox customization
 
 ## [3.2.7] - 06-Jul-2019
 * Fixed bug where `valueTransformer`s not working

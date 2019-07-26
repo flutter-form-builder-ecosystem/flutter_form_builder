@@ -159,6 +159,8 @@
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
@@ -184,11 +186,13 @@
       <div><h1>RawDatagramSocket class </h1></div>
 
     <section class="desc markdown">
-      <p>The <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is a low-level interface to an UDP socket,
-exposing the raw events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of
-<a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.</p>
+      <p>A <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is an unbuffered interface to a UDP socket.</p>
+<p>The raw datagram socket delivers the datagrams in the same chunks as the
+underlying operating system. It's a <a href="dart-async/Stream-class.html">Stream</a> of <a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.</p>
 <p>Note that the event <a href="dart-io/RawSocketEvent/readClosed-constant.html">RawSocketEvent.readClosed</a> will never be
 received as an UDP socket cannot be closed by a remote peer.</p>
+<p>It is not the same as a
+<a href="http://man7.org/linux/man-pages/man7/raw.7.html">POSIX raw socket</a>.</p>
     </section>
     
     <section>

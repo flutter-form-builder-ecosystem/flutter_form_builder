@@ -73,6 +73,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -110,12 +111,12 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -130,7 +131,7 @@
     </section>
     <section class="desc markdown">
       <p>Linearly interpolate between two rounded rectangles.</p>
-<p>If either is null, this function substitutes <a href="dart-ui/RRect/zero.html">RRect.zero</a> instead.</p>
+<p>If either is null, this function substitutes <a href="dart-ui/RRect/zero-constant.html">RRect.zero</a> instead.</p>
 <p>The <code>t</code> argument represents position on the timeline, with 0.0 meaning
 that the interpolation has not started, returning <code>a</code> (or something
 equivalent to <code>a</code>), 1.0 meaning that the interpolation has finished,
@@ -150,52 +151,52 @@ an <code>AnimationController</code>.</p>
   if (a == null &amp;&amp; b == null)
     return null;
   if (a == null) {
-    return new RRect._fromList(&lt;double&gt;[
-      b.left * t,
-      b.top * t,
-      b.right * t,
-      b.bottom * t,
-      b.tlRadiusX * t,
-      b.tlRadiusY * t,
-      b.trRadiusX * t,
-      b.trRadiusY * t,
-      b.brRadiusX * t,
-      b.brRadiusY * t,
-      b.blRadiusX * t,
-      b.blRadiusY * t,
-    ]);
+    return RRect._raw(
+      left: b.left * t,
+      top: b.top * t,
+      right: b.right * t,
+      bottom: b.bottom * t,
+      tlRadiusX: b.tlRadiusX * t,
+      tlRadiusY: b.tlRadiusY * t,
+      trRadiusX: b.trRadiusX * t,
+      trRadiusY: b.trRadiusY * t,
+      brRadiusX: b.brRadiusX * t,
+      brRadiusY: b.brRadiusY * t,
+      blRadiusX: b.blRadiusX * t,
+      blRadiusY: b.blRadiusY * t,
+    );
   }
   if (b == null) {
     final double k = 1.0 - t;
-    return new RRect._fromList(&lt;double&gt;[
-      a.left * k,
-      a.top * k,
-      a.right * k,
-      a.bottom * k,
-      a.tlRadiusX * k,
-      a.tlRadiusY * k,
-      a.trRadiusX * k,
-      a.trRadiusY * k,
-      a.brRadiusX * k,
-      a.brRadiusY * k,
-      a.blRadiusX * k,
-      a.blRadiusY * k,
-    ]);
+    return RRect._raw(
+      left: a.left * k,
+      top: a.top * k,
+      right: a.right * k,
+      bottom: a.bottom * k,
+      tlRadiusX: a.tlRadiusX * k,
+      tlRadiusY: a.tlRadiusY * k,
+      trRadiusX: a.trRadiusX * k,
+      trRadiusY: a.trRadiusY * k,
+      brRadiusX: a.brRadiusX * k,
+      brRadiusY: a.brRadiusY * k,
+      blRadiusX: a.blRadiusX * k,
+      blRadiusY: a.blRadiusY * k,
+    );
   }
-  return new RRect._fromList(&lt;double&gt;[
-    lerpDouble(a.left, b.left, t),
-    lerpDouble(a.top, b.top, t),
-    lerpDouble(a.right, b.right, t),
-    lerpDouble(a.bottom, b.bottom, t),
-    lerpDouble(a.tlRadiusX, b.tlRadiusX, t),
-    lerpDouble(a.tlRadiusY, b.tlRadiusY, t),
-    lerpDouble(a.trRadiusX, b.trRadiusX, t),
-    lerpDouble(a.trRadiusY, b.trRadiusY, t),
-    lerpDouble(a.brRadiusX, b.brRadiusX, t),
-    lerpDouble(a.brRadiusY, b.brRadiusY, t),
-    lerpDouble(a.blRadiusX, b.blRadiusX, t),
-    lerpDouble(a.blRadiusY, b.blRadiusY, t),
-  ]);
+  return RRect._raw(
+    left: lerpDouble(a.left, b.left, t),
+    top: lerpDouble(a.top, b.top, t),
+    right: lerpDouble(a.right, b.right, t),
+    bottom: lerpDouble(a.bottom, b.bottom, t),
+    tlRadiusX: lerpDouble(a.tlRadiusX, b.tlRadiusX, t),
+    tlRadiusY: lerpDouble(a.tlRadiusY, b.tlRadiusY, t),
+    trRadiusX: lerpDouble(a.trRadiusX, b.trRadiusX, t),
+    trRadiusY: lerpDouble(a.trRadiusY, b.trRadiusY, t),
+    brRadiusX: lerpDouble(a.brRadiusX, b.brRadiusX, t),
+    brRadiusY: lerpDouble(a.brRadiusY, b.brRadiusY, t),
+    blRadiusX: lerpDouble(a.blRadiusX, b.blRadiusX, t),
+    blRadiusY: lerpDouble(a.blRadiusY, b.blRadiusY, t),
+  );
 }</code></pre>
     </section>
 

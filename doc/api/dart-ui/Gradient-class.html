@@ -59,8 +59,10 @@
       <li><a href="dart-ui/Color-class.html">Color</a></li>
       <li><a href="dart-ui/ColorFilter-class.html">ColorFilter</a></li>
       <li><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></li>
+      <li><a href="dart-ui/FontFeature-class.html">FontFeature</a></li>
       <li><a href="dart-ui/FontWeight-class.html">FontWeight</a></li>
       <li><a href="dart-ui/FrameInfo-class.html">FrameInfo</a></li>
+      <li><a href="dart-ui/FrameTiming-class.html">FrameTiming</a></li>
       <li><a href="dart-ui/Gradient-class.html">Gradient</a></li>
       <li><a href="dart-ui/Image-class.html">Image</a></li>
       <li><a href="dart-ui/ImageFilter-class.html">ImageFilter</a></li>
@@ -134,11 +136,13 @@
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
       <li><a href="dart-ui/FontStyle-class.html">FontStyle</a></li>
+      <li><a href="dart-ui/FramePhase-class.html">FramePhase</a></li>
       <li><a href="dart-ui/ImageByteFormat-class.html">ImageByteFormat</a></li>
       <li><a href="dart-ui/PaintingStyle-class.html">PaintingStyle</a></li>
       <li><a href="dart-ui/PathFillType-class.html">PathFillType</a></li>
       <li><a href="dart-ui/PathOperation-class.html">PathOperation</a></li>
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
+      <li><a href="dart-ui/PlaceholderAlignment-class.html">PlaceholderAlignment</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
       <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
@@ -160,6 +164,7 @@
       <li><a href="dart-ui/PlatformMessageResponseCallback.html">PlatformMessageResponseCallback</a></li>
       <li><a href="dart-ui/PointerDataPacketCallback.html">PointerDataPacketCallback</a></li>
       <li><a href="dart-ui/SemanticsActionCallback.html">SemanticsActionCallback</a></li>
+      <li><a href="dart-ui/TimingsCallback.html">TimingsCallback</a></li>
       <li><a href="dart-ui/VoidCallback.html">VoidCallback</a></li>
     
     </ol>
@@ -195,7 +200,7 @@ on this class.</p>
 
       <dl class="constructor-summary-list">
         <dt id="Gradient.linear" class="callable">
-          <span class="name"><a href="dart-ui/Gradient/Gradient.linear.html">Gradient.linear</a></span><span class="signature">(<span class="parameter" id="linear-param-from"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">from</span>, </span> <span class="parameter" id="linear-param-to"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">to</span>, </span> <span class="parameter" id="linear-param-colors"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Color-class.html">Color</a></span>&gt;</span></span> <span class="parameter-name">colors</span>, [</span> <span class="parameter" id="linear-param-colorStops"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/double-class.html">double</a></span>&gt;</span></span> <span class="parameter-name">colorStops</span>, </span> <span class="parameter" id="linear-param-tileMode"><span class="type-annotation"><a href="dart-ui/TileMode-class.html">TileMode</a></span> <span class="parameter-name">tileMode</span> = <span class="default-value">TileMode.clamp</span></span> ])</span>
+          <span class="name"><a href="dart-ui/Gradient/Gradient.linear.html">Gradient.linear</a></span><span class="signature">(<span class="parameter" id="linear-param-from"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">from</span>, </span> <span class="parameter" id="linear-param-to"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">to</span>, </span> <span class="parameter" id="linear-param-colors"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Color-class.html">Color</a></span>&gt;</span></span> <span class="parameter-name">colors</span>, [</span> <span class="parameter" id="linear-param-colorStops"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/double-class.html">double</a></span>&gt;</span></span> <span class="parameter-name">colorStops</span>, </span> <span class="parameter" id="linear-param-tileMode"><span class="type-annotation"><a href="dart-ui/TileMode-class.html">TileMode</a></span> <span class="parameter-name">tileMode</span> = <span class="default-value">TileMode.clamp</span>, </span> <span class="parameter" id="linear-param-matrix4"><span class="type-annotation"><a href="dart-typed_data/Float64List-class.html">Float64List</a></span> <span class="parameter-name">matrix4</span></span> ])</span>
         </dt>
         <dd>
           Creates a linear gradient from <code>from</code> to <code>to</code>. <a href="dart-ui/Gradient/Gradient.linear.html">[...]</a>

@@ -116,7 +116,7 @@ By default, the clip will be anti-aliased (clip = <a href="dart-ui/Clip-class.ht
       <pre class="language-dart"><code class="language-dart">EngineLayer pushClipRRect(RRect rrect, {Clip clipBehavior = Clip.antiAlias}) {
   assert(clipBehavior != null);
   assert(clipBehavior != Clip.none);
-  return _pushClipRRect(rrect._value, clipBehavior.index);
+  return _pushClipRRect(rrect._value32, clipBehavior.index);
 }</code></pre>
     </section>
 

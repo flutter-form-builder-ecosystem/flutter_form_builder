@@ -144,7 +144,9 @@ working around limitations of the <code>toString</code> implementation for Dart
 enum types.</li><li><code>IterableProperty</code>, which handles iterable values with display
 customizable depending on the <code>DiagnosticsTreeStyle</code> used.</li><li><code>ObjectFlagProperty</code>, which provides terse descriptions of whether a
 property value is present or not. For example, whether an <code>onClick</code>
-callback is specified or an animation is in progress.</li></ul>
+callback is specified or an animation is in progress.</li><li><code>ColorProperty</code>, which must be used if the property value is
+a <a href="dart-ui/Color-class.html">Color</a> or one of its subclasses.</li><li><code>IconDataProperty</code>, which must be used if the property value
+is of type <code>IconData</code>.</li></ul>
 <p>If none of these subclasses apply, use the <code>DiagnosticsProperty</code>
 constructor or in rare cases create your own <code>DiagnosticsProperty</code>
 subclass as in the case for <code>TransformProperty</code> which handles <code>Matrix4</code>

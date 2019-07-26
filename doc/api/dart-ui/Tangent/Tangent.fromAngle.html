@@ -95,7 +95,7 @@ as clockwise radians from the x axis.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory Tangent.fromAngle(Offset position, double angle) {
-  return new Tangent(position, new Offset(math.cos(angle), math.sin(angle)));
+  return Tangent(position, Offset(math.cos(angle), math.sin(angle)));
 }</code></pre>
     </section>
 

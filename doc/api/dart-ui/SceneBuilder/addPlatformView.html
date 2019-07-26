@@ -120,7 +120,7 @@ synchronized with the UIView frames adding additional performance overhead.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void addPlatformView(int viewId, { Offset offset: Offset.zero, double width: 0.0, double height: 0.0}) {
+      <pre class="language-dart"><code class="language-dart">void addPlatformView(int viewId, { Offset offset = Offset.zero, double width = 0.0, double height = 0.0}) {
   assert(offset != null, &#39;Offset argument was null&#39;);
   _addPlatformView(offset.dx, offset.dy, width, height, viewId);
 }</code></pre>

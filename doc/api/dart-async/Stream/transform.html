@@ -141,6 +141,15 @@ in a chained fashion, like</p>
 Whether the returned stream is a broadcast stream or not,
 and which elements it will contain,
 is entirely up to the transformation.</p>
+<p>This method should always be used for transformations which treat
+the entire stream as representing a single value
+which has perhaps been split into several parts for transport,
+like a file being read from disk or being fetched over a network.
+The transformation will then produce a new stream which
+transforms the stream's value incrementally (perhaps using
+<a href="dart-convert/Converter/startChunkedConversion.html">Converter.startChunkedConversion</a>). The resulting stream
+may again be chunks of the result, but does not have to
+correspond to specific events from the source string.</p>
     </section>
     
     <section class="summary source-code" id="source">

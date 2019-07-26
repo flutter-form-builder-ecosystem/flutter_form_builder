@@ -144,44 +144,57 @@ void setState(VoidCallback fn) {
   assert(fn != null);
   assert(() {
     if (_debugLifecycleState == _StateLifecycle.defunct) {
-      throw FlutterError(
-        &#39;setState() called after dispose(): $this\n&#39;
-        &#39;This error happens if you call setState() on a State object for a widget that &#39;
-        &#39;no longer appears in the widget tree (e.g., whose parent widget no longer &#39;
-        &#39;includes the widget in its build). This error can occur when code calls &#39;
-        &#39;setState() from a timer or an animation callback. The preferred solution is &#39;
-        &#39;to cancel the timer or stop listening to the animation in the dispose() &#39;
-        &#39;callback. Another solution is to check the &quot;mounted&quot; property of this &#39;
-        &#39;object before calling setState() to ensure the object is still in the &#39;
-        &#39;tree.\n&#39;
-        &#39;This error might indicate a memory leak if setState() is being called &#39;
-        &#39;because another object is retaining a reference to this State object &#39;
-        &#39;after it has been removed from the tree. To avoid memory leaks, &#39;
-        &#39;consider breaking the reference to this object during dispose().&#39;
-      );
+      throw FlutterError.fromParts(&lt;DiagnosticsNode&gt;[
+        ErrorSummary(&#39;setState() called after dispose(): $this&#39;),
+        ErrorDescription(
+          &#39;This error happens if you call setState() on a State object for a widget that &#39;
+          &#39;no longer appears in the widget tree (e.g., whose parent widget no longer &#39;
+          &#39;includes the widget in its build). This error can occur when code calls &#39;
+          &#39;setState() from a timer or an animation callback.&#39;
+        ),
+        ErrorHint(
+          &#39;The preferred solution is &#39;
+          &#39;to cancel the timer or stop listening to the animation in the dispose() &#39;
+          &#39;callback. Another solution is to check the &quot;mounted&quot; property of this &#39;
+          &#39;object before calling setState() to ensure the object is still in the &#39;
+          &#39;tree.&#39;
+        ),
+        ErrorHint(
+          &#39;This error might indicate a memory leak if setState() is being called &#39;
+          &#39;because another object is retaining a reference to this State object &#39;
+          &#39;after it has been removed from the tree. To avoid memory leaks, &#39;
+          &#39;consider breaking the reference to this object during dispose().&#39;
+        ),
+      ]);
     }
     if (_debugLifecycleState == _StateLifecycle.created &amp;&amp; !mounted) {
-      throw FlutterError(
-        &#39;setState() called in constructor: $this\n&#39;
-        &#39;This happens when you call setState() on a State object for a widget that &#39;
-        &#39;hasn\&#39;t been inserted into the widget tree yet. It is not necessary to call &#39;
-        &#39;setState() in the constructor, since the state is already assumed to be dirty &#39;
-        &#39;when it is initially created.&#39;
-      );
+      throw FlutterError.fromParts(&lt;DiagnosticsNode&gt;[
+        ErrorSummary(&#39;setState() called in constructor: $this&#39;),
+        ErrorHint(
+          &#39;This happens when you call setState() on a State object for a widget that &#39;
+          &#39;hasn\&#39;t been inserted into the widget tree yet. It is not necessary to call &#39;
+          &#39;setState() in the constructor, since the state is already assumed to be dirty &#39;
+          &#39;when it is initially created.&#39;
+        )
+      ]);
     }
     return true;
   }());
   final dynamic result = fn() as dynamic;
   assert(() {
     if (result is Future) {
-      throw FlutterError(
-        &#39;setState() callback argument returned a Future.\n&#39;
-        &#39;The setState() method on $this was called with a closure or method that &#39;
-        &#39;returned a Future. Maybe it is marked as &quot;async&quot;.\n&#39;
-        &#39;Instead of performing asynchronous work inside a call to setState(), first &#39;
-        &#39;execute the work (without updating the widget state), and then synchronously &#39;
-        &#39;update the state inside a call to setState().&#39;
-      );
+      throw FlutterError.fromParts(&lt;DiagnosticsNode&gt;[
+        ErrorSummary(&#39;setState() callback argument returned a Future.&#39;),
+        ErrorDescription(
+          &#39;The setState() method on $this was called with a closure or method that &#39;
+          &#39;returned a Future. Maybe it is marked as &quot;async&quot;.&#39;
+        ),
+        ErrorHint(
+          &#39;Instead of performing asynchronous work inside a call to setState(), first &#39;
+          &#39;execute the work (without updating the widget state), and then synchronously &#39;
+         &#39;update the state inside a call to setState().&#39;
+        )
+      ]);
     }
     &#47;&#47; We ignore other types of return values so that you can do things like:
     &#47;&#47;   setState(() =&gt; x = 3);

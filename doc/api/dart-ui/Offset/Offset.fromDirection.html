@@ -118,7 +118,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">factory Offset.fromDirection(double direction, [ double distance = 1.0 ]) {
-  return new Offset(distance * math.cos(direction), distance * math.sin(direction));
+  return Offset(distance * math.cos(direction), distance * math.sin(direction));
 }</code></pre>
     </section>
 

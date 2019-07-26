@@ -65,6 +65,7 @@
     
       <li class="section-title"><a href="dart-ui/SceneHost-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/SceneHost/dispose.html">dispose</a></li>
+      <li><a href="dart-ui/SceneHost/setOpacity.html">setOpacity</a></li>
       <li><a href="dart-ui/SceneHost/setProperties.html">setProperties</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
@@ -82,19 +83,18 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">SceneHost.fromViewHolderToken</span>(<wbr><span class="parameter" id="fromViewHolderToken-param-viewHolderTokenHandle"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderTokenHandle</span>, </span> <span class="parameter" id="fromViewHolderToken-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)
+      <span class="name ">SceneHost.fromViewHolderToken</span>(<wbr><span class="parameter" id="fromViewHolderToken-param-viewHolderToken"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderToken</span>, </span> <span class="parameter" id="fromViewHolderToken-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="fromViewHolderToken-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">SceneHost.fromViewHolderToken(
-    dynamic viewHolderTokenHandle,
+    dynamic viewHolderToken,
     void Function() viewConnectedCallback,
     void Function() viewDisconnectedCallback,
     void Function(bool) viewStateChangedCallback) {
-  _constructorViewHolderToken(viewHolderTokenHandle, viewConnectedCallback,
-      viewDisconnectedCallback, viewStateChangedCallback);
+  _constructor(viewHolderToken, viewConnectedCallback, viewDisconnectedCallback, viewStateChangedCallback);
 }</code></pre>
     </section>
 

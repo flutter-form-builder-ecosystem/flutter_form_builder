@@ -135,15 +135,15 @@
 
   final int rectCount = rects.length;
   if (rstTransforms.length != rectCount)
-    throw new ArgumentError(&#39;&quot;rstTransforms&quot; and &quot;rects&quot; lengths must match.&#39;);
+    throw ArgumentError(&#39;&quot;rstTransforms&quot; and &quot;rects&quot; lengths must match.&#39;);
   if (rectCount % 4 != 0)
-    throw new ArgumentError(&#39;&quot;rstTransforms&quot; and &quot;rects&quot; lengths must be a multiple of four.&#39;);
+    throw ArgumentError(&#39;&quot;rstTransforms&quot; and &quot;rects&quot; lengths must be a multiple of four.&#39;);
   if (colors != null &amp;&amp; colors.length * 4 != rectCount)
-    throw new ArgumentError(&#39;If non-null, &quot;colors&quot; length must be one fourth the length of &quot;rstTransforms&quot; and &quot;rects&quot;.&#39;);
+    throw ArgumentError(&#39;If non-null, &quot;colors&quot; length must be one fourth the length of &quot;rstTransforms&quot; and &quot;rects&quot;.&#39;);
 
   _drawAtlas(
     paint._objects, paint._data, atlas, rstTransforms, rects,
-    colors, blendMode.index, cullRect?._value
+    colors, blendMode.index, cullRect?._value32
   );
 }</code></pre>
     </section>

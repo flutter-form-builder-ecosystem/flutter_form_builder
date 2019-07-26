@@ -159,6 +159,8 @@
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
@@ -184,8 +186,11 @@
       <div><h1>RawSocket class </h1></div>
 
     <section class="desc markdown">
-      <p>The <a href="dart-io/RawSocket-class.html">RawSocket</a> is a low-level interface to a socket, exposing the raw
-events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of <a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.</p>
+      <p>A <a href="dart-io/RawSocket-class.html">RawSocket</a> is an unbuffered interface to a TCP socket.</p>
+<p>The raw socket delivers the data stream in the same chunks as the underlying
+operating system.</p>
+<p>It is not the same as a
+<a href="http://man7.org/linux/man-pages/man7/raw.7.html">POSIX raw socket</a>.</p>
     </section>
     
     <section>
@@ -374,7 +379,7 @@ underlying connection is completely destroyed. <a href="dart-io/RawSocket/close.
         <dd>
           Use <a href="dart-io/RawSocket/getRawOption.html">getRawOption</a> to get low level information about the <a href="dart-io/RawSocket-class.html">RawSocket</a>. See
 <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> for available options. <a href="dart-io/RawSocket/getRawOption.html">[...]</a>
-                  
+                  <div class="features">@Since(&quot;2.2&quot;)</div>
 </dd>
         <dt id="read" class="callable">
           <span class="name"><a href="dart-io/RawSocket/read.html">read</a></span><span class="signature">(<wbr>[<span class="parameter" id="read-param-len"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">len</span></span> ])
@@ -407,7 +412,7 @@ available options. <a href="dart-io/RawSocket/setOption.html">[...]</a>
         <dd>
           Use <a href="dart-io/RawSocket/setRawOption.html">setRawOption</a> to customize the <a href="dart-io/RawSocket-class.html">RawSocket</a>. See <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> for
 available options. <a href="dart-io/RawSocket/setRawOption.html">[...]</a>
-                  
+                  <div class="features">@Since(&quot;2.2&quot;)</div>
 </dd>
         <dt id="shutdown" class="callable">
           <span class="name"><a href="dart-io/RawSocket/shutdown.html">shutdown</a></span><span class="signature">(<wbr><span class="parameter" id="shutdown-param-direction"><span class="type-annotation"><a href="dart-io/SocketDirection-class.html">SocketDirection</a></span> <span class="parameter-name">direction</span></span>)

@@ -127,7 +127,7 @@ be a column-major matrix packed into a list of 16 values.</p>
      super._() {
   _validateColorStops(colors, colorStops);
   final Int32List colorsBuffer = _encodeColorList(colors);
-  final Float32List colorStopsBuffer = colorStops == null ? null : new Float32List.fromList(colorStops);
+  final Float32List colorStopsBuffer = colorStops == null ? null : Float32List.fromList(colorStops);
   _constructor();
   _initSweep(center.dx, center.dy, colorsBuffer, colorStopsBuffer, tileMode.index, startAngle, endAngle, matrix4);
 }</code></pre>

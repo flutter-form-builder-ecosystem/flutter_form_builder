@@ -142,6 +142,9 @@ in the output.</p>
   String joiner = &#39;, &#39;,
   DiagnosticLevel minLevel = DiagnosticLevel.debug,
 }) {
+  if (kReleaseMode) {
+    return toString();
+  }
   final StringBuffer result = StringBuffer();
   result.write(toString());
   result.write(joiner);

@@ -143,10 +143,10 @@ right-hand-side operand.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">OffsetBase operator -(OffsetBase other) {
   if (other is Size)
-    return new Offset(width - other.width, height - other.height);
+    return Offset(width - other.width, height - other.height);
   if (other is Offset)
-    return new Size(width - other.dx, height - other.dy);
-  throw new ArgumentError(other);
+    return Size(width - other.dx, height - other.dy);
+  throw ArgumentError(other);
 }</code></pre>
     </section>
 

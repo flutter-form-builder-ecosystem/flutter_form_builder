@@ -11,6 +11,10 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
+  final Color borderColor;
+  final Color selectedColor;
+  final Color pressedColor;
+  final TextStyle textStyle;
 
   final List<FormBuilderFieldOption> options;
 
@@ -27,6 +31,10 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
+    this.borderColor,
+    this.selectedColor,
+    this.pressedColor,
+    this.textStyle,
     this.padding,
     this.unselectedColor,
   });
@@ -38,7 +46,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
 
 class _FormBuilderSegmentedControlState
     extends State<FormBuilderSegmentedControl> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   dynamic _initialValue;
@@ -62,12 +70,12 @@ class _FormBuilderSegmentedControlState
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readonly == true) ? true : widget.readonly;
 
     return FormField(
       key: _fieldKey,
       initialValue: _initialValue,
-      enabled: !_readonly,
+      enabled: !_readOnly,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
@@ -85,7 +93,7 @@ class _FormBuilderSegmentedControlState
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readonly,
+            enabled: !_readOnly,
             errorText: field.errorText,
             contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
             border: InputBorder.none,
@@ -93,29 +101,31 @@ class _FormBuilderSegmentedControlState
           child: Padding(
             padding: EdgeInsets.only(top: 10.0),
             child: CupertinoSegmentedControl(
-              borderColor: _readonly
+              borderColor: _readOnly
                   ? Theme.of(context).disabledColor
-                  : Theme.of(context).primaryColor,
-              selectedColor: _readonly
+                  : widget.borderColor ?? Theme.of(context).primaryColor,
+              selectedColor: _readOnly
                   ? Theme.of(context).disabledColor
-                  : Theme.of(context).primaryColor,
-              pressedColor: _readonly
+                  : widget.selectedColor ?? Theme.of(context).primaryColor,
+              pressedColor: _readOnly
                   ? Theme.of(context).disabledColor
-                  : Theme.of(context).primaryColor,
+                  : widget.pressedColor ?? Theme.of(context).primaryColor,
               groupValue: field.value,
               children: Map.fromIterable(
                 widget.options,
                 key: (v) => v.value,
                 value: (v) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text("${v.label ?? v.value}"),
+                  child: Text("${v.label ?? v.value}",
+                style: widget.textStyle,
+                  ),
                 ),
               ),
               padding: widget.padding,
               unselectedColor: widget.unselectedColor,
               onValueChanged: (dynamic value) {
                 FocusScope.of(context).requestFocus(FocusNode());
-                if (_readonly) {
+                if (_readOnly) {
                   field.reset();
                 } else {
                   field.didChange(value);

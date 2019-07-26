@@ -93,7 +93,7 @@
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">const TextPosition({
   this.offset,
-  this.affinity: TextAffinity.downstream,
+  this.affinity = TextAffinity.downstream,
 }) : assert(offset != null),
      assert(affinity != null);</code></pre>
     </section>

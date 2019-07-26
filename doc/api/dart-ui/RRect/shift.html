@@ -73,6 +73,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -110,12 +111,12 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
     
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -135,27 +136,19 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">RRect shift(Offset offset) {
-  return new RRect.fromLTRBAndCorners(
-    _value[0] + offset.dx,
-    _value[1] + offset.dy,
-    _value[2] + offset.dx,
-    _value[3] + offset.dy,
-    topLeft: new Radius.elliptical(
-      _value[4],
-      _value[5]
-    ),
-    topRight: new Radius.elliptical(
-      _value[6],
-      _value[7]
-    ),
-    bottomRight: new Radius.elliptical(
-      _value[8],
-      _value[9]
-    ),
-    bottomLeft: new Radius.elliptical(
-      _value[10],
-      _value[11]
-    )
+  return RRect._raw(
+    left: left + offset.dx,
+    top: top + offset.dy,
+    right: right + offset.dx,
+    bottom: bottom + offset.dy,
+    tlRadiusX: tlRadiusX,
+    tlRadiusY: tlRadiusY,
+    trRadiusX: trRadiusX,
+    trRadiusY: trRadiusY,
+    blRadiusX: blRadiusX,
+    blRadiusY: blRadiusY,
+    brRadiusX: brRadiusX,
+    brRadiusY: brRadiusY,
   );
 }</code></pre>
     </section>

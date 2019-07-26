@@ -128,6 +128,12 @@ entire layer is merged with the destination. <a href="dart-ui/ColorFilter-class.
         <dd>
           A handle for the framework to hold and retain an engine layer across frames.
         </dd>
+        <dt id="FontFeature">
+          <span class="name "><a href="dart-ui/FontFeature-class.html">FontFeature</a></span>         
+        </dt>
+        <dd>
+          A feature tag and value that affect the selection of glyphs in a font.
+        </dd>
         <dt id="FontWeight">
           <span class="name "><a href="dart-ui/FontWeight-class.html">FontWeight</a></span>         
         </dt>
@@ -139,6 +145,12 @@ entire layer is merged with the destination. <a href="dart-ui/ColorFilter-class.
         </dt>
         <dd>
           Information for a single frame of an animation. <a href="dart-ui/FrameInfo-class.html">[...]</a>
+        </dd>
+        <dt id="FrameTiming">
+          <span class="name "><a href="dart-ui/FrameTiming-class.html">FrameTiming</a></span>         
+        </dt>
+        <dd>
+          Time-related performance metrics of a frame. <a href="dart-ui/FrameTiming-class.html">[...]</a>
         </dd>
         <dt id="Gradient">
           <span class="name "><a href="dart-ui/Gradient-class.html">Gradient</a></span>         
@@ -463,7 +475,7 @@ other such core services.
                   
 </dd>
         <dt id="decodeImageFromPixels" class="callable">
-          <span class="name"><a href="dart-ui/decodeImageFromPixels.html">decodeImageFromPixels</a></span><span class="signature">(<wbr><span class="parameter" id="decodeImageFromPixels-param-pixels"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">pixels</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-format"><span class="type-annotation"><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-callback"><span class="type-annotation"><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></span> <span class="parameter-name">callback</span>, {</span> <span class="parameter" id="decodeImageFromPixels-param-rowBytes"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">rowBytes</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-decodedCacheRatioCap"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">decodedCacheRatioCap</span>: <span class="default-value">double.infinity</span></span> })
+          <span class="name"><a href="dart-ui/decodeImageFromPixels.html">decodeImageFromPixels</a></span><span class="signature">(<wbr><span class="parameter" id="decodeImageFromPixels-param-pixels"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">pixels</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-format"><span class="type-annotation"><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-callback"><span class="type-annotation"><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></span> <span class="parameter-name">callback</span>, {</span> <span class="parameter" id="decodeImageFromPixels-param-rowBytes"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">rowBytes</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-targetWidth"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetWidth</span>, </span> <span class="parameter" id="decodeImageFromPixels-param-targetHeight"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetHeight</span></span> })
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -492,7 +504,7 @@ given null as if given an empty list.
                   
 </dd>
         <dt id="instantiateImageCodec" class="callable">
-          <span class="name"><a href="dart-ui/instantiateImageCodec.html">instantiateImageCodec</a></span><span class="signature">(<wbr><span class="parameter" id="instantiateImageCodec-param-list"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">list</span>, {</span> <span class="parameter" id="instantiateImageCodec-param-decodedCacheRatioCap"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">decodedCacheRatioCap</span>: <span class="default-value">double.infinity</span></span> })
+          <span class="name"><a href="dart-ui/instantiateImageCodec.html">instantiateImageCodec</a></span><span class="signature">(<wbr><span class="parameter" id="instantiateImageCodec-param-list"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">list</span>, {</span> <span class="parameter" id="instantiateImageCodec-param-targetWidth"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetWidth</span>, </span> <span class="parameter" id="instantiateImageCodec-param-targetHeight"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">targetHeight</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Codec-class.html">Codec</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -597,6 +609,12 @@ region. <a href="dart-ui/ClipOp-class.html">[...]</a>
         <dd>
           Whether to slant the glyphs in the font
         </dd>
+        <dt id="FramePhase">
+          <span class="name "><a href="dart-ui/FramePhase-class.html">FramePhase</a></span>         
+        </dt>
+        <dd>
+          Various important time points in the lifetime of a frame. <a href="dart-ui/FramePhase-class.html">[...]</a>
+        </dd>
         <dt id="ImageByteFormat">
           <span class="name "><a href="dart-ui/ImageByteFormat-class.html">ImageByteFormat</a></span>         
         </dt>
@@ -628,6 +646,12 @@ calculated. <a href="dart-ui/PathFillType-class.html">[...]</a>
         </dt>
         <dd>
           The format of pixel data given to <a href="dart-ui/decodeImageFromPixels.html">decodeImageFromPixels</a>.
+        </dd>
+        <dt id="PlaceholderAlignment">
+          <span class="name "><a href="dart-ui/PlaceholderAlignment-class.html">PlaceholderAlignment</a></span>         
+        </dt>
+        <dd>
+          Where to vertically align the placeholder relative to the surrounding text. <a href="dart-ui/PlaceholderAlignment-class.html">[...]</a>
         </dd>
         <dt id="PointerChange">
           <span class="name "><a href="dart-ui/PointerChange-class.html">PointerChange</a></span>         
@@ -769,6 +793,15 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
           Signature for <a href="dart-ui/Window/onSemanticsAction.html">Window.onSemanticsAction</a>.
                   
 </dd>
+        <dt id="TimingsCallback" class="callable">
+          <span class="name"><a href="dart-ui/TimingsCallback.html">TimingsCallback</a></span><span class="signature">(<wbr><span class="parameter" id="TimingsCallback-param-timings"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/FrameTiming-class.html">FrameTiming</a></span>&gt;</span></span> <span class="parameter-name">timings</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd>
+          Signature for <a href="dart-ui/Window/onReportTimings.html">Window.onReportTimings</a>. <a href="dart-ui/TimingsCallback.html">[...]</a>
+                  
+</dd>
         <dt id="VoidCallback" class="callable">
           <span class="name"><a href="dart-ui/VoidCallback.html">VoidCallback</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; void</span>
@@ -795,8 +828,10 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
       <li><a href="dart-ui/Color-class.html">Color</a></li>
       <li><a href="dart-ui/ColorFilter-class.html">ColorFilter</a></li>
       <li><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></li>
+      <li><a href="dart-ui/FontFeature-class.html">FontFeature</a></li>
       <li><a href="dart-ui/FontWeight-class.html">FontWeight</a></li>
       <li><a href="dart-ui/FrameInfo-class.html">FrameInfo</a></li>
+      <li><a href="dart-ui/FrameTiming-class.html">FrameTiming</a></li>
       <li><a href="dart-ui/Gradient-class.html">Gradient</a></li>
       <li><a href="dart-ui/Image-class.html">Image</a></li>
       <li><a href="dart-ui/ImageFilter-class.html">ImageFilter</a></li>
@@ -870,11 +905,13 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
       <li><a href="dart-ui/ClipOp-class.html">ClipOp</a></li>
       <li><a href="dart-ui/FilterQuality-class.html">FilterQuality</a></li>
       <li><a href="dart-ui/FontStyle-class.html">FontStyle</a></li>
+      <li><a href="dart-ui/FramePhase-class.html">FramePhase</a></li>
       <li><a href="dart-ui/ImageByteFormat-class.html">ImageByteFormat</a></li>
       <li><a href="dart-ui/PaintingStyle-class.html">PaintingStyle</a></li>
       <li><a href="dart-ui/PathFillType-class.html">PathFillType</a></li>
       <li><a href="dart-ui/PathOperation-class.html">PathOperation</a></li>
       <li><a href="dart-ui/PixelFormat-class.html">PixelFormat</a></li>
+      <li><a href="dart-ui/PlaceholderAlignment-class.html">PlaceholderAlignment</a></li>
       <li><a href="dart-ui/PointerChange-class.html">PointerChange</a></li>
       <li><a href="dart-ui/PointerDeviceKind-class.html">PointerDeviceKind</a></li>
       <li><a href="dart-ui/PointerSignalKind-class.html">PointerSignalKind</a></li>
@@ -896,6 +933,7 @@ different locations in the rendered string. <a href="dart-ui/TextAffinity-class.
       <li><a href="dart-ui/PlatformMessageResponseCallback.html">PlatformMessageResponseCallback</a></li>
       <li><a href="dart-ui/PointerDataPacketCallback.html">PointerDataPacketCallback</a></li>
       <li><a href="dart-ui/SemanticsActionCallback.html">SemanticsActionCallback</a></li>
+      <li><a href="dart-ui/TimingsCallback.html">TimingsCallback</a></li>
       <li><a href="dart-ui/VoidCallback.html">VoidCallback</a></li>
     
     </ol>

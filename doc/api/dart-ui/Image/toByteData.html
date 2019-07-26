@@ -95,7 +95,7 @@ if encoding fails.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Future&lt;ByteData&gt; toByteData({ImageByteFormat format: ImageByteFormat.rawRgba}) {
+      <pre class="language-dart"><code class="language-dart">Future&lt;ByteData&gt; toByteData({ImageByteFormat format = ImageByteFormat.rawRgba}) {
   return _futurize((_Callback&lt;ByteData&gt; callback) {
     return _toByteData(format.index, (Uint8List encoded) {
       callback(encoded?.buffer?.asByteData());

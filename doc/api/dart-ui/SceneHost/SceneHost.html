@@ -65,6 +65,7 @@
     
       <li class="section-title"><a href="dart-ui/SceneHost-class.html#instance-methods">Methods</a></li>
       <li><a href="dart-ui/SceneHost/dispose.html">dispose</a></li>
+      <li><a href="dart-ui/SceneHost/setOpacity.html">setOpacity</a></li>
       <li><a href="dart-ui/SceneHost/setProperties.html">setProperties</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
@@ -82,25 +83,28 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">SceneHost</span>(<wbr><span class="parameter" id="-param-exportTokenHandle"><span class="type-annotation">dynamic</span> <span class="parameter-name">exportTokenHandle</span></span>)
+      <span class="name ">SceneHost</span>(<wbr><span class="parameter" id="-param-viewHolderToken"><span class="type-annotation">dynamic</span> <span class="parameter-name">viewHolderToken</span>, </span> <span class="parameter" id="-param-viewConnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewConnectedCallback</span>(), </span> <span class="parameter" id="-param-viewDisconnectedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewDisconnectedCallback</span>(), </span> <span class="parameter" id="-param-viewStateChangedCallback"><span class="type-annotation">void</span> <span class="parameter-name">viewStateChangedCallback</span>(<span class="parameter" id="viewStateChangedCallback-param-"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span></span>)</span>)
     </section>
 
     <section class="desc markdown">
-      <p>Creates a host for a child scene.</p>
-<p>The export token is bound to a scene graph node which acts as a container
-for the child's content.  The creator of the scene host is responsible for
-sending the corresponding import token (the other endpoint of the event pair)
-to the child.</p>
-<p>The export token is a dart:zircon Handle, but that type isn't
+      <p>Creates a host for a child scene's content.</p>
+<p>The ViewHolder token is bound to a ViewHolder scene graph node which acts
+as a container for the child's content.  The creator of the SceneHost is
+responsible for sending the corresponding ViewToken to the child.</p>
+<p>The ViewHolder token is a dart:zircon Handle, but that type isn't
 available here. This is called by ChildViewConnection in
 //topaz/public/dart/fuchsia_scenic_flutter/.</p>
-<p>The scene host takes ownership of the provided export token handle.</p>
+<p>The SceneHost takes ownership of the provided ViewHolder token.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">SceneHost(dynamic exportTokenHandle) {
-  _constructor(exportTokenHandle);
+      <pre class="language-dart"><code class="language-dart">SceneHost(
+    dynamic viewHolderToken,
+    void Function() viewConnectedCallback,
+    void Function() viewDisconnectedCallback,
+    void Function(bool) viewStateChangedCallback) {
+  _constructor(viewHolderToken, viewConnectedCallback, viewDisconnectedCallback, viewStateChangedCallback);
 }</code></pre>
     </section>
 

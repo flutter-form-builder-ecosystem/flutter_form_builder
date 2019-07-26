@@ -113,10 +113,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">EngineLayer pushTransform(Float64List matrix4) {
-  if (matrix4 == null)
-    throw new ArgumentError(&#39;&quot;matrix4&quot; argument cannot be null&#39;);
-  if (matrix4.length != 16)
-    throw new ArgumentError(&#39;&quot;matrix4&quot; must have 16 entries.&#39;);
+  assert(_matrix4IsValid(matrix4));
   return _pushTransform(matrix4);
 }</code></pre>
     </section>

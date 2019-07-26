@@ -120,7 +120,7 @@ overlay each other: instead, just paint one with the combined color.</p>
   final int invAlpha = 0xff - alpha;
   int backAlpha = background.alpha;
   if (backAlpha == 0xff) { &#47;&#47; Opaque background case
-    return new Color.fromARGB(
+    return Color.fromARGB(
       0xff,
       (alpha * foreground.red + invAlpha * background.red) ~&#47; 0xff,
       (alpha * foreground.green + invAlpha * background.green) ~&#47; 0xff,
@@ -130,7 +130,7 @@ overlay each other: instead, just paint one with the combined color.</p>
     backAlpha = (backAlpha * invAlpha) ~&#47; 0xff;
     final int outAlpha = alpha + backAlpha;
     assert(outAlpha != 0x00);
-    return new Color.fromARGB(
+    return Color.fromARGB(
       outAlpha,
       (foreground.red * alpha + background.red * backAlpha) ~&#47; outAlpha,
       (foreground.green * alpha + background.green * backAlpha) ~&#47; outAlpha,

@@ -97,9 +97,9 @@
       <pre class="language-dart"><code class="language-dart">@override
 String toString() {
   return &#39;TextStyle(&#39;
-           &#39;color: ${              _encoded[0] &amp; 0x00002 == 0x00002  ? new Color(_encoded[1])                  : &quot;unspecified&quot;}, &#39;
-           &#39;decoration: ${         _encoded[0] &amp; 0x00004 == 0x00004  ? new TextDecoration._(_encoded[2])       : &quot;unspecified&quot;}, &#39;
-           &#39;decorationColor: ${    _encoded[0] &amp; 0x00008 == 0x00008  ? new Color(_encoded[3])                  : &quot;unspecified&quot;}, &#39;
+           &#39;color: ${              _encoded[0] &amp; 0x00002 == 0x00002  ? Color(_encoded[1])                  : &quot;unspecified&quot;}, &#39;
+           &#39;decoration: ${         _encoded[0] &amp; 0x00004 == 0x00004  ? TextDecoration._(_encoded[2])       : &quot;unspecified&quot;}, &#39;
+           &#39;decorationColor: ${    _encoded[0] &amp; 0x00008 == 0x00008  ? Color(_encoded[3])                  : &quot;unspecified&quot;}, &#39;
            &#39;decorationStyle: ${    _encoded[0] &amp; 0x00010 == 0x00010  ? TextDecorationStyle.values[_encoded[4]] : &quot;unspecified&quot;}, &#39;
            &#47;&#47; The decorationThickness is not in encoded order in order to keep it near the other decoration properties.
            &#39;decorationThickness: ${_encoded[0] &amp; 0x00100 == 0x00100  ? _decorationThickness                    : &quot;unspecified&quot;}, &#39;
@@ -118,7 +118,8 @@ String toString() {
            &#39;locale: ${             _encoded[0] &amp; 0x04000 == 0x04000  ? _locale                                 : &quot;unspecified&quot;}, &#39;
            &#39;background: ${         _encoded[0] &amp; 0x08000 == 0x08000  ? _background                             : &quot;unspecified&quot;}, &#39;
            &#39;foreground: ${         _encoded[0] &amp; 0x10000 == 0x10000  ? _foreground                             : &quot;unspecified&quot;}, &#39;
-           &#39;shadows: ${            _encoded[0] &amp; 0x20000 == 0x20000  ? _shadows                                : &quot;unspecified&quot;}&#39;
+           &#39;shadows: ${            _encoded[0] &amp; 0x20000 == 0x20000  ? _shadows                                : &quot;unspecified&quot;}, &#39;
+           &#39;fontFeatures: ${       _encoded[0] &amp; 0x40000 == 0x40000  ? _fontFeatures                           : &quot;unspecified&quot;}&#39;
          &#39;)&#39;;
 }</code></pre>
     </section>

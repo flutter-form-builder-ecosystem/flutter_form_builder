@@ -89,7 +89,7 @@
 
     <section class="desc markdown">
       <p>A response to a service protocol extension RPC.</p>
-<p>If the RPC was successful, use <a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.result.html">ServiceExtensionResponse.result</a>, otherwise
+<p>If the RPC was successful, use <a href="dart-developer/ServiceExtensionResponse/result.html">ServiceExtensionResponse.result</a>, otherwise
 use <a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.error.html">ServiceExtensionResponse.error</a>.</p>
     </section>
     
@@ -113,10 +113,34 @@ use <a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.er
       </dl>
     </section>
 
-    <section class="summary offset-anchor inherited" id="instance-properties">
+    <section class="summary offset-anchor" id="instance-properties">
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="errorCode" class="property">
+          <span class="name"><a href="dart-developer/ServiceExtensionResponse/errorCode.html">errorCode</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd>
+          The error code associated with a failed service protocol extension RPC.
+                  <div class="features">final</div>
+</dd>
+        <dt id="errorDetail" class="property">
+          <span class="name"><a href="dart-developer/ServiceExtensionResponse/errorDetail.html">errorDetail</a></span>
+          <span class="signature">&#8594; <a href="dart-core/String-class.html">String</a></span>         
+        </dt>
+        <dd>
+          The details of a failed service protocol extension RPC.
+                  <div class="features">final</div>
+</dd>
+        <dt id="result" class="property">
+          <span class="name"><a href="dart-developer/ServiceExtensionResponse/result.html">result</a></span>
+          <span class="signature">&#8594; <a href="dart-core/String-class.html">String</a></span>         
+        </dt>
+        <dd>
+          The result of a successful service protocol extension RPC.
+                  <div class="features">final</div>
+</dd>
         <dt id="hashCode" class="property inherited">
           <span class="name"><a href="dart-core/Object/hashCode.html">hashCode</a></span>
           <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
@@ -139,6 +163,15 @@ use <a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.er
     <section class="summary offset-anchor" id="instance-methods">
       <h2>Methods</h2>
       <dl class="callables">
+        <dt id="isError" class="callable">
+          <span class="name"><a href="dart-developer/ServiceExtensionResponse/isError.html">isError</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/bool-class.html">bool</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Determines if this response represents an error.
+                  
+</dd>
         <dt id="noSuchMethod" class="callable inherited">
           <span class="name"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
@@ -280,13 +313,17 @@ use <a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.er
       <li><a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.error.html">error</a></li>
       <li><a href="dart-developer/ServiceExtensionResponse/ServiceExtensionResponse.result.html">result</a></li>
     
-      <li class="section-title inherited">
+      <li class="section-title">
         <a href="dart-developer/ServiceExtensionResponse-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="dart-developer/ServiceExtensionResponse/errorCode.html">errorCode</a></li>
+      <li><a href="dart-developer/ServiceExtensionResponse/errorDetail.html">errorDetail</a></li>
+      <li><a href="dart-developer/ServiceExtensionResponse/result.html">result</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
       <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
       <li class="section-title"><a href="dart-developer/ServiceExtensionResponse-class.html#instance-methods">Methods</a></li>
+      <li><a href="dart-developer/ServiceExtensionResponse/isError.html">isError</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
       <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
     
