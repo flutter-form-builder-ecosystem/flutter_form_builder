@@ -14,6 +14,10 @@ class FormBuilderSegmentedControl extends StatefulWidget {
 
   final List<FormBuilderFieldOption> options;
 
+  final EdgeInsetsGeometry padding;
+
+  final Color unselectedColor;
+
   FormBuilderSegmentedControl({
     @required this.attribute,
     @required this.options,
@@ -23,6 +27,8 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
+    this.padding,
+    this.unselectedColor,
   });
 
   @override
@@ -35,11 +41,16 @@ class _FormBuilderSegmentedControlState
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  dynamic _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     super.initState();
   }
 
@@ -55,7 +66,7 @@ class _FormBuilderSegmentedControlState
 
     return FormField(
       key: _fieldKey,
-      initialValue: widget.initialValue,
+      initialValue: _initialValue,
       enabled: !_readonly,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -96,10 +107,12 @@ class _FormBuilderSegmentedControlState
                 widget.options,
                 key: (v) => v.value,
                 value: (v) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text("${v.label ?? v.value}"),
-                    ),
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text("${v.label ?? v.value}"),
+                ),
               ),
+              padding: widget.padding,
+              unselectedColor: widget.unselectedColor,
               onValueChanged: (dynamic value) {
                 FocusScope.of(context).requestFocus(FocusNode());
                 if (_readonly) {

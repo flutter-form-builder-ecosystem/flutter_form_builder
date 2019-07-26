@@ -48,11 +48,13 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  num _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
     super.initState();
   }
 
@@ -69,7 +71,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
     return FormField(
       key: _fieldKey,
       enabled: !_readonly,
-      initialValue: widget.initialValue,
+      initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)

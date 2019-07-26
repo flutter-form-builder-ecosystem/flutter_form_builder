@@ -20,6 +20,9 @@ class FormBuilderDropdown extends StatefulWidget {
   final Widget disabledHint;
   final double iconSize;
   final Widget underline;
+  final Widget icon;
+  final Color iconDisabledColor;
+  final Color iconEnabledColor;
 
   FormBuilderDropdown({
     @required this.attribute,
@@ -37,7 +40,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.disabledHint,
     this.onChanged,
     this.valueTransformer,
-    this.underline,
+    this.underline, this.icon, this.iconDisabledColor, this.iconEnabledColor,
   });
 
   @override
@@ -48,11 +51,16 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  dynamic _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     super.initState();
   }
 
@@ -69,7 +77,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
     return FormField(
       key: _fieldKey,
       enabled: !_readonly,
-      initialValue: widget.initialValue,
+      initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
@@ -102,6 +110,9 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                 : widget.disabledHint,
             elevation: widget.elevation,
             iconSize: widget.iconSize,
+            icon: widget.icon,
+            iconDisabledColor: widget.iconDisabledColor,
+            iconEnabledColor: widget.iconEnabledColor,
             underline: widget.underline,
             onChanged: _readonly
                 ? null

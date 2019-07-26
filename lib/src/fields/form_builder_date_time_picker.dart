@@ -1,5 +1,5 @@
-import 'dart:ui' as ui;
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
@@ -111,47 +111,84 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   /// changes, use the [controller] and [focusNode].
   final ValueChanged<DateTime> onChanged;
 
+  final bool showCursor;
+
+  final int minLines;
+
+  final bool expands;
+
+  final TextInputAction textInputAction;
+
+  final VoidCallback onEditingComplete;
+
+  final InputCounterWidgetBuilder buildCounter;
+
+  // final VoidCallback onEditingComplete,
+  final Radius cursorRadius;
+  final Color cursorColor;
+  final Brightness keyboardAppearance;
+  final EdgeInsets scrollPadding;
+  final bool enableInteractiveSelection;
+
+  final double cursorWidth;
+  final TextCapitalization textCapitalization;
   FormBuilderDateTimePicker({
     @required this.attribute,
     this.validators = const [],
     this.readonly = false,
     this.inputType = InputType.both,
+    this.scrollPadding = const EdgeInsets.all(20.0),
+    this.cursorWidth = 2.0,
+    this.enableInteractiveSelection = true,
+    this.decoration = const InputDecoration(),
+    this.resetIcon = Icons.close,
+    this.initialTime = const TimeOfDay(hour: 12, minute: 0),
+    this.keyboardType = TextInputType.text,
+    this.textAlign = TextAlign.start,
+    this.autofocus = false,
+    this.obscureText = false,
+    this.autocorrect = true,
+    this.maxLines = 1,
+    this.maxLengthEnforced = true,
+    this.expands = false,
+    this.autovalidate = false,
+    this.editable = true,
     this.initialValue,
     this.format,
     this.firstDate,
     this.lastDate,
-    this.decoration = const InputDecoration(),
-    this.editable = true,
     this.onChanged,
-    this.resetIcon = Icons.close,
     this.initialDate,
-    this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.validator,
     this.onSaved,
     this.onFieldSubmitted,
-    this.autovalidate = false,
     this.initialDatePickerMode,
     this.locale,
     this.selectableDayPredicate,
     this.textDirection,
     this.controller,
     this.focusNode,
-    this.keyboardType = TextInputType.text,
     this.style,
-    this.textAlign = TextAlign.start,
-    this.autofocus = false,
-    this.obscureText = false,
-    this.autocorrect = true,
-    this.maxLengthEnforced = true,
     this.enabled,
-    this.maxLines = 1,
     this.maxLength,
     this.inputFormatters,
     this.valueTransformer,
     this.builder,
     this.timePicker,
     this.datePicker,
+    this.showCursor,
+    this.minLines,
+    this.textInputAction,
+    this.onEditingComplete,
+    this.buildCounter,
+    this.cursorRadius,
+    this.cursorColor,
+    this.keyboardAppearance,
+    this.textCapitalization,
+    this.strutStyle,
   });
+
+  final StrutStyle strutStyle;
 
   @override
   _FormBuilderDateTimePickerState createState() =>
@@ -162,6 +199,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  DateTime _initialValue;
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
@@ -173,6 +211,10 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     super.initState();
   }
 
@@ -188,7 +230,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
     return DateTimeField(
       key: _fieldKey,
-      initialValue: widget.initialValue,
+      initialValue: _initialValue,
       format: widget.format != null
           ? widget.format
           : _dateTimeFormats[widget.inputType],
@@ -205,6 +247,23 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             return widget.validators[i](val);
         }
         return null;
+      },
+      onShowPicker: (ctx, time) async {
+        switch (widget.inputType) {
+          case InputType.date:
+            return _showDatePicker(context);
+          case InputType.time:
+            return DateTimeField.convert(await _showTimePicker(context));
+          case InputType.both:
+            final date = await _showDatePicker(context);
+            if (date != null) {
+              final time = await _showTimePicker(context);
+              return DateTimeField.combine(date, time);
+            }
+            return _fieldKey.currentState.value ?? _initialValue;
+          default:
+            throw "unexcepted input type ${widget.inputType}";
+        }
       },
       onChanged: widget.onChanged,
       autovalidate: widget.autovalidate,
@@ -224,23 +283,22 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       maxLengthEnforced: widget.maxLengthEnforced,
       maxLines: widget.maxLines,
       obscureText: widget.obscureText,
-      onShowPicker: (ctx, time) async {
-        switch (widget.inputType) {
-          case InputType.date:
-            return _showDatePicker(context);
-          case InputType.time:
-            return DateTimeField.convert(await _showTimePicker(context));
-          case InputType.both:
-            final date = await _showDatePicker(context);
-            if (date != null) {
-              final time = await _showTimePicker(context);
-              return DateTimeField.combine(date, time);
-            }
-            return _fieldKey.currentState.value ?? widget.initialValue;
-          default:
-            throw "unexcepted input type ${widget.inputType}";
-        }
-      },
+      showCursor: widget.showCursor,
+      minLines: widget.minLines,
+      expands: widget.expands,
+      style: widget.style,
+      onEditingComplete: widget.onEditingComplete,
+      buildCounter: widget.buildCounter,
+      cursorColor: widget.cursorColor,
+      cursorRadius: widget.cursorRadius,
+      cursorWidth: widget.cursorWidth,
+      enableInteractiveSelection: widget.enableInteractiveSelection,
+      keyboardAppearance: widget.keyboardAppearance,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      scrollPadding: widget.scrollPadding,
+      strutStyle: widget.strutStyle,
+      textCapitalization: widget.textCapitalization,
+      textInputAction: widget.textInputAction,
     );
   }
 

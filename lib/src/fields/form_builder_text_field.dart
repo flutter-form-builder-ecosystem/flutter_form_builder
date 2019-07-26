@@ -39,6 +39,9 @@ class FormBuilderTextField extends StatefulWidget {
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
   final InputCounterWidgetBuilder buildCounter;
+  final bool expands;
+  final int minLines;
+  final bool showCursor;
 
   FormBuilderTextField({
     @required this.attribute,
@@ -74,7 +77,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.keyboardAppearance,
     this.buildCounter,
     this.onChanged,
-    this.valueTransformer,
+    this.valueTransformer, this.expands = false, this.minLines, this.showCursor,
   });
 
   @override
@@ -86,16 +89,18 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   TextEditingController _effectiveController;
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  String _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
     if (widget.controller != null)
       _effectiveController = widget.controller;
     else
       _effectiveController = TextEditingController(
-        text: widget.initialValue != null ? "${widget.initialValue}" : '',
+        text: "${_initialValue ?? ''}",
       );
     _effectiveController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
@@ -130,7 +135,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         enabled: !_readonly,
       ),
       autovalidate: widget.autovalidate ?? false,
-      // initialValue: widget.initialValue != null ? "${widget.initialValue}" : '',
+      // initialValue: "${_initialValue ?? ''}",
       maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
@@ -149,11 +154,15 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       maxLengthEnforced: widget.maxLengthEnforced,
       onFieldSubmitted: widget.onFieldSubmitted,
       scrollPadding: widget.scrollPadding,
-      // strutStyle: widget.strutStyle,
       textAlign: widget.textAlign,
       textCapitalization: widget.textCapitalization,
       textDirection: widget.textDirection,
       textInputAction: widget.textInputAction,
+      strutStyle: widget.strutStyle,
+      readOnly: _readonly,
+      expands: widget.expands,
+      minLines: widget.minLines,
+      showCursor: widget.showCursor,
     );
   }
 

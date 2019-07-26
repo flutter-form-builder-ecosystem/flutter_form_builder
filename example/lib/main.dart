@@ -1,3 +1,5 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -52,6 +54,9 @@ class MyHomePageState extends State<MyHomePage> {
                 // context,
                 key: _fbKey,
                 autovalidate: true,
+                initialValue: {
+                  'movie_rating': 5,
+                },
                 // readonly: true,
                 child: Column(
                   children: <Widget>[
@@ -173,8 +178,23 @@ class MyHomePageState extends State<MyHomePage> {
                       initialValue: false,
                       onChanged: _onChanged,
                       leadingInput: true,
-                      label: Text(
-                          "I have read and agree to the terms and conditions"),
+                      // label: Text("I have read and agree to the terms and conditions"),
+                      label: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'I have read and agree to the ',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            TextSpan(
+                              text: 'Terms and Conditions',
+                              style: TextStyle(color: Colors.blue),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {print("launch url");},
+                            ),
+                          ],
+                        ),
+                      ),
                       validators: [
                         FormBuilderValidators.requiredTrue(
                           errorText:
@@ -421,3 +441,5 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+

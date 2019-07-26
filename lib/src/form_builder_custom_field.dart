@@ -34,11 +34,13 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   bool readonly = false;
+  T _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.formField.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
     super.initState();
   }
 
@@ -89,7 +91,7 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
             widget.formField.builder ?? (FormField<T> field) => Container(),
         enabled: widget.formField.enabled,
         autovalidate: widget.formField.autovalidate,
-        initialValue: widget.formField.initialValue,
+        initialValue: _initialValue,
       ), //widget.formField,
     );
   }

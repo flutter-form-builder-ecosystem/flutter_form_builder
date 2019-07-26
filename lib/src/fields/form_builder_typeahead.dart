@@ -81,12 +81,14 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  String _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _typeAheadController = TextEditingController(text: widget.initialValue);
+    _initialValue = widget.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
+    _typeAheadController = TextEditingController(text: _initialValue);
     _typeAheadController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
     });
@@ -113,7 +115,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
         } else
           _formState?.setAttributeValue(widget.attribute, val);
       },
-      // initialValue: widget.initialValue,
+      // initialValue: _initialValue,
       autovalidate: widget.autovalidate,
       textFieldConfiguration: widget.textFieldConfiguration.copyWith(
         enabled: !_readonly,

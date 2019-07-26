@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -13,6 +14,54 @@ class FormBuilderSwitch extends StatefulWidget {
 
   final Widget label;
 
+  /// The color to use when this switch is on.
+  ///
+  /// Defaults to [ThemeData.toggleableActiveColor].
+  final Color activeColor;
+
+  /// The color to use on the track when this switch is on.
+  ///
+  /// Defaults to [ThemeData.toggleableActiveColor] with the opacity set at 50%.
+  ///
+  /// Ignored if this switch is created with [Switch.adaptive].
+  final Color activeTrackColor;
+
+  /// The color to use on the thumb when this switch is off.
+  ///
+  /// Defaults to the colors described in the Material design specification.
+  ///
+  /// Ignored if this switch is created with [Switch.adaptive].
+  final Color inactiveThumbColor;
+
+  /// The color to use on the track when this switch is off.
+  ///
+  /// Defaults to the colors described in the Material design specification.
+  ///
+  /// Ignored if this switch is created with [Switch.adaptive].
+  final Color inactiveTrackColor;
+
+  /// An image to use on the thumb of this switch when the switch is on.
+  ///
+  /// Ignored if this switch is created with [Switch.adaptive].
+  final ImageProvider activeThumbImage;
+
+  /// An image to use on the thumb of this switch when the switch is off.
+  ///
+  /// Ignored if this switch is created with [Switch.adaptive].
+  final ImageProvider inactiveThumbImage;
+
+  /// Configures the minimum size of the tap target.
+  ///
+  /// Defaults to [ThemeData.materialTapTargetSize].
+  ///
+  /// See also:
+  ///
+  ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
+  final MaterialTapTargetSize materialTapTargetSize;
+
+  /// {@macro flutter.cupertino.switch.dragStartBehavior}
+  final DragStartBehavior dragStartBehavior;
+
   FormBuilderSwitch({
     @required this.attribute,
     @required this.label,
@@ -22,6 +71,13 @@ class FormBuilderSwitch extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
+    this.activeColor,
+    this.activeTrackColor,
+    this.inactiveThumbColor,
+    this.inactiveTrackColor,
+    this.activeThumbImage,
+    this.inactiveThumbImage,
+    this.materialTapTargetSize, this.dragStartBehavior = DragStartBehavior.start,
   });
 
   @override
@@ -32,11 +88,16 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  bool _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     super.initState();
   }
 
@@ -53,7 +114,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
     return FormField(
         key: _fieldKey,
         enabled: !_readonly,
-        initialValue: widget.initialValue ?? false,
+        initialValue: _initialValue ?? false,
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
             if (widget.validators[i](val) != null)
@@ -88,6 +149,14 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                         field.didChange(value);
                         if (widget.onChanged != null) widget.onChanged(value);
                       },
+                activeColor: widget.activeColor,
+                activeThumbImage: widget.activeThumbImage,
+                activeTrackColor: widget.activeTrackColor,
+                dragStartBehavior: widget.dragStartBehavior,
+                inactiveThumbColor: widget.inactiveThumbColor,
+                inactiveThumbImage: widget.activeThumbImage,
+                inactiveTrackColor: widget.inactiveTrackColor,
+                materialTapTargetSize: widget.materialTapTargetSize,
               ),
               onTap: _readonly
                   ? null

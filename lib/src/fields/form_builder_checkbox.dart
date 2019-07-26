@@ -43,11 +43,13 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
   bool _readonly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+  bool _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
     super.initState();
   }
 
@@ -91,7 +93,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
     return FormField(
       key: _fieldKey,
       enabled: !_readonly,
-      initialValue: widget.initialValue ?? false,
+      initialValue: _initialValue ?? false,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
