@@ -14,6 +14,7 @@ class FormBuilderTextField extends StatefulWidget {
 
   final bool autovalidate;
   final int maxLines;
+  final int minLines;
   final TextInputType keyboardType;
   final bool obscureText;
   final TextStyle style;
@@ -48,6 +49,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
     this.maxLines = 1,
+    this.minLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -132,6 +134,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       autovalidate: widget.autovalidate ?? false,
       // initialValue: widget.initialValue != null ? "${widget.initialValue}" : '',
       maxLines: widget.maxLines,
+      minLines: widget.minLines,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
       onEditingComplete: widget.onEditingComplete,
