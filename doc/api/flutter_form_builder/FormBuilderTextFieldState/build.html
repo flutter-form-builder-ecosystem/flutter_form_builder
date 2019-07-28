@@ -182,7 +182,7 @@ prints green, as expected.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+  _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
   return TextFormField(
     key: _fieldKey,
@@ -200,14 +200,14 @@ Widget build(BuildContext context) {
       } else
         _formState?.setAttributeValue(widget.attribute, val);
     },
-    enabled: !_readonly,
+    enabled: !_readOnly,
     style: widget.style,
-    focusNode: _readonly ? AlwaysDisabledFocusNode() : widget.focusNode,
+    focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
     decoration: widget.decoration.copyWith(
-      enabled: !_readonly,
+      enabled: !_readOnly,
     ),
     autovalidate: widget.autovalidate ?? false,
-    &#47;&#47; initialValue: widget.initialValue != null ? &quot;${widget.initialValue}&quot; : &#39;&#39;,
+    &#47;&#47; initialValue: &quot;${_initialValue ?? &#39;&#39;}&quot;,
     maxLines: widget.maxLines,
     keyboardType: widget.keyboardType,
     obscureText: widget.obscureText,
@@ -226,11 +226,15 @@ Widget build(BuildContext context) {
     maxLengthEnforced: widget.maxLengthEnforced,
     onFieldSubmitted: widget.onFieldSubmitted,
     scrollPadding: widget.scrollPadding,
-    &#47;&#47; strutStyle: widget.strutStyle,
     textAlign: widget.textAlign,
     textCapitalization: widget.textCapitalization,
     textDirection: widget.textDirection,
     textInputAction: widget.textInputAction,
+    strutStyle: widget.strutStyle,
+    readOnly: _readOnly,
+    expands: widget.expands,
+    minLines: widget.minLines,
+    showCursor: widget.showCursor,
   );
 }</code></pre>
     </section>
@@ -244,7 +248,7 @@ Widget build(BuildContext context) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.8
+    flutter_form_builder 3.3.0
   </span>
 
   

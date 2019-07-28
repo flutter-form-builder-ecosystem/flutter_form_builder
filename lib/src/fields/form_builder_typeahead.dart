@@ -87,7 +87,10 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     _typeAheadController = TextEditingController(text: _initialValue);
     _typeAheadController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);

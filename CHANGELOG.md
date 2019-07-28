@@ -1,3 +1,11 @@
+## [3.3.0] - 28-Jul-2019
+* New Feature: You can now set `initialValue` for the Form - Accepts a `Map<String, dynamic>` where keys are `attribute`s and the values are `initialValue`s for corresponding fields
+* New Field: `FormBuilderRangeSlider`
+* Compatibility with newly released Flutter version `1.7.*`
+* `Breaking change:` Renamed occurrences of `readonly` to `readOnly` to fit naming conventions 
+* Updated `datetime_picker_formfield` to version `0.4.0` from `0.2.0`
+* Added more attribute options for different fields
+
 ## [3.2.9] - 20-Jul-2019
 * Added `borderColor`, `selectedColor`, `pressedColor`, `textStyle` options to `FormBuilderSegmentedControl` for `CupertinoSegmentedControl` customization
 

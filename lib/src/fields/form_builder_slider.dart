@@ -54,7 +54,10 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ?? (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     super.initState();
   }
 

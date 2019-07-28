@@ -1,4 +1,3 @@
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -204,7 +203,9 @@ class MyHomePageState extends State<MyHomePage> {
                               text: 'Terms and Conditions',
                               style: TextStyle(color: Colors.blue),
                               recognizer: TapGestureRecognizer()
-                                ..onTap = () {print("launch url");},
+                                ..onTap = () {
+                                  print("launch url");
+                                },
                             ),
                           ],
                         ),
@@ -455,5 +456,3 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-

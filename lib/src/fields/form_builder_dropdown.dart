@@ -40,7 +40,10 @@ class FormBuilderDropdown extends StatefulWidget {
     this.disabledHint,
     this.onChanged,
     this.valueTransformer,
-    this.underline, this.icon, this.iconDisabledColor, this.iconEnabledColor,
+    this.underline,
+    this.icon,
+    this.iconDisabledColor,
+    this.iconEnabledColor,
   });
 
   @override

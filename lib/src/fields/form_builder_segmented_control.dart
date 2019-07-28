@@ -116,8 +116,9 @@ class _FormBuilderSegmentedControlState
                 key: (v) => v.value,
                 value: (v) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text("${v.label ?? v.value}",
-                style: widget.textStyle,
+                  child: Text(
+                    "${v.label ?? v.value}",
+                    style: widget.textStyle,
                   ),
                 ),
               ),

@@ -68,7 +68,7 @@
       <li><a href="flutter_form_builder/FormBuilderCheckbox/leadingInput.html">leadingInput</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckbox/materialTapTargetSize.html">materialTapTargetSize</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckbox/onChanged.html">onChanged</a></li>
-      <li><a href="flutter_form_builder/FormBuilderCheckbox/readonly.html">readonly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCheckbox/readOnly.html">readOnly</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckbox/tristate.html">tristate</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckbox/validators.html">validators</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckbox/valueTransformer.html">valueTransformer</a></li>
@@ -101,7 +101,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderCheckbox</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-label"><span>@required</span> <span class="type-annotation">Widget</span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">initialValue</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-leadingInput"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">leadingInput</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-activeColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">activeColor</span>, </span> <span class="parameter" id="-param-checkColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">checkColor</span>, </span> <span class="parameter" id="-param-materialTapTargetSize"><span class="type-annotation">MaterialTapTargetSize</span> <span class="parameter-name">materialTapTargetSize</span>, </span> <span class="parameter" id="-param-tristate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tristate</span>: <span class="default-value">false</span></span> })
+      <span class="name ">FormBuilderCheckbox</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-label"><span>@required</span> <span class="type-annotation">Widget</span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">initialValue</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-leadingInput"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">leadingInput</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-activeColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">activeColor</span>, </span> <span class="parameter" id="-param-checkColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">checkColor</span>, </span> <span class="parameter" id="-param-materialTapTargetSize"><span class="type-annotation">MaterialTapTargetSize</span> <span class="parameter-name">materialTapTargetSize</span>, </span> <span class="parameter" id="-param-tristate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tristate</span>: <span class="default-value">false</span></span> })
     </section>
 
     
@@ -112,7 +112,7 @@
   @required this.label,
   this.initialValue = false,
   this.validators = const [],
-  this.readonly = false,
+  this.readOnly = false,
   this.decoration = const InputDecoration(),
   this.onChanged,
   this.valueTransformer,
@@ -133,7 +133,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.8
+    flutter_form_builder 3.3.0
   </span>
 
   

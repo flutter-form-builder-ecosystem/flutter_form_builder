@@ -77,7 +77,8 @@ class FormBuilderSwitch extends StatefulWidget {
     this.inactiveTrackColor,
     this.activeThumbImage,
     this.inactiveThumbImage,
-    this.materialTapTargetSize, this.dragStartBehavior = DragStartBehavior.start,
+    this.materialTapTargetSize,
+    this.dragStartBehavior = DragStartBehavior.start,
   });
 
   @override
