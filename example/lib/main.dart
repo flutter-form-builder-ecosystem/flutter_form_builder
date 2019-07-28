@@ -173,6 +173,20 @@ class MyHomePageState extends State<MyHomePage> {
                         labelText: "Number of somethings",
                       ),
                     ),
+                    FormBuilderRangeSlider(
+                      attribute: "slider",
+                      validators: [FormBuilderValidators.min(6)],
+                      onChanged: _onChanged,
+                      min: 0.0,
+                      max: 10.0,
+                      initialValue: RangeValues(4, 7),
+                      divisions: 20,
+                      activeColor: Colors.red,
+                      inactiveColor: Colors.pink[100],
+                      decoration: InputDecoration(
+                        labelText: "Number of somethings",
+                      ),
+                    ),
                     FormBuilderCheckbox(
                       attribute: 'accept_terms',
                       initialValue: false,

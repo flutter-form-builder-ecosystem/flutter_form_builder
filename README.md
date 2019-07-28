@@ -160,8 +160,9 @@ The currently supported fields include:
 * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
 * `FormBuilderChipsInput` - Takes a list of `Chip`s as input
 * `FormBuilderDateTimePicker` - For Date, Time and DateTime input
-* `FormBuilderDropdown` - Allow selection of one value from a list as a Dropdown
-* `FormBuilderRadio` - Allow selection of one value from a list of Radio Widgets 
+* `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
+* `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRangeSlider` - Used to select a range from a range of values
 * `FormBuilderRate` - For selection of a numerical value as a rating 
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle

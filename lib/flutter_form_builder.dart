@@ -9,6 +9,7 @@ export './src/fields/form_builder_checkbox_list.dart';
 export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
 export './src/fields/form_builder_radio.dart';
+export './src/fields/form_builder_range_slider.dart';
 export './src/fields/form_builder_rate.dart';
 export './src/fields/form_builder_segmented_control.dart';
 export './src/fields/form_builder_slider.dart';
