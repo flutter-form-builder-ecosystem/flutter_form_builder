@@ -10,7 +10,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final Uint8List initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueTransformer valueTransformer;
   final ValueChanged onChanged;
@@ -26,7 +26,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
   FormBuilderSignaturePad({
     @required this.attribute,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.backgroundColor = Colors.white,
     this.penColor = Colors.black,
@@ -46,7 +46,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
 }
 
 class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
-  bool _readonly = false;
+  bool _readOnly = false;
   Uint8List _value;
   List<Point> _points;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
@@ -69,11 +69,11 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField<Uint8List>(
       key: _fieldKey,
-      enabled: !_readonly,
+      enabled: !_readOnly,
       initialValue: _value,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -92,7 +92,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readonly,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: Column(

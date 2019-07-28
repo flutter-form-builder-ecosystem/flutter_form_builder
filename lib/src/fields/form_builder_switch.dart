@@ -7,7 +7,7 @@ class FormBuilderSwitch extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final bool initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -67,7 +67,7 @@ class FormBuilderSwitch extends StatefulWidget {
     @required this.label,
     this.initialValue = false,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
@@ -85,7 +85,7 @@ class FormBuilderSwitch extends StatefulWidget {
 }
 
 class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   bool _initialValue;
@@ -109,11 +109,11 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField(
         key: _fieldKey,
-        enabled: !_readonly,
+        enabled: !_readOnly,
         initialValue: _initialValue ?? false,
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
@@ -132,7 +132,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
         builder: (FormFieldState<dynamic> field) {
           return InputDecorator(
             decoration: widget.decoration.copyWith(
-              enabled: !_readonly,
+              enabled: !_readOnly,
               errorText: field.errorText,
             ),
             child: ListTile(
@@ -142,7 +142,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
               title: widget.label,
               trailing: Switch(
                 value: field.value,
-                onChanged: _readonly
+                onChanged: _readOnly
                     ? null
                     : (bool value) {
                         FocusScope.of(context).requestFocus(FocusNode());
@@ -158,7 +158,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                 inactiveTrackColor: widget.inactiveTrackColor,
                 materialTapTargetSize: widget.materialTapTargetSize,
               ),
-              onTap: _readonly
+              onTap: _readOnly
                   ? null
                   : () {
                       FocusScope.of(context).requestFocus(FocusNode());

@@ -7,7 +7,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final List<T> initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -28,7 +28,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     @required this.findSuggestions,
     this.initialValue = const [],
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChipTapped,
     this.maxChips,
@@ -42,7 +42,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
 }
 
 class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   List<dynamic> _initialValue;
@@ -63,13 +63,13 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return SizedBox(
       // height: 200.0,
       child: FormField(
         key: _fieldKey,
-        enabled: !_readonly,
+        enabled: !_readOnly,
         initialValue: _initialValue ?? [],
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
@@ -88,9 +88,9 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
         builder: (FormFieldState<dynamic> field) {
           return ChipsInput(
             initialValue: field.value,
-            enabled: !_readonly,
+            enabled: !_readOnly,
             decoration: widget.decoration.copyWith(
-              enabled: !_readonly,
+              enabled: !_readOnly,
               errorText: field.errorText,
             ),
             findSuggestions: widget.findSuggestions,

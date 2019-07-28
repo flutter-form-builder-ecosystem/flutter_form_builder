@@ -6,7 +6,7 @@ class FormBuilderRadio extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final dynamic initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -23,7 +23,7 @@ class FormBuilderRadio extends StatefulWidget {
     @required this.options,
     this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
@@ -37,7 +37,7 @@ class FormBuilderRadio extends StatefulWidget {
 }
 
 class _FormBuilderRadioState extends State<FormBuilderRadio> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   dynamic _initialValue;
@@ -65,7 +65,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
       groupValue: field.value,
       materialTapTargetSize: widget.materialTapTargetSize,
       activeColor: widget.activeColor,
-      onChanged: _readonly
+      onChanged: _readOnly
           ? null
           : (dynamic value) {
               FocusScope.of(context).requestFocus(FocusNode());
@@ -87,11 +87,11 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField(
       key: _fieldKey,
-      enabled: !_readonly,
+      enabled: !_readOnly,
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -119,7 +119,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
               title:
                   Text("${widget.options[i].label ?? widget.options[i].value}"),
               trailing: _trailing(field, i),
-              onTap: _readonly
+              onTap: _readOnly
                   ? null
                   : () {
                       field.didChange(widget.options[i].value);
@@ -134,7 +134,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
         }
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readonly,
+            enabled: !_readOnly,
             errorText: field.errorText,
             contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
             border: InputBorder.none,

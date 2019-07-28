@@ -7,7 +7,7 @@ class FormBuilder extends StatefulWidget {
   final Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
   final Widget child;
-  final bool readonly;
+  final bool readOnly;
   final bool autovalidate;
   final Map<String, dynamic> initialValue;
   final Key key;
@@ -15,7 +15,7 @@ class FormBuilder extends StatefulWidget {
   const FormBuilder( //this.context,
       {
     @required this.child,
-    this.readonly = false,
+    this.readOnly = false,
     this.key,
     this.onChanged,
     this.autovalidate = false,
@@ -41,7 +41,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, GlobalKey<FormFieldState>> get fields => _fieldKeys;
 
-  bool get readonly => widget.readonly;
+  bool get readOnly => widget.readOnly;
 
   @override
   void initState() {

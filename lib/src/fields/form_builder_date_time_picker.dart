@@ -13,7 +13,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final DateTime initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueTransformer valueTransformer;
 
@@ -135,7 +135,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   FormBuilderDateTimePicker({
     @required this.attribute,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
@@ -196,7 +196,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 }
 
 class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   DateTime _initialValue;
@@ -226,7 +226,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return DateTimeField(
       key: _fieldKey,
@@ -275,7 +275,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       decoration: widget.decoration,
       enabled: widget.editable,
       autocorrect: widget.autocorrect,
-      readOnly: _readonly,
+      readOnly: _readOnly,
       controller: widget.controller,
       focusNode: widget.focusNode,
       inputFormatters: widget.inputFormatters,

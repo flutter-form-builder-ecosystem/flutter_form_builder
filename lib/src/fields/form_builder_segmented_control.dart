@@ -7,7 +7,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final dynamic initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -27,7 +27,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     @required this.options,
     this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
@@ -70,7 +70,7 @@ class _FormBuilderSegmentedControlState
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField(
       key: _fieldKey,

@@ -33,7 +33,7 @@ class FormBuilderCustomField<T> extends StatefulWidget {
 class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  bool readonly = false;
+  bool readOnly = false;
   T _initialValue;
 
   @override

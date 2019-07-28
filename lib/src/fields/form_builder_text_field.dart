@@ -7,7 +7,7 @@ class FormBuilderTextField extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final String initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -47,7 +47,7 @@ class FormBuilderTextField extends StatefulWidget {
     @required this.attribute,
     this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
     this.maxLines = 1,
@@ -85,7 +85,7 @@ class FormBuilderTextField extends StatefulWidget {
 }
 
 class FormBuilderTextFieldState extends State<FormBuilderTextField> {
-  bool _readonly = false;
+  bool _readOnly = false;
   TextEditingController _effectiveController;
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
@@ -110,7 +110,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return TextFormField(
       key: _fieldKey,
@@ -128,11 +128,11 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         } else
           _formState?.setAttributeValue(widget.attribute, val);
       },
-      enabled: !_readonly,
+      enabled: !_readOnly,
       style: widget.style,
-      focusNode: _readonly ? AlwaysDisabledFocusNode() : widget.focusNode,
+      focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
       decoration: widget.decoration.copyWith(
-        enabled: !_readonly,
+        enabled: !_readOnly,
       ),
       autovalidate: widget.autovalidate ?? false,
       // initialValue: "${_initialValue ?? ''}",
@@ -159,7 +159,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       textDirection: widget.textDirection,
       textInputAction: widget.textInputAction,
       strutStyle: widget.strutStyle,
-      readOnly: _readonly,
+      readOnly: _readOnly,
       expands: widget.expands,
       minLines: widget.minLines,
       showCursor: widget.showCursor,

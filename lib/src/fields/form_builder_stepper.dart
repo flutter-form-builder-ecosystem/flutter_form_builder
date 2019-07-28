@@ -7,7 +7,7 @@ class FormBuilderStepper extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final num initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -21,7 +21,7 @@ class FormBuilderStepper extends StatefulWidget {
     @required this.attribute,
     this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.step,
     this.min,
@@ -36,7 +36,7 @@ class FormBuilderStepper extends StatefulWidget {
 }
 
 class _FormBuilderStepperState extends State<FormBuilderStepper> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   num _initialValue;
@@ -57,10 +57,10 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField(
-      enabled: !_readonly,
+      enabled: !_readOnly,
       key: _fieldKey,
       initialValue: _initialValue,
       validator: (val) {
@@ -80,11 +80,11 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readonly,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: SyStepper(
-            onChange: _readonly
+            onChange: _readOnly
                 ? null
                 : (value) {
                     FocusScope.of(context).requestFocus(FocusNode());

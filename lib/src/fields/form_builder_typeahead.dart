@@ -7,7 +7,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final String initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -45,7 +45,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     @required this.suggestionsCallback,
     this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
     this.autovalidate = false,
@@ -78,7 +78,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
 
 class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   TextEditingController _typeAheadController;
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   String _initialValue;
@@ -97,7 +97,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return TypeAheadFormField(
       key: _fieldKey,
@@ -118,18 +118,18 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       // initialValue: _initialValue,
       autovalidate: widget.autovalidate,
       textFieldConfiguration: widget.textFieldConfiguration.copyWith(
-        enabled: !_readonly,
+        enabled: !_readOnly,
         controller: _typeAheadController,
-        style: _readonly
+        style: _readOnly
             ? Theme.of(context).textTheme.subhead.copyWith(
                   color: Theme.of(context).disabledColor,
                 )
             : widget.textFieldConfiguration.style,
-        focusNode: _readonly
+        focusNode: _readOnly
             ? AlwaysDisabledFocusNode()
             : widget.textFieldConfiguration.focusNode,
         decoration: widget.decoration.copyWith(
-          enabled: !_readonly,
+          enabled: !_readOnly,
         ),
       ),
       suggestionsCallback: widget.suggestionsCallback,

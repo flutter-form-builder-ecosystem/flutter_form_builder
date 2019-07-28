@@ -6,7 +6,7 @@ class FormBuilderSlider extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final num initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -27,7 +27,7 @@ class FormBuilderSlider extends StatefulWidget {
     @required this.max,
     @required this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.divisions,
     this.onChanged,
@@ -45,7 +45,7 @@ class FormBuilderSlider extends StatefulWidget {
 }
 
 class _FormBuilderSliderState extends State<FormBuilderSlider> {
-  bool _readonly = false;
+  bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   num _initialValue;
@@ -66,11 +66,11 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
 
   @override
   Widget build(BuildContext context) {
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField(
       key: _fieldKey,
-      enabled: !_readonly,
+      enabled: !_readOnly,
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -89,7 +89,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readonly,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: Container(
@@ -108,7 +108,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   onChangeStart: widget.onChangeStart,
                   label: widget.label,
                   semanticFormatterCallback: widget.semanticFormatterCallback,
-                  onChanged: _readonly
+                  onChanged: _readOnly
                       ? null
                       : (num value) {
                           FocusScope.of(context).requestFocus(FocusNode());

@@ -220,7 +220,7 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "gender",
                       decoration: InputDecoration(labelText: "Gender"),
                       initialValue: 'Male',
-                      readonly: true,
+                      readOnly: true,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
                       items: ['Male', 'Female', 'Other']
