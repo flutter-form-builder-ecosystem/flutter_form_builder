@@ -1,5 +1,9 @@
+## [3.3.1] - 28-Jul-2019
+* Fixed bugs in `FormBuilderDateTimePicker`
+* Minor improvements to documentation
+
 ## [3.3.0] - 28-Jul-2019
-* New Feature: You can now set `initialValue` for the Form - Accepts a `Map<String, dynamic>` where keys are `attribute`s and the values are `initialValue`s for corresponding fields
+* New Feature: You can now set `initialValue` for `FormBuilder` - Accepts a `Map<String, dynamic>` where keys are `attribute`s and the values are `initialValue`s for corresponding fields
 * New Field: `FormBuilderRangeSlider`
 * Compatibility with newly released Flutter version `1.7.*`
 * `Breaking change:` Renamed occurrences of `readonly` to `readOnly` to fit naming conventions 

@@ -16,6 +16,10 @@ Column(
   children: <Widget>[
     FormBuilder(
       key: _fbKey,
+      initialValue: {
+        'date': DateTime.now(),
+        'accept_terms': false,
+      },
       autovalidate: true,
       child: Column(
         children: <Widget>[
@@ -34,11 +38,10 @@ Column(
             initialValue: 1.0,
             divisions: 20,
             decoration:
-                InputDecoration(labelText: "Number of somethings"),
+                InputDecoration(labelText: "Number of things"),
           ),
           FormBuilderCheckbox(
             attribute: 'accept_terms',
-            initialValue: false,
             label: Text(
                 "I have read and agree to the terms and conditions"),
             validators: [
@@ -67,21 +70,6 @@ Column(
               FormBuilderValidators.numeric(),
               FormBuilderValidators.max(70),
             ],
-          ),
-          FormBuilderRadio(
-            decoration: InputDecoration(labelText: 'My chosen language'),
-            leadingInput: true,
-            attribute: "best_language",
-            validators: [FormBuilderValidators.required()],
-            options: [
-              "Dart",
-              "Kotlin",
-              "Java",
-              "Swift",
-              "Objective-C"
-            ]
-                .map((lang) => FormBuilderFieldOption(value: lang))
-                .toList(growable: false),
           ),
           FormBuilderSegmentedControl(
             decoration:
@@ -169,7 +157,7 @@ The currently supported fields include:
 * `FormBuilderSlider` - For selection of a numerical value on a slider
 * `FormBuilderStepper` - Selection of a number by tapping on a plus or minus symbol
 * `FormBuilderSwitch` - On/Off switch
-* `FormBuilderTextField` - For text input. Allows input of single-line text, multi-line text, password,
+* `FormBuilderTextField` - For text input. Accepts input of single-line text, multi-line text, password,
 email, urls etc by using different configurations and validators
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
@@ -179,7 +167,7 @@ In order to create an input field in the form, along with the label, and any app
 |-----------|-------|---------|-------------|----------|
 | `attribute` | `String` | `null` | `true` | This will form the key in the form value Map |
 | `initialValue` | `dynamic` | `null`  | `false` | The initial value of the input field |
-| `readonly` | `bool` | `false` | `false` | Determines whether the field widget will accept user input. This value will be ignored if the `readonly` attribute of `FormBuilder` widget is set to `true` |
+| `readOnly` | `bool` | `false` | `false` | Determines whether the field widget will accept user input. This value will be ignored if the `readOnly` attribute of `FormBuilder` widget is set to `true` |
 | `decoration` | `InputDecoration` | `InputDecoration()` | `false` | |
 | `validators` | `List<FormFieldValidator>` | `[]` | `false` | List of `FormFieldValidator`s that will check the validity of value candidate in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `false` | This event function will fire immediately the the field value changes |

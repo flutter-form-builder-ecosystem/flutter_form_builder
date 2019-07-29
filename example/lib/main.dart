@@ -169,21 +169,21 @@ class MyHomePageState extends State<MyHomePage> {
                       activeColor: Colors.red,
                       inactiveColor: Colors.pink[100],
                       decoration: InputDecoration(
-                        labelText: "Number of somethings",
+                        labelText: "Number of things",
                       ),
                     ),
                     FormBuilderRangeSlider(
-                      attribute: "slider",
+                      attribute: "range_slider",
                       validators: [FormBuilderValidators.min(6)],
                       onChanged: _onChanged,
                       min: 0.0,
-                      max: 10.0,
+                      max: 100.0,
                       initialValue: RangeValues(4, 7),
                       divisions: 20,
                       activeColor: Colors.red,
                       inactiveColor: Colors.pink[100],
                       decoration: InputDecoration(
-                        labelText: "Number of somethings",
+                        labelText: "Price Range",
                       ),
                     ),
                     FormBuilderCheckbox(

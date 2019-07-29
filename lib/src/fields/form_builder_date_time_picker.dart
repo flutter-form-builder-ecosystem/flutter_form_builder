@@ -252,7 +252,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           case InputType.date:
             return _showDatePicker(context, currentValue);
           case InputType.time:
-            return DateTimeField.convert(await _showTimePicker(context, currentValue));
+            return DateTimeField.convert(
+                await _showTimePicker(context, currentValue));
           case InputType.both:
             final date = await _showDatePicker(context, currentValue);
             if (date != null) {
@@ -301,7 +302,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     );
   }
 
-  Future<DateTime> _showDatePicker(BuildContext context, DateTime currentValue) {
+  Future<DateTime> _showDatePicker(
+      BuildContext context, DateTime currentValue) {
     if (widget.datePicker != null) {
       return widget.datePicker(context);
     } else {
@@ -316,11 +318,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     }
   }
 
-  Future<TimeOfDay> _showTimePicker(BuildContext context, DateTime currentValue) {
+  Future<TimeOfDay> _showTimePicker(
+      BuildContext context, DateTime currentValue) {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
-      return showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()));
+      return showTimePicker(
+          context: context,
+          initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()));
     }
   }
 }
