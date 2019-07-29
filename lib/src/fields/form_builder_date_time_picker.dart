@@ -184,7 +184,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.cursorRadius,
     this.cursorColor,
     this.keyboardAppearance,
-    this.textCapitalization,
+    this.textCapitalization = TextCapitalization.none,
     this.strutStyle,
   });
 
@@ -215,6 +215,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     super.initState();
   }
 
@@ -226,8 +227,6 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
     return DateTimeField(
       key: _fieldKey,
       initialValue: _initialValue,
@@ -248,16 +247,16 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         }
         return null;
       },
-      onShowPicker: (ctx, time) async {
+      onShowPicker: (context, currentValue) async {
         switch (widget.inputType) {
           case InputType.date:
-            return _showDatePicker(context);
+            return _showDatePicker(context, currentValue);
           case InputType.time:
-            return DateTimeField.convert(await _showTimePicker(context));
+            return DateTimeField.convert(await _showTimePicker(context, currentValue));
           case InputType.both:
-            final date = await _showDatePicker(context);
+            final date = await _showDatePicker(context, currentValue);
             if (date != null) {
-              final time = await _showTimePicker(context);
+              final time = await _showTimePicker(context, currentValue);
               return DateTimeField.combine(date, time);
             }
             return _fieldKey.currentState.value ?? _initialValue;
@@ -302,7 +301,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     );
   }
 
-  Future<DateTime> _showDatePicker(BuildContext context) {
+  Future<DateTime> _showDatePicker(BuildContext context, DateTime currentValue) {
     if (widget.datePicker != null) {
       return widget.datePicker(context);
     } else {
@@ -311,17 +310,17 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           selectableDayPredicate: widget.selectableDayPredicate,
           initialDatePickerMode:
               widget.initialDatePickerMode ?? DatePickerMode.day,
-          initialDate: widget.initialDate,
-          firstDate: widget.firstDate,
-          lastDate: widget.lastDate);
+          initialDate: currentValue ?? DateTime.now(),
+          firstDate: widget.firstDate ?? DateTime(1900),
+          lastDate: widget.lastDate ?? DateTime(2100));
     }
   }
 
-  Future<TimeOfDay> _showTimePicker(BuildContext context) {
+  Future<TimeOfDay> _showTimePicker(BuildContext context, DateTime currentValue) {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
-      return showTimePicker(context: context, initialTime: widget.initialTime);
+      return showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()));
     }
   }
 }
