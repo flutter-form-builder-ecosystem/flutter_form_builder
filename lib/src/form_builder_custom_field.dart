@@ -7,6 +7,8 @@ class FormBuilderCustomField<T> extends StatefulWidget {
   /// Used as a key to final map returned when the form is submitted
   final String attribute;
 
+  final T initialValue;
+
   /// The [FormField] widget that will house the custom input
   final FormField<T> formField;
 
@@ -23,6 +25,7 @@ class FormBuilderCustomField<T> extends StatefulWidget {
     @required this.formField,
     this.validators = const [],
     this.valueTransformer,
+    this.initialValue,
   });
 
   @override
@@ -41,9 +44,10 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.formField.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
+        (widget.initialValue ??
+            (_formState.initialValue.containsKey(widget.attribute)
+                ? _formState.initialValue[widget.attribute]
+                : null));
     super.initState();
   }
 

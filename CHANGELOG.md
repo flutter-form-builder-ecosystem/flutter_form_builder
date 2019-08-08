@@ -1,3 +1,6 @@
+## [3.3.4] - 08-Aug-2019
+* Added `initialValue` field to `FormBuilderCustomField`
+
 ## [3.3.3] - 08-Aug-2019
 * Attempt to fix issue where user is required to manually edit `FormBuilderDateTimePicker` if not empty - instead of presenting Date/Time Picker
 
