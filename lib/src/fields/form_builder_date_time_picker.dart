@@ -22,7 +22,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// Allow manual editing of the date/time. Defaults to true. If false, the
   /// picker(s) will be shown every time the field gains focus.
-  final bool editable;
+  // final bool editable;
 
   /// For representing the date as a string e.g.
   /// `DateFormat("EEEE, MMMM d, yyyy 'at' h:mma")`
@@ -152,7 +152,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.maxLengthEnforced = true,
     this.expands = false,
     this.autovalidate = false,
-    this.editable = true,
+    // this.editable = true,
     this.initialValue,
     this.format,
     this.firstDate,
@@ -200,6 +200,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   DateTime _initialValue;
+  FocusNode _focusNode;
+  TextEditingController _textFieldController;
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
@@ -216,6 +218,13 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             ? _formState.initialValue[widget.attribute]
             : null);
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _focusNode = widget.focusNode ?? FocusNode();
+    _textFieldController = widget.controller ?? TextEditingController();
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _textFieldController.clear();
+      }
+    });
     super.initState();
   }
 
@@ -237,8 +246,9 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         if (widget.valueTransformer != null) {
           var transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
       },
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -273,11 +283,12 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       maxLength: widget.maxLength,
       autofocus: widget.autofocus,
       decoration: widget.decoration,
-      enabled: widget.editable,
+      enabled: widget.enabled,
+      // editable: widget.editable,
       autocorrect: widget.autocorrect,
       readOnly: _readOnly,
-      controller: widget.controller,
-      focusNode: widget.focusNode,
+      controller: _textFieldController,
+      focusNode: _focusNode,
       inputFormatters: widget.inputFormatters,
       keyboardType: widget.keyboardType,
       maxLengthEnforced: widget.maxLengthEnforced,

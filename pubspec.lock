@@ -70,7 +70,7 @@ packages:
       name: datetime_picker_formfield
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "1.0.0-pre.2"
   flutter:
     dependency: "direct main"
     description: flutter

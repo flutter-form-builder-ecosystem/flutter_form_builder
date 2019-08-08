@@ -293,18 +293,18 @@ This package is dependent on the following packages and plugins:
 ### Improvements
 - [X] Allow addition of custom input types
 - [X] Improve documentation by showing complete list of input types and their usage and options
-- [X] Create a `transformer` function option that will convert field value when field id saved - can be used to convert string to number, change to uppercase etc.
+- [X] Create a `transformer` function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` by [Sven Schöne](https://github.com/SvenSchoene)
 
 ### New FormBuilder inputs
+- [X] RangeSlider
 - [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
+- [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
+- [ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
 - [ ] MapInput
 - [ ] ImagePicker
 - [ ] DocumentPicker
-- [ ] RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
-- [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
-- [ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
 
 ## KNOWN ISSUES
 Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually

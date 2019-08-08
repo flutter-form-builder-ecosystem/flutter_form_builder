@@ -1,3 +1,10 @@
+## [3.3.3] - 08-Aug-2019
+* Attempt to fix issue where user is required to manually edit `FormBuilderDateTimePicker` if not empty - instead of presenting Date/Time Picker
+
+## [3.3.2] - 07-Aug-2019
+* Upgrade dependency `datetime_picker_formfield` from v0.4.0 to 1.0.0-pre.2 (aka v0.4.1)
+* Removed `editable` option from `FormBuilderDateTimePicker` - removed from dependency `datetime_picker_formfield` 
+
 ## [3.3.1] - 28-Jul-2019
 * Fixed bugs in `FormBuilderDateTimePicker`
 * Minor improvements to documentation
