@@ -1,3 +1,10 @@
+## [3.4.0] - 21-Aug-2019
+* Converted `FormBuilderFieldOption` to Widget with `child` attribute - allows option to be customized/styled
+* Fixed bug in `FormBuilderCheckboxList` where new items cannot be added
+* Allow `null` value on checkbox if `tristate` is enabled
+* Adding InputBorder on `FormBuilderDropdownField` now possible
+* Fixed bug where initial date not shown for `FormBuilderDateTimePicker`
+
 ## [3.3.4] - 08-Aug-2019
 * Added `initialValue` field to `FormBuilderCustomField`
 

@@ -64,7 +64,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
 
   Widget _checkbox(FormFieldState<dynamic> field) {
     return Checkbox(
-      value: (field.value == null && !widget.tristate)  ? false : field.value,
+      value: (field.value == null && !widget.tristate) ? false : field.value,
       activeColor: widget.activeColor,
       checkColor: widget.checkColor,
       materialTapTargetSize: widget.materialTapTargetSize,

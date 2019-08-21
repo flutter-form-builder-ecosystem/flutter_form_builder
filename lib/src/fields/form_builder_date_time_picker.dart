@@ -132,6 +132,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   final double cursorWidth;
   final TextCapitalization textCapitalization;
+
   FormBuilderDateTimePicker({
     @required this.attribute,
     this.validators = const [],
@@ -219,7 +220,12 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             : null);
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     _focusNode = widget.focusNode ?? FocusNode();
-    _textFieldController = widget.controller ?? TextEditingController();
+    _textFieldController = widget.controller ??
+        TextEditingController(
+            text: widget.format == null
+                ? DateFormat("EEEE, MMMM d, yyyy 'at' h:mma")
+                    .format(_initialValue)
+                : widget.format.format(_initialValue));
     _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
         _textFieldController.clear();

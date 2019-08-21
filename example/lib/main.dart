@@ -154,6 +154,7 @@ class MyHomePageState extends State<MyHomePage> {
                       onChanged: _onChanged,
                       inputType: InputType.date,
                       format: DateFormat("yyyy-MM-dd"),
+                      initialValue: DateTime.now(),
                       decoration:
                           InputDecoration(labelText: "Appointment Time"),
                       // readonly: true,
@@ -219,9 +220,14 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     FormBuilderDropdown(
                       attribute: "gender",
-                      decoration: InputDecoration(labelText: "Gender"),
+                      decoration: InputDecoration(
+                        labelText: "Gender",
+                        /*border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red),
+                        ),*/
+                      ),
+                      // readOnly: true,
                       initialValue: 'Male',
-                      readOnly: true,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
                       items: ['Male', 'Female', 'Other']
@@ -233,7 +239,12 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     FormBuilderTextField(
                       attribute: "age",
-                      decoration: InputDecoration(labelText: "Age"),
+                      decoration: InputDecoration(
+                        labelText: "Age",
+                        /*border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red),
+                        ),*/
+                      ),
                       onChanged: _onChanged,
                       valueTransformer: (text) => num.tryParse(text),
                       validators: [
@@ -243,7 +254,12 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     FormBuilderTypeAhead(
                       // initialValue: "Canada",
-                      decoration: InputDecoration(labelText: "Country"),
+                      decoration: InputDecoration(
+                        labelText: "Country",
+                        /*border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red),
+                        ),*/
+                      ),
                       attribute: 'country',
                       onChanged: _onChanged,
                       itemBuilder: (context, country) {
@@ -290,9 +306,10 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration:
                           InputDecoration(labelText: "Movie Rating (Archer)"),
                       attribute: "movie_rating",
+                      textStyle: TextStyle(fontWeight: FontWeight.bold),
                       options: List.generate(5, (i) => i + 1)
                           .map(
-                              (number) => FormBuilderFieldOption(value: number))
+                              (number) => FormBuilderFieldOption(value: number, child: Text("$number", style: TextStyle(fontWeight: FontWeight.bold),),))
                           .toList(),
                       onChanged: _onChanged,
                     ),

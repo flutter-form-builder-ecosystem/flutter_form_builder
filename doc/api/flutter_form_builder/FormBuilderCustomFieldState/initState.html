@@ -132,9 +132,10 @@ void initState() {
   _formState = FormBuilder.of(context);
   _formState?.registerFieldKey(widget.attribute, _fieldKey);
   _initialValue = widget.formField.initialValue ??
-      (_formState.initialValue.containsKey(widget.attribute)
-          ? _formState.initialValue[widget.attribute]
-          : null);
+      (widget.initialValue ??
+          (_formState.initialValue.containsKey(widget.attribute)
+              ? _formState.initialValue[widget.attribute]
+              : null));
   super.initState();
 }</code></pre>
     </section>
@@ -148,7 +149,7 @@ void initState() {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.3.3
+    flutter_form_builder 3.4.0
   </span>
 
   

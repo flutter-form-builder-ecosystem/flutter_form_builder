@@ -99,7 +99,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="FormBuilderFieldOption" class="callable">
-          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/FormBuilderFieldOption.html">FormBuilderFieldOption</a></span><span class="signature">({<span class="parameter" id="-param-label"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-value"><span>@required</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">value</span></span> })</span>
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/FormBuilderFieldOption.html">FormBuilderFieldOption</a></span><span class="signature">({<span class="parameter" id="-param-label"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-value"><span>@required</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-child"><span class="type-annotation">Widget</span> <span class="parameter-name">child</span></span> })</span>
         </dt>
         <dd>
           
@@ -111,21 +111,29 @@
       <h2>Properties</h2>
 
       <dl class="properties">
-        <dt id="label" class="property">
-          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/label.html">label</a></span>
-          <span class="signature">&#8596; <a href="dart-core/String-class.html">String</a></span>         
+        <dt id="child" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/child.html">child</a></span>
+          <span class="signature">&#8594; Widget</span>         
         </dt>
         <dd>
           
-                  <div class="features">read / write</div>
+                  <div class="features">final</div>
+</dd>
+        <dt id="label" class="property">
+          <span class="name"><a class="deprecated" href="flutter_form_builder/FormBuilderFieldOption/label.html">label</a></span>
+          <span class="signature">&#8594; <a href="dart-core/String-class.html">String</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&quot;Use `child` instead. Will be removed in the next major version.&quot;), final</div>
 </dd>
         <dt id="value" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/value.html">value</a></span>
-          <span class="signature">&#8596; dynamic</span>         
+          <span class="signature">&#8594; dynamic</span>         
         </dt>
         <dd>
           
-                  <div class="features">read / write</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="hashCode" class="property inherited">
           <span class="name"><a href="dart-core/Object/hashCode.html">hashCode</a></span>
@@ -134,6 +142,14 @@
         <dd class="inherited">
           The hash code for this object. <a href="dart-core/Object/hashCode.html">[...]</a>
                   <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="key" class="property inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/key.html">key</a></span>
+          <span class="signature">&#8594; Key</span>         
+        </dt>
+        <dd class="inherited">
+          Controls how one widget replaces another widget in the tree. <a href="flutter_form_builder/FormBuilderFieldOption/key.html">[...]</a>
+                  <div class="features">final, inherited</div>
 </dd>
         <dt id="runtimeType" class="property inherited">
           <span class="name"><a href="dart-core/Object/runtimeType.html">runtimeType</a></span>
@@ -146,9 +162,46 @@
       </dl>
     </section>
 
-    <section class="summary offset-anchor inherited" id="instance-methods">
+    <section class="summary offset-anchor" id="instance-methods">
       <h2>Methods</h2>
       <dl class="callables">
+        <dt id="build" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span></span>)
+            <span class="returntype parameter">&#8594; Widget</span>
+          </span>
+                  </dt>
+        <dd>
+          Describes the part of the user interface represented by this widget. <a href="flutter_form_builder/FormBuilderFieldOption/build.html">[...]</a>
+                  
+</dd>
+        <dt id="createElement" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; StatelessElement</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Creates a <code>StatelessElement</code> to manage this widget's location in the tree. <a href="flutter_form_builder/FormBuilderFieldOption/createElement.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="debugDescribeChildren" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">DiagnosticsNode</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a list of <code>DiagnosticsNode</code> objects describing this node's
+children. <a href="flutter_form_builder/FormBuilderFieldOption/debugDescribeChildren.html">[...]</a>
+                  <div class="features">@protected, inherited</div>
+</dd>
+        <dt id="debugFillProperties" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/debugFillProperties.html">debugFillProperties</a></span><span class="signature">(<wbr><span class="parameter" id="debugFillProperties-param-properties"><span class="type-annotation">DiagnosticPropertiesBuilder</span> <span class="parameter-name">properties</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Add additional properties associated with the node. <a href="flutter_form_builder/FormBuilderFieldOption/debugFillProperties.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
         <dt id="noSuchMethod" class="callable inherited">
           <span class="name"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
@@ -158,13 +211,50 @@
           Invoked when a non-existent method or property is accessed. <a href="dart-core/Object/noSuchMethod.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
+        <dt id="toDiagnosticsNode" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span>, </span> <span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation">DiagnosticsTreeStyle</span> <span class="parameter-name">style</span></span> })
+            <span class="returntype parameter">&#8594; DiagnosticsNode</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a debug representation of the object that is used by debugging
+tools and by <a href="flutter_form_builder/FormBuilderFieldOption/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. <a href="flutter_form_builder/FormBuilderFieldOption/toDiagnosticsNode.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
         <dt id="toString" class="callable inherited">
-          <span class="name"><a href="dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
           </span>
                   </dt>
         <dd class="inherited">
           Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringDeep" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span>: <span class="default-value">''</span>, </span> <span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixOtherLines</span>, </span> <span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this node and its descendants. <a href="flutter_form_builder/FormBuilderFieldOption/toStringDeep.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringShallow" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span>: <span class="default-value">', '</span>, </span> <span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a one-line detailed description of the object. <a href="flutter_form_builder/FormBuilderFieldOption/toStringShallow.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringShort" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderFieldOption/toStringShort.html">toStringShort</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          A short, textual description of this widget.
                   <div class="features">inherited</div>
 </dd>
       </dl>
@@ -198,14 +288,24 @@
       <li class="section-title">
         <a href="flutter_form_builder/FormBuilderFieldOption-class.html#instance-properties">Properties</a>
       </li>
-      <li><a href="flutter_form_builder/FormBuilderFieldOption/label.html">label</a></li>
+      <li><a href="flutter_form_builder/FormBuilderFieldOption/child.html">child</a></li>
+      <li><a class="deprecated" href="flutter_form_builder/FormBuilderFieldOption/label.html">label</a></li>
       <li><a href="flutter_form_builder/FormBuilderFieldOption/value.html">value</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/key.html">key</a></li>
       <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="flutter_form_builder/FormBuilderFieldOption-class.html#instance-methods">Methods</a></li>
+      <li class="section-title"><a href="flutter_form_builder/FormBuilderFieldOption-class.html#instance-methods">Methods</a></li>
+      <li><a href="flutter_form_builder/FormBuilderFieldOption/build.html">build</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/createElement.html">createElement</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/debugDescribeChildren.html">debugDescribeChildren</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/debugFillProperties.html">debugFillProperties</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/toString.html">toString</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/toStringDeep.html">toStringDeep</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/toStringShallow.html">toStringShallow</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderFieldOption/toStringShort.html">toStringShort</a></li>
     
       <li class="section-title inherited"><a href="flutter_form_builder/FormBuilderFieldOption-class.html#operators">Operators</a></li>
       <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
@@ -219,7 +319,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.3.3
+    flutter_form_builder 3.4.0
   </span>
 
   
