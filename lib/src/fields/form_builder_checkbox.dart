@@ -64,7 +64,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
 
   Widget _checkbox(FormFieldState<dynamic> field) {
     return Checkbox(
-      value: field.value ?? false,
+      value: (field.value == null && !widget.tristate)  ? false : field.value,
       activeColor: widget.activeColor,
       checkColor: widget.checkColor,
       materialTapTargetSize: widget.materialTapTargetSize,
@@ -96,7 +96,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
     return FormField(
       key: _fieldKey,
       enabled: !_readOnly,
-      initialValue: _initialValue ?? false,
+      initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
