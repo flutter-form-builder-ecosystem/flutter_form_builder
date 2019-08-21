@@ -126,8 +126,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                 contentPadding: EdgeInsets.all(0.0),
                 leading: _leading(field, i),
                 trailing: _trailing(field, i),
-                title: Text(
-                    "${widget.options[i].label ?? widget.options[i].value}"),
+                title: widget.options[i],
                 onTap: _readOnly
                     ? null
                     : () {

@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 
-class FormBuilderFieldOption {
-  String label;
-  dynamic value;
+class FormBuilderFieldOption extends StatelessWidget {
+  @Deprecated("Use `child` instead. Will be removed in the next major version.")
+  final String label;
+  final Widget child;
+  final dynamic value;
 
-  FormBuilderFieldOption({this.label, @required this.value});
+  FormBuilderFieldOption({this.label, @required this.value, this.child})
+      : assert(label == null || child == null);
+
+  @override
+  Widget build(BuildContext context) {
+    if (child != null) {
+      return child;
+    } else {
+      return Text("${label ?? value.toString()}");
+    }
+  }
 }

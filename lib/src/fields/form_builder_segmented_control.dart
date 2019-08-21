@@ -14,6 +14,9 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final Color borderColor;
   final Color selectedColor;
   final Color pressedColor;
+
+  @Deprecated(
+      "Use `FormBuilderFieldOption`'s `child` property to style your option")
   final TextStyle textStyle;
 
   final List<FormBuilderFieldOption> options;
@@ -113,13 +116,15 @@ class _FormBuilderSegmentedControlState
               groupValue: field.value,
               children: Map.fromIterable(
                 widget.options,
-                key: (v) => v.value,
-                value: (v) => Padding(
+                key: (option) => option.value,
+                value: (option) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Text(
-                    "${v.label ?? v.value}",
-                    style: widget.textStyle,
-                  ),
+                  child: widget.textStyle != null
+                      ? Text(
+                          "${option.label ?? option.value}",
+                          style: widget.textStyle,
+                        )
+                      : option,
                 ),
               ),
               padding: widget.padding,

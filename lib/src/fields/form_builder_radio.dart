@@ -116,8 +116,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
               isThreeLine: false,
               contentPadding: EdgeInsets.all(0.0),
               leading: _leading(field, i),
-              title:
-                  Text("${widget.options[i].label ?? widget.options[i].value}"),
+              title: widget.options[i],
               trailing: _trailing(field, i),
               onTap: _readOnly
                   ? null
