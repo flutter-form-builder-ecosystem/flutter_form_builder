@@ -21,7 +21,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   FormBuilderCheckboxList({
     @required this.attribute,
     @required this.options,
-    this.initialValue = const [],
+    this.initialValue,
     this.validators = const [],
     this.readOnly = false,
     this.leadingInput = false,
