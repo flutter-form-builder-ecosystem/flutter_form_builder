@@ -22,7 +22,7 @@ class FormBuilderCheckbox extends StatefulWidget {
   FormBuilderCheckbox({
     @required this.attribute,
     @required this.label,
-    this.initialValue = false,
+    this.initialValue,
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
