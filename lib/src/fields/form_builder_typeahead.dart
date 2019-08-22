@@ -74,8 +74,9 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.valueTransformer,
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
-  }) : assert((T.runtimeType == String) ||
-            ((T.runtimeType != String) && onSuggestionSelectedLabel != null));
+  }); 
+  // : assert((T.runtimeType == String) ||
+  //           ((T.runtimeType != String) && onSuggestionSelectedLabel != null));
 
   @override
   _FormBuilderTypeAheadState<T> createState() =>
