@@ -74,7 +74,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.valueTransformer,
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
-  }); 
+  });
   // : assert((T.runtimeType == String) ||
   //           ((T.runtimeType != String) && onSuggestionSelectedLabel != null));
 
@@ -149,12 +149,12 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
       onSuggestionSelected: (suggestion) {
         if (widget.onSuggestionSelected != null) {
           widget.onSuggestionSelected(suggestion);
-          if (suggestion is String) {
-            _typeAheadController.text = suggestion;
-          } else if (widget.onSuggestionSelectedLabel != null) {
-            _typeAheadController.text =
-                widget.onSuggestionSelectedLabel(suggestion);
-          }
+        }
+        if (suggestion is String) {
+          _typeAheadController.text = suggestion;
+        } else if (widget.onSuggestionSelectedLabel != null) {
+          _typeAheadController.text =
+              widget.onSuggestionSelectedLabel(suggestion);
         }
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,
