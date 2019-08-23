@@ -47,7 +47,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   /// If defined, the TextField [decoration]'s [suffixIcon] will be
   /// overridden to reset the input using the icon defined here.
   /// Set this to `null` to stop that behavior. Defaults to [Icons.close].
-  final IconData resetIcon;
+  final Icon resetIcon;
 
   /// For validating the [DateTime]. The value passed will be `null` if
   /// [format] fails to parse the text.
@@ -142,7 +142,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.cursorWidth = 2.0,
     this.enableInteractiveSelection = true,
     this.decoration = const InputDecoration(),
-    this.resetIcon = Icons.close,
+    this.resetIcon = const Icon(Icons.close),
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.keyboardType = TextInputType.text,
     this.textAlign = TextAlign.start,
@@ -284,7 +284,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       },
       onChanged: widget.onChanged,
       autovalidate: widget.autovalidate,
-      resetIcon: Icon(widget.resetIcon),
+      resetIcon: widget.resetIcon,
       textDirection: widget.textDirection,
       textAlign: widget.textAlign,
       maxLength: widget.maxLength,
