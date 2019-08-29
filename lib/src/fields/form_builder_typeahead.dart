@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-typedef String SuggestionSelectionLabelCallback<T>(T suggestion);
+typedef String SelectionToTextTransformer<T>(T suggestion);
 
 class FormBuilderTypeAhead<T> extends StatefulWidget {
   final String attribute;
@@ -21,7 +21,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
   final Duration debounceDuration;
   final SuggestionsBoxDecoration suggestionsBoxDecoration;
-  final SuggestionSelectionLabelCallback<T> onSuggestionSelectedLabel;
+  final SelectionToTextTransformer<T> selectionToTextTransformer;
   final ItemBuilder<T> itemBuilder;
   final SuggestionsCallback<T> suggestionsCallback;
   final double suggestionsBoxVerticalOffset;
@@ -49,7 +49,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
     this.autovalidate = false,
-    this.onSuggestionSelectedLabel,
+    this.selectionToTextTransformer,
     this.errorBuilder,
     this.noItemsFoundBuilder,
     this.loadingBuilder,
@@ -71,7 +71,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.valueTransformer,
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
-  }) : assert(T == String || onSuggestionSelectedLabel != null);
+  }) : assert(T == String || selectionToTextTransformer != null);
 
   @override
   _FormBuilderTypeAheadState<T> createState() =>
@@ -97,8 +97,8 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
     if (_initialValue == null) {
       _initialText = "";
     } else {
-      _initialText = (widget.onSuggestionSelectedLabel != null)
-          ? widget.onSuggestionSelectedLabel(_initialValue)
+      _initialText = (widget.selectionToTextTransformer != null)
+          ? widget.selectionToTextTransformer(_initialValue)
           : _initialValue.toString();
     }
     _typeAheadController = TextEditingController(text: _initialText);
@@ -150,9 +150,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
       transitionBuilder: (context, suggestionsBox, controller) =>
           suggestionsBox,
       onSuggestionSelected: (T suggestion) {
-        if (widget.onSuggestionSelectedLabel != null) {
+        if (widget.selectionToTextTransformer != null) {
           _typeAheadController.text =
-              widget.onSuggestionSelectedLabel(suggestion);
+              widget.selectionToTextTransformer(suggestion);
         } else {
           _typeAheadController.text =
               suggestion != null ? suggestion.toString() : '';

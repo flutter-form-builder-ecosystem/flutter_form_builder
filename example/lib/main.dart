@@ -107,7 +107,7 @@ class MyHomePageState extends State<MyHomePage> {
                       findSuggestions: (String query) {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
-                          return mockResults.where((profile) {
+                          return contacts.where((profile) {
                             return profile.name
                                     .toLowerCase()
                                     .contains(query.toLowerCase()) ||
@@ -253,12 +253,8 @@ class MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     FormBuilderTypeAhead(
-                      // initialValue: "Canada",
                       decoration: InputDecoration(
                         labelText: "Country",
-                        /*border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                        ),*/
                       ),
                       attribute: 'country',
                       onChanged: _onChanged,
@@ -285,6 +281,38 @@ class MyHomePageState extends State<MyHomePage> {
                         }
                       },
                     ),
+                    FormBuilderTypeAhead(
+                      decoration: InputDecoration(
+                        labelText: "Contact Person",
+                      ),
+                      attribute: 'contact_person',
+                      onChanged: _onChanged,
+                      itemBuilder: (context, Contact contact) {
+                        return ListTile(
+                          title: Text(contact.name),
+                          subtitle: Text(contact.email),
+                        );
+                      },
+                      selectionToTextTransformer: (Contact c) => c.email,
+                      suggestionsCallback: (query) {
+                        if (query.length != 0) {
+                          var lowercaseQuery = query.toLowerCase();
+                          return contacts.where((contact) {
+                            return contact.name
+                                .toLowerCase()
+                                .contains(lowercaseQuery);
+                          }).toList(growable: false)
+                            ..sort((a, b) => a.name
+                                .toLowerCase()
+                                .indexOf(lowercaseQuery)
+                                .compareTo(b.name
+                                    .toLowerCase()
+                                    .indexOf(lowercaseQuery)));
+                        } else {
+                          return contacts;
+                        }
+                      },
+                    ),
                     FormBuilderRadio(
                       decoration:
                           InputDecoration(labelText: 'My chosen language'),
@@ -308,8 +336,13 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "movie_rating",
                       textStyle: TextStyle(fontWeight: FontWeight.bold),
                       options: List.generate(5, (i) => i + 1)
-                          .map(
-                              (number) => FormBuilderFieldOption(value: number, child: Text("$number", style: TextStyle(fontWeight: FontWeight.bold),),))
+                          .map((number) => FormBuilderFieldOption(
+                                value: number,
+                                child: Text(
+                                  "$number",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ))
                           .toList(),
                       onChanged: _onChanged,
                     ),
