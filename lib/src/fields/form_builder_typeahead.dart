@@ -8,7 +8,7 @@ typedef String SuggestionSelectionLabelCallback<T>(T suggestion);
 class FormBuilderTypeAhead<T> extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  final String initialValue;
+  final T initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
@@ -43,8 +43,6 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
 
   FormBuilderTypeAhead({
     @required this.attribute,
-    this.onSuggestionSelected,
-    this.onSuggestionSelectedLabel,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.initialValue,
@@ -53,6 +51,8 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
     this.autovalidate = false,
+    this.onSuggestionSelected,
+    this.onSuggestionSelectedLabel,
     this.errorBuilder,
     this.noItemsFoundBuilder,
     this.loadingBuilder,
@@ -74,9 +74,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.valueTransformer,
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
-  });
-  // : assert((T.runtimeType == String) ||
-  //           ((T.runtimeType != String) && onSuggestionSelectedLabel != null));
+  }) : assert(T == String || onSuggestionSelectedLabel != null);
 
   @override
   _FormBuilderTypeAheadState<T> createState() =>
@@ -88,7 +86,8 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  String _initialValue;
+  T _initialValue;
+  String _initialText;
 
   @override
   void initState() {
@@ -98,7 +97,14 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    _typeAheadController = TextEditingController(text: _initialValue);
+    if (_initialValue == null) {
+      _initialText = "";
+    } else {
+      _initialText = (widget.onSuggestionSelectedLabel != null)
+          ? widget.onSuggestionSelectedLabel(_initialValue)
+          : _initialValue.toString();
+    }
+    _typeAheadController = TextEditingController(text: _initialText);
     _typeAheadController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
     });
@@ -146,15 +152,13 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
       itemBuilder: widget.itemBuilder,
       transitionBuilder: (context, suggestionsBox, controller) =>
           suggestionsBox,
-      onSuggestionSelected: (suggestion) {
-        if (widget.onSuggestionSelected != null) {
-          widget.onSuggestionSelected(suggestion);
-        }
-        if (suggestion is String) {
-          _typeAheadController.text = suggestion;
-        } else if (widget.onSuggestionSelectedLabel != null) {
+      onSuggestionSelected: (T suggestion) {
+        if (widget.onSuggestionSelectedLabel != null) {
           _typeAheadController.text =
               widget.onSuggestionSelectedLabel(suggestion);
+        } else {
+          _typeAheadController.text =
+              suggestion != null ? suggestion.toString() : '';
         }
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,
