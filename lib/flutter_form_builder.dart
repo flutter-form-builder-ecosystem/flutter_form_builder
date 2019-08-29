@@ -6,6 +6,7 @@ export './src/form_builder_field_option.dart';
 export './src/form_builder_validators.dart';
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_list.dart';
+export './src/fields/form_builder_date_range_picker.dart';
 export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
 export './src/fields/form_builder_radio.dart';

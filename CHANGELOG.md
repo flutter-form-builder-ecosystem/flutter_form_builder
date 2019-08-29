@@ -1,3 +1,8 @@
+## [3.5.0] - 30-Aug-2019
+* New method `saveAndValidate` method to `FormBuilder`
+* Ability to use custom data types in TypeAhead field instead of just String
+* `BREAKING CHANGE:` Changed type of `resetIcon`in DateTimePicker from `IconData` to `Icon` 
+
 ## [3.4.1] - 21-Aug-2019
 * Fixed bug in `FormBuilderDateTimePicker` where `initialValue` defaults to null
 

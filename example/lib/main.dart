@@ -159,6 +159,15 @@ class MyHomePageState extends State<MyHomePage> {
                           InputDecoration(labelText: "Appointment Time"),
                       // readonly: true,
                     ),
+                    FormBuilderDateRangePicker(
+                      attribute: "date_range",
+                      firstDate: DateTime(1970),
+                      lastDate: DateTime(2020),
+                      format: DateFormat("yyyy-MM-dd"),
+                      onChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "Date Range"),
+                      // readonly: true,
+                    ),
                     FormBuilderSlider(
                       attribute: "slider",
                       validators: [FormBuilderValidators.min(6)],
