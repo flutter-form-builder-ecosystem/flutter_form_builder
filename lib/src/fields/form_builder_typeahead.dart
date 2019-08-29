@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
+typedef String SuggestionSelectionLabelCallback<T>(T suggestion);
+
 class FormBuilderTypeAhead<T> extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -21,6 +23,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final SuggestionsBoxDecoration suggestionsBoxDecoration;
 
   final SuggestionSelectionCallback<T> onSuggestionSelected;
+  final SuggestionSelectionLabelCallback<T> onSuggestionSelectedLabel;
   final ItemBuilder<T> itemBuilder;
   final SuggestionsCallback<T> suggestionsCallback;
   final double suggestionsBoxVerticalOffset;
@@ -41,6 +44,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   FormBuilderTypeAhead({
     @required this.attribute,
     this.onSuggestionSelected,
+    this.onSuggestionSelectedLabel,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.initialValue,
@@ -71,12 +75,15 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
   });
+  // : assert((T.runtimeType == String) ||
+  //           ((T.runtimeType != String) && onSuggestionSelectedLabel != null));
 
   @override
-  _FormBuilderTypeAheadState createState() => _FormBuilderTypeAheadState();
+  _FormBuilderTypeAheadState<T> createState() =>
+      _FormBuilderTypeAheadState<T>();
 }
 
-class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
+class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   TextEditingController _typeAheadController;
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
@@ -102,7 +109,7 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return TypeAheadFormField(
+    return TypeAheadFormField<T>(
       key: _fieldKey,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -140,9 +147,15 @@ class _FormBuilderTypeAheadState extends State<FormBuilderTypeAhead> {
       transitionBuilder: (context, suggestionsBox, controller) =>
           suggestionsBox,
       onSuggestionSelected: (suggestion) {
-        if (widget.onSuggestionSelected != null)
+        if (widget.onSuggestionSelected != null) {
           widget.onSuggestionSelected(suggestion);
-        _typeAheadController.text = suggestion;
+        }
+        if (suggestion is String) {
+          _typeAheadController.text = suggestion;
+        } else if (widget.onSuggestionSelectedLabel != null) {
+          _typeAheadController.text =
+              widget.onSuggestionSelectedLabel(suggestion);
+        }
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,
       errorBuilder: widget.errorBuilder,
