@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d516c1a-1e29-487d-a597-c4f4760b5e12" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/data.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/form_builder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/form_builder.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -76,14 +73,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2584">
-              <caret line="152" column="45" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="45" />
+            <state relative-caret-position="-276">
+              <caret line="73" column="55" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="55" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="91" column="25" lean-forward="true" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -114,15 +120,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
               <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-1.6.1/lib/flutter_typeahead.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="235" column="26" selection-start-line="235" selection-start-column="26" selection-end-line="235" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -239,7 +236,6 @@
         <option value="$PROJECT_DIR$/example/README.md" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_signature_pad.dart" />
         <option value="$PROJECT_DIR$/lib/src/form_builder_validators.dart" />
-        <option value="$PROJECT_DIR$/lib/src/form_builder.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_text_field.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_switch.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_chips_input.dart" />
@@ -262,6 +258,7 @@
         <option value="$PROJECT_DIR$/example/lib/data.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" />
+        <option value="$PROJECT_DIR$/lib/src/form_builder.dart" />
       </list>
     </option>
   </component>
@@ -488,7 +485,7 @@
     <frame x="0" y="23" width="1680" height="944" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984227" visible="true" weight="0.1916972" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4984227" visible="true" weight="0.1916972" />
       <window_info id="Structure" order="1" sideWeight="0.50157726" side_tool="true" weight="0.22573689" />
       <window_info id="Favorites" order="2" sideWeight="0.50089765" side_tool="true" weight="0.19892953" />
       <window_info id="Image Layers" order="3" />
@@ -499,7 +496,7 @@
       <window_info id="Resources Explorer" order="8" weight="0.32997844" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.28376845" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49958017" visible="true" weight="0.4342723" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49958017" visible="true" weight="0.4342723" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.31074765" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -650,13 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -892,11 +882,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
-          <caret line="152" column="45" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="45" />
+        <state relative-caret-position="-276">
+          <caret line="73" column="55" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="55" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/form_builder.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="91" column="25" lean-forward="true" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
         </state>
       </provider>
     </entry>
