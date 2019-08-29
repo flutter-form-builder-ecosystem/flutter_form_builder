@@ -472,8 +472,7 @@ class MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                        _fbKey.currentState.save();
-                        if (_fbKey.currentState.validate()) {
+                        if (_fbKey.currentState.saveAndValidate()) {
                           print(_fbKey.currentState.value);
                         } else {
                           print(_fbKey.currentState.value);

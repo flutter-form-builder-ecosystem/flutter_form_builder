@@ -124,8 +124,7 @@ Column(
         MaterialButton(
           child: Text("Submit"),
           onPressed: () {
-            _fbKey.currentState.save();
-            if (_fbKey.currentState.validate()) {
+            if (_fbKey.currentState.saveAndValidate()) {
               print(_fbKey.currentState.value);
             }
           },
@@ -250,7 +249,7 @@ FormBuilderTextField(
 ```
 
 ### Conditional validation
-You can now validate a field based on the value of another field
+You can also validate a field based on the value of another field
 ```
 FormBuilderRadio(
   decoration: InputDecoration(labelText: 'My best language'),
