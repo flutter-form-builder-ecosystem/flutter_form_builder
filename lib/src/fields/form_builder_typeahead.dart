@@ -21,8 +21,6 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
   final Duration debounceDuration;
   final SuggestionsBoxDecoration suggestionsBoxDecoration;
-
-  final SuggestionSelectionCallback<T> onSuggestionSelected;
   final SuggestionSelectionLabelCallback<T> onSuggestionSelectedLabel;
   final ItemBuilder<T> itemBuilder;
   final SuggestionsCallback<T> suggestionsCallback;
@@ -51,7 +49,6 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
     this.autovalidate = false,
-    this.onSuggestionSelected,
     this.onSuggestionSelectedLabel,
     this.errorBuilder,
     this.noItemsFoundBuilder,

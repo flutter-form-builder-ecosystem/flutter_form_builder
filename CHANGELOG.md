@@ -1,5 +1,5 @@
 ## [3.4.1] - 21-Aug-2019
-* Fixed bug in `FormBuilderDateTimePicker` where trying to format null `initialValue`
+* Fixed bug in `FormBuilderDateTimePicker` where `initialValue` defaults to null
 
 ## [3.4.0] - 21-Aug-2019
 * Converted `FormBuilderFieldOption` to Widget with `child` attribute - allows option to be customized/styled
