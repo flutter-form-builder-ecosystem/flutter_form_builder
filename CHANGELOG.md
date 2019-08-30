@@ -1,7 +1,12 @@
 ## [3.5.0] - 30-Aug-2019
+* **NEW FIELD TYPE**: `FormBuilderDateRangePicker`
 * New method `saveAndValidate` method to `FormBuilder`
 * Ability to use custom data types in TypeAhead field instead of just String
-* `BREAKING CHANGE:` Changed type of `resetIcon`in DateTimePicker from `IconData` to `Icon` 
+* `FormBuilderDateTimePicker` fixes
+    * Fixed bug where currently selected date is cleared when DateTimePicker dialog is shown
+    * Also fixed bug where currently selected date not used as initial date in DateTimePicker dialog
+    * `initialTime` and `initialDate` deprecated - brings confusion with `initialValue`. Selected date/time or current date/time will be used instead
+* **BREAKING CHANGE**: Changed type of `resetIcon`in DateTimePicker from `IconData` to `Icon`
 
 ## [3.4.1] - 21-Aug-2019
 * Fixed bug in `FormBuilderDateTimePicker` where `initialValue` defaults to null

@@ -226,7 +226,7 @@ class FormBuilderDateRangePickerState
       _hideKeyboard();
       var initialFirstDate = value.isEmpty ? DateTime.now() : value[0];
       var initialLastDate = value.length < 2
-          ? initialFirstDate/*.add(Duration(minutes: 5))*/
+          ? initialFirstDate /*.add(Duration(minutes: 5))*/
           : value[1];
       final List<DateTime> picked = await DateRangePicker.showDatePicker(
         context: context,

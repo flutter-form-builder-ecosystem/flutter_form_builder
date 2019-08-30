@@ -80,8 +80,8 @@
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/loadingBuilder.html">loadingBuilder</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/noItemsFoundBuilder.html">noItemsFoundBuilder</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/onChanged.html">onChanged</a></li>
-      <li><a href="flutter_form_builder/FormBuilderTypeAhead/onSuggestionSelected.html">onSuggestionSelected</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/readOnly.html">readOnly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTypeAhead/selectionToTextTransformer.html">selectionToTextTransformer</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxController.html">suggestionsBoxController</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxDecoration.html">suggestionsBoxDecoration</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxVerticalOffset.html">suggestionsBoxVerticalOffset</a></li>
@@ -123,7 +123,7 @@
           <li>@override</li>
         </ol>
       </div>
-      <span class="returntype">_FormBuilderTypeAheadState</span>
+      <span class="returntype">_FormBuilderTypeAheadState<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
             <span class="name ">createState</span>
 (<wbr>)
       
@@ -147,7 +147,8 @@ again to create a fresh <code>State</code> object, simplifying the lifecycle of
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
-_FormBuilderTypeAheadState createState() =&gt; _FormBuilderTypeAheadState();</code></pre>
+_FormBuilderTypeAheadState&lt;T&gt; createState() =&gt;
+    _FormBuilderTypeAheadState&lt;T&gt;();</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -159,7 +160,7 @@ _FormBuilderTypeAheadState createState() =&gt; _FormBuilderTypeAheadState();</co
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.4.0
+    flutter_form_builder 3.5.0
   </span>
 
   
