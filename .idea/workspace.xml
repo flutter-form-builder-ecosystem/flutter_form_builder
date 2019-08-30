@@ -7,15 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d516c1a-1e29-487d-a597-c4f4760b5e12" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_form_builder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_form_builder.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_text_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_text_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -39,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="29" column="49" lean-forward="true" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+            <state relative-caret-position="-4886">
+              <caret line="156" column="51" selection-start-line="156" selection-start-column="51" selection-end-line="156" selection-end-column="51" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -48,11 +41,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="248" column="10" selection-start-line="248" selection-start-column="6" selection-end-line="248" selection-end-column="10" />
+            <state relative-caret-position="284">
+              <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/foundation/change_notifier.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="121">
+              <caret line="164" column="7" selection-start-line="164" selection-start-column="7" selection-end-line="164" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -60,20 +65,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-1.0.0-pre.3/lib/datetime_picker_formfield.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="310" column="2" lean-forward="true" selection-start-line="310" selection-start-column="2" selection-end-line="312" selection-end-column="3" />
+            <state relative-caret-position="196">
+              <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_range_picker.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="227" column="56" selection-start-line="227" selection-start-column="28" selection-end-line="227" selection-end-column="58" />
+            <state relative-caret-position="660">
+              <caret line="263" column="18" selection-start-line="263" selection-start-column="18" selection-end-line="263" selection-end-column="18" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib/async/future.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-191">
+              <caret line="197" column="17" selection-start-line="197" selection-start-column="17" selection-end-line="197" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -114,37 +128,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="142" column="20" selection-start-line="142" selection-start-column="20" selection-end-line="142" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/flutter_form_builder.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dropdown</find>
-      <find>op</find>
-      <find>widget.options</find>
-      <find>FormBuilderFieldOption</find>
-      <find>Depricate</find>
-      <find>segmen</find>
       <find>Option</find>
       <find>label:</find>
       <find>appo</find>
@@ -156,11 +143,9 @@
       <find>onSuggestionSelected</find>
       <find>focusNode</find>
       <find>_effectiveFocusNode</find>
-      <find>_handleFocusChanged</find>
       <find>picker</find>
       <find>showPicker</find>
       <find>Locale</find>
-      <find>form</find>
       <find>forma</find>
       <find>date</find>
       <find>format</find>
@@ -168,7 +153,15 @@
       <find>TextD</find>
       <find>hide</find>
       <find>_currentValue</find>
+      <find>_handleFocusChanged</find>
       <find>micro</find>
+      <find>onShowPicker</find>
+      <find>_DateTimeFieldState</find>
+      <find>form</find>
+      <find>reque</find>
+      <find>initialdate</find>
+      <find>initialDate</find>
+      <find>datetime</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;${formControl.label} field is required&quot;</replace>
@@ -250,7 +243,6 @@
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_radio.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_segmented_control.dart" />
         <option value="$PROJECT_DIR$/lib/src/form_builder_field_option.dart" />
-        <option value="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" />
         <option value="$PROJECT_DIR$/example/lib/data.dart" />
         <option value="$PROJECT_DIR$/lib/src/form_builder.dart" />
         <option value="$PROJECT_DIR$/CHANGELOG.md" />
@@ -260,15 +252,15 @@
         <option value="$PROJECT_DIR$/lib/src/always_disabled_focus_node.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_typeahead.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_text_field.dart" />
-        <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/src/fields/form_builder_date_range_picker.dart" />
+        <option value="$PROJECT_DIR$/example/lib/main.dart" />
+        <option value="$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="766" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="914" />
+    <option name="width" value="1680" />
     <option name="height" value="944" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -498,7 +490,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="944" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="944" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984227" visible="true" weight="0.1916972" />
@@ -512,7 +504,7 @@
       <window_info id="Resources Explorer" order="8" weight="0.32997844" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.28376845" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49958017" visible="true" weight="0.4342723" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49958017" visible="true" weight="0.54460096" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.31074765" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -551,16 +543,6 @@
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pubspec.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-0.2.0/lib/datetime_picker_formfield.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_signature_pad.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
@@ -872,27 +854,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="248" column="10" selection-start-line="248" selection-start-column="6" selection-end-line="248" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.15.8/lib/src/intl/bidi_utils.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="29" column="49" lean-forward="true" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -903,19 +868,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-1.0.0-pre.3/lib/datetime_picker_formfield.dart">
+    <entry file="file://$USER_HOME$/flutter/bin/cache/pkg/sky_engine/lib/async/future.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="310" column="2" lean-forward="true" selection-start-line="310" selection-start-column="2" selection-end-line="312" selection-end-column="3" />
+        <state relative-caret-position="-191">
+          <caret line="197" column="17" selection-start-line="197" selection-start-column="17" selection-end-line="197" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_range_picker.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="227" column="56" selection-start-line="227" selection-start-column="28" selection-end-line="227" selection-end-column="58" />
+        <state relative-caret-position="660">
+          <caret line="263" column="18" selection-start-line="263" selection-start-column="18" selection-end-line="263" selection-end-column="18" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/foundation/change_notifier.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="164" column="7" selection-start-line="164" selection-start-column="7" selection-end-line="164" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-1.0.0-pre.3/lib/datetime_picker_formfield.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4886">
+          <caret line="156" column="51" selection-start-line="156" selection-start-column="51" selection-end-line="156" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/src/fields/form_builder_date_time_picker.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="34" column="6" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
