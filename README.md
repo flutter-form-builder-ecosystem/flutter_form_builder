@@ -300,7 +300,7 @@ This package is dependent on the following packages and plugins:
 - [X] RangeSlider
 - [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
 - [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
-- [ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
+- [X] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
 - [ ] MapInput
 - [ ] ImagePicker
 - [ ] DocumentPicker
