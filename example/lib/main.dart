@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -511,13 +509,25 @@ class MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                     ),
-                    /*FormBuilderSignaturePad(
+                  FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
                     ),*/
+                    FormBuilderColorPickerField(
+                      attribute: 'color',
+                      // initialValue: Colors.red,
+                      decoration: InputDecoration(
+                        labelText: "Text",
+                      ),
+                      onChanged: (val) {
+                        print(val);
+                      },
+                      colorPickerType: ColorPickerType.BlockPicker,
+                      // readOnly: true,
+                    ),
                     FormBuilderField<String>(
                       attribute: 'form_builder_field',
                       initialValue: 'One',
