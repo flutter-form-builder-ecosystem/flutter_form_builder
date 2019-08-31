@@ -19,6 +19,7 @@ dependencies:
   # signature: ^2.0.0 - Doesn't implement onChanged, submitted PR. Meanwhile using local clone with onChanged
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
+  flutter_colorpicker: any
 
 dev_dependencies:
   flutter_test:
