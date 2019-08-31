@@ -6,6 +6,7 @@ class FormBuilderField<T> extends FormField<T> {
   final ValueTransformer valueTransformer;
   final List<FormFieldValidator> validators;
   final ValueChanged onChanged;
+  final bool readOnly;
 
   FormBuilderField({
     @required this.attribute,
@@ -13,6 +14,7 @@ class FormBuilderField<T> extends FormField<T> {
     this.valueTransformer,
     this.validators = const [],
     this.onChanged,
+    this.readOnly = false,
     //From Super
     Key key,
     FormFieldSetter<T> onSaved,
@@ -35,21 +37,26 @@ class FormBuilderField<T> extends FormField<T> {
         );
 
   @override
-  _FormBuilderFieldState<T> createState() => _FormBuilderFieldState();
+  FormBuilderFieldState<T> createState() => FormBuilderFieldState();
 }
 
-class _FormBuilderFieldState<T> extends FormFieldState<T> {
+class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   FormBuilderField<T> get widget => super.widget;
 
+  FormBuilderState get formState => _formState;
+
+  bool get readOnly => _readOnly;
+
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  bool readOnly = false;
+  bool _readOnly = false;
   T _initialValue;
 
   @override
   void initState() {
     super.initState();
+    _readOnly = (formState?.readOnly == true) ? true : widget.readOnly;
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
