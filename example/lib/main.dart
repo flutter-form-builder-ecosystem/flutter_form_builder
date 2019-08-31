@@ -511,12 +511,40 @@ class MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                     ),
-                    FormBuilderSignaturePad(
+                    /*FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
+                    ),*/
+                    FormBuilderField<String>(
+                      attribute: 'form_builder_field',
+                      initialValue: 'One',
+                      builder: (FormFieldState<dynamic> field) {
+                        return InputDecorator(
+                          decoration: InputDecoration(
+                            labelText: "Select option",
+                            contentPadding:
+                                EdgeInsets.only(top: 10.0, bottom: 0.0),
+                            border: InputBorder.none,
+                            errorText: field.errorText,
+                          ),
+                          child: DropdownButton(
+                            isExpanded: true,
+                            items: ["One", "Two"].map((option) {
+                              return DropdownMenuItem(
+                                child: Text("$option"),
+                                value: option,
+                              );
+                            }).toList(),
+                            value: field.value,
+                            onChanged: (value) {
+                              field.didChange(value);
+                            },
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
