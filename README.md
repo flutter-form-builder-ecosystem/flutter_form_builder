@@ -146,6 +146,7 @@ The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
 * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
 * `FormBuilderChipsInput` - Takes a list of `Chip`s as input
+* `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For Date, Time and DateTime input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 

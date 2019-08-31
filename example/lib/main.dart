@@ -152,7 +152,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderDateTimePicker(
                       attribute: "date",
                       onChanged: _onChanged,
-                      inputType: InputType.date,
+                      // inputType: InputType.both,
                       format: DateFormat("yyyy-MM-dd"),
                       initialValue: DateTime.now(),
                       decoration:
