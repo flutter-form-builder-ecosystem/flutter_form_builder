@@ -98,7 +98,7 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the field's value to be a valid url.
+  /// [FormFieldValidator] that requires the field's value to be a valid email address.
   static FormFieldValidator email({
     String errorText = "This field requires a valid email address.",
   }) {
@@ -133,8 +133,7 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the field's value to match a regex
-  /// pattern.
+  /// [FormFieldValidator] that requires the field's value to match the provided regex pattern.
   static FormFieldValidator pattern(
     Pattern pattern, {
     String errorText = "Value does not match pattern.",
@@ -170,7 +169,8 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the field's value to be a valid IP.
+  /// [FormFieldValidator] that requires the field's value to be a valid IP address.
+  /// * [version] is a String or an `int`.
   // ignore: non_constant_identifier_names
   static FormFieldValidator IP({
     dynamic version,

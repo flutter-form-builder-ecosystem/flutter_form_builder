@@ -237,7 +237,6 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             FocusScope.of(context).requestFocus(FocusNode())); //Hides keyboard
         final newValue = await _onShowPicker(context,
             DateTimeField.tryParse(_textFieldController.text, widget.format));
-        ;
         if (newValue != null) {
           _textFieldController.text =
               DateTimeField.tryFormat(newValue, widget.format);

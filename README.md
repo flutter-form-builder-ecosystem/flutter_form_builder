@@ -220,6 +220,30 @@ of validation functions as well as allow reusability of already defined validato
 The package comes with several most common `FormFieldValidator`s such as required, numeric, mail, URL, min, 
 max, minLength, maxLength, IP, credit card etc. with default `errorText` in English but with 
 ability to include you own error message that will display whenever validation fails.
+
+Available built-in validators include:
+* `FormBuilderValidators.required({String errorText})` - requires the field have a non-empty value.
+* `FormBuilderValidators.numeric({String errorText})` - requires the field's value to be a valid number.
+* `FormBuilderValidators.min(num min, {String errorText})` - requires the field's value to be greater than or equal to the provided number.
+* `FormBuilderValidators.max(num max, {String errorText})` - requires the field's value to be less than or equal to the provided number.
+* `FormBuilderValidators.minLength(int min, {String errorText})` - requires the length of the field's value to be greater than or equal to the provided minimum length.
+* `FormBuilderValidators.maxLength(int max, {String errorText})` - requires the length of the field's value to be less than or equal to the provided maximum length.
+* `FormBuilderValidators.pattern(Pattern pattern, {String errorText})` - requires the field's value to match the provided regex pattern.
+* `FormBuilderValidators.email({String errorText})` - requires the field's value to be a valid email address.
+* ``FormBuilderValidators.url({
+        String errorText, 
+        List<String> protocols = const ['http', 'https', 'ftp'],
+        bool requireTld = true,
+        bool requireProtocol = false,
+        bool allowUnderscore = false,
+        List<String> hostWhitelist = const [],
+        List<String> hostBlacklist = const []
+    })`` - requires the field's value to be a valid url.
+* `FormBuilderValidators.IP({dynamic version, String errorText})` - requires the field's value to be a valid IP address.
+* `FormBuilderValidators.creditCard({String errorText})` - requires the field's value to be a valid credit card number.
+* `FormBuilderValidators.date({String errorText})` - requires the field's value to be a valid date string.
+* `FormBuilderValidators.requiredTrue({String errorText})` - requires the field's value be true.
+
 Validation example:
 ```dart
 FormBuilderTextField(
@@ -283,10 +307,11 @@ This package is dependent on the following packages and plugins:
 * [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
 * [sy_flutter_widgets](https://pub.dartlang.org/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
 * [datetime_picker_formfield](https://pub.dartlang.org/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
+* [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dartlang.org/packages/validators) by [dart-league](https://github.com/dart-league)
 * [intl](https://pub.dartlang.org/packages/intl) - Dart Package
-* The SignaturePad is based on [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
-* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :)](https://github.com/danvick)
+* [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :-)](https://github.com/danvick)
 
 ## TODO: 
 ### Improvements
