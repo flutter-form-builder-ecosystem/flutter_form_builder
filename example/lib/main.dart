@@ -48,7 +48,7 @@ class MyHomePageState extends State<MyHomePage> {
               FormBuilder(
                 // context,
                 key: _fbKey,
-                autovalidate: true,
+                autovalidate: false,
                 initialValue: {
                   'movie_rating': 5,
                 },
@@ -474,11 +474,17 @@ class MyHomePageState extends State<MyHomePage> {
                         print(val);
                       },
                       colorPickerType: ColorPickerType.BlockPicker,
+                      validators: [
+                        FormBuilderValidators.required(),
+                      ],
                       // readOnly: true,
                     ),
                     FormBuilderField<String>(
                       attribute: 'form_builder_field',
-                      initialValue: 'One',
+                      // initialValue: 'One',
+                      validators: [
+                        FormBuilderValidators.required(),
+                      ],
                       builder: (FormFieldState<dynamic> field) {
                         return InputDecorator(
                           decoration: InputDecoration(

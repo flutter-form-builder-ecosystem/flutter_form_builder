@@ -27,25 +27,25 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     this.readOnly = false,
     this.colorPickerType = ColorPickerType.ColorPicker,
     InputDecoration decoration = const InputDecoration(),
-    TextInputType keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
+    TextAlign textAlign = TextAlign.start,
+    TextInputType keyboardType,
     TextInputAction textInputAction,
     TextStyle style,
     StrutStyle strutStyle,
     TextDirection textDirection,
-    TextAlign textAlign = TextAlign.start,
     bool autofocus = false,
-    bool showCursor,
     bool obscureText = false,
     bool autocorrect = true,
     bool maxLengthEnforced = true,
     int maxLines = 1,
-    int minLines,
     bool expands = false,
+    bool showCursor,
+    int minLines,
     int maxLength,
     VoidCallback onEditingComplete,
     ValueChanged<String> onFieldSubmitted,
-    FormFieldValidator<String> validator,
+    // FormFieldValidator<String> validator,
     List<TextInputFormatter> inputFormatters,
     double cursorWidth = 2.0,
     Radius cursorRadius,
@@ -68,11 +68,10 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           builder: (field) {
             final _FormBuilderColorPickerFieldState state = field;
 
-            return TextFormField(
-              // initialValue: initialValue,
-              // onSaved: onSaved,
+            return TextField(
               style: style,
               decoration: decoration.copyWith(
+                errorText: field.errorText,
                 suffixIcon: LayoutBuilder(builder: (context, constraints) {
                   return Container(
                     height: constraints.minHeight,
@@ -89,7 +88,6 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                 }),
               ),
               enabled: enabled,
-              autovalidate: autovalidate,
               readOnly: state.readOnly,
               controller: state._effectiveController,
               focusNode: state._effectiveFocusNode,
@@ -97,6 +95,27 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               autofocus: autofocus,
               expands: expands,
               scrollPadding: scrollPadding,
+              autocorrect: autocorrect,
+              textCapitalization: textCapitalization,
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              buildCounter: buildCounter,
+              cursorColor: cursorColor,
+              cursorRadius: cursorRadius,
+              cursorWidth: cursorWidth,
+              enableInteractiveSelection: enableInteractiveSelection,
+              inputFormatters: inputFormatters,
+              keyboardAppearance: keyboardAppearance,
+              maxLength: maxLength,
+              maxLengthEnforced: maxLengthEnforced,
+              maxLines: maxLines,
+              minLines: minLines,
+              onEditingComplete: onEditingComplete,
+              // onFieldSubmitted: onFieldSubmitted,
+              showCursor: showCursor,
+              strutStyle: strutStyle,
+              textDirection: textDirection,
+              textInputAction: textInputAction,
             );
           },
         );
@@ -137,7 +156,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   }
 
   void setColor() {
-    setValue(_pickedColor);
+    didChange(_pickedColor);
     if (widget.onChanged != null) widget.onChanged(value);
     _effectiveController.text = valueString;
   }
