@@ -56,7 +56,7 @@ class MyHomePageState extends State<MyHomePage> {
                 initialValue: {
                   'movie_rating': 5,
                 },
-                // readonly: true,
+                // readOnly: true,
                 child: Column(
                   children: <Widget>[
                     FormBuilderCustomField(
@@ -152,9 +152,9 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderDateTimePicker(
                       attribute: "date",
                       onChanged: _onChanged,
-                      // inputType: InputType.both,
-                      format: DateFormat("yyyy-MM-dd"),
-                      initialValue: DateTime.now(),
+                      inputType: InputType.date,
+                      // format: DateFormat("yyyy-MM-dd hh:mm"),
+                      // initialValue: DateTime.now(),
                       decoration:
                           InputDecoration(labelText: "Appointment Time"),
                       // readonly: true,
