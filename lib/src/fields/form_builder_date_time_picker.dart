@@ -207,6 +207,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   DateTime _initialValue;
   FocusNode _focusNode;
   TextEditingController _textFieldController;
+  DateTime  stateCurrentValue;
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
@@ -216,12 +217,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   @override
   void initState() {
+    super.initState();
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
+    stateCurrentValue = _initialValue;
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
@@ -231,19 +234,17 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         : widget.format == null
             ? DateFormat("EEEE, MMMM d, yyyy 'at' h:mma").format(_initialValue)
             : widget.format.format(_initialValue);
-    _focusNode.addListener(() async {
-      if (_focusNode.hasFocus) {
-        Future.microtask(() =>
-            FocusScope.of(context).requestFocus(FocusNode())); //Hides keyboard
-        final newValue = await _onShowPicker(context,
-            DateTimeField.tryParse(_textFieldController.text, widget.format));
-        if (newValue != null) {
-          _textFieldController.text =
-              DateTimeField.tryFormat(newValue, widget.format);
-        }
-      }
+    _focusNode.addListener(_handleFocus);
+  }
+
+  // Hack to avoid manual editing of date - as is in DateTimeField library
+  _handleFocus() async {
+    setState(() {
+      stateCurrentValue = _fieldKey.currentState.value;
     });
-    super.initState();
+    if (_focusNode.hasFocus) {
+      _textFieldController.clear();
+    }
   }
 
   @override
@@ -315,19 +316,20 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   Future<DateTime> _onShowPicker(
       BuildContext context, DateTime currentValue) async {
+    currentValue = stateCurrentValue;
     switch (widget.inputType) {
       case InputType.date:
-        return _showDatePicker(context, currentValue);
+        return await _showDatePicker(context, currentValue) ?? currentValue;
       case InputType.time:
         return DateTimeField.convert(
-            await _showTimePicker(context, currentValue));
+            await _showTimePicker(context, currentValue) ?? currentValue);
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
           final time = await _showTimePicker(context, currentValue);
           return DateTimeField.combine(date, time);
         }
-        return _fieldKey.currentState.value ?? _initialValue;
+        return _fieldKey.currentState.value ?? currentValue;
       default:
         throw "Unexcepted input type ${widget.inputType}";
     }

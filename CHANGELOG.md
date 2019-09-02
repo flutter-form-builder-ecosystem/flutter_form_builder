@@ -1,3 +1,6 @@
+## [3.5.1] - 02-Sep-2019
+* Hack to avoid manual editing of date - as is in DateTimeField library
+
 ## [3.5.0] - 30-Aug-2019
 * **NEW FIELD TYPE**: `FormBuilderDateRangePicker`
 * New method `saveAndValidate` method to `FormBuilder`
