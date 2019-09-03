@@ -1,3 +1,6 @@
+## [3.5.2] - 03-Sep-2019
+* Re-introduced `onSuggestionSelected` option in TypeAhead field
+
 ## [3.5.1] - 02-Sep-2019
 * Hack to avoid manual editing of date - as is in DateTimeField library
 

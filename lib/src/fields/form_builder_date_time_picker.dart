@@ -207,7 +207,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   DateTime _initialValue;
   FocusNode _focusNode;
   TextEditingController _textFieldController;
-  DateTime  stateCurrentValue;
+  DateTime stateCurrentValue;
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),

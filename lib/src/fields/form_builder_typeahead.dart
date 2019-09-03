@@ -39,6 +39,8 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool autoFlipDirection;
   final SuggestionsBoxController suggestionsBoxController;
   final bool keepSuggestionsOnSuggestionSelected;
+  final SuggestionSelectionCallback<T> onSuggestionSelected;
+  final TextEditingController controller;
 
   FormBuilderTypeAhead({
     @required this.attribute,
@@ -72,6 +74,8 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.valueTransformer,
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
+    this.onSuggestionSelected,
+    this.controller,
   }) : assert(T == String || selectionToTextTransformer != null);
 
   @override
@@ -87,10 +91,14 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   T _initialValue;
   String _initialText;
 
+  TextEditingController get _effectiveController =>
+      widget.controller ?? _typeAheadController;
+
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
+
     _initialValue = widget.initialValue ??
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
@@ -102,11 +110,22 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
           ? widget.selectionToTextTransformer(_initialValue)
           : _initialValue.toString();
     }
-    _typeAheadController = TextEditingController(text: _initialText);
-    _typeAheadController.addListener(() {
-      if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
-    });
+    if (widget.controller == null) {
+      _typeAheadController = TextEditingController(text: _initialText);
+    } else {
+      widget.controller.text = _initialText;
+    }
+    if (T == String) {
+      if (widget.controller != null)
+        widget.controller.addListener(_handleStringOnChanged);
+      else
+        _typeAheadController.addListener(_handleStringOnChanged);
+    }
     super.initState();
+  }
+
+  _handleStringOnChanged() {
+    if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
   }
 
   @override
@@ -129,11 +148,10 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         } else
           _formState?.setAttributeValue(widget.attribute, val);
       },
-      // initialValue: _initialValue,
       autovalidate: widget.autovalidate,
       textFieldConfiguration: widget.textFieldConfiguration.copyWith(
         enabled: !_readOnly,
-        controller: _typeAheadController,
+        controller: _effectiveController,
         style: _readOnly
             ? Theme.of(context).textTheme.subhead.copyWith(
                   color: Theme.of(context).disabledColor,
@@ -158,6 +176,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
           _typeAheadController.text =
               suggestion != null ? suggestion.toString() : '';
         }
+        if (widget.onSuggestionSelected != null)
+          widget.onSuggestionSelected(suggestion);
+        if (widget.onChanged != null) widget.onChanged(suggestion);
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,
       errorBuilder: widget.errorBuilder,
