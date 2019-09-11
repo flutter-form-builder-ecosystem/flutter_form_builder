@@ -1,3 +1,6 @@
+## [3.5.3] - 11-Sep-2019
+* Fixed DateTimePicker bug: 'DateTime is not a subtype of type TimeOfDay' when Input type is Time only. Closes [#131](https://github.com/danvick/flutter_form_builder/issues/131)
+
 ## [3.5.2] - 03-Sep-2019
 * Re-introduced `onSuggestionSelected` option in TypeAhead field
 

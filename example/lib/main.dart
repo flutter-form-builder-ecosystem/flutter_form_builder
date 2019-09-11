@@ -152,7 +152,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderDateTimePicker(
                       attribute: "date",
                       onChanged: _onChanged,
-                      inputType: InputType.date,
+                      inputType: InputType.time,
                       // format: DateFormat("yyyy-MM-dd hh:mm"),
                       // initialValue: DateTime.now(),
                       decoration:
@@ -294,6 +294,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration: InputDecoration(
                         labelText: "Contact Person",
                       ),
+                      initialValue: contacts[0],
                       attribute: 'contact_person',
                       onChanged: _onChanged,
                       itemBuilder: (context, Contact contact) {
@@ -487,6 +488,7 @@ class MyHomePageState extends State<MyHomePage> {
                           print(_fbKey.currentState.value);
                           print("validation failed");
                         }
+                        print(_fbKey.currentState.value['contact_person'].runtimeType);
                       },
                     ),
                   ),
