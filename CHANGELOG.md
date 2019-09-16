@@ -1,3 +1,7 @@
+## [3.5.4] - 16-Sep-2019
+* Fix dependency mismatch for intl with flutter_localizations from sdk
+* Bumped up `datetime_picker_formfield` dependency version
+
 ## [3.5.3] - 11-Sep-2019
 * Fixed DateTimePicker bug: 'DateTime is not a subtype of type TimeOfDay' when Input type is Time only. Closes [#131](https://github.com/danvick/flutter_form_builder/issues/131)
 
