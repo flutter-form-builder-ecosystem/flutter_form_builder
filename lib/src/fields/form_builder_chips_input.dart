@@ -20,6 +20,14 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final ChipsBuilder<T> suggestionBuilder;
   final int maxChips;
   final TextStyle textStyle;
+  final String actionLabel;
+  final bool autocorrect;
+  final TextInputAction inputAction;
+  final TextInputType inputType;
+  final Brightness keyboardAppearance;
+  final bool obscureText;
+  final double suggestionsBoxMaxHeight;
+  final TextCapitalization textCapitalization;
 
   FormBuilderChipsInput({
     @required this.attribute,
@@ -35,6 +43,14 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.onChanged,
     this.valueTransformer,
     this.textStyle,
+    this.actionLabel,
+    this.autocorrect,
+    this.inputAction,
+    this.inputType,
+    this.keyboardAppearance,
+    this.obscureText,
+    this.suggestionsBoxMaxHeight,
+    this.textCapitalization,
   });
 
   @override
@@ -107,6 +123,14 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
             suggestionBuilder: widget.suggestionBuilder,
             onChipTapped: widget.onChipTapped,
             textStyle: widget.textStyle,
+            actionLabel: widget.actionLabel,
+            autocorrect: widget.autocorrect,
+            inputAction: widget.inputAction,
+            inputType: widget.inputType,
+            keyboardAppearance: widget.keyboardAppearance,
+            obscureText: widget.obscureText,
+            suggestionsBoxMaxHeight: widget.suggestionsBoxMaxHeight,
+            textCapitalization: widget.textCapitalization,
           );
         },
       ),

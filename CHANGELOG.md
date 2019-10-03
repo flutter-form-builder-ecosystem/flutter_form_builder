@@ -1,3 +1,7 @@
+## [3.5.5] - 3-Oct-2019
+* Bumped up `flutter_chips_input` version from 1.3.1 to 1.5.1
+* AndroidX migration for example app
+
 ## [3.5.4] - 16-Sep-2019
 * Fix dependency mismatch for intl with flutter_localizations from sdk
 * Bumped up `datetime_picker_formfield` dependency version
