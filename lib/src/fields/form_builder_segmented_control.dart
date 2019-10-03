@@ -119,9 +119,11 @@ class _FormBuilderSegmentedControlState
                 key: (option) => option.value,
                 value: (option) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 10.0),
+                  // ignore: deprecated_member_use_from_same_package
                   child: widget.textStyle != null
                       ? Text(
                           "${option.label ?? option.value}",
+                          // ignore: deprecated_member_use_from_same_package
                           style: widget.textStyle,
                         )
                       : option,

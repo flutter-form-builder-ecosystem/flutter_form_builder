@@ -33,7 +33,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   ///
   /// To preset the widget's value, use [initialValue] instead.
   @Deprecated(
-      "This field will be removed in the next major version. Selected date or Current date will be used on DatePicker calendar instead")
+      "This field will be removed in version 4.0.0. Selected date or Current date will be used on DatePicker calendar instead")
   final DateTime initialDate;
 
   /// The earliest choosable date. Defaults to 1900.
@@ -346,6 +346,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           selectableDayPredicate: widget.selectableDayPredicate,
           initialDatePickerMode:
               widget.initialDatePickerMode ?? DatePickerMode.day,
+          // ignore: deprecated_member_use_from_same_package
           initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
           firstDate: widget.firstDate ?? DateTime(1900),
           lastDate: widget.lastDate ?? DateTime(2100));
@@ -359,6 +360,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     } else {
       return showTimePicker(
           context: context,
+          // ignore: deprecated_member_use_from_same_package
           initialTime: widget.initialTime ??
               TimeOfDay.fromDateTime(currentValue ?? DateTime.now()));
     }

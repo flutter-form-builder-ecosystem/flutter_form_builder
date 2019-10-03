@@ -14,6 +14,7 @@ class FormBuilderFieldOption extends StatelessWidget {
     if (child != null) {
       return child;
     } else {
+      // ignore: deprecated_member_use_from_same_package
       return Text("${label ?? value.toString()}");
     }
   }
