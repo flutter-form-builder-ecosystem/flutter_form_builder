@@ -321,9 +321,9 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       case InputType.date:
         return await _showDatePicker(context, currentValue) ?? currentValue;
       case InputType.time:
-        return DateTimeField.convert(
-            await _showTimePicker(context, currentValue) ??
-                TimeOfDay.fromDateTime(currentValue));
+        var newValue = await _showTimePicker(context, currentValue);
+        if(newValue == null && currentValue == null) return null;
+        return DateTimeField.convert(newValue ?? TimeOfDay.fromDateTime(currentValue));
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
