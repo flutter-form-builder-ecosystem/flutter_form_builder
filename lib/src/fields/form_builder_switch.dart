@@ -65,7 +65,7 @@ class FormBuilderSwitch extends StatefulWidget {
   FormBuilderSwitch({
     @required this.attribute,
     @required this.label,
-    this.initialValue = false,
+    this.initialValue,
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
