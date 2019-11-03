@@ -109,7 +109,11 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
               style: widget.style,
               isDense: widget.isDense,
               disabledHint: field.value != null
-                  ? Text("${field.value.toString()}")
+                  ? (widget.items
+                          .firstWhere((val) => val.value == field.value,
+                              orElse: () => null)
+                          ?.child ??
+                      Text("${field.value.toString()}"))
                   : widget.disabledHint,
               elevation: widget.elevation,
               iconSize: widget.iconSize,
@@ -131,7 +135,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
     );
   }
 
-  /*@override
+/*@override
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
