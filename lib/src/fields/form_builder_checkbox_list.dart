@@ -62,9 +62,9 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
     super.dispose();
   }
 
-  Widget _checkbox(String key, FormFieldState<dynamic> field, int i) {
+  Widget _checkbox(FormFieldState<dynamic> field, int i) {
     return Checkbox(
-      key: Key(key),
+      key: Key(widget.options[i].value),
       activeColor: widget.activeColor,
       checkColor: widget.checkColor,
       materialTapTargetSize: widget.materialTapTargetSize,
@@ -85,13 +85,13 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
     );
   }
 
-  Widget _leading(String key, FormFieldState<dynamic> field, int i) {
-    if (widget.leadingInput) return _checkbox(key, field, i);
+  Widget _leading(FormFieldState<dynamic> field, int i) {
+    if (widget.leadingInput) return _checkbox(field, i);
     return null;
   }
 
-  Widget _trailing(String key, FormFieldState<dynamic> field, int i) {
-    if (!widget.leadingInput) return _checkbox(key, field, i);
+  Widget _trailing(FormFieldState<dynamic> field, int i) {
+    if (!widget.leadingInput) return _checkbox(field, i);
     return null;
   }
 
@@ -125,8 +125,8 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                 dense: true,
                 isThreeLine: false,
                 contentPadding: EdgeInsets.all(0.0),
-                leading: _leading(widget.options[i].value, field, i),
-                trailing: _trailing(widget.options[i].value, field, i),
+                leading: _leading(field, i),
+                trailing: _trailing(field, i),
                 title: widget.options[i],
                 onTap: _readOnly
                     ? null
