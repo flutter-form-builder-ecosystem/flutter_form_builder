@@ -263,10 +263,10 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           : _dateTimeFormats[widget.inputType],
       onSaved: (val) {
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          var transformed = widget.valueTransformer(_fieldKey.currentState.value);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else {
-          _formState?.setAttributeValue(widget.attribute, val);
+          _formState?.setAttributeValue(widget.attribute, _fieldKey.currentState.value);
         }
       },
       validator: (val) {
@@ -277,7 +277,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         return null;
       },
       onShowPicker: _onShowPicker,
-      onChanged: widget.onChanged,
+      // onChanged: widget.onChanged,
       autovalidate: widget.autovalidate,
       resetIcon: widget.resetIcon,
       textDirection: widget.textDirection,
@@ -317,23 +317,30 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   Future<DateTime> _onShowPicker(
       BuildContext context, DateTime currentValue) async {
     currentValue = stateCurrentValue;
+    DateTime newValue;
     switch (widget.inputType) {
       case InputType.date:
-        return await _showDatePicker(context, currentValue) ?? currentValue;
+        newValue = await _showDatePicker(context, currentValue) ?? currentValue;
+        break;
       case InputType.time:
-        var newValue = await _showTimePicker(context, currentValue);
-        if(newValue == null && currentValue == null) return null;
-        return DateTimeField.convert(newValue ?? TimeOfDay.fromDateTime(currentValue));
+        var newTime = await _showTimePicker(context, currentValue);
+        newValue = DateTimeField.convert(newTime) ?? currentValue;
+        break;
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
           final time = await _showTimePicker(context, currentValue);
-          return DateTimeField.combine(date, time);
+          newValue = DateTimeField.combine(date, time);
         }
-        return _fieldKey.currentState.value ?? currentValue;
+        break;
       default:
         throw "Unexcepted input type ${widget.inputType}";
+        break;
     }
+    newValue = newValue ?? currentValue;
+    _fieldKey.currentState.didChange(newValue);
+    if (widget.onChanged != null) widget.onChanged(_fieldKey.currentState.value);
+    return newValue;
   }
 
   Future<DateTime> _showDatePicker(
