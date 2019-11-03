@@ -23,6 +23,8 @@ class FormBuilderDropdown extends StatefulWidget {
   final Widget icon;
   final Color iconDisabledColor;
   final Color iconEnabledColor;
+  final bool allowClear;
+  final Widget clearIcon;
 
   FormBuilderDropdown({
     @required this.attribute,
@@ -44,7 +46,9 @@ class FormBuilderDropdown extends StatefulWidget {
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
-  });
+    this.allowClear = false,
+    this.clearIcon = const Icon(Icons.close),
+  }) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
   _FormBuilderDropdownState createState() => _FormBuilderDropdownState();
@@ -101,38 +105,57 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             errorText: field.errorText,
           ),
           child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-              isExpanded: widget.isExpanded,
-              hint: widget.hint,
-              items: widget.items,
-              value: field.value,
-              style: widget.style,
-              isDense: widget.isDense,
-              disabledHint: field.value != null
-                  ? (widget.items
-                          .firstWhere((val) => val.value == field.value,
-                              orElse: () => null)
-                          ?.child ??
-                      Text("${field.value.toString()}"))
-                  : widget.disabledHint,
-              elevation: widget.elevation,
-              iconSize: widget.iconSize,
-              icon: widget.icon,
-              iconDisabledColor: widget.iconDisabledColor,
-              iconEnabledColor: widget.iconEnabledColor,
-              underline: widget.underline,
-              onChanged: _readOnly
-                  ? null
-                  : (value) {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      field.didChange(value);
-                      if (widget.onChanged != null) widget.onChanged(value);
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: DropdownButton(
+                    isExpanded: widget.isExpanded,
+                    hint: widget.hint,
+                    items: widget.items,
+                    value: field.value,
+                    style: widget.style,
+                    isDense: widget.isDense,
+                    disabledHint: field.value != null
+                        ? (widget.items
+                                .firstWhere((val) => val.value == field.value,
+                                    orElse: () => null)
+                                ?.child ??
+                            Text("${field.value.toString()}"))
+                        : widget.disabledHint,
+                    elevation: widget.elevation,
+                    iconSize: widget.iconSize,
+                    icon: widget.icon,
+                    iconDisabledColor: widget.iconDisabledColor,
+                    iconEnabledColor: widget.iconEnabledColor,
+                    underline: widget.underline,
+                    onChanged: _readOnly
+                        ? null
+                        : (value) {
+                            _changeValue(field, value);
+                          },
+                  ),
+                ),
+                if (widget.allowClear && !widget.readOnly) ...[
+                  VerticalDivider(),
+                  InkWell(
+                    child: widget.clearIcon,
+                    onTap: () {
+                      _changeValue(field, null);
                     },
+                  ),
+                ]
+              ],
             ),
           ),
         );
       },
     );
+  }
+
+  _changeValue(FormFieldState field, value) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    field.didChange(value);
+    if (widget.onChanged != null) widget.onChanged(value);
   }
 
 /*@override
