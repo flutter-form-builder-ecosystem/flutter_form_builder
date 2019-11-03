@@ -149,8 +149,6 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
             decoration: widget.decoration.copyWith(
               enabled: !_readOnly,
               errorText: field.errorText,
-              contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-              border: InputBorder.none,
             ),
             child: Column(
               children: checkboxList,
