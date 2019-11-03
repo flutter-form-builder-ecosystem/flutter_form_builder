@@ -93,48 +93,51 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-      },
-      builder: (FormFieldState<dynamic> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            errorText: field.errorText,
-          ),
-          child: ListTile(
-            dense: true,
-            isThreeLine: false,
-            contentPadding: EdgeInsets.all(0.0),
-            title: widget.label,
-            leading: _leading(field),
-            trailing: _trailing(field),
-            onTap: _readOnly
-                ? null
-                : () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    bool newValue = !(field.value ?? false);
-                    field.didChange(newValue);
-                    if (widget.onChanged != null) widget.onChanged(newValue);
-                  },
-          ),
-        );
-      },
+    return Container(
+      key: Key(widget.attribute),
+      child: FormField(
+        key: _fieldKey,
+        enabled: !_readOnly,
+        initialValue: _initialValue,
+        validator: (val) {
+          for (int i = 0; i < widget.validators.length; i++) {
+            if (widget.validators[i](val) != null)
+              return widget.validators[i](val);
+          }
+          return null;
+        },
+        onSaved: (val) {
+          if (widget.valueTransformer != null) {
+            var transformed = widget.valueTransformer(val);
+            _formState?.setAttributeValue(widget.attribute, transformed);
+          } else
+            _formState?.setAttributeValue(widget.attribute, val);
+        },
+        builder: (FormFieldState<dynamic> field) {
+          return InputDecorator(
+            decoration: widget.decoration.copyWith(
+              enabled: !_readOnly,
+              errorText: field.errorText,
+            ),
+            child: ListTile(
+              dense: true,
+              isThreeLine: false,
+              contentPadding: EdgeInsets.all(0.0),
+              title: widget.label,
+              leading: _leading(field),
+              trailing: _trailing(field),
+              onTap: _readOnly
+                  ? null
+                  : () {
+                FocusScope.of(context).requestFocus(FocusNode());
+                bool newValue = !(field.value ?? false);
+                field.didChange(newValue);
+                if (widget.onChanged != null) widget.onChanged(newValue);
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }
