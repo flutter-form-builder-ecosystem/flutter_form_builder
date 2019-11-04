@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 class FormBuilderSlider extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  final num initialValue;
+  final double initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
-  final num max;
-  final num min;
+  final double max;
+  final double min;
   final int divisions;
   final Color activeColor;
   final Color inactiveColor;
@@ -20,6 +21,7 @@ class FormBuilderSlider extends StatefulWidget {
   final ValueChanged<double> onChangeEnd;
   final String label;
   final SemanticFormatterCallback semanticFormatterCallback;
+  final NumberFormat numberFormat;
 
   FormBuilderSlider({
     @required this.attribute,
@@ -38,6 +40,7 @@ class FormBuilderSlider extends StatefulWidget {
     this.onChangeEnd,
     this.label,
     this.semanticFormatterCallback,
+    this.numberFormat,
   });
 
   @override
@@ -48,7 +51,8 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  num _initialValue;
+  double _initialValue;
+  NumberFormat _numberFormat;
 
   @override
   void initState() {
@@ -58,6 +62,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
+    _numberFormat = widget.numberFormat ?? NumberFormat("##0.0");
     super.initState();
   }
 
@@ -113,7 +118,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   semanticFormatterCallback: widget.semanticFormatterCallback,
                   onChanged: _readOnly
                       ? null
-                      : (num value) {
+                      : (double value) {
                           FocusScope.of(context).requestFocus(FocusNode());
                           field.didChange(value);
                           if (widget.onChanged != null) widget.onChanged(value);
@@ -122,9 +127,9 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("${widget.min}"),
-                    Text("${field.value}"),
-                    Text("${widget.max}"),
+                    Text("${_numberFormat.format(widget.min)}"),
+                    Text("${_numberFormat.format(field.value)}"),
+                    Text("${_numberFormat.format(widget.max)}"),
                   ],
                 ),
               ],
