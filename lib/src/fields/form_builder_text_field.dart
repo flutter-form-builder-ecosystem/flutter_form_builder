@@ -51,7 +51,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
-    this.maxLines = 1,
+    this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
