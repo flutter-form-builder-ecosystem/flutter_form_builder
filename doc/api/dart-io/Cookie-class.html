@@ -183,14 +183,13 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Cookie class </h1></div>
+      <div><h1><span class="kind-class">Cookie</span> class </h1></div>
 
     <section class="desc markdown">
-      <p>Representation of a cookie. For cookies received by the server as
-Cookie header values only <code>name</code> and <code>value</code> fields will be
-set. When building a cookie for the 'set-cookie' header in the server
-and when receiving cookies in the client as 'set-cookie' headers all
-fields can be used.</p>
+      <p>Representation of a cookie. For cookies received by the server as Cookie
+header values only <a href="dart-io/Cookie/name.html">name</a> and <a href="dart-io/Cookie/value.html">value</a> properties will be set. When building a
+cookie for the 'set-cookie' header in the server and when receiving cookies
+in the client as 'set-cookie' headers all fields can be used.</p>
     </section>
     
 
@@ -199,10 +198,10 @@ fields can be used.</p>
 
       <dl class="constructor-summary-list">
         <dt id="Cookie" class="callable">
-          <span class="name"><a href="dart-io/Cookie/Cookie.html">Cookie</a></span><span class="signature">([<span class="parameter" id="-param-name"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">value</span></span> ])</span>
+          <span class="name"><a href="dart-io/Cookie/Cookie.html">Cookie</a></span><span class="signature">(<span class="parameter" id="-param-name"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">value</span></span>)</span>
         </dt>
         <dd>
-          Creates a new cookie optionally setting the name and value. <a href="dart-io/Cookie/Cookie.html">[...]</a>
+          Creates a new cookie setting the name and value. <a href="dart-io/Cookie/Cookie.html">[...]</a>
           <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="Cookie.fromSetCookieValue" class="callable">
@@ -225,7 +224,7 @@ header.
           <span class="signature">&#8596; <a href="dart-core/String-class.html">String</a></span>         
         </dt>
         <dd>
-          Gets and sets the domain.
+          The domain the cookie applies to.
                   <div class="features">read / write</div>
 </dd>
         <dt id="expires" class="property">
@@ -233,7 +232,7 @@ header.
           <span class="signature">&#8596; <a href="dart-core/DateTime-class.html">DateTime</a></span>         
         </dt>
         <dd>
-          Gets and sets the expiry date.
+          The time at which the cookie expires.
                   <div class="features">read / write</div>
 </dd>
         <dt id="httpOnly" class="property">
@@ -241,7 +240,8 @@ header.
           <span class="signature">&#8596; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
-          Gets and sets whether this cookie is HTTP only.
+          Whether the cookie is only sent in the HTTP request and is not made
+available to client side scripts.
                   <div class="features">read / write</div>
 </dd>
         <dt id="maxAge" class="property">
@@ -249,8 +249,8 @@ header.
           <span class="signature">&#8596; <a href="dart-core/int-class.html">int</a></span>         
         </dt>
         <dd>
-          Gets and sets the max age. A value of <code>0</code> means delete cookie
-now.
+          The number of seconds until the cookie expires. A zero or negative value
+means the cookie has expired.
                   <div class="features">read / write</div>
 </dd>
         <dt id="name" class="property">
@@ -258,7 +258,7 @@ now.
           <span class="signature">&#8596; <a href="dart-core/String-class.html">String</a></span>         
         </dt>
         <dd>
-          Gets and sets the name.
+          The name of the cookie. <a href="dart-io/Cookie/name.html">[...]</a>
                   <div class="features">read / write</div>
 </dd>
         <dt id="path" class="property">
@@ -266,7 +266,7 @@ now.
           <span class="signature">&#8596; <a href="dart-core/String-class.html">String</a></span>         
         </dt>
         <dd>
-          Gets and sets the path.
+          The path within the <a href="dart-io/Cookie/domain.html">domain</a> the cookie applies to.
                   <div class="features">read / write</div>
 </dd>
         <dt id="secure" class="property">
@@ -274,7 +274,7 @@ now.
           <span class="signature">&#8596; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
-          Gets and sets whether this cookie is secure.
+          Whether to only send this cookie on secure connections.
                   <div class="features">read / write</div>
 </dd>
         <dt id="value" class="property">
@@ -282,7 +282,7 @@ now.
           <span class="signature">&#8596; <a href="dart-core/String-class.html">String</a></span>         
         </dt>
         <dd>
-          Gets and sets the value.
+          The value of the cookie. <a href="dart-io/Cookie/value.html">[...]</a>
                   <div class="features">read / write</div>
 </dd>
         <dt id="hashCode" class="property inherited">
@@ -386,7 +386,7 @@ string representation can be used for for setting the Cookie or
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

@@ -56,11 +56,13 @@
       <li class="section-title"><a href="dart-async/Stream-class.html#constructors">Constructors</a></li>
       <li><a href="dart-async/Stream/Stream.html">Stream</a></li>
       <li><a href="dart-async/Stream/Stream.empty.html">empty</a></li>
+      <li><a href="dart-async/Stream/Stream.error.html">error</a></li>
       <li><a href="dart-async/Stream/Stream.eventTransformed.html">eventTransformed</a></li>
       <li><a href="dart-async/Stream/Stream.fromFuture.html">fromFuture</a></li>
       <li><a href="dart-async/Stream/Stream.fromFutures.html">fromFutures</a></li>
       <li><a href="dart-async/Stream/Stream.fromIterable.html">fromIterable</a></li>
       <li><a href="dart-async/Stream/Stream.periodic.html">periodic</a></li>
+      <li><a href="dart-async/Stream/Stream.value.html">value</a></li>
     
       <li class="section-title">
         <a href="dart-async/Stream-class.html#instance-properties">Properties</a>
@@ -120,7 +122,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>timeout method</h1></div>
+      <div><h1><span class="kind-method">timeout</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
@@ -163,8 +165,11 @@ and the subscriptions' timers can be paused individually.</p>
 
   void onData(T event) {
     timer.cancel();
-    controller.add(event);
     timer = zone.createTimer(timeLimit, timeout);
+    &#47;&#47; It might close the stream and cancel timer, so create recuring Timer
+    &#47;&#47; before calling into add();
+    &#47;&#47; issue: https:&#47;&#47;github.com&#47;dart-lang&#47;sdk&#47;issues&#47;37565
+    controller.add(event);
   }
 
   void onError(error, StackTrace stackTrace) {
@@ -238,7 +243,7 @@ and the subscriptions' timers can be paused individually.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

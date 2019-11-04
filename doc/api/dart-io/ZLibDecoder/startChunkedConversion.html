@@ -83,7 +83,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>startChunkedConversion method</h1></div>
+      <div><h1><span class="kind-method">startChunkedConversion</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-convert/ByteConversionSink-class.html">ByteConversionSink</a></span>
@@ -103,7 +103,7 @@ taking <a href="dart-core/List-class.html">List&lt;int&gt;</a>'s, the optimal si
   if (sink is! ByteConversionSink) {
     sink = new ByteConversionSink.from(sink);
   }
-  return new _ZLibDecoderSink(sink, windowBits, dictionary, raw);
+  return new _ZLibDecoderSink._(sink, windowBits, dictionary, raw);
 }</code></pre>
     </section>
 
@@ -116,7 +116,7 @@ taking <a href="dart-core/List-class.html">List&lt;int&gt;</a>'s, the optimal si
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

@@ -77,9 +77,11 @@
       <li><a href="dart-ui/Window/onSemanticsEnabledChanged.html">onSemanticsEnabledChanged</a></li>
       <li><a href="dart-ui/Window/onTextScaleFactorChanged.html">onTextScaleFactorChanged</a></li>
       <li><a href="dart-ui/Window/padding.html">padding</a></li>
+      <li><a href="dart-ui/Window/physicalDepth.html">physicalDepth</a></li>
       <li><a href="dart-ui/Window/physicalSize.html">physicalSize</a></li>
       <li><a href="dart-ui/Window/platformBrightness.html">platformBrightness</a></li>
       <li><a href="dart-ui/Window/semanticsEnabled.html">semanticsEnabled</a></li>
+      <li><a href="dart-ui/Window/systemGestureInsets.html">systemGestureInsets</a></li>
       <li><a href="dart-ui/Window/textScaleFactor.html">textScaleFactor</a></li>
       <li><a href="dart-ui/Window/viewInsets.html">viewInsets</a></li>
       <li><a href="dart-ui/Window/viewPadding.html">viewPadding</a></li>
@@ -104,7 +106,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>onMetricsChanged property</h1></div>
+      <div><h1><span class="kind-property">onMetricsChanged</span> property</h1></div>
 
 
         <section id="getter">
@@ -117,9 +119,10 @@
         
                 <section class="desc markdown">
           <p>A callback that is invoked whenever the <a href="dart-ui/Window/devicePixelRatio.html">devicePixelRatio</a>,
-<a href="dart-ui/Window/physicalSize.html">physicalSize</a>, <a href="dart-ui/Window/padding.html">padding</a>, or <a href="dart-ui/Window/viewInsets.html">viewInsets</a> values change, for example
-when the device is rotated or when the application is resized (e.g. when
-showing applications side-by-side on Android).</p>
+<a href="dart-ui/Window/physicalSize.html">physicalSize</a>, <a href="dart-ui/Window/padding.html">padding</a>, <a href="dart-ui/Window/viewInsets.html">viewInsets</a>, or <a href="dart-ui/Window/systemGestureInsets.html">systemGestureInsets</a>
+values change, for example when the device is rotated or when the
+application is resized (e.g. when showing applications side-by-side
+on Android).</p>
 <p>The engine invokes this callback in the same zone in which the callback
 was set.</p>
 <p>The framework registers with this callback and updates the layout
@@ -159,7 +162,7 @@ register for notifications when this is called.</li><li><code>MediaQuery.of</cod
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

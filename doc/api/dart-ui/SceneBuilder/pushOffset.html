@@ -96,23 +96,43 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>pushOffset method</h1></div>
+      <div><h1><span class="kind-method">pushOffset</span> method</h1></div>
 
     <section class="multi-line-signature">
-      <span class="returntype"><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></span>
+      <span class="returntype"><a href="dart-ui/OffsetEngineLayer-class.html">OffsetEngineLayer</a></span>
             <span class="name ">pushOffset</span>
-(<wbr><span class="parameter" id="pushOffset-param-dx"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dx</span>, </span> <span class="parameter" id="pushOffset-param-dy"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dy</span></span>)
+(<wbr><span class="parameter" id="pushOffset-param-dx"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dx</span>, </span> <span class="parameter" id="pushOffset-param-dy"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dy</span>, {</span> <span class="parameter" id="pushOffset-param-oldLayer"><span class="type-annotation"><a href="dart-ui/OffsetEngineLayer-class.html">OffsetEngineLayer</a></span> <span class="parameter-name">oldLayer</span></span> })
       
     </section>
     <section class="desc markdown">
       <p>Pushes an offset operation onto the operation stack.</p>
 <p>This is equivalent to <a href="dart-ui/SceneBuilder/pushTransform.html">pushTransform</a> with a matrix with only translation.</p>
+<p>If <code>oldLayer</code> is not null the engine will attempt to reuse the resources
+allocated for the old layer when rendering the new layer. This is purely
+an optimization. It has no effect on the correctness of rendering.</p>
+<p>Passing a layer to <a href="dart-ui/SceneBuilder/addRetained.html">addRetained</a> or as <code>oldLayer</code> argument to a push
+method counts as <em>usage</em>. A layer can be used no more than once in a scene.
+For example, it may not be passed simultaneously to two push methods, or
+to a push method and to <code>addRetained</code>.</p>
+<p>When a layer is passed to <a href="dart-ui/SceneBuilder/addRetained.html">addRetained</a> all descendant layers are also
+considered as used in this scene. The same single-usage restriction
+applies to descendants.</p>
+<p>When a layer is passed as an <code>oldLayer</code> argument to a push method, it may
+no longer be used in subsequent frames. If you would like to continue
+reusing the resources associated with the layer, store the layer object
+returned by the push method and use that in the next frame instead of the
+original object.</p>
 <p>See <a href="dart-ui/SceneBuilder/pop.html">pop</a> for details about the operation stack.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">EngineLayer pushOffset(double dx, double dy) native &#39;SceneBuilder_pushOffset&#39;;</code></pre>
+      <pre class="language-dart"><code class="language-dart">OffsetEngineLayer pushOffset(double dx, double dy, { OffsetEngineLayer oldLayer }) {
+  assert(_debugCheckCanBeUsedAsOldLayer(oldLayer, &#39;pushOffset&#39;));
+  final OffsetEngineLayer layer = OffsetEngineLayer._(_pushOffset(dx, dy));
+  assert(_debugPushLayer(layer));
+  return layer;
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -124,7 +144,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

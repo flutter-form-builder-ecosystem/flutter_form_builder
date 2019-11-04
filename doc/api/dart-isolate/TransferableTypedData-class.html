@@ -72,8 +72,17 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>TransferableTypedData class </h1></div>
+      <div><h1><span class="kind-class">TransferableTypedData</span> class </h1></div>
 
+    <section class="desc markdown">
+      <p>An efficiently transferable sequence of byte values.</p>
+<p>A <a href="dart-isolate/TransferableTypedData-class.html">TransferableTypedData</a> is created from a number of bytes.
+This will take time proportional to the number of bytes.</p>
+<p>The <a href="dart-isolate/TransferableTypedData-class.html">TransferableTypedData</a> can be moved between isolates, so
+sending it through a send port will only take constant time.</p>
+<p>When sent this way, the local transferable can no longer be materialized,
+and the received object is now the only way to materialize the data.</p>
+    </section>
     
     <section>
       <dl class="dl-horizontal">
@@ -206,7 +215,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

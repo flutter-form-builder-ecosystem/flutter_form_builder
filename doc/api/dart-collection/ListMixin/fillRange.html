@@ -133,7 +133,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>fillRange method</h1></div>
+      <div><h1><span class="kind-method">fillRange</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
@@ -148,6 +148,11 @@ to the given <code>fillValue</code>.</p>
 A range from <code>start</code> to <code>end</code> is valid if <code>0 &lt;= start &lt;= end &lt;= len</code>, where
 <code>len</code> is this list's <code>length</code>. The range starts at <code>start</code> and has length
 <code>end - start</code>. An empty range (with <code>end == start</code>) is valid.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart"> List&lt;int&gt; list = new List(3);
+    list.fillRange(0, 2, 1);
+    print(list); //  [1, 1, null]
+</code></pre>
     </section>
     
     <section class="summary source-code" id="source">
@@ -169,7 +174,7 @@ A range from <code>start</code> to <code>end</code> is valid if <code>0 &lt;= st
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

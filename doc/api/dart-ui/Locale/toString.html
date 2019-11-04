@@ -83,7 +83,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>toString method</h1></div>
+      <div><h1><span class="kind-method">toString</span> method</h1></div>
 
     <section class="multi-line-signature">
       <div>
@@ -106,7 +106,13 @@ purposes only. For parseable results, use <a href="dart-ui/Locale/toLanguageTag.
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">@override
-String toString() =&gt; _toLanguageTag(&#39;_&#39;);</code></pre>
+String toString() {
+  if (!identical(cachedLocale, this)) {
+    cachedLocale = this;
+    cachedLocaleString = _rawToString(&#39;_&#39;);
+  }
+  return cachedLocaleString;
+}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -118,7 +124,7 @@ String toString() =&gt; _toLanguageTag(&#39;_&#39;);</code></pre>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

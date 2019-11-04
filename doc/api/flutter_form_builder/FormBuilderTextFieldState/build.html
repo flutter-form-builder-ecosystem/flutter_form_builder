@@ -89,7 +89,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>build method</h1></div>
+      <div><h1><span class="kind-method">build</span> method</h1></div>
 
     <section class="multi-line-signature">
       <div>
@@ -125,8 +125,8 @@ this method matches the signature for a <code>WidgetBuilder</code>.</p>
 <h2 id="design-discussion">Design discussion</h2>
 <h3 id="why-is-the-build-method-on-state-and-not-statefulwidget">Why is the <a href="flutter_form_builder/FormBuilderTextFieldState/build.html">build</a> method on <code>State</code>, and not <code>StatefulWidget</code>?</h3>
 <p>Putting a <code>Widget build(BuildContext context)</code> method on <code>State</code> rather
-putting a <code>Widget build(BuildContext context, State state)</code> method on
-<code>StatefulWidget</code> gives developers more flexibility when subclassing
+than putting a <code>Widget build(BuildContext context, State state)</code> method
+on <code>StatefulWidget</code> gives developers more flexibility when subclassing
 <code>StatefulWidget</code>.</p>
 <p>For example, <code>AnimatedWidget</code> is a subclass of <code>StatefulWidget</code> that
 introduces an abstract <code>Widget build(BuildContext context)</code> method for its
@@ -248,7 +248,7 @@ Widget build(BuildContext context) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

@@ -105,7 +105,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>typeSync method</h1></div>
+      <div><h1><span class="kind-method">typeSync</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-io/FileSystemEntityType-class.html">FileSystemEntityType</a></span>
@@ -116,13 +116,10 @@
     <section class="desc markdown">
       <p>Synchronously finds the type of file system object that a path points to.</p>
 <p>Returns a <a href="dart-io/FileSystemEntityType-class.html">FileSystemEntityType</a>.</p>
-<p><a href="dart-io/FileSystemEntityType-class.html">FileSystemEntityType</a> has the constant instances file, directory,
-link, and notFound.  <a href="dart-io/FileSystemEntity/type.html">type</a> will return link only if the optional
-named argument <code>followLinks</code> is false, and <code>path</code> points to a link.
-If the path does not point to a file system object, or any other error
-occurs in looking up the path, notFound is returned.  The only
-error or exception that may be thrown is ArgumentError,
-caused by passing the wrong type of arguments to the function.</p>
+<p>Returns <a href="dart-io/FileSystemEntityType/link-constant.html">FileSystemEntityType.link</a> only if <code>followLinks</code> is false and if
+<code>path</code> points to a link.</p>
+<p>Returns <a href="dart-io/FileSystemEntityType/notFound-constant.html">FileSystemEntityType.notFound</a> if <code>path</code> does not point to a file
+system object or if any other error occurs in looking up the path.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -141,7 +138,7 @@ caused by passing the wrong type of arguments to the function.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

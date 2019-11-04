@@ -83,7 +83,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>stat method</h1></div>
+      <div><h1><span class="kind-method">stat</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/FileStat-class.html">FileStat</a></span>&gt;</span></span>
@@ -92,11 +92,9 @@
       
     </section>
     <section class="desc markdown">
-      <p>Asynchronously calls the operating system's stat() function on <code>path</code>.</p>
-<p>Returns a Future which completes with a <a href="dart-io/FileStat-class.html">FileStat</a> object containing
-the data returned by stat(). If the call fails, completes the future with a
-<a href="dart-io/FileStat-class.html">FileStat</a> object with <code>.type</code> set to FileSystemEntityType.notFound and
-the other fields invalid.</p>
+      <p>Asynchronously calls the operating system's <code>stat()</code> function (or
+equivalent) on <code>path</code>.</p>
+<p>Returns a <a href="dart-async/Future-class.html">Future</a> which completes with the same results as <a href="dart-io/FileStat/statSync.html">statSync</a>.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -119,7 +117,7 @@ the other fields invalid.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

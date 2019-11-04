@@ -96,12 +96,12 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>pushPhysicalShape method</h1></div>
+      <div><h1><span class="kind-method">pushPhysicalShape</span> method</h1></div>
 
     <section class="multi-line-signature">
-      <span class="returntype"><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></span>
+      <span class="returntype"><a href="dart-ui/PhysicalShapeEngineLayer-class.html">PhysicalShapeEngineLayer</a></span>
             <span class="name ">pushPhysicalShape</span>
-(<wbr>{<span class="parameter" id="pushPhysicalShape-param-path"><span class="type-annotation"><a href="dart-ui/Path-class.html">Path</a></span> <span class="parameter-name">path</span>, </span> <span class="parameter" id="pushPhysicalShape-param-elevation"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">elevation</span>, </span> <span class="parameter" id="pushPhysicalShape-param-color"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">color</span>, </span> <span class="parameter" id="pushPhysicalShape-param-shadowColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">shadowColor</span>, </span> <span class="parameter" id="pushPhysicalShape-param-clipBehavior"><span class="type-annotation"><a href="dart-ui/Clip-class.html">Clip</a></span> <span class="parameter-name">clipBehavior</span>: <span class="default-value">Clip.none</span></span> })
+(<wbr>{<span class="parameter" id="pushPhysicalShape-param-path"><span class="type-annotation"><a href="dart-ui/Path-class.html">Path</a></span> <span class="parameter-name">path</span>, </span> <span class="parameter" id="pushPhysicalShape-param-elevation"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">elevation</span>, </span> <span class="parameter" id="pushPhysicalShape-param-color"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">color</span>, </span> <span class="parameter" id="pushPhysicalShape-param-shadowColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">shadowColor</span>, </span> <span class="parameter" id="pushPhysicalShape-param-clipBehavior"><span class="type-annotation"><a href="dart-ui/Clip-class.html">Clip</a></span> <span class="parameter-name">clipBehavior</span>: <span class="default-value">Clip.none</span>, </span> <span class="parameter" id="pushPhysicalShape-param-oldLayer"><span class="type-annotation"><a href="dart-ui/PhysicalShapeEngineLayer-class.html">PhysicalShapeEngineLayer</a></span> <span class="parameter-name">oldLayer</span></span> })
       
     </section>
     <section class="desc markdown">
@@ -113,14 +113,32 @@ then the content is clipped to the given shape defined by <code>path</code>.</p>
 <p>If <code>elevation</code> is greater than 0.0, then a shadow is drawn around the layer.
 <code>shadowColor</code> defines the color of the shadow if present and <code>color</code> defines the
 color of the layer background.</p>
+<p>If <code>oldLayer</code> is not null the engine will attempt to reuse the resources
+allocated for the old layer when rendering the new layer. This is purely
+an optimization. It has no effect on the correctness of rendering.</p>
+<p>Passing a layer to <a href="dart-ui/SceneBuilder/addRetained.html">addRetained</a> or as <code>oldLayer</code> argument to a push
+method counts as <em>usage</em>. A layer can be used no more than once in a scene.
+For example, it may not be passed simultaneously to two push methods, or
+to a push method and to <code>addRetained</code>.</p>
+<p>When a layer is passed to <a href="dart-ui/SceneBuilder/addRetained.html">addRetained</a> all descendant layers are also
+considered as used in this scene. The same single-usage restriction
+applies to descendants.</p>
+<p>When a layer is passed as an <code>oldLayer</code> argument to a push method, it may
+no longer be used in subsequent frames. If you would like to continue
+reusing the resources associated with the layer, store the layer object
+returned by the push method and use that in the next frame instead of the
+original object.</p>
 <p>See <a href="dart-ui/SceneBuilder/pop.html">pop</a> for details about the operation stack, and <a href="dart-ui/Clip-class.html">Clip</a> for different clip modes.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">&#47;&#47; ignore: deprecated_member_use
-EngineLayer pushPhysicalShape({ Path path, double elevation, Color color, Color shadowColor, Clip clipBehavior = Clip.none}) {
-  return _pushPhysicalShape(path, elevation, color.value, shadowColor?.value ?? 0xFF000000, clipBehavior.index);
+PhysicalShapeEngineLayer pushPhysicalShape({ Path path, double elevation, Color color, Color shadowColor, Clip clipBehavior = Clip.none, PhysicalShapeEngineLayer oldLayer }) {
+  assert(_debugCheckCanBeUsedAsOldLayer(oldLayer, &#39;pushPhysicalShape&#39;));
+  final PhysicalShapeEngineLayer layer = PhysicalShapeEngineLayer._(_pushPhysicalShape(path, elevation, color.value, shadowColor?.value ?? 0xFF000000, clipBehavior.index));
+  assert(_debugPushLayer(layer));
+  return layer;
 }</code></pre>
     </section>
 
@@ -133,7 +151,7 @@ EngineLayer pushPhysicalShape({ Path path, double elevation, Color color, Color 
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

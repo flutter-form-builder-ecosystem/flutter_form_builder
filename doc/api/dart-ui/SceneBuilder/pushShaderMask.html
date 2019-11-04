@@ -96,30 +96,48 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>pushShaderMask method</h1></div>
+      <div><h1><span class="kind-method">pushShaderMask</span> method</h1></div>
 
     <section class="multi-line-signature">
-      <span class="returntype"><a href="dart-ui/EngineLayer-class.html">EngineLayer</a></span>
+      <span class="returntype"><a href="dart-ui/ShaderMaskEngineLayer-class.html">ShaderMaskEngineLayer</a></span>
             <span class="name ">pushShaderMask</span>
-(<wbr><span class="parameter" id="pushShaderMask-param-shader"><span class="type-annotation"><a href="dart-ui/Shader-class.html">Shader</a></span> <span class="parameter-name">shader</span>, </span> <span class="parameter" id="pushShaderMask-param-maskRect"><span class="type-annotation"><a href="dart-ui/Rect-class.html">Rect</a></span> <span class="parameter-name">maskRect</span>, </span> <span class="parameter" id="pushShaderMask-param-blendMode"><span class="type-annotation"><a href="dart-ui/BlendMode-class.html">BlendMode</a></span> <span class="parameter-name">blendMode</span></span>)
+(<wbr><span class="parameter" id="pushShaderMask-param-shader"><span class="type-annotation"><a href="dart-ui/Shader-class.html">Shader</a></span> <span class="parameter-name">shader</span>, </span> <span class="parameter" id="pushShaderMask-param-maskRect"><span class="type-annotation"><a href="dart-ui/Rect-class.html">Rect</a></span> <span class="parameter-name">maskRect</span>, </span> <span class="parameter" id="pushShaderMask-param-blendMode"><span class="type-annotation"><a href="dart-ui/BlendMode-class.html">BlendMode</a></span> <span class="parameter-name">blendMode</span>, {</span> <span class="parameter" id="pushShaderMask-param-oldLayer"><span class="type-annotation"><a href="dart-ui/ShaderMaskEngineLayer-class.html">ShaderMaskEngineLayer</a></span> <span class="parameter-name">oldLayer</span></span> })
       
     </section>
     <section class="desc markdown">
       <p>Pushes a shader mask operation onto the operation stack.</p>
 <p>The given shader is applied to the object's rasterization in the given
 rectangle using the given blend mode.</p>
+<p>If <code>oldLayer</code> is not null the engine will attempt to reuse the resources
+allocated for the old layer when rendering the new layer. This is purely
+an optimization. It has no effect on the correctness of rendering.</p>
+<p>Passing a layer to <a href="dart-ui/SceneBuilder/addRetained.html">addRetained</a> or as <code>oldLayer</code> argument to a push
+method counts as <em>usage</em>. A layer can be used no more than once in a scene.
+For example, it may not be passed simultaneously to two push methods, or
+to a push method and to <code>addRetained</code>.</p>
+<p>When a layer is passed to <a href="dart-ui/SceneBuilder/addRetained.html">addRetained</a> all descendant layers are also
+considered as used in this scene. The same single-usage restriction
+applies to descendants.</p>
+<p>When a layer is passed as an <code>oldLayer</code> argument to a push method, it may
+no longer be used in subsequent frames. If you would like to continue
+reusing the resources associated with the layer, store the layer object
+returned by the push method and use that in the next frame instead of the
+original object.</p>
 <p>See <a href="dart-ui/SceneBuilder/pop.html">pop</a> for details about the operation stack.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">EngineLayer pushShaderMask(Shader shader, Rect maskRect, BlendMode blendMode) {
-  return _pushShaderMask(shader,
+      <pre class="language-dart"><code class="language-dart">ShaderMaskEngineLayer pushShaderMask(Shader shader, Rect maskRect, BlendMode blendMode, { ShaderMaskEngineLayer oldLayer }) {
+  assert(_debugCheckCanBeUsedAsOldLayer(oldLayer, &#39;pushShaderMask&#39;));
+  final ShaderMaskEngineLayer layer = ShaderMaskEngineLayer._(_pushShaderMask(shader,
                          maskRect.left,
                          maskRect.right,
                          maskRect.top,
                          maskRect.bottom,
-                         blendMode.index);
+                         blendMode.index));
+  assert(_debugPushLayer(layer));
+  return layer;
 }</code></pre>
     </section>
 
@@ -132,7 +150,7 @@ rectangle using the given blend mode.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

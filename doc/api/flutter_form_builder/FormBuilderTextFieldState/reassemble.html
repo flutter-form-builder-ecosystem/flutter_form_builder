@@ -89,7 +89,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>reassemble method</h1></div>
+      <div><h1><span class="kind-method">reassemble</span> method</h1></div>
 
     <section class="multi-line-signature">
       <div>
@@ -112,6 +112,14 @@ bundle may have changed).</p>
 <p>This function will only be called during development. In release builds,
 the <code>ext.flutter.reassemble</code> hook is not available, and so this code will
 never execute.</p>
+<p>Implementers should not rely on any ordering for hot reload source update,
+reassemble, and build methods after a hot reload has been initiated. It is
+possible that a <a href="dart-async/Timer-class.html">Timer</a> (e.g. an <code>Animation</code>) or a debugging session
+attached to the isolate could trigger a build with reloaded code <em>before</em>
+reassemble is called. Code that expects preconditions to be set by
+reassemble after a hot reload must be resilient to being called out of
+order, e.g. by fizzling instead of throwing. That said, once reassemble is
+called, build will be called after it at least once.</p>
 <p>In addition to this method being invoked, it is guaranteed that the
 <a href="flutter_form_builder/FormBuilderTextFieldState/build.html">build</a> method will be invoked when a reassemble is signaled. Most
 widgets therefore do not need to do anything in the <a href="flutter_form_builder/FormBuilderTextFieldState/reassemble.html">reassemble</a> method.</p>
@@ -134,7 +142,7 @@ void reassemble() { }</code></pre>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

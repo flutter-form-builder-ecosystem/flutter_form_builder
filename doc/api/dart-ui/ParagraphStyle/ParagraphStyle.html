@@ -75,7 +75,7 @@
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>ParagraphStyle constructor</h1></div>
+      <div><h1><span class="kind-constructor">ParagraphStyle</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -102,9 +102,11 @@ dropped. The width constraints are those set in the
 in the absence of a <code>textStyle</code> being attached to the span.</p></li><li>
 <p><code>fontSize</code>: The fallback size of glyphs (in logical pixels) to
 use when painting the text. This is used when there is no <a href="dart-ui/TextStyle-class.html">TextStyle</a>.</p></li><li>
-<p><code>height</code>: The height of the spans as a multiplier of the font size. The
-fallback height to use when no height is provided in through
-<code>TextStyle.height</code>.</p></li><li>
+<p><code>height</code>: The fallback height of the spans as a multiplier of the font
+size. The fallback height is used when no height is provided through
+<code>TextStyle.height</code>. Omitting <code>height</code> here and in <a href="dart-ui/TextStyle-class.html">TextStyle</a> will allow
+the line height to take the height as defined by the font, which may not
+be exactly the height of the <code>fontSize</code>.</p></li><li>
 <p><code>fontWeight</code>: The typeface thickness to use when painting the text
 (e.g., bold).</p></li><li>
 <p><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g.,
@@ -145,9 +147,11 @@ considered equivalent and turn off this behavior.</p></li><li>
 &#47;&#47;&#47; * `fontSize`: The fallback size of glyphs (in logical pixels) to
 &#47;&#47;&#47;   use when painting the text. This is used when there is no [TextStyle].
 &#47;&#47;&#47;
-&#47;&#47;&#47; * `height`: The height of the spans as a multiplier of the font size. The
-&#47;&#47;&#47;   fallback height to use when no height is provided in through
-&#47;&#47;&#47;   [TextStyle.height].
+&#47;&#47;&#47; * `height`: The fallback height of the spans as a multiplier of the font
+&#47;&#47;&#47;   size. The fallback height is used when no height is provided through
+&#47;&#47;&#47;   [TextStyle.height]. Omitting `height` here and in [TextStyle] will allow
+&#47;&#47;&#47;   the line height to take the height as defined by the font, which may not
+&#47;&#47;&#47;   be exactly the height of the `fontSize`.
 &#47;&#47;&#47;
 &#47;&#47;&#47; * `fontWeight`: The typeface thickness to use when painting the text
 &#47;&#47;&#47;   (e.g., bold).
@@ -211,7 +215,7 @@ ParagraphStyle({
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

@@ -108,7 +108,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Stream&lt;<wbr><span class="type-parameter">T</span>&gt; class </h1></div>
+      <div><h1><span class="kind-class">Stream&lt;<wbr><span class="type-parameter">T</span>&gt;</span> class </h1></div>
 
     <section class="desc markdown">
       <p>A source of asynchronous data events.</p>
@@ -211,6 +211,13 @@ to return <code>true</code>.</p>
           <div class="constructor-modifier features">const</div>
           <div class="constructor-modifier features">factory</div>
         </dd>
+        <dt id="Stream.error" class="callable">
+          <span class="name"><a href="dart-async/Stream/Stream.error.html">Stream.error</a></span><span class="signature">(<span class="parameter" id="error-param-error"><span class="type-annotation"><a href="dart-core/Object-class.html">Object</a></span> <span class="parameter-name">error</span>, [</span> <span class="parameter" id="error-param-stackTrace"><span class="type-annotation"><a href="dart-core/StackTrace-class.html">StackTrace</a></span> <span class="parameter-name">stackTrace</span></span> ])</span>
+        </dt>
+        <dd>
+          Creates a stream which emits a single error event before completing. <a href="dart-async/Stream/Stream.error.html">[...]</a>
+          <div class="constructor-modifier features">factory</div>
+        </dd>
         <dt id="Stream.eventTransformed" class="callable">
           <span class="name"><a href="dart-async/Stream/Stream.eventTransformed.html">Stream.eventTransformed</a></span><span class="signature">(<span class="parameter" id="eventTransformed-param-source"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a></span> <span class="parameter-name">source</span>, </span> <span class="parameter" id="eventTransformed-param-mapSink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a></span> <span class="parameter-name">mapSink</span>(<span class="parameter" id="mapSink-param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>)</span>)</span>
         </dt>
@@ -245,6 +252,13 @@ a sink-transformation. <a href="dart-async/Stream/Stream.eventTransformed.html">
         </dt>
         <dd>
           Creates a stream that repeatedly emits events at <code>period</code> intervals. <a href="dart-async/Stream/Stream.periodic.html">[...]</a>
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="Stream.value" class="callable">
+          <span class="name"><a href="dart-async/Stream/Stream.value.html">Stream.value</a></span><span class="signature">(<span class="parameter" id="value-param-value"><span class="type-annotation">T</span> <span class="parameter-name">value</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a stream which emits a single data event before completing. <a href="dart-async/Stream/Stream.value.html">[...]</a>
           <div class="constructor-modifier features">factory</div>
         </dd>
       </dl>
@@ -665,11 +679,13 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
       <li class="section-title"><a href="dart-async/Stream-class.html#constructors">Constructors</a></li>
       <li><a href="dart-async/Stream/Stream.html">Stream</a></li>
       <li><a href="dart-async/Stream/Stream.empty.html">empty</a></li>
+      <li><a href="dart-async/Stream/Stream.error.html">error</a></li>
       <li><a href="dart-async/Stream/Stream.eventTransformed.html">eventTransformed</a></li>
       <li><a href="dart-async/Stream/Stream.fromFuture.html">fromFuture</a></li>
       <li><a href="dart-async/Stream/Stream.fromFutures.html">fromFutures</a></li>
       <li><a href="dart-async/Stream/Stream.fromIterable.html">fromIterable</a></li>
       <li><a href="dart-async/Stream/Stream.periodic.html">periodic</a></li>
+      <li><a href="dart-async/Stream/Stream.value.html">value</a></li>
     
       <li class="section-title">
         <a href="dart-async/Stream-class.html#instance-properties">Properties</a>
@@ -732,7 +748,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

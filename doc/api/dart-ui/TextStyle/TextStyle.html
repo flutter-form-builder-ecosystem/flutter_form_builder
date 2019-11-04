@@ -75,7 +75,7 @@
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>TextStyle constructor</h1></div>
+      <div><h1><span class="kind-constructor">TextStyle</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -90,7 +90,8 @@ priority font will be used.</li><li><code>fontFamilyFallback</code>: An ordered 
 be found in a higher priority font. When the <code>fontFamily</code> is null, the first font family in this list
 is used as the preferred font. Internally, the 'fontFamily<code>is concatenated to the front of this list.
 When no font family is provided through 'fontFamilyFallback' (null or empty) or</code>fontFamily`, then the
-platform default font will be used.</li><li><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting the text.</li><li><code>letterSpacing</code>: The amount of space (in logical pixels) to add between each letter.</li><li><code>wordSpacing</code>: The amount of space (in logical pixels) to add at each sequence of white-space (i.e. between each word).</li><li><code>textBaseline</code>: The common baseline that should be aligned between this text span and its parent text span, or, for the root text spans, with the line box.</li><li><code>height</code>: The height of this text span, as a multiplier of the font size.</li><li><code>locale</code>: The locale used to select region-specific glyphs.</li><li><code>background</code>: The paint drawn as a background for the text.</li><li><code>foreground</code>: The paint used to draw the text. If this is specified, <code>color</code> must be null.</li><li><code>fontFeatures</code>: The font features that should be applied to the text.</li></ul>
+platform default font will be used.</li><li><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting the text.</li><li><code>letterSpacing</code>: The amount of space (in logical pixels) to add between each letter.</li><li><code>wordSpacing</code>: The amount of space (in logical pixels) to add at each sequence of white-space (i.e. between each word).</li><li><code>textBaseline</code>: The common baseline that should be aligned between this text span and its parent text span, or, for the root text spans, with the line box.</li><li><code>height</code>: The height of this text span, as a multiplier of the font size. Omitting <code>height</code> will allow the line height
+to take the height as defined by the font, which may not be exactly the height of the fontSize.</li><li><code>locale</code>: The locale used to select region-specific glyphs.</li><li><code>background</code>: The paint drawn as a background for the text.</li><li><code>foreground</code>: The paint used to draw the text. If this is specified, <code>color</code> must be null.</li><li><code>fontFeatures</code>: The font features that should be applied to the text.</li></ul>
     </section>
     
     <section class="summary source-code" id="source">
@@ -163,7 +164,7 @@ platform default font will be used.</li><li><code>fontSize</code>: The size of g
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

@@ -133,7 +133,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>insert method</h1></div>
+      <div><h1><span class="kind-method">insert</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
@@ -145,8 +145,8 @@
       <p>Inserts the object at position <code>index</code> in this list.</p>
 <p>This increases the length of the list by one and shifts all objects
 at or after the index towards the end of the list.</p>
-<p>An error occurs if the <code>index</code> is less than 0 or greater than length.
-An <a href="dart-core/UnsupportedError-class.html">UnsupportedError</a> occurs if the list is fixed-length.</p>
+<p>The list must be growable.
+The <code>index</code> value must be non-negative and no greater than <a href="dart-core/List/length.html">length</a>.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -173,7 +173,7 @@ An <a href="dart-core/UnsupportedError-class.html">UnsupportedError</a> occurs i
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

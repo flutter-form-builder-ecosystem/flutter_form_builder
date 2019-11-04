@@ -1,13 +1,26 @@
+## [3.6.0] - 4-Nov-2019
+* Added clear option to FormBuilderDropdown - set `allowClear` to true. Closes [#148](https://github.com/danvick/flutter_form_builder/issues/148)
+* Default `contentPadding` and `border` attributes removed from CheckboxList, Radio and SegmentedControl list. Closes [#160](https://github.com/danvick/flutter_form_builder/issues/160)
+* Added `numberFormat` attribute to Slider. Closes [#156](https://github.com/danvick/flutter_form_builder/issues/156)
+* Add error text to date range picker. Thanks to [ffpetrovic](https://github.com/ffpetrovic)
+* Fixed bug where pushing cancel on timePicker causes crash. Thanks to [ayushin](https://github.com/ayushin)
+* Fixed bug where Switch doesn't obey initialValue from FormBuilder. Closes [#159](https://github.com/danvick/flutter_form_builder/issues/159)
+* Fixed bug where FormBuilderDropdown shows value instead of label when disabled/readOnly. Closes [#154](https://github.com/danvick/flutter_form_builder/issues/154)
+* Fixed bug where FormBuilderDateTimePicker value is parsed from TextField string. Closes [#164](https://github.com/danvick/flutter_form_builder/issues/164)
+* Added default TextInputConfiguration options for ChipsInput
+* Fix example project - AndroidX compatibility. Thanks to [prasadsunny1](https://github.com/prasadsunny1)
+* Bumped up `flutter_typeahead` 1.6.1 -> 1.7.0
+
 ## [3.5.5] - 3-Oct-2019
 * Bumped up `flutter_chips_input` version from 1.3.1 to 1.5.1
 * AndroidX migration for example app
 
 ## [3.5.4] - 16-Sep-2019
-* Fix dependency mismatch for intl with flutter_localizations from sdk
+* Fix dependency mismatch for `intl` with `flutter_localizations` from sdk
 * Bumped up `datetime_picker_formfield` dependency version
 
 ## [3.5.3] - 11-Sep-2019
-* Fixed DateTimePicker bug: 'DateTime is not a subtype of type TimeOfDay' when Input type is Time only. Closes [#131](https://github.com/danvick/flutter_form_builder/issues/131)
+* Fixed DateTimePicker bug: '`DateTime is not a subtype of type TimeOfDay`' when Input type is Time only. Closes [#131](https://github.com/danvick/flutter_form_builder/issues/131)
 
 ## [3.5.2] - 03-Sep-2019
 * Re-introduced `onSuggestionSelected` option in TypeAhead field

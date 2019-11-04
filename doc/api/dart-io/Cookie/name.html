@@ -84,7 +84,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>name property</h1></div>
+      <div><h1><span class="kind-property">name</span> property</h1></div>
 
         <section class="multi-line-signature">
           <span class="returntype"><a href="dart-core/String-class.html">String</a></span>
@@ -92,7 +92,12 @@
           <div class="features">read / write</div>
         </section>
         <section class="desc markdown">
-          <p>Gets and sets the name.</p>
+          <p>The name of the cookie.</p>
+<p>Must be a <code>token</code> as specified in RFC 6265.</p>
+<p>The allowed characters in a <code>token</code> are the visible ASCII characters,
+U+0021 (<code>!</code>) through U+007E (<code>~</code>), except the separator characters:
+<code>(</code>, <code>)</code>, <code>&lt;</code>, <code>&gt;</code>, <code>@</code>, <code>,</code>, <code>;</code>, <code>:</code>, <code>\</code>, <code>"</code>, <code>/</code>, <code>[</code>, <code>]</code>, <code>?</code>, <code>=</code>,
+<code>{</code>, and <code>}</code>.</p>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
@@ -110,7 +115,7 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

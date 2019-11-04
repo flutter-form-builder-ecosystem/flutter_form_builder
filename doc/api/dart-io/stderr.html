@@ -183,32 +183,32 @@
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <div><h1>stderr top-level property </h1></div>
+      <div><h1><span class="kind-top-level-property">stderr</span> top-level property </h1></div>
 
 
-    <section id="getter">
-    
-    <section class="multi-line-signature">
-      <span class="returntype"><a href="dart-io/Stdout-class.html">Stdout</a></span>
-          <span class="name ">stderr</span>
-      
+        <section id="getter">
+        
+        <section class="multi-line-signature">
+          <span class="returntype"><a href="dart-io/Stdout-class.html">Stdout</a></span>
+                  <span class="name ">stderr</span>
+          
 </section>
-    
-        <section class="desc markdown">
-      <p>The standard output stream of errors written by this program.</p>
+        
+                <section class="desc markdown">
+          <p>The standard output stream of errors written by this program.</p>
 <p>The <code>addError</code> API is inherited from  <code>StreamSink</code> and calling it will
 result in an unhandled asynchronous error unless there is an error handler
 on <code>done</code>.</p>
-    </section>
-        <section class="summary source-code" id="source">
-      <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Stdout get stderr {
+        </section>
+                <section class="summary source-code" id="source">
+          <h2><span>Implementation</span></h2>
+          <pre class="language-dart"><code class="language-dart">Stdout get stderr {
   _stderr ??= _StdIOUtils._getStdioOutputStream(_stderrFD);
   return _stderr;
 }</code></pre>
-    </section>
+        </section>
 </section>
-    
+        
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
@@ -218,7 +218,7 @@ on <code>done</code>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

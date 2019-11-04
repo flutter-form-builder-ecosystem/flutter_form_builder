@@ -105,7 +105,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>type method</h1></div>
+      <div><h1><span class="kind-method">type</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/FileSystemEntityType-class.html">FileSystemEntityType</a></span>&gt;</span></span>
@@ -115,14 +115,8 @@
     </section>
     <section class="desc markdown">
       <p>Finds the type of file system object that a path points to.</p>
-<p>Returns a <code>Future&lt;FileSystemEntityType&gt;</code> that completes with the result.</p>
-<p><a href="dart-io/FileSystemEntityType-class.html">FileSystemEntityType</a> has the constant instances file, directory,
-link, and notFound.  <a href="dart-io/FileSystemEntity/type.html">type</a> will return link only if the optional
-named argument <code>followLinks</code> is false, and <code>path</code> points to a link.
-If the path does not point to a file system object, or any other error
-occurs in looking up the path, notFound is returned.  The only
-error or exception that may be put on the returned future is ArgumentError,
-caused by passing the wrong type of arguments to the function.</p>
+<p>Returns a <code>Future&lt;FileSystemEntityType&gt;</code> that completes with the same
+results as <a href="dart-io/FileSystemEntity/typeSync.html">typeSync</a>.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -142,7 +136,7 @@ caused by passing the wrong type of arguments to the function.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

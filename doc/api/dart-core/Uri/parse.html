@@ -123,7 +123,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>parse method</h1></div>
+      <div><h1><span class="kind-method">parse</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-core/Uri-class.html">Uri</a></span>
@@ -171,6 +171,9 @@ a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown.<
   &#47;&#47; authority     = [ userinfo &quot;@&quot; ] host [ &quot;:&quot; port ]
   &#47;&#47; userinfo      = *( unreserved &#47; pct-encoded &#47; sub-delims &#47; &quot;:&quot; )
   &#47;&#47; host          = IP-literal &#47; IPv4address &#47; reg-name
+  &#47;&#47; IP-literal    = &quot;[&quot; ( IPv6address &#47; IPv6addrz &#47; IPvFuture ) &quot;]&quot;
+  &#47;&#47; IPv6addrz     = IPv6address &quot;%25&quot; ZoneID
+  &#47;&#47; ZoneID        = 1*( unreserved &#47; pct-encoded )
   &#47;&#47; port          = *DIGIT
   &#47;&#47; reg-name      = *( unreserved &#47; pct-encoded &#47; sub-delims )
   &#47;&#47;
@@ -440,7 +443,7 @@ a <a href="dart-core/FormatException-class.html">FormatException</a> is thrown.<
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

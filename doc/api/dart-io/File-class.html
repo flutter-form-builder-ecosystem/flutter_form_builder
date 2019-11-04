@@ -183,7 +183,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>File class </h1></div>
+      <div><h1><span class="kind-class">File</span> class </h1></div>
 
     <section class="desc markdown">
       <p>A reference to a file on the file system.</p>
@@ -557,18 +557,18 @@ system resources. <a href="dart-io/File/openWrite.html">[...]</a>
 </dd>
         <dt id="readAsBytes" class="callable">
           <span class="name"><a href="dart-io/File/readAsBytes.html">readAsBytes</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/int-class.html">int</a></span>&gt;</span></span>&gt;</span></span>
+            <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span>
           </span>
                   </dt>
         <dd>
           Read the entire file contents as a list of bytes. Returns a
-<code>Future&lt;List&lt;int&gt;&gt;</code> that completes with the list of bytes that
+<code>Future&lt;Uint8List&gt;</code> that completes with the list of bytes that
 is the contents of the file.
                   
 </dd>
         <dt id="readAsBytesSync" class="callable">
           <span class="name"><a href="dart-io/File/readAsBytesSync.html">readAsBytesSync</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/int-class.html">int</a></span>&gt;</span></span>
+            <span class="returntype parameter">&#8594; <a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span>
           </span>
                   </dt>
         <dd>
@@ -908,7 +908,7 @@ current working directory. <a href="dart-io/FileSystemEntity/resolveSymbolicLink
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

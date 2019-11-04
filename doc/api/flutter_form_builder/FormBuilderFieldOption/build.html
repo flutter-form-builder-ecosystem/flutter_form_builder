@@ -87,7 +87,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>build method</h1></div>
+      <div><h1><span class="kind-method">build</span> method</h1></div>
 
     <section class="multi-line-signature">
       <div>
@@ -134,6 +134,7 @@ Widget build(BuildContext context) {
   if (child != null) {
     return child;
   } else {
+    &#47;&#47; ignore: deprecated_member_use_from_same_package
     return Text(&quot;${label ?? value.toString()}&quot;);
   }
 }</code></pre>
@@ -148,7 +149,7 @@ Widget build(BuildContext context) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder 3.6.0
   </span>
 
   

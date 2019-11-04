@@ -188,7 +188,7 @@ class FormBuilderDateRangePickerState
               _readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
-            errorText: field.errorText
+            errorText: field.errorText,
           ),
           // initialValue: "${_initialValue ?? ''}",
           maxLines: widget.maxLines,
