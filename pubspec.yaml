@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_typeahead: ^1.6.1
+  flutter_typeahead: ^1.7.0
   intl: ^0.16.0
   sy_flutter_widgets: ^0.1.4
   flutter_chips_input: ^1.5.1
