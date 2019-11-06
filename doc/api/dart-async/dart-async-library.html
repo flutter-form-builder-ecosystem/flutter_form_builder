@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -122,19 +122,31 @@ of Dart strings.</p>
 in a web app: The following code listens for mouse clicks on a button.</p>
 <pre class="language-dart"><code>querySelector('#myButton').onClick.listen((_) =&gt; print('Click.'));
 </code></pre>
-<h2 id="other-resources">Other resources</h2><ul><li>
+<h2 id="other-resources">Other resources</h2>
+<ul>
+<li>
 <p>The <a href="https://www.dartlang.org/docs/dart-up-and-running/ch03.html#dartasync---asynchronous-programming">dart:async section of the library tour</a>:
-A brief overview of asynchronous programming.</p></li><li>
+A brief overview of asynchronous programming.</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/docs/tutorials/futures/">Use Future-Based APIs</a>: A closer look at Futures and
-how to use them to write asynchronous Dart code.</p></li><li>
+how to use them to write asynchronous Dart code.</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/articles/futures-and-error-handling/">Futures and Error Handling</a>: Everything you
 wanted to know about handling errors and exceptions when working with
-Futures (but were afraid to ask).</p></li><li>
+Futures (but were afraid to ask).</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/articles/event-loop/">The Event Loop and Dart</a>:
 Learn how Dart handles the event queue and microtask queue, so you can
-write better asynchronous code with fewer surprises.</p></li><li>
+write better asynchronous code with fewer surprises.</p>
+</li>
+<li>
 <p><a href="https://pub.dartlang.org/packages/test">test package: Asynchronous Tests</a>: How to test asynchronous
-code.</p></li></ul>
+code.</p>
+</li>
+</ul>
     </section>
     
     <section class="summary offset-anchor" id="classes">
@@ -263,6 +275,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
 
 
 
+
     <section class="summary offset-anchor" id="functions">
       <h2>Functions</h2>
 
@@ -312,7 +325,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
                   
 </dd>
         <dt id="CreatePeriodicTimerHandler" class="callable">
-          <span class="name"><a href="dart-async/CreatePeriodicTimerHandler.html">CreatePeriodicTimerHandler</a></span><span class="signature">(<wbr><span class="parameter" id="CreatePeriodicTimerHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-period"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">period</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-f"><span class="type-annotation">void</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-timer"><span class="type-annotation"><a href="dart-async/Timer-class.html">Timer</a></span> <span class="parameter-name">timer</span></span>)</span>)
+          <span class="name"><a href="dart-async/CreatePeriodicTimerHandler.html">CreatePeriodicTimerHandler</a></span><span class="signature">(<wbr><span class="parameter" id="CreatePeriodicTimerHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-period"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">period</span>, </span> <span class="parameter" id="CreatePeriodicTimerHandler-param-f"><span class="type-annotation">void</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-timer"><span class="type-annotation"><a href="dart-async/Timer-class.html">Timer</a></span> <span class="parameter-name">timer</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Timer-class.html">Timer</a></span>
           </span>
                   </dt>
@@ -366,7 +379,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
                   
 </dd>
         <dt id="RegisterBinaryCallbackHandler" class="callable">
-          <span class="name"><a href="dart-async/RegisterBinaryCallbackHandler.html">RegisterBinaryCallbackHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RegisterBinaryCallbackHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RegisterBinaryCallbackHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RegisterBinaryCallbackHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RegisterBinaryCallbackHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="f-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)</span>)
+          <span class="name"><a href="dart-async/RegisterBinaryCallbackHandler.html">RegisterBinaryCallbackHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RegisterBinaryCallbackHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RegisterBinaryCallbackHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RegisterBinaryCallbackHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RegisterBinaryCallbackHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/ZoneBinaryCallback.html">ZoneBinaryCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T1</span>, <span class="type-parameter">T2</span>&gt;</span></span>
           </span>
                   </dt>
@@ -384,7 +397,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
                   
 </dd>
         <dt id="RegisterUnaryCallbackHandler" class="callable">
-          <span class="name"><a href="dart-async/RegisterUnaryCallbackHandler.html">RegisterUnaryCallbackHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RegisterUnaryCallbackHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RegisterUnaryCallbackHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RegisterUnaryCallbackHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RegisterUnaryCallbackHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)</span>)
+          <span class="name"><a href="dart-async/RegisterUnaryCallbackHandler.html">RegisterUnaryCallbackHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RegisterUnaryCallbackHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RegisterUnaryCallbackHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RegisterUnaryCallbackHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RegisterUnaryCallbackHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/ZoneUnaryCallback.html">ZoneUnaryCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T</span>&gt;</span></span>
           </span>
                   </dt>
@@ -393,7 +406,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
                   
 </dd>
         <dt id="RunBinaryHandler" class="callable">
-          <span class="name"><a href="dart-async/RunBinaryHandler.html">RunBinaryHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RunBinaryHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RunBinaryHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RunBinaryHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RunBinaryHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="f-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>), </span> <span class="parameter" id="RunBinaryHandler-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="RunBinaryHandler-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)
+          <span class="name"><a href="dart-async/RunBinaryHandler.html">RunBinaryHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RunBinaryHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RunBinaryHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RunBinaryHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RunBinaryHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>), </span> <span class="parameter" id="RunBinaryHandler-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="RunBinaryHandler-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)
             <span class="returntype parameter">&#8594; R</span>
           </span>
                   </dt>
@@ -411,7 +424,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
                   
 </dd>
         <dt id="RunUnaryHandler" class="callable">
-          <span class="name"><a href="dart-async/RunUnaryHandler.html">RunUnaryHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RunUnaryHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RunUnaryHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RunUnaryHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RunUnaryHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>), </span> <span class="parameter" id="RunUnaryHandler-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)
+          <span class="name"><a href="dart-async/RunUnaryHandler.html">RunUnaryHandler</a></span><span class="signature">(<wbr><span class="parameter" id="RunUnaryHandler-param-self"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">self</span>, </span> <span class="parameter" id="RunUnaryHandler-param-parent"><span class="type-annotation"><a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a></span> <span class="parameter-name">parent</span>, </span> <span class="parameter" id="RunUnaryHandler-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="RunUnaryHandler-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>), </span> <span class="parameter" id="RunUnaryHandler-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)
             <span class="returntype parameter">&#8594; R</span>
           </span>
                   </dt>
@@ -512,6 +525,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
     
     
     
+    
       <li class="section-title"><a href="dart-async/dart-async-library.html#functions">Functions</a></li>
       <li><a href="dart-async/runZoned.html">runZoned</a></li>
       <li><a href="dart-async/scheduleMicrotask.html">scheduleMicrotask</a></li>
@@ -548,10 +562,11 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -559,7 +574,7 @@ calls. <a href="dart-async/Zone-class.html">[...]</a>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

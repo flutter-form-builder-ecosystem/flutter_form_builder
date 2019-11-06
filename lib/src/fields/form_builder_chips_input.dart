@@ -15,7 +15,6 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final ChipsInputSuggestions findSuggestions;
 
   // final ValueChanged<List<T>> onChanged;
-  final ValueChanged<T> onChipTapped;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
   final int maxChips;
@@ -38,7 +37,6 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
-    this.onChipTapped,
     this.maxChips,
     this.onChanged,
     this.valueTransformer,
@@ -119,7 +117,6 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
           maxChips: widget.maxChips,
           chipBuilder: widget.chipBuilder,
           suggestionBuilder: widget.suggestionBuilder,
-          onChipTapped: widget.onChipTapped,
           textStyle: widget.textStyle,
           actionLabel: widget.actionLabel,
           autocorrect: widget.autocorrect,

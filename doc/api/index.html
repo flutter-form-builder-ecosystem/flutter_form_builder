@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 0.28.4">
+  <meta name="generator" content="made with love by dartdoc 0.28.8">
   <meta name="description" content="flutter_form_builder API docs, for the Dart programming language.">
   <title>flutter_form_builder - Dart API docs</title>
 
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -67,7 +67,7 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="flutter-formbuilder---flutter_form_builder">Flutter FormBuilder - flutter_form_builder</h1>
-<p>This package helps in generation of forms in <a href="https://flutter.io/">Flutter</a> by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form in the form of a map.</p>
+<p>This package helps in creation of Flutter Forms by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form.</p>
 <h2 id="simple-usage">Simple Usage</h2>
 <p>To use this plugin, add <code>flutter_form_builder</code> as a <a href="https://flutter.io/platform-plugins/">dependency in your pubspec.yaml file</a>.</p>
 <h3 id="example">Example</h3>
@@ -203,8 +203,26 @@
 )
 </code></pre>
 <h2 id="input-widgets">Input widgets</h2>
-<p>The currently supported fields include:</p><ul><li><code>FormBuilderCheckbox</code> - Single Checkbox field</li><li><code>FormBuilderCheckboxList</code> - List of Checkboxes for multiple selection</li><li><code>FormBuilderChipsInput</code> - Takes a list of <code>Chip</code>s as input</li><li><code>FormBuilderDateRangePicker</code> - For selection of a range of dates</li><li><code>FormBuilderDateTimePicker</code> - For Date, Time and DateTime input</li><li><code>FormBuilderDropdown</code> - Used to select one value from a list as a Dropdown</li><li><code>FormBuilderRadio</code> - Used to select one value from a list of Radio Widgets </li><li><code>FormBuilderRangeSlider</code> - Used to select a range from a range of values</li><li><code>FormBuilderRate</code> - For selection of a numerical value as a rating </li><li><code>FormBuilderSegmentedControl</code> - For selection of a value from the <code>CupertinoSegmentedControl</code> as an input</li><li><code>FormBuilderSignaturePad</code> - Presents a drawing pad on which user can doodle</li><li><code>FormBuilderSlider</code> - For selection of a numerical value on a slider</li><li><code>FormBuilderStepper</code> - Selection of a number by tapping on a plus or minus symbol</li><li><code>FormBuilderSwitch</code> - On/Off switch</li><li><code>FormBuilderTextField</code> - For text input. Accepts input of single-line text, multi-line text, password,
-email, urls etc by using different configurations and validators</li><li><code>FormBuilderTypeAhead</code> - Auto-completes user input from a list of items</li></ul>
+<p>The currently supported fields include:</p>
+<ul>
+<li><code>FormBuilderCheckbox</code> - Single Checkbox field</li>
+<li><code>FormBuilderCheckboxList</code> - List of Checkboxes for multiple selection</li>
+<li><code>FormBuilderChipsInput</code> - Takes a list of <code>Chip</code>s as input</li>
+<li><code>FormBuilderDateRangePicker</code> - For selection of a range of dates</li>
+<li><code>FormBuilderDateTimePicker</code> - For Date, Time and DateTime input</li>
+<li><code>FormBuilderDropdown</code> - Used to select one value from a list as a Dropdown</li>
+<li><code>FormBuilderRadio</code> - Used to select one value from a list of Radio Widgets </li>
+<li><code>FormBuilderRangeSlider</code> - Used to select a range from a range of values</li>
+<li><code>FormBuilderRate</code> - For selection of a numerical value as a rating </li>
+<li><code>FormBuilderSegmentedControl</code> - For selection of a value from the <code>CupertinoSegmentedControl</code> as an input</li>
+<li><code>FormBuilderSignaturePad</code> - Presents a drawing pad on which user can doodle</li>
+<li><code>FormBuilderSlider</code> - For selection of a numerical value on a slider</li>
+<li><code>FormBuilderStepper</code> - Selection of a number by tapping on a plus or minus symbol</li>
+<li><code>FormBuilderSwitch</code> - On/Off switch</li>
+<li><code>FormBuilderTextField</code> - For text input. Accepts input of single-line text, multi-line text, password,
+email, urls etc by using different configurations and validators</li>
+<li><code>FormBuilderTypeAhead</code> - Auto-completes user input from a list of items</li>
+</ul>
 <p>In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:</p><table><thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>attribute</code></td><td><code>String</code></td><td><code>null</code></td><td><code>true</code></td><td>This will form the key in the form value Map</td></tr><tr><td><code>initialValue</code></td><td><code>dynamic</code></td><td><code>null</code></td><td><code>false</code></td><td>The initial value of the input field</td></tr><tr><td><code>readOnly</code></td><td><code>bool</code></td><td><code>false</code></td><td><code>false</code></td><td>Determines whether the field widget will accept user input. This value will be ignored if the <code>readOnly</code> attribute of <code>FormBuilder</code> widget is set to <code>true</code></td></tr><tr><td><code>decoration</code></td><td><code>InputDecoration</code></td><td><code>InputDecoration()</code></td><td><code>false</code></td><td></td></tr><tr><td><code>validators</code></td><td><code>List&lt;FormFieldValidator&gt;</code></td><td><code>[]</code></td><td><code>false</code></td><td>List of <code>FormFieldValidator</code>s that will check the validity of value candidate in the <code>FormField</code></td></tr><tr><td><code>onChanged</code></td><td><code>ValueChanged&lt;T&gt;</code></td><td><code>null</code></td><td><code>false</code></td><td>This event function will fire immediately the the field value changes</td></tr><tr><td><code>valueTransformer</code></td><td><code>ValueTransformer&lt;T&gt;</code></td><td><code>null</code></td><td><code>false</code></td><td>Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from <code>String</code> to <code>num</code></td></tr><tr><td>The rest of the attributes will be determined by the type of Widget being used.</td><td></td><td></td><td></td><td></td></tr></tbody></table>
 <h3 id="building-your-own-custom-field">Building your own custom field</h3>
 <p>To build your own field within a <code>FormBuilder</code>, we use <code>FormBuilderCustomField</code> which will require that you define your own <code>FormField</code>.
@@ -249,7 +267,22 @@ of validation functions as well as allow reusability of already defined validato
 <p>The package comes with several most common <code>FormFieldValidator</code>s such as required, numeric, mail, URL, min, 
 max, minLength, maxLength, IP, credit card etc. with default <code>errorText</code> in English but with 
 ability to include you own error message that will display whenever validation fails.</p>
-<p>Available built-in validators include:</p><ul><li><code>FormBuilderValidators.required()</code> - requires the field have a non-empty value.</li><li><code>FormBuilderValidators.numeric()</code> - requires the field's value to be a valid number.</li><li><code>FormBuilderValidators.min()</code> - requires the field's value to be greater than or equal to the provided number.</li><li><code>FormBuilderValidators.max()</code> - requires the field's value to be less than or equal to the provided number.</li><li><code>FormBuilderValidators.minLength()</code> - requires the length of the field's value to be greater than or equal to the provided minimum length.</li><li><code>FormBuilderValidators.maxLength()</code> - requires the length of the field's value to be less than or equal to the provided maximum length.</li><li><code>FormBuilderValidators.pattern()</code> - requires the field's value to match the provided regex pattern.</li><li><code>FormBuilderValidators.email()</code> - requires the field's value to be a valid email address.</li><li><code>FormBuilderValidators.url()</code> - requires the field's value to be a valid url.</li><li><code>FormBuilderValidators.IP()</code> - requires the field's value to be a valid IP address.</li><li><code>FormBuilderValidators.creditCard()</code> - requires the field's value to be a valid credit card number.</li><li><code>FormBuilderValidators.date()</code> - requires the field's value to be a valid date string.</li><li><code>FormBuilderValidators.requiredTrue()</code> - requires the field's value be true.</li></ul>
+<p>Available built-in validators include:</p>
+<ul>
+<li><code>FormBuilderValidators.required()</code> - requires the field have a non-empty value.</li>
+<li><code>FormBuilderValidators.numeric()</code> - requires the field's value to be a valid number.</li>
+<li><code>FormBuilderValidators.min()</code> - requires the field's value to be greater than or equal to the provided number.</li>
+<li><code>FormBuilderValidators.max()</code> - requires the field's value to be less than or equal to the provided number.</li>
+<li><code>FormBuilderValidators.minLength()</code> - requires the length of the field's value to be greater than or equal to the provided minimum length.</li>
+<li><code>FormBuilderValidators.maxLength()</code> - requires the length of the field's value to be less than or equal to the provided maximum length.</li>
+<li><code>FormBuilderValidators.pattern()</code> - requires the field's value to match the provided regex pattern.</li>
+<li><code>FormBuilderValidators.email()</code> - requires the field's value to be a valid email address.</li>
+<li><code>FormBuilderValidators.url()</code> - requires the field's value to be a valid url.</li>
+<li><code>FormBuilderValidators.IP()</code> - requires the field's value to be a valid IP address.</li>
+<li><code>FormBuilderValidators.creditCard()</code> - requires the field's value to be a valid credit card number.</li>
+<li><code>FormBuilderValidators.date()</code> - requires the field's value to be a valid date string.</li>
+<li><code>FormBuilderValidators.requiredTrue()</code> - requires the field's value be true.</li>
+</ul>
 <p>Validation example:</p>
 <pre class="language-dart"><code class="language-dart">FormBuilderTextField(
   attribute: "age",
@@ -303,10 +336,36 @@ FormBuilderTextField(
 ),
 </code></pre>
 <h2 id="credits">CREDITS</h2>
-<p>This package is dependent on the following packages and plugins:</p><ul><li><a href="https://pub.dartlang.org/packages/flutter_typeahead">flutter_typeahead</a> by <a href="https://github.com/AbdulRahmanAlHamali">AbdulRahmanAlHamali</a></li><li><a href="https://pub.dartlang.org/packages/sy_flutter_widgets">sy_flutter_widgets</a> by <a href="https://github.com/lishuhao">Li Shuhao</a></li><li><a href="https://pub.dartlang.org/packages/datetime_picker_formfield">datetime_picker_formfield</a> by <a href="https://github.com/jifalops">Jacob Phillips</a></li><li><a href="https://github.com/anicdh/date_range_picker">date_range_picker</a> by <a href="https://github.com/anicdh">anicdh</a></li><li><a href="https://pub.dartlang.org/packages/validators">validators</a> by <a href="https://github.com/dart-league">dart-league</a></li><li><a href="https://pub.dartlang.org/packages/intl">intl</a> - Dart Package</li><li><a href="https://pub.dartlang.org/packages/signature">signature</a> by <a href="https://github.com/4Q-s-r-o">4Q s.r.o.</a> with some minor improvements to fit our usage</li><li><a href="https://pub.dartlang.org/packages/flutter_chips_input">flutter_chips_input</a> by <a href="https://github.com/danvick">Yours trully :-)</a></li></ul>
+<p>This package is dependent on the following packages and plugins:</p>
+<ul>
+<li><a href="https://pub.dartlang.org/packages/flutter_typeahead">flutter_typeahead</a> by <a href="https://github.com/AbdulRahmanAlHamali">AbdulRahmanAlHamali</a></li>
+<li><a href="https://pub.dartlang.org/packages/sy_flutter_widgets">sy_flutter_widgets</a> by <a href="https://github.com/lishuhao">Li Shuhao</a></li>
+<li><a href="https://pub.dartlang.org/packages/datetime_picker_formfield">datetime_picker_formfield</a> by <a href="https://github.com/jifalops">Jacob Phillips</a></li>
+<li><a href="https://github.com/anicdh/date_range_picker">date_range_picker</a> by <a href="https://github.com/anicdh">anicdh</a></li>
+<li><a href="https://pub.dartlang.org/packages/validators">validators</a> by <a href="https://github.com/dart-league">dart-league</a></li>
+<li><a href="https://pub.dartlang.org/packages/intl">intl</a> - Dart Package</li>
+<li><a href="https://pub.dartlang.org/packages/signature">signature</a> by <a href="https://github.com/4Q-s-r-o">4Q s.r.o.</a> with some minor improvements to fit our usage</li>
+<li><a href="https://pub.dartlang.org/packages/flutter_chips_input">flutter_chips_input</a> by <a href="https://github.com/danvick">Yours trully :-)</a></li>
+</ul>
 <h2 id="todo">TODO:</h2>
-<h3 id="improvements">Improvements</h3><ul><li><code>X</code> Allow addition of custom input types</li><li><code>X</code> Improve documentation by showing complete list of input types and their usage and options</li><li><code>X</code> Create a <code>transformer</code> function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.</li><li><code>X</code> Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li><li><code>X</code> Allow options for Checkboxes and Radios to appear left or right - Done via <code>leadingInput</code> by <a href="https://github.com/SvenSchoene">Sven Schöne</a></li></ul>
-<h3 id="new-formbuilder-inputs">New FormBuilder inputs</h3><ul><li><code>X</code> RangeSlider</li><li><code>X</code> SignaturePad - Based on <a href="https://pub.dartlang.org/packages/signature">https://pub.dartlang.org/packages/signature</a></li><li><code> </code> ColorPicker - <a href="https://pub.dartlang.org/packages/flutter_colorpicker">https://pub.dartlang.org/packages/flutter_colorpicker</a></li><li><code>X</code> DateRangePicker - <a href="https://pub.dartlang.org/packages/date_range_picker">https://pub.dartlang.org/packages/date_range_picker</a></li><li><code> </code> MapInput</li><li><code> </code> ImagePicker</li><li><code> </code> DocumentPicker</li></ul>
+<h3 id="improvements">Improvements</h3>
+<ul>
+<li><code>X</code> Allow addition of custom input types</li>
+<li><code>X</code> Improve documentation by showing complete list of input types and their usage and options</li>
+<li><code>X</code> Create a <code>transformer</code> function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.</li>
+<li><code>X</code> Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li>
+<li><code>X</code> Allow options for Checkboxes and Radios to appear left or right - Done via <code>leadingInput</code> by <a href="https://github.com/SvenSchoene">Sven Schöne</a></li>
+</ul>
+<h3 id="new-formbuilder-inputs">New FormBuilder inputs</h3>
+<ul>
+<li><code>X</code> RangeSlider</li>
+<li><code>X</code> SignaturePad - Based on <a href="https://pub.dartlang.org/packages/signature">https://pub.dartlang.org/packages/signature</a></li>
+<li><code> </code> ColorPicker - <a href="https://pub.dartlang.org/packages/flutter_colorpicker">https://pub.dartlang.org/packages/flutter_colorpicker</a></li>
+<li><code>X</code> DateRangePicker - <a href="https://pub.dartlang.org/packages/date_range_picker">https://pub.dartlang.org/packages/date_range_picker</a></li>
+<li><code> </code> MapInput</li>
+<li><code> </code> ImagePicker</li>
+<li><code> </code> DocumentPicker</li>
+</ul>
 <h2 id="known-issues">KNOWN ISSUES</h2>
 <p>Form's <code>reset()</code> doesn't clear SignaturePad - You'll be forced to clear manually</p>
 <h2 id="support">Support</h2>
@@ -398,10 +457,11 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -409,7 +469,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -75,6 +75,7 @@
     
     
     
+    
       <li class="section-title"><a href="dart-async/dart-async-library.html#functions">Functions</a></li>
       <li><a href="dart-async/runZoned.html">runZoned</a></li>
       <li><a href="dart-async/scheduleMicrotask.html">scheduleMicrotask</a></li>
@@ -119,10 +120,14 @@
       <p>Runs <code>body</code> in its own zone.</p>
 <p>Creates a new zone using <a href="dart-async/Zone/fork.html">Zone.fork</a> based on <code>zoneSpecification</code> and
 <code>zoneValues</code>, then runs <code>body</code> in that zone and returns the result.</p>
-<p>If <code>onError</code> is provided, it must have one of the types</p><ul><li><code>void Function(Object)</code></li><li><code>void Function(Object, StackTrace)</code>
+<p>If <code>onError</code> is provided, it must have one of the types</p>
+<ul>
+<li><code>void Function(Object)</code></li>
+<li><code>void Function(Object, StackTrace)</code>
 and the <code>onError</code> handler is used <em>both</em> to handle asynchronous errors
 by overriding <a href="dart-async/ZoneSpecification/handleUncaughtError.html">ZoneSpecification.handleUncaughtError</a> in <code>zoneSpecification</code>,
-if any, <em>and</em> to handle errors thrown synchronously by the call to <code>body</code>.</li></ul>
+if any, <em>and</em> to handle errors thrown synchronously by the call to <code>body</code>.</li>
+</ul>
 <p>If an error occurs synchronously in <code>body</code>,
 then throwing in the <code>onError</code> handler
 makes the call to <code>runZone</code> throw that error,
@@ -214,10 +219,11 @@ occur in the original zone where <a href="dart-async/runZoned.html">runZoned</a>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -225,7 +231,7 @@ occur in the original zone where <a href="dart-async/runZoned.html">runZoned</a>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

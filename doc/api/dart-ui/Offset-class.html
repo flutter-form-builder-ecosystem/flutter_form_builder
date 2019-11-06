@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -122,6 +122,7 @@
     
     
     
+    
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
@@ -185,19 +186,28 @@
 
     <section class="desc markdown">
       <p>An immutable 2D floating-point offset.</p>
-<p>Generally speaking, Offsets can be interpreted in two ways:</p><ol><li>
+<p>Generally speaking, Offsets can be interpreted in two ways:</p>
+<ol>
+<li>
 <p>As representing a point in Cartesian space a specified distance from a
 separately-maintained origin. For example, the top-left position of
 children in the <code>RenderBox</code> protocol is typically represented as an
-<a href="dart-ui/Offset-class.html">Offset</a> from the top left of the parent box.</p></li><li>
+<a href="dart-ui/Offset-class.html">Offset</a> from the top left of the parent box.</p>
+</li>
+<li>
 <p>As a vector that can be applied to coordinates. For example, when
 painting a <code>RenderObject</code>, the parent is passed an <a href="dart-ui/Offset-class.html">Offset</a> from the
 screen's origin which it can add to the offsets of its children to find
-the <a href="dart-ui/Offset-class.html">Offset</a> from the screen's origin to each of the children.</p></li></ol>
+the <a href="dart-ui/Offset-class.html">Offset</a> from the screen's origin to each of the children.</p>
+</li>
+</ol>
 <p>Because a particular <a href="dart-ui/Offset-class.html">Offset</a> can be interpreted as one sense at one time
 then as the other sense at a later time, the same class is used for both
 senses.</p>
-<p>See also:</p><ul><li><a href="dart-ui/Size-class.html">Size</a>, which represents a vector describing the size of a rectangle.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/Size-class.html">Size</a>, which represents a vector describing the size of a rectangle.</li>
+</ul>
     </section>
     
     <section>
@@ -220,7 +230,7 @@ senses.</p>
 
       <dl class="constructor-summary-list">
         <dt id="Offset" class="callable">
-          <span class="name"><a href="dart-ui/Offset/Offset.html">Offset</a></span><span class="signature">(<span class="parameter" id="-param-dx"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dx</span>, </span> <span class="parameter" id="-param-dy"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dy</span></span>)</span>
+          <span class="name"><a href="dart-ui/Offset/Offset.html">Offset</a></span><span class="signature">(<span class="parameter" id="-param-dx"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dx</span></span> <span class="parameter" id="-param-dy"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">dy</span></span>)</span>
         </dt>
         <dd>
           Creates an offset. The first argument sets <code>dx</code>, the horizontal component,
@@ -323,7 +333,7 @@ are finite (or negative infinity, or NaN). <a href="dart-ui/OffsetBase/isInfinit
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="scale" class="callable">
-          <span class="name"><a href="dart-ui/Offset/scale.html">scale</a></span><span class="signature">(<wbr><span class="parameter" id="scale-param-scaleX"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">scaleX</span>, </span> <span class="parameter" id="scale-param-scaleY"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">scaleY</span></span>)
+          <span class="name"><a href="dart-ui/Offset/scale.html">scale</a></span><span class="signature">(<wbr><span class="parameter" id="scale-param-scaleX"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">scaleX</span></span> <span class="parameter" id="scale-param-scaleY"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">scaleY</span></span>)
             <span class="returntype parameter">&#8594; <a href="dart-ui/Offset-class.html">Offset</a></span>
           </span>
                   </dt>
@@ -342,7 +352,7 @@ component scaled by <code>scaleY</code>. <a href="dart-ui/Offset/scale.html">[..
                   <div class="features">override</div>
 </dd>
         <dt id="translate" class="callable">
-          <span class="name"><a href="dart-ui/Offset/translate.html">translate</a></span><span class="signature">(<wbr><span class="parameter" id="translate-param-translateX"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">translateX</span>, </span> <span class="parameter" id="translate-param-translateY"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">translateY</span></span>)
+          <span class="name"><a href="dart-ui/Offset/translate.html">translate</a></span><span class="signature">(<wbr><span class="parameter" id="translate-param-translateX"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">translateX</span></span> <span class="parameter" id="translate-param-translateY"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">translateY</span></span>)
             <span class="returntype parameter">&#8594; <a href="dart-ui/Offset-class.html">Offset</a></span>
           </span>
                   </dt>
@@ -550,6 +560,7 @@ respectively. Returns false otherwise. <a href="dart-ui/OffsetBase/operator_grea
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-ui/Offset-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/Offset/Offset.html">Offset</a></li>
       <li><a href="dart-ui/Offset/Offset.fromDirection.html">fromDirection</a></li>
@@ -595,6 +606,7 @@ respectively. Returns false otherwise. <a href="dart-ui/OffsetBase/operator_grea
       <li class="section-title"><a href="dart-ui/Offset-class.html#constants">Constants</a></li>
       <li><a href="dart-ui/Offset/infinite-constant.html">infinite</a></li>
       <li><a href="dart-ui/Offset/zero-constant.html">zero</a></li>
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -602,10 +614,11 @@ respectively. Returns false otherwise. <a href="dart-ui/OffsetBase/operator_grea
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -613,7 +626,7 @@ respectively. Returns false otherwise. <a href="dart-ui/OffsetBase/operator_grea
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

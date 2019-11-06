@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -122,6 +122,7 @@
     
     
     
+    
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
@@ -222,8 +223,11 @@ called, that layer is then composited onto the parent layer, with the source
 being the most-recently-drawn shapes and images, and the destination being
 the parent layer. (For the first <a href="dart-ui/Canvas/saveLayer.html">Canvas.saveLayer</a> call, the parent layer
 is the canvas itself.)</p>
-<p>See also:</p><ul><li><a href="dart-ui/Paint/blendMode.html">Paint.blendMode</a>, which uses <a href="dart-ui/BlendMode-class.html">BlendMode</a> to define the compositing
-strategy.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/Paint/blendMode.html">Paint.blendMode</a>, which uses <a href="dart-ui/BlendMode-class.html">BlendMode</a> to define the compositing
+strategy.</li>
+</ul>
     </section>
     
 
@@ -256,7 +260,12 @@ destination image.</p>
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their hue and saturation from the destination.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_color.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">hue</a>, which is a similar but weaker effect.</li><li><a href="dart-ui/BlendMode-class.html">softLight</a>, which is a similar tinting effect but also tints white.</li><li><a href="dart-ui/BlendMode-class.html">saturation</a>, which only applies the saturation of the source image.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">hue</a>, which is a similar but weaker effect.</li>
+<li><a href="dart-ui/BlendMode-class.html">softLight</a>, which is a similar tinting effect but also tints white.</li>
+<li><a href="dart-ui/BlendMode-class.html">saturation</a>, which only applies the saturation of the source image.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(27)</code></span>
@@ -443,8 +452,13 @@ source value, then inverts the result.</p>
 white) is treated as the value 0.0, and values normally treated as 0.0
 (black, transparent) are treated as 1.0.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hardLight.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">modulate</a>, which always multiplies the values.</li><li><a href="dart-ui/BlendMode-class.html">screen</a>, which always multiplies the inverses of the values.</li><li><a href="dart-ui/BlendMode-class.html">overlay</a>, which is similar to <a href="dart-ui/BlendMode-class.html">hardLight</a> but favors the destination
-image instead of the source image.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">modulate</a>, which always multiplies the values.</li>
+<li><a href="dart-ui/BlendMode-class.html">screen</a>, which always multiplies the inverses of the values.</li>
+<li><a href="dart-ui/BlendMode-class.html">overlay</a>, which is similar to <a href="dart-ui/BlendMode-class.html">hardLight</a> but favors the destination
+image instead of the source image.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(20)</code></span>
@@ -462,9 +476,13 @@ destination image.</p>
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their hue from the destination.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">color</a>, which is a similar but stronger effect as it also applies the
-saturation of the source image.</li><li><code>HSVColor</code>, which allows colors to be expressed using Hue rather than
-the red/green/blue channels of <a href="dart-ui/Color-class.html">Color</a>.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">color</a>, which is a similar but stronger effect as it also applies the
+saturation of the source image.</li>
+<li><code>HSVColor</code>, which allows colors to be expressed using Hue rather than
+the red/green/blue channels of <a href="dart-ui/Color-class.html">Color</a>.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(25)</code></span>
@@ -496,9 +514,13 @@ destination image.</p>
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their luminosity from the destination.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_luminosity.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">saturation</a>, which applies the saturation of the source image to the
-destination.</li><li><a href="dart-ui/ImageFilter/ImageFilter.blur.html">ImageFilter.blur</a>, which can be used with <code>BackdropFilter</code> for a
-related effect.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">saturation</a>, which applies the saturation of the source image to the
+destination.</li>
+<li><a href="dart-ui/ImageFilter/ImageFilter.blur.html">ImageFilter.blur</a>, which can be used with <code>BackdropFilter</code> for a
+related effect.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(28)</code></span>
@@ -516,9 +538,14 @@ related effect.</li></ul>
 two transparencies on a projector.</p>
 <p>For a variant that also multiplies the alpha channel, consider <a href="dart-ui/BlendMode-class.html">multiply</a>.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_modulate.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">screen</a>, which does a similar computation but inverted.</li><li><a href="dart-ui/BlendMode-class.html">overlay</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
-destination image.</li><li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
-source image.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">screen</a>, which does a similar computation but inverted.</li>
+<li><a href="dart-ui/BlendMode-class.html">overlay</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
+destination image.</li>
+<li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
+source image.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(13)</code></span>
@@ -559,8 +586,13 @@ then inverts the result.</p>
 white) is treated as the value 0.0, and values normally treated as 0.0
 (black, transparent) are treated as 1.0.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_overlay.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">modulate</a>, which always multiplies the values.</li><li><a href="dart-ui/BlendMode-class.html">screen</a>, which always multiplies the inverses of the values.</li><li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which is similar to <a href="dart-ui/BlendMode-class.html">overlay</a> but favors the source image
-instead of the destination image.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">modulate</a>, which always multiplies the values.</li>
+<li><a href="dart-ui/BlendMode-class.html">screen</a>, which always multiplies the inverses of the values.</li>
+<li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which is similar to <a href="dart-ui/BlendMode-class.html">overlay</a> but favors the source image
+instead of the destination image.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(15)</code></span>
@@ -593,8 +625,12 @@ destination image.</p>
 <a href="dart-ui/BlendMode-class.html">srcOver</a>. Regions that are entirely transparent in the source image take
 their saturation from the destination.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_hue.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">color</a>, which also applies the hue of the source image.</li><li><a href="dart-ui/BlendMode-class.html">luminosity</a>, which applies the luminosity of the source image to the
-destination.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">color</a>, which also applies the hue of the source image.</li>
+<li><a href="dart-ui/BlendMode-class.html">luminosity</a>, which applies the luminosity of the source image to the
+destination.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(26)</code></span>
@@ -619,10 +655,15 @@ Similarly, in the alpha channel, it can only result in more opaque colors.</p>
 <p>This has similar effect to two projectors displaying their images on the
 same screen simultaneously.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_screen.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">modulate</a>, which does a similar computation but without inverting the
-values.</li><li><a href="dart-ui/BlendMode-class.html">overlay</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
-destination image.</li><li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
-source image.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">modulate</a>, which does a similar computation but without inverting the
+values.</li>
+<li><a href="dart-ui/BlendMode-class.html">overlay</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
+destination image.</li>
+<li><a href="dart-ui/BlendMode-class.html">hardLight</a>, which combines <a href="dart-ui/BlendMode-class.html">modulate</a> and <a href="dart-ui/BlendMode-class.html">screen</a> to favor the
+source image.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(14)</code></span>
@@ -637,7 +678,10 @@ source image.</li></ul>
 values above 0.5.</p>
 <p>This results in a similar but softer effect than <a href="dart-ui/BlendMode-class.html">overlay</a>.</p>
 <p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/blend_mode_softLight.png" alt=""></p>
-<p>See also:</p><ul><li><a href="dart-ui/BlendMode-class.html">color</a>, which is a more subtle tinting effect.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/BlendMode-class.html">color</a>, which is a more subtle tinting effect.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const BlendMode(21)</code></span>
@@ -891,10 +935,11 @@ leaves transparency where they would overlap.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -902,7 +947,7 @@ leaves transparency where they would overlap.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

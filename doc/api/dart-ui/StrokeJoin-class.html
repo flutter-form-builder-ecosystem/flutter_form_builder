@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -122,6 +122,7 @@
     
     
     
+    
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
@@ -187,8 +188,12 @@
       <p>Styles to use for line segment joins.</p>
 <p>This only affects line joins for polygons drawn by <a href="dart-ui/Canvas/drawPath.html">Canvas.drawPath</a> and
 rectangles, not points drawn as lines with <a href="dart-ui/Canvas/drawPoints.html">Canvas.drawPoints</a>.</p>
-<p>See also:</p><ul><li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a> and <a href="dart-ui/Paint/strokeMiterLimit.html">Paint.strokeMiterLimit</a> for how this value is
-used.</li><li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a> for the different kinds of line endings.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a> and <a href="dart-ui/Paint/strokeMiterLimit.html">Paint.strokeMiterLimit</a> for how this value is
+used.</li>
+<li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a> for the different kinds of line endings.</li>
+</ul>
     </section>
     
 
@@ -203,35 +208,38 @@ used.</li><li><a href="dart-ui/StrokeCap-class.html">StrokeCap</a> for the diffe
         <dd>
           <p>Joins between line segments connect the corners of the butt ends of the
 line segments to give a beveled appearance.</p><div style="position: relative;">
-  <div id="animation_1_play_button_" onclick="if (animation_1.paused) {
-                  animation_1.play();
-                  this.style.display = 'none';
-                } else {
-                  animation_1.pause();
-                  this.style.display = 'block';
-                }" style="position:absolute;
-              width:300px;
-              height:300px;
-              z-index:100000;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-image: url(static-assets/play_button.svg);">
-  </div>
-  <video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
-                    this.play();
-                    animation_1_play_button_.style.display = 'none';
-                  } else {
-                    this.pause();
-                    animation_1_play_button_.style.display = 'block';
-                  }" loop="">
-    <source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/bevel_join.mp4" type="video/mp4">
-  </video>
+<div id="animation_1_play_button_" onclick="if (animation_1.paused) {
+animation_1.play();
+this.style.display = 'none';
+} else {
+animation_1.pause();
+this.style.display = 'block';
+}" style="position:absolute;
+width:300px;
+height:300px;
+z-index:100000;
+background-position: center;
+background-repeat: no-repeat;
+background-image: url(static-assets/play_button.svg);">
+</div>
+<video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
+this.play();
+animation_1_play_button_.style.display = 'none';
+} else {
+this.pause();
+animation_1_play_button_.style.display = 'block';
+}" loop="">
+<source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/bevel_join.mp4" type="video/mp4">
+</video>
 </div>
 <p>The center of the line segment is colored in the diagram above to
 highlight the join, but in normal usage the join is the same color as the
 line.</p>
-<p>See also:</p><ul><li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a>, used to set the line segment join style to this
-value.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a>, used to set the line segment join style to this
+value.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const StrokeJoin(2)</code></span>
@@ -243,36 +251,40 @@ value.</li></ul>
                   </dt>
         <dd>
           <p>Joins between line segments form sharp corners.</p><div style="position: relative;">
-  <div id="animation_1_play_button_" onclick="if (animation_1.paused) {
-                  animation_1.play();
-                  this.style.display = 'none';
-                } else {
-                  animation_1.pause();
-                  this.style.display = 'block';
-                }" style="position:absolute;
-              width:300px;
-              height:300px;
-              z-index:100000;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-image: url(static-assets/play_button.svg);">
-  </div>
-  <video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
-                    this.play();
-                    animation_1_play_button_.style.display = 'none';
-                  } else {
-                    this.pause();
-                    animation_1_play_button_.style.display = 'block';
-                  }" loop="">
-    <source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_4_join.mp4" type="video/mp4">
-  </video>
+<div id="animation_1_play_button_" onclick="if (animation_1.paused) {
+animation_1.play();
+this.style.display = 'none';
+} else {
+animation_1.pause();
+this.style.display = 'block';
+}" style="position:absolute;
+width:300px;
+height:300px;
+z-index:100000;
+background-position: center;
+background-repeat: no-repeat;
+background-image: url(static-assets/play_button.svg);">
+</div>
+<video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
+this.play();
+animation_1_play_button_.style.display = 'none';
+} else {
+this.pause();
+animation_1_play_button_.style.display = 'block';
+}" loop="">
+<source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_4_join.mp4" type="video/mp4">
+</video>
 </div>
 <p>The center of the line segment is colored in the diagram above to
 highlight the join, but in normal usage the join is the same color as the
 line.</p>
-<p>See also:</p><ul><li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a>, used to set the line segment join style to this
-value.</li><li><a href="dart-ui/Paint/strokeMiterLimit.html">Paint.strokeMiterLimit</a>, used to define when a miter is drawn instead
-of a bevel when the join is set to this value.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a>, used to set the line segment join style to this
+value.</li>
+<li><a href="dart-ui/Paint/strokeMiterLimit.html">Paint.strokeMiterLimit</a>, used to define when a miter is drawn instead
+of a bevel when the join is set to this value.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const StrokeJoin(0)</code></span>
@@ -284,35 +296,38 @@ of a bevel when the join is set to this value.</li></ul>
                   </dt>
         <dd>
           <p>Joins between line segments are semi-circular.</p><div style="position: relative;">
-  <div id="animation_1_play_button_" onclick="if (animation_1.paused) {
-                  animation_1.play();
-                  this.style.display = 'none';
-                } else {
-                  animation_1.pause();
-                  this.style.display = 'block';
-                }" style="position:absolute;
-              width:300px;
-              height:300px;
-              z-index:100000;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-image: url(static-assets/play_button.svg);">
-  </div>
-  <video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
-                    this.play();
-                    animation_1_play_button_.style.display = 'none';
-                  } else {
-                    this.pause();
-                    animation_1_play_button_.style.display = 'block';
-                  }" loop="">
-    <source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_join.mp4" type="video/mp4">
-  </video>
+<div id="animation_1_play_button_" onclick="if (animation_1.paused) {
+animation_1.play();
+this.style.display = 'none';
+} else {
+animation_1.pause();
+this.style.display = 'block';
+}" style="position:absolute;
+width:300px;
+height:300px;
+z-index:100000;
+background-position: center;
+background-repeat: no-repeat;
+background-image: url(static-assets/play_button.svg);">
+</div>
+<video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
+this.play();
+animation_1_play_button_.style.display = 'none';
+} else {
+this.pause();
+animation_1_play_button_.style.display = 'block';
+}" loop="">
+<source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/round_join.mp4" type="video/mp4">
+</video>
 </div>
 <p>The center of the line segment is colored in the diagram above to
 highlight the join, but in normal usage the join is the same color as the
 line.</p>
-<p>See also:</p><ul><li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a>, used to set the line segment join style to this
-value.</li></ul>
+<p>See also:</p>
+<ul>
+<li><a href="dart-ui/Paint/strokeJoin.html">Paint.strokeJoin</a>, used to set the line segment join style to this
+value.</li>
+</ul>
                   
   <div>
             <span class="signature"><code>const StrokeJoin(1)</code></span>
@@ -437,10 +452,11 @@ value.</li></ul>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -448,7 +464,7 @@ value.</li></ul>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

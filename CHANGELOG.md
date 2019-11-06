@@ -1,3 +1,6 @@
+## [3.6.1] - 6-Nov-2019
+* Fixed bug caused by dropping unimplemented attribute `onChipTapped` of `flutter_chips_input`. Closes [#168](https://github.com/danvick/flutter_form_builder/issues/168)
+
 ## [3.6.0] - 4-Nov-2019
 * Added clear option to FormBuilderDropdown - set `allowClear` to true. Closes [#148](https://github.com/danvick/flutter_form_builder/issues/148)
 * Default `contentPadding` and `border` attributes removed from CheckboxList, Radio and SegmentedControl list. Closes [#160](https://github.com/danvick/flutter_form_builder/issues/160)
@@ -148,7 +151,7 @@ required, min, max, minLength, maxLength, email, url, credit card etc.
 * Prevent duplicate `attribute` names in fields - assertion
 * **Breaking changes:**
     * `FormBuilderInputOption` becomes `FormBuilderFieldOption`
-    * BuildContext is not passed down into `FormBuilder`
+    * `BuildContext` is not passed down into `FormBuilder`
 * Fixed URL validator works correctly - tested
 * Improved documentation
 

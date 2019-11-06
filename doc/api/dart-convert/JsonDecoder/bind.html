@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,26 +53,29 @@
     
     <h5>JsonDecoder class</h5>
     <ol>
-      <li class="section-title"><a href="dart-convert/JsonDecoder-class.html#constructors">Constructors</a></li>
-      <li><a href="dart-convert/JsonDecoder/JsonDecoder.html">JsonDecoder</a></li>
     
-      <li class="section-title inherited">
-        <a href="dart-convert/JsonDecoder-class.html#instance-properties">Properties</a>
-      </li>
-      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="dart-convert/JsonDecoder-class.html#constructors">Constructors</a></li>
+        <li><a href="dart-convert/JsonDecoder/JsonDecoder.html">JsonDecoder</a></li>
     
-      <li class="section-title"><a href="dart-convert/JsonDecoder-class.html#instance-methods">Methods</a></li>
-      <li><a href="dart-convert/JsonDecoder/bind.html">bind</a></li>
-      <li><a href="dart-convert/JsonDecoder/convert.html">convert</a></li>
-      <li><a href="dart-convert/JsonDecoder/startChunkedConversion.html">startChunkedConversion</a></li>
-      <li class="inherited"><a href="dart-convert/Converter/cast.html">cast</a></li>
-      <li class="inherited"><a href="dart-convert/Converter/fuse.html">fuse</a></li>
-      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title inherited">
+            <a href="dart-convert/JsonDecoder-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="dart-convert/JsonDecoder-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="dart-convert/JsonDecoder-class.html#instance-methods">Methods</a></li>
+        <li><a href="dart-convert/JsonDecoder/bind.html">bind</a></li>
+        <li><a href="dart-convert/JsonDecoder/convert.html">convert</a></li>
+        <li><a href="dart-convert/JsonDecoder/startChunkedConversion.html">startChunkedConversion</a></li>
+        <li class="inherited"><a href="dart-convert/Converter/cast.html">cast</a></li>
+        <li class="inherited"><a href="dart-convert/Converter/fuse.html">fuse</a></li>
+        <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="dart-convert/JsonDecoder-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
     
     
     
@@ -96,11 +99,16 @@ provided <code>stream</code>.</p>
 so it cannot say what subclasses do.
 Each <a href="dart-async/StreamTransformer-class.html">StreamTransformer</a> should document clearly how it transforms the
 stream (on the class or variable used to access the transformer),
-as well as any differences from the following typical behavior:</p><ul><li>When the returned stream is listened to, it starts listening to the
-input <code>stream</code>.</li><li>Subscriptions of the returned stream forward (in a reasonable time)
+as well as any differences from the following typical behavior:</p>
+<ul>
+<li>When the returned stream is listened to, it starts listening to the
+input <code>stream</code>.</li>
+<li>Subscriptions of the returned stream forward (in a reasonable time)
 a <a href="dart-async/StreamSubscription/pause.html">StreamSubscription.pause</a> call to the subscription of the input
-<code>stream</code>.</li><li>Similarly, canceling a subscription of the returned stream eventually
-(in reasonable time) cancels the subscription of the input <code>stream</code>.</li></ul>
+<code>stream</code>.</li>
+<li>Similarly, canceling a subscription of the returned stream eventually
+(in reasonable time) cancels the subscription of the input <code>stream</code>.</li>
+</ul>
 <p>"Reasonable time" depends on the transformer and stream. Some transformers,
 like a "timeout" transformer, might make these operations depend on a
 duration. Others might not delay them at all, or just by a microtask.</p>
@@ -124,10 +132,11 @@ but if errors are ignored, it should be documented explicitly.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -135,7 +144,7 @@ but if errors are ignored, it should be documented explicitly.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

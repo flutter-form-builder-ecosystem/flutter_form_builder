@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,38 +53,41 @@
     
     <h5>Radius class</h5>
     <ol>
-      <li class="section-title"><a href="dart-ui/Radius-class.html#constructors">Constructors</a></li>
-      <li><a href="dart-ui/Radius/Radius.circular.html">circular</a></li>
-      <li><a href="dart-ui/Radius/Radius.elliptical.html">elliptical</a></li>
     
-      <li class="section-title">
-        <a href="dart-ui/Radius-class.html#instance-properties">Properties</a>
-      </li>
-      <li><a href="dart-ui/Radius/hashCode.html">hashCode</a></li>
-      <li><a href="dart-ui/Radius/x.html">x</a></li>
-      <li><a href="dart-ui/Radius/y.html">y</a></li>
-      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="dart-ui/Radius-class.html#constructors">Constructors</a></li>
+        <li><a href="dart-ui/Radius/Radius.circular.html">circular</a></li>
+        <li><a href="dart-ui/Radius/Radius.elliptical.html">elliptical</a></li>
     
-      <li class="section-title"><a href="dart-ui/Radius-class.html#instance-methods">Methods</a></li>
-      <li><a href="dart-ui/Radius/toString.html">toString</a></li>
-      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="section-title">
+            <a href="dart-ui/Radius-class.html#instance-properties">Properties</a>
+        </li>
+        <li><a href="dart-ui/Radius/hashCode.html">hashCode</a></li>
+        <li><a href="dart-ui/Radius/x.html">x</a></li>
+        <li><a href="dart-ui/Radius/y.html">y</a></li>
+        <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title"><a href="dart-ui/Radius-class.html#operators">Operators</a></li>
-      <li><a href="dart-ui/Radius/operator_modulo.html">operator %</a></li>
-      <li><a href="dart-ui/Radius/operator_multiply.html">operator *</a></li>
-      <li><a href="dart-ui/Radius/operator_plus.html">operator +</a></li>
-      <li><a href="dart-ui/Radius/operator_minus.html">operator -</a></li>
-      <li><a href="dart-ui/Radius/operator_divide.html">operator /</a></li>
-      <li><a href="dart-ui/Radius/operator_equals.html">operator ==</a></li>
-      <li><a href="dart-ui/Radius/operator_unary_minus.html">operator unary-</a></li>
-      <li><a href="dart-ui/Radius/operator_truncate_divide.html">operator ~/</a></li>
+        <li class="section-title"><a href="dart-ui/Radius-class.html#instance-methods">Methods</a></li>
+        <li><a href="dart-ui/Radius/toString.html">toString</a></li>
+        <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    
+        <li class="section-title"><a href="dart-ui/Radius-class.html#operators">Operators</a></li>
+        <li><a href="dart-ui/Radius/operator_modulo.html">operator %</a></li>
+        <li><a href="dart-ui/Radius/operator_multiply.html">operator *</a></li>
+        <li><a href="dart-ui/Radius/operator_plus.html">operator +</a></li>
+        <li><a href="dart-ui/Radius/operator_minus.html">operator -</a></li>
+        <li><a href="dart-ui/Radius/operator_divide.html">operator /</a></li>
+        <li><a href="dart-ui/Radius/operator_equals.html">operator ==</a></li>
+        <li><a href="dart-ui/Radius/operator_unary_minus.html">operator unary-</a></li>
+        <li><a href="dart-ui/Radius/operator_truncate_divide.html">operator ~/</a></li>
     
     
-      <li class="section-title"><a href="dart-ui/Radius-class.html#static-methods">Static methods</a></li>
-      <li><a href="dart-ui/Radius/lerp.html">lerp</a></li>
+        <li class="section-title"><a href="dart-ui/Radius-class.html#static-methods">Static methods</a></li>
+        <li><a href="dart-ui/Radius/lerp.html">lerp</a></li>
     
-      <li class="section-title"><a href="dart-ui/Radius-class.html#constants">Constants</a></li>
-      <li><a href="dart-ui/Radius/zero-constant.html">zero</a></li>
+        <li class="section-title"><a href="dart-ui/Radius-class.html#constants">Constants</a></li>
+        <li><a href="dart-ui/Radius/zero-constant.html">zero</a></li>
+    
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -108,14 +111,24 @@
 only if <code>this</code> and <code>other</code> are the same object.</p>
 <p>Override this method to specify a different equality relation on
 a class. The overriding method must still be an equivalence relation.
-That is, it must be:</p><ul><li>
+That is, it must be:</p>
+<ul>
+<li>
 <p>Total: It must return a boolean for all arguments. It should never throw
-or return <code>null</code>.</p></li><li>
-<p>Reflexive: For all objects <code>o</code>, <code>o == o</code> must be true.</p></li><li>
+or return <code>null</code>.</p>
+</li>
+<li>
+<p>Reflexive: For all objects <code>o</code>, <code>o == o</code> must be true.</p>
+</li>
+<li>
 <p>Symmetric: For all objects <code>o1</code> and <code>o2</code>, <code>o1 == o2</code> and <code>o2 == o1</code> must
-either both be true, or both be false.</p></li><li>
+either both be true, or both be false.</p>
+</li>
+<li>
 <p>Transitive: For all objects <code>o1</code>, <code>o2</code>, and <code>o3</code>, if <code>o1 == o2</code> and
-<code>o2 == o3</code> are true, then <code>o1 == o3</code> must be true.</p></li></ul>
+<code>o2 == o3</code> are true, then <code>o1 == o3</code> must be true.</p>
+</li>
+</ul>
 <p>The method should also be consistent over time,
 so whether two objects are equal should only change
 if at least one of the objects was modified.</p>
@@ -145,10 +158,11 @@ bool operator ==(dynamic other) {
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.6.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -156,7 +170,7 @@ bool operator ==(dynamic other) {
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 
