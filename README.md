@@ -190,6 +190,7 @@ FormBuilderCustomField(
       return InputDecorator(
         decoration: InputDecoration(
           labelText: "Select option",
+          errorText: field.errorText,
           contentPadding:
               EdgeInsets.only(top: 10.0, bottom: 0.0),
           border: InputBorder.none,
