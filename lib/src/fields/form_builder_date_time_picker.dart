@@ -262,13 +262,15 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           ? widget.format
           : _dateTimeFormats[widget.inputType],
       onSaved: (val) {
+        var value = _fieldKey.currentState.value;
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed =
-              widget.valueTransformer(_fieldKey.currentState.value);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(
-              widget.attribute, _fieldKey.currentState.value);
+        } else
+          _formState?.setAttributeValue(widget.attribute, value);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? value);
         }
       },
       validator: (val) {

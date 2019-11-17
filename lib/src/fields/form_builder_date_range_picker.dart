@@ -56,6 +56,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   final Locale locale;
   final DateRangePicker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
+  final FormFieldSetter onSaved;
 
   FormBuilderDateRangePicker({
     @required this.attribute,
@@ -103,6 +104,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.initialDatePickerMode = DateRangePicker.DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
+    this.onSaved,
   });
 
   @override
@@ -173,11 +175,15 @@ class FormBuilderDateRangePickerState
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       autovalidate: widget.autovalidate ?? false,
       builder: (FormFieldState<List<DateTime>> field) {

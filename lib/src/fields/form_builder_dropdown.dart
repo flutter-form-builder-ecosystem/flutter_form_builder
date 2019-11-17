@@ -25,6 +25,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final Color iconEnabledColor;
   final bool allowClear;
   final Widget clearIcon;
+  final FormFieldSetter onSaved;
 
   FormBuilderDropdown({
     @required this.attribute,
@@ -48,6 +49,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.iconEnabledColor,
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
+    this.onSaved,
   }) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
@@ -93,11 +95,15 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
@@ -135,7 +141,9 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                           },
                   ),
                 ),
-                if (widget.allowClear && !widget.readOnly && field.value != null) ...[
+                if (widget.allowClear &&
+                    !widget.readOnly &&
+                    field.value != null) ...[
                   VerticalDivider(),
                   InkWell(
                     child: widget.clearIcon,

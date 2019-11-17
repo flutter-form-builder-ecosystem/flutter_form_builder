@@ -22,6 +22,7 @@ class FormBuilderSlider extends StatefulWidget {
   final String label;
   final SemanticFormatterCallback semanticFormatterCallback;
   final NumberFormat numberFormat;
+  final FormFieldSetter onSaved;
 
   FormBuilderSlider({
     @required this.attribute,
@@ -41,6 +42,7 @@ class FormBuilderSlider extends StatefulWidget {
     this.label,
     this.semanticFormatterCallback,
     this.numberFormat,
+    this.onSaved,
   });
 
   @override
@@ -88,11 +90,15 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

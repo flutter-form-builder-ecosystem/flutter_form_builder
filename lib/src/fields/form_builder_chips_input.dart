@@ -27,6 +27,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final bool obscureText;
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
+  final FormFieldSetter onSaved;
 
   FormBuilderChipsInput({
     @required this.attribute,
@@ -49,6 +50,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.keyboardAppearance = Brightness.light,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
+    this.onSaved,
   });
 
   @override
@@ -94,11 +96,15 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return ChipsInput(

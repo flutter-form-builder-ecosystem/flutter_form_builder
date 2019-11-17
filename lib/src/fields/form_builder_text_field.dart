@@ -43,6 +43,7 @@ class FormBuilderTextField extends StatefulWidget {
   final bool expands;
   final int minLines;
   final bool showCursor;
+  final FormFieldSetter onSaved;
 
   FormBuilderTextField({
     @required this.attribute,
@@ -82,6 +83,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.expands = false,
     this.minLines,
     this.showCursor,
+    this.onSaved,
   });
 
   @override
@@ -129,11 +131,15 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       enabled: !_readOnly,
       style: widget.style,
