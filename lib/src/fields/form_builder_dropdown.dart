@@ -135,7 +135,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                           },
                   ),
                 ),
-                if (widget.allowClear && !widget.readOnly) ...[
+                if (widget.allowClear && !widget.readOnly && field.value != null) ...[
                   VerticalDivider(),
                   InkWell(
                     child: widget.clearIcon,
