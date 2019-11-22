@@ -22,6 +22,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final Color penColor;
   final double penStrokeWidth;
   final String clearButtonText;
+  final FormFieldSetter onSaved;
 
   FormBuilderSignaturePad({
     @required this.attribute,
@@ -38,6 +39,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.height = 200,
     this.valueTransformer,
     this.onChanged,
+    this.onSaved,
   });
 
   @override
@@ -83,11 +85,15 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

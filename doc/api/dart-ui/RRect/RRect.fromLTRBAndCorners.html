@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>RRect class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/RRect-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/RRect/RRect.fromLTRBAndCorners.html">fromLTRBAndCorners</a></li>
       <li><a href="dart-ui/RRect/RRect.fromLTRBR.html">fromLTRBR</a></li>
@@ -104,6 +105,7 @@
       <li><a href="dart-ui/RRect/contains.html">contains</a></li>
       <li><a href="dart-ui/RRect/deflate.html">deflate</a></li>
       <li><a href="dart-ui/RRect/inflate.html">inflate</a></li>
+      <li><a href="dart-ui/RRect/scaleRadii.html">scaleRadii</a></li>
       <li><a href="dart-ui/RRect/shift.html">shift</a></li>
       <li><a href="dart-ui/RRect/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
@@ -117,21 +119,22 @@
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
       <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>RRect.fromLTRBAndCorners constructor</h1></div>
+      <div><h1><span class="kind-constructor">RRect.fromLTRBAndCorners</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">RRect.fromLTRBAndCorners</span>(<wbr><span class="parameter" id="fromLTRBAndCorners-param-left"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">left</span>, </span> <span class="parameter" id="fromLTRBAndCorners-param-top"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">top</span>, </span> <span class="parameter" id="fromLTRBAndCorners-param-right"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">right</span>, </span> <span class="parameter" id="fromLTRBAndCorners-param-bottom"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">bottom</span>, {</span> <span class="parameter" id="fromLTRBAndCorners-param-topLeft"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">topLeft</span>: <span class="default-value">Radius.zero</span>, </span> <span class="parameter" id="fromLTRBAndCorners-param-topRight"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">topRight</span>: <span class="default-value">Radius.zero</span>, </span> <span class="parameter" id="fromLTRBAndCorners-param-bottomRight"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">bottomRight</span>: <span class="default-value">Radius.zero</span>, </span> <span class="parameter" id="fromLTRBAndCorners-param-bottomLeft"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">bottomLeft</span>: <span class="default-value">Radius.zero</span></span> })
+      <span class="name ">RRect.fromLTRBAndCorners</span>(<wbr><span class="parameter" id="fromLTRBAndCorners-param-left"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">left</span>, {</span> <span class="parameter" id="fromLTRBAndCorners-param-top"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">top</span>, {</span> <span class="parameter" id="fromLTRBAndCorners-param-right"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">right</span>, {</span> <span class="parameter" id="fromLTRBAndCorners-param-bottom"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">bottom</span>, {</span> <span class="parameter" id="fromLTRBAndCorners-param-topLeft"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">topLeft</span>: <span class="default-value">Radius.zero</span></span> <span class="parameter" id="fromLTRBAndCorners-param-topRight"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">topRight</span>: <span class="default-value">Radius.zero</span></span> <span class="parameter" id="fromLTRBAndCorners-param-bottomRight"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">bottomRight</span>: <span class="default-value">Radius.zero</span></span> <span class="parameter" id="fromLTRBAndCorners-param-bottomLeft"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">bottomLeft</span>: <span class="default-value">Radius.zero</span></span> })
     </section>
 
     <section class="desc markdown">
       <p>Construct a rounded rectangle from its left, top, right, and bottom edges,
 and topLeft, topRight, bottomRight, and bottomLeft radii.</p>
-<p>The corner radii default to <a href="dart-ui/RRect/zero-constant.html">Radius.zero</a>, i.e. right-angled corners.</p>
+<p>The corner radii default to <a href="dart-ui/Radius/zero-constant.html">Radius.zero</a>, i.e. right-angled corners.</p>
     </section>
     
     <section class="summary source-code" id="source">
@@ -170,10 +173,11 @@ and topLeft, topRight, bottomRight, and bottomLeft radii.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -181,7 +185,7 @@ and topLeft, topRight, bottomRight, and bottomLeft radii.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

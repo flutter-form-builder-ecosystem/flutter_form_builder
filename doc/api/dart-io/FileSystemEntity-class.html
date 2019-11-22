@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -134,6 +134,7 @@
       <li><a href="dart-io/ZLibOption-class.html">ZLibOption</a></li>
     
     
+    
       <li class="section-title"><a href="dart-io/dart-io-library.html#constants">Constants</a></li>
       <li><a class="deprecated" href="dart-io/APPEND-constant.html">APPEND</a></li>
       <li><a class="deprecated" href="dart-io/GZIP-constant.html">GZIP</a></li>
@@ -183,7 +184,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>FileSystemEntity class </h1></div>
+      <div><h1><span class="kind-class">FileSystemEntity</span> class </h1></div>
 
     <section class="desc markdown">
       <p>The common super class for <a href="dart-io/File-class.html">File</a>, <a href="dart-io/Directory-class.html">Directory</a>, and <a href="dart-io/Link-class.html">Link</a> objects.</p>
@@ -203,18 +204,26 @@ of a method, prefer the asynchronous version to avoid blocking your program.</p>
   isThere ? print('exists') : print('non-existent');
 });
 </code></pre>
-<h2 id="other-resources">Other resources</h2><ul><li>
+<h2 id="other-resources">Other resources</h2>
+<ul>
+<li>
 <p><a href="https://www.dartlang.org/dart-by-example/#files-directories-and-symlinks">Dart by
 Example</a>
 provides additional task-oriented code samples that show how to use various
 API from the <a href="dart-io/Directory-class.html">Directory</a> class and the <a href="dart-io/File-class.html">File</a> class, both subclasses of
-FileSystemEntity.</p></li><li>
+FileSystemEntity.</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/docs/dart-up-and-running/ch03.html#dartio---io-for-command-line-apps">I/O for Command-Line
 Apps</a>,
-a section from <em>A Tour of the Dart Libraries</em> covers files and directories.</p></li><li>
+a section from <em>A Tour of the Dart Libraries</em> covers files and directories.</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/docs/tutorials/cmdline/">Write Command-Line Apps</a>,
 a tutorial about writing command-line apps, includes information about
-files and directories.</p></li></ul>
+files and directories.</p>
+</li>
+</ul>
     </section>
     
     <section>
@@ -471,7 +480,7 @@ current working directory. <a href="dart-io/FileSystemEntity/resolveSymbolicLink
       <h2>Static Methods</h2>
       <dl class="callables">
         <dt id="identical" class="callable">
-          <span class="name"><a href="dart-io/FileSystemEntity/identical.html">identical</a></span><span class="signature">(<wbr><span class="parameter" id="identical-param-path1"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path1</span>, </span> <span class="parameter" id="identical-param-path2"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path2</span></span>)
+          <span class="name"><a href="dart-io/FileSystemEntity/identical.html">identical</a></span><span class="signature">(<wbr><span class="parameter" id="identical-param-path1"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path1</span></span> <span class="parameter" id="identical-param-path2"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path2</span></span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/bool-class.html">bool</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -481,7 +490,7 @@ file system. <a href="dart-io/FileSystemEntity/identical.html">[...]</a>
                   
 </dd>
         <dt id="identicalSync" class="callable">
-          <span class="name"><a href="dart-io/FileSystemEntity/identicalSync.html">identicalSync</a></span><span class="signature">(<wbr><span class="parameter" id="identicalSync-param-path1"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path1</span>, </span> <span class="parameter" id="identicalSync-param-path2"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path2</span></span>)
+          <span class="name"><a href="dart-io/FileSystemEntity/identicalSync.html">identicalSync</a></span><span class="signature">(<wbr><span class="parameter" id="identicalSync-param-path1"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path1</span></span> <span class="parameter" id="identicalSync-param-path2"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">path2</span></span>)
             <span class="returntype parameter">&#8594; <a href="dart-core/bool-class.html">bool</a></span>
           </span>
                   </dt>
@@ -583,6 +592,7 @@ path separator to split the path. <a href="dart-io/FileSystemEntity/parentOf.htm
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-io/FileSystemEntity-class.html#constructors">Constructors</a></li>
       <li><a href="dart-io/FileSystemEntity/FileSystemEntity.html">FileSystemEntity</a></li>
     
@@ -631,6 +641,7 @@ path separator to split the path. <a href="dart-io/FileSystemEntity/parentOf.htm
       <li><a href="dart-io/FileSystemEntity/type.html">type</a></li>
       <li><a href="dart-io/FileSystemEntity/typeSync.html">typeSync</a></li>
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -638,10 +649,11 @@ path separator to split the path. <a href="dart-io/FileSystemEntity/parentOf.htm
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -649,7 +661,7 @@ path separator to split the path. <a href="dart-io/FileSystemEntity/parentOf.htm
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

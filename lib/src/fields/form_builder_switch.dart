@@ -61,6 +61,7 @@ class FormBuilderSwitch extends StatefulWidget {
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
+  final FormFieldSetter onSaved;
 
   FormBuilderSwitch({
     @required this.attribute,
@@ -79,6 +80,7 @@ class FormBuilderSwitch extends StatefulWidget {
     this.inactiveThumbImage,
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
+    this.onSaved,
   });
 
   @override
@@ -124,11 +126,15 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
           return null;
         },
         onSaved: (val) {
+          var transformed;
           if (widget.valueTransformer != null) {
-            var transformed = widget.valueTransformer(val);
+            transformed = widget.valueTransformer(val);
             _formState?.setAttributeValue(widget.attribute, transformed);
           } else
             _formState?.setAttributeValue(widget.attribute, val);
+          if (widget.onSaved != null) {
+            widget.onSaved(transformed ?? val);
+          }
         },
         builder: (FormFieldState<dynamic> field) {
           return InputDecorator(

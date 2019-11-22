@@ -41,6 +41,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool keepSuggestionsOnSuggestionSelected;
   final SuggestionSelectionCallback<T> onSuggestionSelected;
   final TextEditingController controller;
+  final FormFieldSetter<T> onSaved;
 
   FormBuilderTypeAhead({
     @required this.attribute,
@@ -76,6 +77,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.keepSuggestionsOnSuggestionSelected = false,
     this.onSuggestionSelected,
     this.controller,
+    this.onSaved,
   }) : assert(T == String || selectionToTextTransformer != null);
 
   @override
@@ -142,11 +144,15 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       autovalidate: widget.autovalidate,
       textFieldConfiguration: widget.textFieldConfiguration.copyWith(

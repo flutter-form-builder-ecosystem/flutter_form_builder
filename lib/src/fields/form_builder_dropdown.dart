@@ -23,6 +23,9 @@ class FormBuilderDropdown extends StatefulWidget {
   final Widget icon;
   final Color iconDisabledColor;
   final Color iconEnabledColor;
+  final bool allowClear;
+  final Widget clearIcon;
+  final FormFieldSetter onSaved;
 
   FormBuilderDropdown({
     @required this.attribute,
@@ -44,7 +47,10 @@ class FormBuilderDropdown extends StatefulWidget {
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
-  });
+    this.allowClear = false,
+    this.clearIcon = const Icon(Icons.close),
+    this.onSaved,
+  }) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
   _FormBuilderDropdownState createState() => _FormBuilderDropdownState();
@@ -89,11 +95,15 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
@@ -101,29 +111,48 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
             errorText: field.errorText,
           ),
           child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-              isExpanded: widget.isExpanded,
-              hint: widget.hint,
-              items: widget.items,
-              value: field.value,
-              style: widget.style,
-              isDense: widget.isDense,
-              disabledHint: field.value != null
-                  ? Text("${field.value.toString()}")
-                  : widget.disabledHint,
-              elevation: widget.elevation,
-              iconSize: widget.iconSize,
-              icon: widget.icon,
-              iconDisabledColor: widget.iconDisabledColor,
-              iconEnabledColor: widget.iconEnabledColor,
-              underline: widget.underline,
-              onChanged: _readOnly
-                  ? null
-                  : (value) {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      field.didChange(value);
-                      if (widget.onChanged != null) widget.onChanged(value);
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: DropdownButton(
+                    isExpanded: widget.isExpanded,
+                    hint: widget.hint,
+                    items: widget.items,
+                    value: field.value,
+                    style: widget.style,
+                    isDense: widget.isDense,
+                    disabledHint: field.value != null
+                        ? (widget.items
+                                .firstWhere((val) => val.value == field.value,
+                                    orElse: () => null)
+                                ?.child ??
+                            Text("${field.value.toString()}"))
+                        : widget.disabledHint,
+                    elevation: widget.elevation,
+                    iconSize: widget.iconSize,
+                    icon: widget.icon,
+                    iconDisabledColor: widget.iconDisabledColor,
+                    iconEnabledColor: widget.iconEnabledColor,
+                    underline: widget.underline,
+                    onChanged: _readOnly
+                        ? null
+                        : (value) {
+                            _changeValue(field, value);
+                          },
+                  ),
+                ),
+                if (widget.allowClear &&
+                    !widget.readOnly &&
+                    field.value != null) ...[
+                  VerticalDivider(),
+                  InkWell(
+                    child: widget.clearIcon,
+                    onTap: () {
+                      _changeValue(field, null);
                     },
+                  ),
+                ]
+              ],
             ),
           ),
         );
@@ -131,7 +160,13 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
     );
   }
 
-  /*@override
+  _changeValue(FormFieldState field, value) {
+    FocusScope.of(context).requestFocus(FocusNode());
+    field.didChange(value);
+    if (widget.onChanged != null) widget.onChanged(value);
+  }
+
+/*@override
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 

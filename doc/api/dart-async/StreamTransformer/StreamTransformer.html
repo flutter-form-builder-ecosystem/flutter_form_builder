@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>StreamTransformer class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-async/StreamTransformer-class.html#constructors">Constructors</a></li>
       <li><a href="dart-async/StreamTransformer/StreamTransformer.html">StreamTransformer</a></li>
       <li><a href="dart-async/StreamTransformer/StreamTransformer.fromBind.html">fromBind</a></li>
@@ -77,15 +78,16 @@
       <li class="section-title"><a href="dart-async/StreamTransformer-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-async/StreamTransformer/castFrom.html">castFrom</a></li>
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>StreamTransformer&lt;<wbr><span class="type-parameter">S</span>, <span class="type-parameter">T</span>&gt; constructor</h1></div>
+      <div><h1><span class="kind-constructor">StreamTransformer&lt;<wbr><span class="type-parameter">S</span>, <span class="type-parameter">T</span>&gt;</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       const
-      <span class="name ">StreamTransformer&lt;<wbr><span class="type-parameter">S</span>, <span class="type-parameter">T</span>&gt;</span>(<wbr><span class="parameter" id="-param-onListen"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onListen</span>(<span class="parameter" id="onListen-param-stream"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">stream</span>, </span> <span class="parameter" id="onListen-param-cancelOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">cancelOnError</span></span>)</span>)
+      <span class="name ">StreamTransformer&lt;<wbr><span class="type-parameter">S</span>, <span class="type-parameter">T</span>&gt;</span>(<wbr><span class="parameter" id="-param-onListen"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onListen</span>(<span class="parameter" id="param-stream"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">stream</span>, </span> <span class="parameter" id="param-cancelOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">cancelOnError</span></span>)</span>)
     </section>
 
     <section class="desc markdown">
@@ -107,12 +109,16 @@ to <a href="dart-async/Stream/listen.html">Stream.listen</a>. These are automati
 <p>Most commonly, an <code>onListen</code> callback will first call <a href="dart-async/Stream/listen.html">Stream.listen</a> on
 the provided stream (with the corresponding <code>cancelOnError</code> flag), and then
 return a new <a href="dart-async/StreamSubscription-class.html">StreamSubscription</a>.</p>
-<p>There are two common ways to create a StreamSubscription:</p><ol><li>by allocating a <a href="dart-async/StreamController-class.html">StreamController</a> and to return the result of
+<p>There are two common ways to create a StreamSubscription:</p>
+<ol>
+<li>by allocating a <a href="dart-async/StreamController-class.html">StreamController</a> and to return the result of
 listening to its stream. It's important to forward pause, resume and
 cancel events (unless the transformer intentionally wants to change
-this behavior).</li><li>by creating a new class that implements <a href="dart-async/StreamSubscription-class.html">StreamSubscription</a>.
+this behavior).</li>
+<li>by creating a new class that implements <a href="dart-async/StreamSubscription-class.html">StreamSubscription</a>.
 Note that the subscription should run callbacks in the <a href="dart-async/Zone-class.html">Zone</a> the
-stream was listened to (see <a href="dart-async/Zone-class.html">Zone</a> and <a href="dart-async/Zone/bindCallback.html">Zone.bindCallback</a>).</li></ol>
+stream was listened to (see <a href="dart-async/Zone-class.html">Zone</a> and <a href="dart-async/Zone/bindCallback.html">Zone.bindCallback</a>).</li>
+</ol>
 <p>Example:</p>
 <pre class="language-dart"><code>/// Starts listening to [input] and duplicates all non-error events.
 StreamSubscription&lt;int&gt; _onListen(Stream&lt;int&gt; input, bool cancelOnError) {
@@ -168,10 +174,11 @@ intStream.transform(duplicator);
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -179,7 +186,7 @@ intStream.transform(duplicator);
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

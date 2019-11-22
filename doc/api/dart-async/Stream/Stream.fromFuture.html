@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,14 +53,17 @@
     
     <h5>Stream class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-async/Stream-class.html#constructors">Constructors</a></li>
       <li><a href="dart-async/Stream/Stream.html">Stream</a></li>
       <li><a href="dart-async/Stream/Stream.empty.html">empty</a></li>
+      <li><a href="dart-async/Stream/Stream.error.html">error</a></li>
       <li><a href="dart-async/Stream/Stream.eventTransformed.html">eventTransformed</a></li>
       <li><a href="dart-async/Stream/Stream.fromFuture.html">fromFuture</a></li>
       <li><a href="dart-async/Stream/Stream.fromFutures.html">fromFutures</a></li>
       <li><a href="dart-async/Stream/Stream.fromIterable.html">fromIterable</a></li>
       <li><a href="dart-async/Stream/Stream.periodic.html">periodic</a></li>
+      <li><a href="dart-async/Stream/Stream.value.html">value</a></li>
     
       <li class="section-title">
         <a href="dart-async/Stream-class.html#instance-properties">Properties</a>
@@ -116,11 +119,12 @@
       <li class="section-title"><a href="dart-async/Stream-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-async/Stream/castFrom.html">castFrom</a></li>
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Stream&lt;<wbr><span class="type-parameter">T</span>&gt;.fromFuture constructor</h1></div>
+      <div><h1><span class="kind-constructor">Stream&lt;<wbr><span class="type-parameter">T</span>&gt;.fromFuture</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -139,7 +143,8 @@ data or error, and then close with a done-event.</p>
   &#47;&#47; Use the controller&#39;s buffering to fill in the value even before
   &#47;&#47; the stream has a listener. For a single value, it&#39;s not worth it
   &#47;&#47; to wait for a listener before doing the `then` on the future.
-  _StreamController&lt;T&gt; controller = new StreamController&lt;T&gt;(sync: true);
+  _StreamController&lt;T&gt; controller =
+      new _SyncStreamController&lt;T&gt;(null, null, null, null);
   future.then((value) {
     controller._add(value);
     controller._closeUnchecked();
@@ -160,10 +165,11 @@ data or error, and then close with a done-event.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -171,7 +177,7 @@ data or error, and then close with a done-event.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

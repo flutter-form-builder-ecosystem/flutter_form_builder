@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>TextStyle class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/TextStyle-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/TextStyle/TextStyle.html">TextStyle</a></li>
     
@@ -71,11 +72,12 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>TextStyle constructor</h1></div>
+      <div><h1><span class="kind-constructor">TextStyle</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -83,14 +85,34 @@
     </section>
 
     <section class="desc markdown">
-      <p>Creates a new TextStyle object.</p><ul><li><code>color</code>: The color to use when painting the text. If this is specified, <code>foreground</code> must be null.</li><li><code>decoration</code>: The decorations to paint near the text (e.g., an underline).</li><li><code>decorationColor</code>: The color in which to paint the text decorations.</li><li><code>decorationStyle</code>: The style in which to paint the text decorations (e.g., dashed).</li><li><code>decorationThickness</code>: The thickness of the decoration as a muliplier on the thickness specified by the font.</li><li><code>fontWeight</code>: The typeface thickness to use when painting the text (e.g., bold).</li><li><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g., italics).</li><li><code>fontFamily</code>: The name of the font to use when painting the text (e.g., Roboto). If a <code>fontFamilyFallback</code> is
+      <p>Creates a new TextStyle object.</p>
+<ul>
+<li><code>color</code>: The color to use when painting the text. If this is specified, <code>foreground</code> must be null.</li>
+<li><code>decoration</code>: The decorations to paint near the text (e.g., an underline).</li>
+<li><code>decorationColor</code>: The color in which to paint the text decorations.</li>
+<li><code>decorationStyle</code>: The style in which to paint the text decorations (e.g., dashed).</li>
+<li><code>decorationThickness</code>: The thickness of the decoration as a muliplier on the thickness specified by the font.</li>
+<li><code>fontWeight</code>: The typeface thickness to use when painting the text (e.g., bold).</li>
+<li><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g., italics).</li>
+<li><code>fontFamily</code>: The name of the font to use when painting the text (e.g., Roboto). If a <code>fontFamilyFallback</code> is
 provided and <code>fontFamily</code> is not, then the first font family in <code>fontFamilyFallback</code> will take the position of
 the preferred font family. When a higher priority font cannot be found or does not contain a glyph, a lower
-priority font will be used.</li><li><code>fontFamilyFallback</code>: An ordered list of the names of the fonts to fallback on when a glyph cannot
+priority font will be used.</li>
+<li><code>fontFamilyFallback</code>: An ordered list of the names of the fonts to fallback on when a glyph cannot
 be found in a higher priority font. When the <code>fontFamily</code> is null, the first font family in this list
-is used as the preferred font. Internally, the 'fontFamily<code>is concatenated to the front of this list.
-When no font family is provided through 'fontFamilyFallback' (null or empty) or</code>fontFamily`, then the
-platform default font will be used.</li><li><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting the text.</li><li><code>letterSpacing</code>: The amount of space (in logical pixels) to add between each letter.</li><li><code>wordSpacing</code>: The amount of space (in logical pixels) to add at each sequence of white-space (i.e. between each word).</li><li><code>textBaseline</code>: The common baseline that should be aligned between this text span and its parent text span, or, for the root text spans, with the line box.</li><li><code>height</code>: The height of this text span, as a multiplier of the font size.</li><li><code>locale</code>: The locale used to select region-specific glyphs.</li><li><code>background</code>: The paint drawn as a background for the text.</li><li><code>foreground</code>: The paint used to draw the text. If this is specified, <code>color</code> must be null.</li><li><code>fontFeatures</code>: The font features that should be applied to the text.</li></ul>
+is used as the preferred font. Internally, the 'fontFamily<code>is concatenated to the front of this list. When no font family is provided through 'fontFamilyFallback' (null or empty) or</code>fontFamily`, then the
+platform default font will be used.</li>
+<li><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting the text.</li>
+<li><code>letterSpacing</code>: The amount of space (in logical pixels) to add between each letter.</li>
+<li><code>wordSpacing</code>: The amount of space (in logical pixels) to add at each sequence of white-space (i.e. between each word).</li>
+<li><code>textBaseline</code>: The common baseline that should be aligned between this text span and its parent text span, or, for the root text spans, with the line box.</li>
+<li><code>height</code>: The height of this text span, as a multiplier of the font size. Omitting <code>height</code> will allow the line height
+to take the height as defined by the font, which may not be exactly the height of the fontSize.</li>
+<li><code>locale</code>: The locale used to select region-specific glyphs.</li>
+<li><code>background</code>: The paint drawn as a background for the text.</li>
+<li><code>foreground</code>: The paint used to draw the text. If this is specified, <code>color</code> must be null.</li>
+<li><code>fontFeatures</code>: The font features that should be applied to the text.</li>
+</ul>
     </section>
     
     <section class="summary source-code" id="source">
@@ -163,10 +185,11 @@ platform default font will be used.</li><li><code>fontSize</code>: The size of g
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -174,7 +197,7 @@ platform default font will be used.</li><li><code>fontSize</code>: The size of g
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 
