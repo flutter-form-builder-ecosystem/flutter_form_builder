@@ -19,6 +19,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
   final ValueChanged<RangeValues> onChangeEnd;
   final RangeLabels labels;
   final RangeSemanticFormatterCallback semanticFormatterCallback;
+  final FormFieldSetter onSaved;
 
   FormBuilderRangeSlider({
     @required this.attribute,
@@ -37,6 +38,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
     this.onChangeEnd,
     this.labels,
     this.semanticFormatterCallback,
+    this.onSaved,
   });
 
   @override
@@ -82,11 +84,15 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<RangeValues> field) {
         return InputDecorator(

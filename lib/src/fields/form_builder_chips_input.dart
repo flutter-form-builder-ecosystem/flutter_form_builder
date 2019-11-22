@@ -15,7 +15,6 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final ChipsInputSuggestions findSuggestions;
 
   // final ValueChanged<List<T>> onChanged;
-  final ValueChanged<T> onChipTapped;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
   final int maxChips;
@@ -28,6 +27,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final bool obscureText;
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
+  final FormFieldSetter onSaved;
 
   FormBuilderChipsInput({
     @required this.attribute,
@@ -38,19 +38,19 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
-    this.onChipTapped,
     this.maxChips,
     this.onChanged,
     this.valueTransformer,
     this.textStyle,
     this.actionLabel,
-    this.autocorrect,
-    this.inputAction,
-    this.inputType,
-    this.keyboardAppearance,
-    this.obscureText,
     this.suggestionsBoxMaxHeight,
-    this.textCapitalization,
+    this.autocorrect = false,
+    this.inputAction = TextInputAction.done,
+    this.inputType = TextInputType.text,
+    this.keyboardAppearance = Brightness.light,
+    this.obscureText = false,
+    this.textCapitalization = TextCapitalization.none,
+    this.onSaved,
   });
 
   @override
@@ -84,56 +84,56 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return SizedBox(
-      // height: 200.0,
-      child: FormField(
-        key: _fieldKey,
-        enabled: !_readOnly,
-        initialValue: _initialValue ?? [],
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
-          }
-          return null;
-        },
-        onSaved: (val) {
-          if (widget.valueTransformer != null) {
-            var transformed = widget.valueTransformer(val);
-            _formState?.setAttributeValue(widget.attribute, transformed);
-          } else
-            _formState?.setAttributeValue(widget.attribute, val);
-        },
-        builder: (FormFieldState<dynamic> field) {
-          return ChipsInput(
-            initialValue: field.value,
+    return FormField(
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue ?? [],
+      validator: (val) {
+        for (int i = 0; i < widget.validators.length; i++) {
+          if (widget.validators[i](val) != null)
+            return widget.validators[i](val);
+        }
+        return null;
+      },
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else
+          _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
+      },
+      builder: (FormFieldState<dynamic> field) {
+        return ChipsInput(
+          initialValue: field.value,
+          enabled: !_readOnly,
+          decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
-            decoration: widget.decoration.copyWith(
-              enabled: !_readOnly,
-              errorText: field.errorText,
-            ),
-            findSuggestions: widget.findSuggestions,
-            onChanged: (data) {
-              FocusScope.of(context).requestFocus(FocusNode());
-              field.didChange(data);
-              if (widget.onChanged != null) widget.onChanged(data);
-            },
-            maxChips: widget.maxChips,
-            chipBuilder: widget.chipBuilder,
-            suggestionBuilder: widget.suggestionBuilder,
-            onChipTapped: widget.onChipTapped,
-            textStyle: widget.textStyle,
-            actionLabel: widget.actionLabel,
-            autocorrect: widget.autocorrect,
-            inputAction: widget.inputAction,
-            inputType: widget.inputType,
-            keyboardAppearance: widget.keyboardAppearance,
-            obscureText: widget.obscureText,
-            suggestionsBoxMaxHeight: widget.suggestionsBoxMaxHeight,
-            textCapitalization: widget.textCapitalization,
-          );
-        },
-      ),
+            errorText: field.errorText,
+          ),
+          findSuggestions: widget.findSuggestions,
+          onChanged: (data) {
+            FocusScope.of(context).requestFocus(FocusNode());
+            field.didChange(data);
+            if (widget.onChanged != null) widget.onChanged(data);
+          },
+          maxChips: widget.maxChips,
+          chipBuilder: widget.chipBuilder,
+          suggestionBuilder: widget.suggestionBuilder,
+          textStyle: widget.textStyle,
+          actionLabel: widget.actionLabel,
+          autocorrect: widget.autocorrect,
+          inputAction: widget.inputAction,
+          inputType: widget.inputType,
+          keyboardAppearance: widget.keyboardAppearance,
+          obscureText: widget.obscureText,
+          suggestionsBoxMaxHeight: widget.suggestionsBoxMaxHeight,
+          textCapitalization: widget.textCapitalization,
+        );
+      },
     );
   }
 }

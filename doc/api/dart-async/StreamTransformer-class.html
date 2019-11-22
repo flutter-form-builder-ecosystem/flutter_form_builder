@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -75,6 +75,7 @@
     
     
     
+    
       <li class="section-title"><a href="dart-async/dart-async-library.html#functions">Functions</a></li>
       <li><a href="dart-async/runZoned.html">runZoned</a></li>
       <li><a href="dart-async/scheduleMicrotask.html">scheduleMicrotask</a></li>
@@ -108,7 +109,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>StreamTransformer&lt;<wbr><span class="type-parameter">S</span>, <span class="type-parameter">T</span>&gt; class </h1></div>
+      <div><h1><span class="kind-class">StreamTransformer&lt;<wbr><span class="type-parameter">S</span>, <span class="type-parameter">T</span>&gt;</span> class </h1></div>
 
     <section class="desc markdown">
       <p>Transforms a Stream.</p>
@@ -144,7 +145,7 @@ also a bit more complicated to use.</p>
 
       <dl class="constructor-summary-list">
         <dt id="StreamTransformer" class="callable">
-          <span class="name"><a href="dart-async/StreamTransformer/StreamTransformer.html">StreamTransformer</a></span><span class="signature">(<span class="parameter" id="-param-onListen"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onListen</span>(<span class="parameter" id="onListen-param-stream"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">stream</span>, </span> <span class="parameter" id="onListen-param-cancelOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">cancelOnError</span></span>)</span>)</span>
+          <span class="name"><a href="dart-async/StreamTransformer/StreamTransformer.html">StreamTransformer</a></span><span class="signature">(<span class="parameter" id="-param-onListen"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onListen</span>(<span class="parameter" id="param-stream"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">stream</span>, </span> <span class="parameter" id="param-cancelOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">cancelOnError</span></span>)</span>)</span>
         </dt>
         <dd>
           Creates a <a href="dart-async/StreamTransformer-class.html">StreamTransformer</a> based on the given <code>onListen</code> callback. <a href="dart-async/StreamTransformer/StreamTransformer.html">[...]</a>
@@ -152,14 +153,14 @@ also a bit more complicated to use.</p>
           <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="StreamTransformer.fromBind" class="callable">
-          <span class="name"><a href="dart-async/StreamTransformer/StreamTransformer.fromBind.html">StreamTransformer.fromBind</a></span><span class="signature">(<span class="parameter" id="fromBind-param-bind"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">bind</span>(<span class="parameter" id="bind-param-"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span></span>)</span>)</span>
+          <span class="name"><a href="dart-async/StreamTransformer/StreamTransformer.fromBind.html">StreamTransformer.fromBind</a></span><span class="signature">(<span class="parameter" id="fromBind-param-bind"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">bind</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span></span>)</span>)</span>
         </dt>
         <dd>
           Creates a <a href="dart-async/StreamTransformer-class.html">StreamTransformer</a> based on a <code>bind</code> callback. <a href="dart-async/StreamTransformer/StreamTransformer.fromBind.html">[...]</a>
           <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="StreamTransformer.fromHandlers" class="callable">
-          <span class="name"><a href="dart-async/StreamTransformer/StreamTransformer.fromHandlers.html">StreamTransformer.fromHandlers</a></span><span class="signature">({<span class="parameter" id="fromHandlers-param-handleData"><span class="type-annotation">void</span> <span class="parameter-name">handleData</span>(<span class="parameter" id="handleData-param-data"><span class="type-annotation">S</span> <span class="parameter-name">data</span>, </span> <span class="parameter" id="handleData-param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>), </span> <span class="parameter" id="fromHandlers-param-handleError"><span class="type-annotation">void</span> <span class="parameter-name">handleError</span>(<span class="parameter" id="handleError-param-error"><span class="type-annotation"><a href="dart-core/Object-class.html">Object</a></span> <span class="parameter-name">error</span>, </span> <span class="parameter" id="handleError-param-stackTrace"><span class="type-annotation"><a href="dart-core/StackTrace-class.html">StackTrace</a></span> <span class="parameter-name">stackTrace</span>, </span> <span class="parameter" id="handleError-param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>), </span> <span class="parameter" id="fromHandlers-param-handleDone"><span class="type-annotation">void</span> <span class="parameter-name">handleDone</span>(<span class="parameter" id="handleDone-param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>)</span> })</span>
+          <span class="name"><a href="dart-async/StreamTransformer/StreamTransformer.fromHandlers.html">StreamTransformer.fromHandlers</a></span><span class="signature">({<span class="parameter" id="fromHandlers-param-handleData"><span class="type-annotation">void</span> <span class="parameter-name">handleData</span>(<span class="parameter" id="param-data"><span class="type-annotation">S</span> <span class="parameter-name">data</span>, </span> <span class="parameter" id="param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>), </span> <span class="parameter" id="fromHandlers-param-handleError"><span class="type-annotation">void</span> <span class="parameter-name">handleError</span>(<span class="parameter" id="param-error"><span class="type-annotation"><a href="dart-core/Object-class.html">Object</a></span> <span class="parameter-name">error</span>, </span> <span class="parameter" id="param-stackTrace"><span class="type-annotation"><a href="dart-core/StackTrace-class.html">StackTrace</a></span> <span class="parameter-name">stackTrace</span>, </span> <span class="parameter" id="param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>), </span> <span class="parameter" id="fromHandlers-param-handleDone"><span class="type-annotation">void</span> <span class="parameter-name">handleDone</span>(<span class="parameter" id="param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>)</span> })</span>
         </dt>
         <dd>
           Creates a <a href="dart-async/StreamTransformer-class.html">StreamTransformer</a> that delegates events to the given functions. <a href="dart-async/StreamTransformer/StreamTransformer.fromHandlers.html">[...]</a>
@@ -269,6 +270,7 @@ also a bit more complicated to use.</p>
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-async/StreamTransformer-class.html#constructors">Constructors</a></li>
       <li><a href="dart-async/StreamTransformer/StreamTransformer.html">StreamTransformer</a></li>
       <li><a href="dart-async/StreamTransformer/StreamTransformer.fromBind.html">fromBind</a></li>
@@ -293,6 +295,7 @@ also a bit more complicated to use.</p>
       <li class="section-title"><a href="dart-async/StreamTransformer-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-async/StreamTransformer/castFrom.html">castFrom</a></li>
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -300,10 +303,11 @@ also a bit more complicated to use.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.5.0
+    flutter_form_builder
+      3.6.1
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -311,7 +315,7 @@ also a bit more complicated to use.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

@@ -17,6 +17,7 @@ class FormBuilderRadio extends StatefulWidget {
   final MaterialTapTargetSize materialTapTargetSize;
 
   final Color activeColor;
+  final FormFieldSetter onSaved;
 
   FormBuilderRadio({
     @required this.attribute,
@@ -30,6 +31,7 @@ class FormBuilderRadio extends StatefulWidget {
     this.leadingInput = false,
     this.materialTapTargetSize,
     this.activeColor,
+    this.onSaved,
   });
 
   @override
@@ -101,11 +103,15 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         List<Widget> radioList = [];
@@ -135,8 +141,6 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
             errorText: field.errorText,
-            contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-            border: InputBorder.none,
           ),
           child: Column(
             children: radioList,

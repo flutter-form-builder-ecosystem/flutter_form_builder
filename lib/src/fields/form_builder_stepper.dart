@@ -16,6 +16,7 @@ class FormBuilderStepper extends StatefulWidget {
   final num min;
   final num max;
   final num size;
+  final FormFieldSetter onSaved;
 
   FormBuilderStepper({
     @required this.attribute,
@@ -29,6 +30,7 @@ class FormBuilderStepper extends StatefulWidget {
     this.size = 24.0,
     this.onChanged,
     this.valueTransformer,
+    this.onSaved,
   });
 
   @override
@@ -74,11 +76,15 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

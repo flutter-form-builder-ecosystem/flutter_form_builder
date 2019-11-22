@@ -17,6 +17,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final Color checkColor;
   final MaterialTapTargetSize materialTapTargetSize;
   final bool tristate;
+  final FormFieldSetter onSaved;
 
   FormBuilderCheckboxList({
     @required this.attribute,
@@ -32,6 +33,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
     this.checkColor,
     this.materialTapTargetSize,
     this.tristate = false,
+    this.onSaved,
   });
 
   @override
@@ -111,11 +113,15 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
           return null;
         },
         onSaved: (val) {
+          var transformed;
           if (widget.valueTransformer != null) {
-            var transformed = widget.valueTransformer(val);
+            transformed = widget.valueTransformer(val);
             _formState?.setAttributeValue(widget.attribute, transformed);
           } else
             _formState?.setAttributeValue(widget.attribute, val);
+          if (widget.onSaved != null) {
+            widget.onSaved(transformed ?? val);
+          }
         },
         builder: (FormFieldState<dynamic> field) {
           List<Widget> checkboxList = [];
@@ -150,8 +156,6 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
             decoration: widget.decoration.copyWith(
               enabled: !_readOnly,
               errorText: field.errorText,
-              contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-              border: InputBorder.none,
             ),
             child: Column(
               children: checkboxList,

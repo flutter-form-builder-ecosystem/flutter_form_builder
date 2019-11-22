@@ -14,6 +14,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final Color borderColor;
   final Color selectedColor;
   final Color pressedColor;
+  final FormFieldSetter onSaved;
 
   @Deprecated(
       "Use `FormBuilderFieldOption`'s `child` property to style your option")
@@ -40,6 +41,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     this.textStyle,
     this.padding,
     this.unselectedColor,
+    this.onSaved,
   });
 
   @override
@@ -87,19 +89,21 @@ class _FormBuilderSegmentedControlState
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
             errorText: field.errorText,
-            contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-            border: InputBorder.none,
           ),
           child: Padding(
             padding: EdgeInsets.only(top: 10.0),

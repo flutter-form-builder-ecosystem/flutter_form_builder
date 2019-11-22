@@ -1,6 +1,6 @@
 # Flutter FormBuilder - flutter_form_builder
 
-This package helps in generation of forms in [Flutter](https://flutter.io/) by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form in the form of a map.
+This package helps in creation of Flutter Forms by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form.
 
 ## Simple Usage
 To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
@@ -190,6 +190,7 @@ FormBuilderCustomField(
       return InputDecorator(
         decoration: InputDecoration(
           labelText: "Select option",
+          errorText: field.errorText,
           contentPadding:
               EdgeInsets.only(top: 10.0, bottom: 0.0),
           border: InputBorder.none,

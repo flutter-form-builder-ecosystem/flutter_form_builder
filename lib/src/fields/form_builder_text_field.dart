@@ -43,6 +43,7 @@ class FormBuilderTextField extends StatefulWidget {
   final bool expands;
   final int minLines;
   final bool showCursor;
+  final FormFieldSetter onSaved;
 
   FormBuilderTextField({
     @required this.attribute,
@@ -51,7 +52,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
-    this.maxLines = 1,
+    this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -82,6 +83,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.expands = false,
     this.minLines,
     this.showCursor,
+    this.onSaved,
   });
 
   @override
@@ -119,60 +121,61 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return Container(
-      key: Key(widget.attribute),
-      child: TextFormField(
-        key: _fieldKey,
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
-          }
-          return null;
-        },
-        onSaved: (val) {
-          if (widget.valueTransformer != null) {
-            var transformed = widget.valueTransformer(val);
-            _formState?.setAttributeValue(widget.attribute, transformed);
-          } else
-            _formState?.setAttributeValue(widget.attribute, val);
-        },
+    return TextFormField(
+      key: _fieldKey,
+      validator: (val) {
+        for (int i = 0; i < widget.validators.length; i++) {
+          if (widget.validators[i](val) != null)
+            return widget.validators[i](val);
+        }
+        return null;
+      },
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else
+          _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
+      },
+      enabled: !_readOnly,
+      style: widget.style,
+      focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
+      decoration: widget.decoration.copyWith(
         enabled: !_readOnly,
-        style: widget.style,
-        focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
-        decoration: widget.decoration.copyWith(
-          enabled: !_readOnly,
-        ),
-        autovalidate: widget.autovalidate ?? false,
-        // initialValue: "${_initialValue ?? ''}",
-        maxLines: widget.maxLines,
-        keyboardType: widget.keyboardType,
-        obscureText: widget.obscureText,
-        onEditingComplete: widget.onEditingComplete,
-        controller: _effectiveController,
-        autocorrect: widget.autocorrect,
-        autofocus: widget.autofocus,
-        buildCounter: widget.buildCounter,
-        cursorColor: widget.cursorColor,
-        cursorRadius: widget.cursorRadius,
-        cursorWidth: widget.cursorWidth,
-        enableInteractiveSelection: widget.enableInteractiveSelection,
-        maxLength: widget.maxLength,
-        inputFormatters: widget.inputFormatters,
-        keyboardAppearance: widget.keyboardAppearance,
-        maxLengthEnforced: widget.maxLengthEnforced,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        scrollPadding: widget.scrollPadding,
-        textAlign: widget.textAlign,
-        textCapitalization: widget.textCapitalization,
-        textDirection: widget.textDirection,
-        textInputAction: widget.textInputAction,
-        strutStyle: widget.strutStyle,
-        readOnly: _readOnly,
-        expands: widget.expands,
-        minLines: widget.minLines,
-        showCursor: widget.showCursor,
       ),
+      autovalidate: widget.autovalidate ?? false,
+      // initialValue: "${_initialValue ?? ''}",
+      maxLines: widget.maxLines,
+      keyboardType: widget.keyboardType,
+      obscureText: widget.obscureText,
+      onEditingComplete: widget.onEditingComplete,
+      controller: _effectiveController,
+      autocorrect: widget.autocorrect,
+      autofocus: widget.autofocus,
+      buildCounter: widget.buildCounter,
+      cursorColor: widget.cursorColor,
+      cursorRadius: widget.cursorRadius,
+      cursorWidth: widget.cursorWidth,
+      enableInteractiveSelection: widget.enableInteractiveSelection,
+      maxLength: widget.maxLength,
+      inputFormatters: widget.inputFormatters,
+      keyboardAppearance: widget.keyboardAppearance,
+      maxLengthEnforced: widget.maxLengthEnforced,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      scrollPadding: widget.scrollPadding,
+      textAlign: widget.textAlign,
+      textCapitalization: widget.textCapitalization,
+      textDirection: widget.textDirection,
+      textInputAction: widget.textInputAction,
+      strutStyle: widget.strutStyle,
+      readOnly: _readOnly,
+      expands: widget.expands,
+      minLines: widget.minLines,
+      showCursor: widget.showCursor,
     );
   }
 

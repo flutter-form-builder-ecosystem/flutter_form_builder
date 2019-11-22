@@ -15,6 +15,7 @@ class FormBuilderRate extends StatefulWidget {
   final num max;
   final IconData icon;
   final num iconSize;
+  final FormFieldSetter onSaved;
 
   FormBuilderRate({
     @required this.attribute,
@@ -27,6 +28,7 @@ class FormBuilderRate extends StatefulWidget {
     this.iconSize = 24.0,
     this.onChanged,
     this.valueTransformer,
+    this.onSaved,
   });
 
   @override
@@ -72,11 +74,15 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
         return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
+          transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
