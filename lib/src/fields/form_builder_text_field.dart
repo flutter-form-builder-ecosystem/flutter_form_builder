@@ -121,61 +121,64 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return TextFormField(
-      key: _fieldKey,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      enabled: !_readOnly,
-      style: widget.style,
-      focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
-      decoration: widget.decoration.copyWith(
+    return Container(
+      key: Key(widget.attribute),
+      child: TextFormField(
+        key: _fieldKey,
+        validator: (val) {
+          for (int i = 0; i < widget.validators.length; i++) {
+            if (widget.validators[i](val) != null)
+              return widget.validators[i](val);
+          }
+          return null;
+        },
+        onSaved: (val) {
+          var transformed;
+          if (widget.valueTransformer != null) {
+            transformed = widget.valueTransformer(val);
+            _formState?.setAttributeValue(widget.attribute, transformed);
+          } else
+            _formState?.setAttributeValue(widget.attribute, val);
+          if (widget.onSaved != null) {
+            widget.onSaved(transformed ?? val);
+          }
+        },
         enabled: !_readOnly,
+        style: widget.style,
+        focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
+        decoration: widget.decoration.copyWith(
+          enabled: !_readOnly,
+        ),
+        autovalidate: widget.autovalidate ?? false,
+        // initialValue: "${_initialValue ?? ''}",
+        maxLines: widget.maxLines,
+        keyboardType: widget.keyboardType,
+        obscureText: widget.obscureText,
+        onEditingComplete: widget.onEditingComplete,
+        controller: _effectiveController,
+        autocorrect: widget.autocorrect,
+        autofocus: widget.autofocus,
+        buildCounter: widget.buildCounter,
+        cursorColor: widget.cursorColor,
+        cursorRadius: widget.cursorRadius,
+        cursorWidth: widget.cursorWidth,
+        enableInteractiveSelection: widget.enableInteractiveSelection,
+        maxLength: widget.maxLength,
+        inputFormatters: widget.inputFormatters,
+        keyboardAppearance: widget.keyboardAppearance,
+        maxLengthEnforced: widget.maxLengthEnforced,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        scrollPadding: widget.scrollPadding,
+        textAlign: widget.textAlign,
+        textCapitalization: widget.textCapitalization,
+        textDirection: widget.textDirection,
+        textInputAction: widget.textInputAction,
+        strutStyle: widget.strutStyle,
+        readOnly: _readOnly,
+        expands: widget.expands,
+        minLines: widget.minLines,
+        showCursor: widget.showCursor,
       ),
-      autovalidate: widget.autovalidate ?? false,
-      // initialValue: "${_initialValue ?? ''}",
-      maxLines: widget.maxLines,
-      keyboardType: widget.keyboardType,
-      obscureText: widget.obscureText,
-      onEditingComplete: widget.onEditingComplete,
-      controller: _effectiveController,
-      autocorrect: widget.autocorrect,
-      autofocus: widget.autofocus,
-      buildCounter: widget.buildCounter,
-      cursorColor: widget.cursorColor,
-      cursorRadius: widget.cursorRadius,
-      cursorWidth: widget.cursorWidth,
-      enableInteractiveSelection: widget.enableInteractiveSelection,
-      maxLength: widget.maxLength,
-      inputFormatters: widget.inputFormatters,
-      keyboardAppearance: widget.keyboardAppearance,
-      maxLengthEnforced: widget.maxLengthEnforced,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      scrollPadding: widget.scrollPadding,
-      textAlign: widget.textAlign,
-      textCapitalization: widget.textCapitalization,
-      textDirection: widget.textDirection,
-      textInputAction: widget.textInputAction,
-      strutStyle: widget.strutStyle,
-      readOnly: _readOnly,
-      expands: widget.expands,
-      minLines: widget.minLines,
-      showCursor: widget.showCursor,
     );
   }
 

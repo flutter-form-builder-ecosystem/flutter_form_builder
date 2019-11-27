@@ -6,7 +6,9 @@ import 'utils.dart';
 
 void main() {
   testWidgets('Smoke test checkbox form', (WidgetTester tester) async {
+    final formKey = GlobalKey<FormBuilderState>();
     await insertWidget(
+        formKey: formKey,
         tester: tester,
         child: FormBuilderCheckbox(
           attribute: "agreement",
@@ -14,8 +16,7 @@ void main() {
           validators: [
             FormBuilderValidators.required(),
           ],
-        )
-    );
+        ));
 
     await tester.pump();
 
@@ -29,24 +30,28 @@ void main() {
     await tester.tap(find.byKey(Key('done button')));
 
     await tester.pumpAndSettle();
+
+    expect(formKey.currentState.value['agreement'], true);
   });
 
   testWidgets('Smoke test checkbox list form', (WidgetTester tester) async {
+    final formKey = GlobalKey<FormBuilderState>();
+
     await insertWidget(
-        tester: tester,
-        child: FormBuilderCheckboxList(
-          decoration:
-          InputDecoration(labelText: "The language of my people"),
-          attribute: "languages",
-          initialValue: ["Dart"],
-          options: [
-            FormBuilderFieldOption(value: "Dart"),
-            FormBuilderFieldOption(value: "Kotlin"),
-            FormBuilderFieldOption(value: "Java"),
-            FormBuilderFieldOption(value: "Swift"),
-            FormBuilderFieldOption(value: "Objective-C"),
-          ],
-        ),
+      formKey: formKey,
+      tester: tester,
+      child: FormBuilderCheckboxList(
+        decoration: InputDecoration(labelText: "The language of my people"),
+        attribute: "languages",
+        initialValue: ["Dart"],
+        options: [
+          FormBuilderFieldOption(value: "Dart"),
+          FormBuilderFieldOption(value: "Kotlin"),
+          FormBuilderFieldOption(value: "Java"),
+          FormBuilderFieldOption(value: "Swift"),
+          FormBuilderFieldOption(value: "Objective-C"),
+        ],
+      ),
     );
 
     final favouriteLanguage = find.byKey(Key('Swift'));
@@ -64,5 +69,7 @@ void main() {
     await tester.tap(find.byKey(Key('done button')));
 
     await tester.pumpAndSettle();
+
+    expect((formKey.currentState.value['languages'] as List<String>).length, 2);
   });
 }

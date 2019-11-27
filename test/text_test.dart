@@ -6,7 +6,9 @@ import 'utils.dart';
 
 void main() {
   testWidgets('Smoke test textfield form', (WidgetTester tester) async {
+    final formKey = GlobalKey<FormBuilderState>();
     await insertWidget(
+        formKey: formKey,
         tester: tester,
         child: FormBuilderTextField(
           attribute: "name",
@@ -28,5 +30,7 @@ void main() {
     await tester.tap(find.byKey(Key('done button')));
 
     await tester.pumpAndSettle();
+
+    expect(formKey.currentState.value['name'], 'some name');
   });
 }
