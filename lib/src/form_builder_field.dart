@@ -46,31 +46,35 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   FormBuilderField<T> get widget => super.widget;
 
-  FormBuilderState get formState => _formState;
+  FormBuilderState get formState => _formBuilderState;
 
   bool get readOnly => _readOnly;
 
+  bool get isPristine => _isPristine;
+  // bool get isPristine => value != _initialValue;
+
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
+  FormBuilderState _formBuilderState;
   bool _readOnly = false;
+  bool _isPristine = true;
   T _initialValue;
 
   @override
   void initState() {
     super.initState();
     _readOnly = (formState?.readOnly == true) ? true : widget.readOnly;
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _formBuilderState = FormBuilder.of(context);
+    _formBuilderState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
+        (_formBuilderState.initialValue.containsKey(widget.attribute)
+            ? _formBuilderState.initialValue[widget.attribute]
             : null);
     setValue(_initialValue);
   }
 
   @override
   void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
+    _formBuilderState?.unregisterFieldKey(widget.attribute);
     super.dispose();
   }
 
@@ -81,12 +85,15 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
       var transformed = widget.valueTransformer(value);
       FormBuilder.of(context)?.setAttributeValue(widget.attribute, transformed);
     } else
-      _formState?.setAttributeValue(widget.attribute, value);
+      _formBuilderState?.setAttributeValue(widget.attribute, value);
   }
 
   @override
   void didChange(T value) {
-    if (widget.onChanged != null) widget.onChanged(value);
     super.didChange(value);
+    setState(() {
+      _isPristine = value != _initialValue;
+    });
+    if (widget.onChanged != null) widget.onChanged(value);
   }
 }
