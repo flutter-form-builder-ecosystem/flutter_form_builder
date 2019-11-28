@@ -233,6 +233,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ),
                       // readOnly: true,
                       initialValue: 'Male',
+                      allowClear: true,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
                       items: ['Male', 'Female', 'Other']

@@ -7,6 +7,7 @@ class FormBuilderField<T> extends FormField<T> {
   final List<FormFieldValidator> validators;
   final ValueChanged onChanged;
   final bool readOnly;
+  final InputDecoration decoration;
 
   FormBuilderField({
     @required this.attribute,
@@ -15,6 +16,7 @@ class FormBuilderField<T> extends FormField<T> {
     this.validators = const [],
     this.onChanged,
     this.readOnly = false,
+    this.decoration = const InputDecoration(),
     //From Super
     Key key,
     FormFieldSetter<T> onSaved,

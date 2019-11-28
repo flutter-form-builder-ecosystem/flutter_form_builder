@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderCheckboxList extends StatefulWidget {
+class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
   final String attribute;
   final List<FormFieldValidator> validators;
-  final dynamic initialValue;
+  final List<T> initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
@@ -19,6 +19,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final bool tristate;
 
   FormBuilderCheckboxList({
+    Key key,
     @required this.attribute,
     @required this.options,
     this.initialValue,
@@ -32,130 +33,100 @@ class FormBuilderCheckboxList extends StatefulWidget {
     this.checkColor,
     this.materialTapTargetSize,
     this.tristate = false,
-  });
+  }) : super(
+      key: key,
+      initialValue: initialValue,
+      attribute: attribute,
+      validators: validators,
+      valueTransformer: valueTransformer,
+      onChanged: onChanged,
+      readOnly: readOnly,
+      builder: (field) {
+        final _FormBuilderCheckboxListState<T> state = field;
 
-  @override
-  _FormBuilderCheckboxListState createState() =>
-      _FormBuilderCheckboxListState();
-}
+        List<Widget> checkboxList = [];
+        for (int i = 0; i < options.length; i++) {
+          checkboxList.addAll([
+            ListTile(
+              dense: true,
+              isThreeLine: false,
+              contentPadding: EdgeInsets.all(0.0),
+              leading: _leading(state, i),
+              trailing: _trailing(state, i),
+              title: options[i],
+              onTap: state.readOnly
+                  ? null
+                  : () {
+                var currentValue = state.value;
+                if (!currentValue.contains(options[i].value))
+                  currentValue.add(options[i].value);
+                else
+                  currentValue.remove(options[i].value);
+                state.didChange(currentValue);
+                if (onChanged != null)
+                  onChanged(currentValue);
+              },
+            ),
+            Divider(
+              height: 0.0,
+            ),
+          ]);
+        }
+        return InputDecorator(
+          decoration: decoration.copyWith(
+            enabled: !state.readOnly,
+            errorText: field.errorText,
+            contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+            border: InputBorder.none,
+          ),
+          child: Column(
+            children: checkboxList,
+          ),
+        );
+      }
+  );
 
-class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  dynamic _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  Widget _checkbox(FormFieldState<dynamic> field, int i) {
+  static Widget _checkbox(_FormBuilderCheckboxListState field, int i) {
     return Checkbox(
-      activeColor: widget.activeColor,
-      checkColor: widget.checkColor,
-      materialTapTargetSize: widget.materialTapTargetSize,
-      tristate: widget.tristate,
-      value: field.value.contains(widget.options[i].value),
-      onChanged: _readOnly
+      activeColor: field.widget.activeColor,
+      checkColor: field.widget.checkColor,
+      materialTapTargetSize: field.widget.materialTapTargetSize,
+      tristate: field.widget.tristate,
+      value: field.value.contains(field.widget.options[i].value),
+      onChanged: field.readOnly
           ? null
           : (bool value) {
-              FocusScope.of(context).requestFocus(FocusNode());
-              var currValue = field.value;
-              if (value)
-                currValue.add(widget.options[i].value);
-              else
-                currValue.remove(widget.options[i].value);
-              field.didChange(currValue);
-              if (widget.onChanged != null) widget.onChanged(currValue);
-            },
+        field.requestFocus();
+        var currValue = field.value;
+        if (value)
+          currValue.add(field.widget.options[i].value);
+        else
+          currValue.remove(field.widget.options[i].value);
+        field.didChange(currValue);
+        if (field.widget.onChanged != null) field.widget.onChanged(currValue);
+      },
     );
   }
 
-  Widget _leading(FormFieldState<dynamic> field, int i) {
-    if (widget.leadingInput) return _checkbox(field, i);
+  static Widget _leading(_FormBuilderCheckboxListState field, int i) {
+    if (field.widget.leadingInput) return _checkbox(field, i);
     return null;
   }
 
-  Widget _trailing(FormFieldState<dynamic> field, int i) {
-    if (!widget.leadingInput) return _checkbox(field, i);
+  static Widget _trailing(_FormBuilderCheckboxListState field, int i) {
+    if (!field.widget.leadingInput) return _checkbox(field, i);
     return null;
   }
 
   @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+  _FormBuilderCheckboxListState<T> createState() =>
+      _FormBuilderCheckboxListState();
+}
 
-    return FormField(
-        key: _fieldKey,
-        enabled: !_readOnly,
-        initialValue: _initialValue ?? [],
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
-          }
-          return null;
-        },
-        onSaved: (val) {
-          if (widget.valueTransformer != null) {
-            var transformed = widget.valueTransformer(val);
-            _formState?.setAttributeValue(widget.attribute, transformed);
-          } else
-            _formState?.setAttributeValue(widget.attribute, val);
-        },
-        builder: (FormFieldState<dynamic> field) {
-          List<Widget> checkboxList = [];
-          for (int i = 0; i < widget.options.length; i++) {
-            checkboxList.addAll([
-              ListTile(
-                dense: true,
-                isThreeLine: false,
-                contentPadding: EdgeInsets.all(0.0),
-                leading: _leading(field, i),
-                trailing: _trailing(field, i),
-                title: widget.options[i],
-                onTap: _readOnly
-                    ? null
-                    : () {
-                        var currentValue = field.value;
-                        if (!currentValue.contains(widget.options[i].value))
-                          currentValue.add(widget.options[i].value);
-                        else
-                          currentValue.remove(widget.options[i].value);
-                        field.didChange(currentValue);
-                        if (widget.onChanged != null)
-                          widget.onChanged(currentValue);
-                      },
-              ),
-              Divider(
-                height: 0.0,
-              ),
-            ]);
-          }
-          return InputDecorator(
-            decoration: widget.decoration.copyWith(
-              enabled: !_readOnly,
-              errorText: field.errorText,
-              contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-              border: InputBorder.none,
-            ),
-            child: Column(
-              children: checkboxList,
-            ),
-          );
-        });
+class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
+  FormBuilderCheckboxList<T> get widget => super.widget;
+
+  void requestFocus() {
+    FocusScope.of(context).requestFocus(FocusNode());
   }
 }
