@@ -67,19 +67,19 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           onSaved: onSaved,
           builder: (field) {
             final _FormBuilderColorPickerFieldState state = field;
-
             return TextField(
               style: style,
               decoration: decoration.copyWith(
-                errorText: field.errorText,
+                errorText: state.errorText,
                 suffixIcon: LayoutBuilder(builder: (context, constraints) {
                   return Container(
                     height: constraints.minHeight,
                     width: constraints.minHeight,
                     decoration: BoxDecoration(
-                      color: field.value,
+                      color: state.value,
                       borderRadius: BorderRadius.all(
-                          Radius.circular(constraints.minHeight / 2)),
+                        Radius.circular(constraints.minHeight / 2),
+                      ),
                       border: Border.all(
                         color: Colors.black,
                       ),
@@ -90,7 +90,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               enabled: enabled,
               readOnly: state.readOnly,
               controller: state._effectiveController,
-              focusNode: state._effectiveFocusNode,
+              focusNode: state.effectiveFocusNode,
               textAlign: textAlign,
               autofocus: autofocus,
               expands: expands,
@@ -138,7 +138,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   TextEditingController get _effectiveController =>
       widget.controller ?? _textEditingController;
 
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? _focusNode;
+  FocusNode get effectiveFocusNode => widget.focusNode ?? _focusNode;
 
   Color _pickedColor;
 
@@ -162,7 +162,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   }
 
   _handleFocus() async {
-    if (_effectiveFocusNode.hasFocus && !readOnly) {
+    if (effectiveFocusNode.hasFocus && !readOnly) {
       Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
       bool selected = await showDialog(
         context: context,

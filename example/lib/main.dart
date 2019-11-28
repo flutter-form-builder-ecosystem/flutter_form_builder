@@ -292,6 +292,7 @@ class MyHomePageState extends State<MyHomePage> {
                         labelText: "Gender",
                       ),
                       // initialValue: 'Male',
+                      allowClear: true,
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
                       items: genderOptions
