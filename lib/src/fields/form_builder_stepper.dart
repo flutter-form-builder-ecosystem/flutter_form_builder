@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
+import 'package:flutter_form_builder/src/widgets/touch_spin.dart';
 
+//TODO: Field should be renamed to FormBuilderTouchSpin. Stepper is conflicts with Flutter internal widget of same name
 class FormBuilderStepper extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  final num initialValue;
+  final double initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
-
-  final num step;
-  final num min;
-  final num max;
-  final num size;
+  final double step;
+  final double min;
+  final double max;
+  final double size;
   final FormFieldSetter onSaved;
 
   FormBuilderStepper({
@@ -42,7 +42,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  num _initialValue;
+  double _initialValue;
 
   @override
   void initState() {
@@ -52,6 +52,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     super.initState();
   }
 
@@ -63,7 +64,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
 
     return FormField(
       enabled: !_readOnly,
@@ -93,7 +94,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
             enabled: !_readOnly,
             errorText: field.errorText,
           ),
-          child: SyStepper(
+          child: TouchSpin(
             onChange: _readOnly
                 ? null
                 : (value) {
@@ -101,11 +102,11 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
                     field.didChange(value);
                     if (widget.onChanged != null) widget.onChanged(value);
                   },
-            value: field.value ?? 0,
+            value: field.value,
             step: widget.step ?? 1,
-            min: widget.min ?? 0,
-            max: widget.max ?? 9999999,
-            size: widget.size,
+            min: widget.min ?? 1,
+            max: widget.max ?? 99999,
+            size: widget.size ?? 24,
           ),
         );
       },
