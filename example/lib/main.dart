@@ -1,9 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:intl/intl.dart';
 
-import './data.dart';
+import 'data.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,6 +35,7 @@ class MyHomePageState extends State<MyHomePage> {
       GlobalKey<FormFieldState>();
 
   ValueChanged _onChanged = (val) => print(val);
+  var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +58,12 @@ class MyHomePageState extends State<MyHomePage> {
                 // readOnly: true,
                 child: Column(
                   children: <Widget>[
-                    FormBuilderCustomField(
+                    /*FormBuilderCustomField(
                       attribute: "name",
                       validators: [
                         FormBuilderValidators.required(),
                       ],
                       formField: FormField(
-                        // key: _fieldKey,
                         enabled: true,
                         builder: (FormFieldState<dynamic> field) {
                           return InputDecorator(
@@ -96,9 +94,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderChipsInput(
                       decoration: InputDecoration(labelText: "Chips"),
                       attribute: 'chips_test',
-                      // readonly: true,
                       onChanged: _onChanged,
-                      // valueTransformer: (val) => val.length > 0 ? val[0] : null,
                       initialValue: [
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -153,8 +149,6 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "date",
                       onChanged: _onChanged,
                       inputType: InputType.time,
-                      // format: DateFormat("yyyy-MM-dd hh:mm"),
-                      // initialValue: DateTime.now(),
                       decoration:
                           InputDecoration(labelText: "Appointment Time"),
                       // readonly: true,
@@ -166,7 +160,6 @@ class MyHomePageState extends State<MyHomePage> {
                       format: DateFormat("yyyy-MM-dd"),
                       onChanged: _onChanged,
                       decoration: InputDecoration(labelText: "Date Range"),
-                      // readonly: true,
                     ),
                     FormBuilderSlider(
                       attribute: "slider",
@@ -201,7 +194,6 @@ class MyHomePageState extends State<MyHomePage> {
                       initialValue: false,
                       onChanged: _onChanged,
                       leadingInput: true,
-                      // label: Text("I have read and agree to the terms and conditions"),
                       label: RichText(
                         text: TextSpan(
                           children: [
@@ -226,40 +218,35 @@ class MyHomePageState extends State<MyHomePage> {
                               "You must accept terms and conditions to continue",
                         ),
                       ],
+                    ),*/
+                    FormBuilderTextField(
+                      attribute: "age",
+                      decoration: InputDecoration(
+                        labelText: "Age",
+                      ),
+                      onChanged: _onChanged,
+                      valueTransformer: (text) => num.tryParse(text),
+                      validators: [
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.max(70),
+                      ],
+                      keyboardType: TextInputType.number,
                     ),
                     FormBuilderDropdown(
                       attribute: "gender",
                       decoration: InputDecoration(
                         labelText: "Gender",
-                        /*border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                        ),*/
                       ),
-                      // readOnly: true,
-                      initialValue: 'Male',
+                      // initialValue: 'Male',
                       hint: Text('Select Gender'),
                       validators: [FormBuilderValidators.required()],
-                      items: ['Male', 'Female', 'Other']
+                      items: genderOptions
                           .map((gender) => DropdownMenuItem(
-                                value: gender,
-                                child: Text('$gender'),
-                              ))
+                        value: gender,
+                        child: Text('$gender'),
+                      ))
                           .toList(),
-                    ),
-                    FormBuilderTextField(
-                      attribute: "age",
-                      decoration: InputDecoration(
-                        labelText: "Age",
-                        /*border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                        ),*/
-                      ),
-                      onChanged: _onChanged,
-                      valueTransformer: (text) => num.tryParse(text),
-                      validators: [
-                        FormBuilderValidators.numeric(),
-                        FormBuilderValidators.max(70),
-                      ],
                     ),
                     FormBuilderTypeAhead(
                       decoration: InputDecoration(
@@ -272,6 +259,8 @@ class MyHomePageState extends State<MyHomePage> {
                           title: Text(country),
                         );
                       },
+                      controller: TextEditingController(text: ''),
+                      initialValue: "Uganda",
                       suggestionsCallback: (query) {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
@@ -290,7 +279,7 @@ class MyHomePageState extends State<MyHomePage> {
                         }
                       },
                     ),
-                    FormBuilderTypeAhead(
+                    /*FormBuilderTypeAhead(
                       decoration: InputDecoration(
                         labelText: "Contact Person",
                       ),
@@ -367,10 +356,7 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
-                      onChanged: (data) {
-                        //_fbKey.currentState.fields['age'].currentState.didChange("$data");
-                        //_fbKey.currentState.setAttributeValue("age", "$data");
-                      },
+                      onChanged: (data) {},
                       validators: [
                         (val) {
                           if (!_fbKey.currentState.fields["accept_terms_switch"]
@@ -468,7 +454,7 @@ class MyHomePageState extends State<MyHomePage> {
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -488,7 +474,6 @@ class MyHomePageState extends State<MyHomePage> {
                           print(_fbKey.currentState.value);
                           print("validation failed");
                         }
-                        print(_fbKey.currentState.value['contact_person'].runtimeType);
                       },
                     ),
                   ),
