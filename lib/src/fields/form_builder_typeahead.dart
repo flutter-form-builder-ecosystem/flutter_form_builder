@@ -100,32 +100,26 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
 
   @override
   void initState() {
+    super.initState();
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-
+    if (widget.controller == null) {
+      _typeAheadController = TextEditingController();
+    }
     _initialValue = widget.initialValue ??
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    if (_initialValue == null) {
-      _initialText = "";
-    } else {
-      _initialText = (widget.selectionToTextTransformer != null)
-          ? widget.selectionToTextTransformer(_initialValue)
-          : _initialValue.toString();
-    }
-    if (widget.controller == null) {
-      _typeAheadController = TextEditingController(text: _initialText);
-    } else {
-      widget.controller.text = _initialText;
-    }
+
+    _initialText = (widget.selectionToTextTransformer != null)
+        ? widget.selectionToTextTransformer(_initialValue ?? '')
+        : _initialValue?.toString() ?? '';
+
+    _effectiveController.text = _initialText;
+
     if (T == String) {
-      if (widget.controller != null)
-        widget.controller.addListener(_handleStringOnChanged);
-      else
-        _typeAheadController.addListener(_handleStringOnChanged);
+      _effectiveController.addListener(_handleStringOnChanged);
     }
-    super.initState();
   }
 
   _handleStringOnChanged() {
@@ -178,10 +172,10 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
           suggestionsBox,
       onSuggestionSelected: (T suggestion) {
         if (widget.selectionToTextTransformer != null) {
-          _typeAheadController.text =
+          _effectiveController.text =
               widget.selectionToTextTransformer(suggestion);
         } else {
-          _typeAheadController.text =
+          _effectiveController.text =
               suggestion != null ? suggestion.toString() : '';
         }
         if (widget.onSuggestionSelected != null)
@@ -213,7 +207,7 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   @override
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
-    _typeAheadController.dispose();
+    _effectiveController.removeListener(_handleStringOnChanged);
     super.dispose();
   }
 }
