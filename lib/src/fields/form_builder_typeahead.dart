@@ -79,8 +79,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.onSuggestionSelected,
     this.controller,
     this.onSaved,
-  })
-      : assert(T == String || selectionToTextTransformer != null),
+  })  : assert(T == String || selectionToTextTransformer != null),
         super(key: key);
 
   @override

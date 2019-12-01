@@ -11,8 +11,7 @@ class FormBuilderFieldOption extends StatelessWidget {
     this.label,
     @required this.value,
     this.child,
-  })
-      : assert(label == null || child == null),
+  })  : assert(label == null || child == null),
         super(key: key);
 
   @override
