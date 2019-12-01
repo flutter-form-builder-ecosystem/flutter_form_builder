@@ -22,6 +22,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderRangeSlider({
+    Key key,
     @required this.attribute,
     @required this.min,
     @required this.max,
@@ -39,7 +40,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
     this.labels,
     this.semanticFormatterCallback,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();

@@ -25,6 +25,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderSignaturePad({
+    Key key,
     @required this.attribute,
     this.validators = const [],
     this.readOnly = false,
@@ -40,7 +41,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.valueTransformer,
     this.onChanged,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderSignaturePadState createState() =>

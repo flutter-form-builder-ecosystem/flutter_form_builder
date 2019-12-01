@@ -64,6 +64,7 @@ class FormBuilderSwitch extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderSwitch({
+    Key key,
     @required this.attribute,
     @required this.label,
     this.initialValue,
@@ -81,7 +82,7 @@ class FormBuilderSwitch extends StatefulWidget {
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderSwitchState createState() => _FormBuilderSwitchState();

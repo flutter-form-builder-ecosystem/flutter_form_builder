@@ -25,6 +25,7 @@ class FormBuilderSlider extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderSlider({
+    Key key,
     @required this.attribute,
     @required this.min,
     @required this.max,
@@ -43,7 +44,7 @@ class FormBuilderSlider extends StatefulWidget {
     this.semanticFormatterCallback,
     this.numberFormat,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderSliderState createState() => _FormBuilderSliderState();

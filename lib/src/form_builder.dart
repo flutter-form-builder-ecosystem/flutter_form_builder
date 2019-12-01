@@ -12,8 +12,7 @@ class FormBuilder extends StatefulWidget {
   final Map<String, dynamic> initialValue;
   final Key key;
 
-  const FormBuilder( //this.context,
-      {
+  const FormBuilder({
     @required this.child,
     this.readOnly = false,
     this.key,
@@ -37,6 +36,7 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, dynamic> _value;
 
   Map<String, dynamic> get value => _value;
+
   Map<String, dynamic> get initialValue => widget.initialValue;
 
   Map<String, GlobalKey<FormFieldState>> get fields => _fieldKeys;

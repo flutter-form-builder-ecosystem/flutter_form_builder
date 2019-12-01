@@ -20,6 +20,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderCheckboxList({
+    Key key,
     @required this.attribute,
     @required this.options,
     this.initialValue,
@@ -34,7 +35,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
     this.materialTapTargetSize,
     this.tristate = false,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderCheckboxListState createState() =>

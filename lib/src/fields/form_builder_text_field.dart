@@ -46,6 +46,7 @@ class FormBuilderTextField extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderTextField({
+    Key key,
     @required this.attribute,
     this.initialValue,
     this.validators = const [],
@@ -84,7 +85,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.minLines,
     this.showCursor,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   FormBuilderTextFieldState createState() => FormBuilderTextFieldState();
