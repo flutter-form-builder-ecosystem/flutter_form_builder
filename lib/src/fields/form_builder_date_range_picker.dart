@@ -59,6 +59,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderDateRangePicker({
+    Key key,
     @required this.attribute,
     @required this.firstDate,
     @required this.lastDate,
@@ -105,7 +106,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.locale,
     this.selectableDayPredicate,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   FormBuilderDateRangePickerState createState() =>

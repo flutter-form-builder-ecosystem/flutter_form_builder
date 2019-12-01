@@ -19,6 +19,7 @@ class FormBuilderStepper extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderStepper({
+    Key key,
     @required this.attribute,
     this.initialValue,
     this.validators = const [],
@@ -31,7 +32,7 @@ class FormBuilderStepper extends StatefulWidget {
     this.onChanged,
     this.valueTransformer,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderStepperState createState() => _FormBuilderStepperState();

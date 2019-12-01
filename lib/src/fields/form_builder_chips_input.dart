@@ -30,6 +30,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderChipsInput({
+    Key key,
     @required this.attribute,
     @required this.chipBuilder,
     @required this.suggestionBuilder,
@@ -51,7 +52,7 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderChipsInputState createState() => _FormBuilderChipsInputState();

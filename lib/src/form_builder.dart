@@ -10,13 +10,12 @@ class FormBuilder extends StatefulWidget {
   final bool readOnly;
   final bool autovalidate;
   final Map<String, dynamic> initialValue;
-  final Key key;
 
   const FormBuilder( //this.context,
       {
+    Key key,
     @required this.child,
     this.readOnly = false,
-    this.key,
     this.onChanged,
     this.autovalidate = false,
     this.onWillPop,

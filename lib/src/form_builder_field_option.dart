@@ -6,8 +6,13 @@ class FormBuilderFieldOption extends StatelessWidget {
   final Widget child;
   final dynamic value;
 
-  FormBuilderFieldOption({this.label, @required this.value, this.child})
-      : assert(label == null || child == null);
+  FormBuilderFieldOption({
+    Key key,
+    this.label,
+    @required this.value,
+    this.child,
+  })  : assert(label == null || child == null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {

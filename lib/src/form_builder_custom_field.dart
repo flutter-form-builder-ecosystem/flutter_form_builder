@@ -21,12 +21,13 @@ class FormBuilderCustomField<T> extends StatefulWidget {
   final ValueTransformer valueTransformer;
 
   FormBuilderCustomField({
+    Key key,
     @required this.attribute,
     @required this.formField,
     this.validators = const [],
     this.valueTransformer,
     this.initialValue,
-  });
+  }) : super(key: key);
 
   @override
   FormBuilderCustomFieldState<T> createState() =>

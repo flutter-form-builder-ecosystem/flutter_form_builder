@@ -20,6 +20,7 @@ class FormBuilderRadio extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderRadio({
+    Key key,
     @required this.attribute,
     @required this.options,
     this.initialValue,
@@ -32,7 +33,7 @@ class FormBuilderRadio extends StatefulWidget {
     this.materialTapTargetSize,
     this.activeColor,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderRadioState createState() => _FormBuilderRadioState();

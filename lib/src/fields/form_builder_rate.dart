@@ -18,6 +18,7 @@ class FormBuilderRate extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderRate({
+    Key key,
     @required this.attribute,
     this.initialValue = 1,
     this.validators = const [],
@@ -29,7 +30,7 @@ class FormBuilderRate extends StatefulWidget {
     this.onChanged,
     this.valueTransformer,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderRateState createState() => _FormBuilderRateState();

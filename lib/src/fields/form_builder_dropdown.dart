@@ -28,6 +28,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final FormFieldSetter onSaved;
 
   FormBuilderDropdown({
+    Key key,
     @required this.attribute,
     @required this.items,
     this.validators = const [],
@@ -50,7 +51,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
     this.onSaved,
-  }) /*: assert(allowClear == true || clearIcon != null)*/;
+  }) : super(key: key) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
   _FormBuilderDropdownState createState() => _FormBuilderDropdownState();
