@@ -44,6 +44,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final FormFieldSetter<T> onSaved;
 
   FormBuilderTypeAhead({
+    Key key,
     @required this.attribute,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
@@ -78,7 +79,9 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.onSuggestionSelected,
     this.controller,
     this.onSaved,
-  }) : assert(T == String || selectionToTextTransformer != null);
+  })
+      : assert(T == String || selectionToTextTransformer != null),
+        super(key: key);
 
   @override
   _FormBuilderTypeAheadState<T> createState() =>

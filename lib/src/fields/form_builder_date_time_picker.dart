@@ -138,6 +138,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final TextCapitalization textCapitalization;
 
   FormBuilderDateTimePicker({
+    Key key,
     @required this.attribute,
     this.validators = const [],
     this.readOnly = false,
@@ -191,7 +192,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.keyboardAppearance,
     this.textCapitalization = TextCapitalization.none,
     this.strutStyle,
-  });
+  }) : super(key: key);
 
   final StrutStyle strutStyle;
 

@@ -27,6 +27,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final Color unselectedColor;
 
   FormBuilderSegmentedControl({
+    Key key,
     @required this.attribute,
     @required this.options,
     this.initialValue,
@@ -42,7 +43,7 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     this.padding,
     this.unselectedColor,
     this.onSaved,
-  });
+  }) : super(key: key);
 
   @override
   _FormBuilderSegmentedControlState createState() =>
