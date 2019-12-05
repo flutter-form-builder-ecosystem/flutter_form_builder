@@ -93,14 +93,19 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderFieldOption</span>(<wbr>{<span class="parameter" id="-param-label"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-value"><span>@required</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-child"><span class="type-annotation">Widget</span> <span class="parameter-name">child</span></span> })
+      <span class="name ">FormBuilderFieldOption</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-label"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span> <span class="parameter" id="-param-value"><span>@required</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-child"><span class="type-annotation">Widget</span> <span class="parameter-name">child</span></span> })
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">FormBuilderFieldOption({this.label, @required this.value, this.child})
-    : assert(label == null || child == null);</code></pre>
+      <pre class="language-dart"><code class="language-dart">FormBuilderFieldOption({
+  Key key,
+  this.label,
+  @required this.value,
+  this.child,
+})  : assert(label == null || child == null),
+      super(key: key);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -113,7 +118,7 @@
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.6.1
+      3.7.0
   </span>
 
   <!-- footer-text placeholder -->

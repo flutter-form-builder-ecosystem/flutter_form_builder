@@ -93,7 +93,7 @@ class FormBuilderTextField extends StatefulWidget {
 
 class FormBuilderTextFieldState extends State<FormBuilderTextField> {
   bool _readOnly = false;
-  TextEditingController _effectiveController;
+  TextEditingController _effectiveController = TextEditingController();
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   String _initialValue;
@@ -109,9 +109,8 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     if (widget.controller != null)
       _effectiveController = widget.controller;
     else
-      _effectiveController = TextEditingController(
-        text: "${_initialValue ?? ''}",
-      );
+      _effectiveController.text = "${_initialValue ?? ''}";
+
     _effectiveController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
     });
