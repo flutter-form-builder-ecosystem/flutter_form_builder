@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class TouchSpin extends StatefulWidget {
-  final double value;
-  final double min;
-  final double max;
-  final double step;
-  final double size;
-  final ValueChanged<double> onChange;
+  final num value;
+  final num min;
+  final num max;
+  final num step;
+  final num size;
+  final ValueChanged<num> onChange;
 
   const TouchSpin({
     Key key,
@@ -23,23 +23,23 @@ class TouchSpin extends StatefulWidget {
 }
 
 class _TouchSpinState extends State<TouchSpin> {
-  double value;
+  num _value;
 
   @override
   void initState() {
     super.initState();
-    value = widget.value;
+    _value = widget.value;
   }
 
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     final iconPadding = const EdgeInsets.all(4.0);
-    bool minusBtnDisabled = value <= widget.min ||
-        value - widget.step < widget.min ||
+    bool minusBtnDisabled = _value <= widget.min ||
+        _value - widget.step < widget.min ||
         widget.onChange == null;
-    bool addBtnDisabled = value >= widget.max ||
-        value + widget.step > widget.max ||
+    bool addBtnDisabled = _value >= widget.max ||
+        _value + widget.step > widget.max ||
         widget.onChange == null;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,9 +58,9 @@ class _TouchSpinState extends State<TouchSpin> {
           onTap: minusBtnDisabled
               ? null
               : () {
-                  double newVal = value - widget.step;
+                  num newVal = _value - widget.step;
                   setState(() {
-                    value = newVal;
+                    _value = newVal;
                   });
                   widget.onChange(newVal);
                 },
@@ -68,7 +68,7 @@ class _TouchSpinState extends State<TouchSpin> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 4.0),
           child: ConstrainedBox(
-            child: Center(child: Text(value.toString())),
+            child: Center(child: Text(_value.toString())),
             constraints: BoxConstraints(minWidth: widget.size),
           ),
         ),
@@ -86,9 +86,9 @@ class _TouchSpinState extends State<TouchSpin> {
           onTap: addBtnDisabled
               ? null
               : () {
-                  double newVal = value + widget.step;
+                  num newVal = _value + widget.step;
                   setState(() {
-                    value = newVal;
+                    _value = newVal;
                   });
                   widget.onChange(newVal);
                 },

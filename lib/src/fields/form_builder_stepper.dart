@@ -7,15 +7,15 @@ import 'package:flutter_form_builder/src/widgets/touch_spin.dart';
 class FormBuilderStepper extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  final double initialValue;
+  final num initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
-  final double step;
-  final double min;
-  final double max;
-  final double size;
+  final num step;
+  final num min;
+  final num max;
+  final num size;
   final FormFieldSetter onSaved;
 
   FormBuilderStepper({
@@ -42,7 +42,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  double _initialValue;
+  num _initialValue;
 
   @override
   void initState() {
