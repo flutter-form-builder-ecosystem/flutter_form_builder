@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -84,11 +84,12 @@
     
     
     
+    
     </ol>
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>LinkedHashMap&lt;<wbr><span class="type-parameter">K</span>, <span class="type-parameter">V</span>&gt; class </h1></div>
+      <div><h1><span class="kind-class">LinkedHashMap&lt;<wbr><span class="type-parameter">K</span>, <span class="type-parameter">V</span>&gt;</span> class </h1></div>
 
     <section class="desc markdown">
       <p>A hash-table based implementation of <a href="dart-core/Map-class.html">Map</a>.</p>
@@ -127,7 +128,7 @@ must be the same for objects that are considered equal by <code>==</code>.</p>
 
       <dl class="constructor-summary-list">
         <dt id="LinkedHashMap" class="callable">
-          <span class="name"><a href="dart-collection/LinkedHashMap/LinkedHashMap.html">LinkedHashMap</a></span><span class="signature">({<span class="parameter" id="-param-equals"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">equals</span>(<span class="parameter" id="equals-param-key1"><span class="type-annotation">K</span> <span class="parameter-name">key1</span>, </span> <span class="parameter" id="equals-param-key2"><span class="type-annotation">K</span> <span class="parameter-name">key2</span></span>), </span> <span class="parameter" id="-param-hashCode"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">hashCode</span>(<span class="parameter" id="hashCode-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span></span>), </span> <span class="parameter" id="-param-isValidKey"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isValidKey</span>(<span class="parameter" id="isValidKey-param-potentialKey"><span class="type-annotation">dynamic</span> <span class="parameter-name">potentialKey</span></span>)</span> })</span>
+          <span class="name"><a href="dart-collection/LinkedHashMap/LinkedHashMap.html">LinkedHashMap</a></span><span class="signature">({<span class="parameter" id="-param-equals"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">equals</span>(<span class="parameter" id="param-key1"><span class="type-annotation">K</span> <span class="parameter-name">key1</span></span> <span class="parameter" id="param-key2"><span class="type-annotation">K</span> <span class="parameter-name">key2</span></span>), </span> <span class="parameter" id="-param-hashCode"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">hashCode</span>(<span class="parameter" id="param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span></span>), </span> <span class="parameter" id="-param-isValidKey"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isValidKey</span>(<span class="parameter" id="param-potentialKey"><span class="type-annotation">dynamic</span> <span class="parameter-name">potentialKey</span></span>)</span> })</span>
         </dt>
         <dd>
           Creates an insertion-ordered hash-table based <a href="dart-core/Map-class.html">Map</a>. <a href="dart-collection/LinkedHashMap/LinkedHashMap.html">[...]</a>
@@ -148,7 +149,7 @@ must be the same for objects that are considered equal by <code>==</code>.</p>
           <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="LinkedHashMap.fromIterable" class="callable">
-          <span class="name"><a href="dart-collection/LinkedHashMap/LinkedHashMap.fromIterable.html">LinkedHashMap.fromIterable</a></span><span class="signature">(<span class="parameter" id="fromIterable-param-iterable"><span class="type-annotation"><a href="dart-core/Iterable-class.html">Iterable</a></span> <span class="parameter-name">iterable</span>, {</span> <span class="parameter" id="fromIterable-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>(<span class="parameter" id="key-param-element"><span class="type-annotation">dynamic</span> <span class="parameter-name">element</span></span>), </span> <span class="parameter" id="fromIterable-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span>(<span class="parameter" id="value-param-element"><span class="type-annotation">dynamic</span> <span class="parameter-name">element</span></span>)</span> })</span>
+          <span class="name"><a href="dart-collection/LinkedHashMap/LinkedHashMap.fromIterable.html">LinkedHashMap.fromIterable</a></span><span class="signature">(<span class="parameter" id="fromIterable-param-iterable"><span class="type-annotation"><a href="dart-core/Iterable-class.html">Iterable</a></span> <span class="parameter-name">iterable</span>, {</span> <span class="parameter" id="fromIterable-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>(<span class="parameter" id="param-element"><span class="type-annotation">dynamic</span> <span class="parameter-name">element</span></span>), </span> <span class="parameter" id="fromIterable-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span>(<span class="parameter" id="param-element"><span class="type-annotation">dynamic</span> <span class="parameter-name">element</span></span>)</span> })</span>
         </dt>
         <dd>
           Creates a <a href="dart-collection/LinkedHashMap-class.html">LinkedHashMap</a> where the keys and values are computed from the
@@ -309,7 +310,7 @@ if necessary. <a href="dart-core/Map/cast.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="forEach" class="callable inherited">
-          <span class="name"><a href="dart-core/Map/forEach.html">forEach</a></span><span class="signature">(<wbr><span class="parameter" id="forEach-param-f"><span class="type-annotation">void</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="f-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
+          <span class="name"><a href="dart-core/Map/forEach.html">forEach</a></span><span class="signature">(<wbr><span class="parameter" id="forEach-param-f"><span class="type-annotation">void</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -318,7 +319,7 @@ if necessary. <a href="dart-core/Map/cast.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="map" class="callable inherited">
-          <span class="name"><a href="dart-core/Map/map.html">map</a></span><span class="signature">&lt;<wbr><span class="type-parameter">K2</span>, <span class="type-parameter">V2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="map-param-f"><span class="type-annotation"><a href="dart-core/MapEntry-class.html">MapEntry</a><span class="signature">&lt;<wbr><span class="type-parameter">K2</span>, <span class="type-parameter">V2</span>&gt;</span></span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="f-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
+          <span class="name"><a href="dart-core/Map/map.html">map</a></span><span class="signature">&lt;<wbr><span class="type-parameter">K2</span>, <span class="type-parameter">V2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="map-param-f"><span class="type-annotation"><a href="dart-core/MapEntry-class.html">MapEntry</a><span class="signature">&lt;<wbr><span class="type-parameter">K2</span>, <span class="type-parameter">V2</span>&gt;</span></span> <span class="parameter-name">f</span>(<span class="parameter" id="param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter">K2</span>, <span class="type-parameter">V2</span>&gt;</span></span>
           </span>
                   </dt>
@@ -355,7 +356,7 @@ the given <code>f</code> function.
                   <div class="features">inherited</div>
 </dd>
         <dt id="removeWhere" class="callable inherited">
-          <span class="name"><a href="dart-core/Map/removeWhere.html">removeWhere</a></span><span class="signature">(<wbr><span class="parameter" id="removeWhere-param-predicate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">predicate</span>(<span class="parameter" id="predicate-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="predicate-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
+          <span class="name"><a href="dart-core/Map/removeWhere.html">removeWhere</a></span><span class="signature">(<wbr><span class="parameter" id="removeWhere-param-predicate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">predicate</span>(<span class="parameter" id="param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -373,7 +374,7 @@ the given <code>f</code> function.
                   <div class="features">inherited</div>
 </dd>
         <dt id="update" class="callable inherited">
-          <span class="name"><a href="dart-core/Map/update.html">update</a></span><span class="signature">(<wbr><span class="parameter" id="update-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="update-param-update"><span class="type-annotation">V</span> <span class="parameter-name">update</span>(<span class="parameter" id="update-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>), {</span> <span class="parameter" id="update-param-ifAbsent"><span class="type-annotation">V</span> <span class="parameter-name">ifAbsent</span>()</span> })
+          <span class="name"><a href="dart-core/Map/update.html">update</a></span><span class="signature">(<wbr><span class="parameter" id="update-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="update-param-update"><span class="type-annotation">V</span> <span class="parameter-name">update</span>(<span class="parameter" id="param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>), {</span> <span class="parameter" id="update-param-ifAbsent"><span class="type-annotation">V</span> <span class="parameter-name">ifAbsent</span>()</span> })
             <span class="returntype parameter">&#8594; V</span>
           </span>
                   </dt>
@@ -382,7 +383,7 @@ the given <code>f</code> function.
                   <div class="features">inherited</div>
 </dd>
         <dt id="updateAll" class="callable inherited">
-          <span class="name"><a href="dart-core/Map/updateAll.html">updateAll</a></span><span class="signature">(<wbr><span class="parameter" id="updateAll-param-update"><span class="type-annotation">V</span> <span class="parameter-name">update</span>(<span class="parameter" id="update-param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="update-param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
+          <span class="name"><a href="dart-core/Map/updateAll.html">updateAll</a></span><span class="signature">(<wbr><span class="parameter" id="updateAll-param-update"><span class="type-annotation">V</span> <span class="parameter-name">update</span>(<span class="parameter" id="param-key"><span class="type-annotation">K</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="param-value"><span class="type-annotation">V</span> <span class="parameter-name">value</span></span>)</span>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -433,6 +434,7 @@ the given <code>f</code> function.
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-collection/LinkedHashMap-class.html#constructors">Constructors</a></li>
       <li><a href="dart-collection/LinkedHashMap/LinkedHashMap.html">LinkedHashMap</a></li>
       <li><a href="dart-collection/LinkedHashMap/LinkedHashMap.from.html">from</a></li>
@@ -478,6 +480,7 @@ the given <code>f</code> function.
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -485,10 +488,11 @@ the given <code>f</code> function.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -496,7 +500,7 @@ the given <code>f</code> function.
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

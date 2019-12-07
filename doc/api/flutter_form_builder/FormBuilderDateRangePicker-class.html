@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the FormBuilderDateRangePicker class from the flutter_form_builder library, for the Dart programming language.">
+  <title>FormBuilderDateRangePicker class - flutter_form_builder library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">flutter_form_builder</a></li>
+    <li><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></li>
+    <li class="self-crumb">FormBuilderDateRangePicker class</li>
+  </ol>
+  <div class="self-name">FormBuilderDateRangePicker</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">flutter_form_builder</a></li>
+      <li><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></li>
+      <li class="self-crumb">FormBuilderDateRangePicker class</li>
+    </ol>
+    
+    <h5>flutter_form_builder library</h5>
+    <ol>
+      <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#classes">Classes</a></li>
+      <li><a href="flutter_form_builder/FormBuilder-class.html">FormBuilder</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCheckbox-class.html">FormBuilderCheckbox</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCheckboxList-class.html">FormBuilderCheckboxList</a></li>
+      <li><a href="flutter_form_builder/FormBuilderChipsInput-class.html">FormBuilderChipsInput</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomField-class.html">FormBuilderCustomField</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomFieldState-class.html">FormBuilderCustomFieldState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html">FormBuilderDateRangePicker</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePickerState-class.html">FormBuilderDateRangePickerState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateTimePicker-class.html">FormBuilderDateTimePicker</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDropdown-class.html">FormBuilderDropdown</a></li>
+      <li><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></li>
+      <li><a href="flutter_form_builder/FormBuilderRadio-class.html">FormBuilderRadio</a></li>
+      <li><a href="flutter_form_builder/FormBuilderRangeSlider-class.html">FormBuilderRangeSlider</a></li>
+      <li><a href="flutter_form_builder/FormBuilderRate-class.html">FormBuilderRate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl-class.html">FormBuilderSegmentedControl</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSignaturePad-class.html">FormBuilderSignaturePad</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSlider-class.html">FormBuilderSlider</a></li>
+      <li><a href="flutter_form_builder/FormBuilderState-class.html">FormBuilderState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper-class.html">FormBuilderStepper</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSwitch-class.html">FormBuilderSwitch</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTextField-class.html">FormBuilderTextField</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTextFieldState-class.html">FormBuilderTextFieldState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTypeAhead-class.html">FormBuilderTypeAhead</a></li>
+      <li><a href="flutter_form_builder/FormBuilderValidators-class.html">FormBuilderValidators</a></li>
+    
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#enums">Enums</a></li>
+      <li><a href="flutter_form_builder/InputType-class.html">InputType</a></li>
+    
+      <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#typedefs">Typedefs</a></li>
+      <li><a href="flutter_form_builder/SelectionToTextTransformer.html">SelectionToTextTransformer</a></li>
+      <li><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></li>
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">FormBuilderDateRangePicker</span> class </h1></div>
+
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="FormBuilderDateRangePicker" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/FormBuilderDateRangePicker.html">FormBuilderDateRangePicker</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-firstDate"><span>@required</span> <span class="type-annotation"><a href="dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">firstDate</span>, </span> <span class="parameter" id="-param-lastDate"><span>@required</span> <span class="type-annotation"><a href="dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">lastDate</span>, </span> <span class="parameter" id="-param-format"><span>@required</span> <span class="type-annotation">DateFormat</span> <span class="parameter-name">format</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/DateTime-class.html">DateTime</a></span>&gt;</span></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-maxLines"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">maxLines</span>: <span class="default-value">1</span>, </span> <span class="parameter" id="-param-obscureText"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">obscureText</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-textCapitalization"><span class="type-annotation">TextCapitalization</span> <span class="parameter-name">textCapitalization</span>: <span class="default-value">TextCapitalization.none</span>, </span> <span class="parameter" id="-param-scrollPadding"><span class="type-annotation">EdgeInsets</span> <span class="parameter-name">scrollPadding</span>: <span class="default-value">const EdgeInsets.all(20.0)</span>, </span> <span class="parameter" id="-param-enabled"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-enableInteractiveSelection"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enableInteractiveSelection</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-maxLengthEnforced"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">maxLengthEnforced</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-textAlign"><span class="type-annotation"><a href="dart-ui/TextAlign-class.html">TextAlign</a></span> <span class="parameter-name">textAlign</span>: <span class="default-value">TextAlign.start</span>, </span> <span class="parameter" id="-param-autofocus"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autofocus</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-autocorrect"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autocorrect</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-cursorWidth"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">cursorWidth</span>: <span class="default-value">2.0</span>, </span> <span class="parameter" id="-param-keyboardType"><span class="type-annotation">TextInputType</span> <span class="parameter-name">keyboardType</span>, </span> <span class="parameter" id="-param-style"><span class="type-annotation">TextStyle</span> <span class="parameter-name">style</span>, </span> <span class="parameter" id="-param-controller"><span class="type-annotation">TextEditingController</span> <span class="parameter-name">controller</span>, </span> <span class="parameter" id="-param-focusNode"><span class="type-annotation">FocusNode</span> <span class="parameter-name">focusNode</span>, </span> <span class="parameter" id="-param-textInputAction"><span class="type-annotation">TextInputAction</span> <span class="parameter-name">textInputAction</span>, </span> <span class="parameter" id="-param-strutStyle"><span class="type-annotation">StrutStyle</span> <span class="parameter-name">strutStyle</span>, </span> <span class="parameter" id="-param-textDirection"><span class="type-annotation"><a href="dart-ui/TextDirection-class.html">TextDirection</a></span> <span class="parameter-name">textDirection</span>, </span> <span class="parameter" id="-param-maxLength"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">maxLength</span>, </span> <span class="parameter" id="-param-onEditingComplete"><span class="type-annotation"><a href="dart-ui/VoidCallback.html">VoidCallback</a></span> <span class="parameter-name">onEditingComplete</span>, </span> <span class="parameter" id="-param-onFieldSubmitted"><span class="type-annotation">ValueChanged<span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">onFieldSubmitted</span>, </span> <span class="parameter" id="-param-inputFormatters"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">TextInputFormatter</span>&gt;</span></span> <span class="parameter-name">inputFormatters</span>, </span> <span class="parameter" id="-param-cursorRadius"><span class="type-annotation"><a href="dart-ui/Radius-class.html">Radius</a></span> <span class="parameter-name">cursorRadius</span>, </span> <span class="parameter" id="-param-cursorColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">cursorColor</span>, </span> <span class="parameter" id="-param-keyboardAppearance"><span class="type-annotation"><a href="dart-ui/Brightness-class.html">Brightness</a></span> <span class="parameter-name">keyboardAppearance</span>, </span> <span class="parameter" id="-param-buildCounter"><span class="type-annotation">InputCounterWidgetBuilder</span> <span class="parameter-name">buildCounter</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span></span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-expands"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">expands</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-minLines"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">minLines</span>, </span> <span class="parameter" id="-param-showCursor"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">showCursor</span>, </span> <span class="parameter" id="-param-initialFirstDate"><span class="type-annotation"><a href="dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">initialFirstDate</span>, </span> <span class="parameter" id="-param-initialLastDate"><span class="type-annotation"><a href="dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">initialLastDate</span>, </span> <span class="parameter" id="-param-initialDatePickerMode"><span class="type-annotation">DatePickerMode</span> <span class="parameter-name">initialDatePickerMode</span>: <span class="default-value">DateRangePicker.DatePickerMode.day</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation"><a href="dart-ui/Locale-class.html">Locale</a></span> <span class="parameter-name">locale</span>, </span> <span class="parameter" id="-param-selectableDayPredicate"><span class="type-annotation">SelectableDayPredicate</span> <span class="parameter-name">selectableDayPredicate</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter</span> <span class="parameter-name">onSaved</span></span> })</span>
+        </dt>
+        <dd>
+          
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="attribute" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/attribute.html">attribute</a></span>
+          <span class="signature">&#8594; <a href="dart-core/String-class.html">String</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="autocorrect" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/autocorrect.html">autocorrect</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="autofocus" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/autofocus.html">autofocus</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="autovalidate" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/autovalidate.html">autovalidate</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="buildCounter" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/buildCounter.html">buildCounter</a></span>
+          <span class="signature">&#8594; InputCounterWidgetBuilder</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="controller" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/controller.html">controller</a></span>
+          <span class="signature">&#8594; TextEditingController</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="cursorColor" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/cursorColor.html">cursorColor</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/Color-class.html">Color</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="cursorRadius" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/cursorRadius.html">cursorRadius</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/Radius-class.html">Radius</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="cursorWidth" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/cursorWidth.html">cursorWidth</a></span>
+          <span class="signature">&#8594; <a href="dart-core/double-class.html">double</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="decoration" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/decoration.html">decoration</a></span>
+          <span class="signature">&#8594; InputDecoration</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="enabled" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/enabled.html">enabled</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="enableInteractiveSelection" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/enableInteractiveSelection.html">enableInteractiveSelection</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="expands" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/expands.html">expands</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="firstDate" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/firstDate.html">firstDate</a></span>
+          <span class="signature">&#8594; <a href="dart-core/DateTime-class.html">DateTime</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="focusNode" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/focusNode.html">focusNode</a></span>
+          <span class="signature">&#8594; FocusNode</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="format" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/format.html">format</a></span>
+          <span class="signature">&#8594; DateFormat</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="initialDatePickerMode" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/initialDatePickerMode.html">initialDatePickerMode</a></span>
+          <span class="signature">&#8594; DatePickerMode</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="initialFirstDate" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/initialFirstDate.html">initialFirstDate</a></span>
+          <span class="signature">&#8594; <a href="dart-core/DateTime-class.html">DateTime</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="initialLastDate" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/initialLastDate.html">initialLastDate</a></span>
+          <span class="signature">&#8594; <a href="dart-core/DateTime-class.html">DateTime</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="initialValue" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/initialValue.html">initialValue</a></span>
+          <span class="signature">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/DateTime-class.html">DateTime</a></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="inputFormatters" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/inputFormatters.html">inputFormatters</a></span>
+          <span class="signature">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">TextInputFormatter</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="keyboardAppearance" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/keyboardAppearance.html">keyboardAppearance</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/Brightness-class.html">Brightness</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="keyboardType" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/keyboardType.html">keyboardType</a></span>
+          <span class="signature">&#8594; TextInputType</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="lastDate" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/lastDate.html">lastDate</a></span>
+          <span class="signature">&#8594; <a href="dart-core/DateTime-class.html">DateTime</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="locale" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/locale.html">locale</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/Locale-class.html">Locale</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="maxLength" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/maxLength.html">maxLength</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="maxLengthEnforced" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/maxLengthEnforced.html">maxLengthEnforced</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="maxLines" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/maxLines.html">maxLines</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="minLines" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/minLines.html">minLines</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="obscureText" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/obscureText.html">obscureText</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="onChanged" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/onChanged.html">onChanged</a></span>
+          <span class="signature">&#8594; ValueChanged</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="onEditingComplete" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/onEditingComplete.html">onEditingComplete</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/VoidCallback.html">VoidCallback</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="onFieldSubmitted" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/onFieldSubmitted.html">onFieldSubmitted</a></span>
+          <span class="signature">&#8594; ValueChanged<span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/String-class.html">String</a></span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="onSaved" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/onSaved.html">onSaved</a></span>
+          <span class="signature">&#8594; FormFieldSetter</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="readOnly" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/readOnly.html">readOnly</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="scrollPadding" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/scrollPadding.html">scrollPadding</a></span>
+          <span class="signature">&#8594; EdgeInsets</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="selectableDayPredicate" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/selectableDayPredicate.html">selectableDayPredicate</a></span>
+          <span class="signature">&#8594; SelectableDayPredicate</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="showCursor" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/showCursor.html">showCursor</a></span>
+          <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="strutStyle" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/strutStyle.html">strutStyle</a></span>
+          <span class="signature">&#8594; StrutStyle</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="style" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/style.html">style</a></span>
+          <span class="signature">&#8594; TextStyle</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="textAlign" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/textAlign.html">textAlign</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/TextAlign-class.html">TextAlign</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="textCapitalization" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/textCapitalization.html">textCapitalization</a></span>
+          <span class="signature">&#8594; TextCapitalization</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="textDirection" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/textDirection.html">textDirection</a></span>
+          <span class="signature">&#8594; <a href="dart-ui/TextDirection-class.html">TextDirection</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="textInputAction" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/textInputAction.html">textInputAction</a></span>
+          <span class="signature">&#8594; TextInputAction</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="validators" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/validators.html">validators</a></span>
+          <span class="signature">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="valueTransformer" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/valueTransformer.html">valueTransformer</a></span>
+          <span class="signature">&#8594; <a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="dart-core/Object/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; <a href="dart-core/int-class.html">int</a></span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="dart-core/Object/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="key" class="property inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/key.html">key</a></span>
+          <span class="signature">&#8594; Key</span>         
+        </dt>
+        <dd class="inherited">
+          Controls how one widget replaces another widget in the tree. <a href="flutter_form_builder/FormBuilderDateRangePicker/key.html">[...]</a>
+                  <div class="features">final, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="dart-core/Object/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; <a href="dart-core/Type-class.html">Type</a></span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="createState" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/createState.html">createState</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="flutter_form_builder/FormBuilderDateRangePickerState-class.html">FormBuilderDateRangePickerState</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Creates the mutable state for this widget at a given location in the tree. <a href="flutter_form_builder/FormBuilderDateRangePicker/createState.html">[...]</a>
+                  
+</dd>
+        <dt id="createElement" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; StatefulElement</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Creates a <code>StatefulElement</code> to manage this widget's location in the tree. <a href="flutter_form_builder/FormBuilderDateRangePicker/createElement.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="debugDescribeChildren" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">DiagnosticsNode</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a list of <code>DiagnosticsNode</code> objects describing this node's
+children. <a href="flutter_form_builder/FormBuilderDateRangePicker/debugDescribeChildren.html">[...]</a>
+                  <div class="features">@protected, inherited</div>
+</dd>
+        <dt id="debugFillProperties" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/debugFillProperties.html">debugFillProperties</a></span><span class="signature">(<wbr><span class="parameter" id="debugFillProperties-param-properties"><span class="type-annotation">DiagnosticPropertiesBuilder</span> <span class="parameter-name">properties</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Add additional properties associated with the node. <a href="flutter_form_builder/FormBuilderDateRangePicker/debugFillProperties.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="dart-core/Object/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toDiagnosticsNode" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span>, </span> <span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation">DiagnosticsTreeStyle</span> <span class="parameter-name">style</span></span> })
+            <span class="returntype parameter">&#8594; DiagnosticsNode</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a debug representation of the object that is used by debugging
+tools and by <code>DiagnosticsNode.toStringDeep</code>. <a href="flutter_form_builder/FormBuilderDateRangePicker/toDiagnosticsNode.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringDeep" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span>: <span class="default-value">''</span>, </span> <span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixOtherLines</span>, </span> <span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this node and its descendants. <a href="flutter_form_builder/FormBuilderDateRangePicker/toStringDeep.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringShallow" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span>: <span class="default-value">', '</span>, </span> <span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a one-line detailed description of the object. <a href="flutter_form_builder/FormBuilderDateRangePicker/toStringShallow.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringShort" class="callable inherited">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/toStringShort.html">toStringShort</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          A short, textual description of this widget.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/bool-class.html">bool</a></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="dart-core/Object/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="static-methods">
+      <h2>Static Methods</h2>
+      <dl class="callables">
+        <dt id="tryFormat" class="callable">
+          <span class="name"><a href="flutter_form_builder/FormBuilderDateRangePicker/tryFormat.html">tryFormat</a></span><span class="signature">(<wbr><span class="parameter" id="tryFormat-param-date"><span class="type-annotation"><a href="dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">date</span>, </span> <span class="parameter" id="tryFormat-param-format"><span class="type-annotation">DateFormat</span> <span class="parameter-name">format</span></span>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/String-class.html">String</a></span>
+          </span>
+                  </dt>
+        <dd>
+          
+                  
+</dd>
+      </dl>
+    </section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+    
+      <li class="section-title"><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html#constructors">Constructors</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/FormBuilderDateRangePicker.html">FormBuilderDateRangePicker</a></li>
+    
+      <li class="section-title">
+        <a href="flutter_form_builder/FormBuilderDateRangePicker-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/attribute.html">attribute</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/autocorrect.html">autocorrect</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/autofocus.html">autofocus</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/autovalidate.html">autovalidate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/buildCounter.html">buildCounter</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/controller.html">controller</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/cursorColor.html">cursorColor</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/cursorRadius.html">cursorRadius</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/cursorWidth.html">cursorWidth</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/decoration.html">decoration</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/enabled.html">enabled</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/enableInteractiveSelection.html">enableInteractiveSelection</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/expands.html">expands</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/firstDate.html">firstDate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/focusNode.html">focusNode</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/format.html">format</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/initialDatePickerMode.html">initialDatePickerMode</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/initialFirstDate.html">initialFirstDate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/initialLastDate.html">initialLastDate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/initialValue.html">initialValue</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/inputFormatters.html">inputFormatters</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/keyboardAppearance.html">keyboardAppearance</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/keyboardType.html">keyboardType</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/lastDate.html">lastDate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/locale.html">locale</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/maxLength.html">maxLength</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/maxLengthEnforced.html">maxLengthEnforced</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/maxLines.html">maxLines</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/minLines.html">minLines</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/obscureText.html">obscureText</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/onChanged.html">onChanged</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/onEditingComplete.html">onEditingComplete</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/onFieldSubmitted.html">onFieldSubmitted</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/onSaved.html">onSaved</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/readOnly.html">readOnly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/scrollPadding.html">scrollPadding</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/selectableDayPredicate.html">selectableDayPredicate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/showCursor.html">showCursor</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/strutStyle.html">strutStyle</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/style.html">style</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/textAlign.html">textAlign</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/textCapitalization.html">textCapitalization</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/textDirection.html">textDirection</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/textInputAction.html">textInputAction</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/validators.html">validators</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/valueTransformer.html">valueTransformer</a></li>
+      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/key.html">key</a></li>
+      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html#instance-methods">Methods</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/createState.html">createState</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/createElement.html">createElement</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/debugDescribeChildren.html">debugDescribeChildren</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/debugFillProperties.html">debugFillProperties</a></li>
+      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/toString.html">toString</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/toStringDeep.html">toStringDeep</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/toStringShallow.html">toStringShallow</a></li>
+      <li class="inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker/toStringShort.html">toStringShort</a></li>
+    
+      <li class="section-title inherited"><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
+      <li class="section-title"><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html#static-methods">Static methods</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker/tryFormat.html">tryFormat</a></li>
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_form_builder
+      3.7.0
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

@@ -119,7 +119,7 @@ FormBuilder(
         initialValue: 1.0,
         divisions: 20,
         decoration:
-            InputDecoration(labelText: "Number of somethings"),
+            InputDecoration(labelText: "Number of things"),
       ),
       FormBuilderCheckbox(
         attribute: 'accept_terms',

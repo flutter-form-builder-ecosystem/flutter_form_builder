@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>Color class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/Color-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/Color/Color.html">Color</a></li>
       <li><a href="dart-ui/Color/Color.fromARGB.html">fromARGB</a></li>
@@ -88,11 +89,12 @@
       <li><a href="dart-ui/Color/alphaBlend.html">alphaBlend</a></li>
       <li><a href="dart-ui/Color/lerp.html">lerp</a></li>
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Color constructor</h1></div>
+      <div><h1><span class="kind-constructor">Color</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       const
@@ -101,12 +103,17 @@
 
     <section class="desc markdown">
       <p>Construct a color from the lower 32 bits of an <a href="dart-core/int-class.html">int</a>.</p>
-<p>The bits are interpreted as follows:</p><ul><li>Bits 24-31 are the alpha value.</li><li>Bits 16-23 are the red value.</li><li>Bits 8-15 are the green value.</li><li>Bits 0-7 are the blue value.</li></ul>
+<p>The bits are interpreted as follows:</p>
+<ul>
+<li>Bits 24-31 are the alpha value.</li>
+<li>Bits 16-23 are the red value.</li>
+<li>Bits 8-15 are the green value.</li>
+<li>Bits 0-7 are the blue value.</li>
+</ul>
 <p>In other words, if AA is the alpha value in hex, RR the red value in hex,
 GG the green value in hex, and BB the blue value in hex, a color can be
 expressed as <code>const Color(0xAARRGGBB)</code>.</p>
-<p>For example, to get a fully opaque orange, you would use <code>const
-Color(0xFFFF9000)</code> (<code>FF</code> for the alpha, <code>FF</code> for the red, <code>90</code> for the
+<p>For example, to get a fully opaque orange, you would use <code>const Color(0xFFFF9000)</code> (<code>FF</code> for the alpha, <code>FF</code> for the red, <code>90</code> for the
 green, and <code>00</code> for the blue).</p>
     </section>
     
@@ -125,10 +132,11 @@ const Color(int value) : value = value &amp; 0xFFFFFFFF;</code></pre>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -136,7 +144,7 @@ const Color(int value) : value = value &amp; 0xFFFFFFFF;</code></pre>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -68,7 +68,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>dart:io library </h1></div>
+      <div><h1><span class="kind-library">dart:io</span> library </h1></div>
 
     <section class="desc markdown">
       <p>File, socket, HTTP, and other I/O support for non-web applications.</p>
@@ -231,8 +231,7 @@ end. <a href="dart-io/BytesBuilder-class.html">[...]</a>
           <span class="name "><a href="dart-io/CompressionOptions-class.html">CompressionOptions</a></span>         
         </dt>
         <dd>
-          The <a href="dart-io/CompressionOptions-class.html">CompressionOptions</a> class allows you to control
-the options of WebSocket compression.
+          Options controlling compression in a <a href="dart-io/WebSocket-class.html">WebSocket</a>. <a href="dart-io/CompressionOptions-class.html">[...]</a>
         </dd>
         <dt id="ConnectionTask">
           <span class="name "><a href="dart-io/ConnectionTask-class.html">ConnectionTask</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>         
@@ -252,17 +251,16 @@ immutable.
           <span class="name "><a href="dart-io/Cookie-class.html">Cookie</a></span>         
         </dt>
         <dd>
-          Representation of a cookie. For cookies received by the server as
-Cookie header values only <code>name</code> and <code>value</code> fields will be
-set. When building a cookie for the 'set-cookie' header in the server
-and when receiving cookies in the client as 'set-cookie' headers all
-fields can be used.
+          Representation of a cookie. For cookies received by the server as Cookie
+header values only <a href="dart-io/Cookie/name.html">name</a> and <a href="dart-io/Cookie/value.html">value</a> properties will be set. When building a
+cookie for the 'set-cookie' header in the server and when receiving cookies
+in the client as 'set-cookie' headers all fields can be used.
         </dd>
         <dt id="Datagram">
           <span class="name "><a href="dart-io/Datagram-class.html">Datagram</a></span>         
         </dt>
         <dd>
-          Datagram package. Data send to and received from datagram sockets
+          Datagram package. Data sent to and received from datagram sockets
 contains the internet address and port of the destination or source
 togeter with the data.
         </dd>
@@ -567,9 +565,7 @@ file. <a href="dart-io/RandomAccessFile-class.html">[...]</a>
           <span class="name "><a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a></span>         
         </dt>
         <dd>
-          The <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is a low-level interface to an UDP socket,
-exposing the raw events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of
-<a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s. <a href="dart-io/RawDatagramSocket-class.html">[...]</a>
+          A <a href="dart-io/RawDatagramSocket-class.html">RawDatagramSocket</a> is an unbuffered interface to a UDP socket. <a href="dart-io/RawDatagramSocket-class.html">[...]</a>
         </dd>
         <dt id="RawSecureServerSocket">
           <span class="name "><a href="dart-io/RawSecureServerSocket-class.html">RawSecureServerSocket</a></span>         
@@ -604,8 +600,7 @@ made to the listening socket. <a href="dart-io/RawServerSocket-class.html">[...]
           <span class="name "><a href="dart-io/RawSocket-class.html">RawSocket</a></span>         
         </dt>
         <dd>
-          The <a href="dart-io/RawSocket-class.html">RawSocket</a> is a low-level interface to a socket, exposing the raw
-events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of <a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.
+          A <a href="dart-io/RawSocket-class.html">RawSocket</a> is an unbuffered interface to a TCP socket. <a href="dart-io/RawSocket-class.html">[...]</a>
         </dd>
         <dt id="RawSocketEvent">
           <span class="name "><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>         
@@ -774,6 +769,7 @@ data.
         </dd>
       </dl>
     </section>
+
 
 
     <section class="summary offset-anchor" id="constants">
@@ -992,6 +988,19 @@ something else.
       </dl>
     </section>
 
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+
+      <dl>
+        <dt id="HttpClientResponseCompressionState">
+          <span class="name "><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></span>         
+        </dt>
+        <dd>
+          Enum that specifies the compression state of the byte stream of an
+<a href="dart-io/HttpClientResponse-class.html">HttpClientResponse</a>. <a href="dart-io/HttpClientResponseCompressionState-class.html">[...]</a>
+        </dd>
+      </dl>
+    </section>
 
     <section class="summary offset-anchor" id="typedefs">
       <h2>Typedefs</h2>
@@ -1087,7 +1096,7 @@ a secure network connection.
         </dt>
         <dd>
           A secure networking exception caused by a failure in the
- TLS/SSL protocol.
+TLS/SSL protocol.
         </dd>
         <dt id="WebSocketException">
           <span class="name "><a href="dart-io/WebSocketException-class.html">WebSocketException</a></span>         
@@ -1186,6 +1195,7 @@ a secure network connection.
       <li><a href="dart-io/ZLibOption-class.html">ZLibOption</a></li>
     
     
+    
       <li class="section-title"><a href="dart-io/dart-io-library.html#constants">Constants</a></li>
       <li><a class="deprecated" href="dart-io/APPEND-constant.html">APPEND</a></li>
       <li><a class="deprecated" href="dart-io/GZIP-constant.html">GZIP</a></li>
@@ -1211,6 +1221,8 @@ a secure network connection.
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
@@ -1236,10 +1248,11 @@ a secure network connection.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -1247,7 +1260,7 @@ a secure network connection.
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

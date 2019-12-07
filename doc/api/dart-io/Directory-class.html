@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -134,6 +134,7 @@
       <li><a href="dart-io/ZLibOption-class.html">ZLibOption</a></li>
     
     
+    
       <li class="section-title"><a href="dart-io/dart-io-library.html#constants">Constants</a></li>
       <li><a class="deprecated" href="dart-io/APPEND-constant.html">APPEND</a></li>
       <li><a class="deprecated" href="dart-io/GZIP-constant.html">GZIP</a></li>
@@ -159,6 +160,8 @@
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
@@ -181,7 +184,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Directory class </h1></div>
+      <div><h1><span class="kind-class">Directory</span> class </h1></div>
 
     <section class="desc markdown">
       <p>A reference to a directory (or <em>folder</em>) on the file system.</p>
@@ -262,16 +265,24 @@ main() {
 </code></pre>
 <p>In addition to exists, the <a href="dart-io/FileSystemEntity/stat.html">stat</a>, <a href="dart-io/Directory/rename.html">rename</a>, and
 other methods, return Futures.</p>
-<h2 id="other-resources">Other resources</h2><ul><li>
+<h2 id="other-resources">Other resources</h2>
+<ul>
+<li>
 <p><a href="https://www.dartlang.org/dart-by-example/#files-directories-and-symlinks">Dart by Example</a>
 provides additional task-oriented code samples that show how to use
-various API from the Directory class and the related <a href="dart-io/File-class.html">File</a> class.</p></li><li>
+various API from the Directory class and the related <a href="dart-io/File-class.html">File</a> class.</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/docs/dart-up-and-running/ch03.html#dartio---io-for-command-line-apps">I/O for Command-Line
 Apps</a>
-a section from <em>A Tour of the Dart Libraries</em> covers files and directories.</p></li><li>
+a section from <em>A Tour of the Dart Libraries</em> covers files and directories.</p>
+</li>
+<li>
 <p><a href="https://www.dartlang.org/docs/tutorials/cmdline/">Write Command-Line Apps</a>,
 a tutorial about writing command-line apps, includes information about
-files and directories.</p></li></ul>
+files and directories.</p>
+</li>
+</ul>
     </section>
     
     <section>
@@ -426,7 +437,7 @@ string is used for <code>prefix</code>. <a href="dart-io/Directory/createTempSyn
                   
 </dd>
         <dt id="list" class="callable">
-          <span class="name"><a href="dart-io/Directory/list.html">list</a></span><span class="signature">(<wbr>{<span class="parameter" id="list-param-recursive"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">recursive</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="list-param-followLinks"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">followLinks</span>: <span class="default-value">true</span></span> })
+          <span class="name"><a href="dart-io/Directory/list.html">list</a></span><span class="signature">(<wbr>{<span class="parameter" id="list-param-recursive"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">recursive</span>: <span class="default-value">false</span></span> <span class="parameter" id="list-param-followLinks"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">followLinks</span>: <span class="default-value">true</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/FileSystemEntity-class.html">FileSystemEntity</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -436,7 +447,7 @@ Optionally recurses into sub-directories. <a href="dart-io/Directory/list.html">
                   
 </dd>
         <dt id="listSync" class="callable">
-          <span class="name"><a href="dart-io/Directory/listSync.html">listSync</a></span><span class="signature">(<wbr>{<span class="parameter" id="listSync-param-recursive"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">recursive</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="listSync-param-followLinks"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">followLinks</span>: <span class="default-value">true</span></span> })
+          <span class="name"><a href="dart-io/Directory/listSync.html">listSync</a></span><span class="signature">(<wbr>{<span class="parameter" id="listSync-param-recursive"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">recursive</span>: <span class="default-value">false</span></span> <span class="parameter" id="listSync-param-followLinks"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">followLinks</span>: <span class="default-value">true</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/FileSystemEntity-class.html">FileSystemEntity</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -618,6 +629,7 @@ directory.
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-io/Directory-class.html#constructors">Constructors</a></li>
       <li><a href="dart-io/Directory/Directory.html">Directory</a></li>
       <li><a href="dart-io/Directory/Directory.fromRawPath.html">fromRawPath</a></li>
@@ -663,6 +675,7 @@ directory.
       <li><a href="dart-io/Directory/systemTemp.html">systemTemp</a></li>
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -670,10 +683,11 @@ directory.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -681,7 +695,7 @@ directory.
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

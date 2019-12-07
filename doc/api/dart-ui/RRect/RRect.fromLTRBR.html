@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>RRect class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/RRect-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/RRect/RRect.fromLTRBAndCorners.html">fromLTRBAndCorners</a></li>
       <li><a href="dart-ui/RRect/RRect.fromLTRBR.html">fromLTRBR</a></li>
@@ -73,6 +74,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -103,6 +105,7 @@
       <li><a href="dart-ui/RRect/contains.html">contains</a></li>
       <li><a href="dart-ui/RRect/deflate.html">deflate</a></li>
       <li><a href="dart-ui/RRect/inflate.html">inflate</a></li>
+      <li><a href="dart-ui/RRect/scaleRadii.html">scaleRadii</a></li>
       <li><a href="dart-ui/RRect/shift.html">shift</a></li>
       <li><a href="dart-ui/RRect/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
@@ -110,17 +113,18 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
+    
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>RRect.fromLTRBR constructor</h1></div>
+      <div><h1><span class="kind-constructor">RRect.fromLTRBR</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -135,21 +139,21 @@ and the same radius in each corner.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">RRect.fromLTRBR(double left, double top, double right, double bottom,
-                Radius radius) {
-  _value
-    ..[0] = left
-    ..[1] = top
-    ..[2] = right
-    ..[3] = bottom
-    ..[4] = radius.x
-    ..[5] = radius.y
-    ..[6] = radius.x
-    ..[7] = radius.y
-    ..[8] = radius.x
-    ..[9] = radius.y
-    ..[10] = radius.x
-    ..[11] = radius.y;
-}</code></pre>
+                Radius radius)
+  : this._raw(
+      top: top,
+      left: left,
+      right: right,
+      bottom: bottom,
+      tlRadiusX: radius.x,
+      tlRadiusY: radius.y,
+      trRadiusX: radius.x,
+      trRadiusY: radius.y,
+      blRadiusX: radius.x,
+      blRadiusY: radius.y,
+      brRadiusX: radius.x,
+      brRadiusY: radius.y,
+    );</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -161,10 +165,11 @@ and the same radius in each corner.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -172,7 +177,7 @@ and the same radius in each corner.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

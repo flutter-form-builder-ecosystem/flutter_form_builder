@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>Symbol class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-core/Symbol-class.html#constructors">Constructors</a></li>
       <li><a href="dart-core/Symbol/Symbol.html">Symbol</a></li>
     
@@ -74,11 +75,12 @@
       <li class="section-title"><a href="dart-core/Symbol-class.html#constants">Constants</a></li>
       <li><a href="dart-core/Symbol/empty-constant.html">empty</a></li>
       <li><a href="dart-core/Symbol/unaryMinus-constant.html">unaryMinus</a></li>
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Symbol constructor</h1></div>
+      <div><h1><span class="kind-constructor">Symbol</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       const
@@ -91,13 +93,20 @@
 public constructor name, or library name, optionally qualified.</p>
 <p>A qualified name is a valid name preceded by a public identifier name
 and a '<code>.</code>', e.g., <code>foo.bar.baz=</code> is a qualified version of <code>baz=</code>.
-That means that the content of the <code>name</code> String must be either</p><ul><li>a valid public Dart identifier
-(that is, an identifier not starting with "<code>_</code>"),</li><li>such an identifier followed by "=" (a setter name),</li><li>the name of a declarable operator
+That means that the content of the <code>name</code> String must be either</p>
+<ul>
+<li>a valid public Dart identifier
+(that is, an identifier not starting with "<code>_</code>"),</li>
+<li>such an identifier followed by "=" (a setter name),</li>
+<li>the name of a declarable operator
 (one of "<code>+</code>", "<code>-</code>", "<code>*</code>", "<code>/</code>", "<code>%</code>", "<code>~/</code>", "<code>&amp;</code>", "<code>|</code>",
 "<code>^</code>", "<code>~</code>", "<code>&lt;&lt;</code>", "<code>&gt;&gt;</code>", "<code>&lt;</code>", "<code>&lt;=</code>", "<code>&gt;</code>", "<code>&gt;=</code>", "<code>==</code>",
-"<code>[]</code>", "<code>[]=</code>", or "<code>unary-</code>"),</li><li>any of the above preceded by any number of qualifiers,
-where a qualifier is a non-private identifier followed by '<code>.</code>',</li><li>or the empty string (the default name of a library with no library
-name declaration).</li></ul>
+"<code>[]</code>", "<code>[]=</code>", or "<code>unary-</code>"),</li>
+<li>any of the above preceded by any number of qualifiers,
+where a qualifier is a non-private identifier followed by '<code>.</code>',</li>
+<li>or the empty string (the default name of a library with no library
+name declaration).</li>
+</ul>
 <p>Symbol instances created from the same <code>name</code> are equal,
 but not necessarily identical, but symbols created as compile-time
 constants are canonicalized, as all other constant object creations.</p>
@@ -121,7 +130,7 @@ assert(identical(const Symbol("foo.bar"), #foo.bar));
 a private symbol literal like <code>#_foo</code>.</p>
 <pre class="language-dart"><code class="language-dart">const Symbol("_foo") // Invalid
 </code></pre>
-<p>The created instance overrides <a href="dart-core/Symbol/operator_equals.html">Object.==</a>.</p>
+<p>The created instance overrides <a href="dart-core/Object/operator_equals.html">Object.==</a>.</p>
 <p>The following text is non-normative:</p>
 <p>Creating non-const Symbol instances may result in larger output.  If
 possible, use <code>MirrorsUsed</code> from "dart:mirrors" to specify which names
@@ -142,10 +151,11 @@ might be passed to this constructor.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -153,7 +163,7 @@ might be passed to this constructor.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

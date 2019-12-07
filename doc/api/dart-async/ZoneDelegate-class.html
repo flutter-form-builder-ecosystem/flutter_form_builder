@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -75,6 +75,7 @@
     
     
     
+    
       <li class="section-title"><a href="dart-async/dart-async-library.html#functions">Functions</a></li>
       <li><a href="dart-async/runZoned.html">runZoned</a></li>
       <li><a href="dart-async/scheduleMicrotask.html">scheduleMicrotask</a></li>
@@ -108,13 +109,13 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>ZoneDelegate class </h1></div>
+      <div><h1><span class="kind-class">ZoneDelegate</span> class </h1></div>
 
     <section class="desc markdown">
       <p>An adapted view of the parent zone.</p>
 <p>This class allows the implementation of a zone method to invoke methods on
 the parent zone while retaining knowledge of the originating zone.</p>
-<p>Custom zones (created through <a href="dart-async/ZoneDelegate/fork.html">Zone.fork</a> or <a href="dart-async/runZoned.html">runZoned</a>) can provide
+<p>Custom zones (created through <a href="dart-async/Zone/fork.html">Zone.fork</a> or <a href="dart-async/runZoned.html">runZoned</a>) can provide
 implementations of most methods of zones. This is similar to overriding
 methods on <a href="dart-async/Zone-class.html">Zone</a>, except that this mechanism doesn't require subclassing.</p>
 <p>A custom zone function (provided through a <a href="dart-async/ZoneSpecification-class.html">ZoneSpecification</a>) typically
@@ -122,9 +123,13 @@ records or wraps its parameters and then delegates the operation to its
 parent zone using the provided <a href="dart-async/ZoneDelegate-class.html">ZoneDelegate</a>.</p>
 <p>While zones have access to their parent zone (through <a href="dart-async/Zone/parent.html">Zone.parent</a>) it is
 recommended to call the methods on the provided parent delegate for two
-reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> argument which is the
-  zone the action has been initiated in.</li><li>delegate calls are more efficient, since the implementation knows how
-  to skip zones that would just delegate to their parents.</li></ol>
+reasons:</p>
+<ol>
+<li>the delegate methods take an additional <code>zone</code> argument which is the
+  zone the action has been initiated in.</li>
+<li>delegate calls are more efficient, since the implementation knows how
+to skip zones that would just delegate to their parents.</li>
+</ol>
     </section>
     
 
@@ -168,7 +173,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="createPeriodicTimer" class="callable">
-          <span class="name"><a href="dart-async/ZoneDelegate/createPeriodicTimer.html">createPeriodicTimer</a></span><span class="signature">(<wbr><span class="parameter" id="createPeriodicTimer-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="createPeriodicTimer-param-period"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">period</span>, </span> <span class="parameter" id="createPeriodicTimer-param-f"><span class="type-annotation">void</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-timer"><span class="type-annotation"><a href="dart-async/Timer-class.html">Timer</a></span> <span class="parameter-name">timer</span></span>)</span>)
+          <span class="name"><a href="dart-async/ZoneDelegate/createPeriodicTimer.html">createPeriodicTimer</a></span><span class="signature">(<wbr><span class="parameter" id="createPeriodicTimer-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="createPeriodicTimer-param-period"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">period</span>, </span> <span class="parameter" id="createPeriodicTimer-param-f"><span class="type-annotation">void</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-timer"><span class="type-annotation"><a href="dart-async/Timer-class.html">Timer</a></span> <span class="parameter-name">timer</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Timer-class.html">Timer</a></span>
           </span>
                   </dt>
@@ -222,7 +227,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
                   
 </dd>
         <dt id="registerBinaryCallback" class="callable">
-          <span class="name"><a href="dart-async/ZoneDelegate/registerBinaryCallback.html">registerBinaryCallback</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T1</span>, <span class="type-parameter">T2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerBinaryCallback-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="registerBinaryCallback-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="f-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)</span>)
+          <span class="name"><a href="dart-async/ZoneDelegate/registerBinaryCallback.html">registerBinaryCallback</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T1</span>, <span class="type-parameter">T2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerBinaryCallback-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="registerBinaryCallback-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/ZoneBinaryCallback.html">ZoneBinaryCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T1</span>, <span class="type-parameter">T2</span>&gt;</span></span>
           </span>
                   </dt>
@@ -240,7 +245,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
                   
 </dd>
         <dt id="registerUnaryCallback" class="callable">
-          <span class="name"><a href="dart-async/ZoneDelegate/registerUnaryCallback.html">registerUnaryCallback</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerUnaryCallback-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="registerUnaryCallback-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)</span>)
+          <span class="name"><a href="dart-async/ZoneDelegate/registerUnaryCallback.html">registerUnaryCallback</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerUnaryCallback-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="registerUnaryCallback-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/ZoneUnaryCallback.html">ZoneUnaryCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T</span>&gt;</span></span>
           </span>
                   </dt>
@@ -258,7 +263,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
                   
 </dd>
         <dt id="runBinary" class="callable">
-          <span class="name"><a href="dart-async/ZoneDelegate/runBinary.html">runBinary</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T1</span>, <span class="type-parameter">T2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="runBinary-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="runBinary-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="f-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>), </span> <span class="parameter" id="runBinary-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="runBinary-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)
+          <span class="name"><a href="dart-async/ZoneDelegate/runBinary.html">runBinary</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T1</span>, <span class="type-parameter">T2</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="runBinary-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="runBinary-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>), </span> <span class="parameter" id="runBinary-param-arg1"><span class="type-annotation">T1</span> <span class="parameter-name">arg1</span>, </span> <span class="parameter" id="runBinary-param-arg2"><span class="type-annotation">T2</span> <span class="parameter-name">arg2</span></span>)
             <span class="returntype parameter">&#8594; R</span>
           </span>
                   </dt>
@@ -267,7 +272,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
                   
 </dd>
         <dt id="runUnary" class="callable">
-          <span class="name"><a href="dart-async/ZoneDelegate/runUnary.html">runUnary</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="runUnary-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="runUnary-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="f-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>), </span> <span class="parameter" id="runUnary-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)
+          <span class="name"><a href="dart-async/ZoneDelegate/runUnary.html">runUnary</a></span><span class="signature">&lt;<wbr><span class="type-parameter">R</span>, <span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="runUnary-param-zone"><span class="type-annotation"><a href="dart-async/Zone-class.html">Zone</a></span> <span class="parameter-name">zone</span>, </span> <span class="parameter" id="runUnary-param-f"><span class="type-annotation">R</span> <span class="parameter-name">f</span>(<span class="parameter" id="param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>), </span> <span class="parameter" id="runUnary-param-arg"><span class="type-annotation">T</span> <span class="parameter-name">arg</span></span>)
             <span class="returntype parameter">&#8594; R</span>
           </span>
                   </dt>
@@ -327,6 +332,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-async/ZoneDelegate-class.html#constructors">Constructors</a></li>
       <li><a href="dart-async/ZoneDelegate/ZoneDelegate.html">ZoneDelegate</a></li>
     
@@ -358,6 +364,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -365,10 +372,11 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -376,7 +384,7 @@ reasons:</p><ol><li>the delegate methods take an additional <code>zone</code> ar
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

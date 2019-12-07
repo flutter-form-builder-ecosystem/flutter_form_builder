@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -57,6 +57,8 @@
       <li><a href="dart-isolate/RawReceivePort-class.html">RawReceivePort</a></li>
       <li><a href="dart-isolate/ReceivePort-class.html">ReceivePort</a></li>
       <li><a href="dart-isolate/SendPort-class.html">SendPort</a></li>
+      <li><a href="dart-isolate/TransferableTypedData-class.html">TransferableTypedData</a></li>
+    
     
     
     
@@ -71,7 +73,7 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Isolate class </h1></div>
+      <div><h1><span class="kind-class">Isolate</span> class </h1></div>
 
     <section class="desc markdown">
       <p>An isolated Dart execution context.</p>
@@ -109,7 +111,7 @@ and capabilities can be sent, and can be used to create a new functioning
 
       <dl class="constructor-summary-list">
         <dt id="Isolate" class="callable">
-          <span class="name"><a href="dart-isolate/Isolate/Isolate.html">Isolate</a></span><span class="signature">(<span class="parameter" id="-param-controlPort"><span class="type-annotation"><a href="dart-isolate/SendPort-class.html">SendPort</a></span> <span class="parameter-name">controlPort</span>, {</span> <span class="parameter" id="-param-pauseCapability"><span class="type-annotation"><a href="dart-isolate/Capability-class.html">Capability</a></span> <span class="parameter-name">pauseCapability</span>, </span> <span class="parameter" id="-param-terminateCapability"><span class="type-annotation"><a href="dart-isolate/Capability-class.html">Capability</a></span> <span class="parameter-name">terminateCapability</span></span> })</span>
+          <span class="name"><a href="dart-isolate/Isolate/Isolate.html">Isolate</a></span><span class="signature">(<span class="parameter" id="-param-controlPort"><span class="type-annotation"><a href="dart-isolate/SendPort-class.html">SendPort</a></span> <span class="parameter-name">controlPort</span>, {</span> <span class="parameter" id="-param-pauseCapability"><span class="type-annotation"><a href="dart-isolate/Capability-class.html">Capability</a></span> <span class="parameter-name">pauseCapability</span></span> <span class="parameter" id="-param-terminateCapability"><span class="type-annotation"><a href="dart-isolate/Capability-class.html">Capability</a></span> <span class="parameter-name">terminateCapability</span></span> })</span>
         </dt>
         <dd>
           Create a new <a href="dart-isolate/Isolate-class.html">Isolate</a> object with a restricted set of capabilities. <a href="dart-isolate/Isolate/Isolate.html">[...]</a>
@@ -135,7 +137,7 @@ and capabilities can be sent, and can be used to create a new functioning
         </dt>
         <dd>
           The name of the <a href="dart-isolate/Isolate-class.html">Isolate</a> displayed for debug purposes. <a href="dart-isolate/Isolate/debugName.html">[...]</a>
-                  <div class="features">read-only</div>
+                  <div class="features">@Since(&quot;2.3&quot;), read-only</div>
 </dd>
         <dt id="errors" class="property">
           <span class="name"><a href="dart-isolate/Isolate/errors.html">errors</a></span>
@@ -344,7 +346,7 @@ and capabilities can be sent, and can be used to create a new functioning
                   
 </dd>
         <dt id="spawn" class="callable">
-          <span class="name"><a href="dart-isolate/Isolate/spawn.html">spawn</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="spawn-param-entryPoint"><span class="type-annotation">void</span> <span class="parameter-name">entryPoint</span>(<span class="parameter" id="entryPoint-param-message"><span class="type-annotation">T</span> <span class="parameter-name">message</span></span>), </span> <span class="parameter" id="spawn-param-message"><span class="type-annotation">T</span> <span class="parameter-name">message</span>, {</span> <span class="parameter" id="spawn-param-paused"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">paused</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="spawn-param-errorsAreFatal"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">errorsAreFatal</span>, </span> <span class="parameter" id="spawn-param-onExit"><span class="type-annotation"><a href="dart-isolate/SendPort-class.html">SendPort</a></span> <span class="parameter-name">onExit</span>, </span> <span class="parameter" id="spawn-param-onError"><span class="type-annotation"><a href="dart-isolate/SendPort-class.html">SendPort</a></span> <span class="parameter-name">onError</span>, </span> <span class="parameter" id="spawn-param-debugName"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">debugName</span></span> })
+          <span class="name"><a href="dart-isolate/Isolate/spawn.html">spawn</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="spawn-param-entryPoint"><span class="type-annotation">void</span> <span class="parameter-name">entryPoint</span>(<span class="parameter" id="param-message"><span class="type-annotation">T</span> <span class="parameter-name">message</span></span>), </span> <span class="parameter" id="spawn-param-message"><span class="type-annotation">T</span> <span class="parameter-name">message</span>, {</span> <span class="parameter" id="spawn-param-paused"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">paused</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="spawn-param-errorsAreFatal"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">errorsAreFatal</span>, </span> <span class="parameter" id="spawn-param-onExit"><span class="type-annotation"><a href="dart-isolate/SendPort-class.html">SendPort</a></span> <span class="parameter-name">onExit</span>, </span> <span class="parameter" id="spawn-param-onError"><span class="type-annotation"><a href="dart-isolate/SendPort-class.html">SendPort</a></span> <span class="parameter-name">onError</span>, </span> <span class="parameter" id="spawn-param-debugName"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">debugName</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-isolate/Isolate-class.html">Isolate</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -399,6 +401,7 @@ the specified URI. <a href="dart-isolate/Isolate/spawnUri.html">[...]</a>
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-isolate/Isolate-class.html#constructors">Constructors</a></li>
       <li><a href="dart-isolate/Isolate/Isolate.html">Isolate</a></li>
     
@@ -442,6 +445,7 @@ the specified URI. <a href="dart-isolate/Isolate/spawnUri.html">[...]</a>
       <li class="section-title"><a href="dart-isolate/Isolate-class.html#constants">Constants</a></li>
       <li><a href="dart-isolate/Isolate/beforeNextEvent-constant.html">beforeNextEvent</a></li>
       <li><a href="dart-isolate/Isolate/immediate-constant.html">immediate</a></li>
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -449,10 +453,11 @@ the specified URI. <a href="dart-isolate/Isolate/spawnUri.html">[...]</a>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -460,7 +465,7 @@ the specified URI. <a href="dart-isolate/Isolate/spawnUri.html">[...]</a>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

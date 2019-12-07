@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>Gradient class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/Gradient-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/Gradient/Gradient.linear.html">linear</a></li>
       <li><a href="dart-ui/Gradient/Gradient.radial.html">radial</a></li>
@@ -73,11 +74,12 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Gradient.sweep constructor</h1></div>
+      <div><h1><span class="kind-constructor">Gradient.sweep</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -96,9 +98,9 @@ not provided, then only two stops, at 0.0 and 1.0, are implied (and
 <code>color</code> must therefore only have two entries).</p>
 <p>The behavior before <code>startAngle</code> and after <code>endAngle</code> is described by the
 <code>tileMode</code> argument. For details, see the <a href="dart-ui/TileMode-class.html">TileMode</a> enum.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_sweep.png">
-<img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_sweep.png">
-<img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_sweep.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_sweep.png" alt="">
+<img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_sweep.png" alt="">
+<img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_sweep.png" alt=""></p>
 <p>If <code>center</code>, <code>colors</code>, <code>tileMode</code>, <code>startAngle</code>, or <code>endAngle</code> are null,
 or if <code>colors</code> or <code>colorStops</code> contain null values, this constructor will
 throw a <a href="dart-core/NoSuchMethodError-class.html">NoSuchMethodError</a>.</p>
@@ -127,7 +129,7 @@ be a column-major matrix packed into a list of 16 values.</p>
      super._() {
   _validateColorStops(colors, colorStops);
   final Int32List colorsBuffer = _encodeColorList(colors);
-  final Float32List colorStopsBuffer = colorStops == null ? null : new Float32List.fromList(colorStops);
+  final Float32List colorStopsBuffer = colorStops == null ? null : Float32List.fromList(colorStops);
   _constructor();
   _initSweep(center.dx, center.dy, colorsBuffer, colorStopsBuffer, tileMode.index, startAngle, endAngle, matrix4);
 }</code></pre>
@@ -142,10 +144,11 @@ be a column-major matrix packed into a list of 16 values.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -153,7 +156,7 @@ be a column-major matrix packed into a list of 16 values.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

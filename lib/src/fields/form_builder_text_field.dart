@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 
 class FormBuilderTextField extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final String initialValue;
-  final bool readonly;
+  final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
@@ -39,15 +40,20 @@ class FormBuilderTextField extends StatefulWidget {
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
   final InputCounterWidgetBuilder buildCounter;
+  final bool expands;
+  final int minLines;
+  final bool showCursor;
+  final FormFieldSetter onSaved;
 
   FormBuilderTextField({
+    Key key,
     @required this.attribute,
     this.initialValue,
     this.validators = const [],
-    this.readonly = false,
+    this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
-    this.maxLines = 1,
+    this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -75,38 +81,46 @@ class FormBuilderTextField extends StatefulWidget {
     this.buildCounter,
     this.onChanged,
     this.valueTransformer,
-  });
+    this.expands = false,
+    this.minLines,
+    this.showCursor,
+    this.onSaved,
+  }) : super(key: key);
 
   @override
   FormBuilderTextFieldState createState() => FormBuilderTextFieldState();
 }
 
 class FormBuilderTextFieldState extends State<FormBuilderTextField> {
-  bool _readonly = false;
-  TextEditingController _textEditingController = TextEditingController();
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  bool _readOnly = false;
+  TextEditingController _effectiveController = TextEditingController();
   FormBuilderState _formState;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  String _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _readonly = (_formState?.readonly == true) ? true : widget.readonly;
+    _initialValue = widget.initialValue ??
+        (_formState.initialValue.containsKey(widget.attribute)
+            ? _formState.initialValue[widget.attribute]
+            : null);
     if (widget.controller != null)
-      _textEditingController = widget.controller;
+      _effectiveController = widget.controller;
     else
-      _textEditingController = TextEditingController(
-        text: widget.initialValue != null ? "${widget.initialValue}" : '',
-      );
-    _textEditingController.addListener(() {
-      if (widget.onChanged != null)
-        widget.onChanged(_textEditingController.text);
+      _effectiveController.text = "${_initialValue ?? ''}";
+
+    _effectiveController.addListener(() {
+      if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
     return TextFormField(
       key: _fieldKey,
       validator: (val) {
@@ -114,28 +128,32 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
           if (widget.validators[i](val) != null)
             return widget.validators[i](val);
         }
+        return null;
       },
       onSaved: (val) {
+        var transformed;
         if (widget.valueTransformer != null) {
-          var transformed = widget.valueTransformer(val);
-          FormBuilder.of(context)
-              ?.setAttributeValue(widget.attribute, transformed);
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
         } else
           _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
       },
-      enabled: !_readonly,
+      enabled: !_readOnly,
       style: widget.style,
-      focusNode: _readonly ? AlwaysDisabledFocusNode() : widget.focusNode,
+      focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
       decoration: widget.decoration.copyWith(
-        enabled: !_readonly,
+        enabled: !_readOnly,
       ),
       autovalidate: widget.autovalidate ?? false,
-      // initialValue: widget.initialValue != null ? "${widget.initialValue}" : '',
+      // initialValue: "${_initialValue ?? ''}",
       maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
       onEditingComplete: widget.onEditingComplete,
-      controller: _textEditingController,
+      controller: _effectiveController,
       autocorrect: widget.autocorrect,
       autofocus: widget.autofocus,
       buildCounter: widget.buildCounter,
@@ -149,23 +167,22 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       maxLengthEnforced: widget.maxLengthEnforced,
       onFieldSubmitted: widget.onFieldSubmitted,
       scrollPadding: widget.scrollPadding,
-      // strutStyle: widget.strutStyle,
       textAlign: widget.textAlign,
       textCapitalization: widget.textCapitalization,
       textDirection: widget.textDirection,
       textInputAction: widget.textInputAction,
+      strutStyle: widget.strutStyle,
+      readOnly: _readOnly,
+      expands: widget.expands,
+      minLines: widget.minLines,
+      showCursor: widget.showCursor,
     );
   }
 
   @override
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
-    _textEditingController.dispose();
+    _effectiveController.dispose();
     super.dispose();
   }
-}
-
-class AlwaysDisabledFocusNode extends FocusNode {
-  @override
-  bool get hasFocus => false;
 }

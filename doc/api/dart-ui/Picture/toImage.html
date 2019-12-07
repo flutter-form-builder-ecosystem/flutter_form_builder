@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -54,21 +54,24 @@
     <h5>Picture class</h5>
     <ol>
     
-      <li class="section-title">
-        <a href="dart-ui/Picture-class.html#instance-properties">Properties</a>
-      </li>
-      <li><a href="dart-ui/Picture/approximateBytesUsed.html">approximateBytesUsed</a></li>
-      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title"><a href="dart-ui/Picture-class.html#instance-methods">Methods</a></li>
-      <li><a href="dart-ui/Picture/dispose.html">dispose</a></li>
-      <li><a href="dart-ui/Picture/toImage.html">toImage</a></li>
-      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+        <li class="section-title">
+            <a href="dart-ui/Picture-class.html#instance-properties">Properties</a>
+        </li>
+        <li><a href="dart-ui/Picture/approximateBytesUsed.html">approximateBytesUsed</a></li>
+        <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="dart-ui/Picture-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="dart-ui/Picture-class.html#instance-methods">Methods</a></li>
+        <li><a href="dart-ui/Picture/dispose.html">dispose</a></li>
+        <li><a href="dart-ui/Picture/toImage.html">toImage</a></li>
+        <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="dart-core/Object/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="dart-ui/Picture-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
     
     
     
@@ -76,12 +79,12 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>toImage method</h1></div>
+      <div><h1><span class="kind-method">toImage</span> method</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-ui/Image-class.html">Image</a></span>&gt;</span></span>
             <span class="name ">toImage</span>
-(<wbr><span class="parameter" id="toImage-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="toImage-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span></span>)
+(<wbr><span class="parameter" id="toImage-param-width"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">width</span></span> <span class="parameter" id="toImage-param-height"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">height</span></span>)
       
     </section>
     <section class="desc markdown">
@@ -96,7 +99,7 @@ rasterized the first time the image is drawn and then cached.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">Future&lt;Image&gt; toImage(int width, int height) {
   if (width &lt;= 0 || height &lt;= 0)
-    throw new Exception(&#39;Invalid image dimensions.&#39;);
+    throw Exception(&#39;Invalid image dimensions.&#39;);
   return _futurize(
     (_Callback&lt;Image&gt; callback) =&gt; _toImage(width, height, callback)
   );
@@ -112,10 +115,11 @@ rasterized the first time the image is drawn and then cached.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -123,7 +127,7 @@ rasterized the first time the image is drawn and then cached.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

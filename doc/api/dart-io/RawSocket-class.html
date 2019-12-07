@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -134,6 +134,7 @@
       <li><a href="dart-io/ZLibOption-class.html">ZLibOption</a></li>
     
     
+    
       <li class="section-title"><a href="dart-io/dart-io-library.html#constants">Constants</a></li>
       <li><a class="deprecated" href="dart-io/APPEND-constant.html">APPEND</a></li>
       <li><a class="deprecated" href="dart-io/GZIP-constant.html">GZIP</a></li>
@@ -159,6 +160,8 @@
       <li><a href="dart-io/sleep.html">sleep</a></li>
       <li><a href="dart-io/stdioType.html">stdioType</a></li>
     
+      <li class="section-title"><a href="dart-io/dart-io-library.html#enums">Enums</a></li>
+      <li><a href="dart-io/HttpClientResponseCompressionState-class.html">HttpClientResponseCompressionState</a></li>
     
       <li class="section-title"><a href="dart-io/dart-io-library.html#typedefs">Typedefs</a></li>
       <li><a href="dart-io/BadCertificateCallback.html">BadCertificateCallback</a></li>
@@ -181,11 +184,14 @@
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>RawSocket class </h1></div>
+      <div><h1><span class="kind-class">RawSocket</span> class </h1></div>
 
     <section class="desc markdown">
-      <p>The <a href="dart-io/RawSocket-class.html">RawSocket</a> is a low-level interface to a socket, exposing the raw
-events signaled by the system. It's a <a href="dart-async/Stream-class.html">Stream</a> of <a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a>s.</p>
+      <p>A <a href="dart-io/RawSocket-class.html">RawSocket</a> is an unbuffered interface to a TCP socket.</p>
+<p>The raw socket delivers the data stream in the same chunks as the underlying
+operating system.</p>
+<p>It is not the same as a
+<a href="http://man7.org/linux/man-pages/man7/raw.7.html">POSIX raw socket</a>.</p>
     </section>
     
     <section>
@@ -374,11 +380,11 @@ underlying connection is completely destroyed. <a href="dart-io/RawSocket/close.
         <dd>
           Use <a href="dart-io/RawSocket/getRawOption.html">getRawOption</a> to get low level information about the <a href="dart-io/RawSocket-class.html">RawSocket</a>. See
 <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> for available options. <a href="dart-io/RawSocket/getRawOption.html">[...]</a>
-                  
+                  <div class="features">@Since(&quot;2.2&quot;)</div>
 </dd>
         <dt id="read" class="callable">
           <span class="name"><a href="dart-io/RawSocket/read.html">read</a></span><span class="signature">(<wbr>[<span class="parameter" id="read-param-len"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">len</span></span> ])
-            <span class="returntype parameter">&#8594; <a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/int-class.html">int</a></span>&gt;</span></span>
+            <span class="returntype parameter">&#8594; <a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span>
           </span>
                   </dt>
         <dd>
@@ -407,7 +413,7 @@ available options. <a href="dart-io/RawSocket/setOption.html">[...]</a>
         <dd>
           Use <a href="dart-io/RawSocket/setRawOption.html">setRawOption</a> to customize the <a href="dart-io/RawSocket-class.html">RawSocket</a>. See <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> for
 available options. <a href="dart-io/RawSocket/setRawOption.html">[...]</a>
-                  
+                  <div class="features">@Since(&quot;2.2&quot;)</div>
 </dd>
         <dt id="shutdown" class="callable">
           <span class="name"><a href="dart-io/RawSocket/shutdown.html">shutdown</a></span><span class="signature">(<wbr><span class="parameter" id="shutdown-param-direction"><span class="type-annotation"><a href="dart-io/SocketDirection-class.html">SocketDirection</a></span> <span class="parameter-name">direction</span></span>)
@@ -422,7 +428,7 @@ can result in a <a href="dart-io/RawSocketEvent/readClosed-constant.html">RawSoc
                   
 </dd>
         <dt id="write" class="callable">
-          <span class="name"><a href="dart-io/RawSocket/write.html">write</a></span><span class="signature">(<wbr><span class="parameter" id="write-param-buffer"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">buffer</span>, [</span> <span class="parameter" id="write-param-offset"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span>, </span> <span class="parameter" id="write-param-count"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">count</span></span> ])
+          <span class="name"><a href="dart-io/RawSocket/write.html">write</a></span><span class="signature">(<wbr><span class="parameter" id="write-param-buffer"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">buffer</span>, [</span> <span class="parameter" id="write-param-offset"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">offset</span></span> <span class="parameter" id="write-param-count"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">count</span></span> ])
             <span class="returntype parameter">&#8594; <a href="dart-core/int-class.html">int</a></span>
           </span>
                   </dt>
@@ -434,7 +440,7 @@ available in the socket. <a href="dart-io/RawSocket/write.html">[...]</a>
                   
 </dd>
         <dt id="any" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/any.html">any</a></span><span class="signature">(<wbr><span class="parameter" id="any-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/any.html">any</a></span><span class="signature">(<wbr><span class="parameter" id="any-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/bool-class.html">bool</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -443,7 +449,7 @@ available in the socket. <a href="dart-io/RawSocket/write.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="asBroadcastStream" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/asBroadcastStream.html">asBroadcastStream</a></span><span class="signature">(<wbr>{<span class="parameter" id="asBroadcastStream-param-onListen"><span class="type-annotation">void</span> <span class="parameter-name">onListen</span>(<span class="parameter" id="onListen-param-subscription"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">subscription</span></span>), </span> <span class="parameter" id="asBroadcastStream-param-onCancel"><span class="type-annotation">void</span> <span class="parameter-name">onCancel</span>(<span class="parameter" id="onCancel-param-subscription"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">subscription</span></span>)</span> })
+          <span class="name"><a href="dart-async/Stream/asBroadcastStream.html">asBroadcastStream</a></span><span class="signature">(<wbr>{<span class="parameter" id="asBroadcastStream-param-onListen"><span class="type-annotation">void</span> <span class="parameter-name">onListen</span>(<span class="parameter" id="param-subscription"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span> <span class="parameter-name">subscription</span></span>)</span> <span class="parameter" id="asBroadcastStream-param-onCancel"><span class="type-annotation">void</span> <span class="parameter-name">onCancel</span>(<span class="parameter" id="param-subscription"><span class="type-annotation"><a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span> <span class="parameter-name">subscription</span></span>)</span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -452,7 +458,7 @@ available in the socket. <a href="dart-io/RawSocket/write.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="asyncExpand" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/asyncExpand.html">asyncExpand</a></span><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="asyncExpand-param-convert"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span> <span class="parameter-name">convert</span>(<span class="parameter" id="convert-param-event"><span class="type-annotation">T</span> <span class="parameter-name">event</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/asyncExpand.html">asyncExpand</a></span><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="asyncExpand-param-convert"><span class="type-annotation"><a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span> <span class="parameter-name">convert</span>(<span class="parameter" id="param-event"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">event</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span>
           </span>
                   </dt>
@@ -461,7 +467,7 @@ available in the socket. <a href="dart-io/RawSocket/write.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="asyncMap" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/asyncMap.html">asyncMap</a></span><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="asyncMap-param-convert"><span class="type-annotation"><a href="dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span> <span class="parameter-name">convert</span>(<span class="parameter" id="convert-param-event"><span class="type-annotation">T</span> <span class="parameter-name">event</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/asyncMap.html">asyncMap</a></span><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="asyncMap-param-convert"><span class="type-annotation"><a href="dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span> <span class="parameter-name">convert</span>(<span class="parameter" id="param-event"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">event</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span>
           </span>
                   </dt>
@@ -489,7 +495,7 @@ mapped to a new event. <a href="dart-async/Stream/asyncMap.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="distinct" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/distinct.html">distinct</a></span><span class="signature">(<wbr>[<span class="parameter" id="distinct-param-equals"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">equals</span>(<span class="parameter" id="equals-param-previous"><span class="type-annotation">T</span> <span class="parameter-name">previous</span>, </span> <span class="parameter" id="equals-param-next"><span class="type-annotation">T</span> <span class="parameter-name">next</span></span>)</span> ])
+          <span class="name"><a href="dart-async/Stream/distinct.html">distinct</a></span><span class="signature">(<wbr>[<span class="parameter" id="distinct-param-equals"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">equals</span>(<span class="parameter" id="param-previous"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">previous</span></span> <span class="parameter" id="param-next"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">next</span></span>)</span> ])
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -517,7 +523,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="every" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/every.html">every</a></span><span class="signature">(<wbr><span class="parameter" id="every-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/every.html">every</a></span><span class="signature">(<wbr><span class="parameter" id="every-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-core/bool-class.html">bool</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -526,7 +532,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="expand" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/expand.html">expand</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="expand-param-convert"><span class="type-annotation"><a href="dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">convert</span>(<span class="parameter" id="convert-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/expand.html">expand</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="expand-param-convert"><span class="type-annotation"><a href="dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span> <span class="parameter-name">convert</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>
           </span>
                   </dt>
@@ -535,7 +541,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="firstWhere" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/firstWhere.html">firstWhere</a></span><span class="signature">(<wbr><span class="parameter" id="firstWhere-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>), {</span> <span class="parameter" id="firstWhere-param-orElse"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">orElse</span>()</span> })
+          <span class="name"><a href="dart-async/Stream/firstWhere.html">firstWhere</a></span><span class="signature">(<wbr><span class="parameter" id="firstWhere-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>), {</span> <span class="parameter" id="firstWhere-param-orElse"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">orElse</span>()</span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -544,7 +550,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="fold" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/fold.html">fold</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="fold-param-initialValue"><span class="type-annotation">S</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="fold-param-combine"><span class="type-annotation">S</span> <span class="parameter-name">combine</span>(<span class="parameter" id="combine-param-previous"><span class="type-annotation">S</span> <span class="parameter-name">previous</span>, </span> <span class="parameter" id="combine-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/fold.html">fold</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="fold-param-initialValue"><span class="type-annotation">S</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="fold-param-combine"><span class="type-annotation">S</span> <span class="parameter-name">combine</span>(<span class="parameter" id="param-previous"><span class="type-annotation">S</span> <span class="parameter-name">previous</span>, </span> <span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>
           </span>
                   </dt>
@@ -553,7 +559,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="forEach" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/forEach.html">forEach</a></span><span class="signature">(<wbr><span class="parameter" id="forEach-param-action"><span class="type-annotation">void</span> <span class="parameter-name">action</span>(<span class="parameter" id="action-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/forEach.html">forEach</a></span><span class="signature">(<wbr><span class="parameter" id="forEach-param-action"><span class="type-annotation">void</span> <span class="parameter-name">action</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a></span>
           </span>
                   </dt>
@@ -562,7 +568,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="handleError" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/handleError.html">handleError</a></span><span class="signature">(<wbr><span class="parameter" id="handleError-param-onError"><span class="type-annotation"><a href="dart-core/Function-class.html">Function</a></span> <span class="parameter-name">onError</span>, {</span> <span class="parameter" id="handleError-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-error"><span class="type-annotation">dynamic</span> <span class="parameter-name">error</span></span>)</span> })
+          <span class="name"><a href="dart-async/Stream/handleError.html">handleError</a></span><span class="signature">(<wbr><span class="parameter" id="handleError-param-onError"><span class="type-annotation"><a href="dart-core/Function-class.html">Function</a></span> <span class="parameter-name">onError</span>, {</span> <span class="parameter" id="handleError-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-error"><span class="type-annotation">dynamic</span> <span class="parameter-name">error</span></span>)</span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -580,7 +586,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="lastWhere" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/lastWhere.html">lastWhere</a></span><span class="signature">(<wbr><span class="parameter" id="lastWhere-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>), {</span> <span class="parameter" id="lastWhere-param-orElse"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">orElse</span>()</span> })
+          <span class="name"><a href="dart-async/Stream/lastWhere.html">lastWhere</a></span><span class="signature">(<wbr><span class="parameter" id="lastWhere-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>), {</span> <span class="parameter" id="lastWhere-param-orElse"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">orElse</span>()</span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -589,7 +595,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="listen" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/listen.html">listen</a></span><span class="signature">(<wbr><span class="parameter" id="listen-param-onData"><span class="type-annotation">void</span> <span class="parameter-name">onData</span>(<span class="parameter" id="onData-param-event"><span class="type-annotation">T</span> <span class="parameter-name">event</span></span>), {</span> <span class="parameter" id="listen-param-onError"><span class="type-annotation"><a href="dart-core/Function-class.html">Function</a></span> <span class="parameter-name">onError</span>, </span> <span class="parameter" id="listen-param-onDone"><span class="type-annotation">void</span> <span class="parameter-name">onDone</span>(), </span> <span class="parameter" id="listen-param-cancelOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">cancelOnError</span></span> })
+          <span class="name"><a href="dart-async/Stream/listen.html">listen</a></span><span class="signature">(<wbr><span class="parameter" id="listen-param-onData"><span class="type-annotation">void</span> <span class="parameter-name">onData</span>(<span class="parameter" id="param-event"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">event</span></span>), {</span> <span class="parameter" id="listen-param-onError"><span class="type-annotation"><a href="dart-core/Function-class.html">Function</a></span> <span class="parameter-name">onError</span>, </span> <span class="parameter" id="listen-param-onDone"><span class="type-annotation">void</span> <span class="parameter-name">onDone</span>(), </span> <span class="parameter" id="listen-param-cancelOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">cancelOnError</span></span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/StreamSubscription-class.html">StreamSubscription</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -598,7 +604,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="map" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/map.html">map</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="map-param-convert"><span class="type-annotation">S</span> <span class="parameter-name">convert</span>(<span class="parameter" id="convert-param-event"><span class="type-annotation">T</span> <span class="parameter-name">event</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/map.html">map</a></span><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="map-param-convert"><span class="type-annotation">S</span> <span class="parameter-name">convert</span>(<span class="parameter" id="param-event"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">event</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter">S</span>&gt;</span></span>
           </span>
                   </dt>
@@ -625,7 +631,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="reduce" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/reduce.html">reduce</a></span><span class="signature">(<wbr><span class="parameter" id="reduce-param-combine"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">combine</span>(<span class="parameter" id="combine-param-previous"><span class="type-annotation">T</span> <span class="parameter-name">previous</span>, </span> <span class="parameter" id="combine-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/reduce.html">reduce</a></span><span class="signature">(<wbr><span class="parameter" id="reduce-param-combine"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">combine</span>(<span class="parameter" id="param-previous"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">previous</span></span> <span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -634,7 +640,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="singleWhere" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/singleWhere.html">singleWhere</a></span><span class="signature">(<wbr><span class="parameter" id="singleWhere-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>), {</span> <span class="parameter" id="singleWhere-param-orElse"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">orElse</span>()</span> })
+          <span class="name"><a href="dart-async/Stream/singleWhere.html">singleWhere</a></span><span class="signature">(<wbr><span class="parameter" id="singleWhere-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>), {</span> <span class="parameter" id="singleWhere-param-orElse"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">orElse</span>()</span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -652,7 +658,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="skipWhile" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/skipWhile.html">skipWhile</a></span><span class="signature">(<wbr><span class="parameter" id="skipWhile-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/skipWhile.html">skipWhile</a></span><span class="signature">(<wbr><span class="parameter" id="skipWhile-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -670,7 +676,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="takeWhile" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/takeWhile.html">takeWhile</a></span><span class="signature">(<wbr><span class="parameter" id="takeWhile-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-element"><span class="type-annotation">T</span> <span class="parameter-name">element</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/takeWhile.html">takeWhile</a></span><span class="signature">(<wbr><span class="parameter" id="takeWhile-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-element"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">element</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -679,7 +685,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="timeout" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/timeout.html">timeout</a></span><span class="signature">(<wbr><span class="parameter" id="timeout-param-timeLimit"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">timeLimit</span>, {</span> <span class="parameter" id="timeout-param-onTimeout"><span class="type-annotation">void</span> <span class="parameter-name">onTimeout</span>(<span class="parameter" id="onTimeout-param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">sink</span></span>)</span> })
+          <span class="name"><a href="dart-async/Stream/timeout.html">timeout</a></span><span class="signature">(<wbr><span class="parameter" id="timeout-param-timeLimit"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">timeLimit</span>, {</span> <span class="parameter" id="timeout-param-onTimeout"><span class="type-annotation">void</span> <span class="parameter-name">onTimeout</span>(<span class="parameter" id="param-sink"><span class="type-annotation"><a href="dart-async/EventSink-class.html">EventSink</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span> <span class="parameter-name">sink</span></span>)</span> })
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -724,7 +730,7 @@ occurred. <a href="dart-async/Stream/drain.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="where" class="callable inherited">
-          <span class="name"><a href="dart-async/Stream/where.html">where</a></span><span class="signature">(<wbr><span class="parameter" id="where-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="test-param-event"><span class="type-annotation">T</span> <span class="parameter-name">event</span></span>)</span>)
+          <span class="name"><a href="dart-async/Stream/where.html">where</a></span><span class="signature">(<wbr><span class="parameter" id="where-param-test"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">test</span>(<span class="parameter" id="param-event"><span class="type-annotation"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span> <span class="parameter-name">event</span></span>)</span>)
             <span class="returntype parameter">&#8594; <a href="dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="dart-io/RawSocketEvent-class.html">RawSocketEvent</a></span>&gt;</span></span>
           </span>
                   </dt>
@@ -784,6 +790,7 @@ longer needed.
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="dart-io/RawSocket-class.html#constructors">Constructors</a></li>
       <li><a href="dart-io/RawSocket/RawSocket.html">RawSocket</a></li>
     
@@ -856,6 +863,7 @@ longer needed.
       <li><a href="dart-io/RawSocket/connect.html">connect</a></li>
       <li><a href="dart-io/RawSocket/startConnect.html">startConnect</a></li>
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -863,10 +871,11 @@ longer needed.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -874,7 +883,7 @@ longer needed.
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

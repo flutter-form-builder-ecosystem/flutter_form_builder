@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>FormBuilderCustomField class</h5>
     <ol>
+    
       <li class="section-title"><a href="flutter_form_builder/FormBuilderCustomField-class.html#constructors">Constructors</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomField/FormBuilderCustomField.html">FormBuilderCustomField</a></li>
     
@@ -61,6 +62,7 @@
       </li>
       <li><a href="flutter_form_builder/FormBuilderCustomField/attribute.html">attribute</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomField/formField.html">formField</a></li>
+      <li><a href="flutter_form_builder/FormBuilderCustomField/initialValue.html">initialValue</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomField/validators.html">validators</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomField/valueTransformer.html">valueTransformer</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -84,26 +86,29 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>FormBuilderCustomField&lt;<wbr><span class="type-parameter">T</span>&gt; constructor</h1></div>
+      <div><h1><span class="kind-constructor">FormBuilderCustomField&lt;<wbr><span class="type-parameter">T</span>&gt;</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderCustomField&lt;<wbr><span class="type-parameter">T</span>&gt;</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-formField"><span>@required</span> <span class="type-annotation">FormField<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">formField</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span></span> })
+      <span class="name ">FormBuilderCustomField&lt;<wbr><span class="type-parameter">T</span>&gt;</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-formField"><span>@required</span> <span class="type-annotation">FormField<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">formField</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">T</span> <span class="parameter-name">initialValue</span></span> })
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">FormBuilderCustomField({
+  Key key,
   @required this.attribute,
   @required this.formField,
   this.validators = const [],
   this.valueTransformer,
-});</code></pre>
+  this.initialValue,
+}) : super(key: key);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -115,10 +120,11 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -126,7 +132,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

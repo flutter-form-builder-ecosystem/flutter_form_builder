@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>StrutStyle class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/StrutStyle-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/StrutStyle/StrutStyle.html">StrutStyle</a></li>
     
@@ -71,11 +72,12 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>StrutStyle constructor</h1></div>
+      <div><h1><span class="kind-constructor">StrutStyle</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -83,32 +85,53 @@
     </section>
 
     <section class="desc markdown">
-      <p>Creates a new StrutStyle object.</p><ul><li>
+      <p>Creates a new StrutStyle object.</p>
+<ul>
+<li>
 <p><code>fontFamily</code>: The name of the font to use when painting the text (e.g.,
-Roboto).</p></li><li>
-<p><code>fontFamilyFallback</code>: An ordered list of font family names that will be searched for when
- the font in <code>fontFamily</code> cannot be found.</p></li><li>
+Roboto).</p>
+</li>
+<li>
+<p><code>fontFamilyFallback</code>: An ordered list of font family names that will be
+ searched for when the font in <code>fontFamily</code> cannot be found.</p>
+</li>
+<li>
 <p><code>fontSize</code>: The size of glyphs (in logical pixels) to use when painting
-the text.</p></li><li>
+the text.</p>
+</li>
+<li>
 <p><code>height</code>: The minimum height of the line boxes, as a multiplier of the
-font size. The lines of the paragraph will be at least `(height + leading)</p><ul><li>fontSize` tall when fontSize is not null. When fontSize is null, there
-is no minimum line height. Tall glyphs due to baseline alignment or large
-<code>TextStyle.fontSize</code> may cause the actual line height after layout to be
-taller than specified here. <code>fontSize</code> must be provided for this property
-to take effect.</li></ul></li><li>
+font size. The lines of the paragraph will be at least
+<code>(height + leading) * fontSize</code> tall when <code>fontSize</code> is not null. Omitting
+<code>height</code> will allow the minimum line height to take the height as defined
+by the font, which may not be exactly the height of the <code>fontSize</code>. When
+<code>fontSize</code> is null, there is no minimum line height. Tall glyphs due to
+baseline alignment or large <code>TextStyle.fontSize</code> may cause the actual line
+height after layout to be taller than specified here. The <code>fontSize</code> must
+be provided for this property to take effect.</p>
+</li>
+<li>
 <p><code>leading</code>: The minimum amount of leading between lines as a multiple of
-the font size. <code>fontSize</code> must be provided for this property to take effect.</p></li><li>
+the font size. <code>fontSize</code> must be provided for this property to take effect.</p>
+</li>
+<li>
 <p><code>fontWeight</code>: The typeface thickness to use when painting the text
-(e.g., bold).</p></li><li>
+(e.g., bold).</p>
+</li>
+<li>
 <p><code>fontStyle</code>: The typeface variant to use when drawing the letters (e.g.,
-italics).</p></li><li>
+italics).</p>
+</li>
+<li>
 <p><code>forceStrutHeight</code>: When true, the paragraph will force all lines to be exactly
 <code>(height + leading) * fontSize</code> tall from baseline to baseline.
 <a href="dart-ui/TextStyle-class.html">TextStyle</a> is no longer able to influence the line height, and any tall
 glyphs may overlap with lines above. If a <code>fontFamily</code> is specified, the
 total ascent of the first line will be the min of the <code>Ascent + half-leading</code>
 of the <code>fontFamily</code> and <code>(height + leading) * fontSize</code>. Otherwise, it
-will be determined by the Ascent + half-leading of the first text.</p></li></ul>
+will be determined by the Ascent + half-leading of the first text.</p>
+</li>
+</ul>
     </section>
     
     <section class="summary source-code" id="source">
@@ -145,10 +168,11 @@ will be determined by the Ascent + half-leading of the first text.</p></li></ul>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -156,7 +180,7 @@ will be determined by the Ascent + half-leading of the first text.</p></li></ul>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

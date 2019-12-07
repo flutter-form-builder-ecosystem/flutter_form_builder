@@ -1,9 +1,7 @@
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:intl/intl.dart';
 
-import './data.dart';
+import 'data.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,6 +35,7 @@ class MyHomePageState extends State<MyHomePage> {
       GlobalKey<FormFieldState>();
 
   ValueChanged _onChanged = (val) => print(val);
+  var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +52,18 @@ class MyHomePageState extends State<MyHomePage> {
                 // context,
                 key: _fbKey,
                 autovalidate: true,
-                // readonly: true,
+                initialValue: {
+                  'movie_rating': 5,
+                },
+                // readOnly: true,
                 child: Column(
                   children: <Widget>[
-                    FormBuilderCustomField(
+                    /*FormBuilderCustomField(
                       attribute: "name",
                       validators: [
                         FormBuilderValidators.required(),
                       ],
                       formField: FormField(
-                        // key: _fieldKey,
                         enabled: true,
                         builder: (FormFieldState<dynamic> field) {
                           return InputDecorator(
@@ -93,9 +94,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderChipsInput(
                       decoration: InputDecoration(labelText: "Chips"),
                       attribute: 'chips_test',
-                      // readonly: true,
                       onChanged: _onChanged,
-                      // valueTransformer: (val) => val.length > 0 ? val[0] : null,
                       initialValue: [
                         Contact('Andrew', 'stock@man.com',
                             'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
@@ -104,7 +103,7 @@ class MyHomePageState extends State<MyHomePage> {
                       findSuggestions: (String query) {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
-                          return mockResults.where((profile) {
+                          return contacts.where((profile) {
                             return profile.name
                                     .toLowerCase()
                                     .contains(query.toLowerCase()) ||
@@ -149,11 +148,18 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderDateTimePicker(
                       attribute: "date",
                       onChanged: _onChanged,
-                      inputType: InputType.date,
-                      format: DateFormat("yyyy-MM-dd"),
+                      inputType: InputType.time,
                       decoration:
                           InputDecoration(labelText: "Appointment Time"),
                       // readonly: true,
+                    ),
+                    FormBuilderDateRangePicker(
+                      attribute: "date_range",
+                      firstDate: DateTime(1970),
+                      lastDate: DateTime(2020),
+                      format: DateFormat("yyyy-MM-dd"),
+                      onChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "Date Range"),
                     ),
                     FormBuilderSlider(
                       attribute: "slider",
@@ -161,52 +167,91 @@ class MyHomePageState extends State<MyHomePage> {
                       onChanged: _onChanged,
                       min: 0.0,
                       max: 10.0,
-                      initialValue: 1.0,
+                      initialValue: 7.0,
                       divisions: 20,
-                      decoration:
-                          InputDecoration(labelText: "Number of somethings"),
+                      activeColor: Colors.red,
+                      inactiveColor: Colors.pink[100],
+                      decoration: InputDecoration(
+                        labelText: "Number of things",
+                      ),
+                    ),
+                    FormBuilderRangeSlider(
+                      attribute: "range_slider",
+                      validators: [FormBuilderValidators.min(6)],
+                      onChanged: _onChanged,
+                      min: 0.0,
+                      max: 100.0,
+                      initialValue: RangeValues(4, 7),
+                      divisions: 20,
+                      activeColor: Colors.red,
+                      inactiveColor: Colors.pink[100],
+                      decoration: InputDecoration(
+                        labelText: "Price Range",
+                      ),
                     ),
                     FormBuilderCheckbox(
                       attribute: 'accept_terms',
                       initialValue: false,
                       onChanged: _onChanged,
                       leadingInput: true,
-                      label: Text(
-                          "I have read and agree to the terms and conditions"),
+                      label: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'I have read and agree to the ',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            TextSpan(
+                              text: 'Terms and Conditions',
+                              style: TextStyle(color: Colors.blue),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  print("launch url");
+                                },
+                            ),
+                          ],
+                        ),
+                      ),
                       validators: [
                         FormBuilderValidators.requiredTrue(
                           errorText:
                               "You must accept terms and conditions to continue",
                         ),
                       ],
-                    ),
-                    FormBuilderDropdown(
-                      attribute: "gender",
-                      decoration: InputDecoration(labelText: "Gender"),
-                      // initialValue: 'Male',
-                      onChanged: _onChanged,
-                      hint: Text('Select Gender'),
-                      validators: [FormBuilderValidators.required()],
-                      items: ['Male', 'Female', 'Other']
-                          .map((gender) => DropdownMenuItem(
-                                value: gender,
-                                child: Text('$gender'),
-                              ))
-                          .toList(),
-                    ),
+                    ),*/
                     FormBuilderTextField(
                       attribute: "age",
-                      decoration: InputDecoration(labelText: "Age"),
+                      decoration: InputDecoration(
+                        labelText: "Age",
+                      ),
                       onChanged: _onChanged,
                       valueTransformer: (text) => num.tryParse(text),
                       validators: [
+                        FormBuilderValidators.required(),
                         FormBuilderValidators.numeric(),
                         FormBuilderValidators.max(70),
                       ],
+                      keyboardType: TextInputType.number,
+                    ),
+                    FormBuilderDropdown(
+                      attribute: "gender",
+                      decoration: InputDecoration(
+                        labelText: "Gender",
+                      ),
+                      // initialValue: 'Male',
+                      hint: Text('Select Gender'),
+                      validators: [FormBuilderValidators.required()],
+                      items: genderOptions
+                          .map((gender) => DropdownMenuItem(
+                        value: gender,
+                        child: Text('$gender'),
+                      ))
+                          .toList(),
                     ),
                     FormBuilderTypeAhead(
-                      // initialValue: "Canada",
-                      decoration: InputDecoration(labelText: "Country"),
+                      decoration: InputDecoration(
+                        labelText: "Country",
+                      ),
                       attribute: 'country',
                       onChanged: _onChanged,
                       itemBuilder: (context, country) {
@@ -214,6 +259,8 @@ class MyHomePageState extends State<MyHomePage> {
                           title: Text(country),
                         );
                       },
+                      controller: TextEditingController(text: ''),
+                      initialValue: "Uganda",
                       suggestionsCallback: (query) {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
@@ -229,6 +276,39 @@ class MyHomePageState extends State<MyHomePage> {
                                     b.toLowerCase().indexOf(lowercaseQuery)));
                         } else {
                           return allCountries;
+                        }
+                      },
+                    ),
+                    /*FormBuilderTypeAhead(
+                      decoration: InputDecoration(
+                        labelText: "Contact Person",
+                      ),
+                      initialValue: contacts[0],
+                      attribute: 'contact_person',
+                      onChanged: _onChanged,
+                      itemBuilder: (context, Contact contact) {
+                        return ListTile(
+                          title: Text(contact.name),
+                          subtitle: Text(contact.email),
+                        );
+                      },
+                      selectionToTextTransformer: (Contact c) => c.email,
+                      suggestionsCallback: (query) {
+                        if (query.length != 0) {
+                          var lowercaseQuery = query.toLowerCase();
+                          return contacts.where((contact) {
+                            return contact.name
+                                .toLowerCase()
+                                .contains(lowercaseQuery);
+                          }).toList(growable: false)
+                            ..sort((a, b) => a.name
+                                .toLowerCase()
+                                .indexOf(lowercaseQuery)
+                                .compareTo(b.name
+                                    .toLowerCase()
+                                    .indexOf(lowercaseQuery)));
+                        } else {
+                          return contacts;
                         }
                       },
                     ),
@@ -253,9 +333,15 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration:
                           InputDecoration(labelText: "Movie Rating (Archer)"),
                       attribute: "movie_rating",
+                      textStyle: TextStyle(fontWeight: FontWeight.bold),
                       options: List.generate(5, (i) => i + 1)
-                          .map(
-                              (number) => FormBuilderFieldOption(value: number))
+                          .map((number) => FormBuilderFieldOption(
+                                value: number,
+                                child: Text(
+                                  "$number",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ))
                           .toList(),
                       onChanged: _onChanged,
                     ),
@@ -270,6 +356,7 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
+                      onChanged: (data) {},
                       validators: [
                         (val) {
                           if (!_fbKey.currentState.fields["accept_terms_switch"]
@@ -277,6 +364,7 @@ class MyHomePageState extends State<MyHomePage> {
                               val >= 10) {
                             return "You can only put more than 10 if you've accepted terms";
                           }
+                          return null;
                         }
                       ],
                     ),
@@ -325,34 +413,34 @@ class MyHomePageState extends State<MyHomePage> {
                               children: languages
                                   .map(
                                     (lang) => Row(
-                                          children: <Widget>[
-                                            Radio<dynamic>(
-                                              value: lang,
-                                              groupValue: field.value,
-                                              onChanged: (dynamic value) {
-                                                field.didChange(lang);
-                                              },
-                                            ),
-                                            lang != "Other"
-                                                ? Text(lang)
-                                                : Expanded(
-                                                    child: Row(
-                                                      children: <Widget>[
-                                                        Text(
-                                                          lang,
-                                                        ),
-                                                        SizedBox(width: 20),
-                                                        Expanded(
-                                                          child: TextFormField(
-                                                            key:
-                                                                _specifyTextFieldKey,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                          ],
+                                      children: <Widget>[
+                                        Radio<dynamic>(
+                                          value: lang,
+                                          groupValue: field.value,
+                                          onChanged: (dynamic value) {
+                                            field.didChange(lang);
+                                          },
                                         ),
+                                        lang != "Other"
+                                            ? Text(lang)
+                                            : Expanded(
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                      lang,
+                                                    ),
+                                                    SizedBox(width: 20),
+                                                    Expanded(
+                                                      child: TextFormField(
+                                                        key:
+                                                            _specifyTextFieldKey,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                      ],
+                                    ),
                                   )
                                   .toList(growable: false),
                             ),
@@ -366,7 +454,7 @@ class MyHomePageState extends State<MyHomePage> {
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -380,8 +468,7 @@ class MyHomePageState extends State<MyHomePage> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                        _fbKey.currentState.save();
-                        if (_fbKey.currentState.validate()) {
+                        if (_fbKey.currentState.saveAndValidate()) {
                           print(_fbKey.currentState.value);
                         } else {
                           print(_fbKey.currentState.value);

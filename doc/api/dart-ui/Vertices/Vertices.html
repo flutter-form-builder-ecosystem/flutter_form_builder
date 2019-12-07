@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>Vertices class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/Vertices-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/Vertices/Vertices.html">Vertices</a></li>
       <li><a href="dart-ui/Vertices/Vertices.raw.html">raw</a></li>
@@ -72,11 +73,12 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Vertices constructor</h1></div>
+      <div><h1><span class="kind-constructor">Vertices</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -95,11 +97,11 @@
 }) : assert(mode != null),
      assert(positions != null) {
   if (textureCoordinates != null &amp;&amp; textureCoordinates.length != positions.length)
-    throw new ArgumentError(&#39;&quot;positions&quot; and &quot;textureCoordinates&quot; lengths must match.&#39;);
+    throw ArgumentError(&#39;&quot;positions&quot; and &quot;textureCoordinates&quot; lengths must match.&#39;);
   if (colors != null &amp;&amp; colors.length != positions.length)
-    throw new ArgumentError(&#39;&quot;positions&quot; and &quot;colors&quot; lengths must match.&#39;);
+    throw ArgumentError(&#39;&quot;positions&quot; and &quot;colors&quot; lengths must match.&#39;);
   if (indices != null &amp;&amp; indices.any((int i) =&gt; i &lt; 0 || i &gt;= positions.length))
-    throw new ArgumentError(&#39;&quot;indices&quot; values must be valid indices in the positions list.&#39;);
+    throw ArgumentError(&#39;&quot;indices&quot; values must be valid indices in the positions list.&#39;);
 
   final Float32List encodedPositions = _encodePointList(positions);
   final Float32List encodedTextureCoordinates = (textureCoordinates != null)
@@ -108,12 +110,13 @@
   final Int32List encodedColors = colors != null
     ? _encodeColorList(colors)
     : null;
-  final Int32List encodedIndices = indices != null
-    ? new Int32List.fromList(indices)
+  final Uint16List encodedIndices = indices != null
+    ? Uint16List.fromList(indices)
     : null;
 
   _constructor();
-  _init(mode.index, encodedPositions, encodedTextureCoordinates, encodedColors, encodedIndices);
+  if (!_init(mode.index, encodedPositions, encodedTextureCoordinates, encodedColors, encodedIndices))
+    throw ArgumentError(&#39;Invalid configuration for vertices.&#39;);
 }</code></pre>
     </section>
 
@@ -126,10 +129,11 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -137,7 +141,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

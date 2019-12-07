@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>FormBuilderSegmentedControl class</h5>
     <ol>
+    
       <li class="section-title"><a href="flutter_form_builder/FormBuilderSegmentedControl-class.html#constructors">Constructors</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/FormBuilderSegmentedControl.html">FormBuilderSegmentedControl</a></li>
     
@@ -60,11 +61,18 @@
         <a href="flutter_form_builder/FormBuilderSegmentedControl-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/attribute.html">attribute</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/borderColor.html">borderColor</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/decoration.html">decoration</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/initialValue.html">initialValue</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/onChanged.html">onChanged</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/onSaved.html">onSaved</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/options.html">options</a></li>
-      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/readonly.html">readonly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/padding.html">padding</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/pressedColor.html">pressedColor</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/readOnly.html">readOnly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/selectedColor.html">selectedColor</a></li>
+      <li><a class="deprecated" href="flutter_form_builder/FormBuilderSegmentedControl/textStyle.html">textStyle</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSegmentedControl/unselectedColor.html">unselectedColor</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/validators.html">validators</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl/valueTransformer.html">valueTransformer</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -88,30 +96,39 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>FormBuilderSegmentedControl constructor</h1></div>
+      <div><h1><span class="kind-constructor">FormBuilderSegmentedControl</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderSegmentedControl</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-options"><span>@required</span> <span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></span>&gt;</span></span> <span class="parameter-name">options</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">dynamic</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span></span> })
+      <span class="name ">FormBuilderSegmentedControl</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-options"><span>@required</span> <span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></span>&gt;</span></span> <span class="parameter-name">options</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">dynamic</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span></span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-borderColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">borderColor</span>, </span> <span class="parameter" id="-param-selectedColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">selectedColor</span>, </span> <span class="parameter" id="-param-pressedColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">pressedColor</span>, </span> <span class="parameter" id="-param-textStyle"><span class="type-annotation">TextStyle</span> <span class="parameter-name">textStyle</span>, </span> <span class="parameter" id="-param-padding"><span class="type-annotation">EdgeInsetsGeometry</span> <span class="parameter-name">padding</span>, </span> <span class="parameter" id="-param-unselectedColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">unselectedColor</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter</span> <span class="parameter-name">onSaved</span></span> })
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">FormBuilderSegmentedControl({
+  Key key,
   @required this.attribute,
   @required this.options,
   this.initialValue,
   this.validators = const [],
-  this.readonly = false,
+  this.readOnly = false,
   this.decoration = const InputDecoration(),
   this.onChanged,
   this.valueTransformer,
-});</code></pre>
+  this.borderColor,
+  this.selectedColor,
+  this.pressedColor,
+  this.textStyle,
+  this.padding,
+  this.unselectedColor,
+  this.onSaved,
+}) : super(key: key);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -123,10 +140,11 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -134,7 +152,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

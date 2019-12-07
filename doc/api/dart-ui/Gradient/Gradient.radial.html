@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>Gradient class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/Gradient-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/Gradient/Gradient.linear.html">linear</a></li>
       <li><a href="dart-ui/Gradient/Gradient.radial.html">radial</a></li>
@@ -73,11 +74,12 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Gradient.radial constructor</h1></div>
+      <div><h1><span class="kind-constructor">Gradient.radial</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
@@ -93,9 +95,9 @@ not provided, then only two stops, at 0.0 and 1.0, are implied (and
 <code>color</code> must therefore only have two entries).</p>
 <p>The behavior before and after the radius is described by the <code>tileMode</code>
 argument. For details, see the <a href="dart-ui/TileMode-class.html">TileMode</a> enum.</p>
-<p><img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_radial.png">
-<img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_radial.png">
-<img alt="" src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_radial.png"></p>
+<p><img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_clamp_radial.png" alt="">
+<img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_mirror_radial.png" alt="">
+<img src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/tile_mode_repeated_radial.png" alt=""></p>
 <p>If <code>center</code>, <code>radius</code>, <code>colors</code>, or <code>tileMode</code> are null, or if <code>colors</code> or
 <code>colorStops</code> contain null values, this constructor will throw a
 <a href="dart-core/NoSuchMethodError-class.html">NoSuchMethodError</a>.</p>
@@ -129,7 +131,7 @@ not be equal to <a href="dart-ui/Offset/zero-constant.html">Offset.zero</a>.</p>
   focalRadius ??= 0.0;
   _validateColorStops(colors, colorStops);
   final Int32List colorsBuffer = _encodeColorList(colors);
-  final Float32List colorStopsBuffer = colorStops == null ? null : new Float32List.fromList(colorStops);
+  final Float32List colorStopsBuffer = colorStops == null ? null : Float32List.fromList(colorStops);
 
   &#47;&#47; If focal is null or focal radius is null, this should be treated as a regular radial gradient
   &#47;&#47; If focal == center and the focal radius is 0.0, it&#39;s still a regular radial gradient
@@ -153,10 +155,11 @@ not be equal to <a href="dart-ui/Offset/zero-constant.html">Offset.zero</a>.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -164,7 +167,7 @@ not be equal to <a href="dart-ui/Offset/zero-constant.html">Offset.zero</a>.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

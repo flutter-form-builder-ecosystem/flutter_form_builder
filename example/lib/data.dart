@@ -263,7 +263,7 @@ const allCountries = [
   "Zimbabwe"
 ];
 
-const mockResults = <Contact>[
+const contacts = <Contact>[
   Contact('Andrew', 'stock@man.com',
       'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
   Contact('Paul', 'paul@google.com',

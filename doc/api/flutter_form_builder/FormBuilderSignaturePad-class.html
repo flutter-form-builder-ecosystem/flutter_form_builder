@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -52,17 +52,19 @@
     <h5>flutter_form_builder library</h5>
     <ol>
       <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#classes">Classes</a></li>
-      <li><a href="flutter_form_builder/AlwaysDisabledFocusNode-class.html">AlwaysDisabledFocusNode</a></li>
       <li><a href="flutter_form_builder/FormBuilder-class.html">FormBuilder</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckbox-class.html">FormBuilderCheckbox</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckboxList-class.html">FormBuilderCheckboxList</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput-class.html">FormBuilderChipsInput</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomField-class.html">FormBuilderCustomField</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomFieldState-class.html">FormBuilderCustomFieldState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html">FormBuilderDateRangePicker</a></li>
+      <li><a href="flutter_form_builder/FormBuilderDateRangePickerState-class.html">FormBuilderDateRangePickerState</a></li>
       <li><a href="flutter_form_builder/FormBuilderDateTimePicker-class.html">FormBuilderDateTimePicker</a></li>
       <li><a href="flutter_form_builder/FormBuilderDropdown-class.html">FormBuilderDropdown</a></li>
       <li><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></li>
       <li><a href="flutter_form_builder/FormBuilderRadio-class.html">FormBuilderRadio</a></li>
+      <li><a href="flutter_form_builder/FormBuilderRangeSlider-class.html">FormBuilderRangeSlider</a></li>
       <li><a href="flutter_form_builder/FormBuilderRate-class.html">FormBuilderRate</a></li>
       <li><a href="flutter_form_builder/FormBuilderSegmentedControl-class.html">FormBuilderSegmentedControl</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad-class.html">FormBuilderSignaturePad</a></li>
@@ -80,14 +82,18 @@
     
     
     
+      <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#enums">Enums</a></li>
+      <li><a href="flutter_form_builder/InputType-class.html">InputType</a></li>
+    
       <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#typedefs">Typedefs</a></li>
+      <li><a href="flutter_form_builder/SelectionToTextTransformer.html">SelectionToTextTransformer</a></li>
       <li><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></li>
     
     </ol>
   </div>
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>FormBuilderSignaturePad class </h1></div>
+      <div><h1><span class="kind-class">FormBuilderSignaturePad</span> class </h1></div>
 
     
 
@@ -96,7 +102,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="FormBuilderSignaturePad" class="callable">
-          <span class="name"><a href="flutter_form_builder/FormBuilderSignaturePad/FormBuilderSignaturePad.html">FormBuilderSignaturePad</a></span><span class="signature">({<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">backgroundColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="-param-penColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">penColor</span>: <span class="default-value">Colors.black</span>, </span> <span class="parameter" id="-param-penStrokeWidth"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">penStrokeWidth</span>: <span class="default-value">3.0</span>, </span> <span class="parameter" id="-param-clearButtonText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">clearButtonText</span>: <span class="default-value">"Clear"</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-points"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">Point</span>&gt;</span></span> <span class="parameter-name">points</span>, </span> <span class="parameter" id="-param-width"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="-param-height"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">height</span>: <span class="default-value">200</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span></span> })</span>
+          <span class="name"><a href="flutter_form_builder/FormBuilderSignaturePad/FormBuilderSignaturePad.html">FormBuilderSignaturePad</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">backgroundColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="-param-penColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">penColor</span>: <span class="default-value">Colors.black</span>, </span> <span class="parameter" id="-param-penStrokeWidth"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">penStrokeWidth</span>: <span class="default-value">3.0</span>, </span> <span class="parameter" id="-param-clearButtonText"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">clearButtonText</span>: <span class="default-value">"Clear"</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-points"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">Point</span>&gt;</span></span> <span class="parameter-name">points</span>, </span> <span class="parameter" id="-param-width"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">width</span>, </span> <span class="parameter" id="-param-height"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">height</span>: <span class="default-value">200</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span></span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter</span> <span class="parameter-name">onSaved</span></span> })</span>
         </dt>
         <dd>
           
@@ -164,6 +170,14 @@
           
                   <div class="features">final</div>
 </dd>
+        <dt id="onSaved" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderSignaturePad/onSaved.html">onSaved</a></span>
+          <span class="signature">&#8594; FormFieldSetter</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
         <dt id="penColor" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderSignaturePad/penColor.html">penColor</a></span>
           <span class="signature">&#8594; <a href="dart-ui/Color-class.html">Color</a></span>         
@@ -188,8 +202,8 @@
           
                   <div class="features">final</div>
 </dd>
-        <dt id="readonly" class="property">
-          <span class="name"><a href="flutter_form_builder/FormBuilderSignaturePad/readonly.html">readonly</a></span>
+        <dt id="readOnly" class="property">
+          <span class="name"><a href="flutter_form_builder/FormBuilderSignaturePad/readOnly.html">readOnly</a></span>
           <span class="signature">&#8594; <a href="dart-core/bool-class.html">bool</a></span>         
         </dt>
         <dd>
@@ -303,7 +317,7 @@ children. <a href="flutter_form_builder/FormBuilderSignaturePad/debugDescribeChi
                   </dt>
         <dd class="inherited">
           Returns a debug representation of the object that is used by debugging
-tools and by <a href="flutter_form_builder/FormBuilderSignaturePad/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. <a href="flutter_form_builder/FormBuilderSignaturePad/toDiagnosticsNode.html">[...]</a>
+tools and by <code>DiagnosticsNode.toStringDeep</code>. <a href="flutter_form_builder/FormBuilderSignaturePad/toDiagnosticsNode.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="toString" class="callable inherited">
@@ -367,6 +381,7 @@ tools and by <a href="flutter_form_builder/FormBuilderSignaturePad/toStringDeep.
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
+    
       <li class="section-title"><a href="flutter_form_builder/FormBuilderSignaturePad-class.html#constructors">Constructors</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/FormBuilderSignaturePad.html">FormBuilderSignaturePad</a></li>
     
@@ -380,10 +395,11 @@ tools and by <a href="flutter_form_builder/FormBuilderSignaturePad/toStringDeep.
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/height.html">height</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/initialValue.html">initialValue</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/onChanged.html">onChanged</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSignaturePad/onSaved.html">onSaved</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/penColor.html">penColor</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/penStrokeWidth.html">penStrokeWidth</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/points.html">points</a></li>
-      <li><a href="flutter_form_builder/FormBuilderSignaturePad/readonly.html">readonly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderSignaturePad/readOnly.html">readOnly</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/validators.html">validators</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/valueTransformer.html">valueTransformer</a></li>
       <li><a href="flutter_form_builder/FormBuilderSignaturePad/width.html">width</a></li>
@@ -408,6 +424,7 @@ tools and by <a href="flutter_form_builder/FormBuilderSignaturePad/toStringDeep.
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-->
 
@@ -415,10 +432,11 @@ tools and by <a href="flutter_form_builder/FormBuilderSignaturePad/toStringDeep.
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -426,7 +444,7 @@ tools and by <a href="flutter_form_builder/FormBuilderSignaturePad/toStringDeep.
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

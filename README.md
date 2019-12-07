@@ -1,6 +1,6 @@
 # Flutter FormBuilder - flutter_form_builder
 
-This package helps in generation of forms in [Flutter](https://flutter.io/) by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form in the form of a map.
+This package helps in creation of Flutter Forms by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form.
 
 ## Simple Usage
 To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
@@ -16,6 +16,10 @@ Column(
   children: <Widget>[
     FormBuilder(
       key: _fbKey,
+      initialValue: {
+        'date': DateTime.now(),
+        'accept_terms': false,
+      },
       autovalidate: true,
       child: Column(
         children: <Widget>[
@@ -34,16 +38,15 @@ Column(
             initialValue: 1.0,
             divisions: 20,
             decoration:
-                InputDecoration(labelText: "Number of somethings"),
+                InputDecoration(labelText: "Number of things"),
           ),
           FormBuilderCheckbox(
             attribute: 'accept_terms',
-            initialValue: false,
             label: Text(
                 "I have read and agree to the terms and conditions"),
             validators: [
               FormBuilderValidators.requiredTrue(
-                errorMessage:
+                errorText:
                     "You must accept terms and conditions to continue",
               ),
             ],
@@ -67,21 +70,6 @@ Column(
               FormBuilderValidators.numeric(),
               FormBuilderValidators.max(70),
             ],
-          ),
-          FormBuilderRadio(
-            decoration: InputDecoration(labelText: 'My chosen language'),
-            leadingInput: true,
-            attribute: "best_language",
-            validators: [FormBuilderValidators.required()],
-            options: [
-              "Dart",
-              "Kotlin",
-              "Java",
-              "Swift",
-              "Objective-C"
-            ]
-                .map((lang) => FormBuilderFieldOption(value: lang))
-                .toList(growable: false),
           ),
           FormBuilderSegmentedControl(
             decoration:
@@ -136,8 +124,7 @@ Column(
         MaterialButton(
           child: Text("Submit"),
           onPressed: () {
-            _fbKey.currentState.save();
-            if (_fbKey.currentState.validate()) {
+            if (_fbKey.currentState.saveAndValidate()) {
               print(_fbKey.currentState.value);
             }
           },
@@ -159,16 +146,18 @@ The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
 * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
 * `FormBuilderChipsInput` - Takes a list of `Chip`s as input
+* `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For Date, Time and DateTime input
-* `FormBuilderDropdown` - Allow selection of one value from a list as a Dropdown
-* `FormBuilderRadio` - Allow selection of one value from a list of Radio Widgets 
+* `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
+* `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRangeSlider` - Used to select a range from a range of values
 * `FormBuilderRate` - For selection of a numerical value as a rating 
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
 * `FormBuilderStepper` - Selection of a number by tapping on a plus or minus symbol
 * `FormBuilderSwitch` - On/Off switch
-* `FormBuilderTextField` - For text input. Allows input of single-line text, multi-line text, password,
+* `FormBuilderTextField` - For text input. Accepts input of single-line text, multi-line text, password,
 email, urls etc by using different configurations and validators
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
@@ -178,7 +167,7 @@ In order to create an input field in the form, along with the label, and any app
 |-----------|-------|---------|-------------|----------|
 | `attribute` | `String` | `null` | `true` | This will form the key in the form value Map |
 | `initialValue` | `dynamic` | `null`  | `false` | The initial value of the input field |
-| `readonly` | `bool` | `false` | `false` | Determines whether the field widget will accept user input. This value will be ignored if the `readonly` attribute of `FormBuilder` widget is set to `true` |
+| `readOnly` | `bool` | `false` | `false` | Determines whether the field widget will accept user input. This value will be ignored if the `readOnly` attribute of `FormBuilder` widget is set to `true` |
 | `decoration` | `InputDecoration` | `InputDecoration()` | `false` | |
 | `validators` | `List<FormFieldValidator>` | `[]` | `false` | List of `FormFieldValidator`s that will check the validity of value candidate in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `false` | This event function will fire immediately the the field value changes |
@@ -201,6 +190,7 @@ FormBuilderCustomField(
       return InputDecorator(
         decoration: InputDecoration(
           labelText: "Select option",
+          errorText: field.errorText,
           contentPadding:
               EdgeInsets.only(top: 10.0, bottom: 0.0),
           border: InputBorder.none,
@@ -232,6 +222,22 @@ of validation functions as well as allow reusability of already defined validato
 The package comes with several most common `FormFieldValidator`s such as required, numeric, mail, URL, min, 
 max, minLength, maxLength, IP, credit card etc. with default `errorText` in English but with 
 ability to include you own error message that will display whenever validation fails.
+
+Available built-in validators include:
+* `FormBuilderValidators.required()` - requires the field have a non-empty value.
+* `FormBuilderValidators.numeric()` - requires the field's value to be a valid number.
+* `FormBuilderValidators.min()` - requires the field's value to be greater than or equal to the provided number.
+* `FormBuilderValidators.max()` - requires the field's value to be less than or equal to the provided number.
+* `FormBuilderValidators.minLength()` - requires the length of the field's value to be greater than or equal to the provided minimum length.
+* `FormBuilderValidators.maxLength()` - requires the length of the field's value to be less than or equal to the provided maximum length.
+* `FormBuilderValidators.pattern()` - requires the field's value to match the provided regex pattern.
+* `FormBuilderValidators.email()` - requires the field's value to be a valid email address.
+* ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
+* `FormBuilderValidators.IP()` - requires the field's value to be a valid IP address.
+* `FormBuilderValidators.creditCard()` - requires the field's value to be a valid credit card number.
+* `FormBuilderValidators.date()` - requires the field's value to be a valid date string.
+* `FormBuilderValidators.requiredTrue()` - requires the field's value be true.
+
 Validation example:
 ```dart
 FormBuilderTextField(
@@ -261,7 +267,7 @@ FormBuilderTextField(
 ```
 
 ### Conditional validation
-You can now validate a field based on the value of another field
+You can also validate a field based on the value of another field
 ```
 FormBuilderRadio(
   decoration: InputDecoration(labelText: 'My best language'),
@@ -295,27 +301,28 @@ This package is dependent on the following packages and plugins:
 * [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
 * [sy_flutter_widgets](https://pub.dartlang.org/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
 * [datetime_picker_formfield](https://pub.dartlang.org/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
+* [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dartlang.org/packages/validators) by [dart-league](https://github.com/dart-league)
 * [intl](https://pub.dartlang.org/packages/intl) - Dart Package
-* The SignaturePad is based on [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
-* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :)](https://github.com/danvick)
+* [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :-)](https://github.com/danvick)
 
 ## TODO: 
 ### Improvements
 - [X] Allow addition of custom input types
 - [X] Improve documentation by showing complete list of input types and their usage and options
-- [X] Create a `transformer` function option that will convert field value when field id saved - can be used to convert string to number, change to uppercase etc.
+- [X] Create a `transformer` function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` by [Sven Schöne](https://github.com/SvenSchoene)
 
 ### New FormBuilder inputs
+- [X] RangeSlider
 - [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
+- [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
+- [X] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
 - [ ] MapInput
 - [ ] ImagePicker
 - [ ] DocumentPicker
-- [ ] RangeSlider - https://pub.dartlang.org/packages/flutter_range_slider
-- [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
-- [ ] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
 
 ## KNOWN ISSUES
 Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually

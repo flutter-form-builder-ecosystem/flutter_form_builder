@@ -7,19 +7,18 @@ class FormBuilder extends StatefulWidget {
   final Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
   final Widget child;
-  final bool readonly;
+  final bool readOnly;
   final bool autovalidate;
-  final Key key;
+  final Map<String, dynamic> initialValue;
 
-  const FormBuilder(
-      //this.context,
-      {
+  const FormBuilder({
+    Key key,
     @required this.child,
-    this.readonly = false,
-    this.key,
+    this.readOnly = false,
     this.onChanged,
     this.autovalidate = false,
     this.onWillPop,
+    this.initialValue = const {},
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>
@@ -37,9 +36,11 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, dynamic> get value => _value;
 
+  Map<String, dynamic> get initialValue => widget.initialValue;
+
   Map<String, GlobalKey<FormFieldState>> get fields => _fieldKeys;
 
-  bool get readonly => widget.readonly;
+  bool get readOnly => widget.readOnly;
 
   @override
   void initState() {
@@ -61,8 +62,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   registerFieldKey(String attribute, GlobalKey key) {
-    assert(_fieldKeys.containsKey(attribute) == false,
-        "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
+    // assert(_fieldKeys.containsKey(attribute) == false, "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
     this._fieldKeys[attribute] = key;
   }
 
@@ -85,6 +85,11 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   bool validate() {
+    return _formKey.currentState.validate();
+  }
+
+  bool saveAndValidate() {
+    _formKey.currentState.save();
     return _formKey.currentState.validate();
   }
 

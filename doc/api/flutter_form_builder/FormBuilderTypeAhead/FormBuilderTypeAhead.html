@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,6 +53,7 @@
     
     <h5>FormBuilderTypeAhead class</h5>
     <ol>
+    
       <li class="section-title"><a href="flutter_form_builder/FormBuilderTypeAhead-class.html#constructors">Constructors</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/FormBuilderTypeAhead.html">FormBuilderTypeAhead</a></li>
     
@@ -64,6 +65,7 @@
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/attribute.html">attribute</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/autoFlipDirection.html">autoFlipDirection</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/autovalidate.html">autovalidate</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTypeAhead/controller.html">controller</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/debounceDuration.html">debounceDuration</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/decoration.html">decoration</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/direction.html">direction</a></li>
@@ -80,8 +82,10 @@
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/loadingBuilder.html">loadingBuilder</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/noItemsFoundBuilder.html">noItemsFoundBuilder</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/onChanged.html">onChanged</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTypeAhead/onSaved.html">onSaved</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/onSuggestionSelected.html">onSuggestionSelected</a></li>
-      <li><a href="flutter_form_builder/FormBuilderTypeAhead/readonly.html">readonly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTypeAhead/readOnly.html">readOnly</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTypeAhead/selectionToTextTransformer.html">selectionToTextTransformer</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxController.html">suggestionsBoxController</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxDecoration.html">suggestionsBoxDecoration</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxVerticalOffset.html">suggestionsBoxVerticalOffset</a></li>
@@ -111,31 +115,33 @@
     
     
     
+    
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>FormBuilderTypeAhead&lt;<wbr><span class="type-parameter">T</span>&gt; constructor</h1></div>
+      <div><h1><span class="kind-constructor">FormBuilderTypeAhead&lt;<wbr><span class="type-parameter">T</span>&gt;</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderTypeAhead&lt;<wbr><span class="type-parameter">T</span>&gt;</span>(<wbr>{<span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-onSuggestionSelected"><span class="type-annotation">SuggestionSelectionCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSuggestionSelected</span>, </span> <span class="parameter" id="-param-itemBuilder"><span>@required</span> <span class="type-annotation">ItemBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">itemBuilder</span>, </span> <span class="parameter" id="-param-suggestionsCallback"><span>@required</span> <span class="type-annotation">SuggestionsCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">suggestionsCallback</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readonly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readonly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-getImmediateSuggestions"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getImmediateSuggestions</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation">ErrorBuilder</span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-noItemsFoundBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">noItemsFoundBuilder</span>, </span> <span class="parameter" id="-param-loadingBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">loadingBuilder</span>, </span> <span class="parameter" id="-param-debounceDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">debounceDuration</span>: <span class="default-value">const Duration(milliseconds: 300)</span>, </span> <span class="parameter" id="-param-suggestionsBoxDecoration"><span class="type-annotation">SuggestionsBoxDecoration</span> <span class="parameter-name">suggestionsBoxDecoration</span>: <span class="default-value">const SuggestionsBoxDecoration()</span>, </span> <span class="parameter" id="-param-suggestionsBoxVerticalOffset"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">suggestionsBoxVerticalOffset</span>: <span class="default-value">5.0</span>, </span> <span class="parameter" id="-param-textFieldConfiguration"><span class="type-annotation">TextFieldConfiguration</span> <span class="parameter-name">textFieldConfiguration</span>: <span class="default-value">const TextFieldConfiguration()</span>, </span> <span class="parameter" id="-param-transitionBuilder"><span class="type-annotation">AnimationTransitionBuilder</span> <span class="parameter-name">transitionBuilder</span>, </span> <span class="parameter" id="-param-animationDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">animationDuration</span>: <span class="default-value">const Duration(milliseconds: 500)</span>, </span> <span class="parameter" id="-param-animationStart"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">animationStart</span>: <span class="default-value">0.25</span>, </span> <span class="parameter" id="-param-direction"><span class="type-annotation">AxisDirection</span> <span class="parameter-name">direction</span>: <span class="default-value">AxisDirection.down</span>, </span> <span class="parameter" id="-param-hideOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnLoading</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnEmpty"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnEmpty</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnError</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideSuggestionsOnKeyboardHide"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideSuggestionsOnKeyboardHide</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnLoading</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-autoFlipDirection"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autoFlipDirection</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-suggestionsBoxController"><span class="type-annotation">SuggestionsBoxController</span> <span class="parameter-name">suggestionsBoxController</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnSuggestionSelected"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnSuggestionSelected</span>: <span class="default-value">false</span></span> })
+      <span class="name ">FormBuilderTypeAhead&lt;<wbr><span class="type-parameter">T</span>&gt;</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-itemBuilder"><span>@required</span> <span class="type-annotation">ItemBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">itemBuilder</span>, </span> <span class="parameter" id="-param-suggestionsCallback"><span>@required</span> <span class="type-annotation">SuggestionsCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">suggestionsCallback</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">T</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-getImmediateSuggestions"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getImmediateSuggestions</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-selectionToTextTransformer"><span class="type-annotation"><a href="flutter_form_builder/SelectionToTextTransformer.html">SelectionToTextTransformer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">selectionToTextTransformer</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation">ErrorBuilder</span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-noItemsFoundBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">noItemsFoundBuilder</span>, </span> <span class="parameter" id="-param-loadingBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">loadingBuilder</span>, </span> <span class="parameter" id="-param-debounceDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">debounceDuration</span>: <span class="default-value">const Duration(milliseconds: 300)</span>, </span> <span class="parameter" id="-param-suggestionsBoxDecoration"><span class="type-annotation">SuggestionsBoxDecoration</span> <span class="parameter-name">suggestionsBoxDecoration</span>: <span class="default-value">const SuggestionsBoxDecoration()</span>, </span> <span class="parameter" id="-param-suggestionsBoxVerticalOffset"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">suggestionsBoxVerticalOffset</span>: <span class="default-value">5.0</span>, </span> <span class="parameter" id="-param-textFieldConfiguration"><span class="type-annotation">TextFieldConfiguration</span> <span class="parameter-name">textFieldConfiguration</span>: <span class="default-value">const TextFieldConfiguration()</span>, </span> <span class="parameter" id="-param-transitionBuilder"><span class="type-annotation">AnimationTransitionBuilder</span> <span class="parameter-name">transitionBuilder</span>, </span> <span class="parameter" id="-param-animationDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">animationDuration</span>: <span class="default-value">const Duration(milliseconds: 500)</span>, </span> <span class="parameter" id="-param-animationStart"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">animationStart</span>: <span class="default-value">0.25</span>, </span> <span class="parameter" id="-param-direction"><span class="type-annotation">AxisDirection</span> <span class="parameter-name">direction</span>: <span class="default-value">AxisDirection.down</span>, </span> <span class="parameter" id="-param-hideOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnLoading</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnEmpty"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnEmpty</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnError</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideSuggestionsOnKeyboardHide"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideSuggestionsOnKeyboardHide</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnLoading</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-autoFlipDirection"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autoFlipDirection</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-suggestionsBoxController"><span class="type-annotation">SuggestionsBoxController</span> <span class="parameter-name">suggestionsBoxController</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnSuggestionSelected"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnSuggestionSelected</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onSuggestionSelected"><span class="type-annotation">SuggestionSelectionCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSuggestionSelected</span></span> <span class="parameter" id="-param-controller"><span class="type-annotation">TextEditingController</span> <span class="parameter-name">controller</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSaved</span></span> })
     </section>
 
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">FormBuilderTypeAhead({
+  Key key,
   @required this.attribute,
-  this.onSuggestionSelected,
   @required this.itemBuilder,
   @required this.suggestionsCallback,
   this.initialValue,
   this.validators = const [],
-  this.readonly = false,
+  this.readOnly = false,
   this.decoration = const InputDecoration(),
   this.getImmediateSuggestions = false,
   this.autovalidate = false,
+  this.selectionToTextTransformer,
   this.errorBuilder,
   this.noItemsFoundBuilder,
   this.loadingBuilder,
@@ -157,7 +163,11 @@
   this.valueTransformer,
   this.suggestionsBoxController,
   this.keepSuggestionsOnSuggestionSelected = false,
-});</code></pre>
+  this.onSuggestionSelected,
+  this.controller,
+  this.onSaved,
+})  : assert(T == String || selectionToTextTransformer != null),
+      super(key: key);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -169,10 +179,11 @@
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -180,7 +191,7 @@
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

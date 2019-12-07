@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     <li><a href="index.html">flutter_form_builder</a></li>
     <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
     <li><a href="dart-ui/RRect-class.html">RRect</a></li>
-    <li class="self-crumb">RRect.fromLTRBXY constructor</li>
+    <li class="self-crumb">RRect.fromLTRBXY const constructor</li>
   </ol>
   <div class="self-name">RRect.fromLTRBXY</div>
   <form class="search navbar-right" role="search">
@@ -48,11 +48,12 @@
       <li><a href="index.html">flutter_form_builder</a></li>
       <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
       <li><a href="dart-ui/RRect-class.html">RRect</a></li>
-      <li class="self-crumb">RRect.fromLTRBXY constructor</li>
+      <li class="self-crumb">RRect.fromLTRBXY const constructor</li>
     </ol>
     
     <h5>RRect class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/RRect-class.html#constructors">Constructors</a></li>
       <li><a href="dart-ui/RRect/RRect.fromLTRBAndCorners.html">fromLTRBAndCorners</a></li>
       <li><a href="dart-ui/RRect/RRect.fromLTRBR.html">fromLTRBR</a></li>
@@ -73,6 +74,7 @@
       <li><a href="dart-ui/RRect/brRadiusY.html">brRadiusY</a></li>
       <li><a href="dart-ui/RRect/center.html">center</a></li>
       <li><a href="dart-ui/RRect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/RRect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/RRect/height.html">height</a></li>
       <li><a href="dart-ui/RRect/isCircle.html">isCircle</a></li>
       <li><a href="dart-ui/RRect/isEllipse.html">isEllipse</a></li>
@@ -103,6 +105,7 @@
       <li><a href="dart-ui/RRect/contains.html">contains</a></li>
       <li><a href="dart-ui/RRect/deflate.html">deflate</a></li>
       <li><a href="dart-ui/RRect/inflate.html">inflate</a></li>
+      <li><a href="dart-ui/RRect/scaleRadii.html">scaleRadii</a></li>
       <li><a href="dart-ui/RRect/shift.html">shift</a></li>
       <li><a href="dart-ui/RRect/toString.html">toString</a></li>
       <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
@@ -110,21 +113,22 @@
       <li class="section-title"><a href="dart-ui/RRect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/RRect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/RRect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/RRect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/RRect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/RRect/lerp.html">lerp</a></li>
+    
+      <li class="section-title"><a href="dart-ui/RRect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/RRect/zero-constant.html">zero</a></li>
     
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>RRect.fromLTRBXY constructor</h1></div>
+      <div><h1><span class="kind-constructor">RRect.fromLTRBXY</span> constructor</h1></div>
 
     <section class="multi-line-signature">
-      
-      <span class="name ">RRect.fromLTRBXY</span>(<wbr><span class="parameter" id="fromLTRBXY-param-left"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">left</span>, </span> <span class="parameter" id="fromLTRBXY-param-top"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">top</span>, </span> <span class="parameter" id="fromLTRBXY-param-right"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">right</span>, </span> <span class="parameter" id="fromLTRBXY-param-bottom"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">bottom</span>, </span> <span class="parameter" id="fromLTRBXY-param-radiusX"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">radiusX</span>, </span> <span class="parameter" id="fromLTRBXY-param-radiusY"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">radiusY</span></span>)
+      const
+      <span class="name ">RRect.fromLTRBXY</span>(<wbr><span class="parameter" id="fromLTRBXY-param-left"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">left</span></span> <span class="parameter" id="fromLTRBXY-param-top"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">top</span></span> <span class="parameter" id="fromLTRBXY-param-right"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">right</span></span> <span class="parameter" id="fromLTRBXY-param-bottom"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">bottom</span></span> <span class="parameter" id="fromLTRBXY-param-radiusX"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">radiusX</span></span> <span class="parameter" id="fromLTRBXY-param-radiusY"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">radiusY</span></span>)
     </section>
 
     <section class="desc markdown">
@@ -134,22 +138,21 @@ and the same radii along its horizontal axis and its vertical axis.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">RRect.fromLTRBXY(double left, double top, double right, double bottom,
-                 double radiusX, double radiusY) {
-  _value
-    ..[0] = left
-    ..[1] = top
-    ..[2] = right
-    ..[3] = bottom
-    ..[4] = radiusX
-    ..[5] = radiusY
-    ..[6] = radiusX
-    ..[7] = radiusY
-    ..[8] = radiusX
-    ..[9] = radiusY
-    ..[10] = radiusX
-    ..[11] = radiusY;
-}</code></pre>
+      <pre class="language-dart"><code class="language-dart">const RRect.fromLTRBXY(double left, double top, double right, double bottom,
+                 double radiusX, double radiusY) : this._raw(
+  top: top,
+  left: left,
+  right: right,
+  bottom: bottom,
+  tlRadiusX: radiusX,
+  tlRadiusY: radiusY,
+  trRadiusX: radiusX,
+  trRadiusY: radiusY,
+  blRadiusX: radiusX,
+  blRadiusY: radiusY,
+  brRadiusX: radiusX,
+  brRadiusY: radiusY,
+);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -161,10 +164,11 @@ and the same radii along its horizontal axis and its vertical axis.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -172,7 +176,7 @@ and the same radii along its horizontal axis and its vertical axis.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

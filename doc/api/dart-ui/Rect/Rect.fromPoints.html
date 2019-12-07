@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,7 +53,9 @@
     
     <h5>Rect class</h5>
     <ol>
+    
       <li class="section-title"><a href="dart-ui/Rect-class.html#constructors">Constructors</a></li>
+      <li><a href="dart-ui/Rect/Rect.fromCenter.html">fromCenter</a></li>
       <li><a href="dart-ui/Rect/Rect.fromCircle.html">fromCircle</a></li>
       <li><a href="dart-ui/Rect/Rect.fromLTRB.html">fromLTRB</a></li>
       <li><a href="dart-ui/Rect/Rect.fromLTWH.html">fromLTWH</a></li>
@@ -70,6 +72,7 @@
       <li><a href="dart-ui/Rect/centerLeft.html">centerLeft</a></li>
       <li><a href="dart-ui/Rect/centerRight.html">centerRight</a></li>
       <li><a href="dart-ui/Rect/hashCode.html">hashCode</a></li>
+      <li><a href="dart-ui/Rect/hasNaN.html">hasNaN</a></li>
       <li><a href="dart-ui/Rect/height.html">height</a></li>
       <li><a href="dart-ui/Rect/isEmpty.html">isEmpty</a></li>
       <li><a href="dart-ui/Rect/isFinite.html">isFinite</a></li>
@@ -101,22 +104,23 @@
       <li class="section-title"><a href="dart-ui/Rect-class.html#operators">Operators</a></li>
       <li><a href="dart-ui/Rect/operator_equals.html">operator ==</a></li>
     
-      <li class="section-title"><a href="dart-ui/Rect-class.html#static-properties">Static properties</a></li>
-      <li><a href="dart-ui/Rect/largest.html">largest</a></li>
-      <li><a href="dart-ui/Rect/zero.html">zero</a></li>
     
       <li class="section-title"><a href="dart-ui/Rect-class.html#static-methods">Static methods</a></li>
       <li><a href="dart-ui/Rect/lerp.html">lerp</a></li>
+    
+      <li class="section-title"><a href="dart-ui/Rect-class.html#constants">Constants</a></li>
+      <li><a href="dart-ui/Rect/largest-constant.html">largest</a></li>
+      <li><a href="dart-ui/Rect/zero-constant.html">zero</a></li>
     
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>Rect.fromPoints constructor</h1></div>
+      <div><h1><span class="kind-constructor">Rect.fromPoints</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       
-      <span class="name ">Rect.fromPoints</span>(<wbr><span class="parameter" id="fromPoints-param-a"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">a</span>, </span> <span class="parameter" id="fromPoints-param-b"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">b</span></span>)
+      <span class="name ">Rect.fromPoints</span>(<wbr><span class="parameter" id="fromPoints-param-a"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">a</span></span> <span class="parameter" id="fromPoints-param-b"><span class="type-annotation"><a href="dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">b</span></span>)
     </section>
 
     <section class="desc markdown">
@@ -126,13 +130,12 @@ them as vectors from the origin.</p>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Rect.fromPoints(Offset a, Offset b) {
-  _value
-    ..[0] = math.min(a.dx, b.dx)
-    ..[1] = math.min(a.dy, b.dy)
-    ..[2] = math.max(a.dx, b.dx)
-    ..[3] = math.max(a.dy, b.dy);
-}</code></pre>
+      <pre class="language-dart"><code class="language-dart">Rect.fromPoints(Offset a, Offset b) : this.fromLTRB(
+  math.min(a.dx, b.dx),
+  math.min(a.dy, b.dy),
+  math.max(a.dx, b.dx),
+  math.max(a.dy, b.dy),
+);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -144,10 +147,11 @@ them as vectors from the origin.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -155,7 +159,7 @@ them as vectors from the origin.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 

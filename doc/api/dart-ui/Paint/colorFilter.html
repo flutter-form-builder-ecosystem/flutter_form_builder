@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-  
+  <!-- header placeholder -->
 </head>
 
 <body>
@@ -53,34 +53,38 @@
     
     <h5>Paint class</h5>
     <ol>
-      <li class="section-title"><a href="dart-ui/Paint-class.html#constructors">Constructors</a></li>
-      <li><a href="dart-ui/Paint/Paint.html">Paint</a></li>
     
-      <li class="section-title">
-        <a href="dart-ui/Paint-class.html#instance-properties">Properties</a>
-      </li>
-      <li><a href="dart-ui/Paint/blendMode.html">blendMode</a></li>
-      <li><a href="dart-ui/Paint/color.html">color</a></li>
-      <li><a href="dart-ui/Paint/colorFilter.html">colorFilter</a></li>
-      <li><a href="dart-ui/Paint/filterQuality.html">filterQuality</a></li>
-      <li><a href="dart-ui/Paint/invertColors.html">invertColors</a></li>
-      <li><a href="dart-ui/Paint/isAntiAlias.html">isAntiAlias</a></li>
-      <li><a href="dart-ui/Paint/maskFilter.html">maskFilter</a></li>
-      <li><a href="dart-ui/Paint/shader.html">shader</a></li>
-      <li><a href="dart-ui/Paint/strokeCap.html">strokeCap</a></li>
-      <li><a href="dart-ui/Paint/strokeJoin.html">strokeJoin</a></li>
-      <li><a href="dart-ui/Paint/strokeMiterLimit.html">strokeMiterLimit</a></li>
-      <li><a href="dart-ui/Paint/strokeWidth.html">strokeWidth</a></li>
-      <li><a href="dart-ui/Paint/style.html">style</a></li>
-      <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
+        <li class="section-title"><a href="dart-ui/Paint-class.html#constructors">Constructors</a></li>
+        <li><a href="dart-ui/Paint/Paint.html">Paint</a></li>
     
-      <li class="section-title"><a href="dart-ui/Paint-class.html#instance-methods">Methods</a></li>
-      <li><a href="dart-ui/Paint/toString.html">toString</a></li>
-      <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="section-title">
+            <a href="dart-ui/Paint-class.html#instance-properties">Properties</a>
+        </li>
+        <li><a href="dart-ui/Paint/blendMode.html">blendMode</a></li>
+        <li><a href="dart-ui/Paint/color.html">color</a></li>
+        <li><a href="dart-ui/Paint/colorFilter.html">colorFilter</a></li>
+        <li><a href="dart-ui/Paint/filterQuality.html">filterQuality</a></li>
+        <li><a href="dart-ui/Paint/imageFilter.html">imageFilter</a></li>
+        <li><a href="dart-ui/Paint/invertColors.html">invertColors</a></li>
+        <li><a href="dart-ui/Paint/isAntiAlias.html">isAntiAlias</a></li>
+        <li><a href="dart-ui/Paint/maskFilter.html">maskFilter</a></li>
+        <li><a href="dart-ui/Paint/shader.html">shader</a></li>
+        <li><a href="dart-ui/Paint/strokeCap.html">strokeCap</a></li>
+        <li><a href="dart-ui/Paint/strokeJoin.html">strokeJoin</a></li>
+        <li><a href="dart-ui/Paint/strokeMiterLimit.html">strokeMiterLimit</a></li>
+        <li><a href="dart-ui/Paint/strokeWidth.html">strokeWidth</a></li>
+        <li><a href="dart-ui/Paint/style.html">style</a></li>
+        <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title inherited"><a href="dart-ui/Paint-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+        <li class="section-title"><a href="dart-ui/Paint-class.html#instance-methods">Methods</a></li>
+        <li><a href="dart-ui/Paint/toString.html">toString</a></li>
+        <li class="inherited"><a href="dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    
+        <li class="section-title inherited"><a href="dart-ui/Paint-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="dart-core/Object/operator_equals.html">operator ==</a></li>
+    
+    
     
     
     
@@ -88,7 +92,7 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1>colorFilter property</h1></div>
+      <div><h1><span class="kind-property">colorFilter</span> property</h1></div>
 
 
         <section id="getter">
@@ -108,23 +112,10 @@ composited.</p>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">ColorFilter get colorFilter {
-  switch (_data.getInt32(_kColorFilterOffset, _kFakeHostEndian)) {
-    case ColorFilter._TypeNone:
-      return null;
-    case ColorFilter._TypeMode:
-      return new ColorFilter.mode(
-        new Color(_data.getInt32(_kColorFilterColorOffset, _kFakeHostEndian)),
-        BlendMode.values[_data.getInt32(_kColorFilterBlendModeOffset, _kFakeHostEndian)],
-      );
-    case ColorFilter._TypeMatrix:
-      return new ColorFilter.matrix(_objects[_kColorFilterMatrixIndex]);
-    case ColorFilter._TypeLinearToSrgbGamma:
-      return const ColorFilter.linearToSrgbGamma();
-    case ColorFilter._TypeSrgbToLinearGamma:
-      return const ColorFilter.srgbToLinearGamma();
+  if (_objects == null || _objects[_kColorFilterIndex] == null) {
+    return null;
   }
-
-  return null;
+  return _objects[_kColorFilterIndex].creator;
 }</code></pre>
         </section>
 </section>
@@ -141,28 +132,17 @@ composited.</p>
                         <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">set colorFilter(ColorFilter value) {
-  if (value == null) {
-    _data.setInt32(_kColorFilterOffset, ColorFilter._TypeNone, _kFakeHostEndian);
-    _data.setInt32(_kColorFilterColorOffset, 0, _kFakeHostEndian);
-    _data.setInt32(_kColorFilterBlendModeOffset, 0, _kFakeHostEndian);
-
+  final _ColorFilter nativeFilter = value?._toNativeColorFilter();
+  if (nativeFilter == null) {
     if (_objects != null) {
-      _objects[_kColorFilterMatrixIndex] = null;
+      _objects[_kColorFilterIndex] = null;
     }
   } else {
-    _data.setInt32(_kColorFilterOffset, value._type, _kFakeHostEndian);
-
-    if (value._type == ColorFilter._TypeMode) {
-      assert(value._color != null);
-      assert(value._blendMode != null);
-
-      _data.setInt32(_kColorFilterColorOffset, value._color.value, _kFakeHostEndian);
-      _data.setInt32(_kColorFilterBlendModeOffset, value._blendMode.index, _kFakeHostEndian);
-    } else if (value._type == ColorFilter._TypeMatrix) {
-      assert(value._matrix != null);
-
-      _objects ??= new List&lt;dynamic&gt;(_kObjectCount);
-      _objects[_kColorFilterMatrixIndex] = Float32List.fromList(value._matrix);
+    if (_objects == null) {
+      _objects = List&lt;dynamic&gt;(_kObjectCount);
+      _objects[_kColorFilterIndex] = nativeFilter;
+    } else if (_objects[_kColorFilterIndex]?.creator != value) {
+      _objects[_kColorFilterIndex] = nativeFilter;
     }
   }
 }</code></pre>
@@ -177,10 +157,11 @@ composited.</p>
 
 <footer>
   <span class="no-break">
-    flutter_form_builder 3.2.0
+    flutter_form_builder
+      3.7.0
   </span>
 
-  
+  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -188,7 +169,7 @@ composited.</p>
 <script src="static-assets/highlight.pack.js"></script>
 <script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
-
+<!-- footer placeholder -->
 
 </body>
 
