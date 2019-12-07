@@ -92,13 +92,13 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the field's value to be a valid url.
+  /// [FormFieldValidator] that requires the field's value to be a valid email.
   static FormFieldValidator email({
     String errorText = "This field requires a valid email address.",
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isEmail(valueCandidate)) return errorText;
+        if (!isEmail(valueCandidate.trim())) return errorText;
       }
     };
   }
