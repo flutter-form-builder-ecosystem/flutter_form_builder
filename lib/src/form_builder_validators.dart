@@ -104,7 +104,7 @@ class FormBuilderValidators {
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isEmail(valueCandidate)) return errorText;
+        if (!isEmail(valueCandidate.trim())) return errorText;
       }
       return null;
     };
