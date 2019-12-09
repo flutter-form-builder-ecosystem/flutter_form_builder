@@ -34,7 +34,7 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, GlobalKey<FormFieldState>> _fieldKeys;
   Map<String, dynamic> _value;
 
-  Map<String, dynamic> get value => _value;
+  Map<String, dynamic> get value => { ...widget.initialValue ?? {}, ..._value };
 
   Map<String, dynamic> get initialValue => widget.initialValue;
 

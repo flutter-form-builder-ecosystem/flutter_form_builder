@@ -19,6 +19,9 @@ void main() {
   test('FormBuilderValidators.email', () {
     expect(FormBuilderValidators.email()("john@flutter"), isNotNull);
     expect(FormBuilderValidators.email()("john@flutter.dev"), isNull);
+    expect(FormBuilderValidators.email()(" john@flutter.dev "), isNull);
+    expect(FormBuilderValidators.email()("john@flutter.dev "), isNull);
+    expect(FormBuilderValidators.email()(" john@flutter.dev"), isNull);
     expect(FormBuilderValidators.email()(null), isNull);
     expect(FormBuilderValidators.email()(""),isNull);
   });
