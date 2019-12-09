@@ -111,6 +111,48 @@ Column(
               FormBuilderFieldOption(value: "Objective-C"),
             ],
           ),
+          FormBuilderChoiceChip(
+            attribute: "favorite_ice_cream",
+            options: [
+              FormBuilderFieldOption(
+                child: Text("Vanilla"),
+                value: "vanilla"
+              ),
+              FormBuilderFieldOption(
+                child: Text("Chocolate"),
+                value: "chocolate"
+              ),
+              FormBuilderFieldOption(
+                child: Text("Strawberry"),
+                value: "strawberry"
+              ),
+              FormBuilderFieldOption(
+                child: Text("Peach"),
+                value: "peach"
+              ),
+            ],
+          ),
+          FormBuilderFilterChip(
+              attribute: "pets",
+              options: [
+                FormBuilderFieldOption(
+                  child: Text("Cats"),
+                  value: "cats"
+                ),
+                FormBuilderFieldOption(
+                  child: Text("Dogs"),
+                  value: "dogs"
+                ),
+                FormBuilderFieldOption(
+                  child: Text("Rodents"),
+                  value: "rodents"
+                ),
+                FormBuilderFieldOption(
+                  child: Text("Birds"),
+                  value: "birds"
+                ),
+              ],
+          ),
           FormBuilderSignaturePad(
             decoration: InputDecoration(labelText: "Signature"),
             attribute: "signature",
