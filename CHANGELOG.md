@@ -1,3 +1,10 @@
+## [3.7.2] - 10-Dec-2019
+* Fix email validator: Trim white-space before validation
+* Return Form's value state with all fields defined in initialValue
+
+## [3.7.1] - 6-Dec-2019
+* Use `num` for `FormBuilderStepper` instead of `double` to allow for either `int` or `double`
+
 ## [3.7.0] - 5-Dec-2019
 * Included `onSaved` callback to all fields. Closes [#175](https://github.com/danvick/flutter_form_builder/issues/175)
 * Added `Key` option to all fields to make testing possible 

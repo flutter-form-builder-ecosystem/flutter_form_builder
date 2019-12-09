@@ -64,8 +64,6 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return FormField(
       enabled: !_readOnly,
       key: _fieldKey,
