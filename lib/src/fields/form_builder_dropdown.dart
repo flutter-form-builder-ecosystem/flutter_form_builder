@@ -10,6 +10,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
+  final dynamic Function(FormFieldState field) dropdownValueMapper;
 
   final Widget hint;
   final List<DropdownMenuItem> items;
@@ -51,6 +52,7 @@ class FormBuilderDropdown extends StatefulWidget {
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
     this.onSaved,
+    this.dropdownValueMapper,
   }) : super(key: key) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
@@ -107,6 +109,9 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
         }
       },
       builder: (FormFieldState<dynamic> field) {
+        final value = widget.dropdownValueMapper == null
+                      ? field.value
+                      : widget.dropdownValueMapper(field);
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             errorText: field.errorText,
@@ -119,15 +124,15 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                     isExpanded: widget.isExpanded,
                     hint: widget.hint,
                     items: widget.items,
-                    value: field.value,
+                    value: value,
                     style: widget.style,
                     isDense: widget.isDense,
-                    disabledHint: field.value != null
+                    disabledHint: value != null
                         ? (widget.items
-                                .firstWhere((val) => val.value == field.value,
+                                .firstWhere((val) => val.value == value,
                                     orElse: () => null)
                                 ?.child ??
-                            Text("${field.value.toString()}"))
+                            Text("${value.toString()}"))
                         : widget.disabledHint,
                     elevation: widget.elevation,
                     iconSize: widget.iconSize,
@@ -144,7 +149,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                 ),
                 if (widget.allowClear &&
                     !widget.readOnly &&
-                    field.value != null) ...[
+                    value != null) ...[
                   VerticalDivider(),
                   InkWell(
                     child: widget.clearIcon,
