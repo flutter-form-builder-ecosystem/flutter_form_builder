@@ -58,6 +58,14 @@ class MyHomePageState extends State<MyHomePage> {
                 // readOnly: true,
                 child: Column(
                   children: <Widget>[
+                    FormBuilderDateTimePicker(
+                      attribute: "date",
+                      onChanged: _onChanged,
+                      inputType: InputType.time,
+                      decoration:
+                          InputDecoration(labelText: "Appointment Time"),
+                      // readonly: true,
+                    ),
                     /*FormBuilderCustomField(
                       attribute: "name",
                       validators: [
@@ -145,14 +153,7 @@ class MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-                    FormBuilderDateTimePicker(
-                      attribute: "date",
-                      onChanged: _onChanged,
-                      inputType: InputType.time,
-                      decoration:
-                          InputDecoration(labelText: "Appointment Time"),
-                      // readonly: true,
-                    ),
+                    
                     FormBuilderDateRangePicker(
                       attribute: "date_range",
                       firstDate: DateTime(1970),

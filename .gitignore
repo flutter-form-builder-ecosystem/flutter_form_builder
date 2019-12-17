@@ -9,3 +9,7 @@ ios/.generated/
 ios/Flutter/Generated.xcconfig
 ios/Runner/GeneratedPluginRegistrant.*
 /.project
+
+example/ios/Flutter/Flutter.podspec
+example/.flutter-plugins-dependencies
+
