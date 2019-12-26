@@ -22,7 +22,7 @@ class FormBuilder extends StatefulWidget {
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>
-      context.ancestorStateOfType(const TypeMatcher<FormBuilderState>());
+      context.findAncestorStateOfType<State<FormBuilder>>();
 
   @override
   FormBuilderState createState() => FormBuilderState();
