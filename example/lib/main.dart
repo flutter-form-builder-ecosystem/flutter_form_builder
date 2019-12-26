@@ -243,9 +243,9 @@ class MyHomePageState extends State<MyHomePage> {
                       validators: [FormBuilderValidators.required()],
                       items: genderOptions
                           .map((gender) => DropdownMenuItem(
-                        value: gender,
-                        child: Text('$gender'),
-                      ))
+                                value: gender,
+                                child: Text('$gender'),
+                              ))
                           .toList(),
                     ),
                     FormBuilderTypeAhead(
@@ -278,6 +278,24 @@ class MyHomePageState extends State<MyHomePage> {
                           return allCountries;
                         }
                       },
+                    ),
+                    FormBuilderMaterialColorPicker(
+                      initialValue: Colors.yellow,
+                      attribute: "color1",
+                      onColorChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "Material Picker"),
+                    ),
+                    FormBuilderBlockColorPicker(
+                      initialValue: Colors.yellow,
+                      attribute: "color2",
+                      onColorChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "Block Picker"),
+                    ),
+                    FormBuilderColorPicker(
+                      initialValue: Colors.yellow,
+                      attribute: "color3",
+                      onColorChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "All Picker"),
                     ),
                     /*FormBuilderTypeAhead(
                       decoration: InputDecoration(
