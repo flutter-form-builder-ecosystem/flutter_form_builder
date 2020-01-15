@@ -22,16 +22,18 @@ class FormBuilder extends StatefulWidget {
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>
-      context.ancestorStateOfType(const TypeMatcher<FormBuilderState>());
+      context.findAncestorStateOfType<FormBuilderState>();
 
   @override
   FormBuilderState createState() => FormBuilderState();
 }
 
 class FormBuilderState extends State<FormBuilder> {
-  //FIXME: Find way to assert no duplicates in control attributes
+  //TODO: Find way to assert no duplicates in control attributes
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
   Map<String, GlobalKey<FormFieldState>> _fieldKeys;
+
   Map<String, dynamic> _value;
 
   Map<String, dynamic> get value => {...widget.initialValue ?? {}, ..._value};

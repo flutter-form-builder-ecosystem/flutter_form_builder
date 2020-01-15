@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 import 'data.dart';
 
@@ -58,7 +60,7 @@ class MyHomePageState extends State<MyHomePage> {
                 // readOnly: true,
                 child: Column(
                   children: <Widget>[
-                    /*FormBuilderCustomField(
+                    FormBuilderCustomField(
                       attribute: "name",
                       validators: [
                         FormBuilderValidators.required(),
@@ -218,7 +220,7 @@ class MyHomePageState extends State<MyHomePage> {
                               "You must accept terms and conditions to continue",
                         ),
                       ],
-                    ),*/
+                    ),
                     FormBuilderTextField(
                       attribute: "age",
                       decoration: InputDecoration(
@@ -243,9 +245,9 @@ class MyHomePageState extends State<MyHomePage> {
                       validators: [FormBuilderValidators.required()],
                       items: genderOptions
                           .map((gender) => DropdownMenuItem(
-                        value: gender,
-                        child: Text('$gender'),
-                      ))
+                                value: gender,
+                                child: Text('$gender'),
+                              ))
                           .toList(),
                     ),
                     FormBuilderTypeAhead(
@@ -279,7 +281,7 @@ class MyHomePageState extends State<MyHomePage> {
                         }
                       },
                     ),
-                    /*FormBuilderTypeAhead(
+                    FormBuilderTypeAhead(
                       decoration: InputDecoration(
                         labelText: "Contact Person",
                       ),
@@ -319,15 +321,31 @@ class MyHomePageState extends State<MyHomePage> {
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
+                      options:
+                          ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
+                              .map((lang) => FormBuilderFieldOption(
+                                    value: lang,
+                                    child: Text('$lang'),
+                                  ))
+                              .toList(growable: false),
+                    ),
+                    FormBuilderRadio(
+                      decoration: InputDecoration(labelText: 'Pick a number'),
+                      attribute: "number",
                       options: [
-                        "Dart",
-                        "Kotlin",
-                        "Java",
-                        "Swift",
-                        "Objective-C"
-                      ]
-                          .map((lang) => FormBuilderFieldOption(value: lang))
-                          .toList(growable: false),
+                        FormBuilderFieldOption(
+                          value: 1,
+                          child: Text('One'),
+                        ),
+                        FormBuilderFieldOption(
+                          value: 2,
+                          child: Text('Two'),
+                        ),
+                        FormBuilderFieldOption(
+                          value: 3,
+                          child: Text('Three'),
+                        ),
+                      ],
                     ),
                     FormBuilderSegmentedControl(
                       decoration:
@@ -350,14 +368,13 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "accept_terms_switch",
                       initialValue: true,
                       onChanged: _onChanged,
-                    ),*/
+                    ),
                     FormBuilderStepper(
                       decoration: InputDecoration(labelText: "Stepper"),
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
                     ),
-                    /*
                     FormBuilderRate(
                       decoration: InputDecoration(labelText: "Rate this form"),
                       attribute: "rate",
@@ -444,7 +461,7 @@ class MyHomePageState extends State<MyHomePage> {
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
-                    ),*/
+                    ),
                   ],
                 ),
               ),
