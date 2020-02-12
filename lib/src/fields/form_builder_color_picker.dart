@@ -230,7 +230,8 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
       await showDialog(
         context: context,
         builder: (BuildContext context) {
-          Color pickedColor = _fieldKey.currentState.value ?? Theme.of(context).primaryColor;
+          Color pickedColor =
+              _fieldKey.currentState.value ?? Theme.of(context).primaryColor;
           return AlertDialog(
             // title: null, //const Text('Pick a color!'),
             content: SingleChildScrollView(

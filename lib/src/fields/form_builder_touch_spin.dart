@@ -51,7 +51,7 @@ class FormBuilderTouchSpin extends StatefulWidget {
     this.textStyle = const TextStyle(fontSize: 24),
     this.iconActiveColor,
     this.iconDisabledColor,
-  })  : super(key: key);
+  }) : super(key: key);
 
   @override
   _FormBuilderTouchSpinState createState() => _FormBuilderTouchSpinState();

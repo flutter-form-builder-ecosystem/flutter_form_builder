@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-
 class FormBuilderFilterChip extends StatefulWidget {
   // FormBuilder Settings
   final String attribute;
@@ -16,7 +15,11 @@ class FormBuilderFilterChip extends StatefulWidget {
   final FormFieldSetter onSaved;
   // FilterChip Settings
   final double elevation, pressElevation;
-  final Color selectedColor, disabledColor, backgroundColor, selectedShadowColor, shadowColor;
+  final Color selectedColor,
+      disabledColor,
+      backgroundColor,
+      selectedShadowColor,
+      shadowColor;
   final ShapeBorder shape;
   final MaterialTapTargetSize materialTapTargetSize;
   // Wrap Settings
@@ -28,39 +31,38 @@ class FormBuilderFilterChip extends StatefulWidget {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
 
-  FormBuilderFilterChip({
-    Key key,
-    @required this.attribute,
-    @required this.options,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.onSaved,
-    this.valueTransformer,
-    this.selectedColor,
-    this.disabledColor,
-    this.backgroundColor,
-    this.shadowColor,
-    this.selectedShadowColor,
-    this.shape,
-    this.elevation,
-    this.pressElevation,
-    this.materialTapTargetSize,
-    this.direction = Axis.horizontal,
-    this.alignment = WrapAlignment.start,
-    this.crossAxisAlignment = WrapCrossAlignment.start,
-    this.runAlignment = WrapAlignment.start,
-    this.runSpacing = 0.0,
-    this.spacing = 0.0,
-    this.textDirection,
-    this.verticalDirection = VerticalDirection.down
-  }) : super(key: key);
+  FormBuilderFilterChip(
+      {Key key,
+      @required this.attribute,
+      @required this.options,
+      this.initialValue,
+      this.validators = const [],
+      this.readOnly = false,
+      this.decoration = const InputDecoration(),
+      this.onChanged,
+      this.onSaved,
+      this.valueTransformer,
+      this.selectedColor,
+      this.disabledColor,
+      this.backgroundColor,
+      this.shadowColor,
+      this.selectedShadowColor,
+      this.shape,
+      this.elevation,
+      this.pressElevation,
+      this.materialTapTargetSize,
+      this.direction = Axis.horizontal,
+      this.alignment = WrapAlignment.start,
+      this.crossAxisAlignment = WrapCrossAlignment.start,
+      this.runAlignment = WrapAlignment.start,
+      this.runSpacing = 0.0,
+      this.spacing = 0.0,
+      this.textDirection,
+      this.verticalDirection = VerticalDirection.down})
+      : super(key: key);
 
   @override
-  _FormBuilderFilterChipState createState() =>
-      _FormBuilderFilterChipState();
+  _FormBuilderFilterChipState createState() => _FormBuilderFilterChipState();
 }
 
 class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
@@ -141,25 +143,25 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
                           materialTapTargetSize: widget.materialTapTargetSize,
                           label: option.child,
                           selected: field.value.contains(option.value),
-                          onSelected: _readOnly? null : (bool selected) {
-                            setState(() {
-                              FocusScope.of(context).requestFocus(FocusNode());
-                              var currentValue = field.value;
+                          onSelected: _readOnly
+                              ? null
+                              : (bool selected) {
+                                  setState(() {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    var currentValue = field.value;
 
-                              if (selected)
-                                currentValue.add(option.value);
-                              else
-                                currentValue.remove(option.value);
+                                    if (selected)
+                                      currentValue.add(option.value);
+                                    else
+                                      currentValue.remove(option.value);
 
-                              field.didChange(currentValue);
-                              if (widget.onChanged != null)
-                                widget.onChanged(currentValue);
-                            });
-                          }
-                      )
-                  ]
-              )
-          );
+                                    field.didChange(currentValue);
+                                    if (widget.onChanged != null)
+                                      widget.onChanged(currentValue);
+                                  });
+                                })
+                  ]));
         });
   }
 }
