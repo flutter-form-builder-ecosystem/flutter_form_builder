@@ -60,6 +60,32 @@ class MyHomePageState extends State<MyHomePage> {
                 // readOnly: true,
                 child: Column(
                   children: <Widget>[
+                    FormBuilderFilterChip(
+                      attribute: 'filter_chip',
+                      decoration: InputDecoration(
+                          labelText: 'Select many options',
+                      ),
+                      options: [
+                        FormBuilderFieldOption(value: 'Test', child: Text('Test')),
+                        FormBuilderFieldOption(value: 'Test 1', child: Text('Test 1')),
+                        FormBuilderFieldOption(value: 'Test 2', child: Text('Test 2')),
+                        FormBuilderFieldOption(value: 'Test 3', child: Text('Test 3')),
+                        FormBuilderFieldOption(value: 'Test 4', child: Text('Test 4')),
+                      ],
+                    ),
+                    FormBuilderChoiceChip(
+                      attribute: 'choice_chip',
+                      decoration: InputDecoration(
+                        labelText: 'Select an option',
+                      ),
+                      options: [
+                        FormBuilderFieldOption(value: 'Test', child: Text('Test')),
+                        FormBuilderFieldOption(value: 'Test 1', child: Text('Test 1')),
+                        FormBuilderFieldOption(value: 'Test 2', child: Text('Test 2')),
+                        FormBuilderFieldOption(value: 'Test 3', child: Text('Test 3')),
+                        FormBuilderFieldOption(value: 'Test 4', child: Text('Test 4')),
+                      ],
+                    ),
                     FormBuilderCustomField(
                       attribute: "name",
                       validators: [
