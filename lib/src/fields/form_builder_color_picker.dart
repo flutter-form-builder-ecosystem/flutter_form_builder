@@ -7,6 +7,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_colorpicker/hsv_picker.dart';
 import 'package:flutter_colorpicker/material_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/hex_color.dart';
 
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
 
@@ -132,7 +133,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
             : null);
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     _textEditingController =
-        TextEditingController(text: _initialValue?.toString());
+        TextEditingController(text: HexColor(_initialValue)?.toHex());
     if (widget.focusNode != null) {
       widget.focusNode.addListener(_handleFocus);
     }
@@ -220,7 +221,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
   void _setColor(Color color) {
     _fieldKey.currentState.didChange(color);
     if (widget.onChanged != null) widget.onChanged(color);
-    _effectiveController.text = color.toString();
+    _effectiveController.text = HexColor(color)?.toHex();
   }
 
   _handleFocus() async {
@@ -293,21 +294,4 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
       );
     }
   }
-}
-
-extension HexColor on Color {
-  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
-  static Color fromHex(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    buffer.write(hexString.replaceFirst('#', ''));
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-
-  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0')}'
-      '${red.toRadixString(16).padLeft(2, '0')}'
-      '${green.toRadixString(16).padLeft(2, '0')}'
-      '${blue.toRadixString(16).padLeft(2, '0')}';
 }
