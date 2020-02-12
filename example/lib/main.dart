@@ -93,6 +93,12 @@ class MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                     ),
+                    FormBuilderColorPicker(
+                      attribute: 'color_picker',
+                      initialValue: Colors.yellow,
+                      colorPickerType: ColorPickerType.MaterialPicker,
+                      decoration: InputDecoration(labelText: "Pick Color"),
+                    ),
                     FormBuilderChipsInput(
                       decoration: InputDecoration(labelText: "Chips"),
                       attribute: 'chips_test',
@@ -280,24 +286,6 @@ class MyHomePageState extends State<MyHomePage> {
                           return allCountries;
                         }
                       },
-                    ),
-                    FormBuilderMaterialColorPicker(
-                      initialValue: Colors.yellow,
-                      attribute: "color1",
-                      onColorChanged: _onChanged,
-                      decoration: InputDecoration(labelText: "Material Picker"),
-                    ),
-                    FormBuilderBlockColorPicker(
-                      initialValue: Colors.yellow,
-                      attribute: "color2",
-                      onColorChanged: _onChanged,
-                      decoration: InputDecoration(labelText: "Block Picker"),
-                    ),
-                    FormBuilderColorPicker(
-                      initialValue: Colors.yellow,
-                      attribute: "color3",
-                      onColorChanged: _onChanged,
-                      decoration: InputDecoration(labelText: "All Picker"),
                     ),
                     FormBuilderTypeAhead(
                       decoration: InputDecoration(

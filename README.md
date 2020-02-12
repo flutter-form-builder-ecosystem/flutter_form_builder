@@ -146,8 +146,9 @@ The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
 * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
 * `FormBuilderChipsInput` - Takes a list of `Chip`s as input
+* `FormBuilderColorPicker` - For `Color` input selection
 * `FormBuilderDateRangePicker` - For selection of a range of dates
-* `FormBuilderDateTimePicker` - For Date, Time and DateTime input
+* `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
@@ -312,6 +313,7 @@ This package is dependent on the following packages and plugins:
 * [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dartlang.org/packages/validators) by [dart-league](https://github.com/dart-league)
 * [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+* [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
 * [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :-)](https://github.com/danvick)
 
 ## FUTURE PLANS: 
@@ -320,16 +322,19 @@ This package is dependent on the following packages and plugins:
 - [X] Improve documentation by showing complete list of input types and their usage and options
 - [X] Create a `transformer` function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
-- [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` by [Sven Schöne](https://github.com/SvenSchoene)
+- [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` courtesy of [Sven Schöne](https://github.com/SvenSchoene)
+- [ ] For RangeSlider use Flutter provided
+- [ ] Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version
 
 ### New FormBuilder inputs
 - [X] RangeSlider
 - [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
-- [ ] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
+- [X] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
 - [X] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
-- [ ] MapInput
-- [ ] ImagePicker
-- [ ] DocumentPicker
+
+### Need to be on separate repos
+- [X] FilePicker (Images & Files) -> Found [here](https://github.com/danvick/form_builder_file_picker). Work in progress
+- [ ] MapInput - Help Wanted
 
 ### Known Issues
 Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
