@@ -1,4 +1,4 @@
-## [3.8.0] - 15-Jan-2019
+## [3.8.0] - 12-Feb-2019
 * **NEW FIELD TYPES:**
     * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button. Courtesy [Cesar Flores](https://github.com/VOIDCRUSHER)
     * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox. By [Cesar Flores](https://github.com/VOIDCRUSHER). Again!
