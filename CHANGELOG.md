@@ -1,3 +1,7 @@
+## [3.7.3] - 15-Jan-2019
+* Bumped up `intl`, `datetime_picker_formfield` & `flutter_chips_input`. Closes #204, #207, #211, #215.
+* Fixed deprecation errors
+
 ## [3.7.2] - 10-Dec-2019
 * Fix email validator: Trim white-space before validation
 * Return Form's value state with all fields defined in initialValue

@@ -327,6 +327,13 @@ This package is dependent on the following packages and plugins:
 ## KNOWN ISSUES
 Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
+## Contributors
+<a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
+</a>
+
+Made with [contributors-img](https://contributors-img.firebaseapp.com).
+
 ## Support
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
 
