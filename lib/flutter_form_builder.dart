@@ -6,6 +6,8 @@ export './src/form_builder_field_option.dart';
 export './src/form_builder_validators.dart';
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_list.dart';
+export './src/fields/form_builder_chips_choice.dart';
+export './src/fields/form_builder_chips_filter.dart';
 export './src/fields/form_builder_chips_input.dart';
 export './src/fields/form_builder_color_picker.dart';
 export './src/fields/form_builder_date_range_picker.dart';
@@ -19,7 +21,7 @@ export './src/fields/form_builder_slider.dart';
 export './src/fields/form_builder_stepper.dart';
 export './src/fields/form_builder_switch.dart';
 export './src/fields/form_builder_text_field.dart';
+export './src/fields/form_builder_touch_spin.dart';
 export './src/fields/form_builder_typeahead.dart';
 export './src/fields/form_builder_signature_pad.dart';
-export './src/fields/form_builder_chips_choice.dart';
-export './src/fields/form_builder_chips_filter.dart';
+

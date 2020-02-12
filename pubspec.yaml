@@ -5,7 +5,7 @@ author: Danvick Miller <danvickmiller@gmail.com>
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
-  sdk: '>=2.2.2 <3.0.0'
+  sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -20,6 +20,7 @@ dependencies:
   # signature: ^2.0.0 - Doesn't implement onChanged, submitted PR. Meanwhile using local clone with onChanged
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
+  flutter_touch_spin: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:

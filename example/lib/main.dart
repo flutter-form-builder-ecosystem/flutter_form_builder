@@ -121,7 +121,7 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     FormBuilderColorPicker(
                       attribute: 'color_picker',
-                      initialValue: Colors.yellow,
+                      // initialValue: Colors.yellow,
                       colorPickerType: ColorPickerType.MaterialPicker,
                       decoration: InputDecoration(labelText: "Pick Color"),
                     ),
@@ -401,11 +401,14 @@ class MyHomePageState extends State<MyHomePage> {
                       initialValue: true,
                       onChanged: _onChanged,
                     ),
-                    FormBuilderStepper(
+                    FormBuilderTouchSpin(
                       decoration: InputDecoration(labelText: "Stepper"),
                       attribute: "stepper",
                       initialValue: 10,
                       step: 1,
+                      iconSize: 48.0,
+                      addIcon: Icon(Icons.arrow_right),
+                      subtractIcon: Icon(Icons.arrow_left),
                     ),
                     FormBuilderRate(
                       decoration: InputDecoration(labelText: "Rate this form"),

@@ -4,8 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
-@Deprecated('Use `FormBuilderTouchSpin` instead.')
-class FormBuilderStepper extends StatefulWidget {
+class FormBuilderTouchSpin extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
   final num initialValue;
@@ -16,12 +15,10 @@ class FormBuilderStepper extends StatefulWidget {
   final num step;
   final num min;
   final num max;
-  final num size;
   final FormFieldSetter onSaved;
   final Icon subtractIcon;
   final Icon addIcon;
-
-  final double iconSize;
+  final num iconSize;
 
   final NumberFormat displayFormat;
 
@@ -33,7 +30,7 @@ class FormBuilderStepper extends StatefulWidget {
 
   final Color iconDisabledColor;
 
-  FormBuilderStepper({
+  FormBuilderTouchSpin({
     Key key,
     @required this.attribute,
     this.initialValue,
@@ -43,7 +40,6 @@ class FormBuilderStepper extends StatefulWidget {
     this.step,
     this.min = 1,
     this.max = 9999,
-    @Deprecated('Use `iconSize` instead') this.size,
     this.onChanged,
     this.valueTransformer,
     this.onSaved,
@@ -55,14 +51,13 @@ class FormBuilderStepper extends StatefulWidget {
     this.textStyle = const TextStyle(fontSize: 24),
     this.iconActiveColor,
     this.iconDisabledColor,
-  })  : assert(size != null || iconSize != null),
-        super(key: key);
+  })  : super(key: key);
 
   @override
-  _FormBuilderStepperState createState() => _FormBuilderStepperState();
+  _FormBuilderTouchSpinState createState() => _FormBuilderTouchSpinState();
 }
 
-class _FormBuilderStepperState extends State<FormBuilderStepper> {
+class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
@@ -121,7 +116,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
             max: widget.max,
             step: widget.step,
             value: field.value,
-            iconSize: widget.size ?? widget.iconSize,
+            iconSize: widget.iconSize,
             onChanged: _readOnly
                 ? null
                 : (value) {
