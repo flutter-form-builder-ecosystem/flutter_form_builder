@@ -281,6 +281,24 @@ class MyHomePageState extends State<MyHomePage> {
                         }
                       },
                     ),
+                    FormBuilderMaterialColorPicker(
+                      initialValue: Colors.yellow,
+                      attribute: "color1",
+                      onColorChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "Material Picker"),
+                    ),
+                    FormBuilderBlockColorPicker(
+                      initialValue: Colors.yellow,
+                      attribute: "color2",
+                      onColorChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "Block Picker"),
+                    ),
+                    FormBuilderColorPicker(
+                      initialValue: Colors.yellow,
+                      attribute: "color3",
+                      onColorChanged: _onChanged,
+                      decoration: InputDecoration(labelText: "All Picker"),
+                    ),
                     FormBuilderTypeAhead(
                       decoration: InputDecoration(
                         labelText: "Contact Person",
