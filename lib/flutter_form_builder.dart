@@ -20,3 +20,5 @@ export './src/fields/form_builder_text_field.dart';
 export './src/fields/form_builder_typeahead.dart';
 export './src/fields/form_builder_chips_input.dart';
 export './src/fields/form_builder_signature_pad.dart';
+export './src/fields/form_builder_chips_choice.dart';
+export './src/fields/form_builder_chips_filter.dart';
