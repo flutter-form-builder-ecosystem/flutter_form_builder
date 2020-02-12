@@ -89,23 +89,23 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
 
 class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   TextEditingController _typeAheadController;
+  FocusNode _typeAheadFocusNode;
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   T _initialValue;
   String _initialText;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? _typeAheadController;
-
   @override
   void initState() {
     super.initState();
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    if (widget.controller == null) {
-      _typeAheadController = TextEditingController();
-    }
+    _typeAheadController = widget.controller ?? TextEditingController();
+    _typeAheadFocusNode = _readOnly
+                          ? AlwaysDisabledFocusNode()
+                          : widget.textFieldConfiguration.focusNode;
+
     _initialValue = widget.initialValue ??
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
@@ -115,15 +115,15 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         ? widget.selectionToTextTransformer(_initialValue ?? '')
         : _initialValue?.toString() ?? '';
 
-    _effectiveController.text = _initialText;
+    _typeAheadController.text = _initialText;
 
     if (T == String) {
-      _effectiveController.addListener(_handleStringOnChanged);
+      _typeAheadController.addListener(_handleStringOnChanged);
     }
   }
 
   _handleStringOnChanged() {
-    if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
+    if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
   }
 
   @override
@@ -153,15 +153,13 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
       autovalidate: widget.autovalidate,
       textFieldConfiguration: widget.textFieldConfiguration.copyWith(
         enabled: !_readOnly,
-        controller: _effectiveController,
+        controller: _typeAheadController,
         style: _readOnly
             ? Theme.of(context).textTheme.subhead.copyWith(
                   color: Theme.of(context).disabledColor,
                 )
             : widget.textFieldConfiguration.style,
-        focusNode: _readOnly
-            ? AlwaysDisabledFocusNode()
-            : widget.textFieldConfiguration.focusNode,
+        focusNode: _typeAheadFocusNode,
         decoration: widget.decoration.copyWith(
           enabled: !_readOnly,
         ),
@@ -172,10 +170,10 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
           suggestionsBox,
       onSuggestionSelected: (T suggestion) {
         if (widget.selectionToTextTransformer != null) {
-          _effectiveController.text =
+          _typeAheadController.text =
               widget.selectionToTextTransformer(suggestion);
         } else {
-          _effectiveController.text =
+          _typeAheadController.text =
               suggestion != null ? suggestion.toString() : '';
         }
         if (widget.onSuggestionSelected != null)
@@ -207,7 +205,14 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   @override
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
-    _effectiveController.removeListener(_handleStringOnChanged);
+    if(widget.controller == null) {
+      _typeAheadController.dispose();
+    } else {
+      _typeAheadController.removeListener(_handleStringOnChanged);
+    }
+    if(widget.textFieldConfiguration.focusNode == null) {
+      _typeAheadFocusNode?.dispose();
+    }
     super.dispose();
   }
 }
