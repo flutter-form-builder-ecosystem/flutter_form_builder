@@ -187,7 +187,9 @@ Column(
 The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
 * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
-* `FormBuilderChipsInput` - Takes a list of `Chip`s as input
+* `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
+* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
+* `FormBuilderChipsInput` - Takes a list of `Chip`s as input and suggests more options on typing
 * `FormBuilderColorPicker` - For `Color` input selection
 * `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
@@ -198,10 +200,11 @@ The currently supported fields include:
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
-* `FormBuilderStepper` - Selection of a number by tapping on a plus or minus symbol
+* ~~`FormBuilderStepper`~~ - Selection of a number by tapping on a plus or minus symbol. Deprecated; replace with `FormBuilderTouchSpin`
 * `FormBuilderSwitch` - On/Off switch
 * `FormBuilderTextField` - For text input. Accepts input of single-line text, multi-line text, password,
 email, urls etc by using different configurations and validators
+* `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
@@ -349,14 +352,14 @@ Made with [contributors-img](https://contributors-img.firebaseapp.com).
 
 ## Dependencies
 This package is dependent on the following packages and plugins:
-* [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
-* [sy_flutter_widgets](https://pub.dartlang.org/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
-* [datetime_picker_formfield](https://pub.dartlang.org/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
+* [flutter_typeahead](https://pub.dev/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
+* [sy_flutter_widgets](https://pub.dev/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
+* [datetime_picker_formfield](https://pub.dev/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
 * [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
-* [validators](https://pub.dartlang.org/packages/validators) by [dart-league](https://github.com/dart-league)
-* [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+* [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
+* [signature](https://pub.dev/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
 * [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
-* [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :-)](https://github.com/danvick)
+* [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours trully :-)](https://github.com/danvick)
 
 ## FUTURE PLANS: 
 ### Improvements
@@ -370,9 +373,9 @@ This package is dependent on the following packages and plugins:
 
 ### New FormBuilder inputs
 - [X] RangeSlider
-- [X] SignaturePad - Based on [https://pub.dartlang.org/packages/signature](https://pub.dartlang.org/packages/signature)
-- [X] ColorPicker - https://pub.dartlang.org/packages/flutter_colorpicker
-- [X] DateRangePicker - https://pub.dartlang.org/packages/date_range_picker
+- [X] SignaturePad - Based on [https://pub.dev/packages/signature](https://pub.dev/packages/signature)
+- [X] ColorPicker - https://pub.dev/packages/flutter_colorpicker
+- [X] DateRangePicker - https://pub.dev/packages/date_range_picker
 
 ### Need to be on separate repos
 - [X] FilePicker (Images & Files) -> Found [here](https://github.com/danvick/form_builder_file_picker). Work in progress
@@ -384,4 +387,4 @@ Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 ## SUPPORT
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
 
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png) ;-)](https://buymeacoff.ee/wb5M9y2Sz)
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)

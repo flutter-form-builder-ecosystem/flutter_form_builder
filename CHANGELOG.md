@@ -1,3 +1,12 @@
+## [3.8.0] - 15-Jan-2019
+* **NEW FIELD TYPES:**
+    * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button. Courtesy [Cesar Flores](https://github.com/VOIDCRUSHER)
+    * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox. By [Cesar Flores](https://github.com/VOIDCRUSHER). Again!
+    * `FormBuilderColorPicker` with help from [Benjamin](https://github.com/Reprevise)
+    * `FormBuilderTouchSpin` replaced the confusingly named `FormBuilderStepper` which is now deprecated.
+* Fix some inconsistencies in controller and focus node disposal. Courtesy of [Thomas Järvstrand](https://github.com/tjarvstrand). Should close [#230](https://github.com/danvick/flutter_form_builder/issues/230)
+* Bumped up `flutter_typeahead` from `1.7.0` to `1.8.0`
+
 ## [3.7.3] - 15-Jan-2019
 * Bumped up `intl`, `datetime_picker_formfield` & `flutter_chips_input`. Closes #204, #207, #211, #215.
 * Fixed deprecation errors
