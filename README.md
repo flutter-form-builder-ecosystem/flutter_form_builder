@@ -297,17 +297,24 @@ FormBuilderTextField(
 ```
 
 ## CREDITS
+### Contributors
+<a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
+</a>
+
+Made with [contributors-img](https://contributors-img.firebaseapp.com).
+
+## Dependencies
 This package is dependent on the following packages and plugins:
 * [flutter_typeahead](https://pub.dartlang.org/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
 * [sy_flutter_widgets](https://pub.dartlang.org/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
 * [datetime_picker_formfield](https://pub.dartlang.org/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
 * [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dartlang.org/packages/validators) by [dart-league](https://github.com/dart-league)
-* [intl](https://pub.dartlang.org/packages/intl) - Dart Package
 * [signature](https://pub.dartlang.org/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
 * [flutter_chips_input](https://pub.dartlang.org/packages/flutter_chips_input) by [Yours trully :-)](https://github.com/danvick)
 
-## TODO: 
+## FUTURE PLANS: 
 ### Improvements
 - [X] Allow addition of custom input types
 - [X] Improve documentation by showing complete list of input types and their usage and options
@@ -324,19 +331,10 @@ This package is dependent on the following packages and plugins:
 - [ ] ImagePicker
 - [ ] DocumentPicker
 
-## KNOWN ISSUES
+### Known Issues
 Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
-## Contributors
-<a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
-  <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
-</a>
-
-Made with [contributors-img](https://contributors-img.firebaseapp.com).
-
-## Support
+## SUPPORT
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
 
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
-
-
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png) ;-)](https://buymeacoff.ee/wb5M9y2Sz)
