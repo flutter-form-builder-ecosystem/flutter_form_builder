@@ -1,3 +1,6 @@
+## [3.8.0+1] - 17-Feb-2020
+* Fix bug where Changing readOnly of `FormBuilder` does not change readOnly of `FormBuilderDateTimePicker`. Closes [#179](https://github.com/danvick/flutter_form_builder/issues/179)
+
 ## [3.8.0] - 12-Feb-2020
 * **NEW FIELD TYPES:**
     * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button. Courtesy [Cesar Flores](https://github.com/VOIDCRUSHER)

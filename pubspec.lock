@@ -129,7 +129,7 @@ packages:
       name: flutter_touch_spin
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+2"
+    version: "1.0.1"
   flutter_typeahead:
     dependency: "direct main"
     description:
