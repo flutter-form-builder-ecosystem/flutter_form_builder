@@ -76,7 +76,6 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     super.initState();
   }
 
@@ -88,6 +87,8 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
 
   @override
   Widget build(BuildContext context) {
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
     return FormField(
       enabled: !_readOnly,
       key: _fieldKey,

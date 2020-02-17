@@ -71,7 +71,6 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     super.initState();
   }
 
@@ -83,6 +82,8 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
 
   @override
   Widget build(BuildContext context) {
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
     return FormField(
       enabled: !_readOnly,
       key: _fieldKey,

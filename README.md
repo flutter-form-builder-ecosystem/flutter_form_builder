@@ -350,7 +350,7 @@ FormBuilderTextField(
 
 Made with [contributors-img](https://contributors-img.firebaseapp.com).
 
-## Dependencies
+### Dependencies
 This package is dependent on the following packages and plugins:
 * [flutter_typeahead](https://pub.dev/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
 * [sy_flutter_widgets](https://pub.dev/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)

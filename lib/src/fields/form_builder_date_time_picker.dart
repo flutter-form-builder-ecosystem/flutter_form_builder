@@ -226,7 +226,6 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             ? _formState.initialValue[widget.attribute]
             : null);
     stateCurrentValue = _initialValue;
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
 
@@ -256,6 +255,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   @override
   Widget build(BuildContext context) {
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
     return DateTimeField(
       key: _fieldKey,
       initialValue: _initialValue,
