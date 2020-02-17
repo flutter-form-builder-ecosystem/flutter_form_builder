@@ -57,7 +57,7 @@ class MyHomePageState extends State<MyHomePage> {
                 initialValue: {
                   'movie_rating': 5,
                 },
-                // readOnly: true,
+                readOnly: false,
                 child: Column(
                   children: <Widget>[
                     FormBuilderFilterChip(

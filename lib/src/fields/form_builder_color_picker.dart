@@ -131,7 +131,6 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
     _textEditingController =
         TextEditingController(text: HexColor(_initialValue)?.toHex());
     if (widget.focusNode != null) {
@@ -142,6 +141,8 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
 
   @override
   Widget build(BuildContext context) {
+    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
     return FormField<Color>(
         key: _fieldKey,
         enabled: !_readOnly,
@@ -185,8 +186,8 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                 );
               }),
             ),
-            enabled: widget.enabled,
-            readOnly: widget.readOnly,
+            enabled: !_readOnly,
+            readOnly: true,
             controller: _effectiveController,
             focusNode: effectiveFocusNode,
             textAlign: widget.textAlign,
