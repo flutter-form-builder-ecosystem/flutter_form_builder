@@ -134,6 +134,7 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
             iconDisabledColor:
                 widget.iconDisabledColor ?? Theme.of(context).disabledColor,
             iconPadding: widget.iconPadding,
+            enabled: !_readOnly,
           ),
         );
       },

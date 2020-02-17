@@ -139,6 +139,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
             iconDisabledColor:
                 widget.iconDisabledColor ?? Theme.of(context).disabledColor,
             iconPadding: widget.iconPadding,
+            enabled: !_readOnly,
           ),
         );
       },
