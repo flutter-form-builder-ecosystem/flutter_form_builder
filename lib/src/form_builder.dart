@@ -29,7 +29,7 @@ class FormBuilder extends StatefulWidget {
 }
 
 class FormBuilderState extends State<FormBuilder> {
-  //TODO: Find way to assert no duplicates in control attributes
+  //TODO: Find way to assert no duplicates in field attributes
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Map<String, GlobalKey<FormFieldState>> _fieldKeys;

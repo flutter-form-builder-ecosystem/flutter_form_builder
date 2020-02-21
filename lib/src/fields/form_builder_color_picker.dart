@@ -2,14 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_colorpicker/block_picker.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_colorpicker/hsv_picker.dart';
-import 'package:flutter_colorpicker/material_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/hex_color.dart';
 
-enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
+enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker, SlidePicker }
 
 class FormBuilderColorPicker extends StatefulWidget {
   final String attribute;
@@ -244,12 +241,15 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                       onColorChanged: (Color val) {
                         pickedColor = val;
                       },
-                      enableLabel: true,
                       colorPickerWidth: 300,
                       displayThumbColor: true,
                       enableAlpha: true,
                       paletteType: PaletteType.hsl,
                       pickerAreaHeightPercent: 1.0,
+                      //FIXME: Present these options to user
+                      /*labelTextStyle: ,
+                      pickerAreaBorderRadius: ,
+                      showLabel: ,*/
                     );
                   case ColorPickerType.MaterialPicker:
                     return MaterialPicker(
@@ -270,6 +270,14 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                       itemBuilder: ,
                       layoutBuilder: ,
                       */
+                    );
+                  case ColorPickerType.SlidePicker:
+                    return SlidePicker(
+                      pickerColor: pickedColor,
+                      onColorChanged: (Color val) {
+                        pickedColor = val;
+                      },
+
                     );
                   default:
                     throw "Unknown ColorPickerType";
