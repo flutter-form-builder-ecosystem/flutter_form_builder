@@ -55,6 +55,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// For validating the [DateTime]. The value passed will be `null` if
   /// [format] fails to parse the text.
+  @Deprecated("Doesn't work. Use `validators` attribute to provides `List<FormFieldValidator>` for reusability")
   final FormFieldValidator<DateTime> validator;
 
   /// Called when an enclosing form is saved. The value passed will be `null`
