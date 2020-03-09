@@ -45,7 +45,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   /// The initial time prefilled in the picker dialog when it is shown. Defaults
   /// to noon. Explicitly set this to `null` to use the current time.
   @Deprecated(
-      "This field will be removed in the next major version. Selected time or noon will be used on TimePicker instead")
+      "This field will be removed in the next major version. Selected time or current time will be used on TimePicker instead")
   final TimeOfDay initialTime;
 
   /// If defined, the TextField [decoration]'s [suffixIcon] will be
@@ -211,6 +211,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   FocusNode _focusNode;
   TextEditingController _textFieldController;
   DateTime stateCurrentValue;
+  DateFormat _dateFormat;
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
@@ -230,12 +231,9 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     stateCurrentValue = _initialValue;
     _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
-
-    _textFieldController.text = _initialValue == null
-        ? ''
-        : widget.format == null
-            ? DateFormat("EEEE, MMMM d, yyyy 'at' h:mma").format(_initialValue)
-            : widget.format.format(_initialValue);
+    _dateFormat = widget.format ?? _dateTimeFormats[widget.inputType];
+    _textFieldController.text =
+        _initialValue == null ? '' : _dateFormat.format(_initialValue);
     _focusNode.addListener(_handleFocus);
   }
 
@@ -262,9 +260,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     return DateTimeField(
       key: _fieldKey,
       initialValue: _initialValue,
-      format: widget.format != null
-          ? widget.format
-          : _dateTimeFormats[widget.inputType],
+      format: _dateFormat,
       onSaved: (val) {
         var value = _fieldKey.currentState.value;
         var transformed;
@@ -374,14 +370,18 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
-      print(currentValue);
       return showTimePicker(
         context: context,
         // ignore: deprecated_member_use_from_same_package
-        initialTime: widget.initialTime ??
-            TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+        // initialTime: widget.initialTime ?? TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+        initialTime: currentValue != null
+            ? TimeOfDay.fromDateTime(currentValue)
+            : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
       ).then((result) {
-        return result ?? TimeOfDay.fromDateTime(currentValue);
+        return result ??
+            (currentValue != null
+                ? TimeOfDay.fromDateTime(currentValue)
+                : null);
       });
     }
   }
