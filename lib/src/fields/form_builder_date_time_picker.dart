@@ -55,7 +55,8 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// For validating the [DateTime]. The value passed will be `null` if
   /// [format] fails to parse the text.
-  @Deprecated("Doesn't work. Use `validators` attribute to provides `List<FormFieldValidator>` for reusability")
+  @Deprecated(
+      "Doesn't work. Use `validators` attribute to provides `List<FormFieldValidator>` for reusability")
   final FormFieldValidator<DateTime> validator;
 
   /// Called when an enclosing form is saved. The value passed will be `null`
@@ -373,11 +374,15 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
+      print(currentValue);
       return showTimePicker(
-          context: context,
-          // ignore: deprecated_member_use_from_same_package
-          initialTime: widget.initialTime ??
-              TimeOfDay.fromDateTime(currentValue ?? DateTime.now()));
+        context: context,
+        // ignore: deprecated_member_use_from_same_package
+        initialTime: widget.initialTime ??
+            TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+      ).then((result) {
+        return result ?? TimeOfDay.fromDateTime(currentValue);
+      });
     }
   }
 }
