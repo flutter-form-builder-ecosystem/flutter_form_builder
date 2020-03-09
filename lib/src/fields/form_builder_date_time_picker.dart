@@ -328,7 +328,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         break;
       case InputType.time:
         var newTime = await _showTimePicker(context, currentValue);
-        newValue = DateTimeField.convert(newTime) ?? currentValue;
+        newValue =
+            newTime != null ? DateTimeField.convert(newTime) : currentValue;
         break;
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
@@ -372,8 +373,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     } else {
       return showTimePicker(
         context: context,
-        // ignore: deprecated_member_use_from_same_package
         // initialTime: widget.initialTime ?? TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+        // ignore: deprecated_member_use_from_same_package
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),

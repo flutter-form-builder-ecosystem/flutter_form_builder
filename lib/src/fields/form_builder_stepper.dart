@@ -62,6 +62,7 @@ class FormBuilderStepper extends StatefulWidget {
   _FormBuilderStepperState createState() => _FormBuilderStepperState();
 }
 
+// ignore: deprecated_member_use_from_same_package
 class _FormBuilderStepperState extends State<FormBuilderStepper> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();

@@ -277,7 +277,6 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                       onColorChanged: (Color val) {
                         pickedColor = val;
                       },
-
                     );
                   default:
                     throw "Unknown ColorPickerType";

@@ -1,3 +1,12 @@
+## [3.8.1] - 09-Mar-2020
+* Only enable corresponding TextField when ColorPicker is not readOnly
+* Fixed bug where `FormBuilderTouchSpin` aka Stepper not being disabled when in readOnly
+* Bumped up color_picker to 0.3.2, added new ColorPickerType - `SliderPicker`
+* Export `flutter_typeahead` package so user gets access `TextFieldConfiguration` class
+* Deprecate `validator` attribute in FormBuilderDateTimePicker, only `validators` should be used
+* When TimePicker is cancelled, return original value instead of null
+* Fix bug where initialTime for TimePicker defaults to 12:00, use currentTime. Closes [#234](https://github.com/danvick/flutter_form_builder/issues/234)
+
 ## [3.8.0+1] - 17-Feb-2020
 * Fix bug where Changing readOnly of `FormBuilder` does not change readOnly of `FormBuilderDateTimePicker`. Closes [#179](https://github.com/danvick/flutter_form_builder/issues/179)
 
