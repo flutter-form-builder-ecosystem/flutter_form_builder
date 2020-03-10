@@ -137,7 +137,7 @@ The <code>elements</code> iterable itself may have any element type, so this
 constructor can be used to down-cast a <code>Queue</code>, for example as:</p>
 <pre class="language-dart"><code class="language-dart">Queue&lt;SuperType&gt; superQueue = ...;
 Queue&lt;SubType&gt; subQueue =
-    new Queue&lt;SubType&gt;.from(superSet.whereType&lt;SubType&gt;());
+    new Queue&lt;SubType&gt;.from(superQueue.whereType&lt;SubType&gt;());
 </code></pre>
     </section>
     
@@ -156,7 +156,7 @@ Queue&lt;SubType&gt; subQueue =
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

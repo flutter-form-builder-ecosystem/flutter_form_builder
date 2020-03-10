@@ -127,9 +127,9 @@ void paint(Canvas canvas, Size size) {
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">ImageFilter get imageFilter {
-  if (_objects == null)
+  if (_objects == null || _objects[_kImageFilterIndex] == null)
     return null;
-  return _objects[_kImageFilterIndex];
+  return _objects[_kImageFilterIndex].creator;
 }</code></pre>
         </section>
 </section>
@@ -146,8 +146,16 @@ void paint(Canvas canvas, Size size) {
                         <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>
           <pre class="language-dart"><code class="language-dart">set imageFilter(ImageFilter value) {
-  _objects ??= List&lt;dynamic&gt;(_kObjectCount);
-  _objects[_kImageFilterIndex] = value;
+  if (value == null) {
+    if (_objects != null) {
+      _objects[_kImageFilterIndex] = null;
+    }
+  } else {
+    _objects ??= List&lt;dynamic&gt;(_kObjectCount);
+    if (_objects[_kImageFilterIndex]?.creator != value) {
+      _objects[_kImageFilterIndex] = value._toNativeImageFilter();
+    }
+  }
 }</code></pre>
         </section>
 </section>
@@ -161,7 +169,7 @@ void paint(Canvas canvas, Size size) {
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

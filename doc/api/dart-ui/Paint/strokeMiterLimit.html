@@ -112,7 +112,8 @@ angle between line segments is animated, as seen in the diagrams below.</p>
 <p>This limit is expressed as a limit on the length of the miter.</p>
 <p>Defaults to 4.0.  Using zero as a limit will cause a <a href="dart-ui/StrokeJoin-class.html">StrokeJoin.bevel</a>
 join to be used all the time.</p><div style="position: relative;">
-<div id="animation_1_play_button_" onclick="if (animation_1.paused) {
+<div id="animation_1_play_button_" onclick="var animation_1 = document.getElementById('animation_1');
+if (animation_1.paused) {
 animation_1.play();
 this.style.display = 'none';
 } else {
@@ -126,7 +127,8 @@ background-position: center;
 background-repeat: no-repeat;
 background-image: url(static-assets/play_button.svg);">
 </div>
-<video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
+<video id="animation_1" style="width:300px; height:300px;" onclick="var animation_1_play_button_ = document.getElementById('animation_1_play_button_');
+if (this.paused) {
 this.play();
 animation_1_play_button_.style.display = 'none';
 } else {
@@ -136,7 +138,8 @@ animation_1_play_button_.style.display = 'block';
 <source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_0_join.mp4" type="video/mp4">
 </video>
 </div><div style="position: relative;">
-  <div id="animation_2_play_button_" onclick="if (animation_2.paused) {
+  <div id="animation_2_play_button_" onclick="var animation_2 = document.getElementById('animation_2');
+                if (animation_2.paused) {
                   animation_2.play();
                   this.style.display = 'none';
                 } else {
@@ -150,7 +153,8 @@ animation_1_play_button_.style.display = 'block';
               background-repeat: no-repeat;
               background-image: url(static-assets/play_button.svg);">
   </div>
-  <video id="animation_2" style="width:300px; height:300px;" onclick="if (this.paused) {
+  <video id="animation_2" style="width:300px; height:300px;" onclick="var animation_2_play_button_ = document.getElementById('animation_2_play_button_');
+                  if (this.paused) {
                     this.play();
                     animation_2_play_button_.style.display = 'none';
                   } else {
@@ -160,7 +164,8 @@ animation_1_play_button_.style.display = 'block';
     <source src="https://flutter.github.io/assets-for-api-docs/assets/dart-ui/miter_4_join.mp4" type="video/mp4">
   </video>
 </div><div style="position: relative;">
-  <div id="animation_3_play_button_" onclick="if (animation_3.paused) {
+  <div id="animation_3_play_button_" onclick="var animation_3 = document.getElementById('animation_3');
+                if (animation_3.paused) {
                   animation_3.play();
                   this.style.display = 'none';
                 } else {
@@ -174,7 +179,8 @@ animation_1_play_button_.style.display = 'block';
               background-repeat: no-repeat;
               background-image: url(static-assets/play_button.svg);">
   </div>
-  <video id="animation_3" style="width:300px; height:300px;" onclick="if (this.paused) {
+  <video id="animation_3" style="width:300px; height:300px;" onclick="var animation_3_play_button_ = document.getElementById('animation_3_play_button_');
+                  if (this.paused) {
                     this.play();
                     animation_3_play_button_.style.display = 'none';
                   } else {
@@ -230,7 +236,7 @@ between segments.</li>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

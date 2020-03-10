@@ -127,7 +127,7 @@ widget is inserted into the tree in multiple places at once.</p>
 <li>the fields of the widget, which themselves must not change over time,
 and</li>
 <li>any ambient state obtained from the <code>context</code> using
-<code>BuildContext.inheritFromWidgetOfExactType</code>.</li>
+<code>BuildContext.dependOnInheritedWidgetOfExactType</code>.</li>
 </ul>
 <p>If a widget's <a href="flutter_form_builder/FormBuilderFieldOption/build.html">build</a> method is to depend on anything else, use a
 <code>StatefulWidget</code> instead.</p>
@@ -160,7 +160,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

@@ -56,6 +56,7 @@
       <li><a href="dart-ui/BackdropFilterEngineLayer-class.html">BackdropFilterEngineLayer</a></li>
       <li><a href="dart-ui/CallbackHandle-class.html">CallbackHandle</a></li>
       <li><a href="dart-ui/Canvas-class.html">Canvas</a></li>
+      <li><a href="dart-ui/ChannelBuffers-class.html">ChannelBuffers</a></li>
       <li><a href="dart-ui/ClipPathEngineLayer-class.html">ClipPathEngineLayer</a></li>
       <li><a href="dart-ui/ClipRectEngineLayer-class.html">ClipRectEngineLayer</a></li>
       <li><a href="dart-ui/ClipRRectEngineLayer-class.html">ClipRRectEngineLayer</a></li>
@@ -73,6 +74,7 @@
       <li><a href="dart-ui/ImageFilter-class.html">ImageFilter</a></li>
       <li><a href="dart-ui/ImageShader-class.html">ImageShader</a></li>
       <li><a href="dart-ui/IsolateNameServer-class.html">IsolateNameServer</a></li>
+      <li><a href="dart-ui/LineMetrics-class.html">LineMetrics</a></li>
       <li><a href="dart-ui/Locale-class.html">Locale</a></li>
       <li><a href="dart-ui/MaskFilter-class.html">MaskFilter</a></li>
       <li><a href="dart-ui/Offset-class.html">Offset</a></li>
@@ -114,6 +116,7 @@
       <li><a href="dart-ui/TextBox-class.html">TextBox</a></li>
       <li><a href="dart-ui/TextDecoration-class.html">TextDecoration</a></li>
       <li><a href="dart-ui/TextPosition-class.html">TextPosition</a></li>
+      <li><a href="dart-ui/TextRange-class.html">TextRange</a></li>
       <li><a href="dart-ui/TextStyle-class.html">TextStyle</a></li>
       <li><a href="dart-ui/TransformEngineLayer-class.html">TransformEngineLayer</a></li>
       <li><a href="dart-ui/Vertices-class.html">Vertices</a></li>
@@ -124,6 +127,7 @@
     
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#properties">Properties</a></li>
+      <li><a href="dart-ui/channelBuffers.html">channelBuffers</a></li>
       <li><a href="dart-ui/window.html">window</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#functions">Functions</a></li>
@@ -169,6 +173,7 @@
       <li><a href="dart-ui/VertexMode-class.html">VertexMode</a></li>
     
       <li class="section-title"><a href="dart-ui/dart-ui-library.html#typedefs">Typedefs</a></li>
+      <li><a href="dart-ui/DrainChannelCallback.html">DrainChannelCallback</a></li>
       <li><a href="dart-ui/FrameCallback.html">FrameCallback</a></li>
       <li><a href="dart-ui/ImageDecoderCallback.html">ImageDecoderCallback</a></li>
       <li><a href="dart-ui/PlatformMessageCallback.html">PlatformMessageCallback</a></li>
@@ -194,7 +199,8 @@ obtain from <code>WidgetsBinding.instance.window</code>.</p>
 is unavailable. But we strongly advise to avoid statically referencing it.
 See the document of <a href="dart-ui/window.html">window</a> for more details of why it should be avoided.</p>
 <h2 id="insets-and-padding">Insets and Padding</h2><div style="position: relative;">
-  <div id="animation_1_play_button_" onclick="if (animation_1.paused) {
+  <div id="animation_1_play_button_" onclick="var animation_1 = document.getElementById('animation_1');
+                if (animation_1.paused) {
                   animation_1.play();
                   this.style.display = 'none';
                 } else {
@@ -208,7 +214,8 @@ See the document of <a href="dart-ui/window.html">window</a> for more details of
               background-repeat: no-repeat;
               background-image: url(static-assets/play_button.svg);">
   </div>
-  <video id="animation_1" style="width:300px; height:300px;" onclick="if (this.paused) {
+  <video id="animation_1" style="width:300px; height:300px;" onclick="var animation_1_play_button_ = document.getElementById('animation_1_play_button_');
+                  if (this.paused) {
                     this.play();
                     animation_1_play_button_.style.display = 'none';
                   } else {
@@ -538,6 +545,16 @@ phone sensor housings). <a href="dart-ui/Window/viewPadding.html">[...]</a>
     <section class="summary offset-anchor" id="instance-methods">
       <h2>Methods</h2>
       <dl class="callables">
+        <dt id="getPersistentIsolateData" class="callable">
+          <span class="name"><a href="dart-ui/Window/getPersistentIsolateData.html">getPersistentIsolateData</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="dart-typed_data/ByteData-class.html">ByteData</a></span>
+          </span>
+                  </dt>
+        <dd>
+          The embedder can specify data that the isolate can request synchronously
+on launch. This accessor fetches that data. <a href="dart-ui/Window/getPersistentIsolateData.html">[...]</a>
+                  
+</dd>
         <dt id="render" class="callable">
           <span class="name"><a href="dart-ui/Window/render.html">render</a></span><span class="signature">(<wbr><span class="parameter" id="render-param-scene"><span class="type-annotation"><a href="dart-ui/Scene-class.html">Scene</a></span> <span class="parameter-name">scene</span></span>)
             <span class="returntype parameter">&#8594; void</span>
@@ -669,6 +686,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
       <li class="inherited"><a href="dart-core/Object/runtimeType.html">runtimeType</a></li>
     
       <li class="section-title"><a href="dart-ui/Window-class.html#instance-methods">Methods</a></li>
+      <li><a href="dart-ui/Window/getPersistentIsolateData.html">getPersistentIsolateData</a></li>
       <li><a href="dart-ui/Window/render.html">render</a></li>
       <li><a href="dart-ui/Window/scheduleFrame.html">scheduleFrame</a></li>
       <li><a href="dart-ui/Window/sendPlatformMessage.html">sendPlatformMessage</a></li>
@@ -691,7 +709,7 @@ and <a href="dart-ui/Window/onDrawFrame.html">onDrawFrame</a> callbacks be invok
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

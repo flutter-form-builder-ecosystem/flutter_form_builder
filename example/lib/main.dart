@@ -63,14 +63,19 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderFilterChip(
                       attribute: 'filter_chip',
                       decoration: InputDecoration(
-                          labelText: 'Select many options',
+                        labelText: 'Select many options',
                       ),
                       options: [
-                        FormBuilderFieldOption(value: 'Test', child: Text('Test')),
-                        FormBuilderFieldOption(value: 'Test 1', child: Text('Test 1')),
-                        FormBuilderFieldOption(value: 'Test 2', child: Text('Test 2')),
-                        FormBuilderFieldOption(value: 'Test 3', child: Text('Test 3')),
-                        FormBuilderFieldOption(value: 'Test 4', child: Text('Test 4')),
+                        FormBuilderFieldOption(
+                            value: 'Test', child: Text('Test')),
+                        FormBuilderFieldOption(
+                            value: 'Test 1', child: Text('Test 1')),
+                        FormBuilderFieldOption(
+                            value: 'Test 2', child: Text('Test 2')),
+                        FormBuilderFieldOption(
+                            value: 'Test 3', child: Text('Test 3')),
+                        FormBuilderFieldOption(
+                            value: 'Test 4', child: Text('Test 4')),
                       ],
                     ),
                     FormBuilderChoiceChip(
@@ -79,11 +84,16 @@ class MyHomePageState extends State<MyHomePage> {
                         labelText: 'Select an option',
                       ),
                       options: [
-                        FormBuilderFieldOption(value: 'Test', child: Text('Test')),
-                        FormBuilderFieldOption(value: 'Test 1', child: Text('Test 1')),
-                        FormBuilderFieldOption(value: 'Test 2', child: Text('Test 2')),
-                        FormBuilderFieldOption(value: 'Test 3', child: Text('Test 3')),
-                        FormBuilderFieldOption(value: 'Test 4', child: Text('Test 4')),
+                        FormBuilderFieldOption(
+                            value: 'Test', child: Text('Test')),
+                        FormBuilderFieldOption(
+                            value: 'Test 1', child: Text('Test 1')),
+                        FormBuilderFieldOption(
+                            value: 'Test 2', child: Text('Test 2')),
+                        FormBuilderFieldOption(
+                            value: 'Test 3', child: Text('Test 3')),
+                        FormBuilderFieldOption(
+                            value: 'Test 4', child: Text('Test 4')),
                       ],
                     ),
                     FormBuilderCustomField(
@@ -122,7 +132,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderColorPicker(
                       attribute: 'color_picker',
                       // initialValue: Colors.yellow,
-                      colorPickerType: ColorPickerType.MaterialPicker,
+                      colorPickerType: ColorPickerType.SlidePicker,
                       decoration: InputDecoration(labelText: "Pick Color"),
                     ),
                     FormBuilderChipsInput(
@@ -183,17 +193,25 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "date",
                       onChanged: _onChanged,
                       inputType: InputType.time,
-                      decoration:
-                          InputDecoration(labelText: "Appointment Time"),
+                      decoration: InputDecoration(
+                        labelText: "Appointment Time",
+                      ),
+                      validator: (val) => null,
+                      initialTime: TimeOfDay(hour: 8, minute: 0),
+                      // initialValue: DateTime.now(),
                       // readonly: true,
                     ),
                     FormBuilderDateRangePicker(
                       attribute: "date_range",
                       firstDate: DateTime(1970),
-                      lastDate: DateTime(2020),
+                      lastDate: DateTime(2030),
                       format: DateFormat("yyyy-MM-dd"),
                       onChanged: _onChanged,
-                      decoration: InputDecoration(labelText: "Date Range"),
+                      decoration: InputDecoration(
+                        labelText: "Date Range",
+                        helperText: "Helper text",
+                        hintText: "Hint text",
+                      ),
                     ),
                     FormBuilderSlider(
                       attribute: "slider",
@@ -256,7 +274,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderTextField(
                       attribute: "age",
                       decoration: InputDecoration(
-                        labelText: "Age",
+                        labelText: "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
                       ),
                       onChanged: _onChanged,
                       valueTransformer: (text) => num.tryParse(text),

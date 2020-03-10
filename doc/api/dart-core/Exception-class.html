@@ -125,6 +125,7 @@
       <li><a href="dart-core/FormatException-class.html">FormatException</a></li>
       <li><a href="dart-core/IndexError-class.html">IndexError</a></li>
       <li><a href="dart-core/IntegerDivisionByZeroException-class.html">IntegerDivisionByZeroException</a></li>
+      <li><a href="dart-core/LateInitializationError-class.html">LateInitializationError</a></li>
       <li><a href="dart-core/NoSuchMethodError-class.html">NoSuchMethodError</a></li>
       <li><a href="dart-core/NullThrownError-class.html">NullThrownError</a></li>
       <li><a href="dart-core/OutOfMemoryError-class.html">OutOfMemoryError</a></li>
@@ -145,9 +146,10 @@
 <p>An <a href="dart-core/Exception-class.html">Exception</a> is intended to convey information to the user about a failure,
 so that the error can be addressed programmatically. It is intended to be
 caught, and it should contain useful data fields.</p>
-<p>Creating instances of <a href="dart-core/Exception-class.html">Exception</a> directly with <code>new Exception("message")</code>
-is discouraged, and only included as a temporary measure during development,
-until the actual exceptions used by a library are done.</p>
+<p>Creating instances of <a href="dart-core/Exception-class.html">Exception</a> directly with <code>Exception("message")</code>
+is discouraged in library code since it doesn't give users a precise
+type they can catch. It may be reasonable to use instances of this
+class in tests or during development.</p>
     </section>
     
     <section>
@@ -164,6 +166,7 @@ until the actual exceptions used by a library are done.</p>
           <li><a href="dart-isolate/IsolateSpawnException-class.html">IsolateSpawnException</a></li>
           <li><a href="dart-async/TimeoutException-class.html">TimeoutException</a></li>
         </ul></dd>
+
 
       </dl>
     </section>
@@ -279,7 +282,7 @@ until the actual exceptions used by a library are done.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

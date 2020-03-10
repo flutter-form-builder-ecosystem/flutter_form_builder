@@ -60,8 +60,14 @@
       <li class="section-title">
         <a href="flutter_form_builder/FormBuilderStepper-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/addIcon.html">addIcon</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/attribute.html">attribute</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/decoration.html">decoration</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/displayFormat.html">displayFormat</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/iconActiveColor.html">iconActiveColor</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/iconDisabledColor.html">iconDisabledColor</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/iconPadding.html">iconPadding</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/iconSize.html">iconSize</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/initialValue.html">initialValue</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/max.html">max</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/min.html">min</a></li>
@@ -70,6 +76,8 @@
       <li><a href="flutter_form_builder/FormBuilderStepper/readOnly.html">readOnly</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/size.html">size</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/step.html">step</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/subtractIcon.html">subtractIcon</a></li>
+      <li><a href="flutter_form_builder/FormBuilderStepper/textStyle.html">textStyle</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/validators.html">validators</a></li>
       <li><a href="flutter_form_builder/FormBuilderStepper/valueTransformer.html">valueTransformer</a></li>
       <li class="inherited"><a href="dart-core/Object/hashCode.html">hashCode</a></li>
@@ -102,7 +110,7 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">FormBuilderStepper</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-step"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">step</span>, </span> <span class="parameter" id="-param-min"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">min</span>, </span> <span class="parameter" id="-param-max"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">max</span>, </span> <span class="parameter" id="-param-size"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">size</span>: <span class="default-value">24.0</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span></span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter</span> <span class="parameter-name">onSaved</span></span> })
+      <span class="name ">FormBuilderStepper</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-step"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">step</span>, </span> <span class="parameter" id="-param-min"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">min</span>: <span class="default-value">1</span>, </span> <span class="parameter" id="-param-max"><span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">max</span>: <span class="default-value">9999</span>, </span> <span class="parameter" id="-param-size"><span>@<a href="dart-core/Deprecated-class.html">Deprecated</a>(&#39;Use `iconSize` instead&#39;)</span> <span class="type-annotation"><a href="dart-core/num-class.html">num</a></span> <span class="parameter-name">size</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter</span> <span class="parameter-name">onSaved</span>, </span> <span class="parameter" id="-param-iconSize"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">iconSize</span>: <span class="default-value">24.0</span>, </span> <span class="parameter" id="-param-displayFormat"><span class="type-annotation">NumberFormat</span> <span class="parameter-name">displayFormat</span>, </span> <span class="parameter" id="-param-subtractIcon"><span class="type-annotation">Icon</span> <span class="parameter-name">subtractIcon</span>: <span class="default-value">const Icon(Icons.remove)</span>, </span> <span class="parameter" id="-param-addIcon"><span class="type-annotation">Icon</span> <span class="parameter-name">addIcon</span>: <span class="default-value">const Icon(Icons.add)</span>, </span> <span class="parameter" id="-param-iconPadding"><span class="type-annotation">EdgeInsets</span> <span class="parameter-name">iconPadding</span>: <span class="default-value">const EdgeInsets.all(4.0)</span>, </span> <span class="parameter" id="-param-textStyle"><span class="type-annotation">TextStyle</span> <span class="parameter-name">textStyle</span>: <span class="default-value">const TextStyle(fontSize: 24)</span>, </span> <span class="parameter" id="-param-iconActiveColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">iconActiveColor</span></span> <span class="parameter" id="-param-iconDisabledColor"><span class="type-annotation"><a href="dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">iconDisabledColor</span></span> })
     </section>
 
     
@@ -116,13 +124,22 @@
   this.readOnly = false,
   this.decoration = const InputDecoration(),
   this.step,
-  this.min,
-  this.max,
-  this.size = 24.0,
+  this.min = 1,
+  this.max = 9999,
+  @Deprecated(&#39;Use `iconSize` instead&#39;) this.size,
   this.onChanged,
   this.valueTransformer,
   this.onSaved,
-}) : super(key: key);</code></pre>
+  this.iconSize = 24.0,
+  this.displayFormat,
+  this.subtractIcon = const Icon(Icons.remove),
+  this.addIcon = const Icon(Icons.add),
+  this.iconPadding = const EdgeInsets.all(4.0),
+  this.textStyle = const TextStyle(fontSize: 24),
+  this.iconActiveColor,
+  this.iconDisabledColor,
+})  : assert(size != null || iconSize != null),
+      super(key: key);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -135,7 +152,7 @@
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

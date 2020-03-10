@@ -161,6 +161,10 @@ error.</p>
 for the TLS handshake. If <code>host</code> is not passed the host name from
 the <code>socket</code> will be used. The <code>host</code> can be either a <a href="dart-core/String-class.html">String</a> or
 an <a href="dart-io/InternetAddress-class.html">InternetAddress</a>.</p>
+<p><code>supportedProtocols</code> is an optional list of protocols (in decreasing
+order of preference) to use during the ALPN protocol negotiation with the
+server.  Example values are "http/1.1" or "h2".  The selected protocol
+can be obtained via <a href="dart-io/SecureSocket/selectedProtocol.html">SecureSocket.selectedProtocol</a>.</p>
 <p>Calling this function will <em>not</em> cause a DNS host lookup. If the
 <code>host</code> passed is a <a href="dart-core/String-class.html">String</a> the <a href="dart-io/InternetAddress-class.html">InternetAddress</a> for the
 resulting <a href="dart-io/SecureSocket-class.html">SecureSocket</a> will have this passed in <code>host</code> as its
@@ -200,7 +204,7 @@ socket as its address value.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

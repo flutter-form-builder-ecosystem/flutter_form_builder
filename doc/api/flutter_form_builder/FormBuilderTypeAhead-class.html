@@ -56,6 +56,8 @@
       <li><a href="flutter_form_builder/FormBuilderCheckbox-class.html">FormBuilderCheckbox</a></li>
       <li><a href="flutter_form_builder/FormBuilderCheckboxList-class.html">FormBuilderCheckboxList</a></li>
       <li><a href="flutter_form_builder/FormBuilderChipsInput-class.html">FormBuilderChipsInput</a></li>
+      <li><a href="flutter_form_builder/FormBuilderChoiceChip-class.html">FormBuilderChoiceChip</a></li>
+      <li><a href="flutter_form_builder/FormBuilderColorPicker-class.html">FormBuilderColorPicker</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomField-class.html">FormBuilderCustomField</a></li>
       <li><a href="flutter_form_builder/FormBuilderCustomFieldState-class.html">FormBuilderCustomFieldState</a></li>
       <li><a href="flutter_form_builder/FormBuilderDateRangePicker-class.html">FormBuilderDateRangePicker</a></li>
@@ -63,6 +65,7 @@
       <li><a href="flutter_form_builder/FormBuilderDateTimePicker-class.html">FormBuilderDateTimePicker</a></li>
       <li><a href="flutter_form_builder/FormBuilderDropdown-class.html">FormBuilderDropdown</a></li>
       <li><a href="flutter_form_builder/FormBuilderFieldOption-class.html">FormBuilderFieldOption</a></li>
+      <li><a href="flutter_form_builder/FormBuilderFilterChip-class.html">FormBuilderFilterChip</a></li>
       <li><a href="flutter_form_builder/FormBuilderRadio-class.html">FormBuilderRadio</a></li>
       <li><a href="flutter_form_builder/FormBuilderRangeSlider-class.html">FormBuilderRangeSlider</a></li>
       <li><a href="flutter_form_builder/FormBuilderRate-class.html">FormBuilderRate</a></li>
@@ -70,12 +73,18 @@
       <li><a href="flutter_form_builder/FormBuilderSignaturePad-class.html">FormBuilderSignaturePad</a></li>
       <li><a href="flutter_form_builder/FormBuilderSlider-class.html">FormBuilderSlider</a></li>
       <li><a href="flutter_form_builder/FormBuilderState-class.html">FormBuilderState</a></li>
-      <li><a href="flutter_form_builder/FormBuilderStepper-class.html">FormBuilderStepper</a></li>
+      <li><a class="deprecated" href="flutter_form_builder/FormBuilderStepper-class.html">FormBuilderStepper</a></li>
       <li><a href="flutter_form_builder/FormBuilderSwitch-class.html">FormBuilderSwitch</a></li>
       <li><a href="flutter_form_builder/FormBuilderTextField-class.html">FormBuilderTextField</a></li>
       <li><a href="flutter_form_builder/FormBuilderTextFieldState-class.html">FormBuilderTextFieldState</a></li>
+      <li><a href="flutter_form_builder/FormBuilderTouchSpin-class.html">FormBuilderTouchSpin</a></li>
       <li><a href="flutter_form_builder/FormBuilderTypeAhead-class.html">FormBuilderTypeAhead</a></li>
       <li><a href="flutter_form_builder/FormBuilderValidators-class.html">FormBuilderValidators</a></li>
+      <li><a href="flutter_form_builder/SuggestionsBoxController-class.html">SuggestionsBoxController</a></li>
+      <li><a href="flutter_form_builder/SuggestionsBoxDecoration-class.html">SuggestionsBoxDecoration</a></li>
+      <li><a href="flutter_form_builder/TextFieldConfiguration-class.html">TextFieldConfiguration</a></li>
+      <li><a href="flutter_form_builder/TypeAheadField-class.html">TypeAheadField</a></li>
+      <li><a href="flutter_form_builder/TypeAheadFormField-class.html">TypeAheadFormField</a></li>
     
     
     
@@ -83,10 +92,16 @@
     
     
       <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#enums">Enums</a></li>
+      <li><a href="flutter_form_builder/ColorPickerType-class.html">ColorPickerType</a></li>
       <li><a href="flutter_form_builder/InputType-class.html">InputType</a></li>
     
       <li class="section-title"><a href="flutter_form_builder/flutter_form_builder-library.html#typedefs">Typedefs</a></li>
+      <li><a href="flutter_form_builder/AnimationTransitionBuilder.html">AnimationTransitionBuilder</a></li>
+      <li><a href="flutter_form_builder/ErrorBuilder.html">ErrorBuilder</a></li>
+      <li><a href="flutter_form_builder/ItemBuilder.html">ItemBuilder</a></li>
       <li><a href="flutter_form_builder/SelectionToTextTransformer.html">SelectionToTextTransformer</a></li>
+      <li><a href="flutter_form_builder/SuggestionsCallback.html">SuggestionsCallback</a></li>
+      <li><a href="flutter_form_builder/SuggestionSelectionCallback.html">SuggestionSelectionCallback</a></li>
       <li><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></li>
     
     </ol>
@@ -102,7 +117,7 @@
 
       <dl class="constructor-summary-list">
         <dt id="FormBuilderTypeAhead" class="callable">
-          <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/FormBuilderTypeAhead.html">FormBuilderTypeAhead</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-itemBuilder"><span>@required</span> <span class="type-annotation">ItemBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">itemBuilder</span>, </span> <span class="parameter" id="-param-suggestionsCallback"><span>@required</span> <span class="type-annotation">SuggestionsCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">suggestionsCallback</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">T</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-getImmediateSuggestions"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getImmediateSuggestions</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-selectionToTextTransformer"><span class="type-annotation"><a href="flutter_form_builder/SelectionToTextTransformer.html">SelectionToTextTransformer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">selectionToTextTransformer</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation">ErrorBuilder</span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-noItemsFoundBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">noItemsFoundBuilder</span>, </span> <span class="parameter" id="-param-loadingBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">loadingBuilder</span>, </span> <span class="parameter" id="-param-debounceDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">debounceDuration</span>: <span class="default-value">const Duration(milliseconds: 300)</span>, </span> <span class="parameter" id="-param-suggestionsBoxDecoration"><span class="type-annotation">SuggestionsBoxDecoration</span> <span class="parameter-name">suggestionsBoxDecoration</span>: <span class="default-value">const SuggestionsBoxDecoration()</span>, </span> <span class="parameter" id="-param-suggestionsBoxVerticalOffset"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">suggestionsBoxVerticalOffset</span>: <span class="default-value">5.0</span>, </span> <span class="parameter" id="-param-textFieldConfiguration"><span class="type-annotation">TextFieldConfiguration</span> <span class="parameter-name">textFieldConfiguration</span>: <span class="default-value">const TextFieldConfiguration()</span>, </span> <span class="parameter" id="-param-transitionBuilder"><span class="type-annotation">AnimationTransitionBuilder</span> <span class="parameter-name">transitionBuilder</span>, </span> <span class="parameter" id="-param-animationDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">animationDuration</span>: <span class="default-value">const Duration(milliseconds: 500)</span>, </span> <span class="parameter" id="-param-animationStart"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">animationStart</span>: <span class="default-value">0.25</span>, </span> <span class="parameter" id="-param-direction"><span class="type-annotation">AxisDirection</span> <span class="parameter-name">direction</span>: <span class="default-value">AxisDirection.down</span>, </span> <span class="parameter" id="-param-hideOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnLoading</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnEmpty"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnEmpty</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnError</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideSuggestionsOnKeyboardHide"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideSuggestionsOnKeyboardHide</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnLoading</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-autoFlipDirection"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autoFlipDirection</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-suggestionsBoxController"><span class="type-annotation">SuggestionsBoxController</span> <span class="parameter-name">suggestionsBoxController</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnSuggestionSelected"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnSuggestionSelected</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onSuggestionSelected"><span class="type-annotation">SuggestionSelectionCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSuggestionSelected</span></span> <span class="parameter" id="-param-controller"><span class="type-annotation">TextEditingController</span> <span class="parameter-name">controller</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSaved</span></span> })</span>
+          <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/FormBuilderTypeAhead.html">FormBuilderTypeAhead</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-attribute"><span>@required</span> <span class="type-annotation"><a href="dart-core/String-class.html">String</a></span> <span class="parameter-name">attribute</span>, </span> <span class="parameter" id="-param-itemBuilder"><span>@required</span> <span class="type-annotation"><a href="flutter_form_builder/ItemBuilder.html">ItemBuilder</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">itemBuilder</span>, </span> <span class="parameter" id="-param-suggestionsCallback"><span>@required</span> <span class="type-annotation"><a href="flutter_form_builder/SuggestionsCallback.html">SuggestionsCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">suggestionsCallback</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">T</span> <span class="parameter-name">initialValue</span>, </span> <span class="parameter" id="-param-validators"><span class="type-annotation"><a href="dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter">FormFieldValidator</span>&gt;</span></span> <span class="parameter-name">validators</span>: <span class="default-value">const []</span>, </span> <span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">readOnly</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-decoration"><span class="type-annotation">InputDecoration</span> <span class="parameter-name">decoration</span>: <span class="default-value">const InputDecoration()</span>, </span> <span class="parameter" id="-param-getImmediateSuggestions"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">getImmediateSuggestions</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-autovalidate"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autovalidate</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-selectionToTextTransformer"><span class="type-annotation"><a href="flutter_form_builder/SelectionToTextTransformer.html">SelectionToTextTransformer</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">selectionToTextTransformer</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation"><a href="flutter_form_builder/ErrorBuilder.html">ErrorBuilder</a></span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-noItemsFoundBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">noItemsFoundBuilder</span>, </span> <span class="parameter" id="-param-loadingBuilder"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">loadingBuilder</span>, </span> <span class="parameter" id="-param-debounceDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">debounceDuration</span>: <span class="default-value">const Duration(milliseconds: 300)</span>, </span> <span class="parameter" id="-param-suggestionsBoxDecoration"><span class="type-annotation"><a href="flutter_form_builder/SuggestionsBoxDecoration-class.html">SuggestionsBoxDecoration</a></span> <span class="parameter-name">suggestionsBoxDecoration</span>: <span class="default-value">const SuggestionsBoxDecoration()</span>, </span> <span class="parameter" id="-param-suggestionsBoxVerticalOffset"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">suggestionsBoxVerticalOffset</span>: <span class="default-value">5.0</span>, </span> <span class="parameter" id="-param-textFieldConfiguration"><span class="type-annotation"><a href="flutter_form_builder/TextFieldConfiguration-class.html">TextFieldConfiguration</a></span> <span class="parameter-name">textFieldConfiguration</span>: <span class="default-value">const TextFieldConfiguration()</span>, </span> <span class="parameter" id="-param-transitionBuilder"><span class="type-annotation"><a href="flutter_form_builder/AnimationTransitionBuilder.html">AnimationTransitionBuilder</a></span> <span class="parameter-name">transitionBuilder</span>, </span> <span class="parameter" id="-param-animationDuration"><span class="type-annotation"><a href="dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">animationDuration</span>: <span class="default-value">const Duration(milliseconds: 500)</span>, </span> <span class="parameter" id="-param-animationStart"><span class="type-annotation"><a href="dart-core/double-class.html">double</a></span> <span class="parameter-name">animationStart</span>: <span class="default-value">0.25</span>, </span> <span class="parameter" id="-param-direction"><span class="type-annotation">AxisDirection</span> <span class="parameter-name">direction</span>: <span class="default-value">AxisDirection.down</span>, </span> <span class="parameter" id="-param-hideOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnLoading</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnEmpty"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnEmpty</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideOnError"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideOnError</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-hideSuggestionsOnKeyboardHide"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hideSuggestionsOnKeyboardHide</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnLoading"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnLoading</span>: <span class="default-value">true</span>, </span> <span class="parameter" id="-param-autoFlipDirection"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autoFlipDirection</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onChanged"><span class="type-annotation">ValueChanged</span> <span class="parameter-name">onChanged</span>, </span> <span class="parameter" id="-param-valueTransformer"><span class="type-annotation"><a href="flutter_form_builder/ValueTransformer.html">ValueTransformer</a></span> <span class="parameter-name">valueTransformer</span>, </span> <span class="parameter" id="-param-suggestionsBoxController"><span class="type-annotation"><a href="flutter_form_builder/SuggestionsBoxController-class.html">SuggestionsBoxController</a></span> <span class="parameter-name">suggestionsBoxController</span>, </span> <span class="parameter" id="-param-keepSuggestionsOnSuggestionSelected"><span class="type-annotation"><a href="dart-core/bool-class.html">bool</a></span> <span class="parameter-name">keepSuggestionsOnSuggestionSelected</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="-param-onSuggestionSelected"><span class="type-annotation"><a href="flutter_form_builder/SuggestionSelectionCallback.html">SuggestionSelectionCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSuggestionSelected</span></span> <span class="parameter" id="-param-controller"><span class="type-annotation">TextEditingController</span> <span class="parameter-name">controller</span>, </span> <span class="parameter" id="-param-onSaved"><span class="type-annotation">FormFieldSetter<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">onSaved</span></span> })</span>
         </dt>
         <dd>
           
@@ -188,7 +203,7 @@
 </dd>
         <dt id="errorBuilder" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/errorBuilder.html">errorBuilder</a></span>
-          <span class="signature">&#8594; ErrorBuilder</span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/ErrorBuilder.html">ErrorBuilder</a></span>         
         </dt>
         <dd>
           
@@ -244,7 +259,7 @@
 </dd>
         <dt id="itemBuilder" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/itemBuilder.html">itemBuilder</a></span>
-          <span class="signature">&#8594; ItemBuilder<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/ItemBuilder.html">ItemBuilder</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
         </dt>
         <dd>
           
@@ -300,7 +315,7 @@
 </dd>
         <dt id="onSuggestionSelected" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/onSuggestionSelected.html">onSuggestionSelected</a></span>
-          <span class="signature">&#8594; SuggestionSelectionCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/SuggestionSelectionCallback.html">SuggestionSelectionCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
         </dt>
         <dd>
           
@@ -324,7 +339,7 @@
 </dd>
         <dt id="suggestionsBoxController" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxController.html">suggestionsBoxController</a></span>
-          <span class="signature">&#8594; SuggestionsBoxController</span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/SuggestionsBoxController-class.html">SuggestionsBoxController</a></span>         
         </dt>
         <dd>
           
@@ -332,7 +347,7 @@
 </dd>
         <dt id="suggestionsBoxDecoration" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsBoxDecoration.html">suggestionsBoxDecoration</a></span>
-          <span class="signature">&#8594; SuggestionsBoxDecoration</span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/SuggestionsBoxDecoration-class.html">SuggestionsBoxDecoration</a></span>         
         </dt>
         <dd>
           
@@ -348,7 +363,7 @@
 </dd>
         <dt id="suggestionsCallback" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/suggestionsCallback.html">suggestionsCallback</a></span>
-          <span class="signature">&#8594; SuggestionsCallback<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/SuggestionsCallback.html">SuggestionsCallback</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>         
         </dt>
         <dd>
           
@@ -356,7 +371,7 @@
 </dd>
         <dt id="textFieldConfiguration" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/textFieldConfiguration.html">textFieldConfiguration</a></span>
-          <span class="signature">&#8594; TextFieldConfiguration</span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/TextFieldConfiguration-class.html">TextFieldConfiguration</a></span>         
         </dt>
         <dd>
           
@@ -364,7 +379,7 @@
 </dd>
         <dt id="transitionBuilder" class="property">
           <span class="name"><a href="flutter_form_builder/FormBuilderTypeAhead/transitionBuilder.html">transitionBuilder</a></span>
-          <span class="signature">&#8594; AnimationTransitionBuilder</span>         
+          <span class="signature">&#8594; <a href="flutter_form_builder/AnimationTransitionBuilder.html">AnimationTransitionBuilder</a></span>         
         </dt>
         <dd>
           
@@ -604,7 +619,7 @@ tools and by <code>DiagnosticsNode.toStringDeep</code>. <a href="flutter_form_bu
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

@@ -102,11 +102,11 @@ Optionally takes a <a href="dart-core/Map-class.html">Map</a> of <code>arguments
   if (!_hasTimeline) return;
   ArgumentError.checkNotNull(name, &#39;name&#39;);
   var block = new _AsyncBlock._(name, _taskId);
-  if (arguments != null) {
-    block._arguments = arguments;
-  }
   _stack.add(block);
-  block._start();
+  block._start({
+    if (arguments != null) ...arguments,
+    if (_parent != null) &#39;parentId&#39;: _parent._taskId.toRadixString(16),
+  });
 }</code></pre>
     </section>
 
@@ -120,7 +120,7 @@ Optionally takes a <a href="dart-core/Map-class.html">Map</a> of <code>arguments
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

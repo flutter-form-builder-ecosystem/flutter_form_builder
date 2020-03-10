@@ -187,16 +187,17 @@
       <div><h1><span class="kind-class">RawSocketOption</span> class </h1></div>
 
     <section class="desc markdown">
-      <p>The <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> is used as a parameter to <a href="dart-io/Socket/setRawOption.html">Socket.setRawOption</a> and
-<a href="dart-io/RawSocket/setRawOption.html">RawSocket.setRawOption</a> to set customize the behaviour of the underlying
-socket.</p>
-<p>It allows for fine grained control of the socket options, and its values will
-be passed to the underlying platform's implementation of setsockopt and
-getsockopt.</p>
+      <p>The <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> is used as a parameter to <a href="dart-io/Socket/setRawOption.html">Socket.setRawOption</a>,
+<a href="dart-io/RawSocket/setRawOption.html">RawSocket.setRawOption</a>, and <a href="dart-io/RawDatagramSocket/setRawOption.html">RawDatagramSocket.setRawOption</a> to customize
+the behaviour of the underlying socket.</p>
+<p>It allows for fine grained control of the socket options, and its values
+will be passed to the underlying platform's implementation of <code>setsockopt</code>
+and <code>getsockopt</code>.</p>
     </section>
     
     <section>
       <dl class="dl-horizontal">
+
 
 
 
@@ -216,7 +217,7 @@ getsockopt.</p>
           <span class="name"><a href="dart-io/RawSocketOption/RawSocketOption.html">RawSocketOption</a></span><span class="signature">(<span class="parameter" id="-param-level"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">level</span>, </span> <span class="parameter" id="-param-option"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">option</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation"><a href="dart-typed_data/Uint8List-class.html">Uint8List</a></span> <span class="parameter-name">value</span></span>)</span>
         </dt>
         <dd>
-          Creates a RawSocketOption for getRawOption andSetRawOption. <a href="dart-io/RawSocketOption/RawSocketOption.html">[...]</a>
+          Creates a <a href="dart-io/RawSocketOption-class.html">RawSocketOption</a> for <code>getRawOption</code> and <code>setRawOption</code>. <a href="dart-io/RawSocketOption/RawSocketOption.html">[...]</a>
           <div class="constructor-modifier features">const</div>
         </dd>
         <dt id="RawSocketOption.fromBool" class="callable">
@@ -432,7 +433,7 @@ getsockopt.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

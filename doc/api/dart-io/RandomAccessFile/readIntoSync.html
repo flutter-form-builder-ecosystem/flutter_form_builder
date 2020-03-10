@@ -116,11 +116,12 @@
       
     </section>
     <section class="desc markdown">
-      <p>Synchronously reads into an existing <a href="dart-core/List-class.html">List&lt;int&gt;</a> from the file. If <code>start</code>
-is present, the bytes will be filled into <code>buffer</code> from at index <code>start</code>,
-otherwise index 0.  If <code>end</code> is present, the <code>end</code> - <code>start</code> bytes will be
-read into <code>buffer</code>, otherwise up to <code>buffer.length</code>. If <code>end</code> == <code>start</code>
-nothing happens.</p>
+      <p>Synchronously reads into an existing <a href="dart-core/List-class.html">List&lt;int&gt;</a> from the file and returns
+the number of bytes read.</p>
+<p>If <code>start</code> is present, the bytes will be filled into <code>buffer</code> from at
+index <code>start</code>, otherwise index 0.  If <code>end</code> is present, the
+<code>end</code> - <code>start</code> bytes will be read into <code>buffer</code>, otherwise up to
+<code>buffer.length</code>. If <code>end</code> == <code>start</code> nothing happens.</p>
 <p>Throws a <a href="dart-io/FileSystemException-class.html">FileSystemException</a> if the operation fails.</p>
     </section>
     
@@ -139,7 +140,7 @@ nothing happens.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

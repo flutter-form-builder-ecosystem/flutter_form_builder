@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="generator" content="made with love by dartdoc 0.28.8">
+  <meta name="generator" content="made with love by dartdoc 0.29.1">
   <meta name="description" content="flutter_form_builder API docs, for the Dart programming language.">
   <title>flutter_form_builder - Dart API docs</title>
 
@@ -59,8 +59,13 @@
             <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
             <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
           <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
             <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
             <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
     </ol>
   </div>
 
@@ -173,6 +178,48 @@
               FormBuilderFieldOption(value: "Objective-C"),
             ],
           ),
+          FormBuilderChoiceChip(
+            attribute: "favorite_ice_cream",
+            options: [
+              FormBuilderFieldOption(
+                child: Text("Vanilla"),
+                value: "vanilla"
+              ),
+              FormBuilderFieldOption(
+                child: Text("Chocolate"),
+                value: "chocolate"
+              ),
+              FormBuilderFieldOption(
+                child: Text("Strawberry"),
+                value: "strawberry"
+              ),
+              FormBuilderFieldOption(
+                child: Text("Peach"),
+                value: "peach"
+              ),
+            ],
+          ),
+          FormBuilderFilterChip(
+              attribute: "pets",
+              options: [
+                FormBuilderFieldOption(
+                  child: Text("Cats"),
+                  value: "cats"
+                ),
+                FormBuilderFieldOption(
+                  child: Text("Dogs"),
+                  value: "dogs"
+                ),
+                FormBuilderFieldOption(
+                  child: Text("Rodents"),
+                  value: "rodents"
+                ),
+                FormBuilderFieldOption(
+                  child: Text("Birds"),
+                  value: "birds"
+                ),
+              ],
+          ),
           FormBuilderSignaturePad(
             decoration: InputDecoration(labelText: "Signature"),
             attribute: "signature",
@@ -207,9 +254,12 @@
 <ul>
 <li><code>FormBuilderCheckbox</code> - Single Checkbox field</li>
 <li><code>FormBuilderCheckboxList</code> - List of Checkboxes for multiple selection</li>
-<li><code>FormBuilderChipsInput</code> - Takes a list of <code>Chip</code>s as input</li>
+<li><code>FormBuilderChoiceChip</code> - Creates a chip that acts like a radio button.</li>
+<li><code>FormBuilderFilterChip</code> - Creates a chip that acts like a checkbox.</li>
+<li><code>FormBuilderChipsInput</code> - Takes a list of <code>Chip</code>s as input and suggests more options on typing</li>
+<li><code>FormBuilderColorPicker</code> - For <code>Color</code> input selection</li>
 <li><code>FormBuilderDateRangePicker</code> - For selection of a range of dates</li>
-<li><code>FormBuilderDateTimePicker</code> - For Date, Time and DateTime input</li>
+<li><code>FormBuilderDateTimePicker</code> - For <code>Date</code>, <code>Time</code> and <code>DateTime</code> input</li>
 <li><code>FormBuilderDropdown</code> - Used to select one value from a list as a Dropdown</li>
 <li><code>FormBuilderRadio</code> - Used to select one value from a list of Radio Widgets </li>
 <li><code>FormBuilderRangeSlider</code> - Used to select a range from a range of values</li>
@@ -217,10 +267,11 @@
 <li><code>FormBuilderSegmentedControl</code> - For selection of a value from the <code>CupertinoSegmentedControl</code> as an input</li>
 <li><code>FormBuilderSignaturePad</code> - Presents a drawing pad on which user can doodle</li>
 <li><code>FormBuilderSlider</code> - For selection of a numerical value on a slider</li>
-<li><code>FormBuilderStepper</code> - Selection of a number by tapping on a plus or minus symbol</li>
+<li><del><code>FormBuilderStepper</code></del> - Selection of a number by tapping on a plus or minus symbol. Deprecated; replace with <code>FormBuilderTouchSpin</code></li>
 <li><code>FormBuilderSwitch</code> - On/Off switch</li>
 <li><code>FormBuilderTextField</code> - For text input. Accepts input of single-line text, multi-line text, password,
 email, urls etc by using different configurations and validators</li>
+<li><code>FormBuilderTouchSpin</code> - Selection of a number by tapping on a plus or minus icon</li>
 <li><code>FormBuilderTypeAhead</code> - Auto-completes user input from a list of items</li>
 </ul>
 <p>In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:</p><table><thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code>attribute</code></td><td><code>String</code></td><td><code>null</code></td><td><code>true</code></td><td>This will form the key in the form value Map</td></tr><tr><td><code>initialValue</code></td><td><code>dynamic</code></td><td><code>null</code></td><td><code>false</code></td><td>The initial value of the input field</td></tr><tr><td><code>readOnly</code></td><td><code>bool</code></td><td><code>false</code></td><td><code>false</code></td><td>Determines whether the field widget will accept user input. This value will be ignored if the <code>readOnly</code> attribute of <code>FormBuilder</code> widget is set to <code>true</code></td></tr><tr><td><code>decoration</code></td><td><code>InputDecoration</code></td><td><code>InputDecoration()</code></td><td><code>false</code></td><td></td></tr><tr><td><code>validators</code></td><td><code>List&lt;FormFieldValidator&gt;</code></td><td><code>[]</code></td><td><code>false</code></td><td>List of <code>FormFieldValidator</code>s that will check the validity of value candidate in the <code>FormField</code></td></tr><tr><td><code>onChanged</code></td><td><code>ValueChanged&lt;T&gt;</code></td><td><code>null</code></td><td><code>false</code></td><td>This event function will fire immediately the the field value changes</td></tr><tr><td><code>valueTransformer</code></td><td><code>ValueTransformer&lt;T&gt;</code></td><td><code>null</code></td><td><code>false</code></td><td>Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from <code>String</code> to <code>num</code></td></tr><tr><td>The rest of the attributes will be determined by the type of Widget being used.</td><td></td><td></td><td></td><td></td></tr></tbody></table>
@@ -337,39 +388,48 @@ FormBuilderTextField(
 ),
 </code></pre>
 <h2 id="credits">CREDITS</h2>
+<h3 id="contributors">Contributors</h3><a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder">
+</a>
+<p>Made with <a href="https://contributors-img.firebaseapp.com">contributors-img</a>.</p>
+<h3 id="dependencies">Dependencies</h3>
 <p>This package is dependent on the following packages and plugins:</p>
 <ul>
-<li><a href="https://pub.dartlang.org/packages/flutter_typeahead">flutter_typeahead</a> by <a href="https://github.com/AbdulRahmanAlHamali">AbdulRahmanAlHamali</a></li>
-<li><a href="https://pub.dartlang.org/packages/sy_flutter_widgets">sy_flutter_widgets</a> by <a href="https://github.com/lishuhao">Li Shuhao</a></li>
-<li><a href="https://pub.dartlang.org/packages/datetime_picker_formfield">datetime_picker_formfield</a> by <a href="https://github.com/jifalops">Jacob Phillips</a></li>
+<li><a href="https://pub.dev/packages/flutter_typeahead">flutter_typeahead</a> by <a href="https://github.com/AbdulRahmanAlHamali">AbdulRahmanAlHamali</a></li>
+<li><a href="https://pub.dev/packages/sy_flutter_widgets">sy_flutter_widgets</a> by <a href="https://github.com/lishuhao">Li Shuhao</a></li>
+<li><a href="https://pub.dev/packages/datetime_picker_formfield">datetime_picker_formfield</a> by <a href="https://github.com/jifalops">Jacob Phillips</a></li>
 <li><a href="https://github.com/anicdh/date_range_picker">date_range_picker</a> by <a href="https://github.com/anicdh">anicdh</a></li>
-<li><a href="https://pub.dartlang.org/packages/validators">validators</a> by <a href="https://github.com/dart-league">dart-league</a></li>
-<li><a href="https://pub.dartlang.org/packages/intl">intl</a> - Dart Package</li>
-<li><a href="https://pub.dartlang.org/packages/signature">signature</a> by <a href="https://github.com/4Q-s-r-o">4Q s.r.o.</a> with some minor improvements to fit our usage</li>
-<li><a href="https://pub.dartlang.org/packages/flutter_chips_input">flutter_chips_input</a> by <a href="https://github.com/danvick">Yours trully :-)</a></li>
+<li><a href="https://pub.dev/packages/validators">validators</a> by <a href="https://github.com/dart-league">dart-league</a></li>
+<li><a href="https://pub.dev/packages/signature">signature</a> by <a href="https://github.com/4Q-s-r-o">4Q s.r.o.</a> with some minor improvements to fit our usage</li>
+<li><a href="https://pub.dev/packages/flutter_colorpicker">flutter_colorpicker</a> by <a href="https://github.com/mchome">mchome</a></li>
+<li><a href="https://pub.dev/packages/flutter_chips_input">flutter_chips_input</a> &amp; <a href="https://pub.dev/packages/flutter_touch_spin">flutter_touch_spin</a> by <a href="https://github.com/danvick">Yours trully :-)</a></li>
 </ul>
-<h2 id="todo">TODO:</h2>
+<h2 id="future-plans">FUTURE PLANS:</h2>
 <h3 id="improvements">Improvements</h3>
 <ul>
 <li><code>X</code> Allow addition of custom input types</li>
 <li><code>X</code> Improve documentation by showing complete list of input types and their usage and options</li>
 <li><code>X</code> Create a <code>transformer</code> function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.</li>
 <li><code>X</code> Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li>
-<li><code>X</code> Allow options for Checkboxes and Radios to appear left or right - Done via <code>leadingInput</code> by <a href="https://github.com/SvenSchoene">Sven Schöne</a></li>
+<li><code>X</code> Allow options for Checkboxes and Radios to appear left or right - Done via <code>leadingInput</code> courtesy of <a href="https://github.com/SvenSchoene">Sven Schöne</a></li>
+<li><code> </code> For RangeSlider use Flutter provided</li>
+<li><code> </code> Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version</li>
 </ul>
 <h3 id="new-formbuilder-inputs">New FormBuilder inputs</h3>
 <ul>
 <li><code>X</code> RangeSlider</li>
-<li><code>X</code> SignaturePad - Based on <a href="https://pub.dartlang.org/packages/signature">https://pub.dartlang.org/packages/signature</a></li>
-<li><code> </code> ColorPicker - <a href="https://pub.dartlang.org/packages/flutter_colorpicker">https://pub.dartlang.org/packages/flutter_colorpicker</a></li>
-<li><code>X</code> DateRangePicker - <a href="https://pub.dartlang.org/packages/date_range_picker">https://pub.dartlang.org/packages/date_range_picker</a></li>
-<li><code> </code> MapInput</li>
-<li><code> </code> ImagePicker</li>
-<li><code> </code> DocumentPicker</li>
+<li><code>X</code> SignaturePad - Based on <a href="https://pub.dev/packages/signature">https://pub.dev/packages/signature</a></li>
+<li><code>X</code> ColorPicker - <a href="https://pub.dev/packages/flutter_colorpicker">https://pub.dev/packages/flutter_colorpicker</a></li>
+<li><code>X</code> DateRangePicker - <a href="https://pub.dev/packages/date_range_picker">https://pub.dev/packages/date_range_picker</a></li>
 </ul>
-<h2 id="known-issues">KNOWN ISSUES</h2>
+<h3 id="need-to-be-on-separate-repos">Need to be on separate repos</h3>
+<ul>
+<li><code>X</code> FilePicker (Images &amp; Files) -&gt; Found <a href="https://github.com/danvick/form_builder_file_picker">here</a>. Work in progress</li>
+<li><code> </code> MapInput - Help Wanted</li>
+</ul>
+<h3 id="known-issues">Known Issues</h3>
 <p>Form's <code>reset()</code> doesn't clear SignaturePad - You'll be forced to clear manually</p>
-<h2 id="support">Support</h2>
+<h2 id="support">SUPPORT</h2>
 <p>If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)</p>
 <p><a href="https://buymeacoff.ee/wb5M9y2Sz"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy me a coffee"></a></p>
       </section>
@@ -433,7 +493,12 @@ and other core functionality for every Dart program. <a href="dart-core/dart-cor
                 Lists that efficiently handle fixed sized data
 (for example, unsigned 8 byte integers) and SIMD numeric types. <a href="dart-typed_data/dart-typed_data-library.html">[...]</a>
               </dd>            <h3>VM</h3>
-              <dt id="dart:io">
+              <dt id="dart:ffi">
+                <span class="name"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></span>               
+              </dt>
+              <dd>
+                Foreign Function Interface for interoperability with the C programming language. <a href="dart-ffi/dart-ffi-library.html">[...]</a>
+              </dd>              <dt id="dart:io">
                 <span class="name"><a href="dart-io/dart-io-library.html">dart:io</a></span>               
               </dt>
               <dd>
@@ -446,6 +511,27 @@ and other core functionality for every Dart program. <a href="dart-core/dart-cor
 independent workers that are similar to threads
 but don't share memory,
 communicating only via messages. <a href="dart-isolate/dart-isolate-library.html">[...]</a>
+              </dd>            <h3>Web</h3>
+              <dt id="dart:html">
+                <span class="name"><a href="dart-html/dart-html-library.html">dart:html</a></span>               
+              </dt>
+              <dd>
+                HTML elements and other resources for web-based applications that need to
+interact with the browser and the DOM (Document Object Model). <a href="dart-html/dart-html-library.html">[...]</a>
+              </dd>              <dt id="dart:js">
+                <span class="name"><a href="dart-js/dart-js-library.html">dart:js</a></span>               
+              </dt>
+              <dd>
+                Low-level support for interoperating with JavaScript. <a href="dart-js/dart-js-library.html">[...]</a>
+              </dd>              <dt id="dart:js_util">
+                <span class="name"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></span>               
+              </dt>
+              <dd>
+                Utility methods to efficiently manipulate typed JSInterop objects in cases
+where the name to call is not known at runtime. You should only use these
+methods when the same effect cannot be achieved with @JS annotations.
+These methods would be extension methods on JSObject if Dart supported
+extension methods.
               </dd>          </dl>
         </section>
 
@@ -459,7 +545,7 @@ communicating only via messages. <a href="dart-isolate/dart-isolate-library.html
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

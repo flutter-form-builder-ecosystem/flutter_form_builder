@@ -198,6 +198,7 @@ prints green, as expected.</p>
       <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+
   return FormField(
     key: _fieldKey,
     enabled: !_readOnly,
@@ -274,7 +275,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

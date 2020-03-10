@@ -102,17 +102,17 @@ you must first call <a href="dart-developer/TimelineTask/pass.html">pass</a> to 
 
       <dl class="constructor-summary-list">
         <dt id="TimelineTask" class="callable">
-          <span class="name"><a href="dart-developer/TimelineTask/TimelineTask.html">TimelineTask</a></span><span class="signature">()</span>
+          <span class="name"><a href="dart-developer/TimelineTask/TimelineTask.html">TimelineTask</a></span><span class="signature">({<span class="parameter" id="-param-parent"><span class="type-annotation"><a href="dart-developer/TimelineTask-class.html">TimelineTask</a></span> <span class="parameter-name">parent</span></span> })</span>
         </dt>
         <dd>
-          Create a task. The task ID will be set by the system.
+          Create a task. The task ID will be set by the system. <a href="dart-developer/TimelineTask/TimelineTask.html">[...]</a>
         </dd>
         <dt id="TimelineTask.withTaskId" class="callable">
           <span class="name"><a href="dart-developer/TimelineTask/TimelineTask.withTaskId.html">TimelineTask.withTaskId</a></span><span class="signature">(<span class="parameter" id="withTaskId-param-taskId"><span class="type-annotation"><a href="dart-core/int-class.html">int</a></span> <span class="parameter-name">taskId</span></span>)</span>
         </dt>
         <dd>
           Create a task with an explicit <code>taskId</code>. This is useful if you are
-passing a task from one isolate to another.
+passing a task from one isolate to another. <a href="dart-developer/TimelineTask/TimelineTask.withTaskId.html">[...]</a>
         </dd>
       </dl>
     </section>
@@ -144,12 +144,13 @@ passing a task from one isolate to another.
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="finish" class="callable">
-          <span class="name"><a href="dart-developer/TimelineTask/finish.html">finish</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="dart-developer/TimelineTask/finish.html">finish</a></span><span class="signature">(<wbr>{<span class="parameter" id="finish-param-arguments"><span class="type-annotation"><a href="dart-core/Map-class.html">Map</a></span> <span class="parameter-name">arguments</span></span> })
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
         <dd>
           Finish the last synchronous operation that was started.
+Optionally takes a <a href="dart-core/Map-class.html">Map</a> of <code>arguments</code>.
                   
 </dd>
         <dt id="instant" class="callable">
@@ -159,6 +160,7 @@ passing a task from one isolate to another.
                   </dt>
         <dd>
           Emit an instant event for this task.
+Optionally takes a <a href="dart-core/Map-class.html">Map</a> of <code>arguments</code>.
                   
 </dd>
         <dt id="pass" class="callable">
@@ -257,7 +259,7 @@ Optionally takes a <a href="dart-core/Map-class.html">Map</a> of <code>arguments
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

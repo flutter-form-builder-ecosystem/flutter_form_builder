@@ -96,8 +96,7 @@ of these. List and maps are also allowed to be cyclic.</p>
 <p>In the special circumstances when two isolates share the same code and are
 running in the same process (e.g. isolates created via <a href="dart-isolate/Isolate/spawn.html">Isolate.spawn</a>), it
 is also possible to send object instances (which would be copied in the
-process). This is currently only supported by the dartvm.  For now, the
-dart2js compiler only supports the restricted messages described above.</p>
+process). This is currently only supported by the dart vm.</p>
 <p>The send happens immediately and doesn't block.  The corresponding receive
 port can receive the message as soon as its isolate's event loop is ready
 to deliver it, independently of what the sending isolate is doing.</p>
@@ -118,7 +117,7 @@ to deliver it, independently of what the sending isolate is doing.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

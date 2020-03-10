@@ -107,7 +107,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static FormBuilderState of(BuildContext context) =&gt;
-    context.ancestorStateOfType(const TypeMatcher&lt;FormBuilderState&gt;());</code></pre>
+    context.findAncestorStateOfType&lt;FormBuilderState&gt;();</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -120,7 +120,7 @@
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

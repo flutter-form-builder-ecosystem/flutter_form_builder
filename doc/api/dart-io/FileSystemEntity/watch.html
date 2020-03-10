@@ -137,7 +137,9 @@ one of the following happens:</p>
 <ul>
 <li>The <a href="dart-async/Stream-class.html">Stream</a> is canceled, e.g. by calling <code>cancel</code> on the
  <a href="dart-async/StreamSubscription-class.html">StreamSubscription</a>.</li>
-<li>The <a href="dart-io/FileSystemEntity-class.html">FileSystemEntity</a> being watches, is deleted.</li>
+<li>The <a href="dart-io/FileSystemEntity-class.html">FileSystemEntity</a> being watched, is deleted.</li>
+<li>System Watcher exits unexpectedly. e.g. On <code>Windows</code> this happens when
+buffer that receive events from <code>ReadDirectoryChangesW</code> overflows.</li>
 </ul>
 <p>Use <code>events</code> to specify what events to listen for. The constants in
 <a href="dart-io/FileSystemEvent-class.html">FileSystemEvent</a> can be or'ed together to mix events. Default is
@@ -169,7 +171,7 @@ one of the following happens:</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

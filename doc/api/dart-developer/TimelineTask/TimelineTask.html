@@ -86,16 +86,21 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">TimelineTask</span>(<wbr>)
+      <span class="name ">TimelineTask</span>(<wbr>{<span class="parameter" id="-param-parent"><span class="type-annotation"><a href="dart-developer/TimelineTask-class.html">TimelineTask</a></span> <span class="parameter-name">parent</span></span> })
     </section>
 
     <section class="desc markdown">
       <p>Create a task. The task ID will be set by the system.</p>
+<p>If <code>parent</code> is provided, the parent's task ID is provided as argument
+'parentId' when <a href="dart-developer/TimelineTask/start.html">start</a> is called. In DevTools, this argument will result
+in this <a href="dart-developer/TimelineTask-class.html">TimelineTask</a> being linked to the <code>parent</code> <a href="dart-developer/TimelineTask-class.html">TimelineTask</a>.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">TimelineTask() : _taskId = _getNextAsyncId() {}</code></pre>
+      <pre class="language-dart"><code class="language-dart">TimelineTask({TimelineTask parent})
+    : _parent = parent,
+      _taskId = _getNextAsyncId() {}</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -108,7 +113,7 @@
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

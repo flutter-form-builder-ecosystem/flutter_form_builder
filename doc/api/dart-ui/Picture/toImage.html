@@ -89,8 +89,9 @@
     </section>
     <section class="desc markdown">
       <p>Creates an image from this picture.</p>
-<p>The picture is rasterized using the number of pixels specified by the
-given width and height.</p>
+<p>The returned image will be <code>width</code> pixels wide and <code>height</code> pixels high.
+The picture is rasterized within the 0 (left), 0 (top), <code>width</code> (right),
+<code>height</code> (bottom) bounds. Content outside these bounds is clipped.</p>
 <p>Although the image is returned synchronously, the picture is actually
 rasterized the first time the image is drawn and then cached.</p>
     </section>
@@ -116,7 +117,7 @@ rasterized the first time the image is drawn and then cached.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

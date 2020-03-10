@@ -88,16 +88,17 @@
     <section class="multi-line-signature">
       <span class="returntype">void</span>
             <span class="name ">finish</span>
-(<wbr>)
+(<wbr>{<span class="parameter" id="finish-param-arguments"><span class="type-annotation"><a href="dart-core/Map-class.html">Map</a></span> <span class="parameter-name">arguments</span></span> })
       
     </section>
     <section class="desc markdown">
-      <p>Finish the last synchronous operation that was started.</p>
+      <p>Finish the last synchronous operation that was started.
+Optionally takes a <a href="dart-core/Map-class.html">Map</a> of <code>arguments</code>.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void finish() {
+      <pre class="language-dart"><code class="language-dart">void finish({Map arguments}) {
   if (!_hasTimeline) {
     return;
   }
@@ -106,7 +107,7 @@
   }
   &#47;&#47; Pop top item off of stack.
   var block = _stack.removeLast();
-  block._finish();
+  block._finish(arguments);
 }</code></pre>
     </section>
 
@@ -120,7 +121,7 @@
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

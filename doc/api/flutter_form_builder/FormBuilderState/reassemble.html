@@ -128,7 +128,7 @@ the <code>ext.flutter.reassemble</code> hook is not available, and so this code 
 never execute.</p>
 <p>Implementers should not rely on any ordering for hot reload source update,
 reassemble, and build methods after a hot reload has been initiated. It is
-possible that a <a href="dart-async/Timer-class.html">Timer</a> (e.g. an <code>Animation</code>) or a debugging session
+possible that a <a href="dart-async/Timer-class.html">Timer</a> (e.g. an <a href="dart-html/Animation-class.html">Animation</a>) or a debugging session
 attached to the isolate could trigger a build with reloaded code <em>before</em>
 reassemble is called. Code that expects preconditions to be set by
 reassemble after a hot reload must be resilient to being called out of
@@ -162,7 +162,7 @@ void reassemble() { }</code></pre>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

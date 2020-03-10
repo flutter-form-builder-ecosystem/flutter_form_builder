@@ -123,7 +123,7 @@
 <code>InheritedWidget</code> that later changed, the framework would call this
 method to notify this object about the change.</p>
 <p>This method is also called immediately after <a href="flutter_form_builder/FormBuilderState/initState.html">initState</a>. It is safe to
-call <code>BuildContext.inheritFromWidgetOfExactType</code> from this method.</p>
+call <code>BuildContext.dependOnInheritedWidgetOfExactType</code> from this method.</p>
 <p>Subclasses rarely override this method because the framework always
 calls <a href="flutter_form_builder/FormBuilderState/build.html">build</a> after a dependency changes. Some subclasses do override
 this method because they need to do some expensive work (e.g., network
@@ -148,7 +148,7 @@ void didChangeDependencies() { }</code></pre>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

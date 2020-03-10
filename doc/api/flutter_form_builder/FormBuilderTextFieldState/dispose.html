@@ -136,7 +136,9 @@ super.dispose().</p>
       <pre class="language-dart"><code class="language-dart">@override
 void dispose() {
   _formState?.unregisterFieldKey(widget.attribute);
-  _effectiveController.dispose();
+  if (widget.controller == null) {
+    _effectiveController.dispose();
+  }
   super.dispose();
 }</code></pre>
     </section>
@@ -151,7 +153,7 @@ void dispose() {
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

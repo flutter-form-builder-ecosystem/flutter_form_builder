@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the callConstructor function from the dart:js_util library, for the Dart programming language.">
+  <title>callConstructor function - dart:js_util library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">flutter_form_builder</a></li>
+    <li><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
+    <li class="self-crumb">callConstructor function</li>
+  </ol>
+  <div class="self-name">callConstructor</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">flutter_form_builder</a></li>
+      <li><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
+      <li class="self-crumb">callConstructor function</li>
+    </ol>
+    
+    <h5>dart:js_util library</h5>
+    <ol>
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="dart-js_util/dart-js_util-library.html#functions">Functions</a></li>
+      <li><a href="dart-js_util/callConstructor.html">callConstructor</a></li>
+      <li><a href="dart-js_util/callMethod.html">callMethod</a></li>
+      <li><a href="dart-js_util/getProperty.html">getProperty</a></li>
+      <li><a href="dart-js_util/hasProperty.html">hasProperty</a></li>
+      <li><a href="dart-js_util/instanceof.html">instanceof</a></li>
+      <li><a href="dart-js_util/jsify.html">jsify</a></li>
+      <li><a href="dart-js_util/newObject.html">newObject</a></li>
+      <li><a href="dart-js_util/promiseToFuture.html">promiseToFuture</a></li>
+      <li><a href="dart-js_util/setProperty.html">setProperty</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-function">callConstructor</span> function </h1></div>
+
+    <section class="multi-line-signature">
+        <span class="returntype">dynamic</span>
+                <span class="name ">callConstructor</span>
+(<wbr><span class="parameter" id="callConstructor-param-constr"><span class="type-annotation"><a href="dart-core/Function-class.html">Function</a></span> <span class="parameter-name">constr</span>, </span> <span class="parameter" id="callConstructor-param-arguments"><span class="type-annotation"><a href="dart-core/List-class.html">List</a></span> <span class="parameter-name">arguments</span></span>)
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">callConstructor(Function constr, List arguments) {
+  if (arguments == null) {
+    return JS(&#39;Object&#39;, &#39;new #()&#39;, constr);
+  }
+
+  if (JS(&#39;bool&#39;, &#39;# instanceof Array&#39;, arguments)) {
+    int argumentCount = JS(&#39;int&#39;, &#39;#.length&#39;, arguments);
+    switch (argumentCount) {
+      case 0:
+        return JS(&#39;Object&#39;, &#39;new #()&#39;, constr);
+
+      case 1:
+        var arg0 = JS(&#39;&#39;, &#39;#[0]&#39;, arguments);
+        return JS(&#39;Object&#39;, &#39;new #(#)&#39;, constr, arg0);
+
+      case 2:
+        var arg0 = JS(&#39;&#39;, &#39;#[0]&#39;, arguments);
+        var arg1 = JS(&#39;&#39;, &#39;#[1]&#39;, arguments);
+        return JS(&#39;Object&#39;, &#39;new #(#, #)&#39;, constr, arg0, arg1);
+
+      case 3:
+        var arg0 = JS(&#39;&#39;, &#39;#[0]&#39;, arguments);
+        var arg1 = JS(&#39;&#39;, &#39;#[1]&#39;, arguments);
+        var arg2 = JS(&#39;&#39;, &#39;#[2]&#39;, arguments);
+        return JS(&#39;Object&#39;, &#39;new #(#, #, #)&#39;, constr, arg0, arg1, arg2);
+
+      case 4:
+        var arg0 = JS(&#39;&#39;, &#39;#[0]&#39;, arguments);
+        var arg1 = JS(&#39;&#39;, &#39;#[1]&#39;, arguments);
+        var arg2 = JS(&#39;&#39;, &#39;#[2]&#39;, arguments);
+        var arg3 = JS(&#39;&#39;, &#39;#[3]&#39;, arguments);
+        return JS(
+            &#39;Object&#39;, &#39;new #(#, #, #, #)&#39;, constr, arg0, arg1, arg2, arg3);
+    }
+  }
+
+  &#47;&#47; The following code solves the problem of invoking a JavaScript
+  &#47;&#47; constructor with an unknown number arguments.
+  &#47;&#47; First bind the constructor to the argument list using bind.apply().
+  &#47;&#47; The first argument to bind() is the binding of &#39;t&#39;, so add &#39;null&#39; to
+  &#47;&#47; the arguments list passed to apply().
+  &#47;&#47; After that, use the JavaScript &#39;new&#39; operator which overrides any binding
+  &#47;&#47; of &#39;this&#39; with the new instance.
+  var args = &lt;dynamic&gt;[null]..addAll(arguments);
+  var factoryFunction = JS(&#39;&#39;, &#39;#.bind.apply(#, #)&#39;, constr, constr, args);
+  &#47;&#47; Without this line, calling factoryFunction as a constructor throws
+  JS(&#39;String&#39;, &#39;String(#)&#39;, factoryFunction);
+  &#47;&#47; This could return an UnknownJavaScriptObject, or a native
+  &#47;&#47; object for which there is an interceptor
+  return JS(&#39;Object&#39;, &#39;new #()&#39;, factoryFunction);
+
+  &#47;&#47; TODO(sra): Investigate:
+  &#47;&#47;
+  &#47;&#47;     var jsObj = JS(&#39;&#39;, &#39;Object.create(#.prototype)&#39;, constr);
+  &#47;&#47;     JS(&#39;&#39;, &#39;#.apply(#, #)&#39;, constr, jsObj,
+  &#47;&#47;         []..addAll(arguments.map(_convertToJS)));
+  &#47;&#47;     return _wrapToDart(jsObj);
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_form_builder
+      3.8.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

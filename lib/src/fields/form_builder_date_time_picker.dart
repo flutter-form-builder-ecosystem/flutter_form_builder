@@ -374,9 +374,9 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       return showTimePicker(
         context: context,
         // initialTime: widget.initialTime ?? TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-        // ignore: deprecated_member_use_from_same_package
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
+            // ignore: deprecated_member_use_from_same_package
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
       ).then((result) {
         return result ??

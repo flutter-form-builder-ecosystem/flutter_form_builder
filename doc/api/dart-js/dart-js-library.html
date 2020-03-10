@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="dart:js library API docs, for the Dart programming language.">
+  <title>dart:js library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">flutter_form_builder</a></li>
+    <li class="self-crumb">dart:js library</li>
+  </ol>
+  <div class="self-name">dart:js</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">flutter_form_builder</a></li>
+      <li class="self-crumb">dart:js library</li>
+    </ol>
+    
+    <h5><span class="package-name">flutter_form_builder</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="flutter_form_builder/flutter_form_builder-library.html">flutter_form_builder</a></li>
+          <li class="section-title">Dart</li>
+          <li><a href="dart-ui/dart-ui-library.html">dart:ui</a></li>
+          <li class="section-subtitle">Core</li>
+            <li class="section-subitem"><a href="dart-async/dart-async-library.html">dart:async</a></li>
+            <li class="section-subitem"><a href="dart-collection/dart-collection-library.html">dart:collection</a></li>
+            <li class="section-subitem"><a href="dart-convert/dart-convert-library.html">dart:convert</a></li>
+            <li class="section-subitem"><a href="dart-core/dart-core-library.html">dart:core</a></li>
+            <li class="section-subitem"><a href="dart-developer/dart-developer-library.html">dart:developer</a></li>
+            <li class="section-subitem"><a href="dart-math/dart-math-library.html">dart:math</a></li>
+            <li class="section-subitem"><a href="dart-typed_data/dart-typed_data-library.html">dart:typed_data</a></li>
+          <li class="section-subtitle">VM</li>
+            <li class="section-subitem"><a href="dart-ffi/dart-ffi-library.html">dart:ffi</a></li>
+            <li class="section-subitem"><a href="dart-io/dart-io-library.html">dart:io</a></li>
+            <li class="section-subitem"><a href="dart-isolate/dart-isolate-library.html">dart:isolate</a></li>
+          <li class="section-subtitle">Web</li>
+            <li class="section-subitem"><a href="dart-html/dart-html-library.html">dart:html</a></li>
+            <li class="section-subitem"><a href="dart-js/dart-js-library.html">dart:js</a></li>
+            <li class="section-subitem"><a href="dart-js_util/dart-js_util-library.html">dart:js_util</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-library">dart:js</span> library </h1></div>
+
+    <section class="desc markdown">
+      <p>Low-level support for interoperating with JavaScript.</p>
+<p>You should usually use <code>package:js</code> instead of this library. For more
+information, see the <a href="https://dart.dev/web/js-interop">JS interop page</a>.</p>
+<p>This library provides access to JavaScript objects from Dart, allowing
+Dart code to get and set properties, and call methods of JavaScript objects
+and invoke JavaScript functions. The library takes care of converting
+between Dart and JavaScript objects where possible, or providing proxies if
+conversion isn't possible.</p>
+<p>This library does not make Dart objects usable from JavaScript, their
+methods and properties are not accessible, though it does allow Dart
+functions to be passed into and called from JavaScript.</p>
+<p><a href="dart-js/JsObject-class.html">JsObject</a> is the core type and represents a proxy of a JavaScript object.
+JsObject gives access to the underlying JavaScript objects properties and
+methods. <code>JsObject</code>s can be acquired by calls to JavaScript, or they can be
+created from proxies to JavaScript constructors.</p>
+<p>The top-level getter <a href="dart-js/context.html">context</a> provides a <a href="dart-js/JsObject-class.html">JsObject</a> that represents the
+global object in JavaScript, usually <code>window</code>.</p>
+<p>The following example shows an alert dialog via a JavaScript call to the
+global function <code>alert()</code>:</p>
+<pre class="language-dart"><code>import 'dart:js';
+
+main() =&gt; context.callMethod('alert', ['Hello from Dart!']);
+</code></pre>
+<p>This example shows how to create a <a href="dart-js/JsObject-class.html">JsObject</a> from a JavaScript constructor
+and access its properties:</p>
+<pre class="language-dart"><code>import 'dart:js';
+
+main() {
+  var object = JsObject(context['Object']);
+  object['greeting'] = 'Hello';
+  object['greet'] = (name) =&gt; "${object['greeting']} $name";
+  var message = object.callMethod('greet', ['JavaScript']);
+  context['console'].callMethod('log', [message]);
+}
+</code></pre>
+<h2 id="proxying-and-automatic-conversion">Proxying and automatic conversion</h2>
+<p>When setting properties on a JsObject or passing arguments to a Javascript
+method or function, Dart objects are automatically converted or proxied to
+JavaScript objects. When accessing JavaScript properties, or when a Dart
+closure is invoked from JavaScript, the JavaScript objects are also
+converted to Dart.</p>
+<p>Functions and closures are proxied in such a way that they are callable. A
+Dart closure assigned to a JavaScript property is proxied by a function in
+JavaScript. A JavaScript function accessed from Dart is proxied by a
+<a href="dart-js/JsFunction-class.html">JsFunction</a>, which has a <a href="dart-js/JsFunction/apply.html">JsFunction.apply</a> method to invoke it.</p>
+<p>The following types are transferred directly and not proxied:</p>
+<ul>
+<li>Basic types: <code>null</code>, <code>bool</code>, <code>num</code>, <code>String</code>, <code>DateTime</code></li>
+<li><code>TypedData</code>, including its subclasses like <code>Int32List</code>, but <em>not</em>
+<code>ByteBuffer</code></li>
+<li>When compiling for the web, also: <code>Blob</code>, <code>Event</code>, <code>ImageData</code>,
+<code>KeyRange</code>, <code>Node</code>, and <code>Window</code>.</li>
+</ul>
+<h2 id="converting-collections-with-jsobjectjsify">Converting collections with JsObject.jsify()</h2>
+<p>To create a JavaScript collection from a Dart collection use the
+<a href="dart-js/JsObject/JsObject.jsify.html">JsObject.jsify</a> constructor, which converts Dart <a href="dart-core/Map-class.html">Map</a>s and <a href="dart-core/Iterable-class.html">Iterable</a>s
+into JavaScript Objects and Arrays.</p>
+<p>The following expression creates a new JavaScript object with the properties
+<code>a</code> and <code>b</code> defined:</p>
+<pre class="language-dart"><code>var jsMap = JsObject.jsify({'a': 1, 'b': 2});
+</code></pre>
+<p>This expression creates a JavaScript array:</p>
+<pre class="language-dart"><code>var jsArray = JsObject.jsify([1, 2, 3]);
+</code></pre>
+    </section>
+    
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="JavaScriptObject">
+          <span class="name "><a href="dart-js/JavaScriptObject-class.html">JavaScriptObject</a></span>         
+        </dt>
+        <dd>
+          Interceptor base class for JavaScript objects not recognized as some more
+specific native type.
+        </dd>
+        <dt id="JsArray">
+          <span class="name "><a href="dart-js/JsArray-class.html">JsArray</a><span class="signature">&lt;<wbr><span class="type-parameter">E</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          A <a href="dart-core/List-class.html">List</a> that proxies a JavaScript array.
+        </dd>
+        <dt id="JsFunction">
+          <span class="name "><a href="dart-js/JsFunction-class.html">JsFunction</a></span>         
+        </dt>
+        <dd>
+          A proxy on a JavaScript Function object.
+        </dd>
+        <dt id="JsObject">
+          <span class="name "><a href="dart-js/JsObject-class.html">JsObject</a></span>         
+        </dt>
+        <dd>
+          A proxy on a JavaScript object. <a href="dart-js/JsObject-class.html">[...]</a>
+        </dd>
+      </dl>
+    </section>
+
+
+
+
+    <section class="summary offset-anchor" id="properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="context" class="property">
+          <span class="name"><a href="dart-js/context.html">context</a></span>
+          <span class="signature">&#8594; <a href="dart-js/JsObject-class.html">JsObject</a></span>         
+        </dt>
+        <dd>
+          The JavaScript global object, usually <code>window</code>.
+                  <div class="features">final</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="functions">
+      <h2>Functions</h2>
+
+      <dl class="callables">
+        <dt id="allowInterop" class="callable">
+          <span class="name"><a href="dart-js/allowInterop.html">allowInterop</a></span><span class="signature">&lt;<wbr><span class="type-parameter">F extends <a href="dart-core/Function-class.html">Function</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="allowInterop-param-f"><span class="type-annotation">F</span> <span class="parameter-name">f</span></span>)
+            <span class="returntype parameter">&#8594; F</span>
+          </span>
+                  </dt>
+        <dd>
+          Returns a wrapper around function <code>f</code> that can be called from JavaScript
+using <code>package:js</code> JavaScript interop. <a href="dart-js/allowInterop.html">[...]</a>
+                  
+</dd>
+        <dt id="allowInteropCaptureThis" class="callable">
+          <span class="name"><a href="dart-js/allowInteropCaptureThis.html">allowInteropCaptureThis</a></span><span class="signature">(<wbr><span class="parameter" id="allowInteropCaptureThis-param-f"><span class="type-annotation"><a href="dart-core/Function-class.html">Function</a></span> <span class="parameter-name">f</span></span>)
+            <span class="returntype parameter">&#8594; <a href="dart-core/Function-class.html">Function</a></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns a wrapper around function <code>f</code> that can be called from JavaScript
+using <code>package:js</code> JavaScript interop, passing JavaScript <code>this</code> as the first
+argument. <a href="dart-js/allowInteropCaptureThis.html">[...]</a>
+                  
+</dd>
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <h5>dart:js library</h5>
+    <ol>
+      <li class="section-title"><a href="dart-js/dart-js-library.html#classes">Classes</a></li>
+      <li><a href="dart-js/JavaScriptObject-class.html">JavaScriptObject</a></li>
+      <li><a href="dart-js/JsArray-class.html">JsArray</a></li>
+      <li><a href="dart-js/JsFunction-class.html">JsFunction</a></li>
+      <li><a href="dart-js/JsObject-class.html">JsObject</a></li>
+    
+    
+    
+    
+      <li class="section-title"><a href="dart-js/dart-js-library.html#properties">Properties</a></li>
+      <li><a href="dart-js/context.html">context</a></li>
+    
+      <li class="section-title"><a href="dart-js/dart-js-library.html#functions">Functions</a></li>
+      <li><a href="dart-js/allowInterop.html">allowInterop</a></li>
+      <li><a href="dart-js/allowInteropCaptureThis.html">allowInteropCaptureThis</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    flutter_form_builder
+      3.8.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

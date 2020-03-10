@@ -92,11 +92,16 @@
     <section class="desc markdown">
       <p>Create a task with an explicit <code>taskId</code>. This is useful if you are
 passing a task from one isolate to another.</p>
+<p>Important note: only provide task IDs which have been obtained as a
+result of invoking <a href="dart-developer/TimelineTask/pass.html">TimelineTask.pass</a>. Specifying a custom ID can lead
+to ID collisions, resulting in incorrect rendering of timeline events.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">TimelineTask.withTaskId(int taskId) : _taskId = taskId {
+      <pre class="language-dart"><code class="language-dart">TimelineTask.withTaskId(int taskId)
+    : _parent = null,
+      _taskId = taskId {
   ArgumentError.checkNotNull(taskId, &#39;taskId&#39;);
 }</code></pre>
     </section>
@@ -111,7 +116,7 @@ passing a task from one isolate to another.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

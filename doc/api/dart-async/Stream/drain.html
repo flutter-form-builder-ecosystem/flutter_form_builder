@@ -138,10 +138,9 @@
 occurred.</p>
 <p>When subscribing using <a href="dart-async/Stream/drain.html">drain</a>, cancelOnError will be true. This means
 that the future will complete with the first error on this stream and then
-cancel the subscription.
-If this stream emits an error, or the call to <code>combine</code> throws,
-the returned future is completed with that error,
-and processing is stopped.</p>
+cancel the subscription.</p>
+<p>If this stream emits an error, the returned future is completed with
+that error, and processing is stopped.</p>
 <p>In case of a <code>done</code> event the future completes with the given
 <code>futureValue</code>.</p>
     </section>
@@ -162,7 +161,7 @@ and processing is stopped.</p>
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->

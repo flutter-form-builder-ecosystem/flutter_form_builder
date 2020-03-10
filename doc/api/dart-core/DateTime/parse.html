@@ -154,7 +154,8 @@ Examples: "19700101", "-0004-12-24", "81030-04-01".</li>
 The time part is a two digit hour,
 then optionally a two digit minutes value,
 then optionally a two digit seconds value, and
-then optionally a '.' or ',' followed by a one-to-six digit second fraction.
+then optionally a '.' or ',' followed by at least a one digit
+second fraction.
 The minutes and seconds may be separated from the previous parts by a
 ':'.
 Examples: "12", "12:30:24.124", "12:30:24,124", "123010.50".</li>
@@ -175,8 +176,8 @@ the time is converted to the equivalent UTC time.</p>
 <p>Examples of accepted strings:</p>
 <ul>
 <li><code>"2012-02-27 13:27:00"</code></li>
-<li><code>"2012-02-27 13:27:00.123456z"</code></li>
-<li><code>"2012-02-27 13:27:00,123456z"</code></li>
+<li><code>"2012-02-27 13:27:00.123456789z"</code></li>
+<li><code>"2012-02-27 13:27:00,123456789z"</code></li>
 <li><code>"20120227 13:27:00"</code></li>
 <li><code>"20120227T132700"</code></li>
 <li><code>"20120227"</code></li>
@@ -201,14 +202,13 @@ static DateTime parse(String formattedString) {
       return int.parse(matched);
     }
 
-    &#47;&#47; Parses fractional second digits of &#39;.(\d{1,6})&#39; into the combined
-    &#47;&#47; microseconds.
+    &#47;&#47; Parses fractional second digits of &#39;.(\d+)&#39; into the combined
+    &#47;&#47; microseconds. We only use the first 6 digits because of DateTime
+    &#47;&#47; precision of 999 milliseconds and 999 microseconds.
     int parseMilliAndMicroseconds(String matched) {
       if (matched == null) return 0;
       int length = matched.length;
       assert(length &gt;= 1);
-      assert(length &lt;= 6);
-
       int result = 0;
       for (int i = 0; i &lt; 6; i++) {
         result *= 10;
@@ -225,7 +225,6 @@ static DateTime parse(String formattedString) {
     int hour = parseIntOrZero(match[4]);
     int minute = parseIntOrZero(match[5]);
     int second = parseIntOrZero(match[6]);
-    bool addOneMillisecond = false;
     int milliAndMicroseconds = parseMilliAndMicroseconds(match[7]);
     int millisecond =
         milliAndMicroseconds ~&#47; Duration.microsecondsPerMillisecond;
@@ -266,7 +265,7 @@ static DateTime parse(String formattedString) {
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.7.0
+      3.8.1
   </span>
 
   <!-- footer-text placeholder -->
