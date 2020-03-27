@@ -347,6 +347,7 @@ FormBuilderTextField(
 <a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
   <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
 </a>
+[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/0)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/0)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/1)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/1)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/2)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/2)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/3)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/3)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/4)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/4)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/5)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/5)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/6)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/6)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/7)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/7)
 
 Made with [contributors-img](https://contributors-img.firebaseapp.com).
 
@@ -361,6 +362,11 @@ This package is dependent on the following packages and plugins:
 * [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
 * [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours trully :-)](https://github.com/danvick)
 
+### RELATED PACKAGES
+Here are other field types for `flutter_form_builder`:
+- [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A file picker field for `FlutterFormBuilder`.
+- [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) - A map input field for `FlutterFormBuilder`.
+
 ## FUTURE PLANS: 
 ### Improvements
 - [X] Allow addition of custom input types
@@ -368,21 +374,12 @@ This package is dependent on the following packages and plugins:
 - [X] Create a `transformer` function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` courtesy of [Sven Schöne](https://github.com/SvenSchoene)
+- [X] Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version
 - [ ] For RangeSlider use Flutter provided
-- [ ] Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version
-
-### New FormBuilder inputs
-- [X] RangeSlider
-- [X] SignaturePad - Based on [https://pub.dev/packages/signature](https://pub.dev/packages/signature)
-- [X] ColorPicker - https://pub.dev/packages/flutter_colorpicker
-- [X] DateRangePicker - https://pub.dev/packages/date_range_picker
-
-### Need to be on separate repos
-- [X] FilePicker (Images & Files) -> Found [here](https://github.com/danvick/form_builder_file_picker). Work in progress
-- [ ] MapInput - Help Wanted
 
 ### Known Issues
-Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
+* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior of Flutter 
+* Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 ## SUPPORT
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
