@@ -44,6 +44,7 @@ class FormBuilderTextField extends StatefulWidget {
   final int minLines;
   final bool showCursor;
   final FormFieldSetter onSaved;
+  final VoidCallback onTap;
 
   FormBuilderTextField({
     Key key,
@@ -85,6 +86,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.minLines,
     this.showCursor,
     this.onSaved,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -176,6 +178,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       expands: widget.expands,
       minLines: widget.minLines,
       showCursor: widget.showCursor,
+      onTap: widget.onTap,
     );
   }
 

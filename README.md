@@ -11,6 +11,12 @@ final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 ```
 **Note:** Avoid defining the GlobalKey inside your build method because this will create a new GlobalKey on every build cycle bringing about some erratic behavior.
 
+**Note:** If you use FormBuilderDateTimePicker
+```dart
+import 'package:intl/intl.dart';
+```
+
+
 ```dart
 Column(
   children: <Widget>[
@@ -85,7 +91,7 @@ Column(
             attribute: "accept_terms_switch",
             initialValue: true,
           ),
-          FormBuilderStepper(
+          FormBuilderTouchSpin(
             decoration: InputDecoration(labelText: "Stepper"),
             attribute: "stepper",
             initialValue: 10,
