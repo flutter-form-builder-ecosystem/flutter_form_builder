@@ -383,7 +383,7 @@ Here are other field types for `flutter_form_builder`:
 - [ ] For RangeSlider use Flutter provided
 
 ### Known Issues
-* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior of Flutter 
+* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior in Flutter 
 * Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 ## SUPPORT
