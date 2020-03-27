@@ -353,7 +353,6 @@ FormBuilderTextField(
 <a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
   <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
 </a>
-[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/0)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/0)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/1)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/1)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/2)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/2)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/3)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/3)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/4)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/4)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/5)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/5)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/6)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/6)[![](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/images/7)](https://sourcerer.io/fame/danvick/danvick/flutter_form_builder/links/7)
 
 Made with [contributors-img](https://contributors-img.firebaseapp.com).
 
