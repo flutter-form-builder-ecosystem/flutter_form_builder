@@ -508,6 +508,18 @@ class MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                     ),
+                    FormBuilderImagePicker(
+                      attribute: "images",
+                      validators: [
+                        FormBuilderValidators.required(),
+                        (images) {
+                          if (images.length < 2) {
+                            return "Two or more images is required.";
+                          }
+                          return null;
+                        }
+                      ],
+                    ),
                     FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
