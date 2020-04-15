@@ -206,9 +206,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
     if (widget.controller == null) {
-      _typeAheadController.dispose();
+      _typeAheadController?.dispose();
     } else {
-      _typeAheadController.removeListener(_handleStringOnChanged);
+      _typeAheadController?.removeListener(_handleStringOnChanged);
     }
     if (widget.textFieldConfiguration.focusNode == null) {
       _typeAheadFocusNode?.dispose();
