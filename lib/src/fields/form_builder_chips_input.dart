@@ -117,7 +117,6 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
           ),
           findSuggestions: widget.findSuggestions,
           onChanged: (data) {
-            FocusScope.of(context).requestFocus(FocusNode());
             field.didChange(data);
             if (widget.onChanged != null) widget.onChanged(data);
           },

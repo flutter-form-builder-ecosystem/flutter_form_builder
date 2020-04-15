@@ -1,3 +1,8 @@
+## [3.8.3] - 15-Apr-2020
+* Fix bug where `onChange` in FormBuilderDateTimePicker doesn't fire when field is cleared. Closes #254
+* Fix `The method 'dispose' was called on null.` issue in FormBuilderTypeAhead. Closes #256
+* Bumped up flutter_chips_input to v1.8.0 from v1.7.0
+
 ## [3.8.2] - 27-Mar-2020
 * `onTap` callback added to `FormBuilderTextField` 
 * Link to [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) added to README
