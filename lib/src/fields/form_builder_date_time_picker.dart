@@ -281,7 +281,10 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         return null;
       },
       onShowPicker: _onShowPicker,
-      // onChanged: widget.onChanged,
+      onChanged: (val) {
+        if (widget.onChanged != null)
+          widget.onChanged(val);
+      },
       autovalidate: widget.autovalidate,
       resetIcon: widget.resetIcon,
       textDirection: widget.textDirection,
@@ -344,8 +347,6 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     }
     newValue = newValue ?? currentValue;
     _fieldKey.currentState.didChange(newValue);
-    if (widget.onChanged != null)
-      widget.onChanged(_fieldKey.currentState.value);
     return newValue;
   }
 
@@ -355,14 +356,15 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       return widget.datePicker(context);
     } else {
       return showDatePicker(
-          context: context,
-          selectableDayPredicate: widget.selectableDayPredicate,
-          initialDatePickerMode:
-              widget.initialDatePickerMode ?? DatePickerMode.day,
-          // ignore: deprecated_member_use_from_same_package
-          initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
-          firstDate: widget.firstDate ?? DateTime(1900),
-          lastDate: widget.lastDate ?? DateTime(2100));
+        context: context,
+        selectableDayPredicate: widget.selectableDayPredicate,
+        initialDatePickerMode:
+            widget.initialDatePickerMode ?? DatePickerMode.day,
+        // ignore: deprecated_member_use_from_same_package
+        initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
+        firstDate: widget.firstDate ?? DateTime(1900),
+        lastDate: widget.lastDate ?? DateTime(2100),
+      );
     }
   }
 
@@ -378,12 +380,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             ? TimeOfDay.fromDateTime(currentValue)
             // ignore: deprecated_member_use_from_same_package
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
-      ).then((result) {
-        return result ??
-            (currentValue != null
-                ? TimeOfDay.fromDateTime(currentValue)
-                : null);
-      });
+      ).then(
+        (result) {
+          return result ??
+              (currentValue != null
+                  ? TimeOfDay.fromDateTime(currentValue)
+                  : null);
+        },
+      );
     }
   }
 }
