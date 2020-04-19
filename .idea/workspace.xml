@@ -524,14 +524,26 @@
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="784" y="150" width="1028" height="814" key="CommitChangelistDialog2" timestamp="1587311307480">
+    <state x="784" y="150" width="1028" height="814" key="CommitChangelistDialog2" timestamp="1587311423589">
       <screen x="46" y="27" width="2514" height="1053" />
     </state>
-    <state x="784" y="150" width="1028" height="814" key="CommitChangelistDialog2/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311307480" />
-    <state x="933" y="347" width="729" height="427" key="git4idea.merge.GitPullDialog" timestamp="1587311318087">
+    <state x="784" y="150" width="1028" height="814" key="CommitChangelistDialog2/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311423589" />
+    <state x="288" y="121" width="2011" height="879" key="MergeDialog" timestamp="1587311406140">
       <screen x="46" y="27" width="2514" height="1053" />
     </state>
-    <state x="933" y="347" width="729" height="427" key="git4idea.merge.GitPullDialog/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311318087" />
+    <state x="288" y="121" width="2011" height="879" key="MergeDialog/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311406140" />
+    <state x="1008" y="271" width="580" height="571" key="MultipleFileMergeDialog" timestamp="1587311408583">
+      <screen x="46" y="27" width="2514" height="1053" />
+    </state>
+    <state x="1008" y="271" width="580" height="571" key="MultipleFileMergeDialog/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311408583" />
+    <state x="898" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1587311425852">
+      <screen x="46" y="27" width="2514" height="1053" />
+    </state>
+    <state x="898" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311425852" />
+    <state x="933" y="347" width="729" height="434" key="git4idea.merge.GitPullDialog" timestamp="1587311386203">
+      <screen x="46" y="27" width="2514" height="1053" />
+    </state>
+    <state x="933" y="347" width="729" height="434" key="git4idea.merge.GitPullDialog/46.27.2514.1053/2560.0.1920.1080@46.27.2514.1053" timestamp="1587311386203" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.dartlang.org/datetime_picker_formfield-1.0.0-pre.3/lib/datetime_picker_formfield.dart">
