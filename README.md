@@ -212,7 +212,7 @@ The currently supported fields include:
 email, urls etc by using different configurations and validators
 * `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
-* `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String.
+* `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
