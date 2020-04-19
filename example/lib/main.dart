@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,6 +15,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter FormBuilder Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(color: Colors.purple),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -101,6 +105,7 @@ class MyHomePageState extends State<MyHomePage> {
                       validators: [
                         FormBuilderValidators.required(),
                       ],
+                      initialValue: "Argentina",
                       formField: FormField(
                         enabled: true,
                         builder: (FormFieldState<dynamic> field) {
@@ -112,18 +117,16 @@ class MyHomePageState extends State<MyHomePage> {
                               border: InputBorder.none,
                               errorText: field.errorText,
                             ),
-                            child: DropdownButton(
-                              isExpanded: true,
-                              items: ["One", "Two"].map((option) {
-                                return DropdownMenuItem(
-                                  child: Text("$option"),
-                                  value: option,
-                                );
-                              }).toList(),
-                              value: field.value,
-                              onChanged: (value) {
-                                field.didChange(value);
-                              },
+                            child: Container(
+                              height: 200,
+                              child: CupertinoPicker(
+                                itemExtent: 30,
+                                children: allCountries.map((c) => Text(c)).toList(),
+                                onSelectedItemChanged: (index) {
+                                  print(index);
+                                  field.didChange(allCountries[index]);
+                                },
+                              ),
                             ),
                           );
                         },

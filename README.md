@@ -230,6 +230,9 @@ The rest of the attributes will be determined by the type of Widget being used.
 ### Building your own custom field
 To build your own field within a `FormBuilder`, we use `FormBuilderCustomField` which will require that you define your own `FormField`.
 The `FormField` will not require a `validator` if the `validators` property is already defined in the `FormBuilderCustomField`.
+```dart
+var options = ["Option 1", "Option 2", "Option 3"];
+```
 
 ```dart
 FormBuilderCustomField(
@@ -243,23 +246,20 @@ FormBuilderCustomField(
       return InputDecorator(
         decoration: InputDecoration(
           labelText: "Select option",
-          errorText: field.errorText,
           contentPadding:
               EdgeInsets.only(top: 10.0, bottom: 0.0),
           border: InputBorder.none,
+          errorText: field.errorText,
         ),
-        child: DropdownButton(
-          isExpanded: true,
-          items: ["One", "Two"].map((option) {
-            return DropdownMenuItem(
-              child: Text("$option"),
-              value: option,
-            );
-          }).toList(),
-          value: field.value,
-          onChanged: (value) {
-            field.didChange(value);
-          },
+        child: Container(
+          height: 200,
+          child: CupertinoPicker(
+            itemExtent: 30,
+            children: options.map((c) => Text(c)).toList(),
+            onSelectedItemChanged: (index) {
+              field.didChange(options[index]);
+            },
+          ),
         ),
       );
     },
@@ -384,7 +384,7 @@ Here are other field types for `flutter_form_builder`:
 - [ ] For RangeSlider use Flutter provided
 
 ### Known Issues
-* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior of Flutter 
+* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior in Flutter 
 * Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 ## SUPPORT

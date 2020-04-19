@@ -79,6 +79,9 @@
 <pre class="language-dart"><code class="language-dart">final GlobalKey&lt;FormBuilderState&gt; _fbKey = GlobalKey&lt;FormBuilderState&gt;();
 </code></pre>
 <p><strong>Note:</strong> Avoid defining the GlobalKey inside your build method because this will create a new GlobalKey on every build cycle bringing about some erratic behavior.</p>
+<p><strong>Note:</strong> If you use FormBuilderDateTimePicker</p>
+<pre class="language-dart"><code class="language-dart">import 'package:intl/intl.dart';
+</code></pre>
 <pre class="language-dart"><code class="language-dart">Column(
   children: &lt;Widget&gt;[
     FormBuilder(
@@ -152,7 +155,7 @@
             attribute: "accept_terms_switch",
             initialValue: true,
           ),
-          FormBuilderStepper(
+          FormBuilderTouchSpin(
             decoration: InputDecoration(labelText: "Stepper"),
             attribute: "stepper",
             initialValue: 10,
@@ -404,6 +407,12 @@ FormBuilderTextField(
 <li><a href="https://pub.dev/packages/flutter_colorpicker">flutter_colorpicker</a> by <a href="https://github.com/mchome">mchome</a></li>
 <li><a href="https://pub.dev/packages/flutter_chips_input">flutter_chips_input</a> &amp; <a href="https://pub.dev/packages/flutter_touch_spin">flutter_touch_spin</a> by <a href="https://github.com/danvick">Yours trully :-)</a></li>
 </ul>
+<h3 id="related-packages">RELATED PACKAGES</h3>
+<p>Here are other field types for <code>flutter_form_builder</code>:</p>
+<ul>
+<li><a href="https://pub.dev/packages/form_builder_file_picker">form_builder_file_picker</a> - A file picker field for <code>FlutterFormBuilder</code>.</li>
+<li><a href="https://pub.dev/packages/form_builder_map_field">form_builder_map_field</a> - A map input field for <code>FlutterFormBuilder</code>.</li>
+</ul>
 <h2 id="future-plans">FUTURE PLANS:</h2>
 <h3 id="improvements">Improvements</h3>
 <ul>
@@ -412,23 +421,14 @@ FormBuilderTextField(
 <li><code>X</code> Create a <code>transformer</code> function option that will convert field value when field is saved - can be used to convert string to number, change to uppercase etc.</li>
 <li><code>X</code> Assert no duplicates in <code>FormBuilderInput</code>s <code>attribute</code> names</li>
 <li><code>X</code> Allow options for Checkboxes and Radios to appear left or right - Done via <code>leadingInput</code> courtesy of <a href="https://github.com/SvenSchoene">Sven Schöne</a></li>
+<li><code>X</code> Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version</li>
 <li><code> </code> For RangeSlider use Flutter provided</li>
-<li><code> </code> Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version</li>
-</ul>
-<h3 id="new-formbuilder-inputs">New FormBuilder inputs</h3>
-<ul>
-<li><code>X</code> RangeSlider</li>
-<li><code>X</code> SignaturePad - Based on <a href="https://pub.dev/packages/signature">https://pub.dev/packages/signature</a></li>
-<li><code>X</code> ColorPicker - <a href="https://pub.dev/packages/flutter_colorpicker">https://pub.dev/packages/flutter_colorpicker</a></li>
-<li><code>X</code> DateRangePicker - <a href="https://pub.dev/packages/date_range_picker">https://pub.dev/packages/date_range_picker</a></li>
-</ul>
-<h3 id="need-to-be-on-separate-repos">Need to be on separate repos</h3>
-<ul>
-<li><code>X</code> FilePicker (Images &amp; Files) -&gt; Found <a href="https://github.com/danvick/form_builder_file_picker">here</a>. Work in progress</li>
-<li><code> </code> MapInput - Help Wanted</li>
 </ul>
 <h3 id="known-issues">Known Issues</h3>
-<p>Form's <code>reset()</code> doesn't clear SignaturePad - You'll be forced to clear manually</p>
+<ul>
+<li>Setting <code>autovalidate</code> to <code>true</code> validates fields immediately they're rendered even if pristine - which is the default behavior of Flutter </li>
+<li>Form's <code>reset()</code> doesn't clear SignaturePad - You'll be forced to clear manually</li>
+</ul>
 <h2 id="support">SUPPORT</h2>
 <p>If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)</p>
 <p><a href="https://buymeacoff.ee/wb5M9y2Sz"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy me a coffee"></a></p>
@@ -545,7 +545,7 @@ extension methods.
 <footer>
   <span class="no-break">
     flutter_form_builder
-      3.8.1
+      3.8.2
   </span>
 
   <!-- footer-text placeholder -->
