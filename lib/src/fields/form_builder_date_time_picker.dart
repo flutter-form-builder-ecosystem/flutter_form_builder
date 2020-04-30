@@ -79,6 +79,9 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   /// Corresponds to the [showDatePicker()] parameter.
   final ui.TextDirection textDirection;
 
+  /// Corresponds to the [showDatePicker()] parameter.
+  final bool useRootNavigator;
+
   /// Called when an enclosing form is submitted. The value passed will be
   /// `null` if [format] fails to parse the text.
   final ValueChanged<DateTime> onFieldSubmitted;
@@ -194,6 +197,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.keyboardAppearance,
     this.textCapitalization = TextCapitalization.none,
     this.strutStyle,
+    this.useRootNavigator = true,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
@@ -282,8 +286,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       },
       onShowPicker: _onShowPicker,
       onChanged: (val) {
-        if (widget.onChanged != null)
-          widget.onChanged(val);
+        if (widget.onChanged != null) widget.onChanged(val);
       },
       autovalidate: widget.autovalidate,
       resetIcon: widget.resetIcon,
@@ -364,6 +367,10 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
         firstDate: widget.firstDate ?? DateTime(1900),
         lastDate: widget.lastDate ?? DateTime(2100),
+        locale: widget.locale,
+        textDirection: widget.textDirection,
+        useRootNavigator: widget.useRootNavigator,
+        builder: widget.builder,
       );
     }
   }
@@ -380,6 +387,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             ? TimeOfDay.fromDateTime(currentValue)
             // ignore: deprecated_member_use_from_same_package
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
+        builder: widget.builder,
+        useRootNavigator: widget.useRootNavigator,
       ).then(
         (result) {
           return result ??
