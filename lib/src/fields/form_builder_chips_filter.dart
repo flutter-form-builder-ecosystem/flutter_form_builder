@@ -13,6 +13,7 @@ class FormBuilderFilterChip extends StatefulWidget {
   final ValueTransformer valueTransformer;
   final List<FormBuilderFieldOption> options;
   final FormFieldSetter onSaved;
+
   // FilterChip Settings
   final double elevation, pressElevation;
   final Color selectedColor,
@@ -22,6 +23,7 @@ class FormBuilderFilterChip extends StatefulWidget {
       shadowColor;
   final ShapeBorder shape;
   final MaterialTapTargetSize materialTapTargetSize;
+
   // Wrap Settings
   final Axis direction;
   final WrapAlignment alignment;
@@ -30,36 +32,50 @@ class FormBuilderFilterChip extends StatefulWidget {
   final double runSpacing, spacing;
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
+  final EdgeInsets padding;
+  final Color checkmarkColor;
+  final Clip clipBehavior;
+  final TextStyle labelStyle;
+  final bool showCheckmark;
+  final EdgeInsets labelPadding;
+  // final VisualDensity visualDensity;
 
-  FormBuilderFilterChip(
-      {Key key,
-      @required this.attribute,
-      @required this.options,
-      this.initialValue,
-      this.validators = const [],
-      this.readOnly = false,
-      this.decoration = const InputDecoration(),
-      this.onChanged,
-      this.onSaved,
-      this.valueTransformer,
-      this.selectedColor,
-      this.disabledColor,
-      this.backgroundColor,
-      this.shadowColor,
-      this.selectedShadowColor,
-      this.shape,
-      this.elevation,
-      this.pressElevation,
-      this.materialTapTargetSize,
-      this.direction = Axis.horizontal,
-      this.alignment = WrapAlignment.start,
-      this.crossAxisAlignment = WrapCrossAlignment.start,
-      this.runAlignment = WrapAlignment.start,
-      this.runSpacing = 0.0,
-      this.spacing = 0.0,
-      this.textDirection,
-      this.verticalDirection = VerticalDirection.down})
-      : super(key: key);
+  FormBuilderFilterChip({
+    Key key,
+    @required this.attribute,
+    @required this.options,
+    this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
+    this.onChanged,
+    this.onSaved,
+    this.valueTransformer,
+    this.selectedColor,
+    this.disabledColor,
+    this.backgroundColor,
+    this.shadowColor,
+    this.selectedShadowColor,
+    this.shape,
+    this.elevation,
+    this.pressElevation,
+    this.materialTapTargetSize,
+    this.direction = Axis.horizontal,
+    this.alignment = WrapAlignment.start,
+    this.crossAxisAlignment = WrapCrossAlignment.start,
+    this.runAlignment = WrapAlignment.start,
+    this.runSpacing = 0.0,
+    this.spacing = 0.0,
+    this.textDirection,
+    this.verticalDirection = VerticalDirection.down,
+    this.padding,
+    this.checkmarkColor,
+    this.clipBehavior = Clip.none,
+    this.labelStyle,
+    this.showCheckmark = true,
+    this.labelPadding,
+    // this.visualDensity,
+  }) : super(key: key);
 
   @override
   _FormBuilderFilterChipState createState() => _FormBuilderFilterChipState();
@@ -93,75 +109,87 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField(
-        key: _fieldKey,
-        enabled: !_readOnly,
-        initialValue: _initialValue ?? [],
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
-          }
-          return null;
-        },
-        onSaved: (val) {
-          var transformed;
-          if (widget.valueTransformer != null) {
-            transformed = widget.valueTransformer(val);
-            _formState?.setAttributeValue(widget.attribute, transformed);
-          } else
-            _formState?.setAttributeValue(widget.attribute, val);
-          if (widget.onSaved != null) {
-            widget.onSaved(transformed ?? val);
-          }
-        },
-        builder: (FormFieldState<dynamic> field) {
-          return InputDecorator(
-              decoration: widget.decoration.copyWith(
-                enabled: !_readOnly,
-                errorText: field.errorText,
-              ),
-              child: Wrap(
-                  direction: widget.direction,
-                  alignment: widget.alignment,
-                  crossAxisAlignment: widget.crossAxisAlignment,
-                  runAlignment: widget.runAlignment,
-                  runSpacing: widget.runSpacing,
-                  spacing: widget.spacing,
-                  textDirection: widget.textDirection,
-                  verticalDirection: widget.verticalDirection,
-                  children: <Widget>[
-                    for (FormBuilderFieldOption option in widget.options)
-                      FilterChip(
-                          selectedColor: widget.selectedColor,
-                          disabledColor: widget.disabledColor,
-                          backgroundColor: widget.backgroundColor,
-                          shadowColor: widget.shadowColor,
-                          selectedShadowColor: widget.selectedShadowColor,
-                          shape: widget.shape,
-                          elevation: widget.elevation,
-                          pressElevation: widget.pressElevation,
-                          materialTapTargetSize: widget.materialTapTargetSize,
-                          label: option.child,
-                          selected: field.value.contains(option.value),
-                          onSelected: _readOnly
-                              ? null
-                              : (bool selected) {
-                                  setState(() {
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
-                                    var currentValue = field.value;
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue ?? [],
+      validator: (val) {
+        for (int i = 0; i < widget.validators.length; i++) {
+          if (widget.validators[i](val) != null)
+            return widget.validators[i](val);
+        }
+        return null;
+      },
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else
+          _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
+      },
+      builder: (FormFieldState<dynamic> field) {
+        return InputDecorator(
+          decoration: widget.decoration.copyWith(
+            enabled: !_readOnly,
+            errorText: field.errorText,
+          ),
+          child: Wrap(
+            direction: widget.direction,
+            alignment: widget.alignment,
+            crossAxisAlignment: widget.crossAxisAlignment,
+            runAlignment: widget.runAlignment,
+            runSpacing: widget.runSpacing,
+            spacing: widget.spacing,
+            textDirection: widget.textDirection,
+            verticalDirection: widget.verticalDirection,
+            children: <Widget>[
+              for (FormBuilderFieldOption option in widget.options)
+                FilterChip(
+                  label: option.child,
+                  selected: field.value.contains(option.value),
+                  onSelected: _readOnly
+                      ? null
+                      : (bool selected) {
+                          setState(
+                            () {
+                              FocusScope.of(context).requestFocus(FocusNode());
+                              var currentValue = field.value;
 
-                                    if (selected)
-                                      currentValue.add(option.value);
-                                    else
-                                      currentValue.remove(option.value);
+                              if (selected)
+                                currentValue.add(option.value);
+                              else
+                                currentValue.remove(option.value);
 
-                                    field.didChange(currentValue);
-                                    if (widget.onChanged != null)
-                                      widget.onChanged(currentValue);
-                                  });
-                                })
-                  ]));
-        });
+                              field.didChange(currentValue);
+                              if (widget.onChanged != null)
+                                widget.onChanged(currentValue);
+                            },
+                          );
+                        },
+                  selectedColor: widget.selectedColor,
+                  disabledColor: widget.disabledColor,
+                  backgroundColor: widget.backgroundColor,
+                  shadowColor: widget.shadowColor,
+                  selectedShadowColor: widget.selectedShadowColor,
+                  shape: widget.shape,
+                  elevation: widget.elevation,
+                  pressElevation: widget.pressElevation,
+                  materialTapTargetSize: widget.materialTapTargetSize,
+                  padding: widget.padding,
+                  checkmarkColor: widget.checkmarkColor,
+                  clipBehavior: widget.clipBehavior,
+                  labelStyle: widget.labelStyle,
+                  showCheckmark: widget.showCheckmark,
+                  labelPadding: widget.labelPadding,
+                  // visualDensity: widget.visualDensity,
+                ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
