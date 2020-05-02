@@ -10,12 +10,18 @@ class FormBuilderRate extends StatefulWidget {
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
+  final FormFieldSetter onSaved;
   final ValueTransformer valueTransformer;
 
-  final num max;
   final IconData icon;
   final num iconSize;
-  final FormFieldSetter onSaved;
+  final num max;
+  final Color filledColor;
+  final IconData emptyIcon;
+  final Color emptyColor;
+  final bool isHalfAllowed;
+  final IconData halfFilledIcon;
+  final Color halfFilledColor;
 
   FormBuilderRate({
     Key key,
@@ -30,6 +36,12 @@ class FormBuilderRate extends StatefulWidget {
     this.onChanged,
     this.valueTransformer,
     this.onSaved,
+    this.filledColor,
+    this.emptyIcon = Icons.star,
+    this.emptyColor,
+    this.isHalfAllowed = false,
+    this.halfFilledIcon = Icons.star_half,
+    this.halfFilledColor,
   }) : super(key: key);
 
   @override
@@ -91,22 +103,43 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
             enabled: !_readOnly,
             errorText: field.errorText,
           ),
-          child: RatingBar(
-            initialRating: field.value,
-            maxRating: widget.max.toInt(),
-            filledIcon: widget.icon,
-            emptyIcon: widget.icon,
-            size: widget.iconSize,
-            onRatingChanged: _readOnly
-                ? null
-                : (value) {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    field.didChange(value);
-                    if (widget.onChanged != null) widget.onChanged(value);
-                    return value;
-                  },
-          ),
+          child: _buildRatingBar(field),
         );
+      },
+    );
+  }
+
+  Widget _buildRatingBar(FormFieldState<dynamic> field){
+    if(_readOnly){
+      return RatingBar.readOnly(
+        initialRating: field.value,
+        maxRating: widget.max.toInt(),
+        filledIcon: widget.icon,
+        filledColor: widget.filledColor,
+        emptyIcon: widget.emptyIcon,
+        emptyColor: widget.emptyColor,
+        isHalfAllowed: widget.isHalfAllowed,
+        halfFilledIcon: widget.halfFilledIcon,
+        halfFilledColor: widget.halfFilledColor,
+        size: widget.iconSize,
+      );
+    }
+    return RatingBar(
+      initialRating: field.value,
+      maxRating: widget.max.toInt(),
+      filledIcon: widget.icon,
+      filledColor: widget.filledColor,
+      emptyIcon: widget.emptyIcon,
+      emptyColor: widget.emptyColor,
+      isHalfAllowed: widget.isHalfAllowed,
+      halfFilledIcon: widget.halfFilledIcon,
+      halfFilledColor: widget.halfFilledColor,
+      size: widget.iconSize,
+      onRatingChanged: (value) {
+        FocusScope.of(context).requestFocus(FocusNode());
+        field.didChange(value);
+        if (widget.onChanged != null) widget.onChanged(value);
+        return value;
       },
     );
   }

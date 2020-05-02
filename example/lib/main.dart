@@ -16,7 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         inputDecorationTheme: InputDecorationTheme(
-          labelStyle: TextStyle(color: Colors.purple),
+          // labelStyle: TextStyle(color: Colors.purple),
+          border: OutlineInputBorder(
+            gapPadding: 10,
+            borderSide: BorderSide(color: Colors.purple),
+          ),
         ),
       ),
       home: MyHomePage(),
@@ -57,9 +61,9 @@ class MyHomePageState extends State<MyHomePage> {
               FormBuilder(
                 // context,
                 key: _fbKey,
-                autovalidate: true,
+                // autovalidate: true,
                 initialValue: {
-                  'movie_rating': 5,
+                  'movie_rating': 3,
                 },
                 readOnly: false,
                 child: Column(
@@ -121,7 +125,8 @@ class MyHomePageState extends State<MyHomePage> {
                               height: 200,
                               child: CupertinoPicker(
                                 itemExtent: 30,
-                                children: allCountries.map((c) => Text(c)).toList(),
+                                children:
+                                    allCountries.map((c) => Text(c)).toList(),
                                 onSelectedItemChanged: (index) {
                                   print(index);
                                   field.didChange(allCountries[index]);
@@ -277,7 +282,8 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderTextField(
                       attribute: "age",
                       decoration: InputDecoration(
-                        labelText: "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
+                        labelText:
+                            "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
                       ),
                       onChanged: _onChanged,
                       valueTransformer: (text) => num.tryParse(text),
@@ -292,6 +298,12 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: "gender",
                       decoration: InputDecoration(
                         labelText: "Gender",
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.green,
+                            width: 20,
+                          ),
+                        ),
                       ),
                       // initialValue: 'Male',
                       hint: Text('Select Gender'),
@@ -435,9 +447,13 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration: InputDecoration(labelText: "Rate this form"),
                       attribute: "rate",
                       iconSize: 32.0,
-                      initialValue: 1,
-                      max: 5,
+                      initialValue: 1.0,
+                      max: 5.0,
                       onChanged: _onChanged,
+                      // readOnly: true,
+                      filledColor: Colors.red,
+                      emptyColor: Colors.pink[100],
+                      isHalfAllowed: true,
                     ),
                     FormBuilderCheckboxList(
                       decoration: InputDecoration(

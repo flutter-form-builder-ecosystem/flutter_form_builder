@@ -360,7 +360,7 @@ Made with [contributors-img](https://contributors-img.firebaseapp.com).
 ### Dependencies
 This package is dependent on the following packages and plugins:
 * [flutter_typeahead](https://pub.dev/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
-* [sy_flutter_widgets](https://pub.dev/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
+* [rating_bar](https://pub.dev/packages/rating_bar) by [Joshua Matta](https://github.com/joshmatta)
 * [datetime_picker_formfield](https://pub.dev/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
 * [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
