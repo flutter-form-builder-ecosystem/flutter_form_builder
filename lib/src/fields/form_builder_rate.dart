@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:sy_flutter_widgets/sy_flutter_widgets.dart';
+import 'package:rating_bar/rating_bar.dart';
 
 class FormBuilderRate extends StatefulWidget {
   final String attribute;
@@ -20,11 +20,11 @@ class FormBuilderRate extends StatefulWidget {
   FormBuilderRate({
     Key key,
     @required this.attribute,
-    this.initialValue = 1,
+    this.initialValue = 1.0,
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
-    this.max,
+    this.max = 5.0,
     this.icon = Icons.star,
     this.iconSize = 24.0,
     this.onChanged,
@@ -91,13 +91,13 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
             enabled: !_readOnly,
             errorText: field.errorText,
           ),
-          child: SyRate(
-            value: field.value,
-            total: widget.max,
-            icon: widget.icon,
-            iconSize: widget.iconSize,
-            //TODO: When disabled change icon color (Probably deep grey)
-            onTap: _readOnly
+          child: RatingBar(
+            initialRating: field.value,
+            maxRating: widget.max.toInt(),
+            filledIcon: widget.icon,
+            emptyIcon: widget.icon,
+            size: widget.iconSize,
+            onRatingChanged: _readOnly
                 ? null
                 : (value) {
                     FocusScope.of(context).requestFocus(FocusNode());
