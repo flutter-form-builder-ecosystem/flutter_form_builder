@@ -1,6 +1,7 @@
 ## [4.0.0-alpha.1] - 04-May-2020
-* Complete rewrite of implementation
+* Complete rewrite of package implementation
 * Removed a few deprecations
+* Renamed `FormBuilderRate` to `FormBuilderRating`
 
 ## [3.9.0] - 03-May-2020
 * New field type `FormBuilderImagePicker` courtesy of [Gustavo Vítor](https://github.com/gustavovitor)
