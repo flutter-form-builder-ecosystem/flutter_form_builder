@@ -59,8 +59,9 @@ class FormBuilderDropdown extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
-            builder: (field) {
-              _FormBuilderDropdownState state = field;
+            builder: (FormFieldState field) {
+              final _FormBuilderDropdownState state = field;
+
               return InputDecorator(
                 decoration: decoration.copyWith(
                   errorText: field.errorText,
@@ -97,9 +98,7 @@ class FormBuilderDropdown extends FormBuilderField {
                                 },
                         ),
                       ),
-                      if (allowClear &&
-                          !readOnly &&
-                          field.value != null) ...[
+                      if (allowClear && !readOnly && field.value != null) ...[
                         VerticalDivider(),
                         InkWell(
                           child: clearIcon,

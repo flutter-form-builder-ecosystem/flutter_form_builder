@@ -52,8 +52,8 @@ class FormBuilderSlider extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          builder: (field) {
-            _FormBuilderSliderState state = field;
+          builder: (FormFieldState field) {
+            final _FormBuilderSliderState state = field;
             NumberFormat _numberFormat = numberFormat ?? NumberFormat("##0.0");
             return InputDecorator(
               decoration: decoration.copyWith(

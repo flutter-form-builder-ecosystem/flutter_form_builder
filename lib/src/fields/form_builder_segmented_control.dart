@@ -46,8 +46,8 @@ class FormBuilderSegmentedControl extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
-            builder: (field) {
-              _FormBuilderSegmentedControlState state = field;
+            builder: (FormFieldState field) {
+              final _FormBuilderSegmentedControlState state = field;
 
               return InputDecorator(
                 decoration: decoration.copyWith(
@@ -62,8 +62,7 @@ class FormBuilderSegmentedControl extends FormBuilderField {
                         : borderColor ?? Theme.of(state.context).primaryColor,
                     selectedColor: state.readOnly
                         ? Theme.of(state.context).disabledColor
-                        : selectedColor ??
-                            Theme.of(state.context).primaryColor,
+                        : selectedColor ?? Theme.of(state.context).primaryColor,
                     pressedColor: state.readOnly
                         ? Theme.of(state.context).disabledColor
                         : pressedColor ?? Theme.of(state.context).primaryColor,

@@ -53,40 +53,40 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
     this.textCapitalization = TextCapitalization.none,
     this.onSaved,
   }) : super(
-      key: key,
-      initialValue: initialValue,
-      attribute: attribute,
-      validators: validators,
-      valueTransformer: valueTransformer,
-      onChanged: onChanged,
-      readOnly: readOnly,
-      builder: (field) {
-        _FormBuilderChipsInputState state = field;
-        return ChipsInput(
-          initialValue: field.value,
-          enabled: !state.readOnly,
-          decoration: decoration.copyWith(
-            enabled: !state.readOnly,
-            errorText: field.errorText,
-          ),
-          findSuggestions: findSuggestions,
-          onChanged: (data) {
-            field.didChange(data);
-          },
-          maxChips: maxChips,
-          chipBuilder: chipBuilder,
-          suggestionBuilder: suggestionBuilder,
-          textStyle: textStyle,
-          actionLabel: actionLabel,
-          autocorrect: autocorrect,
-          inputAction: inputAction,
-          inputType: inputType,
-          keyboardAppearance: keyboardAppearance,
-          obscureText: obscureText,
-          suggestionsBoxMaxHeight: suggestionsBoxMaxHeight,
-          textCapitalization: textCapitalization,
-        );
-      });
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (FormFieldState field) {
+              final _FormBuilderChipsInputState state = field;
+              return ChipsInput(
+                initialValue: field.value,
+                enabled: !state.readOnly,
+                decoration: decoration.copyWith(
+                  enabled: !state.readOnly,
+                  errorText: field.errorText,
+                ),
+                findSuggestions: findSuggestions,
+                onChanged: (data) {
+                  field.didChange(data);
+                },
+                maxChips: maxChips,
+                chipBuilder: chipBuilder,
+                suggestionBuilder: suggestionBuilder,
+                textStyle: textStyle,
+                actionLabel: actionLabel,
+                autocorrect: autocorrect,
+                inputAction: inputAction,
+                inputType: inputType,
+                keyboardAppearance: keyboardAppearance,
+                obscureText: obscureText,
+                suggestionsBoxMaxHeight: suggestionsBoxMaxHeight,
+                textCapitalization: textCapitalization,
+              );
+            });
 
   @override
   _FormBuilderChipsInputState createState() => _FormBuilderChipsInputState();

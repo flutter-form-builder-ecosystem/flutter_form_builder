@@ -33,35 +33,35 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
 
-  FormBuilderChoiceChip(
-      {Key key,
-      @required this.attribute,
-      @required this.options,
-      this.initialValue,
-      this.validators = const [],
-      this.readOnly = false,
-      this.decoration = const InputDecoration(),
-      this.onChanged,
-      this.valueTransformer,
-      this.onSaved,
-      this.selectedColor,
-      this.disabledColor,
-      this.backgroundColor,
-      this.shadowColor,
-      this.selectedShadowColor,
-      this.shape,
-      this.elevation,
-      this.pressElevation,
-      this.materialTapTargetSize,
-      this.direction = Axis.horizontal,
-      this.alignment = WrapAlignment.start,
-      this.crossAxisAlignment = WrapCrossAlignment.start,
-      this.runAlignment = WrapAlignment.start,
-      this.runSpacing = 0.0,
-      this.spacing = 0.0,
-      this.textDirection,
-      this.verticalDirection = VerticalDirection.down})
-      : super(
+  FormBuilderChoiceChip({
+    Key key,
+    @required this.attribute,
+    @required this.options,
+    this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
+    this.onChanged,
+    this.valueTransformer,
+    this.onSaved,
+    this.selectedColor,
+    this.disabledColor,
+    this.backgroundColor,
+    this.shadowColor,
+    this.selectedShadowColor,
+    this.shape,
+    this.elevation,
+    this.pressElevation,
+    this.materialTapTargetSize,
+    this.direction = Axis.horizontal,
+    this.alignment = WrapAlignment.start,
+    this.crossAxisAlignment = WrapCrossAlignment.start,
+    this.runAlignment = WrapAlignment.start,
+    this.runSpacing = 0.0,
+    this.spacing = 0.0,
+    this.textDirection,
+    this.verticalDirection = VerticalDirection.down,
+  }) : super(
             key: key,
             initialValue: initialValue,
             attribute: attribute,
@@ -69,8 +69,8 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
-            builder: (field) {
-              _FormBuilderChoiceChipState state = field;
+            builder: (FormFieldState field) {
+              final _FormBuilderChoiceChipState state = field;
               return InputDecorator(
                 decoration: decoration.copyWith(
                   enabled: state.readOnly,

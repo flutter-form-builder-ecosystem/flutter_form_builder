@@ -199,8 +199,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
             valueTransformer: valueTransformer,
             // onChanged: onChanged,
             readOnly: readOnly,
-            builder: (field) {
-              _FormBuilderDateTimePickerState state = field;
+            builder: (FormFieldState field) {
+              final _FormBuilderDateTimePickerState state = field;
               return DateTimeField(
                 key: state.fieldKey,
                 initialValue: state.initialValue,

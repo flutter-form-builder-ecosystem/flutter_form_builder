@@ -100,37 +100,34 @@ class MyHomePageState extends State<MyHomePage> {
                             value: 'Test 4', child: Text('Test 4')),
                       ],
                     ),
-                    FormBuilderCustomField(
+                    FormBuilderField(
                       attribute: "name",
                       validators: [
                         FormBuilderValidators.required(),
                       ],
-                      initialValue: "Argentina",
-                      formField: FormField(
-                        enabled: true,
-                        builder: (FormFieldState<dynamic> field) {
-                          return InputDecorator(
-                            decoration: InputDecoration(
-                              labelText: "Select option",
-                              contentPadding:
-                                  EdgeInsets.only(top: 10.0, bottom: 0.0),
-                              border: InputBorder.none,
-                              errorText: field.errorText,
+                      initialValue: 1,
+                      builder: (FormFieldState<dynamic> field) {
+                        return InputDecorator(
+                          decoration: InputDecoration(
+                            labelText: "Select option",
+                            contentPadding:
+                                EdgeInsets.only(top: 10.0, bottom: 0.0),
+                            border: InputBorder.none,
+                            errorText: field.errorText,
+                          ),
+                          child: Container(
+                            height: 200,
+                            child: CupertinoPicker(
+                              itemExtent: 30,
+                              children:
+                                  allCountries.map((c) => Text(c)).toList(),
+                              onSelectedItemChanged: (index) {
+                                field.didChange(allCountries[index]);
+                              },
                             ),
-                            child: Container(
-                              height: 200,
-                              child: CupertinoPicker(
-                                itemExtent: 30,
-                                children: allCountries.map((c) => Text(c)).toList(),
-                                onSelectedItemChanged: (index) {
-                                  print(index);
-                                  field.didChange(allCountries[index]);
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                     FormBuilderColorPickerField(
                       attribute: 'color_picker',
@@ -276,7 +273,8 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderTextField(
                       attribute: "age",
                       decoration: InputDecoration(
-                        labelText: "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
+                        labelText:
+                            "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
                       ),
                       onChanged: _onChanged,
                       valueTransformer: (text) => num.tryParse(text),
@@ -454,64 +452,61 @@ class MyHomePageState extends State<MyHomePage> {
                       ],
                       onChanged: _onChanged,
                     ),
-                    FormBuilderCustomField(
+                    FormBuilderField(
                       attribute: 'custom',
                       valueTransformer: (val) {
                         if (val == "Other")
                           return _specifyTextFieldKey.currentState.value;
                         return val;
                       },
-                      formField: FormField(
-                        builder: (FormFieldState<String> field) {
-                          var languages = [
-                            "English",
-                            "Spanish",
-                            "Somali",
-                            "Other"
-                          ];
-                          return InputDecorator(
-                            decoration: InputDecoration(
-                                labelText: "What's your preferred language?"),
-                            child: Column(
-                              children: languages
-                                  .map(
-                                    (lang) => Row(
-                                      children: <Widget>[
-                                        Radio<dynamic>(
-                                          value: lang,
-                                          groupValue: field.value,
-                                          onChanged: (dynamic value) {
-                                            field.didChange(lang);
-                                          },
-                                        ),
-                                        lang != "Other"
-                                            ? Text(lang)
-                                            : Expanded(
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      lang,
+                      builder: (FormFieldState<String> field) {
+                        var languages = [
+                          "English",
+                          "Spanish",
+                          "Somali",
+                          "Other"
+                        ];
+                        return InputDecorator(
+                          decoration: InputDecoration(
+                              labelText: "What's your preferred language?"),
+                          child: Column(
+                            children: languages
+                                .map(
+                                  (lang) => Row(
+                                    children: <Widget>[
+                                      Radio<dynamic>(
+                                        value: lang,
+                                        groupValue: field.value,
+                                        onChanged: (dynamic value) {
+                                          field.didChange(lang);
+                                        },
+                                      ),
+                                      lang != "Other"
+                                          ? Text(lang)
+                                          : Expanded(
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Text(
+                                                    lang,
+                                                  ),
+                                                  SizedBox(width: 20),
+                                                  Expanded(
+                                                    child: TextFormField(
+                                                      key: _specifyTextFieldKey,
                                                     ),
-                                                    SizedBox(width: 20),
-                                                    Expanded(
-                                                      child: TextFormField(
-                                                        key:
-                                                            _specifyTextFieldKey,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
-                                      ],
-                                    ),
-                                  )
-                                  .toList(growable: false),
-                            ),
-                          );
-                        },
-                      ),
+                                            ),
+                                    ],
+                                  ),
+                                )
+                                .toList(growable: false),
+                          ),
+                        );
+                      },
                     ),
-                  FormBuilderSignaturePad(
+                    FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
                       // height: 250,

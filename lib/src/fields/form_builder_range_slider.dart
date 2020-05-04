@@ -41,55 +41,55 @@ class FormBuilderRangeSlider extends FormBuilderField {
     this.semanticFormatterCallback,
     this.onSaved,
   }) : super(
-      key: key,
-      initialValue: initialValue,
-      attribute: attribute,
-      validators: validators,
-      valueTransformer: valueTransformer,
-      onChanged: onChanged,
-      readOnly: readOnly,
-      builder: (field) {
-        _FormBuilderRangeSliderState state = field;
-        return InputDecorator(
-          decoration: decoration.copyWith(
-            enabled: !state.readOnly,
-            errorText: field.errorText,
-          ),
-          child: Container(
-            padding: EdgeInsets.only(top: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RangeSlider(
-                  values: field.value,
-                  min: min,
-                  max: max,
-                  divisions: divisions,
-                  activeColor: activeColor,
-                  inactiveColor: inactiveColor,
-                  onChangeEnd: onChangeEnd,
-                  onChangeStart: onChangeStart,
-                  labels: labels,
-                  semanticFormatterCallback: semanticFormatterCallback,
-                  onChanged: state.readOnly
-                      ? null
-                      : (RangeValues values) {
-                    field.didChange(values);
-                  },
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (FormFieldState field) {
+              final _FormBuilderRangeSliderState state = field;
+              return InputDecorator(
+                decoration: decoration.copyWith(
+                  enabled: !state.readOnly,
+                  errorText: field.errorText,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text("$min"),
-                    Text("${field.value.start}   -   ${field.value.end}"),
-                    Text("$max"),
-                  ],
+                child: Container(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RangeSlider(
+                        values: field.value,
+                        min: min,
+                        max: max,
+                        divisions: divisions,
+                        activeColor: activeColor,
+                        inactiveColor: inactiveColor,
+                        onChangeEnd: onChangeEnd,
+                        onChangeStart: onChangeStart,
+                        labels: labels,
+                        semanticFormatterCallback: semanticFormatterCallback,
+                        onChanged: state.readOnly
+                            ? null
+                            : (RangeValues values) {
+                                field.didChange(values);
+                              },
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("$min"),
+                          Text("${field.value.start}   -   ${field.value.end}"),
+                          Text("$max"),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
-        );
-      });
+              );
+            });
 
   @override
   _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();

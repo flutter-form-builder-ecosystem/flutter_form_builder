@@ -59,8 +59,8 @@ class FormBuilderTouchSpin extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          builder: (field) {
-            _FormBuilderTouchSpinState state = field;
+          builder: (FormFieldState field) {
+            final _FormBuilderTouchSpinState state = field;
 
             return InputDecorator(
               decoration: decoration.copyWith(

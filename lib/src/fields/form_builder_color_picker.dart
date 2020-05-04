@@ -63,7 +63,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           onChanged: onChanged,
           readOnly: readOnly,
           onSaved: onSaved,
-          builder: (field) {
+          builder: (FormFieldState field) {
             final _FormBuilderColorPickerFieldState state = field;
             return TextField(
               style: style,
@@ -132,8 +132,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   FocusNode _effectiveFocusNode;
   TextEditingController _effectiveController;
 
-  TextEditingController get effectiveController =>
-      _effectiveController;
+  TextEditingController get effectiveController => _effectiveController;
 
   FocusNode get effectiveFocusNode => _effectiveFocusNode;
 
@@ -145,8 +144,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   void initState() {
     super.initState();
     _effectiveFocusNode = widget.focusNode ?? FocusNode();
-    _effectiveController =
-        widget.controller ?? TextEditingController();
+    _effectiveController = widget.controller ?? TextEditingController();
     _effectiveController.text = valueString;
     _effectiveFocusNode.addListener(_handleFocus);
   }
@@ -224,7 +222,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
     });
   }
 
-  _setTextFieldString(){
+  _setTextFieldString() {
     setState(() {
       _effectiveController.text = valueString ?? '';
     });

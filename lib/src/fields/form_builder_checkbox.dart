@@ -40,8 +40,8 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          builder: (field) {
-            _FormBuilderCheckboxState state = field;
+          builder: (FormFieldState field) {
+            final _FormBuilderCheckboxState state = field;
 
             return InputDecorator(
               decoration: decoration.copyWith(

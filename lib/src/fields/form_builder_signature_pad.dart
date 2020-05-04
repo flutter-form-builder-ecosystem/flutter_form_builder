@@ -42,80 +42,76 @@ class FormBuilderSignaturePad extends FormBuilderField {
     this.onChanged,
     this.onSaved,
   }) : super(
-    key: key,
-    initialValue: initialValue,
-    attribute: attribute,
-    validators: validators,
-    valueTransformer: valueTransformer,
-    onChanged: onChanged,
-    readOnly: readOnly,
-    builder: (field) {
-      _FormBuilderSignaturePadState state = field;
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderSignaturePadState state = field;
 
-      return InputDecorator(
-        decoration: decoration.copyWith(
-          enabled: !state.readOnly,
-          errorText: field.errorText,
-        ),
-        child: Column(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: field.errorText,
               ),
-              child: GestureDetector(
-                onVerticalDragUpdate: (_) {},
-                child: Signature(
-                  key: state.signatureKey,
-                  points: state.points,
-                  width: width,
-                  height: height,
-                  backgroundColor: backgroundColor,
-                  penColor: penColor,
-                  penStrokeWidth: penStrokeWidth,
-                  onChanged: (points) async {
-                    var signature = await state.signatureKey.currentState
-                        .exportBytes();
-                    state.value = signature;
-                    state.points =
-                        state.signatureKey.currentState.exportPoints();
-                    field.didChange(state.value);
-                  },
-                ),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: GestureDetector(
+                      onVerticalDragUpdate: (_) {},
+                      child: Signature(
+                        key: state.signatureKey,
+                        points: state.points,
+                        width: width,
+                        height: height,
+                        backgroundColor: backgroundColor,
+                        penColor: penColor,
+                        penStrokeWidth: penStrokeWidth,
+                        onChanged: (points) async {
+                          var signature = await state.signatureKey.currentState
+                              .exportBytes();
+                          state.value = signature;
+                          state.points =
+                              state.signatureKey.currentState.exportPoints();
+                          field.didChange(state.value);
+                        },
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(child: SizedBox()),
+                      FlatButton.icon(
+                        onPressed: () {
+                          state.signatureKey.currentState.clear();
+                          state.points =
+                              state.signatureKey.currentState.exportPoints();
+                          state.value = null;
+                          field.didChange(state.value);
+                        },
+                        label: Text(
+                          clearButtonText,
+                          style: TextStyle(
+                              color: Theme.of(state.context).errorColor),
+                        ),
+                        icon: Icon(
+                          Icons.clear,
+                          color: Theme.of(state.context).errorColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(child: SizedBox()),
-                FlatButton.icon(
-                  onPressed: () {
-                    state.signatureKey.currentState.clear();
-                    state.points =
-                        state.signatureKey.currentState.exportPoints();
-                    state.value = null;
-                    field.didChange(state.value);
-                  },
-                  label: Text(
-                    clearButtonText,
-                    style: TextStyle(
-                        color: Theme
-                            .of(state.context)
-                            .errorColor),
-                  ),
-                  icon: Icon(
-                    Icons.clear,
-                    color: Theme
-                        .of(state.context)
-                        .errorColor,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  );
+            );
+          },
+        );
 
   @override
   _FormBuilderSignaturePadState createState() =>

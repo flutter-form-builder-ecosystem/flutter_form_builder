@@ -37,8 +37,8 @@ class FormBuilderImagePicker extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          builder: (field) {
-            _FormBuilderImagePickerState state = field;
+          builder: (FormFieldState field) {
+            final _FormBuilderImagePickerState state = field;
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,

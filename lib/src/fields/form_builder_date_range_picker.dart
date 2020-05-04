@@ -114,8 +114,8 @@ class FormBuilderDateRangePicker extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
-            builder: (field) {
-              FormBuilderDateRangePickerState state = field;
+            builder: (FormFieldState field) {
+              final FormBuilderDateRangePickerState state = field;
               return TextField(
                 enabled: !state.readOnly,
                 style: style,

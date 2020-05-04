@@ -34,55 +34,54 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
     this.materialTapTargetSize,
     this.tristate = false,
   }) : super(
-      key: key,
-      initialValue: initialValue,
-      attribute: attribute,
-      validators: validators,
-      valueTransformer: valueTransformer,
-      onChanged: onChanged,
-      readOnly: readOnly,
-      builder: (field) {
-        final _FormBuilderCheckboxListState<T> state = field;
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (FormFieldState field) {
+              final _FormBuilderCheckboxListState<T> state = field;
 
-        List<Widget> checkboxList = [];
-        for (int i = 0; i < options.length; i++) {
-          checkboxList.addAll([
-            ListTile(
-              dense: true,
-              isThreeLine: false,
-              contentPadding: EdgeInsets.all(0.0),
-              leading: state._leading(state, i),
-              trailing: state._trailing(state, i),
-              title: options[i],
-              onTap: state.readOnly
-                  ? null
-                  : () {
-                var currentValue = state.value;
-                if (!currentValue.contains(options[i].value))
-                  currentValue.add(options[i].value);
-                else
-                  currentValue.remove(options[i].value);
-                state.didChange(currentValue);
-              },
-            ),
-            Divider(
-              height: 0.0,
-            ),
-          ]);
-        }
-        return InputDecorator(
-          decoration: decoration.copyWith(
-            enabled: !state.readOnly,
-            errorText: field.errorText,
-            contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-            border: InputBorder.none,
-          ),
-          child: Column(
-            children: checkboxList,
-          ),
-        );
-      }
-  );
+              List<Widget> checkboxList = [];
+              for (int i = 0; i < options.length; i++) {
+                checkboxList.addAll([
+                  ListTile(
+                    dense: true,
+                    isThreeLine: false,
+                    contentPadding: EdgeInsets.all(0.0),
+                    leading: state._leading(state, i),
+                    trailing: state._trailing(state, i),
+                    title: options[i],
+                    onTap: state.readOnly
+                        ? null
+                        : () {
+                            var currentValue = state.value;
+                            if (!currentValue.contains(options[i].value))
+                              currentValue.add(options[i].value);
+                            else
+                              currentValue.remove(options[i].value);
+                            state.didChange(currentValue);
+                          },
+                  ),
+                  Divider(
+                    height: 0.0,
+                  ),
+                ]);
+              }
+              return InputDecorator(
+                decoration: decoration.copyWith(
+                  enabled: !state.readOnly,
+                  errorText: field.errorText,
+                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                  border: InputBorder.none,
+                ),
+                child: Column(
+                  children: checkboxList,
+                ),
+              );
+            });
 
   @override
   _FormBuilderCheckboxListState<T> createState() =>
@@ -102,14 +101,14 @@ class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
       onChanged: field.readOnly
           ? null
           : (bool value) {
-        field.requestFocus();
-        var currValue = field.value;
-        if (value)
-          currValue.add(field.widget.options[i].value);
-        else
-          currValue.remove(field.widget.options[i].value);
-        field.didChange(currValue);
-      },
+              field.requestFocus();
+              var currValue = field.value;
+              if (value)
+                currValue.add(field.widget.options[i].value);
+              else
+                currValue.remove(field.widget.options[i].value);
+              field.didChange(currValue);
+            },
     );
   }
 

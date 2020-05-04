@@ -38,6 +38,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
   final TextStyle labelStyle;
   final bool showCheckmark;
   final EdgeInsets labelPadding;
+
   // final VisualDensity visualDensity;
 
   FormBuilderFilterChip({
@@ -76,66 +77,66 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
     this.labelPadding,
     // this.visualDensity,
   }) : super(
-  key: key,
-  initialValue: initialValue,
-  attribute: attribute,
-  validators: validators,
-  valueTransformer: valueTransformer,
-  onChanged: onChanged,
-  readOnly: readOnly,
-  builder: (field) {
-    _FormBuilderFilterChipState state = field;
-  return InputDecorator(
-    decoration: decoration.copyWith(
-      enabled: state.readOnly,
-      errorText: field.errorText,
-    ),
-    child: Wrap(
-      direction: direction,
-      alignment: alignment,
-      crossAxisAlignment: crossAxisAlignment,
-      runAlignment: runAlignment,
-      runSpacing: runSpacing,
-      spacing: spacing,
-      textDirection: textDirection,
-      verticalDirection: verticalDirection,
-      children: <Widget>[
-        for (FormBuilderFieldOption option in options)
-          FilterChip(
-            label: option.child,
-            selected: field.value.contains(option.value),
-            onSelected: state.readOnly
-                ? null
-                : (bool selected) {
-                  var currentValue = [...field.value];
-                  if (selected) {
-                    currentValue.add(option.value);
-                  } else {
-                    currentValue.remove(option.value);
-                  }
-                  field.didChange(currentValue);
-                },
-            selectedColor: selectedColor,
-            disabledColor: disabledColor,
-            backgroundColor: backgroundColor,
-            shadowColor: shadowColor,
-            selectedShadowColor: selectedShadowColor,
-            shape: shape,
-            elevation: elevation,
-            pressElevation: pressElevation,
-            materialTapTargetSize: materialTapTargetSize,
-            padding: padding,
-            checkmarkColor: checkmarkColor,
-            clipBehavior: clipBehavior,
-            labelStyle: labelStyle,
-            showCheckmark: showCheckmark,
-            labelPadding: labelPadding,
-            // visualDensity: visualDensity,
-          ),
-      ],
-    ),
-  );
-  });
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (FormFieldState field) {
+              final _FormBuilderFilterChipState state = field;
+              return InputDecorator(
+                decoration: decoration.copyWith(
+                  enabled: state.readOnly,
+                  errorText: field.errorText,
+                ),
+                child: Wrap(
+                  direction: direction,
+                  alignment: alignment,
+                  crossAxisAlignment: crossAxisAlignment,
+                  runAlignment: runAlignment,
+                  runSpacing: runSpacing,
+                  spacing: spacing,
+                  textDirection: textDirection,
+                  verticalDirection: verticalDirection,
+                  children: <Widget>[
+                    for (FormBuilderFieldOption option in options)
+                      FilterChip(
+                        label: option.child,
+                        selected: field.value.contains(option.value),
+                        onSelected: state.readOnly
+                            ? null
+                            : (bool selected) {
+                                var currentValue = [...field.value];
+                                if (selected) {
+                                  currentValue.add(option.value);
+                                } else {
+                                  currentValue.remove(option.value);
+                                }
+                                field.didChange(currentValue);
+                              },
+                        selectedColor: selectedColor,
+                        disabledColor: disabledColor,
+                        backgroundColor: backgroundColor,
+                        shadowColor: shadowColor,
+                        selectedShadowColor: selectedShadowColor,
+                        shape: shape,
+                        elevation: elevation,
+                        pressElevation: pressElevation,
+                        materialTapTargetSize: materialTapTargetSize,
+                        padding: padding,
+                        checkmarkColor: checkmarkColor,
+                        clipBehavior: clipBehavior,
+                        labelStyle: labelStyle,
+                        showCheckmark: showCheckmark,
+                        labelPadding: labelPadding,
+                        // visualDensity: visualDensity,
+                      ),
+                  ],
+                ),
+              );
+            });
 
   @override
   _FormBuilderFilterChipState createState() => _FormBuilderFilterChipState();
@@ -145,7 +146,7 @@ class _FormBuilderFilterChipState extends FormBuilderFieldState<dynamic> {
   FormBuilderFilterChip get widget => super.widget;
   var _value;
 
-  set value(val){
+  set value(val) {
     setState(() {
       _value = val;
     });

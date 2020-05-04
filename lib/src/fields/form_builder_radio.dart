@@ -41,8 +41,8 @@ class FormBuilderRadio extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          builder: (field) {
-            _FormBuilderRadioState state = field;
+          builder: (FormFieldState field) {
+            final _FormBuilderRadioState state = field;
             List<Widget> radioList = [];
             for (int i = 0; i < options.length; i++) {
               radioList.addAll([
@@ -92,8 +92,8 @@ class _FormBuilderRadioState extends FormBuilderFieldState {
       onChanged: field.readOnly
           ? null
           : (dynamic value) {
-        field.didChange(value);
-      },
+              field.didChange(value);
+            },
     );
   }
 
