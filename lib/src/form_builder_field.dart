@@ -61,8 +61,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formBuilderState;
   bool _readOnly = false;
-  bool _isPristine = true;
   T _initialValue;
+  bool get _isPristine => value == _initialValue;
 
   @override
   void initState() {
@@ -75,9 +75,6 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
             ? _formBuilderState.initialValue[widget.attribute]
             : null);
     setValue(_initialValue);
-    SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
-      requestFocus();
-    });
   }
 
   @override
@@ -92,16 +89,15 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     if (widget.valueTransformer != null) {
       var transformed = widget.valueTransformer(value);
       FormBuilder.of(context)?.setAttributeValue(widget.attribute, transformed);
-    } else
+    } else {
       _formBuilderState?.setAttributeValue(widget.attribute, value);
+    }
   }
 
   @override
   void didChange(T value) {
     super.didChange(value);
-    setState(() {
-      _isPristine = value == _initialValue;
-    });
+    requestFocus();
     if (widget.onChanged != null) widget.onChanged(value);
   }
 
