@@ -94,7 +94,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
 
               return TypeAheadField<T>(
                 textFieldConfiguration: textFieldConfiguration.copyWith(
-                  enabled: state.readOnly,
+                  enabled: !state.readOnly,
                   controller: state.typeAheadController,
                   style: state.readOnly
                       ? Theme.of(state.context).textTheme.subhead.copyWith(
@@ -164,6 +164,13 @@ class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState {
     _typeAheadFocusNode = readOnly
         ? AlwaysDisabledFocusNode()
         : widget.textFieldConfiguration.focusNode;
-    _typeAheadController = widget.controller ?? TextEditingController();
+    _typeAheadController = widget.controller ??
+        TextEditingController(text: widget.initialValue?.toString());
+  }
+
+  @override
+  void reset() {
+    super.reset();
+    _typeAheadController.text = widget.initialValue?.toString();
   }
 }
