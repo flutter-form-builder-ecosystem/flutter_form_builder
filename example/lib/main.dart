@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -130,10 +132,10 @@ class MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                     ),
-                    FormBuilderColorPicker(
+                    FormBuilderColorPickerField(
                       attribute: 'color_picker',
                       // initialValue: Colors.yellow,
-                      colorPickerType: ColorPickerType.SlidePicker,
+                      colorPickerType: ColorPickerType.ColorPicker,
                       decoration: InputDecoration(labelText: "Pick Color"),
                     ),
                     FormBuilderChipsInput(
@@ -192,12 +194,11 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     FormBuilderDateTimePicker(
                       attribute: "date",
-                      onChanged: _onChanged,
+                      // onChanged: _onChanged,
                       inputType: InputType.time,
                       decoration: InputDecoration(
                         labelText: "Appointment Time",
                       ),
-                      validator: (val) => null,
                       initialTime: TimeOfDay(hour: 8, minute: 0),
                       // initialValue: DateTime.now(),
                       // readonly: true,
@@ -403,7 +404,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration:
                           InputDecoration(labelText: "Movie Rating (Archer)"),
                       attribute: "movie_rating",
-                      textStyle: TextStyle(fontWeight: FontWeight.bold),
+                      // textStyle: TextStyle(fontWeight: FontWeight.bold),
                       options: List.generate(5, (i) => i + 1)
                           .map((number) => FormBuilderFieldOption(
                                 value: number,
@@ -430,12 +431,12 @@ class MyHomePageState extends State<MyHomePage> {
                       addIcon: Icon(Icons.arrow_right),
                       subtractIcon: Icon(Icons.arrow_left),
                     ),
-                    FormBuilderRate(
+                    FormBuilderRating(
                       decoration: InputDecoration(labelText: "Rate this form"),
                       attribute: "rate",
                       iconSize: 32.0,
-                      initialValue: 1,
-                      max: 5,
+                      initialValue: 1.0,
+                      max: 5.0,
                       onChanged: _onChanged,
                     ),
                     FormBuilderCheckboxList(
@@ -516,7 +517,7 @@ class MyHomePageState extends State<MyHomePage> {
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
-                    ),*/
+                    ),
                     FormBuilderColorPickerField(
                       attribute: 'color',
                       // initialValue: Colors.red,
@@ -526,7 +527,7 @@ class MyHomePageState extends State<MyHomePage> {
                       onChanged: (val) {
                         print(val);
                       },
-                      colorPickerType: ColorPickerType.BlockPicker,
+                      colorPickerType: ColorPickerType.ColorPicker,
                       validators: [
                         FormBuilderValidators.required(),
                       ],

@@ -6,7 +6,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 typedef String SelectionToTextTransformer<T>(T suggestion);
 
-class FormBuilderTypeAhead<T> extends StatefulWidget {
+class FormBuilderTypeAhead<T> extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final T initialValue;
@@ -41,7 +41,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final bool keepSuggestionsOnSuggestionSelected;
   final SuggestionSelectionCallback<T> onSuggestionSelected;
   final TextEditingController controller;
-  final FormFieldSetter<T> onSaved;
+  // final FormFieldSetter<T> onSaved;
 
   FormBuilderTypeAhead({
     Key key,
@@ -78,141 +78,107 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.keepSuggestionsOnSuggestionSelected = false,
     this.onSuggestionSelected,
     this.controller,
-    this.onSaved,
-  })  : assert(T == String || selectionToTextTransformer != null),
-        super(key: key);
+    // this.onSaved,
+  })
+      : assert(T == String || selectionToTextTransformer != null),
+        super(
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (field) {
+            _FormBuilderTypeAheadState state = field;
+
+            return TypeAheadFormField<T>(
+              key: state.fieldKey,
+              validator: (val) {
+                for (int i = 0; i < validators.length; i++) {
+                  if (validators[i](val) != null)
+                    return validators[i](val);
+                }
+                return null;
+              },
+              autovalidate: autovalidate,
+              textFieldConfiguration: textFieldConfiguration.copyWith(
+                enabled: state.readOnly,
+                controller: state.typeAheadController,
+                style: state.readOnly
+                    ? Theme
+                    .of(state.context)
+                    .textTheme
+                    .subhead
+                    .copyWith(
+                  color: Theme
+                      .of(state.context)
+                      .disabledColor,
+                )
+                    : textFieldConfiguration.style,
+                focusNode: state.typeAheadFocusNode,
+                decoration: decoration.copyWith(
+                  enabled: state.readOnly,
+                ),
+              ),
+              suggestionsCallback: suggestionsCallback,
+              itemBuilder: itemBuilder,
+              transitionBuilder: (context, suggestionsBox, controller) =>
+              suggestionsBox,
+              onSuggestionSelected: (T suggestion) {
+                if (selectionToTextTransformer != null) {
+                  state.typeAheadController.text =
+                      selectionToTextTransformer(suggestion);
+                } else {
+                  state.typeAheadController.text =
+                  suggestion != null ? suggestion.toString() : '';
+                }
+                if (onSuggestionSelected != null)
+                  onSuggestionSelected(suggestion);
+              },
+              getImmediateSuggestions: getImmediateSuggestions,
+              errorBuilder: errorBuilder,
+              noItemsFoundBuilder: noItemsFoundBuilder,
+              loadingBuilder: loadingBuilder,
+              debounceDuration: debounceDuration,
+              suggestionsBoxDecoration: suggestionsBoxDecoration,
+              suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
+              animationDuration: animationDuration,
+              animationStart: animationStart,
+              direction: direction,
+              hideOnLoading: hideOnLoading,
+              hideOnEmpty: hideOnEmpty,
+              hideOnError: hideOnError,
+              hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
+              keepSuggestionsOnLoading: keepSuggestionsOnLoading,
+              autoFlipDirection: autoFlipDirection,
+              suggestionsBoxController: suggestionsBoxController,
+              keepSuggestionsOnSuggestionSelected:
+              keepSuggestionsOnSuggestionSelected,
+            );
+          });
 
   @override
   _FormBuilderTypeAheadState<T> createState() =>
       _FormBuilderTypeAheadState<T>();
 }
 
-class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
+class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState {
+  FormBuilderTypeAhead get widget => super.widget;
+
   TextEditingController _typeAheadController;
   FocusNode _typeAheadFocusNode;
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  T _initialValue;
-  String _initialText;
+
+  FocusNode get typeAheadFocusNode => _typeAheadFocusNode;
+
+  TextEditingController get typeAheadController => _typeAheadController;
 
   @override
   void initState() {
     super.initState();
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _typeAheadController = widget.controller ?? TextEditingController();
-    _typeAheadFocusNode = _readOnly
+    _typeAheadFocusNode = readOnly
         ? AlwaysDisabledFocusNode()
         : widget.textFieldConfiguration.focusNode;
-
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-
-    _initialText = (widget.selectionToTextTransformer != null)
-        ? widget.selectionToTextTransformer(_initialValue ?? '')
-        : _initialValue?.toString() ?? '';
-
-    _typeAheadController.text = _initialText;
-
-    if (T == String) {
-      _typeAheadController.addListener(_handleStringOnChanged);
-    }
-  }
-
-  _handleStringOnChanged() {
-    if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return TypeAheadFormField<T>(
-      key: _fieldKey,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      autovalidate: widget.autovalidate,
-      textFieldConfiguration: widget.textFieldConfiguration.copyWith(
-        enabled: !_readOnly,
-        controller: _typeAheadController,
-        style: _readOnly
-            ? Theme.of(context).textTheme.subhead.copyWith(
-                  color: Theme.of(context).disabledColor,
-                )
-            : widget.textFieldConfiguration.style,
-        focusNode: _typeAheadFocusNode,
-        decoration: widget.decoration.copyWith(
-          enabled: !_readOnly,
-        ),
-      ),
-      suggestionsCallback: widget.suggestionsCallback,
-      itemBuilder: widget.itemBuilder,
-      transitionBuilder: (context, suggestionsBox, controller) =>
-          suggestionsBox,
-      onSuggestionSelected: (T suggestion) {
-        if (widget.selectionToTextTransformer != null) {
-          _typeAheadController.text =
-              widget.selectionToTextTransformer(suggestion);
-        } else {
-          _typeAheadController.text =
-              suggestion != null ? suggestion.toString() : '';
-        }
-        if (widget.onSuggestionSelected != null)
-          widget.onSuggestionSelected(suggestion);
-        if (widget.onChanged != null) widget.onChanged(suggestion);
-      },
-      getImmediateSuggestions: widget.getImmediateSuggestions,
-      errorBuilder: widget.errorBuilder,
-      noItemsFoundBuilder: widget.noItemsFoundBuilder,
-      loadingBuilder: widget.loadingBuilder,
-      debounceDuration: widget.debounceDuration,
-      suggestionsBoxDecoration: widget.suggestionsBoxDecoration,
-      suggestionsBoxVerticalOffset: widget.suggestionsBoxVerticalOffset,
-      animationDuration: widget.animationDuration,
-      animationStart: widget.animationStart,
-      direction: widget.direction,
-      hideOnLoading: widget.hideOnLoading,
-      hideOnEmpty: widget.hideOnEmpty,
-      hideOnError: widget.hideOnError,
-      hideSuggestionsOnKeyboardHide: widget.hideSuggestionsOnKeyboardHide,
-      keepSuggestionsOnLoading: widget.keepSuggestionsOnLoading,
-      autoFlipDirection: widget.autoFlipDirection,
-      suggestionsBoxController: widget.suggestionsBoxController,
-      keepSuggestionsOnSuggestionSelected:
-          widget.keepSuggestionsOnSuggestionSelected,
-    );
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    if (widget.controller == null) {
-      _typeAheadController.dispose();
-    } else {
-      _typeAheadController.removeListener(_handleStringOnChanged);
-    }
-    if (widget.textFieldConfiguration.focusNode == null) {
-      _typeAheadFocusNode?.dispose();
-    }
-    super.dispose();
+    _typeAheadController = widget.controller ?? TextEditingController();
   }
 }

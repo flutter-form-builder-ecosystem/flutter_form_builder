@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/signature.dart';
 // import 'package:signature/signature.dart';
 
-class FormBuilderSignaturePad extends StatefulWidget {
+class FormBuilderSignaturePad extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final Uint8List initialValue;
@@ -41,124 +41,115 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.valueTransformer,
     this.onChanged,
     this.onSaved,
-  }) : super(key: key);
+  }) : super(
+    key: key,
+    initialValue: initialValue,
+    attribute: attribute,
+    validators: validators,
+    valueTransformer: valueTransformer,
+    onChanged: onChanged,
+    readOnly: readOnly,
+    builder: (field) {
+      _FormBuilderSignaturePadState state = field;
+
+      return InputDecorator(
+        decoration: decoration.copyWith(
+          enabled: !state.readOnly,
+          errorText: field.errorText,
+        ),
+        child: Column(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+              ),
+              child: GestureDetector(
+                onVerticalDragUpdate: (_) {},
+                child: Signature(
+                  key: state.signatureKey,
+                  points: state.points,
+                  width: width,
+                  height: height,
+                  backgroundColor: backgroundColor,
+                  penColor: penColor,
+                  penStrokeWidth: penStrokeWidth,
+                  onChanged: (points) async {
+                    var signature = await state.signatureKey.currentState
+                        .exportBytes();
+                    state.value = signature;
+                    state.points =
+                        state.signatureKey.currentState.exportPoints();
+                    field.didChange(state.value);
+                  },
+                ),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(child: SizedBox()),
+                FlatButton.icon(
+                  onPressed: () {
+                    state.signatureKey.currentState.clear();
+                    state.points =
+                        state.signatureKey.currentState.exportPoints();
+                    state.value = null;
+                    field.didChange(state.value);
+                  },
+                  label: Text(
+                    clearButtonText,
+                    style: TextStyle(
+                        color: Theme
+                            .of(state.context)
+                            .errorColor),
+                  ),
+                  icon: Icon(
+                    Icons.clear,
+                    color: Theme
+                        .of(state.context)
+                        .errorColor,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
 
   @override
   _FormBuilderSignaturePadState createState() =>
       _FormBuilderSignaturePadState();
 }
 
-class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
-  bool _readOnly = false;
+class _FormBuilderSignaturePadState extends FormBuilderFieldState {
+  FormBuilderSignaturePad get widget => super.widget;
+
+  final GlobalKey<SignatureState> signatureKey = GlobalKey();
+
+  Uint8List get value => _value;
+
+  List<Point> get points => _points;
+
+  set points(List<Point> points) {
+    setState(() {
+      _points = points;
+    });
+  }
+
+  set value(Uint8List val) {
+    setState(() {
+      _value = val;
+    });
+  }
+
   Uint8List _value;
+
   List<Point> _points;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  final GlobalKey<SignatureState> _signatureKey = GlobalKey<SignatureState>();
-  FormBuilderState _formState;
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _points = widget.points;
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField<Uint8List>(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _value,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      builder: (FormFieldState<dynamic> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            errorText: field.errorText,
-          ),
-          child: Column(
-            children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                ),
-                child: GestureDetector(
-                  onVerticalDragUpdate: (_) {},
-                  child: Signature(
-                    key: _signatureKey,
-                    points: _points,
-                    width: widget.width,
-                    height: widget.height,
-                    backgroundColor: widget.backgroundColor,
-                    penColor: widget.penColor,
-                    penStrokeWidth: widget.penStrokeWidth,
-                    onChanged: (points) async {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      var signature =
-                          await _signatureKey.currentState.exportBytes();
-                      setState(() {
-                        _value = signature;
-                        _points = _signatureKey.currentState.exportPoints();
-                      });
-                      field.didChange(_value);
-                      if (widget.onChanged != null) widget.onChanged(_value);
-                    },
-                  ),
-                ),
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(child: SizedBox()),
-                  FlatButton.icon(
-                    onPressed: () {
-                      _signatureKey.currentState.clear();
-                      setState(() {
-                        _points = _signatureKey.currentState.exportPoints();
-                        _value = null;
-                      });
-                      field.didChange(_value);
-                    },
-                    label: Text(
-                      widget.clearButtonText,
-                      style: TextStyle(color: Theme.of(context).errorColor),
-                    ),
-                    icon: Icon(
-                      Icons.clear,
-                      color: Theme.of(context).errorColor,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
 }

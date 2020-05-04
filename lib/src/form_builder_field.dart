@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderField<T> extends FormField<T> {
   final String attribute;
   final ValueTransformer valueTransformer;
   final List<FormFieldValidator> validators;
-  final ValueChanged onChanged;
+  final ValueChanged<T> onChanged;
   final bool readOnly;
   final InputDecoration decoration;
 
@@ -51,8 +52,12 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   bool get readOnly => _readOnly;
 
   bool get isPristine => _isPristine;
+
   // bool get isPristine => value != _initialValue;
 
+  GlobalKey<FormFieldState> get fieldKey => _fieldKey;
+
+  T get initialValue => _initialValue;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formBuilderState;
   bool _readOnly = false;
@@ -70,6 +75,9 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
             ? _formBuilderState.initialValue[widget.attribute]
             : null);
     setValue(_initialValue);
+    SchedulerBinding.instance.addPostFrameCallback((Duration duration) {
+      requestFocus();
+    });
   }
 
   @override
@@ -92,8 +100,12 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   void didChange(T value) {
     super.didChange(value);
     setState(() {
-      _isPristine = value != _initialValue;
+      _isPristine = value == _initialValue;
     });
     if (widget.onChanged != null) widget.onChanged(value);
+  }
+
+  void requestFocus() {
+    FocusScope.of(context).requestFocus(FocusNode());
   }
 }

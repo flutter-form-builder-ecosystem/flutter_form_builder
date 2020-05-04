@@ -72,9 +72,13 @@ class FormBuilderValidators {
   /// greater than or equal to the provided minimum length.
   static FormFieldValidator minLength(
     num minLength, {
+    bool allowEmpty = false,
     String errorText,
   }) {
     return (valueCandidate) {
+      if (allowEmpty && (valueCandidate == null || valueCandidate?.length == 0))
+        return errorText ??
+            "Value must have a length greater than or equal to $minLength";
       if (valueCandidate != null && valueCandidate.length < minLength) {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
@@ -88,8 +92,13 @@ class FormBuilderValidators {
   static FormFieldValidator maxLength(
     num maxLength, {
     String errorText,
+    bool allowEmpty = false,
   }) {
     return (valueCandidate) {
+      if (allowEmpty && (valueCandidate == null || valueCandidate?.length == 0))
+        return errorText ??
+            "Value must have a length greater than or equal to $minLength";
+
       if (valueCandidate != null && valueCandidate.length > maxLength) {
         return errorText ??
             "Value must have a length less than or equal to $maxLength";
@@ -111,14 +120,15 @@ class FormBuilderValidators {
   }
 
   /// [FormFieldValidator] that requires the field's value to be a valid url.
-  static FormFieldValidator url(
-      {String errorText = "This field requires a valid URL address.",
-      List<String> protocols = const ['http', 'https', 'ftp'],
-      bool requireTld = true,
-      bool requireProtocol = false,
-      bool allowUnderscore = false,
-      List<String> hostWhitelist = const [],
-      List<String> hostBlacklist = const []}) {
+  static FormFieldValidator url({
+    String errorText = "This field requires a valid URL address.",
+    List<String> protocols = const ['http', 'https', 'ftp'],
+    bool requireTld = true,
+    bool requireProtocol = false,
+    bool allowUnderscore = false,
+    List<String> hostWhitelist = const [],
+    List<String> hostBlacklist = const [],
+  }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isURL(valueCandidate,

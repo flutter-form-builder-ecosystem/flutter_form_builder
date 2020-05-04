@@ -51,8 +51,8 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
               dense: true,
               isThreeLine: false,
               contentPadding: EdgeInsets.all(0.0),
-              leading: _leading(state, i),
-              trailing: _trailing(state, i),
+              leading: state._leading(state, i),
+              trailing: state._trailing(state, i),
               title: options[i],
               onTap: state.readOnly
                   ? null
@@ -63,8 +63,6 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
                 else
                   currentValue.remove(options[i].value);
                 state.didChange(currentValue);
-                if (onChanged != null)
-                  onChanged(currentValue);
               },
             ),
             Divider(
@@ -86,7 +84,15 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
       }
   );
 
-  static Widget _checkbox(_FormBuilderCheckboxListState field, int i) {
+  @override
+  _FormBuilderCheckboxListState<T> createState() =>
+      _FormBuilderCheckboxListState();
+}
+
+class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
+  FormBuilderCheckboxList<T> get widget => super.widget;
+
+  Widget _checkbox(_FormBuilderCheckboxListState field, int i) {
     return Checkbox(
       activeColor: field.widget.activeColor,
       checkColor: field.widget.checkColor,
@@ -103,30 +109,17 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
         else
           currValue.remove(field.widget.options[i].value);
         field.didChange(currValue);
-        if (field.widget.onChanged != null) field.widget.onChanged(currValue);
       },
     );
   }
 
-  static Widget _leading(_FormBuilderCheckboxListState field, int i) {
+  Widget _leading(_FormBuilderCheckboxListState field, int i) {
     if (field.widget.leadingInput) return _checkbox(field, i);
     return null;
   }
 
-  static Widget _trailing(_FormBuilderCheckboxListState field, int i) {
+  Widget _trailing(_FormBuilderCheckboxListState field, int i) {
     if (!field.widget.leadingInput) return _checkbox(field, i);
     return null;
-  }
-
-  @override
-  _FormBuilderCheckboxListState<T> createState() =>
-      _FormBuilderCheckboxListState();
-}
-
-class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
-  FormBuilderCheckboxList<T> get widget => super.widget;
-
-  void requestFocus() {
-    FocusScope.of(context).requestFocus(FocusNode());
   }
 }

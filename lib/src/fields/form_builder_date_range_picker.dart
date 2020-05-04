@@ -9,7 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
-class FormBuilderDateRangePicker extends StatefulWidget {
+class FormBuilderDateRangePicker extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final List<DateTime> initialValue;
@@ -64,7 +64,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     @required this.firstDate,
     @required this.lastDate,
     @required this.format,
-    this.initialValue,
+    this.initialValue = const [],
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
@@ -106,7 +106,55 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.locale,
     this.selectableDayPredicate,
     this.onSaved,
-  }) : super(key: key);
+  }) : super(
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (field) {
+              FormBuilderDateRangePickerState state = field;
+              return TextField(
+                enabled: !state.readOnly,
+                style: style,
+                focusNode: state.readOnly
+                    ? AlwaysDisabledFocusNode()
+                    : state.effectiveFocusNode,
+                decoration: decoration.copyWith(
+                  enabled: !state.readOnly,
+                  errorText: field.errorText,
+                ),
+                // initialValue: "${_initialValue ?? ''}",
+                maxLines: maxLines,
+                keyboardType: keyboardType,
+                obscureText: obscureText,
+                onEditingComplete: onEditingComplete,
+                controller: state.effectiveController,
+                autocorrect: autocorrect,
+                autofocus: autofocus,
+                buildCounter: buildCounter,
+                cursorColor: cursorColor,
+                cursorRadius: cursorRadius,
+                cursorWidth: cursorWidth,
+                enableInteractiveSelection: enableInteractiveSelection,
+                maxLength: maxLength,
+                inputFormatters: inputFormatters,
+                keyboardAppearance: keyboardAppearance,
+                maxLengthEnforced: maxLengthEnforced,
+                scrollPadding: scrollPadding,
+                textAlign: textAlign,
+                textCapitalization: textCapitalization,
+                textDirection: textDirection,
+                textInputAction: textInputAction,
+                strutStyle: strutStyle,
+                readOnly: state.readOnly,
+                expands: expands,
+                minLines: minLines,
+                showCursor: showCursor,
+              );
+            });
 
   @override
   FormBuilderDateRangePickerState createState() =>
@@ -124,110 +172,26 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   }
 }
 
-class FormBuilderDateRangePickerState
-    extends State<FormBuilderDateRangePicker> {
-  bool _readOnly = false;
-  TextEditingController _controller;
-  FormBuilderState _formState;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  List<DateTime> _initialValue;
-  List<DateTime> _currentValue;
-  FocusNode _focusNode;
+class FormBuilderDateRangePickerState extends FormBuilderFieldState {
+  FormBuilderDateRangePicker get widget => super.widget;
 
-  List<DateTime> get value => _currentValue ?? [];
+  FocusNode _effectiveFocusNode;
 
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? _focusNode;
+  FocusNode get effectiveFocusNode => _effectiveFocusNode;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? _controller;
+  TextEditingController _effectiveController;
+
+  TextEditingController get effectiveController => _effectiveController;
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = _currentValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : []);
-    _controller = TextEditingController(
-      text: _valueToText(),
-    );
-    _effectiveController.addListener(() {
-      if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
-    });
-    _focusNode = FocusNode();
-    widget.focusNode?.addListener(_handleFocus);
-    _focusNode?.addListener(_handleFocus);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      autovalidate: widget.autovalidate ?? false,
-      builder: (FormFieldState<List<DateTime>> field) {
-        return TextField(
-          enabled: !_readOnly,
-          style: widget.style,
-          focusNode:
-              _readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            errorText: field.errorText,
-          ),
-          // initialValue: "${_initialValue ?? ''}",
-          maxLines: widget.maxLines,
-          keyboardType: widget.keyboardType,
-          obscureText: widget.obscureText,
-          onEditingComplete: widget.onEditingComplete,
-          controller: _effectiveController,
-          autocorrect: widget.autocorrect,
-          autofocus: widget.autofocus,
-          buildCounter: widget.buildCounter,
-          cursorColor: widget.cursorColor,
-          cursorRadius: widget.cursorRadius,
-          cursorWidth: widget.cursorWidth,
-          enableInteractiveSelection: widget.enableInteractiveSelection,
-          maxLength: widget.maxLength,
-          inputFormatters: widget.inputFormatters,
-          keyboardAppearance: widget.keyboardAppearance,
-          maxLengthEnforced: widget.maxLengthEnforced,
-          scrollPadding: widget.scrollPadding,
-          textAlign: widget.textAlign,
-          textCapitalization: widget.textCapitalization,
-          textDirection: widget.textDirection,
-          textInputAction: widget.textInputAction,
-          strutStyle: widget.strutStyle,
-          readOnly: _readOnly,
-          expands: widget.expands,
-          minLines: widget.minLines,
-          showCursor: widget.showCursor,
+    _effectiveFocusNode = widget.focusNode ?? FocusNode();
+    _effectiveController = widget.controller ??
+        TextEditingController(
+          text: _valueToText(),
         );
-      },
-    );
+    _effectiveFocusNode.addListener(_handleFocus);
+    super.initState();
   }
 
   _handleFocus() async {
@@ -250,25 +214,18 @@ class FormBuilderDateRangePickerState
         textDirection: widget.textDirection,
         selectableDayPredicate: widget.selectableDayPredicate,
       );
-      _fieldKey.currentState.didChange(picked);
-      _setCurrentValue(picked);
-      _effectiveController.text = _valueToText();
+      didChange(picked);
     }
   }
 
   _valueToText() {
-    if (value.isEmpty) {
+    if (value == null || value.isEmpty) {
       return "";
-    } else if (value.length == 1) {
+    }
+    if (value.length == 1) {
       return "${format(value[0])}";
     }
     return "${format(value[0])} - ${format(value[1])}";
-  }
-
-  _setCurrentValue(val) {
-    setState(() {
-      _currentValue = val ?? [];
-    });
   }
 
   void _hideKeyboard() {
@@ -278,10 +235,28 @@ class FormBuilderDateRangePickerState
   String format(DateTime date) =>
       FormBuilderDateRangePicker.tryFormat(date, widget.format);
 
+  _setTextFieldString() {
+    setState(() {
+      _effectiveController.text = _valueToText();
+    });
+  }
+
+  @override
+  void didChange(value) {
+    super.didChange(value);
+    _setTextFieldString();
+  }
+
+  @override
+  void reset() {
+    super.reset();
+    _setTextFieldString();
+  }
+
   @override
   void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    _effectiveController.dispose();
+    _effectiveController?.dispose();
+    _effectiveFocusNode?.dispose();
     super.dispose();
   }
 }

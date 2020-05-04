@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderChipsInput<T> extends StatefulWidget {
+class FormBuilderChipsInput<T> extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final List<T> initialValue;
@@ -52,89 +52,46 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.onSaved,
-  }) : super(key: key);
+  }) : super(
+      key: key,
+      initialValue: initialValue,
+      attribute: attribute,
+      validators: validators,
+      valueTransformer: valueTransformer,
+      onChanged: onChanged,
+      readOnly: readOnly,
+      builder: (field) {
+        _FormBuilderChipsInputState state = field;
+        return ChipsInput(
+          initialValue: field.value,
+          enabled: !state.readOnly,
+          decoration: decoration.copyWith(
+            enabled: !state.readOnly,
+            errorText: field.errorText,
+          ),
+          findSuggestions: findSuggestions,
+          onChanged: (data) {
+            field.didChange(data);
+          },
+          maxChips: maxChips,
+          chipBuilder: chipBuilder,
+          suggestionBuilder: suggestionBuilder,
+          textStyle: textStyle,
+          actionLabel: actionLabel,
+          autocorrect: autocorrect,
+          inputAction: inputAction,
+          inputType: inputType,
+          keyboardAppearance: keyboardAppearance,
+          obscureText: obscureText,
+          suggestionsBoxMaxHeight: suggestionsBoxMaxHeight,
+          textCapitalization: textCapitalization,
+        );
+      });
 
   @override
   _FormBuilderChipsInputState createState() => _FormBuilderChipsInputState();
 }
 
-class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  List<dynamic> _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue ?? [],
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      builder: (FormFieldState<dynamic> field) {
-        return ChipsInput(
-          initialValue: field.value,
-          enabled: !_readOnly,
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            errorText: field.errorText,
-          ),
-          findSuggestions: widget.findSuggestions,
-          onChanged: (data) {
-            FocusScope.of(context).requestFocus(FocusNode());
-            field.didChange(data);
-            if (widget.onChanged != null) widget.onChanged(data);
-          },
-          maxChips: widget.maxChips,
-          chipBuilder: widget.chipBuilder,
-          suggestionBuilder: widget.suggestionBuilder,
-          textStyle: widget.textStyle,
-          actionLabel: widget.actionLabel,
-          autocorrect: widget.autocorrect,
-          inputAction: widget.inputAction,
-          inputType: widget.inputType,
-          keyboardAppearance: widget.keyboardAppearance,
-          obscureText: widget.obscureText,
-          suggestionsBoxMaxHeight: widget.suggestionsBoxMaxHeight,
-          textCapitalization: widget.textCapitalization,
-        );
-      },
-    );
-  }
+class _FormBuilderChipsInputState extends FormBuilderFieldState {
+  FormBuilderChipsInput get widget => super.widget;
 }

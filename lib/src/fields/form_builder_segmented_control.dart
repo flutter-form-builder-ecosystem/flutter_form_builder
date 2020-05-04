@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSegmentedControl extends StatefulWidget {
+class FormBuilderSegmentedControl extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final dynamic initialValue;
@@ -15,10 +15,6 @@ class FormBuilderSegmentedControl extends StatefulWidget {
   final Color selectedColor;
   final Color pressedColor;
   final FormFieldSetter onSaved;
-
-  @Deprecated(
-      "Use `FormBuilderFieldOption`'s `child` property to style your option")
-  final TextStyle textStyle;
 
   final List<FormBuilderFieldOption> options;
 
@@ -39,116 +35,66 @@ class FormBuilderSegmentedControl extends StatefulWidget {
     this.borderColor,
     this.selectedColor,
     this.pressedColor,
-    this.textStyle,
     this.padding,
     this.unselectedColor,
     this.onSaved,
-  }) : super(key: key);
+  }) : super(
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (field) {
+              _FormBuilderSegmentedControlState state = field;
+
+              return InputDecorator(
+                decoration: decoration.copyWith(
+                  enabled: !state.readOnly,
+                  errorText: field.errorText,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: CupertinoSegmentedControl(
+                    borderColor: state.readOnly
+                        ? Theme.of(state.context).disabledColor
+                        : borderColor ?? Theme.of(state.context).primaryColor,
+                    selectedColor: state.readOnly
+                        ? Theme.of(state.context).disabledColor
+                        : selectedColor ??
+                            Theme.of(state.context).primaryColor,
+                    pressedColor: state.readOnly
+                        ? Theme.of(state.context).disabledColor
+                        : pressedColor ?? Theme.of(state.context).primaryColor,
+                    groupValue: field.value,
+                    children: Map.fromIterable(
+                      options,
+                      key: (option) => option.value,
+                      value: (option) => Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: option,
+                      ),
+                    ),
+                    padding: padding,
+                    unselectedColor: unselectedColor,
+                    onValueChanged: (dynamic value) {
+                      if (state.readOnly) {
+                        field.reset();
+                      } else {
+                        field.didChange(value);
+                      }
+                    },
+                  ),
+                ),
+              );
+            });
 
   @override
   _FormBuilderSegmentedControlState createState() =>
       _FormBuilderSegmentedControlState();
 }
 
-class _FormBuilderSegmentedControlState
-    extends State<FormBuilderSegmentedControl> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  dynamic _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      initialValue: _initialValue,
-      enabled: !_readOnly,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      builder: (FormFieldState<dynamic> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            errorText: field.errorText,
-          ),
-          child: Padding(
-            padding: EdgeInsets.only(top: 10.0),
-            child: CupertinoSegmentedControl(
-              borderColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.borderColor ?? Theme.of(context).primaryColor,
-              selectedColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.selectedColor ?? Theme.of(context).primaryColor,
-              pressedColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.pressedColor ?? Theme.of(context).primaryColor,
-              groupValue: field.value,
-              children: Map.fromIterable(
-                widget.options,
-                key: (option) => option.value,
-                value: (option) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  // ignore: deprecated_member_use_from_same_package
-                  child: widget.textStyle != null
-                      ? Text(
-                          "${option.label ?? option.value}",
-                          // ignore: deprecated_member_use_from_same_package
-                          style: widget.textStyle,
-                        )
-                      : option,
-                ),
-              ),
-              padding: widget.padding,
-              unselectedColor: widget.unselectedColor,
-              onValueChanged: (dynamic value) {
-                FocusScope.of(context).requestFocus(FocusNode());
-                if (_readOnly) {
-                  field.reset();
-                } else {
-                  field.didChange(value);
-                  if (widget.onChanged != null) widget.onChanged(value);
-                }
-              },
-            ),
-          ),
-        );
-      },
-    );
-  }
+class _FormBuilderSegmentedControlState extends FormBuilderFieldState {
+  FormBuilderSegmentedControl get widget => super.widget;
 }

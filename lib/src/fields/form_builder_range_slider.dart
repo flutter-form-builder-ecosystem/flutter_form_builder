@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderRangeSlider extends StatefulWidget {
+class FormBuilderRangeSlider extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final RangeValues initialValue;
@@ -10,8 +10,8 @@ class FormBuilderRangeSlider extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
-  final num max;
-  final num min;
+  final double max;
+  final double min;
   final int divisions;
   final Color activeColor;
   final Color inactiveColor;
@@ -40,65 +40,19 @@ class FormBuilderRangeSlider extends StatefulWidget {
     this.labels,
     this.semanticFormatterCallback,
     this.onSaved,
-  }) : super(key: key);
-
-  @override
-  _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();
-}
-
-class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  RangeValues _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      builder: (FormFieldState<RangeValues> field) {
+  }) : super(
+      key: key,
+      initialValue: initialValue,
+      attribute: attribute,
+      validators: validators,
+      valueTransformer: valueTransformer,
+      onChanged: onChanged,
+      readOnly: readOnly,
+      builder: (field) {
+        _FormBuilderRangeSliderState state = field;
         return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+          decoration: decoration.copyWith(
+            enabled: !state.readOnly,
             errorText: field.errorText,
           ),
           child: Container(
@@ -108,37 +62,39 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
               children: [
                 RangeSlider(
                   values: field.value,
-                  min: widget.min,
-                  max: widget.max,
-                  divisions: widget.divisions,
-                  activeColor: widget.activeColor,
-                  inactiveColor: widget.inactiveColor,
-                  onChangeEnd: widget.onChangeEnd,
-                  onChangeStart: widget.onChangeStart,
-                  labels: widget.labels,
-                  semanticFormatterCallback: widget.semanticFormatterCallback,
-                  onChanged: _readOnly
+                  min: min,
+                  max: max,
+                  divisions: divisions,
+                  activeColor: activeColor,
+                  inactiveColor: inactiveColor,
+                  onChangeEnd: onChangeEnd,
+                  onChangeStart: onChangeStart,
+                  labels: labels,
+                  semanticFormatterCallback: semanticFormatterCallback,
+                  onChanged: state.readOnly
                       ? null
                       : (RangeValues values) {
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          field.didChange(values);
-                          if (widget.onChanged != null)
-                            widget.onChanged(values);
-                        },
+                    field.didChange(values);
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("${widget.min}"),
+                    Text("$min"),
                     Text("${field.value.start}   -   ${field.value.end}"),
-                    Text("${widget.max}"),
+                    Text("$max"),
                   ],
                 ),
               ],
             ),
           ),
         );
-      },
-    );
-  }
+      });
+
+  @override
+  _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();
+}
+
+class _FormBuilderRangeSliderState extends FormBuilderFieldState {
+  FormBuilderRangeSlider get widget => super.widget;
 }

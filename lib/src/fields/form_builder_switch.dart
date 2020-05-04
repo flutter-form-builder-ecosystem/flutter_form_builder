@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSwitch extends StatefulWidget {
+class FormBuilderSwitch extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final bool initialValue;
@@ -82,100 +82,56 @@ class FormBuilderSwitch extends StatefulWidget {
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
     this.onSaved,
-  }) : super(key: key);
+  }) : super(
+      key: key,
+      initialValue: initialValue,
+      attribute: attribute,
+      validators: validators,
+      valueTransformer: valueTransformer,
+      onChanged: onChanged,
+      readOnly: readOnly,
+      builder: (field) {
+        _FormBuilderSwitchState state = field;
+        return InputDecorator(
+          decoration: decoration.copyWith(
+            enabled: state.readOnly,
+            errorText: field.errorText,
+          ),
+          child: ListTile(
+            dense: true,
+            isThreeLine: false,
+            contentPadding: EdgeInsets.all(0.0),
+            title: label,
+            trailing: Switch(
+              value: field.value,
+              onChanged: state.readOnly
+                  ? null
+                  : (bool value) {
+                field.didChange(value);
+              },
+              activeColor: activeColor,
+              activeThumbImage: activeThumbImage,
+              activeTrackColor: activeTrackColor,
+              dragStartBehavior: dragStartBehavior,
+              inactiveThumbColor: inactiveThumbColor,
+              inactiveThumbImage: activeThumbImage,
+              inactiveTrackColor: inactiveTrackColor,
+              materialTapTargetSize: materialTapTargetSize,
+            ),
+            onTap: state.readOnly
+                ? null
+                : () {
+              bool newValue = !(field.value ?? false);
+              field.didChange(newValue);
+            },
+          ),
+        );
+      });
 
   @override
   _FormBuilderSwitchState createState() => _FormBuilderSwitchState();
 }
 
-class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  bool _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-        key: _fieldKey,
-        enabled: !_readOnly,
-        initialValue: _initialValue ?? false,
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
-          }
-          return null;
-        },
-        onSaved: (val) {
-          var transformed;
-          if (widget.valueTransformer != null) {
-            transformed = widget.valueTransformer(val);
-            _formState?.setAttributeValue(widget.attribute, transformed);
-          } else
-            _formState?.setAttributeValue(widget.attribute, val);
-          if (widget.onSaved != null) {
-            widget.onSaved(transformed ?? val);
-          }
-        },
-        builder: (FormFieldState<dynamic> field) {
-          return InputDecorator(
-            decoration: widget.decoration.copyWith(
-              enabled: !_readOnly,
-              errorText: field.errorText,
-            ),
-            child: ListTile(
-              dense: true,
-              isThreeLine: false,
-              contentPadding: EdgeInsets.all(0.0),
-              title: widget.label,
-              trailing: Switch(
-                value: field.value,
-                onChanged: _readOnly
-                    ? null
-                    : (bool value) {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        field.didChange(value);
-                        if (widget.onChanged != null) widget.onChanged(value);
-                      },
-                activeColor: widget.activeColor,
-                activeThumbImage: widget.activeThumbImage,
-                activeTrackColor: widget.activeTrackColor,
-                dragStartBehavior: widget.dragStartBehavior,
-                inactiveThumbColor: widget.inactiveThumbColor,
-                inactiveThumbImage: widget.activeThumbImage,
-                inactiveTrackColor: widget.inactiveTrackColor,
-                materialTapTargetSize: widget.materialTapTargetSize,
-              ),
-              onTap: _readOnly
-                  ? null
-                  : () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      bool newValue = !(field.value ?? false);
-                      field.didChange(newValue);
-                      if (widget.onChanged != null) widget.onChanged(newValue);
-                    },
-            ),
-          );
-        });
-  }
+class _FormBuilderSwitchState extends FormBuilderFieldState {
+  FormBuilderSwitch get widget => super.widget;
 }

@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 
-class FormBuilderTextField extends StatefulWidget {
+class FormBuilderTextField extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final String initialValue;
@@ -87,107 +87,81 @@ class FormBuilderTextField extends StatefulWidget {
     this.showCursor,
     this.onSaved,
     this.onTap,
-  }) : super(key: key);
+  })  : assert(initialValue == null || controller == null),
+        super(
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (field) {
+            FormBuilderTextFieldState state = field;
+            return TextFormField(
+              key: state.fieldKey,
+              validator: state.widget.validator,
+              // onSaved: state.widget.onSaved,
+              enabled: !state.readOnly,
+              style: style,
+              focusNode: state.readOnly ? AlwaysDisabledFocusNode() : focusNode,
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+              ),
+              autovalidate: autovalidate ?? false,
+              // initialValue: "${_initialValue ?? ''}",
+              maxLines: maxLines,
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              onEditingComplete: onEditingComplete,
+              controller: state.effectiveController,
+              autocorrect: autocorrect,
+              autofocus: autofocus,
+              buildCounter: buildCounter,
+              cursorColor: cursorColor,
+              cursorRadius: cursorRadius,
+              cursorWidth: cursorWidth,
+              enableInteractiveSelection: enableInteractiveSelection,
+              maxLength: maxLength,
+              inputFormatters: inputFormatters,
+              keyboardAppearance: keyboardAppearance,
+              maxLengthEnforced: maxLengthEnforced,
+              onFieldSubmitted: onFieldSubmitted,
+              scrollPadding: scrollPadding,
+              textAlign: textAlign,
+              textCapitalization: textCapitalization,
+              textDirection: textDirection,
+              textInputAction: textInputAction,
+              strutStyle: strutStyle,
+              readOnly: state.readOnly,
+              expands: expands,
+              minLines: minLines,
+              showCursor: showCursor,
+              onTap: onTap,
+            );
+          },
+        );
 
   @override
   FormBuilderTextFieldState createState() => FormBuilderTextFieldState();
 }
 
-class FormBuilderTextFieldState extends State<FormBuilderTextField> {
-  bool _readOnly = false;
-  TextEditingController _effectiveController = TextEditingController();
-  FormBuilderState _formState;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  String _initialValue;
+class FormBuilderTextFieldState extends FormBuilderFieldState {
+  FormBuilderTextField get widget => super.widget;
+
+  TextEditingController get effectiveController => _effectiveController;
+  TextEditingController _effectiveController;
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    if (widget.controller != null)
-      _effectiveController = widget.controller;
-    else
-      _effectiveController.text = "${_initialValue ?? ''}";
-
-    _effectiveController.addListener(() {
-      if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
-    });
+    _effectiveController = widget.controller ??
+        TextEditingController(text: "${initialValue ?? ''}");
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return TextFormField(
-      key: _fieldKey,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, val);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      enabled: !_readOnly,
-      style: widget.style,
-      focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
-      decoration: widget.decoration.copyWith(
-        enabled: !_readOnly,
-      ),
-      autovalidate: widget.autovalidate ?? false,
-      // initialValue: "${_initialValue ?? ''}",
-      maxLines: widget.maxLines,
-      keyboardType: widget.keyboardType,
-      obscureText: widget.obscureText,
-      onEditingComplete: widget.onEditingComplete,
-      controller: _effectiveController,
-      autocorrect: widget.autocorrect,
-      autofocus: widget.autofocus,
-      buildCounter: widget.buildCounter,
-      cursorColor: widget.cursorColor,
-      cursorRadius: widget.cursorRadius,
-      cursorWidth: widget.cursorWidth,
-      enableInteractiveSelection: widget.enableInteractiveSelection,
-      maxLength: widget.maxLength,
-      inputFormatters: widget.inputFormatters,
-      keyboardAppearance: widget.keyboardAppearance,
-      maxLengthEnforced: widget.maxLengthEnforced,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      scrollPadding: widget.scrollPadding,
-      textAlign: widget.textAlign,
-      textCapitalization: widget.textCapitalization,
-      textDirection: widget.textDirection,
-      textInputAction: widget.textInputAction,
-      strutStyle: widget.strutStyle,
-      readOnly: _readOnly,
-      expands: widget.expands,
-      minLines: widget.minLines,
-      showCursor: widget.showCursor,
-      onTap: widget.onTap,
-    );
-  }
-
-  @override
   void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    if (widget.controller == null) {
-      _effectiveController.dispose();
-    }
+    _effectiveController?.dispose();
     super.dispose();
   }
 }

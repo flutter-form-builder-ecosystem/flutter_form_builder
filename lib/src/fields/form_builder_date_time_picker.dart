@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 
 enum InputType { date, time, both }
 
-class FormBuilderDateTimePicker extends StatefulWidget {
+class FormBuilderDateTimePicker extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final DateTime initialValue;
@@ -53,15 +53,9 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   /// Set this to `null` to stop that behavior. Defaults to [Icons.close].
   final Icon resetIcon;
 
-  /// For validating the [DateTime]. The value passed will be `null` if
-  /// [format] fails to parse the text.
-  @Deprecated(
-      "Doesn't work. Use `validators` attribute to provides `List<FormFieldValidator>` for reusability")
-  final FormFieldValidator<DateTime> validator;
-
   /// Called when an enclosing form is saved. The value passed will be `null`
   /// if [format] fails to parse the text.
-  final FormFieldSetter<DateTime> onSaved;
+  // final FormFieldSetter<DateTime> onSaved;
 
   /// Corresponds to the [showDatePicker()] parameter. Defaults to
   /// [DatePickerMode.day].
@@ -78,6 +72,9 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// Corresponds to the [showDatePicker()] parameter.
   final ui.TextDirection textDirection;
+
+  /// Corresponds to the [showDatePicker()] parameter.
+  final bool useRootNavigator;
 
   /// Called when an enclosing form is submitted. The value passed will be
   /// `null` if [format] fails to parse the text.
@@ -98,7 +95,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final int maxLength;
   final List<TextInputFormatter> inputFormatters;
   final bool enabled;
-  final TransitionBuilder builder;
+  final TransitionBuilder transitionBuilder;
 
   /// Called when the time chooser dialog should be shown. In the future the
   /// preferred way of using this widget will be to utilize the [datePicker] and
@@ -115,7 +112,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   /// Called whenever the state's value changes, e.g. after picker value(s)
   /// have been selected or when the field loses focus. To listen for all text
   /// changes, use the [controller] and [focusNode].
-  final ValueChanged<DateTime> onChanged;
+  // final ValueChanged<DateTime> onChanged;
 
   final bool showCursor;
 
@@ -165,10 +162,9 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.format,
     this.firstDate,
     this.lastDate,
-    this.onChanged,
+    // this.onChanged,
     this.initialDate,
-    this.validator,
-    this.onSaved,
+    // this.onSaved,
     this.onFieldSubmitted,
     this.initialDatePickerMode,
     this.locale,
@@ -181,7 +177,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.maxLength,
     this.inputFormatters,
     this.valueTransformer,
-    this.builder,
+    this.transitionBuilder,
     this.timePicker,
     this.datePicker,
     this.showCursor,
@@ -194,7 +190,75 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.keyboardAppearance,
     this.textCapitalization = TextCapitalization.none,
     this.strutStyle,
-  }) : super(key: key);
+    this.useRootNavigator = true,
+  }) : super(
+            key: key,
+            initialValue: initialValue,
+            attribute: attribute,
+            validators: validators,
+            valueTransformer: valueTransformer,
+            // onChanged: onChanged,
+            readOnly: readOnly,
+            builder: (field) {
+              _FormBuilderDateTimePickerState state = field;
+              return DateTimeField(
+                key: state.fieldKey,
+                initialValue: state.initialValue,
+                format: state.dateFormat,
+                /*onSaved: (val) {
+            var value = _fieldKey.currentState.value;
+            var transformed;
+            if (valueTransformer != null) {
+              transformed = valueTransformer(val);
+              _formState?.setAttributeValue(attribute, transformed);
+            } else
+              _formState?.setAttributeValue(attribute, value);
+            if (onSaved != null) {
+              onSaved(transformed ?? value);
+            }
+          },*/
+                validator: (val) {
+                  for (int i = 0; i < validators.length; i++) {
+                    if (validators[i](val) != null) return validators[i](val);
+                  }
+                  return null;
+                },
+                onShowPicker: state.onShowPicker,
+                autovalidate: autovalidate,
+                resetIcon: resetIcon,
+                textDirection: textDirection,
+                textAlign: textAlign,
+                maxLength: maxLength,
+                autofocus: autofocus,
+                decoration: decoration,
+                readOnly: state.readOnly,
+                enabled: state.readOnly ? false : enabled,
+                autocorrect: autocorrect,
+                controller: state.textFieldController,
+                focusNode: state.focusNode,
+                inputFormatters: inputFormatters,
+                keyboardType: keyboardType,
+                maxLengthEnforced: maxLengthEnforced,
+                maxLines: maxLines,
+                obscureText: obscureText,
+                showCursor: showCursor,
+                minLines: minLines,
+                expands: expands,
+                style: style,
+                onEditingComplete: onEditingComplete,
+                buildCounter: buildCounter,
+                cursorColor: cursorColor,
+                cursorRadius: cursorRadius,
+                cursorWidth: cursorWidth,
+                enableInteractiveSelection: enableInteractiveSelection,
+                keyboardAppearance: keyboardAppearance,
+                onFieldSubmitted: onFieldSubmitted,
+                scrollPadding: scrollPadding,
+                strutStyle: strutStyle,
+                textCapitalization: textCapitalization,
+                textInputAction: textInputAction,
+              );
+            });
 
   final StrutStyle strutStyle;
 
@@ -203,14 +267,17 @@ class FormBuilderDateTimePicker extends StatefulWidget {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
+class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
+  FormBuilderDateTimePicker get widget => super.widget;
   DateTime _initialValue;
   FocusNode _focusNode;
+
+  FocusNode get focusNode => _focusNode;
+
+  TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
   DateTime stateCurrentValue;
+  DateFormat get dateFormat => _dateFormat;
   DateFormat _dateFormat;
 
   final _dateTimeFormats = {
@@ -222,12 +289,6 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   @override
   void initState() {
     super.initState();
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
     stateCurrentValue = _initialValue;
     _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
@@ -240,85 +301,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   // Hack to avoid manual editing of date - as is in DateTimeField library
   _handleFocus() async {
     setState(() {
-      stateCurrentValue = _fieldKey.currentState.value;
+      stateCurrentValue = value;
     });
     if (_focusNode.hasFocus) {
       _textFieldController.clear();
     }
   }
 
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return DateTimeField(
-      key: _fieldKey,
-      initialValue: _initialValue,
-      format: _dateFormat,
-      onSaved: (val) {
-        var value = _fieldKey.currentState.value;
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
-          _formState?.setAttributeValue(widget.attribute, value);
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? value);
-        }
-      },
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
-        }
-        return null;
-      },
-      onShowPicker: _onShowPicker,
-      // onChanged: widget.onChanged,
-      autovalidate: widget.autovalidate,
-      resetIcon: widget.resetIcon,
-      textDirection: widget.textDirection,
-      textAlign: widget.textAlign,
-      maxLength: widget.maxLength,
-      autofocus: widget.autofocus,
-      decoration: widget.decoration,
-      readOnly: _readOnly,
-      enabled: _readOnly ? false : widget.enabled,
-      autocorrect: widget.autocorrect,
-      controller: _textFieldController,
-      focusNode: _focusNode,
-      inputFormatters: widget.inputFormatters,
-      keyboardType: widget.keyboardType,
-      maxLengthEnforced: widget.maxLengthEnforced,
-      maxLines: widget.maxLines,
-      obscureText: widget.obscureText,
-      showCursor: widget.showCursor,
-      minLines: widget.minLines,
-      expands: widget.expands,
-      style: widget.style,
-      onEditingComplete: widget.onEditingComplete,
-      buildCounter: widget.buildCounter,
-      cursorColor: widget.cursorColor,
-      cursorRadius: widget.cursorRadius,
-      cursorWidth: widget.cursorWidth,
-      enableInteractiveSelection: widget.enableInteractiveSelection,
-      keyboardAppearance: widget.keyboardAppearance,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      scrollPadding: widget.scrollPadding,
-      strutStyle: widget.strutStyle,
-      textCapitalization: widget.textCapitalization,
-      textInputAction: widget.textInputAction,
-    );
-  }
-
-  Future<DateTime> _onShowPicker(
+  Future<DateTime> onShowPicker(
       BuildContext context, DateTime currentValue) async {
     currentValue = stateCurrentValue;
     DateTime newValue;
@@ -343,9 +333,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         break;
     }
     newValue = newValue ?? currentValue;
-    _fieldKey.currentState.didChange(newValue);
-    if (widget.onChanged != null)
-      widget.onChanged(_fieldKey.currentState.value);
+    didChange(newValue);
     return newValue;
   }
 
@@ -355,14 +343,19 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       return widget.datePicker(context);
     } else {
       return showDatePicker(
-          context: context,
-          selectableDayPredicate: widget.selectableDayPredicate,
-          initialDatePickerMode:
-              widget.initialDatePickerMode ?? DatePickerMode.day,
-          // ignore: deprecated_member_use_from_same_package
-          initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
-          firstDate: widget.firstDate ?? DateTime(1900),
-          lastDate: widget.lastDate ?? DateTime(2100));
+        context: context,
+        selectableDayPredicate: widget.selectableDayPredicate,
+        initialDatePickerMode:
+            widget.initialDatePickerMode ?? DatePickerMode.day,
+        // ignore: deprecated_member_use_from_same_package
+        initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
+        firstDate: widget.firstDate ?? DateTime(1900),
+        lastDate: widget.lastDate ?? DateTime(2100),
+        locale: widget.locale,
+        textDirection: widget.textDirection,
+        useRootNavigator: widget.useRootNavigator,
+        builder: widget.transitionBuilder,
+      );
     }
   }
 
@@ -378,12 +371,16 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             ? TimeOfDay.fromDateTime(currentValue)
             // ignore: deprecated_member_use_from_same_package
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
-      ).then((result) {
-        return result ??
-            (currentValue != null
-                ? TimeOfDay.fromDateTime(currentValue)
-                : null);
-      });
+        builder: widget.transitionBuilder,
+        useRootNavigator: widget.useRootNavigator,
+      ).then(
+        (result) {
+          return result ??
+              (currentValue != null
+                  ? TimeOfDay.fromDateTime(currentValue)
+                  : null);
+        },
+      );
     }
   }
 }

@@ -1,11 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_colorpicker/block_picker.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_colorpicker/hsv_picker.dart';
-import 'package:flutter_colorpicker/material_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
@@ -72,14 +70,13 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               decoration: decoration.copyWith(
                 errorText: state.errorText,
                 suffixIcon: LayoutBuilder(builder: (context, constraints) {
+                  // print("Layout Builder ${state.value}");
                   return Container(
                     height: constraints.minHeight,
                     width: constraints.minHeight,
                     decoration: BoxDecoration(
                       color: state.value,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(constraints.minHeight / 2),
-                      ),
+                      shape: BoxShape.circle,
                       border: Border.all(
                         color: Colors.black,
                       ),
@@ -89,7 +86,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               ),
               enabled: enabled,
               readOnly: state.readOnly,
-              controller: state._effectiveController,
+              controller: state.effectiveController,
               focusNode: state.effectiveFocusNode,
               textAlign: textAlign,
               autofocus: autofocus,
@@ -132,33 +129,26 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
 class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   FormBuilderColorPickerField get widget => super.widget;
 
-  FocusNode _focusNode = FocusNode();
-  TextEditingController _textEditingController;
+  FocusNode _effectiveFocusNode;
+  TextEditingController _effectiveController;
 
-  TextEditingController get _effectiveController =>
-      widget.controller ?? _textEditingController;
+  TextEditingController get effectiveController =>
+      _effectiveController;
 
-  FocusNode get effectiveFocusNode => widget.focusNode ?? _focusNode;
-
-  Color _pickedColor;
+  FocusNode get effectiveFocusNode => _effectiveFocusNode;
 
   String get valueString => value?.toString();
+
+  Color _selectedColor;
 
   @override
   void initState() {
     super.initState();
-    _pickedColor = value ?? Colors.blue;
-    _textEditingController = TextEditingController(text: valueString);
-    if (widget.focusNode != null) {
-      widget.focusNode.addListener(_handleFocus);
-    }
-    _focusNode.addListener(_handleFocus);
-  }
-
-  void setColor() {
-    didChange(_pickedColor);
-    if (widget.onChanged != null) widget.onChanged(value);
+    _effectiveFocusNode = widget.focusNode ?? FocusNode();
+    _effectiveController =
+        widget.controller ?? TextEditingController();
     _effectiveController.text = valueString;
+    _effectiveFocusNode.addListener(_handleFocus);
   }
 
   _handleFocus() async {
@@ -190,9 +180,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
         },
       );
       if (selected != null && selected == true) {
-        setColor();
-      } else {
-        if (value != null) _colorChanged(value);
+        didChange(_selectedColor);
       }
     }
   }
@@ -201,9 +189,9 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
     switch (widget.colorPickerType) {
       case ColorPickerType.ColorPicker:
         return ColorPicker(
-          pickerColor: _pickedColor,
+          pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
-          enableLabel: true,
+          // enableLabel: true,
           colorPickerWidth: 300,
           displayThumbColor: true,
           enableAlpha: true,
@@ -212,13 +200,13 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
         );
       case ColorPickerType.MaterialPicker:
         return MaterialPicker(
-          pickerColor: _pickedColor,
+          pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
           enableLabel: true, // only on portrait mode
         );
       case ColorPickerType.BlockPicker:
         return BlockPicker(
-          pickerColor: _pickedColor,
+          pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
           /*availableColors: [],
           itemBuilder: ,
@@ -230,8 +218,27 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   }
 
   _colorChanged(Color color) {
+    print("Color Changing...");
     setState(() {
-      _pickedColor = color;
+      _selectedColor = color;
     });
+  }
+
+  _setTextFieldString(){
+    setState(() {
+      _effectiveController.text = valueString ?? '';
+    });
+  }
+
+  @override
+  void didChange(Color value) {
+    super.didChange(value);
+    _setTextFieldString();
+  }
+
+  @override
+  void reset() {
+    super.reset();
+    _setTextFieldString();
   }
 }

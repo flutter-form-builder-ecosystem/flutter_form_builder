@@ -33,57 +33,60 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.materialTapTargetSize,
     this.tristate = false,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validators: validators,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (field) {
-              _FormBuilderCheckboxState state = field;
-              return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: field.errorText,
-                ),
-                child: ListTile(
-                  dense: true,
-                  isThreeLine: false,
-                  contentPadding: EdgeInsets.all(0.0),
-                  title: label,
-                  leading: _leading(field),
-                  trailing: _trailing(field),
-                  onTap: state.readOnly
-                      ? null
-                      : () {
-                          state.requestFocus();
-                          bool newValue = !(field.value ?? false);
-                          field.didChange(newValue);
-                          if (onChanged != null) onChanged(newValue);
-                        },
-                ),
-              );
-            });
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (field) {
+            _FormBuilderCheckboxState state = field;
+
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: field.errorText,
+              ),
+              child: ListTile(
+                dense: true,
+                isThreeLine: false,
+                contentPadding: EdgeInsets.all(0.0),
+                title: label,
+                leading: _leading(field),
+                trailing: _trailing(field),
+                onTap: state.readOnly
+                    ? null
+                    : () {
+                        bool newValue = !(field.value ?? false);
+                        _changeVal(field, newValue);
+                      },
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderCheckboxState createState() => _FormBuilderCheckboxState();
 
   static Widget _checkbox(_FormBuilderCheckboxState field) {
     return Checkbox(
-      value: (field.value == null && !field.widget.tristate) ? false : field.value,
+      value:
+          (field.value == null && !field.widget.tristate) ? false : field.value,
       activeColor: field.widget.activeColor,
       checkColor: field.widget.checkColor,
       materialTapTargetSize: field.widget.materialTapTargetSize,
       tristate: field.widget.tristate,
       onChanged: field.readOnly
           ? null
-          : (bool value) {
-        field.requestFocus();
-        field.didChange(value);
-        if (field.widget.onChanged != null) field.widget.onChanged(value);
-      },
+          : (value) {
+              _changeVal(field, value);
+            },
     );
+  }
+
+  static void _changeVal(_FormBuilderCheckboxState field, bool value) {
+    field.didChange(value);
   }
 
   static Widget _leading(_FormBuilderCheckboxState field) {
@@ -99,8 +102,4 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
 
 class _FormBuilderCheckboxState extends FormBuilderFieldState<bool> {
   FormBuilderCheckbox get widget => super.widget;
-
-  void requestFocus(){
-    FocusScope.of(context).requestFocus(FocusNode());
-  }
 }
