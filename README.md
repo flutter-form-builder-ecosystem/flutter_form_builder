@@ -97,7 +97,7 @@ Column(
             initialValue: 10,
             step: 1,
           ),
-          FormBuilderRate(
+          FormBuilderRating(
             decoration: InputDecoration(labelText: "Rate this form"),
             attribute: "rate",
             iconSize: 32.0,
@@ -202,16 +202,16 @@ The currently supported fields include:
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
-* `FormBuilderRate` - For selection of a numerical value as a rating 
+* `FormBuilderRating` - For selection of a numerical value as a rating 
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
-* ~~`FormBuilderStepper`~~ - Selection of a number by tapping on a plus or minus symbol. Deprecated; replace with `FormBuilderTouchSpin`
 * `FormBuilderSwitch` - On/Off switch
 * `FormBuilderTextField` - For text input. Accepts input of single-line text, multi-line text, password,
 email, urls etc by using different configurations and validators
 * `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
+* `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
@@ -359,7 +359,7 @@ Made with [contributors-img](https://contributors-img.firebaseapp.com).
 ### Dependencies
 This package is dependent on the following packages and plugins:
 * [flutter_typeahead](https://pub.dev/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
-* [sy_flutter_widgets](https://pub.dev/packages/sy_flutter_widgets) by [Li Shuhao](https://github.com/lishuhao)
+* [rating_bar](https://pub.dev/packages/rating_bar) by [Joshua Matta](https://github.com/joshmatta)
 * [datetime_picker_formfield](https://pub.dev/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
 * [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)

@@ -1,3 +1,20 @@
+## [4.0.0-alpha.1] - 04-May-2020
+* Complete rewrite of implementation
+* Removed a few deprecations
+
+## [3.9.0] - 03-May-2020
+* New field type `FormBuilderImagePicker` courtesy of [Gustavo Vítor](https://github.com/gustavovitor)
+* Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/form_builder_map_field) to [sy_flutter_widgets](https://pub.dev/packages/rating_bar) with more configuration options
+* Added option to `showCheckmark` for FormBuilderFilterChip, along with other options. Closes #260
+* Added option to `allowEmpty` in `minLength` and `maxLength` validations. Closes #259
+* Fixed bug where `locale`, `textDirection`, `useRootNavigator` & `builder` not passed down to `showDatePicker()` and `showTimePicker()`
+* Assert `initialValue` is `null` or `controller` is `null` for `FormBuilderTextField`. Closes #258
+
+## [3.8.3] - 15-Apr-2020
+* Fix bug where `onChange` in FormBuilderDateTimePicker doesn't fire when field is cleared. Closes #254
+* Fix `The method 'dispose' was called on null.` issue in FormBuilderTypeAhead. Closes #256
+* Bumped up flutter_chips_input to v1.8.0 from v1.7.0
+
 ## [3.8.2] - 27-Mar-2020
 * `onTap` callback added to `FormBuilderTextField` 
 * Link to [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) added to README
