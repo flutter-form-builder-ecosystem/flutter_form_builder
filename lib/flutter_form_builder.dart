@@ -25,5 +25,6 @@ export './src/fields/form_builder_text_field.dart';
 export './src/fields/form_builder_touch_spin.dart';
 export './src/fields/form_builder_typeahead.dart';
 export './src/fields/form_builder_signature_pad.dart';
+export './src/fields/form_builder_image_picker.dart';
 
 export 'package:flutter_typeahead/flutter_typeahead.dart';
