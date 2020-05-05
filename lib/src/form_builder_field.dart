@@ -9,8 +9,9 @@ class FormBuilderField<T> extends FormField<T> {
   final ValueChanged<T> onChanged;
   final bool readOnly;
   final InputDecoration decoration;
+  final VoidCallback onReset;
 
-  FormBuilderField({
+  FormBuilderField( {
     @required this.attribute,
     @required FormFieldBuilder<T> builder,
     this.valueTransformer,
@@ -18,6 +19,7 @@ class FormBuilderField<T> extends FormField<T> {
     this.onChanged,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
+    this.onReset,
     //From Super
     Key key,
     FormFieldSetter<T> onSaved,
@@ -99,6 +101,14 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     super.didChange(value);
     requestFocus();
     if (widget.onChanged != null) widget.onChanged(value);
+  }
+
+  @override
+  void reset() {
+    super.reset();
+    if(widget.onReset != null){
+      widget.onReset();
+    }
   }
 
   void requestFocus() {
