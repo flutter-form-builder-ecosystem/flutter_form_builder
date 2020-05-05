@@ -11,7 +11,7 @@ class FormBuilderField<T> extends FormField<T> {
   final InputDecoration decoration;
   final VoidCallback onReset;
 
-  FormBuilderField( {
+  FormBuilderField({
     @required this.attribute,
     @required FormFieldBuilder<T> builder,
     this.valueTransformer,
@@ -64,13 +64,14 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   FormBuilderState _formBuilderState;
   bool _readOnly = false;
   T _initialValue;
+
   bool get _isPristine => value == _initialValue;
 
   @override
   void initState() {
     super.initState();
-    _readOnly = (formState?.readOnly == true) ? true : widget.readOnly;
     _formBuilderState = FormBuilder.of(context);
+    _readOnly = (_formBuilderState?.readOnly == true) ? true : widget.readOnly;
     _formBuilderState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
         (_formBuilderState.initialValue.containsKey(widget.attribute)
@@ -78,6 +79,24 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
             : null);
     setValue(_initialValue);
   }
+
+  /*@override
+  Widget build(BuildContext context) {
+    return FormField(
+      key: widget.key,
+      onSaved: widget.onSaved,
+      initialValue: initialValue,
+      autovalidate: widget.autovalidate,
+      enabled: widget.enabled,
+      builder: widget.builder,
+      validator: (val) {
+        for (int i = 0; i < widget.validators.length; i++) {
+          if (widget.validators[i](val) != null) return widget.validators[i](val);
+        }
+        return null;
+      },
+    );
+  }*/
 
   @override
   void dispose() {
@@ -106,7 +125,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void reset() {
     super.reset();
-    if(widget.onReset != null){
+    if (widget.onReset != null) {
       widget.onReset();
     }
   }
