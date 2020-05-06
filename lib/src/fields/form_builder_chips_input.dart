@@ -63,7 +63,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
               final _FormBuilderChipsInputState state = field;
 
               return ChipsInput(
-                key: UniqueKey(),
+                key: ObjectKey(state.value),
                 initialValue: field.value,
                 enabled: !state.readOnly,
                 decoration: decoration.copyWith(

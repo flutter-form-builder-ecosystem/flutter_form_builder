@@ -106,18 +106,54 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState {
 
   SignatureController signatureController;
 
+  SignatureController _controller = SignatureController();
+
   @override
   void initState() {
-    signatureController = widget.controller ?? SignatureController();
-    signatureController.addListener(() async {
-      didChange(await signatureController.toPngBytes());
-    });
     super.initState();
+    signatureController = widget.controller ?? _controller;
+    signatureController.addListener(() async {
+      var _value = await signatureController.toImage() != null
+          ? await signatureController.toPngBytes()
+          : null;
+      didChange(_value);
+    });
   }
 
   @override
   void reset() {
-    signatureController.clear();
+    signatureController?.clear();
     super.reset();
   }
+
+  /*@override
+  void didUpdateWidget(FormBuilderSignaturePad oldWidget) {
+    print("Widget did update...");
+    super.didUpdateWidget(oldWidget);
+    if (widget.controller != oldWidget.controller) {
+      oldWidget.controller?.removeListener(_handleControllerChanged);
+      widget.controller?.addListener(_handleControllerChanged);
+
+      if (oldWidget.controller != null && widget.controller == null) {
+        _controller = SignatureController(points: oldWidget.controller.value);
+      }
+      if (widget.controller != null) {
+        setValue(widget.controller.value);
+        if (oldWidget.controller == null) _controller = null;
+      }
+    }
+  }
+
+  void _handleControllerChanged() {
+    // Suppress changes that originated from within this class.
+    //
+    // In the case where a controller has been passed in to this widget, we
+    // register this change listener. In these cases, we'll also receive change
+    // notifications for changes originating from within this class -- for
+    // example, the reset() method. In such cases, the FormField value will
+    // already have been set.
+    if (signatureController.value != value) {
+      didChange(signatureController.value);
+    }
+  }*/
 }

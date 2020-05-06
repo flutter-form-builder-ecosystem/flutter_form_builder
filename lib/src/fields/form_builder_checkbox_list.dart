@@ -48,7 +48,6 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
               for (int i = 0; i < options.length; i++) {
                 checkboxList.addAll([
                   ListTile(
-                    key: UniqueKey(),
                     dense: true,
                     isThreeLine: false,
                     contentPadding: EdgeInsets.all(0.0),
@@ -58,7 +57,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
                     onTap: state.readOnly
                         ? null
                         : () {
-                            var currentValue = state.value;
+                            var currentValue = [...state.value];
                             if (!currentValue.contains(options[i].value)) {
                               currentValue.add(options[i].value);
                             } else {
@@ -80,6 +79,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
                   border: InputBorder.none,
                 ),
                 child: Column(
+                  key: ObjectKey(state.value),
                   children: checkboxList,
                 ),
               );

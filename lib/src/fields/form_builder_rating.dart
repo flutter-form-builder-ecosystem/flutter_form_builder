@@ -81,7 +81,7 @@ class FormBuilderRating extends FormBuilderField {
     }
 
     return RatingBar(
-      key: UniqueKey(),
+      key: ObjectKey(field.value),
       initialRating: field.value,
       maxRating: field.widget.max.toInt(),
       filledIcon: field.widget.icon,

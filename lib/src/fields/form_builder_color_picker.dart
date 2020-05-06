@@ -71,7 +71,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                 errorText: state.errorText,
                 enabled: !state.readOnly,
                 suffixIcon: LayoutBuilder(
-                  key: UniqueKey(),
+                  key: ObjectKey(state.value),
                   builder: (context, constraints) {
                     return Container(
                       height: constraints.minHeight,
