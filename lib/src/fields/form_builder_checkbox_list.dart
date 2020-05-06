@@ -59,10 +59,11 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
                         ? null
                         : () {
                             var currentValue = state.value;
-                            if (!currentValue.contains(options[i].value))
+                            if (!currentValue.contains(options[i].value)) {
                               currentValue.add(options[i].value);
-                            else
+                            } else {
                               currentValue.remove(options[i].value);
+                            }
                             state.didChange(currentValue);
                           },
                   ),
@@ -104,10 +105,11 @@ class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
           : (bool value) {
               field.requestFocus();
               var currValue = field.value;
-              if (value)
+              if (value) {
                 currValue.add(field.widget.options[i].value);
-              else
+              } else {
                 currValue.remove(field.widget.options[i].value);
+              }
               field.didChange(currValue);
             },
     );

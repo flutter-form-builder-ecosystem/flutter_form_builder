@@ -76,9 +76,10 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (allowEmpty && (valueCandidate == null || valueCandidate?.length == 0))
+      if (allowEmpty && (valueCandidate == null || valueCandidate?.length == 0)) {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
+      }
       if (valueCandidate != null && valueCandidate.length < minLength) {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
@@ -95,9 +96,10 @@ class FormBuilderValidators {
     bool allowEmpty = false,
   }) {
     return (valueCandidate) {
-      if (allowEmpty && (valueCandidate == null || valueCandidate?.length == 0))
+      if (allowEmpty && (valueCandidate == null || valueCandidate?.length == 0)) {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
+      }
 
       if (valueCandidate != null && valueCandidate.length > maxLength) {
         return errorText ??
@@ -161,8 +163,9 @@ class FormBuilderValidators {
     String errorText = "Value must be numeric.",
   }) {
     return (valueCandidate) {
-      if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty)
+      if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty) {
         return errorText;
+      }
       return null;
     };
   }

@@ -144,11 +144,4 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
 
 class _FormBuilderFilterChipState extends FormBuilderFieldState<dynamic> {
   FormBuilderFilterChip get widget => super.widget;
-  var _value;
-
-  set value(val) {
-    setState(() {
-      _value = val;
-    });
-  }
 }

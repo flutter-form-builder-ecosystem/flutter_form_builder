@@ -118,8 +118,9 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
                     state.typeAheadController.text =
                         suggestion != null ? suggestion.toString() : '';
                   }
-                  if (onSuggestionSelected != null)
+                  if (onSuggestionSelected != null) {
                     onSuggestionSelected(suggestion);
+                  }
                 },
                 getImmediateSuggestions: getImmediateSuggestions,
                 errorBuilder: errorBuilder,

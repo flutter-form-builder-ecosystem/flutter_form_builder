@@ -71,6 +71,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                 errorText: state.errorText,
                 enabled: !state.readOnly,
                 suffixIcon: LayoutBuilder(
+                  key: UniqueKey(),
                   builder: (context, constraints) {
                     return Container(
                       height: constraints.minHeight,
@@ -153,7 +154,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
 
   _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !readOnly) {
-      Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
+      await Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
       bool selected = await showDialog(
         context: context,
         builder: (BuildContext context) {

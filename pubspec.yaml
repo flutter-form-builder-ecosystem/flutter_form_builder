@@ -19,12 +19,13 @@ dependencies:
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
   flutter_touch_spin: ^1.0.1
-  image_picker: ^0.6.5+3
+  image_picker: ^0.6.6+1
   rating_bar: ^0.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.5.3
+  pedantic: ^1.8.0+1
 
 flutter:

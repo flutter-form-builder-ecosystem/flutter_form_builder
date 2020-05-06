@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
+import 'package:date_range_picker/date_range_picker.dart' as date_range_picker;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -52,9 +52,9 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   final DateTime initialLastDate;
   final DateTime firstDate;
   final DateTime lastDate;
-  final DateRangePicker.DatePickerMode initialDatePickerMode;
+  final date_range_picker.DatePickerMode initialDatePickerMode;
   final Locale locale;
-  final DateRangePicker.SelectableDayPredicate selectableDayPredicate;
+  final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
   final FormFieldSetter onSaved;
 
@@ -102,59 +102,61 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     this.showCursor,
     this.initialFirstDate,
     this.initialLastDate,
-    this.initialDatePickerMode = DateRangePicker.DatePickerMode.day,
+    this.initialDatePickerMode = date_range_picker.DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
     this.onSaved,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validators: validators,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final FormBuilderDateRangePickerState state = field;
-              return TextField(
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final FormBuilderDateRangePickerState state = field;
+
+            return TextField(
+              enabled: !state.readOnly,
+              style: style,
+              focusNode: state.readOnly
+                  ? AlwaysDisabledFocusNode()
+                  : state.effectiveFocusNode,
+              decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                style: style,
-                focusNode: state.readOnly
-                    ? AlwaysDisabledFocusNode()
-                    : state.effectiveFocusNode,
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: field.errorText,
-                ),
-                // initialValue: "${_initialValue ?? ''}",
-                maxLines: maxLines,
-                keyboardType: keyboardType,
-                obscureText: obscureText,
-                onEditingComplete: onEditingComplete,
-                controller: state.effectiveController,
-                autocorrect: autocorrect,
-                autofocus: autofocus,
-                buildCounter: buildCounter,
-                cursorColor: cursorColor,
-                cursorRadius: cursorRadius,
-                cursorWidth: cursorWidth,
-                enableInteractiveSelection: enableInteractiveSelection,
-                maxLength: maxLength,
-                inputFormatters: inputFormatters,
-                keyboardAppearance: keyboardAppearance,
-                maxLengthEnforced: maxLengthEnforced,
-                scrollPadding: scrollPadding,
-                textAlign: textAlign,
-                textCapitalization: textCapitalization,
-                textDirection: textDirection,
-                textInputAction: textInputAction,
-                strutStyle: strutStyle,
-                readOnly: state.readOnly,
-                expands: expands,
-                minLines: minLines,
-                showCursor: showCursor,
-              );
-            });
+                errorText: field.errorText,
+              ),
+              // initialValue: "${_initialValue ?? ''}",
+              maxLines: maxLines,
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              onEditingComplete: onEditingComplete,
+              controller: state.effectiveController,
+              autocorrect: autocorrect,
+              autofocus: autofocus,
+              buildCounter: buildCounter,
+              cursorColor: cursorColor,
+              cursorRadius: cursorRadius,
+              cursorWidth: cursorWidth,
+              enableInteractiveSelection: enableInteractiveSelection,
+              maxLength: maxLength,
+              inputFormatters: inputFormatters,
+              keyboardAppearance: keyboardAppearance,
+              maxLengthEnforced: maxLengthEnforced,
+              scrollPadding: scrollPadding,
+              textAlign: textAlign,
+              textCapitalization: textCapitalization,
+              textDirection: textDirection,
+              textInputAction: textInputAction,
+              strutStyle: strutStyle,
+              readOnly: state.readOnly,
+              expands: expands,
+              minLines: minLines,
+              showCursor: showCursor,
+            );
+          },
+        );
 
   @override
   FormBuilderDateRangePickerState createState() =>
@@ -203,7 +205,7 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
       var initialLastDate = value.isEmpty
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
-      final List<DateTime> picked = await DateRangePicker.showDatePicker(
+      final List<DateTime> picked = await date_range_picker.showDatePicker(
         context: context,
         initialFirstDate: initialFirstDate,
         initialLastDate: initialLastDate,
