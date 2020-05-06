@@ -69,22 +69,24 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               style: style,
               decoration: decoration.copyWith(
                 errorText: state.errorText,
-                suffixIcon: LayoutBuilder(builder: (context, constraints) {
-                  // print("Layout Builder ${state.value}");
-                  return Container(
-                    height: constraints.minHeight,
-                    width: constraints.minHeight,
-                    decoration: BoxDecoration(
-                      color: state.value,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.black,
+                enabled: !state.readOnly,
+                suffixIcon: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return Container(
+                      height: constraints.minHeight,
+                      width: constraints.minHeight,
+                      decoration: BoxDecoration(
+                        color: state.value,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  },
+                ),
               ),
-              enabled: enabled,
+              enabled: !state.readOnly,
               readOnly: state.readOnly,
               controller: state.effectiveController,
               focusNode: state.effectiveFocusNode,
@@ -216,7 +218,6 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   }
 
   _colorChanged(Color color) {
-    print("Color Changing...");
     setState(() {
       _selectedColor = color;
     });

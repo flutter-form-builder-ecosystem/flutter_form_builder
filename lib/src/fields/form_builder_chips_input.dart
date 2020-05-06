@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -62,7 +61,9 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
             readOnly: readOnly,
             builder: (FormFieldState field) {
               final _FormBuilderChipsInputState state = field;
+
               return ChipsInput(
+                key: UniqueKey(),
                 initialValue: field.value,
                 enabled: !state.readOnly,
                 decoration: decoration.copyWith(

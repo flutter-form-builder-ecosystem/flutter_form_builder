@@ -57,7 +57,7 @@ class MyHomePageState extends State<MyHomePage> {
               FormBuilder(
                 // context,
                 key: _fbKey,
-                autovalidate: false,
+                autovalidate: true,
                 initialValue: {
                   'movie_rating': 5,
                 },
@@ -105,7 +105,7 @@ class MyHomePageState extends State<MyHomePage> {
                       validators: [
                         FormBuilderValidators.required(),
                       ],
-                      initialValue: 1,
+                      initialValue: "Algeria",
                       builder: (FormFieldState<dynamic> field) {
                         return InputDecorator(
                           decoration: InputDecoration(
@@ -132,7 +132,7 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderColorPickerField(
                       attribute: 'color_picker',
                       // initialValue: Colors.yellow,
-                      colorPickerType: ColorPickerType.ColorPicker,
+                      colorPickerType: ColorPickerType.MaterialPicker,
                       decoration: InputDecoration(labelText: "Pick Color"),
                     ),
                     FormBuilderChipsInput(
@@ -332,39 +332,6 @@ class MyHomePageState extends State<MyHomePage> {
                         }
                       },
                     ),
-                    FormBuilderTypeAhead(
-                      decoration: InputDecoration(
-                        labelText: "Contact Person",
-                      ),
-                      initialValue: contacts[0],
-                      attribute: 'contact_person',
-                      onChanged: _onChanged,
-                      itemBuilder: (context, Contact contact) {
-                        return ListTile(
-                          title: Text(contact.name),
-                          subtitle: Text(contact.email),
-                        );
-                      },
-                      selectionToTextTransformer: (Contact c) => c.email,
-                      suggestionsCallback: (query) {
-                        if (query.length != 0) {
-                          var lowercaseQuery = query.toLowerCase();
-                          return contacts.where((contact) {
-                            return contact.name
-                                .toLowerCase()
-                                .contains(lowercaseQuery);
-                          }).toList(growable: false)
-                            ..sort((a, b) => a.name
-                                .toLowerCase()
-                                .indexOf(lowercaseQuery)
-                                .compareTo(b.name
-                                    .toLowerCase()
-                                    .indexOf(lowercaseQuery)));
-                        } else {
-                          return contacts;
-                        }
-                      },
-                    ),
                     FormBuilderRadio(
                       decoration:
                           InputDecoration(labelText: 'My chosen language'),
@@ -402,6 +369,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration:
                           InputDecoration(labelText: "Movie Rating (Archer)"),
                       attribute: "movie_rating",
+                      // initialValue: 1,
                       // textStyle: TextStyle(fontWeight: FontWeight.bold),
                       options: List.generate(5, (i) => i + 1)
                           .map((number) => FormBuilderFieldOption(
@@ -506,13 +474,13 @@ class MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-                    FormBuilderSignaturePad(
+                    /*FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
-                    ),
+                    ),*/
                     FormBuilderColorPickerField(
                       attribute: 'color',
                       // initialValue: Colors.red,
@@ -528,36 +496,11 @@ class MyHomePageState extends State<MyHomePage> {
                       ],
                       // readOnly: true,
                     ),
-                    FormBuilderField<String>(
-                      attribute: 'form_builder_field',
-                      // initialValue: 'One',
-                      validators: [
-                        FormBuilderValidators.required(),
-                      ],
-                      builder: (FormFieldState<dynamic> field) {
-                        return InputDecorator(
-                          decoration: InputDecoration(
-                            labelText: "Select option",
-                            contentPadding:
-                                EdgeInsets.only(top: 10.0, bottom: 0.0),
-                            border: InputBorder.none,
-                            errorText: field.errorText,
-                          ),
-                          child: DropdownButton(
-                            isExpanded: true,
-                            items: ["One", "Two"].map((option) {
-                              return DropdownMenuItem(
-                                child: Text("$option"),
-                                value: option,
-                              );
-                            }).toList(),
-                            value: field.value,
-                            onChanged: (value) {
-                              field.didChange(value);
-                            },
-                          ),
-                        );
-                      },
+                    FormBuilderImagePicker(
+                      attribute: "photos",
+                      decoration: InputDecoration(
+                        labelText: "Pick Photos",
+                      ),
                     ),
                   ],
                 ),

@@ -48,6 +48,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
               for (int i = 0; i < options.length; i++) {
                 checkboxList.addAll([
                   ListTile(
+                    key: UniqueKey(),
                     dense: true,
                     isThreeLine: false,
                     contentPadding: EdgeInsets.all(0.0),

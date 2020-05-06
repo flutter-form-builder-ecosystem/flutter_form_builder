@@ -39,55 +39,56 @@ class FormBuilderSegmentedControl extends FormBuilderField {
     this.unselectedColor,
     this.onSaved,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validators: validators,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final _FormBuilderSegmentedControlState state = field;
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderSegmentedControlState state = field;
 
-              return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: field.errorText,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: CupertinoSegmentedControl(
-                    borderColor: state.readOnly
-                        ? Theme.of(state.context).disabledColor
-                        : borderColor ?? Theme.of(state.context).primaryColor,
-                    selectedColor: state.readOnly
-                        ? Theme.of(state.context).disabledColor
-                        : selectedColor ?? Theme.of(state.context).primaryColor,
-                    pressedColor: state.readOnly
-                        ? Theme.of(state.context).disabledColor
-                        : pressedColor ?? Theme.of(state.context).primaryColor,
-                    groupValue: field.value,
-                    children: Map.fromIterable(
-                      options,
-                      key: (option) => option.value,
-                      value: (option) => Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0),
-                        child: option,
-                      ),
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: field.errorText,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: CupertinoSegmentedControl(
+                  borderColor: state.readOnly
+                      ? Theme.of(state.context).disabledColor
+                      : borderColor ?? Theme.of(state.context).primaryColor,
+                  selectedColor: state.readOnly
+                      ? Theme.of(state.context).disabledColor
+                      : selectedColor ?? Theme.of(state.context).primaryColor,
+                  pressedColor: state.readOnly
+                      ? Theme.of(state.context).disabledColor
+                      : pressedColor ?? Theme.of(state.context).primaryColor,
+                  groupValue: state.value,
+                  children: Map.fromIterable(
+                    options,
+                    key: (option) => option.value,
+                    value: (option) => Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10.0),
+                      child: option,
                     ),
-                    padding: padding,
-                    unselectedColor: unselectedColor,
-                    onValueChanged: (dynamic value) {
-                      if (state.readOnly) {
-                        field.reset();
-                      } else {
-                        field.didChange(value);
-                      }
-                    },
                   ),
+                  padding: padding,
+                  unselectedColor: unselectedColor,
+                  onValueChanged: (dynamic value) {
+                    if (state.readOnly) {
+                      field.reset();
+                    } else {
+                      field.didChange(value);
+                    }
+                  },
                 ),
-              );
-            });
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderSegmentedControlState createState() =>

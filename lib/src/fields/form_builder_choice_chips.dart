@@ -71,9 +71,10 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
             readOnly: readOnly,
             builder: (FormFieldState field) {
               final _FormBuilderChoiceChipState state = field;
+
               return InputDecorator(
                 decoration: decoration.copyWith(
-                  enabled: state.readOnly,
+                  enabled: !state.readOnly,
                   errorText: field.errorText,
                 ),
                 child: Wrap(
@@ -105,7 +106,7 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
                                 var choice = selected ? option.value : null;
                                 field.didChange(choice);
                               },
-                      )
+                      ),
                   ],
                 ),
               );

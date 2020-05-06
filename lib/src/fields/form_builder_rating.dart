@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -52,15 +53,50 @@ class FormBuilderRating extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderRateState state = field;
+
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
                 errorText: field.errorText,
               ),
-              child: state._buildRatingBar(),
+              child: _buildRatingBar(state),
             );
           },
         );
+
+  static Widget _buildRatingBar(_FormBuilderRateState field) {
+    if (field.readOnly) {
+      return RatingBar.readOnly(
+        initialRating: field.value,
+        maxRating: field.widget.max.toInt(),
+        filledIcon: field.widget.icon,
+        filledColor: field.widget.filledColor,
+        emptyIcon: field.widget.emptyIcon,
+        emptyColor: field.widget.emptyColor,
+        isHalfAllowed: field.widget.isHalfAllowed,
+        halfFilledIcon: field.widget.halfFilledIcon,
+        halfFilledColor: field.widget.halfFilledColor,
+        size: field.widget.iconSize,
+      );
+    }
+
+    return RatingBar(
+      key: UniqueKey(),
+      initialRating: field.value,
+      maxRating: field.widget.max.toInt(),
+      filledIcon: field.widget.icon,
+      filledColor: field.widget.filledColor,
+      emptyIcon: field.widget.emptyIcon,
+      emptyColor: field.widget.emptyColor,
+      isHalfAllowed: field.widget.isHalfAllowed,
+      halfFilledIcon: field.widget.halfFilledIcon,
+      halfFilledColor: field.widget.halfFilledColor,
+      size: field.widget.iconSize,
+      onRatingChanged: (val) {
+        field.didChange(val);
+      },
+    );
+  }
 
   @override
   _FormBuilderRateState createState() => _FormBuilderRateState();
@@ -68,36 +104,4 @@ class FormBuilderRating extends FormBuilderField {
 
 class _FormBuilderRateState extends FormBuilderFieldState {
   FormBuilderRating get widget => super.widget;
-
-  Widget _buildRatingBar() {
-    if (readOnly) {
-      return RatingBar.readOnly(
-        initialRating: value,
-        maxRating: widget.max.toInt(),
-        filledIcon: widget.icon,
-        filledColor: widget.filledColor,
-        emptyIcon: widget.emptyIcon,
-        emptyColor: widget.emptyColor,
-        isHalfAllowed: widget.isHalfAllowed,
-        halfFilledIcon: widget.halfFilledIcon,
-        halfFilledColor: widget.halfFilledColor,
-        size: widget.iconSize,
-      );
-    }
-    return RatingBar(
-      initialRating: value,
-      maxRating: widget.max.toInt(),
-      filledIcon: widget.icon,
-      filledColor: widget.filledColor,
-      emptyIcon: widget.emptyIcon,
-      emptyColor: widget.emptyColor,
-      isHalfAllowed: widget.isHalfAllowed,
-      halfFilledIcon: widget.halfFilledIcon,
-      halfFilledColor: widget.halfFilledColor,
-      size: widget.iconSize,
-      onRatingChanged: (value) {
-        didChange(value);
-      },
-    );
-  }
 }

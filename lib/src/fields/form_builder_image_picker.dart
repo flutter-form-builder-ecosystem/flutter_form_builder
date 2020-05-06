@@ -28,10 +28,10 @@ class FormBuilderImagePicker extends FormBuilderField {
     this.imageMargin,
     this.readOnly = false,
     this.onSaved,
-    this.decoration,
+    this.decoration = const InputDecoration(),
   }) : super(
           key: key,
-          initialValue: initialValue,
+          initialValue: initialValue ?? [],
           attribute: attribute,
           validators: validators,
           valueTransformer: valueTransformer,
@@ -39,6 +39,7 @@ class FormBuilderImagePicker extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderImagePickerState state = field;
+
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
@@ -47,55 +48,57 @@ class FormBuilderImagePicker extends FormBuilderField {
               child: Container(
                 height: imageHeight,
                 child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: state.value.map<Widget>((item) {
-                      return Container(
-                        width: imageWidth,
-                        height: imageHeight,
-                        margin: imageMargin,
-                        child: GestureDetector(
-                          child: item is String
-                              ? Image.network(item, fit: BoxFit.cover)
-                              : Image.file(item, fit: BoxFit.cover),
-                          onLongPress: state.readOnly
-                              ? null
-                              : () {
-                                  state.didChange(state.value..remove(item));
-                                },
-                        ),
-                      );
-                    }).toList()
-                      ..add(
-                        GestureDetector(
-                          child: Container(
-                              width: imageWidth,
-                              height: imageHeight,
-                              child: Icon(Icons.camera_enhance,
-                                  color: state.readOnly
-                                      ? Theme.of(state.context).disabledColor
-                                      : Theme.of(state.context).primaryColor),
-                              color: (state.readOnly
-                                      ? Theme.of(state.context).disabledColor
-                                      : Theme.of(state.context).primaryColor)
-                                  .withAlpha(50)),
-                          onTap: state.readOnly
-                              ? null
-                              : () {
-                                  showModalBottomSheet(
-                                    context: state.context,
-                                    builder: (_) {
-                                      return ImageSourceSheet(
-                                        onImageSelected: (image) {
-                                          state.didChange(
-                                              state.value..add(image));
-                                          Navigator.of(state.context).pop();
-                                        },
-                                      );
-                                    },
-                                  );
-                                },
-                        ),
-                      )),
+                  scrollDirection: Axis.horizontal,
+                  children: (state.value ?? []).map<Widget>((item) {
+                    return Container(
+                      width: imageWidth,
+                      height: imageHeight,
+                      margin: imageMargin,
+                      child: GestureDetector(
+                        child: item is String
+                            ? Image.network(item, fit: BoxFit.cover)
+                            : Image.file(item, fit: BoxFit.cover),
+                        onLongPress: state.readOnly
+                            ? null
+                            : () {
+                                state.didChange(state.value..remove(item));
+                              },
+                      ),
+                    );
+                  }).toList()
+                    ..add(
+                      GestureDetector(
+                        child: Container(
+                            width: imageWidth,
+                            height: imageHeight,
+                            child: Icon(Icons.camera_enhance,
+                                color: state.readOnly
+                                    ? Theme.of(state.context).disabledColor
+                                    : Theme.of(state.context).primaryColor),
+                            color: (state.readOnly
+                                    ? Theme.of(state.context).disabledColor
+                                    : Theme.of(state.context).primaryColor)
+                                .withAlpha(50)),
+                        onTap: state.readOnly
+                            ? null
+                            : () {
+                                showModalBottomSheet(
+                                  context: state.context,
+                                  builder: (_) {
+                                    return ImageSourceSheet(
+                                      onImageSelected: (image) {
+                                        if(image != null) {
+                                          state.didChange([...(state.value ?? []), image]);
+                                        }
+                                        Navigator.of(state.context).pop();
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                      ),
+                    ),
+                ),
               ),
             );
           },

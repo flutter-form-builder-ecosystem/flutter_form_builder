@@ -68,6 +68,7 @@ class FormBuilderTouchSpin extends FormBuilderField {
                 errorText: field.errorText,
               ),
               child: TouchSpin(
+                key: UniqueKey(),
                 min: min,
                 max: max,
                 step: step,
