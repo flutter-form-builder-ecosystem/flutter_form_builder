@@ -32,8 +32,6 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   /// The date the calendar opens to when displayed. Defaults to the current date.
   ///
   /// To preset the widget's value, use [initialValue] instead.
-  @Deprecated(
-      "This field will be removed in version 4.0.0. Selected date or Current date will be used on DatePicker calendar instead")
   final DateTime initialDate;
 
   /// The earliest choosable date. Defaults to 1900.
@@ -44,8 +42,6 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 
   /// The initial time prefilled in the picker dialog when it is shown. Defaults
   /// to noon. Explicitly set this to `null` to use the current time.
-  @Deprecated(
-      "This field will be removed in the next major version. Selected time or current time will be used on TimePicker instead")
   final TimeOfDay initialTime;
 
   /// If defined, the TextField [decoration]'s [suffixIcon] will be
@@ -347,7 +343,6 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         selectableDayPredicate: widget.selectableDayPredicate,
         initialDatePickerMode:
             widget.initialDatePickerMode ?? DatePickerMode.day,
-        // ignore: deprecated_member_use_from_same_package
         initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
         firstDate: widget.firstDate ?? DateTime(1900),
         lastDate: widget.lastDate ?? DateTime(2100),
@@ -366,10 +361,8 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     } else {
       return showTimePicker(
         context: context,
-        // initialTime: widget.initialTime ?? TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
-            // ignore: deprecated_member_use_from_same_package
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
         builder: widget.transitionBuilder,
         useRootNavigator: widget.useRootNavigator,
