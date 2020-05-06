@@ -103,7 +103,6 @@ class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
       onChanged: field.readOnly
           ? null
           : (bool value) {
-              field.requestFocus();
               var currValue = field.value;
               if (value) {
                 currValue.add(field.widget.options[i].value);

@@ -15,7 +15,7 @@ dependencies:
   flutter_chips_input: ^1.8.1
   datetime_picker_formfield: ^1.0.0
   flutter_colorpicker: ^0.3.4
-  # signature: ^2.0.0 - Doesn't implement onChanged, submitted PR. Meanwhile using local clone with onChanged
+  signature: ^3.0.0
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
   flutter_touch_spin: ^1.0.1

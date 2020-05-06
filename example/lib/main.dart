@@ -60,6 +60,7 @@ class MyHomePageState extends State<MyHomePage> {
                 autovalidate: true,
                 initialValue: {
                   'movie_rating': 5,
+                  'best_language': 'Dart',
                 },
                 readOnly: false,
                 child: Column(
@@ -145,7 +146,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ],
                       maxChips: 5,
                       findSuggestions: (String query) {
-                        if (query.length != 0) {
+                        if (query.isNotEmpty) {
                           var lowercaseQuery = query.toLowerCase();
                           return contacts.where((profile) {
                             return profile.name
@@ -315,7 +316,7 @@ class MyHomePageState extends State<MyHomePage> {
                       controller: TextEditingController(text: ''),
                       initialValue: "Uganda",
                       suggestionsCallback: (query) {
-                        if (query.length != 0) {
+                        if (query.isNotEmpty) {
                           var lowercaseQuery = query.toLowerCase();
                           return allCountries.where((country) {
                             return country
@@ -346,24 +347,6 @@ class MyHomePageState extends State<MyHomePage> {
                                     child: Text('$lang'),
                                   ))
                               .toList(growable: false),
-                    ),
-                    FormBuilderRadio(
-                      decoration: InputDecoration(labelText: 'Pick a number'),
-                      attribute: "number",
-                      options: [
-                        FormBuilderFieldOption(
-                          value: 1,
-                          child: Text('One'),
-                        ),
-                        FormBuilderFieldOption(
-                          value: 2,
-                          child: Text('Two'),
-                        ),
-                        FormBuilderFieldOption(
-                          value: 3,
-                          child: Text('Three'),
-                        ),
-                      ],
                     ),
                     FormBuilderSegmentedControl(
                       decoration:
@@ -423,8 +406,9 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderField(
                       attribute: 'custom',
                       valueTransformer: (val) {
-                        if (val == "Other")
+                        if (val == "Other") {
                           return _specifyTextFieldKey.currentState.value;
+                        }
                         return val;
                       },
                       builder: (FormFieldState<String> field) {
@@ -436,7 +420,8 @@ class MyHomePageState extends State<MyHomePage> {
                         ];
                         return InputDecorator(
                           decoration: InputDecoration(
-                              labelText: "What's your preferred language?"),
+                            labelText: "What's your preferred language?",
+                          ),
                           child: Column(
                             children: languages
                                 .map(
@@ -474,13 +459,16 @@ class MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-                    /*FormBuilderSignaturePad(
-                      decoration: InputDecoration(labelText: "Signature"),
+                    FormBuilderSignaturePad(
+                      decoration: InputDecoration(
+                        labelText: "Signature",
+                        border: OutlineInputBorder(),
+                      ),
                       attribute: "signature",
-                      // height: 250,
                       clearButtonText: "Start Over",
+                      border: Border.all(color: Colors.green),
                       onChanged: _onChanged,
-                    ),*/
+                    ),
                     FormBuilderColorPickerField(
                       attribute: 'color',
                       // initialValue: Colors.red,
