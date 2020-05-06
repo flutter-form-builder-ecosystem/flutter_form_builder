@@ -15,7 +15,7 @@
 
 ## [3.9.0] - 03-May-2020
 * New field type `FormBuilderImagePicker` courtesy of [Gustavo Vítor](https://github.com/gustavovitor)
-* Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/form_builder_map_field) to [sy_flutter_widgets](https://pub.dev/packages/rating_bar) with more configuration options
+* Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/form_builder_map_field) to [rating_bar](https://pub.dev/packages/rating_bar) with more configuration options
 * Added option to `showCheckmark` for FormBuilderFilterChip, along with other options. Closes #260
 * Added option to `allowEmpty` in `minLength` and `maxLength` validations. Closes #259
 * Fixed bug where `locale`, `textDirection`, `useRootNavigator` & `builder` not passed down to `showDatePicker()` and `showTimePicker()`
