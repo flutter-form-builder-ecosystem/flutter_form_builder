@@ -46,9 +46,10 @@ class FormBuilderState extends State<FormBuilder> {
 
   @override
   void initState() {
+    super.initState();
     _fieldKeys = {};
     _value = {};
-    super.initState();
+
   }
 
   @override
@@ -63,7 +64,7 @@ class FormBuilderState extends State<FormBuilder> {
     });
   }
 
-  registerFieldKey(String attribute, GlobalKey key) {
+  registerFieldKey(String attribute, GlobalKey<FormFieldState> key) {
     // assert(_fieldKeys.containsKey(attribute) == false, "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
     this._fieldKeys[attribute] = key;
   }

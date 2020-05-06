@@ -53,19 +53,21 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   bool get readOnly => _readOnly;
 
-  bool get isPristine => _isPristine;
+  bool get isPristine => value == _initialValue;
 
-  // bool get isPristine => value != _initialValue;
+  bool get autovalidate => !isPristine && widget.autovalidate;
 
   GlobalKey<FormFieldState> get fieldKey => _fieldKey;
 
   T get initialValue => _initialValue;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formBuilderState;
-  bool _readOnly = false;
-  T _initialValue;
 
-  bool get _isPristine => value == _initialValue;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+
+  FormBuilderState _formBuilderState;
+
+  bool _readOnly = false;
+
+  T _initialValue;
 
   @override
   void initState() {
@@ -79,24 +81,6 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
             : null);
     setValue(_initialValue);
   }
-
-  /*@override
-  Widget build(BuildContext context) {
-    return FormField(
-      key: widget.key,
-      onSaved: widget.onSaved,
-      initialValue: initialValue,
-      autovalidate: widget.autovalidate,
-      enabled: widget.enabled,
-      builder: widget.builder,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) return widget.validators[i](val);
-        }
-        return null;
-      },
-    );
-  }*/
 
   @override
   void dispose() {
@@ -118,13 +102,14 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void didChange(T value) {
     super.didChange(value);
-    requestFocus();
+    // requestFocus();
     if (widget.onChanged != null) widget.onChanged(value);
   }
 
   @override
   void reset() {
     super.reset();
+    setValue(_initialValue);
     if (widget.onReset != null) {
       widget.onReset();
     }
