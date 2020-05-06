@@ -61,7 +61,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
                       border: border,
                     ),
                     child: GestureDetector(
-                      onVerticalDragUpdate: (_){},
+                      onVerticalDragUpdate: (_) {},
                       child: Signature(
                         controller: state.signatureController,
                         width: width,

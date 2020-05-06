@@ -87,8 +87,9 @@ class FormBuilderImagePicker extends FormBuilderField {
                                   builder: (_) {
                                     return ImageSourceSheet(
                                       onImageSelected: (image) {
-                                        if(image != null) {
-                                          state.didChange([...(state.value ?? []), image]);
+                                        if (image != null) {
+                                          state.didChange(
+                                              [...(state.value ?? []), image]);
                                         }
                                         Navigator.of(state.context).pop();
                                       },

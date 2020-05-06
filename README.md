@@ -234,35 +234,32 @@ var options = ["Option 1", "Option 2", "Option 3"];
 ```
 
 ```dart
-FormBuilderCustomField(
+FormBuilderField(
   attribute: "name",
   validators: [
     FormBuilderValidators.required(),
   ],
-  formField: FormField(
-    enabled: true,
-    builder: (FormFieldState<dynamic> field) {
-      return InputDecorator(
-        decoration: InputDecoration(
-          labelText: "Select option",
-          contentPadding:
-              EdgeInsets.only(top: 10.0, bottom: 0.0),
-          border: InputBorder.none,
-          errorText: field.errorText,
+  builder: (FormFieldState<dynamic> field) {
+    return InputDecorator(
+      decoration: InputDecoration(
+        labelText: "Select option",
+        contentPadding:
+            EdgeInsets.only(top: 10.0, bottom: 0.0),
+        border: InputBorder.none,
+        errorText: field.errorText,
+      ),
+      child: Container(
+        height: 200,
+        child: CupertinoPicker(
+          itemExtent: 30,
+          children: options.map((c) => Text(c)).toList(),
+          onSelectedItemChanged: (index) {
+            field.didChange(options[index]);
+          },
         ),
-        child: Container(
-          height: 200,
-          child: CupertinoPicker(
-            itemExtent: 30,
-            children: options.map((c) => Text(c)).toList(),
-            onSelectedItemChanged: (index) {
-              field.didChange(options[index]);
-            },
-          ),
-        ),
-      );
-    },
-  ),
+      ),
+    );
+  },
 ),
 ```
 
@@ -363,7 +360,7 @@ This package is dependent on the following packages and plugins:
 * [datetime_picker_formfield](https://pub.dev/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
 * [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
 * [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
-* [signature](https://pub.dev/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
+* [signature](https://pub.dev/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o)
 * [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
 * [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours trully :-)](https://github.com/danvick)
 
@@ -380,11 +377,11 @@ Here are other field types for `flutter_form_builder`:
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` courtesy of [Sven Schöne](https://github.com/SvenSchoene)
 - [X] Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version
-- [ ] For RangeSlider use Flutter provided
+- [X] For RangeSlider use Flutter provided
+- [X] Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 ### Known Issues
 * Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior in Flutter 
-* Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 ## SUPPORT
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)

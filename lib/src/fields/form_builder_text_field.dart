@@ -119,7 +119,8 @@ class FormBuilderTextField extends FormBuilderField {
         assert(enableInteractiveSelection != null),
         super(
           key: key,
-          initialValue: controller != null ? controller.text : (initialValue ?? ''),
+          initialValue:
+              controller != null ? controller.text : (initialValue ?? ''),
           attribute: attribute,
           validators: validators,
           valueTransformer: valueTransformer,

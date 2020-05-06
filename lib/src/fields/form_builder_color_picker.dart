@@ -154,7 +154,8 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
 
   _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !readOnly) {
-      await Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
+      await Future.microtask(
+          () => FocusScope.of(context).requestFocus(FocusNode()));
       bool selected = await showDialog(
         context: context,
         builder: (BuildContext context) {

@@ -1,3 +1,13 @@
+## [4.0.0-alpha.2] - 06-May-2020
+* All form reset issues are fixed - I hope ;-). `UniqueKey()` used where  necessary
+* `FormBuilderField` to be used base to create custom fields. Removed unused `FormBuilderCustomField`
+* Add to `FormBuilderField.onReset` callback - to enable user to react to resetting by changing the UI to reflect reset
+* Fixed bug where setting form-wide `readOnly` to true doesn't affect fields
+* On field reset, use calculated `initialValue` instead of widget provided since it may have been set by the `FormBuilder`
+* Use signature: ^3.0.0 package instead of self-maintained - comes with breaking changes.
+* Added option for user to set own `border` for `FormBuilderSignaturePad`
+* Remove deprecation for `initialDate` and `initialTime` for `DateTimePicker` - user may prefer to set own
+
 ## [4.0.0-alpha.1] - 04-May-2020
 * Complete rewrite of package implementation
 * Removed a few deprecations
