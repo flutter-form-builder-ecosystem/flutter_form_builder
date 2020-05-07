@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/widgets/signature.dart';
-// import 'package:signature/signature.dart';
+import 'package:signature/signature.dart';
 
 class FormBuilderSignaturePad extends StatefulWidget {
   final String attribute;
@@ -14,15 +14,19 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final InputDecoration decoration;
   final ValueTransformer valueTransformer;
   final ValueChanged onChanged;
+  final FormFieldSetter onSaved;
 
+  @Deprecated("Set points within SignatureController")
   final List<Point> points;
   final double width;
   final double height;
   final Color backgroundColor;
+  @Deprecated("Set penColor within SignatureController")
   final Color penColor;
+  @Deprecated("Set penStrokeWidth within SignatureController")
   final double penStrokeWidth;
   final String clearButtonText;
-  final FormFieldSetter onSaved;
+  final SignatureController controller;
 
   FormBuilderSignaturePad({
     Key key,
@@ -41,6 +45,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.valueTransformer,
     this.onChanged,
     this.onSaved,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -50,18 +55,38 @@ class FormBuilderSignaturePad extends StatefulWidget {
 
 class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
   bool _readOnly = false;
-  Uint8List _value;
-  List<Point> _points;
+  Uint8List _initialValue;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  final GlobalKey<SignatureState> _signatureKey = GlobalKey<SignatureState>();
   FormBuilderState _formState;
+  SignatureController _effectiveController;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _points = widget.points;
+    _effectiveController = widget.controller ??
+        SignatureController(
+          points: widget.controller?.points ?? widget.points,
+          penColor: widget.controller?.penColor ?? widget.penColor,
+          penStrokeWidth:
+              widget.controller?.penStrokeWidth ?? widget.penStrokeWidth,
+        );
+    SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
+      _initialValue = await _getControllerValue();
+    });
+    _effectiveController.addListener(() async {
+      FocusScope.of(context).requestFocus(FocusNode());
+      var value = await _getControllerValue();
+      _fieldKey.currentState.didChange(value);
+      if (widget.onChanged != null) widget.onChanged(value);
+    });
     super.initState();
+  }
+
+  _getControllerValue() async {
+    return await _effectiveController.toImage() != null
+        ? await _effectiveController.toPngBytes()
+        : null;
   }
 
   @override
@@ -77,7 +102,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
     return FormField<Uint8List>(
       key: _fieldKey,
       enabled: !_readOnly,
-      initialValue: _value,
+      initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
           if (widget.validators[i](val) != null)
@@ -111,24 +136,10 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                 child: GestureDetector(
                   onVerticalDragUpdate: (_) {},
                   child: Signature(
-                    key: _signatureKey,
-                    points: _points,
                     width: widget.width,
                     height: widget.height,
                     backgroundColor: widget.backgroundColor,
-                    penColor: widget.penColor,
-                    penStrokeWidth: widget.penStrokeWidth,
-                    onChanged: (points) async {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      var signature =
-                          await _signatureKey.currentState.exportBytes();
-                      setState(() {
-                        _value = signature;
-                        _points = _signatureKey.currentState.exportPoints();
-                      });
-                      field.didChange(_value);
-                      if (widget.onChanged != null) widget.onChanged(_value);
-                    },
+                    controller: _effectiveController,
                   ),
                 ),
               ),
@@ -137,12 +148,8 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                   Expanded(child: SizedBox()),
                   FlatButton.icon(
                     onPressed: () {
-                      _signatureKey.currentState.clear();
-                      setState(() {
-                        _points = _signatureKey.currentState.exportPoints();
-                        _value = null;
-                      });
-                      field.didChange(_value);
+                      _effectiveController.clear();
+                      field.didChange(null);
                     },
                     label: Text(
                       widget.clearButtonText,
