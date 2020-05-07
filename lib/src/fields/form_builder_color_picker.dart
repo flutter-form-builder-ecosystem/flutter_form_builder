@@ -141,38 +141,44 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
     return FormField<Color>(
-        key: _fieldKey,
-        enabled: !_readOnly,
-        initialValue: _initialValue,
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
-              return widget.validators[i](val);
-          }
-          return null;
-        },
-        onSaved: (val) {
-          var transformed;
-          if (widget.valueTransformer != null) {
-            transformed = widget.valueTransformer(val);
-            _formState?.setAttributeValue(widget.attribute, transformed);
-          } else
-            _formState?.setAttributeValue(widget.attribute, val);
-          if (widget.onSaved != null) {
-            widget.onSaved(transformed ?? val);
-          }
-        },
-        autovalidate: widget.autovalidate ?? false,
-        builder: (FormFieldState<Color> field) {
-          return TextField(
-            style: widget.style,
-            decoration: widget.decoration.copyWith(
-              suffixIcon: LayoutBuilder(builder: (context, constraints) {
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue,
+      validator: (val) {
+        for (int i = 0; i < widget.validators.length; i++) {
+          if (widget.validators[i](val) != null)
+            return widget.validators[i](val);
+        }
+        return null;
+      },
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else
+          _formState?.setAttributeValue(widget.attribute, val);
+        if (widget.onSaved != null) {
+          widget.onSaved(transformed ?? val);
+        }
+      },
+      autovalidate: widget.autovalidate ?? false,
+      builder: (FormFieldState<Color> field) {
+        _effectiveController.text = HexColor(field.value)?.toHex();
+
+        return TextField(
+          style: widget.style,
+          decoration: widget.decoration.copyWith(
+            enabled: !_readOnly,
+            errorText: field.errorText,
+            suffixIcon: LayoutBuilder(
+              key: ObjectKey(field.value),
+              builder: (context, constraints) {
                 return Container(
                   height: constraints.minHeight,
                   width: constraints.minHeight,
                   decoration: BoxDecoration(
-                    color: field.value ?? Theme.of(context).primaryColor,
+                    color: field.value ?? Colors.transparent,
                     borderRadius: BorderRadius.all(
                       Radius.circular(constraints.minHeight / 2),
                     ),
@@ -181,39 +187,41 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                     ),
                   ),
                 );
-              }),
+              },
             ),
-            enabled: !_readOnly,
-            readOnly: true,
-            controller: _effectiveController,
-            focusNode: effectiveFocusNode,
-            textAlign: widget.textAlign,
-            autofocus: widget.autofocus,
-            expands: widget.expands,
-            scrollPadding: widget.scrollPadding,
-            autocorrect: widget.autocorrect,
-            textCapitalization: widget.textCapitalization,
-            keyboardType: widget.keyboardType,
-            obscureText: widget.obscureText,
-            buildCounter: widget.buildCounter,
-            cursorColor: widget.cursorColor,
-            cursorRadius: widget.cursorRadius,
-            cursorWidth: widget.cursorWidth,
-            enableInteractiveSelection: widget.enableInteractiveSelection,
-            inputFormatters: widget.inputFormatters,
-            keyboardAppearance: widget.keyboardAppearance,
-            maxLength: widget.maxLength,
-            maxLengthEnforced: widget.maxLengthEnforced,
-            maxLines: widget.maxLines,
-            minLines: widget.minLines,
-            onEditingComplete: widget.onEditingComplete,
-            // onFieldSubmitted: onFieldSubmitted,
-            showCursor: widget.showCursor,
-            strutStyle: widget.strutStyle,
-            textDirection: widget.textDirection,
-            textInputAction: widget.textInputAction,
-          );
-        });
+          ),
+          enabled: !_readOnly,
+          readOnly: true,
+          controller: _effectiveController,
+          focusNode: effectiveFocusNode,
+          textAlign: widget.textAlign,
+          autofocus: widget.autofocus,
+          expands: widget.expands,
+          scrollPadding: widget.scrollPadding,
+          autocorrect: widget.autocorrect,
+          textCapitalization: widget.textCapitalization,
+          keyboardType: widget.keyboardType,
+          obscureText: widget.obscureText,
+          buildCounter: widget.buildCounter,
+          cursorColor: widget.cursorColor,
+          cursorRadius: widget.cursorRadius,
+          cursorWidth: widget.cursorWidth,
+          enableInteractiveSelection: widget.enableInteractiveSelection,
+          inputFormatters: widget.inputFormatters,
+          keyboardAppearance: widget.keyboardAppearance,
+          maxLength: widget.maxLength,
+          maxLengthEnforced: widget.maxLengthEnforced,
+          maxLines: widget.maxLines,
+          minLines: widget.minLines,
+          onEditingComplete: widget.onEditingComplete,
+          // onFieldSubmitted: onFieldSubmitted,
+          showCursor: widget.showCursor,
+          strutStyle: widget.strutStyle,
+          textDirection: widget.textDirection,
+          textInputAction: widget.textInputAction,
+        );
+      },
+    );
   }
 
   void _setColor(Color color) {
@@ -229,7 +237,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
         context: context,
         builder: (BuildContext context) {
           Color pickedColor =
-              _fieldKey.currentState.value ?? Theme.of(context).primaryColor;
+              _fieldKey.currentState.value ?? Colors.transparent;
           return AlertDialog(
             // title: null, //const Text('Pick a color!'),
             content: SingleChildScrollView(

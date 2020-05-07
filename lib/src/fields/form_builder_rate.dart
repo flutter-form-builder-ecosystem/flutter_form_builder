@@ -125,6 +125,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
       );
     }
     return RatingBar(
+      key: ObjectKey(field.value),
       initialRating: field.value,
       maxRating: widget.max.toInt(),
       filledIcon: widget.icon,

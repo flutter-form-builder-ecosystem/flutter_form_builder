@@ -109,6 +109,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
       },
       builder: (FormFieldState<dynamic> field) {
         return ChipsInput(
+          key: ObjectKey(field.value),
           initialValue: field.value,
           enabled: !_readOnly,
           decoration: widget.decoration.copyWith(

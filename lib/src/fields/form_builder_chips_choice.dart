@@ -13,6 +13,7 @@ class FormBuilderChoiceChip extends StatefulWidget {
   final FormFieldSetter onSaved;
   final ValueTransformer valueTransformer;
   final List<FormBuilderFieldOption> options;
+
   // FilterChip Settings
   final double elevation, pressElevation;
   final Color selectedColor,
@@ -22,6 +23,7 @@ class FormBuilderChoiceChip extends StatefulWidget {
       shadowColor;
   final ShapeBorder shape;
   final MaterialTapTargetSize materialTapTargetSize;
+
   // Wrap Settings
   final Axis direction;
   final WrapAlignment alignment;
@@ -116,46 +118,47 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
-            decoration: widget.decoration.copyWith(
-              enabled: !_readOnly,
-              errorText: field.errorText,
-            ),
-            child: Wrap(
-                direction: widget.direction,
-                alignment: widget.alignment,
-                crossAxisAlignment: widget.crossAxisAlignment,
-                runAlignment: widget.runAlignment,
-                runSpacing: widget.runSpacing,
-                spacing: widget.spacing,
-                textDirection: widget.textDirection,
-                verticalDirection: widget.verticalDirection,
-                children: <Widget>[
-                  for (FormBuilderFieldOption option in widget.options)
-                    ChoiceChip(
-                        selectedColor: widget.selectedColor,
-                        disabledColor: widget.disabledColor,
-                        backgroundColor: widget.backgroundColor,
-                        shadowColor: widget.shadowColor,
-                        selectedShadowColor: widget.selectedShadowColor,
-                        shape: widget.shape,
-                        elevation: widget.elevation,
-                        pressElevation: widget.pressElevation,
-                        materialTapTargetSize: widget.materialTapTargetSize,
-                        label: option.child,
-                        selected: field.value == option.value,
-                        onSelected: _readOnly
-                            ? null
-                            : (bool selected) {
-                                setState(() {
-                                  FocusScope.of(context)
-                                      .requestFocus(FocusNode());
-                                  var choice = selected ? option.value : null;
-                                  field.didChange(choice);
-                                  if (widget.onChanged != null)
-                                    widget.onChanged(choice);
-                                });
-                              })
-                ]));
+          decoration: widget.decoration.copyWith(
+            enabled: !_readOnly,
+            errorText: field.errorText,
+          ),
+          child: Wrap(
+              direction: widget.direction,
+              alignment: widget.alignment,
+              crossAxisAlignment: widget.crossAxisAlignment,
+              runAlignment: widget.runAlignment,
+              runSpacing: widget.runSpacing,
+              spacing: widget.spacing,
+              textDirection: widget.textDirection,
+              verticalDirection: widget.verticalDirection,
+              children: <Widget>[
+                for (FormBuilderFieldOption option in widget.options)
+                  ChoiceChip(
+                    selectedColor: widget.selectedColor,
+                    disabledColor: widget.disabledColor,
+                    backgroundColor: widget.backgroundColor,
+                    shadowColor: widget.shadowColor,
+                    selectedShadowColor: widget.selectedShadowColor,
+                    shape: widget.shape,
+                    elevation: widget.elevation,
+                    pressElevation: widget.pressElevation,
+                    materialTapTargetSize: widget.materialTapTargetSize,
+                    label: option.child,
+                    selected: field.value == option.value,
+                    onSelected: _readOnly
+                        ? null
+                        : (bool selected) {
+                            setState(() {
+                              FocusScope.of(context).requestFocus(FocusNode());
+                              var choice = selected ? option.value : null;
+                              field.didChange(choice);
+                              if (widget.onChanged != null)
+                                widget.onChanged(choice);
+                            });
+                          },
+                  )
+              ]),
+        );
       },
     );
   }

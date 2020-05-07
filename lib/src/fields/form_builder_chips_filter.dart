@@ -156,7 +156,7 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
                           setState(
                             () {
                               FocusScope.of(context).requestFocus(FocusNode());
-                              var currentValue = field.value;
+                              var currentValue = [...field.value];
 
                               if (selected)
                                 currentValue.add(option.value);

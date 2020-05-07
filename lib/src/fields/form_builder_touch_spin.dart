@@ -113,6 +113,7 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
             errorText: field.errorText,
           ),
           child: TouchSpin(
+            key: ObjectKey(field.value),
             min: widget.min,
             max: widget.max,
             step: widget.step,

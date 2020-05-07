@@ -249,8 +249,8 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   @override
   void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
     super.dispose();
+    _formState?.unregisterFieldKey(widget.attribute);
   }
 
   @override
