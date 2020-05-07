@@ -36,7 +36,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, dynamic> _value;
 
-  Map<String, dynamic> get value => {...widget.initialValue ?? {}, ..._value};
+  Map<String, dynamic> get value => {...(widget.initialValue ?? {}), ..._value};
 
   Map<String, dynamic> get initialValue => widget.initialValue;
 
@@ -58,9 +58,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void setAttributeValue(String attribute, dynamic value) {
-    setState(() {
-      _value[attribute] = value;
-    });
+      _fieldKeys[attribute]?.currentState?.didChange(value);
   }
 
   registerFieldKey(String attribute, GlobalKey key) {
