@@ -9,12 +9,13 @@ class FormBuilderImagePicker extends FormBuilderField {
   final bool readOnly;
   final ValueTransformer valueTransformer;
   final ValueChanged onChanged;
+  final FormFieldSetter onSaved;
   final InputDecoration decoration;
 
   final double imageWidth;
   final double imageHeight;
   final EdgeInsets imageMargin;
-  final FormFieldSetter onSaved;
+  final Color iconColor;
 
   FormBuilderImagePicker({
     Key key,
@@ -29,6 +30,7 @@ class FormBuilderImagePicker extends FormBuilderField {
     this.readOnly = false,
     this.onSaved,
     this.decoration = const InputDecoration(),
+    this.iconColor,
   }) : super(
           key: key,
           initialValue: initialValue ?? [],
@@ -51,38 +53,38 @@ class FormBuilderImagePicker extends FormBuilderField {
                   scrollDirection: Axis.horizontal,
                   children: (state.value ?? []).map<Widget>((item) {
                     return Stack(
-                        alignment: Alignment.topRight,
-                        children: <Widget>[
-                          Container(
-                            width: imageWidth,
-                            height: imageHeight,
-                            margin: imageMargin,
-                            child: item is String
-                                ? Image.network(item, fit: BoxFit.cover)
-                                : Image.file(item, fit: BoxFit.cover),
-                          ),
-                          if (!state.readOnly)
-                            InkWell(
-                              onTap: () {
-                                state.didChange([...state.value]..remove(item));
-                              },
-                              child: Container(
-                                margin: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.withOpacity(.7),
-                                  shape: BoxShape.circle,
-                                ),
-                                alignment: Alignment.center,
-                                height: 22,
-                                width: 22,
-                                child: Icon(
-                                  Icons.close,
-                                  size: 18,
-                                  color: Colors.white,
-                                ),
+                      alignment: Alignment.topRight,
+                      children: <Widget>[
+                        Container(
+                          width: imageWidth,
+                          height: imageHeight,
+                          margin: imageMargin,
+                          child: item is String
+                              ? Image.network(item, fit: BoxFit.cover)
+                              : Image.file(item, fit: BoxFit.cover),
+                        ),
+                        if (!state.readOnly)
+                          InkWell(
+                            onTap: () {
+                              state.didChange([...state.value]..remove(item));
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(.7),
+                                shape: BoxShape.circle,
+                              ),
+                              alignment: Alignment.center,
+                              height: 22,
+                              width: 22,
+                              child: Icon(
+                                Icons.close,
+                                size: 18,
+                                color: Colors.white,
                               ),
                             ),
-                        ],
+                          ),
+                      ],
                     );
                   }).toList()
                     ..add(
@@ -93,10 +95,12 @@ class FormBuilderImagePicker extends FormBuilderField {
                             child: Icon(Icons.camera_enhance,
                                 color: state.readOnly
                                     ? Theme.of(state.context).disabledColor
-                                    : Theme.of(state.context).primaryColor),
+                                    : iconColor ??
+                                        Theme.of(state.context).primaryColor),
                             color: (state.readOnly
                                     ? Theme.of(state.context).disabledColor
-                                    : Theme.of(state.context).primaryColor)
+                                    : (iconColor ??
+                                        Theme.of(state.context).primaryColor))
                                 .withAlpha(50)),
                         onTap: state.readOnly
                             ? null
