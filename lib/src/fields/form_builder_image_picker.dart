@@ -12,11 +12,12 @@ class FormBuilderImagePicker extends StatefulWidget {
   final InputDecoration decoration;
   final ValueTransformer valueTransformer;
   final ValueChanged onChanged;
+  final FormFieldSetter onSaved;
 
   final double imageWidth;
   final double imageHeight;
   final EdgeInsets imageMargin;
-  final FormFieldSetter onSaved;
+  final Color iconColor;
 
   const FormBuilderImagePicker({
     Key key,
@@ -32,6 +33,7 @@ class FormBuilderImagePicker extends StatefulWidget {
     this.readOnly = false,
     this.onSaved,
     this.decoration = const InputDecoration(),
+    this.iconColor,
   }) : super(key: key);
 
   @override
@@ -131,10 +133,10 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                               child: Icon(Icons.camera_enhance,
                                   color: _readOnly
                                       ? Theme.of(context).disabledColor
-                                      : Theme.of(context).primaryColor),
+                                      : widget.iconColor ?? Theme.of(context).primaryColor),
                               color: (_readOnly
                                       ? Theme.of(context).disabledColor
-                                      : Theme.of(context).primaryColor)
+                                      : widget.iconColor ?? Theme.of(context).primaryColor)
                                   .withAlpha(50)),
                           onTap: _readOnly
                               ? null
