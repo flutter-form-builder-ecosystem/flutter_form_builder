@@ -41,8 +41,7 @@ class MyHomePageState extends State<MyHomePage> {
   bool readOnly = false;
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormFieldState> _specifyTextFieldKey =
-      GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _specifyTextFieldKey = GlobalKey<FormFieldState>();
 
   ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
@@ -74,16 +73,11 @@ class MyHomePageState extends State<MyHomePage> {
                         labelText: 'Select many options',
                       ),
                       options: [
-                        FormBuilderFieldOption(
-                            value: 'Test', child: Text('Test')),
-                        FormBuilderFieldOption(
-                            value: 'Test 1', child: Text('Test 1')),
-                        FormBuilderFieldOption(
-                            value: 'Test 2', child: Text('Test 2')),
-                        FormBuilderFieldOption(
-                            value: 'Test 3', child: Text('Test 3')),
-                        FormBuilderFieldOption(
-                            value: 'Test 4', child: Text('Test 4')),
+                        FormBuilderFieldOption(value: 'Test', child: Text('Test')),
+                        FormBuilderFieldOption(value: 'Test 1', child: Text('Test 1')),
+                        FormBuilderFieldOption(value: 'Test 2', child: Text('Test 2')),
+                        FormBuilderFieldOption(value: 'Test 3', child: Text('Test 3')),
+                        FormBuilderFieldOption(value: 'Test 4', child: Text('Test 4')),
                       ],
                     ),
                     FormBuilderChoiceChip(
@@ -92,16 +86,11 @@ class MyHomePageState extends State<MyHomePage> {
                         labelText: 'Select an option',
                       ),
                       options: [
-                        FormBuilderFieldOption(
-                            value: 'Test', child: Text('Test')),
-                        FormBuilderFieldOption(
-                            value: 'Test 1', child: Text('Test 1')),
-                        FormBuilderFieldOption(
-                            value: 'Test 2', child: Text('Test 2')),
-                        FormBuilderFieldOption(
-                            value: 'Test 3', child: Text('Test 3')),
-                        FormBuilderFieldOption(
-                            value: 'Test 4', child: Text('Test 4')),
+                        FormBuilderFieldOption(value: 'Test', child: Text('Test')),
+                        FormBuilderFieldOption(value: 'Test 1', child: Text('Test 1')),
+                        FormBuilderFieldOption(value: 'Test 2', child: Text('Test 2')),
+                        FormBuilderFieldOption(value: 'Test 3', child: Text('Test 3')),
+                        FormBuilderFieldOption(value: 'Test 4', child: Text('Test 4')),
                       ],
                     ),
                     FormBuilderCustomField(
@@ -116,8 +105,7 @@ class MyHomePageState extends State<MyHomePage> {
                           return InputDecorator(
                             decoration: InputDecoration(
                               labelText: "Select option",
-                              contentPadding:
-                                  EdgeInsets.only(top: 10.0, bottom: 0.0),
+                              contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
                               border: InputBorder.none,
                               errorText: field.errorText,
                             ),
@@ -125,8 +113,7 @@ class MyHomePageState extends State<MyHomePage> {
                               height: 200,
                               child: CupertinoPicker(
                                 itemExtent: 30,
-                                children:
-                                    allCountries.map((c) => Text(c)).toList(),
+                                children: allCountries.map((c) => Text(c)).toList(),
                                 onSelectedItemChanged: (index) {
                                   print(index);
                                   field.didChange(allCountries[index]);
@@ -156,19 +143,13 @@ class MyHomePageState extends State<MyHomePage> {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
                           return contacts.where((profile) {
-                            return profile.name
-                                    .toLowerCase()
-                                    .contains(query.toLowerCase()) ||
-                                profile.email
-                                    .toLowerCase()
-                                    .contains(query.toLowerCase());
+                            return profile.name.toLowerCase().contains(query.toLowerCase()) ||
+                                profile.email.toLowerCase().contains(query.toLowerCase());
                           }).toList(growable: false)
                             ..sort((a, b) => a.name
                                 .toLowerCase()
                                 .indexOf(lowercaseQuery)
-                                .compareTo(b.name
-                                    .toLowerCase()
-                                    .indexOf(lowercaseQuery)));
+                                .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
                         } else {
                           return const <Contact>[];
                         }
@@ -181,8 +162,7 @@ class MyHomePageState extends State<MyHomePage> {
                             backgroundImage: NetworkImage(profile.imageUrl),
                           ),
                           onDeleted: () => state.deleteChip(profile),
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         );
                       },
                       suggestionBuilder: (context, state, profile) {
@@ -274,8 +254,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ),
                       validators: [
                         FormBuilderValidators.requiredTrue(
-                          errorText:
-                              "You must accept terms and conditions to continue",
+                          errorText: "You must accept terms and conditions to continue",
                         ),
                       ],
                     ),
@@ -332,15 +311,12 @@ class MyHomePageState extends State<MyHomePage> {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
                           return allCountries.where((country) {
-                            return country
-                                .toLowerCase()
-                                .contains(lowercaseQuery);
+                            return country.toLowerCase().contains(lowercaseQuery);
                           }).toList(growable: false)
                             ..sort((a, b) => a
                                 .toLowerCase()
                                 .indexOf(lowercaseQuery)
-                                .compareTo(
-                                    b.toLowerCase().indexOf(lowercaseQuery)));
+                                .compareTo(b.toLowerCase().indexOf(lowercaseQuery)));
                         } else {
                           return allCountries;
                         }
@@ -364,35 +340,29 @@ class MyHomePageState extends State<MyHomePage> {
                         if (query.length != 0) {
                           var lowercaseQuery = query.toLowerCase();
                           return contacts.where((contact) {
-                            return contact.name
-                                .toLowerCase()
-                                .contains(lowercaseQuery);
+                            return contact.name.toLowerCase().contains(lowercaseQuery);
                           }).toList(growable: false)
                             ..sort((a, b) => a.name
                                 .toLowerCase()
                                 .indexOf(lowercaseQuery)
-                                .compareTo(b.name
-                                    .toLowerCase()
-                                    .indexOf(lowercaseQuery)));
+                                .compareTo(b.name.toLowerCase().indexOf(lowercaseQuery)));
                         } else {
                           return contacts;
                         }
                       },
                     ),
                     FormBuilderRadio(
-                      decoration:
-                          InputDecoration(labelText: 'My chosen language'),
+                      decoration: InputDecoration(labelText: 'My chosen language'),
                       attribute: "best_language",
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
-                      options:
-                          ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
-                              .map((lang) => FormBuilderFieldOption(
-                                    value: lang,
-                                    child: Text('$lang'),
-                                  ))
-                              .toList(growable: false),
+                      options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
+                          .map((lang) => FormBuilderFieldOption(
+                                value: lang,
+                                child: Text('$lang'),
+                              ))
+                          .toList(growable: false),
                     ),
                     FormBuilderRadio(
                       decoration: InputDecoration(labelText: 'Pick a number'),
@@ -413,8 +383,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                     FormBuilderSegmentedControl(
-                      decoration:
-                          InputDecoration(labelText: "Movie Rating (Archer)"),
+                      decoration: InputDecoration(labelText: "Movie Rating (Archer)"),
                       attribute: "movie_rating",
                       textStyle: TextStyle(fontWeight: FontWeight.bold),
                       options: List.generate(5, (i) => i + 1)
@@ -456,8 +425,7 @@ class MyHomePageState extends State<MyHomePage> {
                       isHalfAllowed: true,
                     ),
                     FormBuilderCheckboxList(
-                      decoration: InputDecoration(
-                          labelText: "The language of my people"),
+                      decoration: InputDecoration(labelText: "The language of my people"),
                       attribute: "languages",
                       initialValue: ["Dart"],
                       leadingInput: true,
@@ -473,21 +441,14 @@ class MyHomePageState extends State<MyHomePage> {
                     FormBuilderCustomField(
                       attribute: 'custom',
                       valueTransformer: (val) {
-                        if (val == "Other")
-                          return _specifyTextFieldKey.currentState.value;
+                        if (val == "Other") return _specifyTextFieldKey.currentState.value;
                         return val;
                       },
                       formField: FormField(
                         builder: (FormFieldState<String> field) {
-                          var languages = [
-                            "English",
-                            "Spanish",
-                            "Somali",
-                            "Other"
-                          ];
+                          var languages = ["English", "Spanish", "Somali", "Other"];
                           return InputDecorator(
-                            decoration: InputDecoration(
-                                labelText: "What's your preferred language?"),
+                            decoration: InputDecoration(labelText: "What's your preferred language?"),
                             child: Column(
                               children: languages
                                   .map(
@@ -511,8 +472,7 @@ class MyHomePageState extends State<MyHomePage> {
                                                     SizedBox(width: 20),
                                                     Expanded(
                                                       child: TextFormField(
-                                                        key:
-                                                            _specifyTextFieldKey,
+                                                        key: _specifyTextFieldKey,
                                                       ),
                                                     ),
                                                   ],
@@ -537,6 +497,33 @@ class MyHomePageState extends State<MyHomePage> {
                           }
                           return null;
                         }
+                      ],
+                    ),
+                    FormBuilderCountryPicker(
+                      defaultSelectedCountryIsoCode: 'US',
+                      attribute: "country",
+                      cursorColor: Colors.black,
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      priorityListByIsoCode: ['US'],
+                      valueTransformer: (value) {
+                        return value.isoCode;
+                      },
+                      decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Country"),
+                      validators: [
+                        FormBuilderValidators.required(errorText: 'This field required.'),
+                      ],
+                    ),
+                    FormBuilderPhoneField(
+                      attribute: 'phone_number',
+                      keyboardType: TextInputType.phone,
+                      defaultSelectedCountryIsoCode: 'US',
+                      cursorColor: Colors.black,
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Phone Number"),
+                      priorityListByIsoCode: ['US'],
+                      validators: [
+                        FormBuilderValidators.numeric(errorText: 'Invalid phone number'),
+                        FormBuilderValidators.required(errorText: 'This field reqired')
                       ],
                     ),
                     FormBuilderSignaturePad(
