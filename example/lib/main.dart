@@ -42,8 +42,7 @@ class MyHomePageState extends State<MyHomePage> {
   bool readOnly = false;
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormFieldState> _specifyTextFieldKey =
-      GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _specifyTextFieldKey = GlobalKey<FormFieldState>();
 
   ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
@@ -486,8 +485,8 @@ class MyHomePageState extends State<MyHomePage> {
                           "English",
                           "Spanish",
                           "Somali",
-                          "Other"
-                        ];
+                          "Other"];
+
                         return InputDecorator(
                           decoration: InputDecoration(
                               labelText: "What's your preferred language?"),
@@ -544,7 +543,33 @@ class MyHomePageState extends State<MyHomePage> {
                           return "Two or more images required.";
                         }
                         return null;
-                      }
+                      }],
+                    ),
+                    FormBuilderCountryPicker(
+                      defaultSelectedCountryIsoCode: 'US',
+                      attribute: "country",
+                      cursorColor: Colors.black,
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      priorityListByIsoCode: ['US'],
+                      valueTransformer: (value) {
+                        return value.isoCode;
+                      },
+                      decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Country"),
+                      validators: [
+                        FormBuilderValidators.required(errorText: 'This field required.'),
+                      ],
+                    ),
+                    FormBuilderPhoneField(
+                      attribute: 'phone_number',
+                      keyboardType: TextInputType.phone,
+                      defaultSelectedCountryIsoCode: 'US',
+                      cursorColor: Colors.black,
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Phone Number"),
+                      priorityListByIsoCode: ['US'],
+                      validators: [
+                        FormBuilderValidators.numeric(errorText: 'Invalid phone number'),
+                        FormBuilderValidators.required(errorText: 'This field reqired')
                     ],
                   ),
                   FormBuilderSignaturePad(
