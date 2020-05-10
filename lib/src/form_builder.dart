@@ -57,9 +57,9 @@ class FormBuilderState extends State<FormBuilder> {
     super.dispose();
   }
 
-  void setAttributeValue(String attribute, dynamic value) {
+  void updateFormAttributeValue(String attribute, dynamic value) {
     setState(() {
-      _value[attribute] = value;
+      _value = {..._value, attribute: value};
     });
   }
 

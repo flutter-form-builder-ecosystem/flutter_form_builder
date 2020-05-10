@@ -93,9 +93,9 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     super.save();
     if (widget.valueTransformer != null) {
       var transformed = widget.valueTransformer(value);
-      FormBuilder.of(context)?.setAttributeValue(widget.attribute, transformed);
+      FormBuilder.of(context)?.updateFormAttributeValue(widget.attribute, transformed);
     } else {
-      _formBuilderState?.setAttributeValue(widget.attribute, value);
+      _formBuilderState?.updateFormAttributeValue(widget.attribute, value);
     }
   }
 
