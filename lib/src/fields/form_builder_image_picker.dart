@@ -73,8 +73,9 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -83,8 +84,9 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -133,10 +135,12 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                               child: Icon(Icons.camera_enhance,
                                   color: _readOnly
                                       ? Theme.of(context).disabledColor
-                                      : widget.iconColor ?? Theme.of(context).primaryColor),
+                                      : widget.iconColor ??
+                                          Theme.of(context).primaryColor),
                               color: (_readOnly
                                       ? Theme.of(context).disabledColor
-                                      : widget.iconColor ?? Theme.of(context).primaryColor)
+                                      : widget.iconColor ??
+                                          Theme.of(context).primaryColor)
                                   .withAlpha(50)),
                           onTap: _readOnly
                               ? null

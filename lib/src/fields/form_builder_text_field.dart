@@ -109,10 +109,11 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    if (widget.controller != null)
+    if (widget.controller != null) {
       _effectiveController = widget.controller;
-    else
+    } else {
       _effectiveController.text = "${_initialValue ?? ''}";
+    }
 
     _effectiveController.addListener(() {
       if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
@@ -128,8 +129,9 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       key: _fieldKey,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -138,8 +140,9 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }

@@ -154,8 +154,9 @@ class FormBuilderValidators {
     String errorText = "Value must be numeric.",
   }) {
     return (valueCandidate) {
-      if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty)
+      if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty) {
         return errorText;
+      }
       return null;
     };
   }

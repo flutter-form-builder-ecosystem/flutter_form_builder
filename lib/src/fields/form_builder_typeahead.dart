@@ -134,8 +134,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
       key: _fieldKey,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -144,8 +145,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -176,8 +178,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
           _typeAheadController.text =
               suggestion != null ? suggestion.toString() : '';
         }
-        if (widget.onSuggestionSelected != null)
+        if (widget.onSuggestionSelected != null) {
           widget.onSuggestionSelected(suggestion);
+        }
         if (widget.onChanged != null) widget.onChanged(suggestion);
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,

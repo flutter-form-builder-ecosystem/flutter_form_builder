@@ -100,8 +100,9 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -110,8 +111,9 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -152,8 +154,9 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
                               FocusScope.of(context).requestFocus(FocusNode());
                               var choice = selected ? option.value : null;
                               field.didChange(choice);
-                              if (widget.onChanged != null)
+                              if (widget.onChanged != null) {
                                 widget.onChanged(choice);
+                              }
                             });
                           },
                   )

@@ -90,8 +90,9 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -100,8 +101,9 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }

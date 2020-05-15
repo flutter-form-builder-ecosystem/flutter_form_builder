@@ -114,8 +114,9 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
       initialValue: _initialValue ?? [],
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -124,8 +125,9 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -158,14 +160,16 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
                               FocusScope.of(context).requestFocus(FocusNode());
                               var currentValue = [...field.value];
 
-                              if (selected)
+                              if (selected) {
                                 currentValue.add(option.value);
-                              else
+                              } else {
                                 currentValue.remove(option.value);
+                              }
 
                               field.didChange(currentValue);
-                              if (widget.onChanged != null)
+                              if (widget.onChanged != null) {
                                 widget.onChanged(currentValue);
+                              }
                             },
                           );
                         },

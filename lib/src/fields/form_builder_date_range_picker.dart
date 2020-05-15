@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
+import 'package:date_range_picker/date_range_picker.dart' as date_range_picker;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -52,9 +52,9 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   final DateTime initialLastDate;
   final DateTime firstDate;
   final DateTime lastDate;
-  final DateRangePicker.DatePickerMode initialDatePickerMode;
+  final date_range_picker.DatePickerMode initialDatePickerMode;
   final Locale locale;
-  final DateRangePicker.SelectableDayPredicate selectableDayPredicate;
+  final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
   final FormFieldSetter onSaved;
 
@@ -102,7 +102,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.showCursor,
     this.initialFirstDate,
     this.initialLastDate,
-    this.initialDatePickerMode = DateRangePicker.DatePickerMode.day,
+    this.initialDatePickerMode = date_range_picker.DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
     this.onSaved,
@@ -171,8 +171,9 @@ class FormBuilderDateRangePickerState
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -181,8 +182,9 @@ class FormBuilderDateRangePickerState
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -239,7 +241,7 @@ class FormBuilderDateRangePickerState
       var initialLastDate = value.isEmpty
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
-      final List<DateTime> picked = await DateRangePicker.showDatePicker(
+      final List<DateTime> picked = await date_range_picker.showDatePicker(
         context: context,
         initialFirstDate: initialFirstDate,
         initialLastDate: initialLastDate,

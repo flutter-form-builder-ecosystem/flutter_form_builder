@@ -77,10 +77,11 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
           : (bool value) {
               FocusScope.of(context).requestFocus(FocusNode());
               var currValue = [...field.value];
-              if (value)
+              if (value) {
                 currValue.add(widget.options[i].value);
-              else
+              } else {
                 currValue.remove(widget.options[i].value);
+              }
               field.didChange(currValue);
               if (widget.onChanged != null) widget.onChanged(currValue);
             },
@@ -107,8 +108,9 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
       initialValue: _initialValue ?? [],
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -117,8 +119,9 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -138,13 +141,15 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                   ? null
                   : () {
                       var currentValue = [...field.value];
-                      if (!currentValue.contains(widget.options[i].value))
+                      if (!currentValue.contains(widget.options[i].value)) {
                         currentValue.add(widget.options[i].value);
-                      else
+                      } else {
                         currentValue.remove(widget.options[i].value);
+                      }
                       field.didChange(currentValue);
-                      if (widget.onChanged != null)
+                      if (widget.onChanged != null) {
                         widget.onChanged(currentValue);
+                      }
                     },
             ),
             Divider(height: 0.0),

@@ -130,7 +130,7 @@ class SignatureState extends State<Signature> {
       // IF USER LEFT THE BOUNDARY AND AND ALSO RETURNED BACK
       // IN ONE MOVE, RETYPE IT AS TAP, AS WE DO NOT WANT TO
       // LINK IT WITH PREVIOUS POINT
-      if (_points.length != 0 && _isFar(o, _points.last.offset)) {
+      if (_points.isNotEmpty && _isFar(o, _points.last.offset)) {
         type = PointType.tap;
       }
       setState(() {

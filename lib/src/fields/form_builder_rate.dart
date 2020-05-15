@@ -81,8 +81,9 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -91,8 +92,9 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -109,8 +111,8 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
     );
   }
 
-  Widget _buildRatingBar(FormFieldState<dynamic> field){
-    if(_readOnly){
+  Widget _buildRatingBar(FormFieldState<dynamic> field) {
+    if (_readOnly) {
       return RatingBar.readOnly(
         initialRating: field.value,
         maxRating: widget.max.toInt(),

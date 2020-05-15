@@ -66,9 +66,12 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _effectiveController = widget.controller ??
         SignatureController(
+          // ignore: deprecated_member_use_from_same_package
           points: widget.controller?.points ?? widget.points,
+          // ignore: deprecated_member_use_from_same_package
           penColor: widget.controller?.penColor ?? widget.penColor,
           penStrokeWidth:
+              // ignore: deprecated_member_use_from_same_package
               widget.controller?.penStrokeWidth ?? widget.penStrokeWidth,
         );
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
@@ -105,8 +108,9 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
+          if (widget.validators[i](val) != null) {
             return widget.validators[i](val);
+          }
         }
         return null;
       },
@@ -115,8 +119,9 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
-        } else
+        } else {
           _formState?.setAttributeValue(widget.attribute, val);
+        }
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }

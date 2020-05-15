@@ -83,16 +83,19 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
             var transformed = widget.valueTransformer(val);
             FormBuilder.of(context)
                 ?.setAttributeValue(widget.attribute, transformed);
-          } else
+          } else {
             _formState?.setAttributeValue(widget.attribute, val);
+          }
         },
         validator: (val) {
           for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null)
+            if (widget.validators[i](val) != null) {
               return widget.validators[i](val);
+            }
           }
-          if (widget.formField.validator != null)
+          if (widget.formField.validator != null) {
             return widget.formField.validator(val);
+          }
           return null;
         },
         builder:
