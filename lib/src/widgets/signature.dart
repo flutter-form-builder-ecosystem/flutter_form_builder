@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+//TODO: Delete class. No longer used
 ///Signature canvas. All parameters are optional. It expands by default. This behaviour can be
 ///overridden using width and/or height parameters.
 class Signature extends StatefulWidget {

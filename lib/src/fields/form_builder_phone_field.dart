@@ -155,7 +155,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   }
 
   _parsePhone() async {
-    if (_initialValue.isNotEmpty) {
+    if (_initialValue != null && _initialValue.isNotEmpty) {
       try {
         var parseResult = await PhoneNumber().parse(_initialValue);
         print(parseResult);
