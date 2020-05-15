@@ -221,7 +221,7 @@ class FormBuilderDateRangePickerState
           textDirection: widget.textDirection,
           textInputAction: widget.textInputAction,
           strutStyle: widget.strutStyle,
-          readOnly: _readOnly,
+          readOnly: true,
           expands: widget.expands,
           minLines: widget.minLines,
           showCursor: widget.showCursor,

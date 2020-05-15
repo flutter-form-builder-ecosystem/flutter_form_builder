@@ -292,7 +292,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       autofocus: widget.autofocus,
       decoration: widget.decoration,
       readOnly: true,
-      enabled: _readOnly ? false : widget.enabled,
+      enabled: !_readOnly,
       autocorrect: widget.autocorrect,
       controller: _textFieldController,
       focusNode: _focusNode,
