@@ -76,12 +76,8 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (allowEmpty &&
-          (valueCandidate == null || valueCandidate?.length == 0)) {
-        return errorText ??
-            "Value must have a length greater than or equal to $minLength";
-      }
-      if (valueCandidate != null && valueCandidate.length < minLength) {
+      final valueLength = valueCandidate?.length ?? 0;
+      if (valueLength < minLength && (!allowEmpty || valueLength > 0)) {
         return errorText ??
             "Value must have a length greater than or equal to $minLength";
       }
@@ -94,15 +90,8 @@ class FormBuilderValidators {
   static FormFieldValidator maxLength(
     num maxLength, {
     String errorText,
-    bool allowEmpty = false,
   }) {
     return (valueCandidate) {
-      if (allowEmpty &&
-          (valueCandidate == null || valueCandidate?.length == 0)) {
-        return errorText ??
-            "Value must have a length greater than or equal to $minLength";
-      }
-
       if (valueCandidate != null && valueCandidate.length > maxLength) {
         return errorText ??
             "Value must have a length less than or equal to $maxLength";
