@@ -42,7 +42,8 @@ class MyHomePageState extends State<MyHomePage> {
   bool readOnly = false;
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormFieldState> _specifyTextFieldKey = GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _specifyTextFieldKey =
+      GlobalKey<FormFieldState>();
 
   ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
@@ -56,7 +57,6 @@ class MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: ListView(
-
           children: <Widget>[
             FormBuilder(
               // context,
@@ -86,6 +86,7 @@ class MyHomePageState extends State<MyHomePage> {
                           value: 'Test 4', child: Text('Test 4')),
                     ],
                   ),
+                  SizedBox(height: 15),
                   FormBuilderChoiceChip(
                     attribute: 'choice_chip',
                     decoration: InputDecoration(
@@ -104,6 +105,7 @@ class MyHomePageState extends State<MyHomePage> {
                           value: 'Test 4', child: Text('Test 4')),
                     ],
                   ),
+                  SizedBox(height: 15),
                   FormBuilderCustomField(
                     attribute: "name",
                     validators: [
@@ -137,12 +139,14 @@ class MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderColorPicker(
                     attribute: 'color_picker',
                     // initialValue: Colors.yellow,
                     colorPickerType: ColorPickerType.SlidePicker,
                     decoration: InputDecoration(labelText: "Pick Color"),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderChipsInput(
                     decoration: InputDecoration(labelText: "Chips"),
                     attribute: 'chips_test',
@@ -153,7 +157,7 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                     maxChips: 5,
                     findSuggestions: (String query) {
-                      if (query.length != 0) {
+                      if (query.isNotEmpty) {
                         var lowercaseQuery = query.toLowerCase();
                         return contacts.where((profile) {
                           return profile.name
@@ -181,8 +185,7 @@ class MyHomePageState extends State<MyHomePage> {
                           backgroundImage: NetworkImage(profile.imageUrl),
                         ),
                         onDeleted: () => state.deleteChip(profile),
-                        materialTapTargetSize:
-                            MaterialTapTargetSize.shrinkWrap,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       );
                     },
                     suggestionBuilder: (context, state, profile) {
@@ -197,6 +200,7 @@ class MyHomePageState extends State<MyHomePage> {
                       );
                     },
                   ),
+                  SizedBox(height: 15),
                   FormBuilderDateTimePicker(
                     attribute: "date",
                     onChanged: _onChanged,
@@ -209,6 +213,7 @@ class MyHomePageState extends State<MyHomePage> {
                     // initialValue: DateTime.now(),
                     // readonly: true,
                   ),
+                  SizedBox(height: 15),
                   FormBuilderDateRangePicker(
                     attribute: "date_range",
                     firstDate: DateTime(1970),
@@ -221,6 +226,7 @@ class MyHomePageState extends State<MyHomePage> {
                       hintText: "Hint text",
                     ),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderSlider(
                     attribute: "slider",
                     validators: [FormBuilderValidators.min(6)],
@@ -235,6 +241,7 @@ class MyHomePageState extends State<MyHomePage> {
                       labelText: "Number of things",
                     ),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderRangeSlider(
                     attribute: "range_slider",
                     validators: [FormBuilderValidators.min(6)],
@@ -249,6 +256,7 @@ class MyHomePageState extends State<MyHomePage> {
                       labelText: "Price Range",
                     ),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderCheckbox(
                     attribute: 'accept_terms',
                     initialValue: false,
@@ -278,6 +286,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 15),
                   FormBuilderTextField(
                     attribute: "age",
                     decoration: InputDecoration(
@@ -296,6 +305,7 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                     keyboardType: TextInputType.number,
                   ),
+                  SizedBox(height: 15),
                   FormBuilderDropdown(
                     attribute: "gender",
                     decoration: InputDecoration(
@@ -317,6 +327,7 @@ class MyHomePageState extends State<MyHomePage> {
                             ))
                         .toList(),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderTypeAhead(
                     decoration: InputDecoration(
                       labelText: "Country",
@@ -331,12 +342,10 @@ class MyHomePageState extends State<MyHomePage> {
                     controller: TextEditingController(text: ''),
                     initialValue: "Uganda",
                     suggestionsCallback: (query) {
-                      if (query.length != 0) {
+                      if (query.isNotEmpty) {
                         var lowercaseQuery = query.toLowerCase();
                         return allCountries.where((country) {
-                          return country
-                              .toLowerCase()
-                              .contains(lowercaseQuery);
+                          return country.toLowerCase().contains(lowercaseQuery);
                         }).toList(growable: false)
                           ..sort((a, b) => a
                               .toLowerCase()
@@ -348,6 +357,7 @@ class MyHomePageState extends State<MyHomePage> {
                       }
                     },
                   ),
+                  SizedBox(height: 15),
                   FormBuilderTypeAhead<Contact>(
                     decoration: InputDecoration(
                       labelText: "Contact Person",
@@ -363,7 +373,7 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                     selectionToTextTransformer: (Contact c) => c.email,
                     suggestionsCallback: (query) {
-                      if (query.length != 0) {
+                      if (query.isNotEmpty) {
                         var lowercaseQuery = query.toLowerCase();
                         return contacts.where((contact) {
                           return contact.name
@@ -381,6 +391,7 @@ class MyHomePageState extends State<MyHomePage> {
                       }
                     },
                   ),
+                  SizedBox(height: 15),
                   FormBuilderRadio(
                     decoration:
                         InputDecoration(labelText: 'My chosen language'),
@@ -388,14 +399,14 @@ class MyHomePageState extends State<MyHomePage> {
                     leadingInput: true,
                     onChanged: _onChanged,
                     validators: [FormBuilderValidators.required()],
-                    options:
-                        ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
-                            .map((lang) => FormBuilderFieldOption(
-                                  value: lang,
-                                  child: Text('$lang'),
-                                ))
-                            .toList(growable: false),
+                    options: ["Dart", "Kotlin", "Java", "Swift", "Objective-C"]
+                        .map((lang) => FormBuilderFieldOption(
+                              value: lang,
+                              child: Text('$lang'),
+                            ))
+                        .toList(growable: false),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderRadio(
                     decoration: InputDecoration(labelText: 'Pick a number'),
                     attribute: "number",
@@ -414,6 +425,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 15),
                   FormBuilderSegmentedControl(
                     decoration:
                         InputDecoration(labelText: "Movie Rating (Archer)"),
@@ -430,12 +442,14 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(),
                     onChanged: _onChanged,
                   ),
+                  SizedBox(height: 15),
                   FormBuilderSwitch(
                     label: Text('I Accept the tems and conditions'),
                     attribute: "accept_terms_switch",
                     initialValue: true,
                     onChanged: _onChanged,
                   ),
+                  SizedBox(height: 15),
                   FormBuilderTouchSpin(
                     decoration: InputDecoration(labelText: "Stepper"),
                     attribute: "stepper",
@@ -445,6 +459,7 @@ class MyHomePageState extends State<MyHomePage> {
                     addIcon: Icon(Icons.arrow_right),
                     subtractIcon: Icon(Icons.arrow_left),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderRate(
                     decoration: InputDecoration(labelText: "Rate this form"),
                     attribute: "rate",
@@ -457,9 +472,10 @@ class MyHomePageState extends State<MyHomePage> {
                     emptyColor: Colors.pink[100],
                     isHalfAllowed: true,
                   ),
+                  SizedBox(height: 15),
                   FormBuilderCheckboxList(
-                    decoration: InputDecoration(
-                        labelText: "The language of my people"),
+                    decoration:
+                        InputDecoration(labelText: "The language of my people"),
                     attribute: "languages",
                     initialValue: ["Dart"],
                     leadingInput: true,
@@ -472,11 +488,13 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                     onChanged: _onChanged,
                   ),
+                  SizedBox(height: 15),
                   FormBuilderCustomField(
                     attribute: 'custom',
                     valueTransformer: (val) {
-                      if (val == "Other")
+                      if (val == "Other") {
                         return _specifyTextFieldKey.currentState.value;
+                      }
                       return val;
                     },
                     formField: FormField(
@@ -485,7 +503,8 @@ class MyHomePageState extends State<MyHomePage> {
                           "English",
                           "Spanish",
                           "Somali",
-                          "Other"];
+                          "Other"
+                        ];
 
                         return InputDecorator(
                           decoration: InputDecoration(
@@ -513,8 +532,7 @@ class MyHomePageState extends State<MyHomePage> {
                                                   SizedBox(width: 20),
                                                   Expanded(
                                                     child: TextFormField(
-                                                      key:
-                                                          _specifyTextFieldKey,
+                                                      key: _specifyTextFieldKey,
                                                     ),
                                                   ),
                                                 ],
@@ -529,6 +547,7 @@ class MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
+                  SizedBox(height: 15),
                   FormBuilderImagePicker(
                     attribute: "images",
                     decoration: InputDecoration(
@@ -543,35 +562,47 @@ class MyHomePageState extends State<MyHomePage> {
                           return "Two or more images required.";
                         }
                         return null;
-                      }],
-                    ),
-                    FormBuilderCountryPicker(
-                      defaultSelectedCountryIsoCode: 'US',
-                      attribute: "country",
-                      cursorColor: Colors.black,
-                      style: TextStyle(color: Colors.black, fontSize: 18),
-                      priorityListByIsoCode: ['US'],
-                      valueTransformer: (value) {
-                        return value.isoCode;
-                      },
-                      decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Country"),
-                      validators: [
-                        FormBuilderValidators.required(errorText: 'This field required.'),
-                      ],
-                    ),
-                    FormBuilderPhoneField(
-                      attribute: 'phone_number',
-                      keyboardType: TextInputType.phone,
-                      defaultSelectedCountryIsoCode: 'US',
-                      cursorColor: Colors.black,
-                      style: TextStyle(color: Colors.black, fontSize: 18),
-                      decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Phone Number"),
-                      priorityListByIsoCode: ['US'],
-                      validators: [
-                        FormBuilderValidators.numeric(errorText: 'Invalid phone number'),
-                        FormBuilderValidators.required(errorText: 'This field reqired')
+                      }
                     ],
                   ),
+                  SizedBox(height: 15),
+                  FormBuilderCountryPicker(
+                    initialValue: 'Germany',
+                    attribute: "country",
+                    cursorColor: Colors.black,
+                    // style: TextStyle(color: Colors.black, fontSize: 18),
+                    priorityListByIsoCode: ['US'],
+                    valueTransformer: (value) {
+                      return value.isoCode;
+                    },
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), labelText: "Country"),
+                    validators: [
+                      FormBuilderValidators.required(
+                          errorText: 'This field required.'),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  FormBuilderPhoneField(
+                    attribute: 'phone_number',
+                    initialValue: "+254",
+                    // defaultSelectedCountryIsoCode: 'KE',
+                    cursorColor: Colors.black,
+                    // style: TextStyle(color: Colors.black, fontSize: 18),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Phone Number",
+                    ),
+                    onChanged: _onChanged,
+                    priorityListByIsoCode: ['US'],
+                    validators: [
+                      FormBuilderValidators.numeric(
+                          errorText: 'Invalid phone number'),
+                      FormBuilderValidators.required(
+                          errorText: 'This field reqired')
+                    ],
+                  ),
+                  SizedBox(height: 15),
                   FormBuilderSignaturePad(
                     decoration: InputDecoration(labelText: "Signature"),
                     attribute: "signature",
@@ -579,6 +610,7 @@ class MyHomePageState extends State<MyHomePage> {
                     clearButtonText: "Start Over",
                     onChanged: _onChanged,
                   ),
+                  SizedBox(height: 15),
                 ],
               ),
             ),
@@ -593,10 +625,12 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     onPressed: () {
                       if (_fbKey.currentState.saveAndValidate()) {
-                        print(_fbKey.currentState.value['contact_person'].runtimeType);
+                        print(_fbKey
+                            .currentState.value['contact_person'].runtimeType);
                         print(_fbKey.currentState.value);
                       } else {
-                        print(_fbKey.currentState.value['contact_person'].runtimeType);
+                        print(_fbKey
+                            .currentState.value['contact_person'].runtimeType);
                         print(_fbKey.currentState.value);
                         print("validation failed");
                       }
