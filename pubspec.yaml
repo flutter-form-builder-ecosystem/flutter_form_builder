@@ -21,11 +21,13 @@ dependencies:
   flutter_touch_spin: ^1.0.1
   image_picker: ^0.6.6+4
   rating_bar: ^0.2.0
+  country_pickers: ^1.2.1
+  phone_number: ^0.6.2+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.5.3
-  pedantic: ^1.8.0+1
+  pedantic: 1.8.0+1
 
 flutter:
