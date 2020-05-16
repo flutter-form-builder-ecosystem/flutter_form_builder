@@ -1,3 +1,6 @@
+## Unreleased
+* Add `contentPadding` to all `ListTile`-based fields
+
 ## [4.0.0-alpha.2] - 06-May-2020
 * All form reset issues are fixed - I hope ;-). `UniqueKey()` used where  necessary
 * `FormBuilderField` to be used base to create custom fields. Removed unused `FormBuilderCustomField`

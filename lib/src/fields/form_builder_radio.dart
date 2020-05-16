@@ -11,6 +11,7 @@ class FormBuilderRadio extends FormBuilderField {
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
   final bool leadingInput;
+  final EdgeInsets contentPadding;
 
   final List<FormBuilderFieldOption> options;
 
@@ -33,6 +34,7 @@ class FormBuilderRadio extends FormBuilderField {
     this.materialTapTargetSize,
     this.activeColor,
     this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -49,7 +51,7 @@ class FormBuilderRadio extends FormBuilderField {
                 ListTile(
                   dense: true,
                   isThreeLine: false,
-                  contentPadding: EdgeInsets.all(0.0),
+                  contentPadding: contentPadding,
                   leading: state._leading(state, i),
                   title: options[i],
                   trailing: state._trailing(state, i),
