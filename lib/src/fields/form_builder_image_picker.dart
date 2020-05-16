@@ -110,21 +110,39 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                 child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: field.value.map<Widget>((item) {
-                      return Container(
-                        width: widget.imageWidth,
-                        height: widget.imageHeight,
-                        margin: widget.imageMargin,
-                        child: GestureDetector(
-                          child: item is String
-                              ? Image.network(item, fit: BoxFit.cover)
-                              : Image.file(item, fit: BoxFit.cover),
-                          onLongPress: _readOnly
-                              ? null
-                              : () {
-                                  field.didChange(
-                                      [...field.value]..remove(item));
-                                },
-                        ),
+                      return Stack(
+                        alignment: Alignment.topRight,
+                        children: <Widget>[
+                          Container(
+                            width: widget.imageWidth,
+                            height: widget.imageHeight,
+                            margin: widget.imageMargin,
+                            child: item is String
+                                ? Image.network(item, fit: BoxFit.cover)
+                                : Image.file(item, fit: BoxFit.cover),
+                          ),
+                          if (!_readOnly)
+                            InkWell(
+                              onTap: () {
+                                field.didChange([...field.value]..remove(item));
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.withOpacity(.7),
+                                  shape: BoxShape.circle,
+                                ),
+                                alignment: Alignment.center,
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.close,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                        ],
                       );
                     }).toList()
                       ..add(
