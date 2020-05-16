@@ -62,6 +62,7 @@ class FormBuilderSwitch extends StatefulWidget {
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
   final FormFieldSetter onSaved;
+  final EdgeInsets contentPadding;
 
   FormBuilderSwitch({
     Key key,
@@ -82,6 +83,7 @@ class FormBuilderSwitch extends StatefulWidget {
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
     this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(key: key);
 
   @override
@@ -148,7 +150,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
             child: ListTile(
               dense: true,
               isThreeLine: false,
-              contentPadding: EdgeInsets.all(0.0),
+              contentPadding: widget.contentPadding,
               title: widget.label,
               trailing: Switch(
                 value: field.value,

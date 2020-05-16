@@ -10,6 +10,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
+  final FormFieldSetter onSaved;
 
   final List<FormBuilderFieldOption> options;
   final bool leadingInput;
@@ -17,7 +18,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
   final Color checkColor;
   final MaterialTapTargetSize materialTapTargetSize;
   final bool tristate;
-  final FormFieldSetter onSaved;
+  final EdgeInsets contentPadding;
 
   FormBuilderCheckboxList({
     Key key,
@@ -35,6 +36,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
     this.materialTapTargetSize,
     this.tristate = false,
     this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(key: key);
 
   @override
@@ -133,7 +135,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
             ListTile(
               dense: true,
               isThreeLine: false,
-              contentPadding: EdgeInsets.all(0.0),
+              contentPadding: widget.contentPadding,
               leading: _leading(field, i),
               trailing: _trailing(field, i),
               title: widget.options[i],

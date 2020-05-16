@@ -10,14 +10,13 @@ class FormBuilderRadio extends StatefulWidget {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
+
   final bool leadingInput;
-
   final List<FormBuilderFieldOption> options;
-
   final MaterialTapTargetSize materialTapTargetSize;
-
   final Color activeColor;
   final FormFieldSetter onSaved;
+  final EdgeInsets contentPadding;
 
   FormBuilderRadio({
     Key key,
@@ -33,6 +32,7 @@ class FormBuilderRadio extends StatefulWidget {
     this.materialTapTargetSize,
     this.activeColor,
     this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(key: key);
 
   @override
@@ -123,7 +123,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
             ListTile(
               dense: true,
               isThreeLine: false,
-              contentPadding: EdgeInsets.all(0.0),
+              contentPadding: widget.contentPadding,
               leading: _leading(field, i),
               title: widget.options[i],
               trailing: _trailing(field, i),

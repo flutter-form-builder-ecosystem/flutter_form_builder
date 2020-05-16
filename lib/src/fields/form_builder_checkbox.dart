@@ -19,6 +19,7 @@ class FormBuilderCheckbox extends StatefulWidget {
   final MaterialTapTargetSize materialTapTargetSize;
   final bool tristate;
   final FormFieldSetter onSaved;
+  final EdgeInsets contentPadding;
 
   FormBuilderCheckbox({
     Key key,
@@ -36,6 +37,7 @@ class FormBuilderCheckbox extends StatefulWidget {
     this.materialTapTargetSize,
     this.tristate = false,
     this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(key: key);
 
   @override
@@ -129,7 +131,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
           child: ListTile(
             dense: true,
             isThreeLine: false,
-            contentPadding: EdgeInsets.all(0.0),
+            contentPadding: widget.contentPadding,
             title: widget.label,
             leading: _leading(field),
             trailing: _trailing(field),
