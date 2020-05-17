@@ -1,3 +1,8 @@
+## [3.10.1] - 17-May-2020
+* Added delete icon on selected images in ImagePicker instead of non-intuitive long-press to delete. Closes #278
+* Added contentPadding option to Checkbox, CheckboxList, Radio and Switch to allow spacing of items in list options. Closes #280
+* Fix bug "The getter 'isNotEmpty' was called on null" in PhoneField
+
 ## [3.10.0] - 15-May-2020
 * Added `FormBuilderCountryPicker` and `FormBuilderPhoneField`. Good work by [Furkan KURT](https://github.com/furkankurt)
 * Set `readOnly` prop to `false` in ColorPicker, DateRangePicker & DateTimePicker TextFields - prevents keyboard popping up. Closes #210
