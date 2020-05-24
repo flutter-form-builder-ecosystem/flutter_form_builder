@@ -17,6 +17,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
   final Color checkColor;
   final MaterialTapTargetSize materialTapTargetSize;
   final bool tristate;
+  final EdgeInsets contentPadding;
 
   FormBuilderCheckboxList({
     Key key,
@@ -33,6 +34,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
     this.checkColor,
     this.materialTapTargetSize,
     this.tristate = false,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -50,7 +52,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
                   ListTile(
                     dense: true,
                     isThreeLine: false,
-                    contentPadding: EdgeInsets.all(0.0),
+                    contentPadding: contentPadding,
                     leading: state._leading(state, i),
                     trailing: state._trailing(state, i),
                     title: options[i],

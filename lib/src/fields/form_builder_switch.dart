@@ -59,6 +59,8 @@ class FormBuilderSwitch extends FormBuilderField {
   ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
   final MaterialTapTargetSize materialTapTargetSize;
 
+  final EdgeInsets contentPadding;
+
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
   final FormFieldSetter onSaved;
@@ -82,6 +84,7 @@ class FormBuilderSwitch extends FormBuilderField {
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
     this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -100,7 +103,7 @@ class FormBuilderSwitch extends FormBuilderField {
                 child: ListTile(
                   dense: true,
                   isThreeLine: false,
-                  contentPadding: EdgeInsets.all(0.0),
+                  contentPadding: contentPadding,
                   title: label,
                   trailing: Switch(
                     value: field.value,
