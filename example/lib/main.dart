@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter FormBuilder Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        brightness: Brightness.dark,
+        // brightness: Brightness.dark,
         inputDecorationTheme: InputDecorationTheme(
           // labelStyle: TextStyle(color: Colors.purple),
           border: OutlineInputBorder(
             gapPadding: 10,
-            borderSide: BorderSide(color: Colors.purple),
           ),
+
         ),
       ),
       home: MyHomePage(),
@@ -287,6 +287,10 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   SizedBox(height: 15),
+                  Text(
+                    "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
+                    style: Theme.of(context).inputDecorationTheme.labelStyle,
+                  ),
                   FormBuilderTextField(
                     attribute: "age",
                     decoration: InputDecoration(
@@ -407,9 +411,10 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(growable: false),
                   ),
                   SizedBox(height: 15),
-                  FormBuilderRadio(
+                  FormBuilderRadioGroup(
                     decoration: InputDecoration(labelText: 'Pick a number'),
                     attribute: "number",
+                    readOnly: true,
                     options: [
                       FormBuilderFieldOption(
                         value: 1,

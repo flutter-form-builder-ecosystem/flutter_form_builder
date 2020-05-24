@@ -23,6 +23,7 @@ dependencies:
   rating_bar: ^0.2.0
   country_pickers: ^1.2.1
   phone_number: ^0.6.2+2
+  group_radio_button: ^1.0.0
 
 dev_dependencies:
   flutter_test:
