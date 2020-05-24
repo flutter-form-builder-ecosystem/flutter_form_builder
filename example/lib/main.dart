@@ -245,8 +245,7 @@ class MyHomePageState extends State<MyHomePage> {
                       attribute: 'accept_terms',
                       initialValue: false,
                       onChanged: _onChanged,
-                      leadingInput: true,
-                      label: RichText(
+                      title: RichText(
                         text: TextSpan(
                           children: [
                             TextSpan(
@@ -333,11 +332,10 @@ class MyHomePageState extends State<MyHomePage> {
                         }
                       },
                     ),
-                    FormBuilderRadio(
+                    FormBuilderRadioList(
                       decoration:
                           InputDecoration(labelText: 'My chosen language'),
                       attribute: "best_language",
-                      leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
@@ -366,7 +364,7 @@ class MyHomePageState extends State<MyHomePage> {
                       onChanged: _onChanged,
                     ),
                     FormBuilderSwitch(
-                      label: Text('I Accept the tems and conditions'),
+                      title: Text('I Accept the tems and conditions'),
                       attribute: "accept_terms_switch",
                       initialValue: true,
                       onChanged: _onChanged,
@@ -393,7 +391,6 @@ class MyHomePageState extends State<MyHomePage> {
                           labelText: "The language of my people"),
                       attribute: "languages",
                       initialValue: ["Dart"],
-                      leadingInput: true,
                       options: [
                         FormBuilderFieldOption(value: "Dart"),
                         FormBuilderFieldOption(value: "Kotlin"),

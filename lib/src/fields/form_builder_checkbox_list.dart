@@ -12,12 +12,10 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
   final ValueTransformer valueTransformer;
 
   final List<FormBuilderFieldOption> options;
-  final bool leadingInput;
+  final ListTileControlAffinity controlAffinity;
   final Color activeColor;
   final Color checkColor;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final bool tristate;
-  final EdgeInsets contentPadding;
+  // final Widget secondary;
 
   FormBuilderCheckboxList({
     Key key,
@@ -26,66 +24,65 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
     this.initialValue,
     this.validators = const [],
     this.readOnly = false,
-    this.leadingInput = false,
+    this.controlAffinity = ListTileControlAffinity.leading,
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
     this.activeColor,
     this.checkColor,
-    this.materialTapTargetSize,
-    this.tristate = false,
-    this.contentPadding = const EdgeInsets.all(0.0),
+    // this.secondary,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validators: validators,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final _FormBuilderCheckboxListState<T> state = field;
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderCheckboxListState<T> state = field;
 
-              List<Widget> checkboxList = [];
-              for (int i = 0; i < options.length; i++) {
-                checkboxList.addAll([
-                  ListTile(
-                    dense: true,
-                    isThreeLine: false,
-                    contentPadding: contentPadding,
-                    leading: state._leading(state, i),
-                    trailing: state._trailing(state, i),
-                    title: options[i],
-                    onTap: state.readOnly
-                        ? null
-                        : () {
-                            var currentValue = [...state.value];
-                            if (!currentValue.contains(options[i].value)) {
-                              currentValue.add(options[i].value);
-                            } else {
-                              currentValue.remove(options[i].value);
-                            }
-                            state.didChange(currentValue);
-                          },
-                  ),
-                  Divider(
-                    height: 0.0,
-                  ),
-                ]);
-              }
-              return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: field.errorText,
-                  contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-                  border: InputBorder.none,
+            List<Widget> checkboxList = [];
+            for (int i = 0; i < options.length; i++) {
+              checkboxList.addAll([
+                CheckboxListTile(
+                  value: state.value.contains(options[i].value),
+                  title: options[i],
+                  onChanged: state.readOnly
+                      ? null
+                      : (val) {
+                          var currentValue = [...state.value];
+                          if (!currentValue.contains(options[i].value)) {
+                            currentValue.add(options[i].value);
+                          } else {
+                            currentValue.remove(options[i].value);
+                          }
+                          state.didChange(currentValue);
+                        },
+                  dense: true,
+                  isThreeLine: false,
+                  controlAffinity: controlAffinity,
+                  // secondary: secondary,
+                  activeColor: activeColor,
+                  checkColor: checkColor,
                 ),
-                child: Column(
-                  key: ObjectKey(state.value),
-                  children: checkboxList,
+                Divider(
+                  height: 0.0,
                 ),
-              );
-            });
+              ]);
+            }
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: field.errorText,
+              ),
+              child: Column(
+                key: ObjectKey(state.value),
+                children: checkboxList,
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderCheckboxListState<T> createState() =>
@@ -94,35 +91,4 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
 
 class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
   FormBuilderCheckboxList<T> get widget => super.widget;
-
-  Widget _checkbox(_FormBuilderCheckboxListState field, int i) {
-    return Checkbox(
-      activeColor: field.widget.activeColor,
-      checkColor: field.widget.checkColor,
-      materialTapTargetSize: field.widget.materialTapTargetSize,
-      tristate: field.widget.tristate,
-      value: field.value.contains(field.widget.options[i].value),
-      onChanged: field.readOnly
-          ? null
-          : (bool value) {
-              var currValue = field.value;
-              if (value) {
-                currValue.add(field.widget.options[i].value);
-              } else {
-                currValue.remove(field.widget.options[i].value);
-              }
-              field.didChange(currValue);
-            },
-    );
-  }
-
-  Widget _leading(_FormBuilderCheckboxListState field, int i) {
-    if (field.widget.leadingInput) return _checkbox(field, i);
-    return null;
-  }
-
-  Widget _trailing(_FormBuilderCheckboxListState field, int i) {
-    if (!field.widget.leadingInput) return _checkbox(field, i);
-    return null;
-  }
 }

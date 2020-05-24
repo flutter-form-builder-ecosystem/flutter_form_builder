@@ -13,7 +13,7 @@ export './src/fields/form_builder_color_picker.dart';
 export './src/fields/form_builder_date_range_picker.dart';
 export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
-export './src/fields/form_builder_radio.dart';
+export './src/fields/form_builder_radio_list.dart';
 export './src/fields/form_builder_range_slider.dart';
 export './src/fields/form_builder_rating.dart';
 export './src/fields/form_builder_segmented_control.dart';

@@ -1,4 +1,5 @@
-import 'package:flutter/gestures.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -12,7 +13,9 @@ class FormBuilderSwitch extends FormBuilderField {
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
-  final Widget label;
+  final Widget title;
+  final Widget subtitle;
+  final Widget secondary;
 
   /// The color to use when this switch is on.
   ///
@@ -50,25 +53,16 @@ class FormBuilderSwitch extends FormBuilderField {
   /// Ignored if this switch is created with [Switch.adaptive].
   final ImageProvider inactiveThumbImage;
 
-  /// Configures the minimum size of the tap target.
-  ///
-  /// Defaults to [ThemeData.materialTapTargetSize].
-  ///
-  /// See also:
-  ///
-  ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
-  final MaterialTapTargetSize materialTapTargetSize;
-
   final EdgeInsets contentPadding;
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
-  final DragStartBehavior dragStartBehavior;
+  final ListTileControlAffinity controlAffinity;
   final FormFieldSetter onSaved;
 
   FormBuilderSwitch({
     Key key,
     @required this.attribute,
-    @required this.label,
+    @required this.title,
     this.initialValue,
     this.validators = const [],
     this.readOnly = false,
@@ -81,55 +75,50 @@ class FormBuilderSwitch extends FormBuilderField {
     this.inactiveTrackColor,
     this.activeThumbImage,
     this.inactiveThumbImage,
-    this.materialTapTargetSize,
-    this.dragStartBehavior = DragStartBehavior.start,
+    this.subtitle,
+    this.secondary,
+    this.controlAffinity = ListTileControlAffinity.trailing,
     this.onSaved,
     this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validators: validators,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final _FormBuilderSwitchState state = field;
-              return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: state.readOnly,
-                  errorText: field.errorText,
-                ),
-                child: ListTile(
-                  dense: true,
-                  isThreeLine: false,
-                  contentPadding: contentPadding,
-                  title: label,
-                  trailing: Switch(
-                    value: field.value,
-                    onChanged: state.readOnly
-                        ? null
-                        : (bool value) {
-                            field.didChange(value);
-                          },
-                    activeColor: activeColor,
-                    activeThumbImage: activeThumbImage,
-                    activeTrackColor: activeTrackColor,
-                    dragStartBehavior: dragStartBehavior,
-                    inactiveThumbColor: inactiveThumbColor,
-                    inactiveThumbImage: activeThumbImage,
-                    inactiveTrackColor: inactiveTrackColor,
-                    materialTapTargetSize: materialTapTargetSize,
-                  ),
-                  onTap: state.readOnly
-                      ? null
-                      : () {
-                          bool newValue = !(field.value ?? false);
-                          field.didChange(newValue);
-                        },
-                ),
-              );
-            });
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderSwitchState state = field;
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: state.readOnly,
+                errorText: field.errorText,
+              ),
+              child: SwitchListTile(
+                dense: true,
+                isThreeLine: false,
+                contentPadding: contentPadding,
+                title: title,
+                value: state.value,
+                onChanged: state.readOnly
+                    ? null
+                    : (val) {
+                        field.didChange(val);
+                      },
+                activeColor: activeColor,
+                activeThumbImage: activeThumbImage,
+                activeTrackColor: activeTrackColor,
+                inactiveThumbColor: inactiveThumbColor,
+                inactiveThumbImage: activeThumbImage,
+                inactiveTrackColor: inactiveTrackColor,
+                secondary: secondary,
+                subtitle: subtitle,
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderSwitchState createState() => _FormBuilderSwitchState();

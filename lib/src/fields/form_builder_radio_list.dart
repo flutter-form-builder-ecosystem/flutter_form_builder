@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderRadio extends FormBuilderField {
+class FormBuilderRadioList extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final dynamic initialValue;
@@ -10,17 +10,13 @@ class FormBuilderRadio extends FormBuilderField {
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
-  final bool leadingInput;
-  final EdgeInsets contentPadding;
-
   final List<FormBuilderFieldOption> options;
-
-  final MaterialTapTargetSize materialTapTargetSize;
 
   final Color activeColor;
   final FormFieldSetter onSaved;
+  final ListTileControlAffinity controlAffinity;
 
-  FormBuilderRadio({
+  FormBuilderRadioList( {
     Key key,
     @required this.attribute,
     @required this.options,
@@ -30,11 +26,9 @@ class FormBuilderRadio extends FormBuilderField {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
-    this.leadingInput = false,
-    this.materialTapTargetSize,
     this.activeColor,
     this.onSaved,
-    this.contentPadding = const EdgeInsets.all(0.0),
+    this.controlAffinity = ListTileControlAffinity.leading,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -48,18 +42,19 @@ class FormBuilderRadio extends FormBuilderField {
             List<Widget> radioList = [];
             for (int i = 0; i < options.length; i++) {
               radioList.addAll([
-                ListTile(
+                RadioListTile(
                   dense: true,
                   isThreeLine: false,
-                  contentPadding: contentPadding,
-                  leading: state._leading(state, i),
                   title: options[i],
-                  trailing: state._trailing(state, i),
-                  onTap: state.readOnly
+                  groupValue: state.value,
+                  value: options[i].value,
+                  onChanged: state.readOnly
                       ? null
-                      : () {
+                      : (val) {
                           field.didChange(options[i].value);
                         },
+                  controlAffinity: controlAffinity,
+                  activeColor: activeColor,
                 ),
                 Divider(
                   height: 0.0,
@@ -83,29 +78,5 @@ class FormBuilderRadio extends FormBuilderField {
 }
 
 class _FormBuilderRadioState extends FormBuilderFieldState {
-  FormBuilderRadio get widget => super.widget;
-
-  Widget _radio(_FormBuilderRadioState field, int i) {
-    return Radio<dynamic>(
-      value: field.widget.options[i].value,
-      groupValue: field.value,
-      materialTapTargetSize: field.widget.materialTapTargetSize,
-      activeColor: field.widget.activeColor,
-      onChanged: field.readOnly
-          ? null
-          : (dynamic value) {
-              field.didChange(value);
-            },
-    );
-  }
-
-  Widget _leading(_FormBuilderRadioState field, int i) {
-    if (field.widget.leadingInput) return _radio(field, i);
-    return null;
-  }
-
-  Widget _trailing(_FormBuilderRadioState field, int i) {
-    if (!field.widget.leadingInput) return _radio(field, i);
-    return null;
-  }
+  FormBuilderRadioList get widget => super.widget;
 }
