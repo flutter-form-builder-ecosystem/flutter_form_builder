@@ -150,7 +150,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
               textDirection: textDirection,
               textInputAction: textInputAction,
               strutStyle: strutStyle,
-              readOnly: state.readOnly,
+              readOnly: true,
               expands: expands,
               minLines: minLines,
               showCursor: showCursor,

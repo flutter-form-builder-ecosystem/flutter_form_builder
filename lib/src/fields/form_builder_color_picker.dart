@@ -61,7 +61,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           autovalidate: autovalidate,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          readOnly: true,
           onSaved: onSaved,
           builder: (FormFieldState field) {
             final _FormBuilderColorPickerFieldState state = field;

@@ -82,67 +82,68 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
     // this.onSaved,
   })  : assert(T == String || selectionToTextTransformer != null),
         super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validators: validators,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final _FormBuilderTypeAheadState state = field;
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderTypeAheadState state = field;
 
-              return TypeAheadField<T>(
-                textFieldConfiguration: textFieldConfiguration.copyWith(
-                  enabled: !state.readOnly,
-                  controller: state.typeAheadController,
-                  style: state.readOnly
-                      ? Theme.of(state.context).textTheme.subhead.copyWith(
-                            color: Theme.of(state.context).disabledColor,
-                          )
-                      : textFieldConfiguration.style,
-                  focusNode: state.typeAheadFocusNode,
-                  decoration: decoration.copyWith(
-                    enabled: state.readOnly,
-                  ),
+            return TypeAheadField<T>(
+              textFieldConfiguration: textFieldConfiguration.copyWith(
+                enabled: !state.readOnly,
+                controller: state.typeAheadController,
+                style: state.readOnly
+                    ? Theme.of(state.context).textTheme.subhead.copyWith(
+                          color: Theme.of(state.context).disabledColor,
+                        )
+                    : textFieldConfiguration.style,
+                focusNode: state.typeAheadFocusNode,
+                decoration: decoration.copyWith(
+                  enabled: state.readOnly,
                 ),
-                suggestionsCallback: suggestionsCallback,
-                itemBuilder: itemBuilder,
-                transitionBuilder: (context, suggestionsBox, controller) =>
-                    suggestionsBox,
-                onSuggestionSelected: (T suggestion) {
-                  if (selectionToTextTransformer != null) {
-                    state.typeAheadController.text =
-                        selectionToTextTransformer(suggestion);
-                  } else {
-                    state.typeAheadController.text =
-                        suggestion != null ? suggestion.toString() : '';
-                  }
-                  if (onSuggestionSelected != null) {
-                    onSuggestionSelected(suggestion);
-                  }
-                },
-                getImmediateSuggestions: getImmediateSuggestions,
-                errorBuilder: errorBuilder,
-                noItemsFoundBuilder: noItemsFoundBuilder,
-                loadingBuilder: loadingBuilder,
-                debounceDuration: debounceDuration,
-                suggestionsBoxDecoration: suggestionsBoxDecoration,
-                suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
-                animationDuration: animationDuration,
-                animationStart: animationStart,
-                direction: direction,
-                hideOnLoading: hideOnLoading,
-                hideOnEmpty: hideOnEmpty,
-                hideOnError: hideOnError,
-                hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
-                keepSuggestionsOnLoading: keepSuggestionsOnLoading,
-                autoFlipDirection: autoFlipDirection,
-                suggestionsBoxController: suggestionsBoxController,
-                keepSuggestionsOnSuggestionSelected:
-                    keepSuggestionsOnSuggestionSelected,
-              );
-            });
+              ),
+              suggestionsCallback: suggestionsCallback,
+              itemBuilder: itemBuilder,
+              transitionBuilder: (context, suggestionsBox, controller) =>
+                  suggestionsBox,
+              onSuggestionSelected: (T suggestion) {
+                if (selectionToTextTransformer != null) {
+                  state.typeAheadController.text =
+                      selectionToTextTransformer(suggestion);
+                } else {
+                  state.typeAheadController.text =
+                      suggestion != null ? suggestion.toString() : '';
+                }
+                if (onSuggestionSelected != null) {
+                  onSuggestionSelected(suggestion);
+                }
+              },
+              getImmediateSuggestions: getImmediateSuggestions,
+              errorBuilder: errorBuilder,
+              noItemsFoundBuilder: noItemsFoundBuilder,
+              loadingBuilder: loadingBuilder,
+              debounceDuration: debounceDuration,
+              suggestionsBoxDecoration: suggestionsBoxDecoration,
+              suggestionsBoxVerticalOffset: suggestionsBoxVerticalOffset,
+              animationDuration: animationDuration,
+              animationStart: animationStart,
+              direction: direction,
+              hideOnLoading: hideOnLoading,
+              hideOnEmpty: hideOnEmpty,
+              hideOnError: hideOnError,
+              hideSuggestionsOnKeyboardHide: hideSuggestionsOnKeyboardHide,
+              keepSuggestionsOnLoading: keepSuggestionsOnLoading,
+              autoFlipDirection: autoFlipDirection,
+              suggestionsBoxController: suggestionsBoxController,
+              keepSuggestionsOnSuggestionSelected:
+                  keepSuggestionsOnSuggestionSelected,
+            );
+          },
+        );
 
   @override
   _FormBuilderTypeAheadState<T> createState() =>
