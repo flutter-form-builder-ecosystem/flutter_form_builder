@@ -50,20 +50,39 @@ class FormBuilderImagePicker extends FormBuilderField {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: (state.value ?? []).map<Widget>((item) {
-                    return Container(
-                      width: imageWidth,
-                      height: imageHeight,
-                      margin: imageMargin,
-                      child: GestureDetector(
-                        child: item is String
-                            ? Image.network(item, fit: BoxFit.cover)
-                            : Image.file(item, fit: BoxFit.cover),
-                        onLongPress: state.readOnly
-                            ? null
-                            : () {
-                                state.didChange(state.value..remove(item));
+                    return Stack(
+                        alignment: Alignment.topRight,
+                        children: <Widget>[
+                          Container(
+                            width: imageWidth,
+                            height: imageHeight,
+                            margin: imageMargin,
+                            child: item is String
+                                ? Image.network(item, fit: BoxFit.cover)
+                                : Image.file(item, fit: BoxFit.cover),
+                          ),
+                          if (!state.readOnly)
+                            InkWell(
+                              onTap: () {
+                                state.didChange([...state.value]..remove(item));
                               },
-                      ),
+                              child: Container(
+                                margin: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.withOpacity(.7),
+                                  shape: BoxShape.circle,
+                                ),
+                                alignment: Alignment.center,
+                                height: 22,
+                                width: 22,
+                                child: Icon(
+                                  Icons.close,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                        ],
                     );
                   }).toList()
                     ..add(
