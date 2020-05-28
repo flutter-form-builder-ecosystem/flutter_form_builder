@@ -487,6 +487,52 @@ class MyHomePageState extends State<MyHomePage> {
                         labelText: "Pick Photos",
                       ),
                     ),
+                    SizedBox(height: 15),
+                    FormBuilderCountryPicker(
+                      initialValue: 'Germany',
+                      attribute: "country",
+                      cursorColor: Colors.black,
+                      // style: TextStyle(color: Colors.black, fontSize: 18),
+                      priorityListByIsoCode: ['US'],
+                      valueTransformer: (value) {
+                        return value.isoCode;
+                      },
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(), labelText: "Country"),
+                      validators: [
+                        FormBuilderValidators.required(
+                            errorText: 'This field required.'),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    FormBuilderPhoneField(
+                      attribute: 'phone_number',
+                      initialValue: "+254",
+                      // defaultSelectedCountryIsoCode: 'KE',
+                      cursorColor: Colors.black,
+                      // style: TextStyle(color: Colors.black, fontSize: 18),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Phone Number",
+                      ),
+                      onChanged: _onChanged,
+                      priorityListByIsoCode: ['US'],
+                      validators: [
+                        FormBuilderValidators.numeric(
+                            errorText: 'Invalid phone number'),
+                        FormBuilderValidators.required(
+                            errorText: 'This field reqired')
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    FormBuilderSignaturePad(
+                      decoration: InputDecoration(labelText: "Signature"),
+                      attribute: "signature",
+                      // height: 250,
+                      clearButtonText: "Start Over",
+                      onChanged: _onChanged,
+                    ),
+                    SizedBox(height: 15),
                   ],
                 ),
               ),

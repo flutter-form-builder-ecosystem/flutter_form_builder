@@ -22,7 +22,7 @@ dependencies:
   image_picker: ^0.6.6+4
   rating_bar: ^0.2.0
   country_pickers: ^1.2.1
-  phone_number: ^0.6.2+2
+  phone_number: ^0.6.2+3
 
 dev_dependencies:
   flutter_test:

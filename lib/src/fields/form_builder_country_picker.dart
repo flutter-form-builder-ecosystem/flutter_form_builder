@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/country_picker_util.dart';
 
-class FormBuilderCountryPicker extends StatefulWidget {
+class FormBuilderCountryPicker extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final bool readOnly;
@@ -54,161 +54,134 @@ class FormBuilderCountryPicker extends StatefulWidget {
     this.cupertinoPickerSheetHeight,
     this.cursorColor,
   })  : assert(initialValue != null),
-        super(key: key);
+        super(
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          /*  enabled: enabled,
+            autovalidate: autovalidate,*/
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: true,
+          onSaved: onSaved,
+          builder: (FormFieldState field) {
+            final _FormBuilderCountryPickerState state = field;
+
+            return GestureDetector(
+              onTap: () {
+                FocusScope.of(state.context).requestFocus(FocusNode());
+                if (isCupertinoPicker) {
+                  _openCupertinoCountryPicker(field);
+                } else {
+                  _openCountryPickerDialog(field);
+                }
+              },
+              child: InputDecorator(
+                decoration: decoration.copyWith(
+                  errorText: field.errorText,
+                ),
+                child: Row(
+                  key: ObjectKey(field.value),
+                  children: [
+                    CountryPickerUtils.getDefaultFlagImage(field.value),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
+                        "${field.value?.name ?? ''}",
+                        style: style,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+  
+  static void _openCupertinoCountryPicker(_FormBuilderCountryPickerState field) =>
+      showCupertinoModalPopup<void>(
+        context: field.context,
+        builder: (BuildContext context) {
+          return CountryPickerCupertino(
+            pickerSheetHeight: field.widget.cupertinoPickerSheetHeight ?? 300.0,
+            onValuePicked: (Country value) => field.didChange(value),
+            itemFilter: field.widget.countryFilterByIsoCode != null
+                ? (c) => field.widget.countryFilterByIsoCode.contains(c.isoCode)
+                : null,
+            priorityList: field.widget.priorityListByIsoCode != null
+                ? List.generate(
+                field.widget.priorityListByIsoCode.length,
+                    (index) => CountryPickerUtils.getCountryByIsoCode(
+                        field.widget.priorityListByIsoCode[index]))
+                : null,
+          );
+        },
+      );
+
+  static void _openCountryPickerDialog(_FormBuilderCountryPickerState field) => showDialog(
+    context: field.context,
+    builder: (context) => Theme(
+      data: Theme.of(context).copyWith(
+        cursorColor: Theme.of(context).primaryColor,
+        primaryColor: field.widget.cursorColor ?? Theme.of(context).primaryColor,
+      ),
+      child: CountryPickerDialog(
+        titlePadding: field.widget.titlePadding ?? EdgeInsets.all(8.0),
+        searchCursorColor:
+        field.widget.cursorColor ?? Theme.of(context).cursorColor,
+        searchInputDecoration:
+        InputDecoration(hintText: field.widget.searchText ?? 'Search...'),
+        isSearchable: field.widget.isSearchable ?? true,
+        title: field.widget.dialogTitle ??
+            Text(
+              'Select Your Country',
+              style: field.widget.dialogTextStyle ?? field.widget.style,
+            ),
+        onValuePicked: (Country value) => field.didChange(value),
+        itemFilter: field.widget.countryFilterByIsoCode != null
+            ? (c) => field.widget.countryFilterByIsoCode.contains(c.isoCode)
+            : null,
+        priorityList: field.widget.priorityListByIsoCode != null
+            ? List.generate(
+            field.widget.priorityListByIsoCode.length,
+                (index) => CountryPickerUtils.getCountryByIsoCode(
+                    field.widget.priorityListByIsoCode[index]))
+            : null,
+        itemBuilder: _buildDialogItem,
+      ),
+    ),
+  );
+
+  static Widget _buildDialogItem(Country country) {
+    return Container(
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: CountryPickerUtils.getDefaultFlagImage(country),
+        title: Text("${country.name}"),
+      ),
+    );
+  }
 
   @override
   _FormBuilderCountryPickerState createState() =>
       _FormBuilderCountryPickerState();
 }
 
-class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  Country _initialValue;
+class _FormBuilderCountryPickerState extends FormBuilderFieldState/*<String>*/ {
+  FormBuilderCountryPicker get widget => super.widget;
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue =
+    var _initialValue =
         CountryPickerUtil.getCountryByCodeOrName(widget.initialValue) ??
             CountryPickerUtil.getCountryByIsoCode(
                 widget.defaultSelectedCountryIsoCode);
     super.initState();
   }
+  
 
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return FormField<Country>(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) {
-            return widget.validators[i](val);
-          }
-        }
-        return null;
-      },
-      onSaved: (val) {
-        dynamic transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val.name);
-        }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val.name);
-        }
-      },
-      builder: (FormFieldState<Country> field) {
-        return GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-            if (widget.isCupertinoPicker) {
-              _openCupertinoCountryPicker(field);
-            } else {
-              _openCountryPickerDialog(field);
-            }
-          },
-          child: InputDecorator(
-            decoration: widget.decoration.copyWith(
-              errorText: field.errorText,
-            ),
-            child: Row(
-              key: ObjectKey(field.value),
-              children: [
-                CountryPickerUtils.getDefaultFlagImage(field.value),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Text(
-                    "${field.value?.name ?? ''}",
-                    style: widget.style,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void _openCupertinoCountryPicker(FormFieldState field) =>
-      showCupertinoModalPopup<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return CountryPickerCupertino(
-            pickerSheetHeight: widget.cupertinoPickerSheetHeight ?? 300.0,
-            onValuePicked: (Country value) => field.didChange(value),
-            itemFilter: widget.countryFilterByIsoCode != null
-                ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
-                : null,
-            priorityList: widget.priorityListByIsoCode != null
-                ? List.generate(
-                    widget.priorityListByIsoCode.length,
-                    (index) => CountryPickerUtils.getCountryByIsoCode(
-                        widget.priorityListByIsoCode[index]))
-                : null,
-          );
-        },
-      );
-
-  void _openCountryPickerDialog(FormFieldState field) => showDialog(
-        context: context,
-        builder: (context) => Theme(
-          data: Theme.of(context).copyWith(
-            cursorColor: Theme.of(context).primaryColor,
-            primaryColor: widget.cursorColor ?? Theme.of(context).primaryColor,
-          ),
-          child: CountryPickerDialog(
-            titlePadding: widget.titlePadding ?? EdgeInsets.all(8.0),
-            searchCursorColor:
-                widget.cursorColor ?? Theme.of(context).primaryColor,
-            searchInputDecoration:
-                InputDecoration(hintText: widget.searchText ?? 'Search...'),
-            isSearchable: widget.isSearchable ?? true,
-            title: widget.dialogTitle ??
-                Text(
-                  'Select Your Country',
-                  style: widget.dialogTextStyle ?? widget.style,
-                ),
-            onValuePicked: (Country value) => field.didChange(value),
-            itemFilter: widget.countryFilterByIsoCode != null
-                ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
-                : null,
-            priorityList: widget.priorityListByIsoCode != null
-                ? List.generate(
-                    widget.priorityListByIsoCode.length,
-                    (index) => CountryPickerUtils.getCountryByIsoCode(
-                        widget.priorityListByIsoCode[index]))
-                : null,
-            itemBuilder: _buildDialogItem,
-          ),
-        ),
-      );
-
-  Widget _buildDialogItem(Country country) {
-    return Container(
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text("${country.name}"),
-        // visualDensity: VisualDensity.compact, //TODO: Re-enable after Flutter 1.17
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
 }
