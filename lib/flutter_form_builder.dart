@@ -14,6 +14,7 @@ export './src/fields/form_builder_country_picker.dart';
 export './src/fields/form_builder_date_range_picker.dart';
 export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
+export './src/fields/form_builder_phone_field.dart';
 export './src/fields/form_builder_radio_list.dart';
 export './src/fields/form_builder_range_slider.dart';
 export './src/fields/form_builder_rating.dart';

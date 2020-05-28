@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:phone_number/phone_number.dart';
 
-class FormBuilderPhoneField extends StatefulWidget {
+class FormBuilderPhoneField extends FormBuilderField {
   final String attribute;
   final List<FormFieldValidator> validators;
   final String initialValue;
@@ -116,18 +115,106 @@ class FormBuilderPhoneField extends StatefulWidget {
   })  : assert(initialValue == null ||
             controller == null ||
             defaultSelectedCountryIsoCode != null),
-        super(key: key);
+        super(
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validators: validators,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderPhoneFieldState state = field;
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: state.errorText,
+              ),
+              child: Row(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: state.readOnly
+                        ? null
+                        : () {
+                            FocusScope.of(state.context)
+                                .requestFocus(FocusNode());
+                            if (isCupertinoPicker) {
+                              state._openCupertinoCountryPicker();
+                            } else {
+                              state._openCountryPickerDialog();
+                            }
+                          },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.arrow_drop_down),
+                        SizedBox(width: 10),
+                        CountryPickerUtils.getDefaultFlagImage(
+                          state._selectedDialogCountry,
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "+${state._selectedDialogCountry.phoneCode} ",
+                          style: style ??
+                              Theme.of(state.context).textTheme.subtitle1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: TextField(
+                      enabled: !state.readOnly,
+                      style: style,
+                      focusNode: focusNode,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        hintText: decoration.hintText,
+                        hintStyle: decoration.hintStyle,
+                      ),
+                      maxLines: maxLines,
+                      keyboardType: keyboardType,
+                      obscureText: obscureText,
+                      onEditingComplete: onEditingComplete,
+                      controller: state._effectiveController,
+                      autocorrect: autocorrect,
+                      autofocus: autofocus,
+                      buildCounter: buildCounter,
+                      cursorColor: cursorColor,
+                      cursorRadius: cursorRadius,
+                      cursorWidth: cursorWidth,
+                      enableInteractiveSelection: enableInteractiveSelection,
+                      maxLength: maxLength,
+                      inputFormatters: inputFormatters,
+                      keyboardAppearance: keyboardAppearance,
+                      maxLengthEnforced: maxLengthEnforced,
+                      scrollPadding: scrollPadding,
+                      textAlign: textAlign,
+                      textCapitalization: textCapitalization,
+                      textDirection: textDirection,
+                      textInputAction: textInputAction,
+                      strutStyle: strutStyle,
+                      readOnly: state.readOnly,
+                      expands: expands,
+                      minLines: minLines,
+                      showCursor: showCursor,
+                      onTap: onTap,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
 
   @override
-  FormBuilderPhoneFieldState createState() => FormBuilderPhoneFieldState();
+  _FormBuilderPhoneFieldState createState() => _FormBuilderPhoneFieldState();
 }
 
-class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
-  bool _readOnly = false;
+class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
+  FormBuilderPhoneField get widget => super.widget;
+
   TextEditingController _effectiveController = TextEditingController();
-  FormBuilderState _formState;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  String _initialValue;
   Country _selectedDialogCountry;
 
   String get fullNumber {
@@ -136,12 +223,6 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
     if (widget.controller != null) {
       _effectiveController = widget.controller;
     }
@@ -149,15 +230,15 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();
     _effectiveController.addListener(() {
-      _invokeChange(_fieldKey.currentState);
+      _invokeChange();
     });
     super.initState();
   }
 
   _parsePhone() async {
-    if (_initialValue.isNotEmpty) {
+    if (initialValue.isNotEmpty) {
       try {
-        var parseResult = await PhoneNumber().parse(_initialValue);
+        var parseResult = await PhoneNumber().parse(initialValue);
         print(parseResult);
         if (parseResult != null) {
           _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
@@ -165,102 +246,19 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           _effectiveController.text = parseResult['national_number'];
         }
       } catch (error) {
-        _effectiveController.text = _initialValue.replaceFirst("+", "");
+        _effectiveController.text = initialValue.replaceFirst("+", "");
       }
     }
   }
 
-  _invokeChange(FormFieldState field) {
-    field.didChange(fullNumber);
+  _invokeChange() {
+    didChange(fullNumber);
     if (widget.onChanged != null) {
       widget.onChanged(fullNumber);
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      initialValue: fullNumber,
-      autovalidate: widget.autovalidate,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) {
-            return widget.validators[i](val);
-          }
-        }
-        return null;
-      },
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      builder: (FormFieldState field) {
-        return TextField(
-          enabled: !_readOnly,
-          style: widget.style,
-          focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            prefix: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-                if (widget.isCupertinoPicker) {
-                  _openCupertinoCountryPicker(field);
-                } else {
-                  _openCountryPickerDialog(field);
-                }
-              },
-              child: Text(
-                "+${_selectedDialogCountry.phoneCode} ",
-                style: widget.style,
-              ),
-            ),
-          ),
-          // initialValue: "${_initialValue ?? ''}",
-          maxLines: widget.maxLines,
-          keyboardType: widget.keyboardType,
-          obscureText: widget.obscureText,
-          onEditingComplete: widget.onEditingComplete,
-          controller: _effectiveController,
-          autocorrect: widget.autocorrect,
-          autofocus: widget.autofocus,
-          buildCounter: widget.buildCounter,
-          cursorColor: widget.cursorColor,
-          cursorRadius: widget.cursorRadius,
-          cursorWidth: widget.cursorWidth,
-          enableInteractiveSelection: widget.enableInteractiveSelection,
-          maxLength: widget.maxLength,
-          inputFormatters: widget.inputFormatters,
-          keyboardAppearance: widget.keyboardAppearance,
-          maxLengthEnforced: widget.maxLengthEnforced,
-          scrollPadding: widget.scrollPadding,
-          textAlign: widget.textAlign,
-          textCapitalization: widget.textCapitalization,
-          textDirection: widget.textDirection,
-          textInputAction: widget.textInputAction,
-          strutStyle: widget.strutStyle,
-          readOnly: _readOnly,
-          expands: widget.expands,
-          minLines: widget.minLines,
-          showCursor: widget.showCursor,
-          onTap: widget.onTap,
-        );
-      },
-    );
-  }
-
-  void _openCupertinoCountryPicker(FormFieldState field) {
+  void _openCupertinoCountryPicker() {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) {
@@ -268,7 +266,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           pickerSheetHeight: widget.cupertinoPickerSheetHeight ?? 300.0,
           onValuePicked: (Country country) {
             setState(() => _selectedDialogCountry = country);
-            field.didChange(fullNumber);
+            didChange(fullNumber);
           },
           itemFilter: widget.countryFilterByIsoCode != null
               ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
@@ -287,7 +285,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     );
   }
 
-  void _openCountryPickerDialog(FormFieldState field) {
+  void _openCountryPickerDialog() {
     showDialog(
       context: context,
       builder: (context) {
@@ -310,7 +308,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
                 ),
             onValuePicked: (Country country) {
               setState(() => _selectedDialogCountry = country);
-              _invokeChange(field);
+              _invokeChange();
             },
             itemFilter: widget.countryFilterByIsoCode != null
                 ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
@@ -337,18 +335,8 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
         title: Text("${country.name}"),
-        // visualDensity: VisualDensity.compact, //TODO: Re-enable after Flutter 1.17
         trailing: Text("+${country.phoneCode}"),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    if (widget.controller == null) {
-      _effectiveController.dispose();
-    }
-    super.dispose();
   }
 }
