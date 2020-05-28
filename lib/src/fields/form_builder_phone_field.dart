@@ -212,20 +212,9 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
-            prefix: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-                if (widget.isCupertinoPicker) {
-                  _openCupertinoCountryPicker(field);
-                } else {
-                  _openCountryPickerDialog(field);
-                }
-              },
-              child: Text(
-                "+${_selectedDialogCountry.phoneCode} ",
-                style: widget.style,
-              ),
-            ),
+            // prefixIcon: widget.decoration.prefixIcon == null ? _textFieldPrefix(field) : widget.decoration.prefixIcon,
+            // prefix: widget.decoration.prefixIcon != null ? _textFieldPrefix(field) : null,
+            prefix: _textFieldPrefix(field),
           ),
           // initialValue: "${_initialValue ?? ''}",
           maxLines: widget.maxLines,
@@ -257,6 +246,36 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           onTap: widget.onTap,
         );
       },
+    );
+  }
+
+  Widget _textFieldPrefix(field){
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+        if (widget.isCupertinoPicker) {
+          _openCupertinoCountryPicker(field);
+        } else {
+          _openCountryPickerDialog(field);
+        }
+      },
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: 100,
+          maxWidth: 120,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Icon(Icons.arrow_drop_down),
+            CountryPickerUtils.getDefaultFlagImage(_selectedDialogCountry),
+            Text(
+              "+${_selectedDialogCountry.phoneCode} ",
+              style: widget.style ?? Theme.of(context).textTheme.subhead,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
