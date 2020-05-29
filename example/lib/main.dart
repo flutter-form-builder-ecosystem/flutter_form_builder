@@ -277,7 +277,7 @@ class MyHomePageState extends State<MyHomePage> {
                             "This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.",
                       ),
                       onChanged: _onChanged,
-                      valueTransformer: (text) => num.tryParse(text),
+                      // valueTransformer: (text) => num.tryParse(text),
                       validators: [
                         FormBuilderValidators.required(),
                         FormBuilderValidators.numeric(),
@@ -488,7 +488,7 @@ class MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     SizedBox(height: 15),
-                    FormBuilderCountryPicker(
+                    /*FormBuilderCountryPicker(
                       initialValue: 'Germany',
                       attribute: "country",
                       cursorColor: Colors.black,
@@ -503,7 +503,7 @@ class MyHomePageState extends State<MyHomePage> {
                         FormBuilderValidators.required(
                             errorText: 'This field required.'),
                       ],
-                    ),
+                    ),*/
                     SizedBox(height: 15),
                     FormBuilderPhoneField(
                       attribute: 'phone_number',
@@ -514,6 +514,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Phone Number",
+                        hintText: "Hint"
                       ),
                       onChanged: _onChanged,
                       priorityListByIsoCode: ['US'],
@@ -524,14 +525,14 @@ class MyHomePageState extends State<MyHomePage> {
                             errorText: 'This field reqired')
                       ],
                     ),
-                    SizedBox(height: 15),
+                    /*SizedBox(height: 15),
                     FormBuilderSignaturePad(
                       decoration: InputDecoration(labelText: "Signature"),
                       attribute: "signature",
                       // height: 250,
                       clearButtonText: "Start Over",
                       onChanged: _onChanged,
-                    ),
+                    ),*/
                     SizedBox(height: 15),
                   ],
                 ),
