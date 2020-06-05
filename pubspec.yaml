@@ -19,11 +19,11 @@ dependencies:
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
   flutter_touch_spin: ^1.0.1
-  image_picker: ^0.6.6+1
+  image_picker: ^0.6.7+1
   rating_bar: ^0.2.0
-  country_pickers: ^1.2.1
-  phone_number: ^0.6.2+2
-  group_radio_button: ^1.0.0
+  country_pickers: ^1.3.0
+  phone_number: ^0.6.2+3
+  group_radio_button: ^1.0.1
 
 dev_dependencies:
   flutter_test:

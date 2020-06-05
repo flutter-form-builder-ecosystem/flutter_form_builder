@@ -206,7 +206,7 @@ class MyHomePageState extends State<MyHomePage> {
                     onChanged: _onChanged,
                     inputType: InputType.time,
                     decoration: InputDecoration(
-                      labelText: "Appointment Time",
+                      labelText: 'Appointment Time',
                     ),
                     validator: (val) => null,
                     initialTime: TimeOfDay(hour: 8, minute: 0),
@@ -217,7 +217,8 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderDateRangePicker(
                     attribute: "date_range",
                     firstDate: DateTime(1970),
-                    lastDate: DateTime(2030),
+                    lastDate: DateTime.now(),
+                    initialValue: [DateTime.now().subtract(Duration(days: 30)), DateTime.now().subtract(Duration(seconds: 10))],
                     format: DateFormat("yyyy-MM-dd"),
                     onChanged: _onChanged,
                     decoration: InputDecoration(
@@ -411,7 +412,7 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(growable: false),
                   ),
                   SizedBox(height: 15),
-                  FormBuilderRadioGroup(
+                  /*FormBuilderRadioGroup(
                     decoration: InputDecoration(labelText: 'Pick a number'),
                     attribute: "number",
                     readOnly: true,
@@ -429,7 +430,7 @@ class MyHomePageState extends State<MyHomePage> {
                         child: Text('Three'),
                       ),
                     ],
-                  ),
+                  ),*/
                   SizedBox(height: 15),
                   FormBuilderSegmentedControl(
                     decoration:
