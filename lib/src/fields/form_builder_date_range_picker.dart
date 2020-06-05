@@ -106,7 +106,24 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.locale,
     this.selectableDayPredicate,
     this.onSaved,
-  }) : super(key: key);
+  })  : assert(
+            initialValue == null ||
+                lastDate == null ||
+                initialValue[1] == null ||
+                initialValue[1].isBefore(lastDate),
+            'The last date of initialValue must be on or before lastDate'),
+        assert(
+            initialValue == null ||
+                firstDate == null ||
+                initialValue[0] == null ||
+                initialValue[0].isAfter(firstDate),
+            'The first date of initialValue must be on or after firstDate'),
+        assert(
+            lastDate == null ||
+                firstDate == null ||
+                lastDate.isAfter(firstDate),
+            'lastDate must be on or after firstDate'),
+        super(key: key);
 
   @override
   FormBuilderDateRangePickerState createState() =>
