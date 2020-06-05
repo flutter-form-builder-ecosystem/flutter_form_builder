@@ -330,6 +330,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             onValuePicked: (Country country) {
               setState(() => _selectedDialogCountry = country);
               _invokeChange(field);
+              widget.focusNode?.requestFocus();
             },
             itemFilter: widget.countryFilterByIsoCode != null
                 ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
