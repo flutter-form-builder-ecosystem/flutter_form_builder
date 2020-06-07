@@ -71,14 +71,8 @@ class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
       key: _fieldKey,
       enabled: !_readOnly,
       initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) {
-            return widget.validators[i](val);
-          }
-        }
-        return null;
-      },
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
       onSaved: (val) {
         var transformed;
         if (widget.valueTransformer != null) {
@@ -99,12 +93,16 @@ class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
           ),
           child: RadioGroup.builder(
             groupValue: field.value,
-            onChanged: _readOnly ? null : (value) {
-              FocusScope.of(context).requestFocus(FocusNode());
-              field.didChange(value);
-              if (widget.onChanged != null) widget.onChanged(value);
-            },
-            items: widget.options.map((option) => option.value).toList(growable: false),
+            onChanged: _readOnly
+                ? null
+                : (value) {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    field.didChange(value);
+                    if (widget.onChanged != null) widget.onChanged(value);
+                  },
+            items: widget.options
+                .map((option) => option.value)
+                .toList(growable: false),
             itemBuilder: (item) {
               return RadioButtonBuilder(
                 item.toString(),
