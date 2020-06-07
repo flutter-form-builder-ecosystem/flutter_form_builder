@@ -131,7 +131,12 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   Country _selectedDialogCountry;
 
   String get fullNumber {
-    return "+${_selectedDialogCountry.phoneCode}${_effectiveController.text}";
+    // When there is no phone number text, the field is empty -- the country
+    // prefix is only prepended when a phone number is specified.
+    final phoneText = _effectiveController.text;
+    return phoneText.isNotEmpty
+        ? '+${_selectedDialogCountry.phoneCode}$phoneText'
+        : phoneText;
   }
 
   @override
@@ -154,7 +159,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     super.initState();
   }
 
-  _parsePhone() async {
+  Future<void> _parsePhone() async {
     if (_initialValue != null && _initialValue.isNotEmpty) {
       try {
         var parseResult = await PhoneNumber().parse(_initialValue);
@@ -170,11 +175,10 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     }
   }
 
-  _invokeChange(FormFieldState field) {
-    field.didChange(fullNumber);
-    if (widget.onChanged != null) {
-      widget.onChanged(fullNumber);
-    }
+  void _invokeChange(FormFieldState field) {
+    final newFullNumber = fullNumber;
+    field.didChange(newFullNumber);
+    widget.onChanged?.call(newFullNumber);
   }
 
   @override
@@ -212,6 +216,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
+            errorText: field.errorText,
             // prefixIcon: widget.decoration.prefixIcon == null ? _textFieldPrefix(field) : widget.decoration.prefixIcon,
             // prefix: widget.decoration.prefixIcon != null ? _textFieldPrefix(field) : null,
             prefix: _textFieldPrefix(field),
@@ -249,7 +254,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     );
   }
 
-  Widget _textFieldPrefix(field){
+  Widget _textFieldPrefix(field) {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
