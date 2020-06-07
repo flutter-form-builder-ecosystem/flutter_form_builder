@@ -157,7 +157,7 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         enabled: !_readOnly,
         controller: _typeAheadController,
         style: _readOnly
-            ? Theme.of(context).textTheme.subhead.copyWith(
+            ? Theme.of(context).textTheme.subtitle1.copyWith(
                   color: Theme.of(context).disabledColor,
                 )
             : widget.textFieldConfiguration.style,

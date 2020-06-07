@@ -249,7 +249,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     );
   }
 
-  Widget _textFieldPrefix(field){
+  Widget _textFieldPrefix(field) {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -271,7 +271,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             CountryPickerUtils.getDefaultFlagImage(_selectedDialogCountry),
             Text(
               "+${_selectedDialogCountry.phoneCode} ",
-              style: widget.style ?? Theme.of(context).textTheme.subhead,
+              style: widget.style ?? Theme.of(context).textTheme.subtitle1,
             ),
           ],
         ),
