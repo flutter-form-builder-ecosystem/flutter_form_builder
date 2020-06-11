@@ -88,14 +88,8 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
       key: _fieldKey,
       enabled: !_readOnly,
       initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) {
-            return widget.validators[i](val);
-          }
-        }
-        return null;
-      },
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
       onSaved: (val) {
         var transformed;
         if (widget.valueTransformer != null) {

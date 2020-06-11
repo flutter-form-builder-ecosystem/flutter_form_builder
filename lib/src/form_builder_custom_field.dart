@@ -87,17 +87,9 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
             _formState?.setAttributeValue(widget.attribute, val);
           }
         },
-        validator: (val) {
-          for (int i = 0; i < widget.validators.length; i++) {
-            if (widget.validators[i](val) != null) {
-              return widget.validators[i](val);
-            }
-          }
-          if (widget.formField.validator != null) {
-            return widget.formField.validator(val);
-          }
-          return null;
-        },
+        validator: (val) =>
+            FormBuilderValidators.validateValidators(val, widget.validators) ??
+            widget.formField.validator?.call(val),
         builder:
             widget.formField.builder ?? (FormField<T> field) => Container(),
         enabled: widget.formField.enabled,

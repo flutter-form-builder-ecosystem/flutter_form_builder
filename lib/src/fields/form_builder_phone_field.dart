@@ -185,14 +185,8 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
       key: _fieldKey,
       initialValue: fullNumber,
       autovalidate: widget.autovalidate,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) {
-            return widget.validators[i](val);
-          }
-        }
-        return null;
-      },
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
       onSaved: (val) {
         var transformed;
         if (widget.valueTransformer != null) {
@@ -249,7 +243,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     );
   }
 
-  Widget _textFieldPrefix(field){
+  Widget _textFieldPrefix(field) {
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());

@@ -88,14 +88,8 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
       enabled: !_readOnly,
       key: _fieldKey,
       initialValue: _initialValue,
-      validator: (val) {
-        for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null) {
-            return widget.validators[i](val);
-          }
-        }
-        return null;
-      },
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
       onSaved: (val) {
         var transformed;
         if (widget.valueTransformer != null) {
