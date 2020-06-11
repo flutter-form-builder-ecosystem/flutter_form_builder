@@ -265,7 +265,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             CountryPickerUtils.getDefaultFlagImage(_selectedDialogCountry),
             Text(
               "+${_selectedDialogCountry.phoneCode} ",
-              style: widget.style ?? Theme.of(context).textTheme.subhead,
+              style: widget.style ?? Theme.of(context).textTheme.subtitle1,
             ),
           ],
         ),
