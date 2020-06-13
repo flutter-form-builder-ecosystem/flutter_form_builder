@@ -18,6 +18,9 @@ class FormBuilderRadioGroup extends StatefulWidget {
   final Color activeColor;
   final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
+  final Axis direction;
+  final MainAxisAlignment horizontalAlignment;
+  final double spaceBetween;
 
   FormBuilderRadioGroup({
     Key key,
@@ -34,6 +37,9 @@ class FormBuilderRadioGroup extends StatefulWidget {
     this.activeColor,
     this.onSaved,
     this.contentPadding = const EdgeInsets.all(0.0),
+    this.direction = Axis.horizontal,
+    this.horizontalAlignment = MainAxisAlignment.start,
+    this.spaceBetween,
   }) : super(key: key);
 
   @override
@@ -109,9 +115,9 @@ class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
                 textPosition: RadioButtonTextPosition.right,
               );
             },
-            direction: Axis.horizontal,
-            horizontalAlignment: MainAxisAlignment.start,
-            spacebetween: 40,
+            direction: widget.direction,
+            horizontalAlignment: widget.horizontalAlignment,
+            spacebetween: widget.spaceBetween,
           ),
         );
       },

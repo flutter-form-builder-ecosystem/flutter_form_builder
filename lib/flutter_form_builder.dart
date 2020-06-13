@@ -16,7 +16,7 @@ export './src/fields/form_builder_image_picker.dart';
 export './src/fields/form_builder_image_picker.dart';
 export './src/fields/form_builder_phone_field.dart';
 export './src/fields/form_builder_radio.dart';
-// export './src/fields/form_builder_radio_group.dart';
+export './src/fields/form_builder_radio_group.dart';
 export './src/fields/form_builder_range_slider.dart';
 export './src/fields/form_builder_rate.dart';
 export './src/fields/form_builder_segmented_control.dart';
