@@ -37,6 +37,8 @@ class FormBuilderImagePicker extends StatefulWidget {
   /// supported on the device. Defaults to `CameraDevice.rear`. See [ImagePicker].
   final CameraDevice preferredCameraDevice;
 
+  final int maxImages;
+
   const FormBuilderImagePicker({
     Key key,
     @required this.attribute,
@@ -56,6 +58,7 @@ class FormBuilderImagePicker extends StatefulWidget {
     this.maxWidth,
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
+    this.maxImages,
   }) : super(key: key);
 
   @override
@@ -67,6 +70,16 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
   List _initialValue;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
+
+  bool get _hasMaxImages {
+    if (widget.maxImages == null) {
+      return false;
+    } else {
+      return /*_fieldKey.currentState.value != null &&*/ _fieldKey
+              .currentState.value.length >=
+          widget.maxImages;
+    }
+  }
 
   @override
   void initState() {
@@ -124,8 +137,9 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
               Container(
                 height: widget.imageHeight,
                 child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: field.value.map<Widget>((item) {
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ...(field.value.map<Widget>((item) {
                       return Stack(
                         alignment: Alignment.topRight,
                         children: <Widget>[
@@ -160,45 +174,43 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             ),
                         ],
                       );
-                    }).toList()
-                      ..add(
-                        GestureDetector(
-                          child: Container(
-                              width: widget.imageWidth,
-                              height: widget.imageHeight,
-                              child: Icon(Icons.camera_enhance,
-                                  color: _readOnly
-                                      ? Theme.of(context).disabledColor
-                                      : widget.iconColor ??
-                                          Theme.of(context).primaryColor),
-                              color: (_readOnly
-                                      ? Theme.of(context).disabledColor
-                                      : widget.iconColor ??
-                                          Theme.of(context).primaryColor)
-                                  .withAlpha(50)),
-                          onTap: _readOnly
-                              ? null
-                              : () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (_) {
-                                      return ImageSourceSheet(
-                                        maxHeight: widget.maxHeight,
-                                        maxWidth: widget.maxWidth,
-                                        imageQuality: widget.imageQuality,
-                                        preferredCameraDevice:
-                                            widget.preferredCameraDevice,
-                                        onImageSelected: (image) {
-                                          field.didChange(
-                                              [...field.value, image]);
-                                          Navigator.of(context).pop();
-                                        },
-                                      );
-                                    },
-                                  );
+                    }).toList()),
+                    if (!_readOnly && !_hasMaxImages)
+                      GestureDetector(
+                        child: Container(
+                            width: widget.imageWidth,
+                            height: widget.imageHeight,
+                            child: Icon(Icons.camera_enhance,
+                                color: _readOnly
+                                    ? Theme.of(context).disabledColor
+                                    : widget.iconColor ??
+                                        Theme.of(context).primaryColor),
+                            color: (_readOnly
+                                    ? Theme.of(context).disabledColor
+                                    : widget.iconColor ??
+                                        Theme.of(context).primaryColor)
+                                .withAlpha(50)),
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (_) {
+                              return ImageSourceSheet(
+                                maxHeight: widget.maxHeight,
+                                maxWidth: widget.maxWidth,
+                                imageQuality: widget.imageQuality,
+                                preferredCameraDevice:
+                                    widget.preferredCameraDevice,
+                                onImageSelected: (image) {
+                                  field.didChange([...field.value, image]);
+                                  Navigator.of(context).pop();
                                 },
-                        ),
-                      )),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                  ],
+                ),
               ),
             ],
           ),
