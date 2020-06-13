@@ -137,6 +137,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   final double cursorWidth;
   final TextCapitalization textCapitalization;
+  final bool alwaysUse24HourFormat;
 
   FormBuilderDateTimePicker({
     Key key,
@@ -194,6 +195,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.textCapitalization = TextCapitalization.none,
     this.strutStyle,
     this.useRootNavigator = true,
+    this.alwaysUse24HourFormat = false,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
@@ -257,62 +259,67 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   Widget build(BuildContext context) {
     _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
 
-    return DateTimeField(
-      key: _fieldKey,
-      initialValue: _initialValue,
-      format: _dateFormat,
-      onSaved: (val) {
-        var value = _fieldKey.currentState.value;
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, value);
-        }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? value);
-        }
-      },
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onShowPicker: _onShowPicker,
-      onChanged: (val) {
-        if (widget.onChanged != null) widget.onChanged(val);
-      },
-      autovalidate: widget.autovalidate,
-      resetIcon: widget.resetIcon,
-      textDirection: widget.textDirection,
-      textAlign: widget.textAlign,
-      maxLength: widget.maxLength,
-      autofocus: widget.autofocus,
-      decoration: widget.decoration,
-      readOnly: true,
-      enabled: !_readOnly,
-      autocorrect: widget.autocorrect,
-      controller: _textFieldController,
-      focusNode: _focusNode,
-      inputFormatters: widget.inputFormatters,
-      keyboardType: widget.keyboardType,
-      maxLengthEnforced: widget.maxLengthEnforced,
-      maxLines: widget.maxLines,
-      obscureText: widget.obscureText,
-      showCursor: widget.showCursor,
-      minLines: widget.minLines,
-      expands: widget.expands,
-      style: widget.style,
-      onEditingComplete: widget.onEditingComplete,
-      buildCounter: widget.buildCounter,
-      cursorColor: widget.cursorColor,
-      cursorRadius: widget.cursorRadius,
-      cursorWidth: widget.cursorWidth,
-      enableInteractiveSelection: widget.enableInteractiveSelection,
-      keyboardAppearance: widget.keyboardAppearance,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      scrollPadding: widget.scrollPadding,
-      strutStyle: widget.strutStyle,
-      textCapitalization: widget.textCapitalization,
-      textInputAction: widget.textInputAction,
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(
+        alwaysUse24HourFormat: true,
+      ),
+      child: DateTimeField(
+        key: _fieldKey,
+        initialValue: _initialValue,
+        format: _dateFormat,
+        onSaved: (val) {
+          var value = _fieldKey.currentState.value;
+          var transformed;
+          if (widget.valueTransformer != null) {
+            transformed = widget.valueTransformer(val);
+            _formState?.setAttributeValue(widget.attribute, transformed);
+          } else {
+            _formState?.setAttributeValue(widget.attribute, value);
+          }
+          if (widget.onSaved != null) {
+            widget.onSaved(transformed ?? value);
+          }
+        },
+        validator: (val) =>
+            FormBuilderValidators.validateValidators(val, widget.validators),
+        onShowPicker: _onShowPicker,
+        onChanged: (val) {
+          if (widget.onChanged != null) widget.onChanged(val);
+        },
+        autovalidate: widget.autovalidate,
+        resetIcon: widget.resetIcon,
+        textDirection: widget.textDirection,
+        textAlign: widget.textAlign,
+        maxLength: widget.maxLength,
+        autofocus: widget.autofocus,
+        decoration: widget.decoration,
+        readOnly: true,
+        enabled: !_readOnly,
+        autocorrect: widget.autocorrect,
+        controller: _textFieldController,
+        focusNode: _focusNode,
+        inputFormatters: widget.inputFormatters,
+        keyboardType: widget.keyboardType,
+        maxLengthEnforced: widget.maxLengthEnforced,
+        maxLines: widget.maxLines,
+        obscureText: widget.obscureText,
+        showCursor: widget.showCursor,
+        minLines: widget.minLines,
+        expands: widget.expands,
+        style: widget.style,
+        onEditingComplete: widget.onEditingComplete,
+        buildCounter: widget.buildCounter,
+        cursorColor: widget.cursorColor,
+        cursorRadius: widget.cursorRadius,
+        cursorWidth: widget.cursorWidth,
+        enableInteractiveSelection: widget.enableInteractiveSelection,
+        keyboardAppearance: widget.keyboardAppearance,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        scrollPadding: widget.scrollPadding,
+        strutStyle: widget.strutStyle,
+        textCapitalization: widget.textCapitalization,
+        textInputAction: widget.textInputAction,
+      ),
     );
   }
 
@@ -361,7 +368,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         locale: widget.locale,
         textDirection: widget.textDirection,
         useRootNavigator: widget.useRootNavigator,
-        builder: widget.builder,
+        builder: widget.builder ??
+                (BuildContext context, Widget child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                child: child,
+              );
+            },
       );
     }
   }
@@ -376,7 +390,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
-        builder: widget.builder,
+        builder: widget.builder ??
+            (BuildContext context, Widget child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                child: child,
+              );
+            },
         useRootNavigator: widget.useRootNavigator,
       ).then(
         (result) {
