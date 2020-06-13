@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
+import 'package:image_picker/image_picker.dart';
 
 class FormBuilderImagePicker extends StatefulWidget {
   final String attribute;
@@ -19,6 +20,23 @@ class FormBuilderImagePicker extends StatefulWidget {
   final EdgeInsets imageMargin;
   final Color iconColor;
 
+  /// Optional maximum height of image; see [ImagePicker].
+  final double maxHeight;
+
+  /// Optional maximum width of image; see [ImagePicker].
+  final double maxWidth;
+
+  /// The imageQuality argument modifies the quality of the image, ranging from
+  /// 0-100 where 100 is the original/max quality. If imageQuality is null, the
+  /// image with the original quality will be returned. See [ImagePicker].
+  final int imageQuality;
+
+  /// Use preferredCameraDevice to specify the camera to use when the source is
+  /// `ImageSource.camera`. The preferredCameraDevice is ignored when source is
+  /// `ImageSource.gallery`. It is also ignored if the chosen camera is not
+  /// supported on the device. Defaults to `CameraDevice.rear`. See [ImagePicker].
+  final CameraDevice preferredCameraDevice;
+
   const FormBuilderImagePicker({
     Key key,
     @required this.attribute,
@@ -34,6 +52,10 @@ class FormBuilderImagePicker extends StatefulWidget {
     this.onSaved,
     this.decoration = const InputDecoration(),
     this.iconColor,
+    this.maxHeight,
+    this.maxWidth,
+    this.imageQuality,
+    this.preferredCameraDevice = CameraDevice.rear,
   }) : super(key: key);
 
   @override
@@ -161,6 +183,11 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                     context: context,
                                     builder: (_) {
                                       return ImageSourceSheet(
+                                        maxHeight: widget.maxHeight,
+                                        maxWidth: widget.maxWidth,
+                                        imageQuality: widget.imageQuality,
+                                        preferredCameraDevice:
+                                            widget.preferredCameraDevice,
                                         onImageSelected: (image) {
                                           field.didChange(
                                               [...field.value, image]);
