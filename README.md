@@ -204,6 +204,7 @@ The currently supported fields include:
 * `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
 * `FormBuilderPhoneField` - International phone number input. 
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
 * `FormBuilderRate` - For selection of a numerical value as a rating 
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
@@ -382,7 +383,7 @@ Here are other field types for `flutter_form_builder`:
 - [X] Assert no duplicates in `FormBuilderInput`s `attribute` names
 - [X] Allow options for Checkboxes and Radios to appear left or right - Done via `leadingInput` courtesy of [Sven Schöne](https://github.com/SvenSchoene)
 - [X] Use flutter_touch_spin for FormBuilderStepper. Possibly rename to FormBuilderTouchSpin in next major version
-- [ ] For RangeSlider use Flutter provided
+- [X] For RangeSlider use Flutter provided
 
 ### Known Issues
 * Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior in Flutter 

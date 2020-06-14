@@ -369,7 +369,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         textDirection: widget.textDirection,
         useRootNavigator: widget.useRootNavigator,
         builder: widget.builder ??
-                (BuildContext context, Widget child) {
+            (BuildContext context, Widget child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
                     alwaysUse24HourFormat: widget.alwaysUse24HourFormat),

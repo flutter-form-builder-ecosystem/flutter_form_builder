@@ -526,6 +526,16 @@ class MyHomePageState extends State<MyHomePage> {
                     onChanged: _onChanged,
                   ),
                   SizedBox(height: 15),
+                  FormBuilderRadioGroup(
+                    attribute: 'radio_group',
+                    decoration: InputDecoration(labelText: 'Radio Group'),
+                    onChanged: _onChanged,
+                    options: [
+                      FormBuilderFieldOption(value: 'Male',),
+                      FormBuilderFieldOption(value: 'Female',),
+                    ],
+                  ),
+                  SizedBox(height: 15),
                   FormBuilderCustomField(
                     attribute: 'name',
                     validators: [

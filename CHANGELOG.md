@@ -1,3 +1,15 @@
+## [3.11.0] - 14-Jun-2020
+* Added `FormBuilderRadioGroup` field
+* Revised ImageSourceSheet to use the new Image Picker api, and added support for web platform.
+* Add `textAlignVertical` attribute option to FormBuilderTextField
+* Included additional configuration options to the FormBuilderImagePicker: `maxHeight`, `maxWidth`, `imageQuality`, `preferredCameraDevice` & `maxImages`
+* Added `alwaysUse24HourFormat` option to DateTimePicker. Closes #297
+* Revert focus to PhoneField TextField after country selected. Closes #302
+* Validate PhoneField only if phone number has value, not country only
+* Bumped up flutter_typeahead version. Contains keyboard visibility fix
+* Bumped up flutter_chips_input version with multiple fixes and improvements.
+* Show Country flag to PhoneField
+
 ## [3.10.1] - 17-May-2020
 * Added delete icon on selected images in ImagePicker instead of non-intuitive long-press to delete. Closes #278
 * Added contentPadding option to Checkbox, CheckboxList, Radio and Switch to allow spacing of items in list options. Closes #280
