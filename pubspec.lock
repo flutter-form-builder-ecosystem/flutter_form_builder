@@ -117,7 +117,7 @@ packages:
       name: flutter_chips_input
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.2"
   flutter_colorpicker:
     dependency: "direct main"
     description:

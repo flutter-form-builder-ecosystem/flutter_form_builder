@@ -28,6 +28,9 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
   final FormFieldSetter onSaved;
+  final FocusNode focusNode;
+  final bool allowChipEditing;
+  final bool autofocus;
 
   FormBuilderChipsInput({
     Key key,
@@ -52,6 +55,9 @@ class FormBuilderChipsInput<T> extends StatefulWidget {
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.onSaved,
+    this.focusNode,
+    this.allowChipEditing = false,
+    this.autofocus = false,
   }) : super(key: key);
 
   @override
@@ -129,6 +135,9 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
           obscureText: widget.obscureText,
           suggestionsBoxMaxHeight: widget.suggestionsBoxMaxHeight,
           textCapitalization: widget.textCapitalization,
+          focusNode: widget.focusNode,
+          allowChipEditing: widget.allowChipEditing,
+          autofocus: widget.autofocus,
         );
       },
     );
