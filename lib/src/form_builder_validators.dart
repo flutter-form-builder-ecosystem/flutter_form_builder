@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
 class FormBuilderValidators {
+  /// [FormFieldValidator] that is composed of other [FormFieldValidator]s.
+  /// Each validator is run against the [FormField] value and if any returns a
+  /// non-null result validation fails, otherwise, validation passes
+  static FormFieldValidator compose(List<FormFieldValidator> validators) {
+    return (valueCandidate) {
+      for (FormFieldValidator validator in validators) {
+        final validatorResult = validator.call(valueCandidate);
+        if (validatorResult != null) {
+          return validatorResult;
+        }
+      }
+      return null;
+    };
+  }
+
   /// [FormFieldValidator] that requires the field have a non-empty value.
   static FormFieldValidator required({
     String errorText = "This field cannot be empty.",
