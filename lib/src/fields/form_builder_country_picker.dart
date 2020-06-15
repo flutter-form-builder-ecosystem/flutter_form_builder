@@ -8,7 +8,7 @@ import 'package:flutter_form_builder/src/country_picker_util.dart';
 
 class FormBuilderCountryPicker extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
@@ -36,7 +36,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
     @required this.attribute,
     this.defaultSelectedCountryIsoCode = "US",
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.style,
@@ -58,7 +58,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           /*  enabled: enabled,
             autovalidate: autovalidate,*/
           valueTransformer: valueTransformer,

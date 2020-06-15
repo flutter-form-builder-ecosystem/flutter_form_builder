@@ -5,7 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSegmentedControl extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final dynamic initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -27,7 +27,7 @@ class FormBuilderSegmentedControl extends FormBuilderField {
     @required this.attribute,
     @required this.options,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
@@ -42,7 +42,7 @@ class FormBuilderSegmentedControl extends FormBuilderField {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,

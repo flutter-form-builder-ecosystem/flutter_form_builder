@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final List<T> initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -22,7 +22,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
     @required this.attribute,
     @required this.options,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.controlAffinity = ListTileControlAffinity.leading,
     this.decoration = const InputDecoration(),
@@ -35,7 +35,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,

@@ -11,7 +11,7 @@ enum InputType { date, time, both }
 
 class FormBuilderDateTimePicker extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final DateTime initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -135,7 +135,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   FormBuilderDateTimePicker({
     Key key,
     @required this.attribute,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -191,7 +191,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
             key: key,
             initialValue: initialValue,
             attribute: attribute,
-            validators: validators,
+            validator: validator,
             valueTransformer: valueTransformer,
             // onChanged: onChanged,
             readOnly: readOnly,
@@ -213,12 +213,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
               onSaved(transformed ?? value);
             }
           },*/
-                validator: (val) {
-                  for (int i = 0; i < validators.length; i++) {
-                    if (validators[i](val) != null) return validators[i](val);
-                  }
-                  return null;
-                },
+                validator: validator,
                 onShowPicker: state.onShowPicker,
                 autovalidate: autovalidate,
                 resetIcon: resetIcon,

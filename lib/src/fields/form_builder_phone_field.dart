@@ -9,7 +9,7 @@ import 'package:phone_number/phone_number.dart';
 
 class FormBuilderPhoneField extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final String initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -65,7 +65,7 @@ class FormBuilderPhoneField extends FormBuilderField {
     Key key,
     @required this.attribute,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
@@ -119,7 +119,7 @@ class FormBuilderPhoneField extends FormBuilderField {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
@@ -236,7 +236,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
   }
 
   _parsePhone() async {
-    if (initialValue.isNotEmpty) {
+    if (initialValue != null && initialValue.isNotEmpty) {
       try {
         var parseResult = await PhoneNumber().parse(initialValue);
         print(parseResult);

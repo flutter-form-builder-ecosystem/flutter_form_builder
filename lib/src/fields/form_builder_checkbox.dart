@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCheckbox extends FormBuilderField<bool> {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final bool initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -22,7 +22,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     @required this.attribute,
     @required this.title,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
@@ -36,7 +36,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,

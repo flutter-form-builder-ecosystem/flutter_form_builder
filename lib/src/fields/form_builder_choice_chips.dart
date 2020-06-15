@@ -5,7 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
   // FormBuilder Settings
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final dynamic initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -38,7 +38,7 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
     @required this.attribute,
     @required this.options,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
@@ -65,7 +65,7 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
             key: key,
             initialValue: initialValue,
             attribute: attribute,
-            validators: validators,
+            validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,

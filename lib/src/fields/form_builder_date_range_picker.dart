@@ -11,7 +11,7 @@ import 'package:intl/intl.dart' as intl;
 
 class FormBuilderDateRangePicker extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final List<DateTime> initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -65,7 +65,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     @required this.lastDate,
     @required this.format,
     this.initialValue = const [],
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
@@ -110,7 +110,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,

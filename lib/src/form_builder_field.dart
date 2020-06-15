@@ -5,7 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderField<T> extends FormField<T> {
   final String attribute;
   final ValueTransformer valueTransformer;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final ValueChanged<T> onChanged;
   final bool readOnly;
   final InputDecoration decoration;
@@ -15,7 +15,7 @@ class FormBuilderField<T> extends FormField<T> {
     @required this.attribute,
     @required FormFieldBuilder<T> builder,
     this.valueTransformer,
-    this.validators = const [],
+    this.validator,
     this.onChanged,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
@@ -33,12 +33,7 @@ class FormBuilderField<T> extends FormField<T> {
           autovalidate: autovalidate,
           enabled: enabled,
           builder: builder,
-          validator: (val) {
-            for (int i = 0; i < validators.length; i++) {
-              if (validators[i](val) != null) return validators[i](val);
-            }
-            return null;
-          },
+          validator: validator,
         );
 
   @override

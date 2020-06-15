@@ -7,7 +7,7 @@ import 'package:signature/signature.dart';
 
 class FormBuilderSignaturePad extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final Uint8List initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -25,7 +25,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
   FormBuilderSignaturePad({
     Key key,
     @required this.attribute,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.backgroundColor,
@@ -42,7 +42,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,

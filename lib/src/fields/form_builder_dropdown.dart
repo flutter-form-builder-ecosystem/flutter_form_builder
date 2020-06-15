@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderDropdown extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final dynamic initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -31,7 +31,7 @@ class FormBuilderDropdown extends FormBuilderField {
     Key key,
     @required this.attribute,
     @required this.items,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.isExpanded = true,
@@ -55,7 +55,7 @@ class FormBuilderDropdown extends FormBuilderField {
             key: key,
             initialValue: initialValue,
             attribute: attribute,
-            validators: validators,
+            validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,

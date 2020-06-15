@@ -10,18 +10,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_typeahead: ^1.8.1
+  flutter_typeahead: ^1.8.3
   intl: ^0.16.1
-  flutter_chips_input: ^1.8.1
+  flutter_chips_input: ^1.8.2
   datetime_picker_formfield: ^1.0.0
   flutter_colorpicker: ^0.3.4
   signature: ^3.1.1
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
   flutter_touch_spin: ^1.0.1
-  image_picker: ^0.6.6+4
+  image_picker: ^0.6.7+1
   rating_bar: ^0.2.0
-  country_pickers: ^1.2.1
+  country_pickers: ^1.3.0
   phone_number: ^0.6.2+3
 
 dev_dependencies:

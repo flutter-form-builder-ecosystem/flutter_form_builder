@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 
 class FormBuilderImagePicker extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final List initialValue;
   final bool readOnly;
   final ValueTransformer valueTransformer;
@@ -21,7 +21,7 @@ class FormBuilderImagePicker extends FormBuilderField {
     Key key,
     @required this.attribute,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.valueTransformer,
     this.onChanged,
     this.imageWidth = 130,
@@ -35,7 +35,7 @@ class FormBuilderImagePicker extends FormBuilderField {
           key: key,
           initialValue: initialValue ?? [],
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,

@@ -8,7 +8,7 @@ typedef String SelectionToTextTransformer<T>(T suggestion);
 
 class FormBuilderTypeAhead<T> extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final T initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -50,7 +50,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
@@ -85,7 +85,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
           key: key,
           initialValue: initialValue,
           attribute: attribute,
-          validators: validators,
+          validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
