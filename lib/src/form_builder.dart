@@ -97,8 +97,8 @@ class FormBuilderState extends State<FormBuilder> {
 
   void reset() {
     _formKey.currentState.reset();
-    /*_fieldKeys.forEach((mapKey, fieldKey){
-      print("Reseting $mapKey");
+    /*_fieldKeys.forEach((mapKey, fieldKey) {
+      // print("Reseting $mapKey");
       fieldKey.currentState.reset();
     });*/
   }

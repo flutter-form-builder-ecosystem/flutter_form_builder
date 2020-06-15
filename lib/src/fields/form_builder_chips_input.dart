@@ -27,6 +27,9 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
   final FormFieldSetter onSaved;
+  final FocusNode focusNode;
+  final bool allowChipEditing;
+  final bool autofocus;
 
   FormBuilderChipsInput({
     Key key,
@@ -51,6 +54,9 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.onSaved,
+    this.focusNode,
+    this.allowChipEditing = false,
+    this.autofocus = false,
   }) : super(
             key: key,
             initialValue: initialValue,

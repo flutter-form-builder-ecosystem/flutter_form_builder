@@ -1,3 +1,30 @@
+## [3.11.0] - 14-Jun-2020
+* Added `FormBuilderRadioGroup` field
+* Revised ImageSourceSheet to use the new Image Picker api, and added support for web platform.
+* Add `textAlignVertical` attribute option to FormBuilderTextField
+* Included additional configuration options to the FormBuilderImagePicker: `maxHeight`, `maxWidth`, `imageQuality`, `preferredCameraDevice` & `maxImages`
+* Added `alwaysUse24HourFormat` option to DateTimePicker. Closes #297
+* Revert focus to PhoneField TextField after country selected. Closes #302
+* Validate PhoneField only if phone number has value, not country only
+* Bumped up flutter_typeahead version. Contains keyboard visibility fix
+* Bumped up flutter_chips_input version with multiple fixes and improvements.
+* Show Country flag to PhoneField
+
+## [3.10.1] - 17-May-2020
+* Added delete icon on selected images in ImagePicker instead of non-intuitive long-press to delete. Closes #278
+* Added contentPadding option to Checkbox, CheckboxList, Radio and Switch to allow spacing of items in list options. Closes #280
+* Fix bug "The getter 'isNotEmpty' was called on null" in PhoneField
+
+## [3.10.0] - 15-May-2020
+* Added `FormBuilderCountryPicker` and `FormBuilderPhoneField`. Good work by [Furkan KURT](https://github.com/furkankurt)
+* Set `readOnly` prop to `false` in ColorPicker, DateRangePicker & DateTimePicker TextFields - prevents keyboard popping up. Closes #210
+* Fixed allowEmpty bug in `minLength` validator. Closes #259
+* Allow user to set iconColor for ImagePicker due to issue with dark mode. Closes #268
+* Use [signature package](https://pub.dev/packages/signature) instead of self-maintained Widget
+* Use `ObjectKey`s to enforce rebuild after reset
+* Added `decoration` attribute to ImagePicker, deprecated `labelText`
+* Remove deprecation for `initialTime` & `initialDate` in DateTimePicker
+
 ## Unreleased
 * Add `contentPadding` to all `ListTile`-based fields
 
@@ -19,6 +46,7 @@
 ## [3.9.0] - 03-May-2020
 * New field type `FormBuilderImagePicker` courtesy of [Gustavo Vítor](https://github.com/gustavovitor)
 * Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/form_builder_map_field) to [rating_bar](https://pub.dev/packages/rating_bar) with more configuration options
+* Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/sy_flutter_widgets) to [rating_bar](https://pub.dev/packages/rating_bar) with more configuration options
 * Added option to `showCheckmark` for FormBuilderFilterChip, along with other options. Closes #260
 * Added option to `allowEmpty` in `minLength` and `maxLength` validations. Closes #259
 * Fixed bug where `locale`, `textDirection`, `useRootNavigator` & `builder` not passed down to `showDatePicker()` and `showTimePicker()`

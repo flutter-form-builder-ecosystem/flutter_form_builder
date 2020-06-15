@@ -193,25 +193,27 @@ Column(
 The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
 * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
-* `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
-* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
 * `FormBuilderChipsInput` - Takes a list of `Chip`s as input and suggests more options on typing
+* `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
 * `FormBuilderColorPicker` - For `Color` input selection
+* `FormBuilderCountryPicker` - Country selection from list
 * `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
+* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
+* `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
+* `FormBuilderPhoneField` - International phone number input. 
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
 * `FormBuilderRating` - For selection of a numerical value as a rating 
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
 * `FormBuilderSwitch` - On/Off switch
-* `FormBuilderTextField` - For text input. Accepts input of single-line text, multi-line text, password,
-email, urls etc by using different configurations and validators
+* `FormBuilderTextField` - For text input. Accepts input of single-line text, multi-line text, password, email, urls etc by using different configurations and validators
 * `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
 * `FormBuilderTypeAhead` - Auto-completes user input from a list of items
-* `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 

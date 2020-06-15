@@ -131,6 +131,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 
   final double cursorWidth;
   final TextCapitalization textCapitalization;
+  final bool alwaysUse24HourFormat;
 
   FormBuilderDateTimePicker({
     Key key,
@@ -187,6 +188,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.textCapitalization = TextCapitalization.none,
     this.strutStyle,
     this.useRootNavigator = true,
+    this.alwaysUse24HourFormat = false,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -345,6 +347,14 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         textDirection: widget.textDirection,
         useRootNavigator: widget.useRootNavigator,
         builder: widget.transitionBuilder,
+        builder: widget.builder ??
+            (BuildContext context, Widget child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                child: child,
+              );
+            },
       );
     }
   }
@@ -360,6 +370,14 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
             ? TimeOfDay.fromDateTime(currentValue)
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
         builder: widget.transitionBuilder,
+        builder: widget.builder ??
+            (BuildContext context, Widget child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                child: child,
+              );
+            },
         useRootNavigator: widget.useRootNavigator,
       ).then(
         (result) {

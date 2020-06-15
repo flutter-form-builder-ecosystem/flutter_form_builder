@@ -16,6 +16,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   final Color activeColor;
   final Color checkColor;
   final ListTileControlAffinity controlAffinity;
+  final EdgeInsets contentPadding;
 
   FormBuilderCheckbox(  {
     Key key,
@@ -32,6 +33,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.subtitle,
     this.secondary,
     this.controlAffinity = ListTileControlAffinity.leading,
+    this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(
           key: key,
           initialValue: initialValue,
