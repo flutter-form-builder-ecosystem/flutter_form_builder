@@ -126,7 +126,8 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   bool _readOnly = false;
   TextEditingController _effectiveController = TextEditingController();
   FocusNode _focusNode;
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ?? FocusNode());
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ?? FocusNode());
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   String _initialValue;
@@ -209,7 +210,8 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         return TextField(
           enabled: !_readOnly,
           style: widget.style,
-          focusNode: _readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
+          focusNode:
+              _readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
             errorText: field.errorText,

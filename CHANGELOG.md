@@ -1,3 +1,7 @@
+## [3.11.1] - 15-Jun-2020
+* Bumped up flutter_chips_input version. Contains major fix
+* Fixed bug preventing use of non-String value for `FormBuilderTypeAhead`.
+
 ## [3.11.0] - 14-Jun-2020
 * Added `FormBuilderRadioGroup` field
 * Revised ImageSourceSheet to use the new Image Picker api, and added support for web platform.
