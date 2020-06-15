@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
-class FormBuilderRadioGroup extends StatefulWidget {
+class FormBuilderRadioGroup extends FormBuilderField {
   final String attribute;
-  final List<FormFieldValidator> validators;
+  final FormFieldValidator validator;
   final dynamic initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -27,7 +27,7 @@ class FormBuilderRadioGroup extends StatefulWidget {
     @required this.attribute,
     @required this.options,
     this.initialValue,
-    this.validators = const [],
+    this.validator,
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
@@ -40,87 +40,52 @@ class FormBuilderRadioGroup extends StatefulWidget {
     this.direction = Axis.horizontal,
     this.horizontalAlignment = MainAxisAlignment.start,
     this.spaceBetween,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validator: validator,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderRadioGroupState state = field;
+
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: field.errorText,
+              ),
+              child: RadioGroup.builder(
+                groupValue: field.value,
+                onChanged: state.readOnly
+                    ? null
+                    : (value) {
+                  FocusScope.of(state.context).requestFocus(FocusNode());
+                  field.didChange(value);
+                  if (onChanged != null) onChanged(value);
+                },
+                items: options
+                    .map((option) => option.value)
+                    .toList(growable: false),
+                itemBuilder: (item) {
+                  return RadioButtonBuilder(
+                    item.toString(),
+                    textPosition: RadioButtonTextPosition.right,
+                  );
+                },
+                direction: direction,
+                horizontalAlignment: horizontalAlignment,
+                spacebetween: spaceBetween,
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderRadioGroupState createState() => _FormBuilderRadioGroupState();
 }
 
-class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  dynamic _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
-      },
-      builder: (FormFieldState<dynamic> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
-            errorText: field.errorText,
-          ),
-          child: RadioGroup.builder(
-            groupValue: field.value,
-            onChanged: _readOnly
-                ? null
-                : (value) {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    field.didChange(value);
-                    if (widget.onChanged != null) widget.onChanged(value);
-                  },
-            items: widget.options
-                .map((option) => option.value)
-                .toList(growable: false),
-            itemBuilder: (item) {
-              return RadioButtonBuilder(
-                item.toString(),
-                textPosition: RadioButtonTextPosition.right,
-              );
-            },
-            direction: widget.direction,
-            horizontalAlignment: widget.horizontalAlignment,
-            spacebetween: widget.spaceBetween,
-          ),
-        );
-      },
-    );
-  }
+class _FormBuilderRadioGroupState extends FormBuilderFieldState {
+  FormBuilderRadioGroup get widget => super.widget;
 }

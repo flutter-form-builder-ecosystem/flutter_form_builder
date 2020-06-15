@@ -40,7 +40,7 @@ class MyHomePageState extends State<MyHomePage> {
   final GlobalKey<FormFieldState> _specifyTextFieldKey =
       GlobalKey<FormFieldState>();
 
-  ValueChanged _onChanged = (val) => print(val);
+  final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
@@ -491,6 +491,7 @@ class MyHomePageState extends State<MyHomePage> {
                       decoration: InputDecoration(
                         labelText: 'Pick Photos',
                       ),
+                      maxImages: 1,
                     ),
                     SizedBox(height: 15),
                     /*FormBuilderCountryPicker(
