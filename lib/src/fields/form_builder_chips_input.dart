@@ -30,8 +30,9 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
   final FocusNode focusNode;
   final bool allowChipEditing;
   final bool autofocus;
+  final TextOverflow textOverflow;
 
-  FormBuilderChipsInput({
+  FormBuilderChipsInput( {
     Key key,
     @required this.attribute,
     @required this.chipBuilder,
@@ -57,6 +58,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
     this.focusNode,
     this.allowChipEditing = false,
     this.autofocus = false,
+    this.textOverflow,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -92,6 +94,10 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
                 obscureText: obscureText,
                 suggestionsBoxMaxHeight: suggestionsBoxMaxHeight,
                 textCapitalization: textCapitalization,
+                allowChipEditing: allowChipEditing,
+                autofocus: autofocus,
+                focusNode: focusNode,
+                textOverflow: textOverflow,
               );
             });
 
