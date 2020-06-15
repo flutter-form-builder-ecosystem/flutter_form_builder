@@ -240,7 +240,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     setState(() {
       stateCurrentValue = _fieldKey.currentState.value;
     });

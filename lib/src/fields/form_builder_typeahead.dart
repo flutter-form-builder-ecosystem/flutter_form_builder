@@ -4,8 +4,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-typedef String SelectionToTextTransformer<T>(T suggestion);
-
 class FormBuilderTypeAhead<T> extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -22,7 +20,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final WidgetBuilder loadingBuilder;
   final Duration debounceDuration;
   final SuggestionsBoxDecoration suggestionsBoxDecoration;
-  final SelectionToTextTransformer<T> selectionToTextTransformer;
+  final String Function(T) selectionToTextTransformer;
   final ItemBuilder<T> itemBuilder;
   final SuggestionsCallback<T> suggestionsCallback;
   final double suggestionsBoxVerticalOffset;
@@ -123,8 +121,8 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
     }
   }
 
-  _handleStringOnChanged() {
-    if (widget.onChanged != null) widget.onChanged(_typeAheadController.text);
+  void _handleStringOnChanged() {
+    widget.onChanged?.call(_typeAheadController.text);
   }
 
   @override

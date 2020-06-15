@@ -35,7 +35,7 @@ class FormBuilderCountryPicker extends StatefulWidget {
     Key key,
     @required this.attribute,
     this.defaultSelectedCountryIsoCode = 'US',
-    this.initialValue,
+    @required this.initialValue,
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),

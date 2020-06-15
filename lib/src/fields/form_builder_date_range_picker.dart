@@ -243,7 +243,7 @@ class FormBuilderDateRangePickerState
     );
   }
 
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     if (_effectiveFocusNode.hasFocus) {
       _hideKeyboard();
       var initialFirstDate = value.isEmpty
@@ -252,7 +252,7 @@ class FormBuilderDateRangePickerState
       var initialLastDate = value.isEmpty
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
-      final List<DateTime> picked = await date_range_picker.showDatePicker(
+      final picked = await date_range_picker.showDatePicker(
         context: context,
         initialFirstDate: initialFirstDate,
         initialLastDate: initialLastDate,
@@ -269,16 +269,16 @@ class FormBuilderDateRangePickerState
     }
   }
 
-  _valueToText() {
+  String _valueToText() {
     if (value.isEmpty) {
       return '';
     } else if (value.length == 1) {
-      return '${format(value[0])}';
+      return format(value[0]);
     }
     return '${format(value[0])} - ${format(value[1])}';
   }
 
-  _setCurrentValue(val) {
+  void _setCurrentValue(val) {
     setState(() {
       _currentValue = val ?? [];
     });

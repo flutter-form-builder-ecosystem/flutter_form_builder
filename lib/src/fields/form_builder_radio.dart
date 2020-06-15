@@ -111,8 +111,8 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
         }
       },
       builder: (FormFieldState<dynamic> field) {
-        List<Widget> radioList = [];
-        for (int i = 0; i < widget.options.length; i++) {
+        final radioList = <Widget>[];
+        for (var i = 0; i < widget.options.length; i++) {
           radioList.addAll([
             ListTile(
               dense: true,
@@ -124,10 +124,9 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
               onTap: _readOnly
                   ? null
                   : () {
-                      field.didChange(widget.options[i].value);
-                      if (widget.onChanged != null) {
-                        widget.onChanged(widget.options[i].value);
-                      }
+                      final value = widget.options[i].value;
+                      field.didChange(value);
+                      widget.onChanged?.call(value);
                     },
             ),
             Divider(

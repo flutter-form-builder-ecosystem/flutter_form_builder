@@ -86,7 +86,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
     super.initState();
   }
 
-  _getControllerValue() async {
+  Future<Uint8List> _getControllerValue() async {
     return await _effectiveController.toImage() != null
         ? await _effectiveController.toPngBytes()
         : null;
