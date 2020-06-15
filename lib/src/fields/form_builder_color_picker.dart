@@ -71,9 +71,9 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                 errorText: state.errorText,
                 enabled: !state.readOnly,
                 suffixIcon: LayoutBuilder(
-                  key: ObjectKey(state.value),
                   builder: (context, constraints) {
                     return Container(
+                      key: ObjectKey(state.value),
                       height: constraints.minHeight,
                       width: constraints.minHeight,
                       decoration: BoxDecoration(
@@ -119,6 +119,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
             );
           },
         );
+
   final TextEditingController controller;
   final FocusNode focusNode;
   final bool readOnly;
