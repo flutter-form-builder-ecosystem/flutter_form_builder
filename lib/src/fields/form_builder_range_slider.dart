@@ -126,9 +126,9 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("${widget.min}"),
-                    Text("${field.value.start}   -   ${field.value.end}"),
-                    Text("${widget.max}"),
+                    Text('${widget.min}'),
+                    Text('${field.value.start}   -   ${field.value.end}'),
+                    Text('${widget.max}'),
                   ],
                 ),
               ],

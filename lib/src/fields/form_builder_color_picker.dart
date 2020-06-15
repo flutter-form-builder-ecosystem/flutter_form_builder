@@ -111,7 +111,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   Color _initialValue;
-  FocusNode _focusNode = FocusNode();
+  final _focusNode = FocusNode();
   TextEditingController _textEditingController;
 
   TextEditingController get _effectiveController =>
@@ -226,7 +226,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
     _effectiveController.text = HexColor(color)?.toHex();
   }
 
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !_readOnly) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
@@ -284,7 +284,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                       },
                     );
                   default:
-                    throw "Unknown ColorPickerType";
+                    throw 'Unknown ColorPickerType';
                 }
               }),
             ),

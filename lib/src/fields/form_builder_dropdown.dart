@@ -123,7 +123,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                                 .firstWhere((val) => val.value == field.value,
                                     orElse: () => null)
                                 ?.child ??
-                            Text("${field.value.toString()}"))
+                            Text(field.value.toString()))
                         : widget.disabledHint,
                     elevation: widget.elevation,
                     iconSize: widget.iconSize,
@@ -157,10 +157,10 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
     );
   }
 
-  _changeValue(FormFieldState field, value) {
+  void _changeValue(FormFieldState field, value) {
     FocusScope.of(context).requestFocus(FocusNode());
     field.didChange(value);
-    if (widget.onChanged != null) widget.onChanged(value);
+    widget.onChanged?.call(value);
   }
 
 /*@override

@@ -107,7 +107,7 @@ class FormBuilderPhoneField extends StatefulWidget {
     this.titlePadding,
     this.dialogTitle,
     this.isSearchable,
-    this.defaultSelectedCountryIsoCode = "US",
+    this.defaultSelectedCountryIsoCode = 'US',
     this.priorityListByIsoCode,
     this.countryFilterByIsoCode,
     this.dialogTextStyle,
@@ -173,7 +173,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           _effectiveController.text = parseResult['national_number'];
         }
       } catch (error) {
-        _effectiveController.text = _initialValue.replaceFirst("+", "");
+        _effectiveController.text = _initialValue.replaceFirst('+', '');
       }
     }
   }
@@ -273,7 +273,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             Icon(Icons.arrow_drop_down),
             CountryPickerUtils.getDefaultFlagImage(_selectedDialogCountry),
             Text(
-              "+${_selectedDialogCountry.phoneCode} ",
+              '+${_selectedDialogCountry.phoneCode} ',
               style: widget.style ?? Theme.of(context).textTheme.subtitle1,
             ),
           ],
@@ -359,9 +359,9 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text("${country.name}"),
+        title: Text(country.name),
         // visualDensity: VisualDensity.compact, //TODO: Re-enable after Flutter 1.17
-        trailing: Text("+${country.phoneCode}"),
+        trailing: Text('+${country.phoneCode}'),
       ),
     );
   }

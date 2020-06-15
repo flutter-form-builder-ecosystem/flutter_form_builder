@@ -16,14 +16,14 @@ class FormBuilderSignaturePad extends StatefulWidget {
   final ValueChanged onChanged;
   final FormFieldSetter onSaved;
 
-  @Deprecated("Set points within SignatureController")
+  @Deprecated('Set points within SignatureController')
   final List<Point> points;
   final double width;
   final double height;
   final Color backgroundColor;
-  @Deprecated("Set penColor within SignatureController")
+  @Deprecated('Set penColor within SignatureController')
   final Color penColor;
-  @Deprecated("Set penStrokeWidth within SignatureController")
+  @Deprecated('Set penStrokeWidth within SignatureController')
   final double penStrokeWidth;
   final String clearButtonText;
   final SignatureController controller;
@@ -37,7 +37,7 @@ class FormBuilderSignaturePad extends StatefulWidget {
     this.backgroundColor = Colors.white,
     this.penColor = Colors.black,
     this.penStrokeWidth = 3.0,
-    this.clearButtonText = "Clear",
+    this.clearButtonText = 'Clear',
     this.initialValue,
     this.points,
     this.width,
@@ -86,7 +86,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
     super.initState();
   }
 
-  _getControllerValue() async {
+  Future<Uint8List> _getControllerValue() async {
     return await _effectiveController.toImage() != null
         ? await _effectiveController.toPngBytes()
         : null;

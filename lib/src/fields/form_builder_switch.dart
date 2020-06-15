@@ -168,9 +168,9 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                   ? null
                   : () {
                       FocusScope.of(context).requestFocus(FocusNode());
-                      bool newValue = !(field.value ?? false);
+                      final newValue = !(field.value ?? false);
                       field.didChange(newValue);
-                      if (widget.onChanged != null) widget.onChanged(newValue);
+                      widget.onChanged?.call(newValue);
                     },
             ),
           );

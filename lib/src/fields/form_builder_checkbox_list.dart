@@ -123,8 +123,8 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
         }
       },
       builder: (FormFieldState<dynamic> field) {
-        List<Widget> checkboxList = [];
-        for (int i = 0; i < widget.options.length; i++) {
+        final checkboxList = <Widget>[];
+        for (var i = 0; i < widget.options.length; i++) {
           checkboxList.addAll([
             ListTile(
               dense: true,

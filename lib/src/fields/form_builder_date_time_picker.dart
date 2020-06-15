@@ -218,7 +218,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
-    InputType.time: DateFormat("HH:mm"),
+    InputType.time: DateFormat('HH:mm'),
   };
 
   @override
@@ -240,7 +240,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     setState(() {
       stateCurrentValue = _fieldKey.currentState.value;
     });
@@ -344,7 +344,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         }
         break;
       default:
-        throw "Unexcepted input type ${widget.inputType}";
+        throw 'Unexcepted input type ${widget.inputType}';
         break;
     }
     newValue = newValue ?? currentValue;

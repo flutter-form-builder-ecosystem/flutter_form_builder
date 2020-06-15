@@ -65,7 +65,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
-    _numberFormat = widget.numberFormat ?? NumberFormat("##0.0");
+    _numberFormat = widget.numberFormat ?? NumberFormat('##0.0');
     super.initState();
   }
 
@@ -130,9 +130,9 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("${_numberFormat.format(widget.min)}"),
-                    Text("${_numberFormat.format(field.value)}"),
-                    Text("${_numberFormat.format(widget.max)}"),
+                    Text(_numberFormat.format(widget.min)),
+                    Text(_numberFormat.format(field.value)),
+                    Text(_numberFormat.format(widget.max)),
                   ],
                 ),
               ],
