@@ -284,7 +284,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                       },
                     );
                   default:
-                    throw "Unknown ColorPickerType";
+                    throw 'Unknown ColorPickerType';
                 }
               }),
             ),

@@ -123,7 +123,7 @@ class _FormBuilderSegmentedControlState
                   // ignore: deprecated_member_use_from_same_package
                   child: widget.textStyle != null
                       ? Text(
-                          "${option.label ?? option.value}",
+                          '${option.label ?? option.value}',
                           // ignore: deprecated_member_use_from_same_package
                           style: widget.textStyle,
                         )

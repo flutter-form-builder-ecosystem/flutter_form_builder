@@ -34,7 +34,7 @@ class FormBuilderCountryPicker extends StatefulWidget {
   FormBuilderCountryPicker({
     Key key,
     @required this.attribute,
-    this.defaultSelectedCountryIsoCode = "US",
+    this.defaultSelectedCountryIsoCode = 'US',
     this.initialValue,
     this.validators = const [],
     this.readOnly = false,
@@ -194,7 +194,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text("${country.name}"),
+        title: Text(country.name),
         // visualDensity: VisualDensity.compact, //TODO: Re-enable after Flutter 1.17
       ),
     );

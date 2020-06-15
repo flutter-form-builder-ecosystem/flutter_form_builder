@@ -271,11 +271,11 @@ class FormBuilderDateRangePickerState
 
   _valueToText() {
     if (value.isEmpty) {
-      return "";
+      return '';
     } else if (value.length == 1) {
-      return "${format(value[0])}";
+      return '${format(value[0])}';
     }
-    return "${format(value[0])} - ${format(value[1])}";
+    return '${format(value[0])} - ${format(value[1])}';
   }
 
   _setCurrentValue(val) {
