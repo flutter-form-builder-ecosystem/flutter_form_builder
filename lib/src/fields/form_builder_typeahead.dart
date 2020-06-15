@@ -111,9 +111,10 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
             ? _formState.initialValue[widget.attribute]
             : null);
 
-    _initialText = (widget.selectionToTextTransformer != null)
-        ? widget.selectionToTextTransformer(_initialValue ?? '')
-        : _initialValue?.toString() ?? '';
+    _initialText = ((widget.selectionToTextTransformer != null)
+            ? widget.selectionToTextTransformer(_initialValue)
+            : _initialValue?.toString()) ??
+        '';
 
     _typeAheadController.text = _initialText;
 
