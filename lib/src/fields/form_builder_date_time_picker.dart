@@ -346,8 +346,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         locale: widget.locale,
         textDirection: widget.textDirection,
         useRootNavigator: widget.useRootNavigator,
-        builder: widget.transitionBuilder,
-        builder: widget.builder ??
+        builder: widget.transitionBuilder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
@@ -369,8 +368,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
             : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
-        builder: widget.transitionBuilder,
-        builder: widget.builder ??
+        builder: widget.transitionBuilder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(

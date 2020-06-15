@@ -173,15 +173,12 @@ class FormBuilderCountryPicker extends FormBuilderField {
 class _FormBuilderCountryPickerState extends FormBuilderFieldState/*<String>*/ {
   FormBuilderCountryPicker get widget => super.widget;
 
-  @override
+  /*@override
   void initState() {
     var _initialValue =
         CountryPickerUtil.getCountryByCodeOrName(widget.initialValue) ??
             CountryPickerUtil.getCountryByIsoCode(
                 widget.defaultSelectedCountryIsoCode);
     super.initState();
-  }
-  
-
-
+  }*/
 }

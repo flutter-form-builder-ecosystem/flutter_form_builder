@@ -137,7 +137,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                         ? null
                         : () {
                             FocusScope.of(state.context)
-                                .requestFocus(FocusNode());
+                                .requestFocus(state._effectiveFocusNode);
                             if (isCupertinoPicker) {
                               state._openCupertinoCountryPicker();
                             } else {
@@ -154,8 +154,10 @@ class FormBuilderPhoneField extends FormBuilderField {
                         SizedBox(width: 10),
                         Text(
                           "+${state._selectedDialogCountry.phoneCode} ",
-                          style: style ??
-                              Theme.of(state.context).textTheme.subtitle1,
+                          style: Theme.of(state.context)
+                              .textTheme
+                              .subtitle1
+                              .merge(style),
                         ),
                       ],
                     ),
@@ -164,7 +166,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                     child: TextField(
                       enabled: !state.readOnly,
                       style: style,
-                      focusNode: focusNode,
+                      focusNode: state._effectiveFocusNode,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
@@ -214,6 +216,9 @@ class FormBuilderPhoneField extends FormBuilderField {
 class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
   FormBuilderPhoneField get widget => super.widget;
 
+  FocusNode _focusNode = FocusNode();
+  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ?? FocusNode());
+
   TextEditingController _effectiveController = TextEditingController();
   Country _selectedDialogCountry;
 
@@ -223,6 +228,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
 
   @override
   void initState() {
+
     if (widget.controller != null) {
       _effectiveController = widget.controller;
     }
@@ -276,7 +282,8 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
                   widget.priorityListByIsoCode.length,
                   (index) {
                     return CountryPickerUtils.getCountryByIsoCode(
-                        widget.priorityListByIsoCode[index]);
+                      widget.priorityListByIsoCode[index],
+                    );
                   },
                 )
               : null,
