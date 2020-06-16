@@ -174,7 +174,7 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         if (widget.onSuggestionSelected != null) {
           widget.onSuggestionSelected(suggestion);
         }
-        if (widget.onChanged != null) widget.onChanged(suggestion);
+        widget.onChanged?.call(suggestion);
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,
       errorBuilder: widget.errorBuilder,

@@ -179,7 +179,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
           ? null
           : (value) {
         FocusScope.of(context).requestFocus(FocusNode());
-        if (widget.onChanged != null) widget.onChanged(value);
+        widget.onChanged?.call(value);
       },
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {

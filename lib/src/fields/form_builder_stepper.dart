@@ -125,7 +125,7 @@ class _FormBuilderStepperState extends State<FormBuilderStepper> {
                 : (value) {
                     FocusScope.of(context).requestFocus(FocusNode());
                     field.didChange(value);
-                    if (widget.onChanged != null) widget.onChanged(value);
+                    widget.onChanged?.call(value);
                   },
             displayFormat: widget.displayFormat,
             textStyle: widget.textStyle,

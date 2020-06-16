@@ -104,7 +104,7 @@ class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
                 : (value) {
                     FocusScope.of(context).requestFocus(FocusNode());
                     field.didChange(value);
-                    if (widget.onChanged != null) widget.onChanged(value);
+                    widget.onChanged?.call(value);
                   },
             items: widget.options
                 .map((option) => option.value)

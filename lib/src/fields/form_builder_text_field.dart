@@ -118,7 +118,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     }
 
     _effectiveController.addListener(() {
-      if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
+      widget.onChanged?.call(_effectiveController.text);
     });
     super.initState();
   }

@@ -153,7 +153,7 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                     : (bool value) {
                         FocusScope.of(context).requestFocus(FocusNode());
                         field.didChange(value);
-                        if (widget.onChanged != null) widget.onChanged(value);
+                        widget.onChanged?.call(value);
                       },
                 activeColor: widget.activeColor,
                 activeThumbImage: widget.activeThumbImage,

@@ -222,7 +222,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
 
   void _setColor(Color color) {
     _fieldKey.currentState.didChange(color);
-    if (widget.onChanged != null) widget.onChanged(color);
+    widget.onChanged?.call(color);
     _effectiveController.text = HexColor(color)?.toHex();
   }
 

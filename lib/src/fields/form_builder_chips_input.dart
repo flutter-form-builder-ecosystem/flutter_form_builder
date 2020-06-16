@@ -121,7 +121,7 @@ class _FormBuilderChipsInputState extends State<FormBuilderChipsInput> {
           findSuggestions: widget.findSuggestions,
           onChanged: (data) {
             field.didChange(data);
-            if (widget.onChanged != null) widget.onChanged(data);
+            widget.onChanged?.call(data);
           },
           maxChips: widget.maxChips,
           chipBuilder: widget.chipBuilder,

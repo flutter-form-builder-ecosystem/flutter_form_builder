@@ -138,7 +138,7 @@ class _FormBuilderSegmentedControlState
                   field.reset();
                 } else {
                   field.didChange(value);
-                  if (widget.onChanged != null) widget.onChanged(value);
+                  widget.onChanged?.call(value);
                 }
               },
             ),

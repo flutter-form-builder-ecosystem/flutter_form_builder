@@ -170,7 +170,7 @@ class FormBuilderDateRangePickerState
       text: _valueToText(),
     );
     _effectiveController.addListener(() {
-      if (widget.onChanged != null) widget.onChanged(_effectiveController.text);
+      widget.onChanged?.call(_effectiveController.text);
     });
     _focusNode = FocusNode();
     widget.focusNode?.addListener(_handleFocus);

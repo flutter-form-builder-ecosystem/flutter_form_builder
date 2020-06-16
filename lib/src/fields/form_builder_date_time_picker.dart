@@ -284,7 +284,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             FormBuilderValidators.validateValidators(val, widget.validators),
         onShowPicker: _onShowPicker,
         onChanged: (val) {
-          if (widget.onChanged != null) widget.onChanged(val);
+          widget.onChanged?.call(val);
         },
         autovalidate: widget.autovalidate,
         resetIcon: widget.resetIcon,
