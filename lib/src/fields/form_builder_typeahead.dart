@@ -168,12 +168,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
           _typeAheadController.text =
               widget.selectionToTextTransformer(suggestion);
         } else {
-          _typeAheadController.text =
-              suggestion != null ? suggestion.toString() : '';
+          _typeAheadController.text = suggestion?.toString() ?? '';
         }
-        if (widget.onSuggestionSelected != null) {
-          widget.onSuggestionSelected(suggestion);
-        }
+        widget.onSuggestionSelected?.call(suggestion);
         widget.onChanged?.call(suggestion);
       },
       getImmediateSuggestions: widget.getImmediateSuggestions,

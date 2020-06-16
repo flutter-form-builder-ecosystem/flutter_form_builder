@@ -130,9 +130,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
             : null);
     _textEditingController =
         TextEditingController(text: HexColor(_initialValue)?.toHex());
-    if (widget.focusNode != null) {
-      widget.focusNode.addListener(_handleFocus);
-    }
+    widget.focusNode?.addListener(_handleFocus);
     _focusNode.addListener(_handleFocus);
   }
 

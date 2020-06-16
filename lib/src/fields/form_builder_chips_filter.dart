@@ -161,9 +161,7 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
                               }
 
                               field.didChange(currentValue);
-                              if (widget.onChanged != null) {
-                                widget.onChanged(currentValue);
-                              }
+                              widget.onChanged?.call(currentValue);
                             },
                           );
                         },

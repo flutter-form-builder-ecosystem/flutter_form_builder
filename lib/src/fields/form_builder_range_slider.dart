@@ -118,9 +118,7 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
                       : (RangeValues values) {
                           FocusScope.of(context).requestFocus(FocusNode());
                           field.didChange(values);
-                          if (widget.onChanged != null) {
-                            widget.onChanged(values);
-                          }
+                          widget.onChanged?.call(values);
                         },
                 ),
                 Row(
