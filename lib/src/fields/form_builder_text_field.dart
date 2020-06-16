@@ -1,3 +1,7 @@
+import 'dart:ui';
+import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -46,8 +50,14 @@ class FormBuilderTextField extends FormBuilderField {
   final VoidCallback onTap;
   final bool enableSuggestions;
   final TextAlignVertical textAlignVertical;
-
-  // final ToolbarOptions toolbarOptions,
+  final DragStartBehavior dragStartBehavior;
+  final ScrollController scrollController;
+  final ScrollPhysics scrollPhysics;
+  final BoxWidthStyle selectionWidthStyle;
+  final BoxHeightStyle selectionHeightStyle;
+  final SmartDashesType smartDashesType;
+  final SmartQuotesType smartQuotesType;
+  final ToolbarOptions toolbarOptions;
 
   FormBuilderTextField({
     Key key,
@@ -92,6 +102,14 @@ class FormBuilderTextField extends FormBuilderField {
     this.onTap,
     this.enableSuggestions = false,
     this.textAlignVertical,
+    this.dragStartBehavior = DragStartBehavior.start,
+    this.scrollController,
+    this.scrollPhysics,
+    this.selectionWidthStyle = ui.BoxWidthStyle.tight,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.toolbarOptions,
+    this.selectionHeightStyle = ui.BoxHeightStyle.tight,
   })  : assert(initialValue == null || controller == null),
         assert(textAlign != null),
         assert(autofocus != null),
@@ -176,6 +194,14 @@ class FormBuilderTextField extends FormBuilderField {
               keyboardAppearance: keyboardAppearance,
               enableInteractiveSelection: enableInteractiveSelection,
               buildCounter: buildCounter,
+              dragStartBehavior: dragStartBehavior,
+              scrollController: scrollController,
+              scrollPhysics: scrollPhysics,
+              selectionHeightStyle: selectionHeightStyle,
+              selectionWidthStyle: selectionWidthStyle,
+              smartDashesType: smartDashesType,
+              smartQuotesType: smartQuotesType,
+              toolbarOptions: toolbarOptions,
             );
           },
         );
