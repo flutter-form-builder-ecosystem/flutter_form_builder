@@ -148,9 +148,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
                               FocusScope.of(context).requestFocus(FocusNode());
                               var choice = selected ? option.value : null;
                               field.didChange(choice);
-                              if (widget.onChanged != null) {
-                                widget.onChanged(choice);
-                              }
+                              widget.onChanged?.call(choice);
                             });
                           },
                   )
