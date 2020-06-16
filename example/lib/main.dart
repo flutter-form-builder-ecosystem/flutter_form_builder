@@ -16,12 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         // brightness: Brightness.dark,
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           // labelStyle: TextStyle(color: Colors.purple),
           border: OutlineInputBorder(
             gapPadding: 10,
           ),
-
         ),
       ),
       home: MyHomePage(),
@@ -55,7 +54,7 @@ class MyHomePageState extends State<MyHomePage> {
         title: Text('FormBuilder Example'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
             FormBuilder(
@@ -70,7 +69,7 @@ class MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   FormBuilderFilterChip(
                     attribute: 'filter_chip',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Select many options',
                     ),
                     options: [
@@ -89,7 +88,7 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderChoiceChip(
                     attribute: 'choice_chip',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Select an option',
                     ),
                     options: [
@@ -111,11 +110,11 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: 'color_picker',
                     // initialValue: Colors.yellow,
                     colorPickerType: ColorPickerType.SlidePicker,
-                    decoration: InputDecoration(labelText: 'Pick Color'),
+                    decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
                   SizedBox(height: 15),
                   FormBuilderChipsInput(
-                    decoration: InputDecoration(labelText: 'Chips'),
+                    decoration: const InputDecoration(labelText: 'Chips'),
                     attribute: 'chips_test',
                     onChanged: _onChanged,
                     initialValue: [
@@ -172,7 +171,7 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: 'date',
                     onChanged: _onChanged,
                     inputType: InputType.time,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Appointment Time',
                     ),
                     validator: (val) => null,
@@ -185,10 +184,13 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: 'date_range',
                     firstDate: DateTime(1970),
                     lastDate: DateTime.now(),
-                    initialValue: [DateTime.now().subtract(Duration(days: 30)), DateTime.now().subtract(Duration(seconds: 10))],
+                    initialValue: [
+                      DateTime.now().subtract(Duration(days: 30)),
+                      DateTime.now().subtract(Duration(seconds: 10))
+                    ],
                     format: DateFormat('yyyy-MM-dd'),
                     onChanged: _onChanged,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Date Range',
                       helperText: 'Helper text',
                       hintText: 'Hint text',
@@ -205,7 +207,7 @@ class MyHomePageState extends State<MyHomePage> {
                     divisions: 20,
                     activeColor: Colors.red,
                     inactiveColor: Colors.pink[100],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Number of things',
                     ),
                   ),
@@ -220,7 +222,7 @@ class MyHomePageState extends State<MyHomePage> {
                     divisions: 20,
                     activeColor: Colors.red,
                     inactiveColor: Colors.pink[100],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Price Range',
                     ),
                   ),
@@ -261,7 +263,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   FormBuilderTextField(
                     attribute: 'age',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText:
                           'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
                     ),
@@ -280,7 +282,7 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderDropdown(
                     attribute: 'gender',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Gender',
                       border: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -301,7 +303,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderTypeAhead(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Country',
                     ),
                     attribute: 'country',
@@ -331,7 +333,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderTypeAhead<Contact>(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Contact Person',
                     ),
                     initialValue: contacts[0],
@@ -380,7 +382,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   /*FormBuilderRadioGroup(
-                    decoration: InputDecoration(labelText: 'Pick a number'),
+                    decoration: const InputDecoration(labelText: 'Pick a number'),
                     attribute: 'number',
                     readOnly: true,
                     options: [
@@ -424,17 +426,18 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderTouchSpin(
-                    decoration: InputDecoration(labelText: 'Stepper'),
+                    decoration: const InputDecoration(labelText: 'Stepper'),
                     attribute: 'stepper',
                     initialValue: 10,
                     step: 1,
                     iconSize: 48.0,
-                    addIcon: Icon(Icons.arrow_right),
-                    subtractIcon: Icon(Icons.arrow_left),
+                    addIcon: const Icon(Icons.arrow_right),
+                    subtractIcon: const Icon(Icons.arrow_left),
                   ),
                   SizedBox(height: 15),
                   FormBuilderRate(
-                    decoration: InputDecoration(labelText: 'Rate this form'),
+                    decoration:
+                        const InputDecoration(labelText: 'Rate this form'),
                     attribute: 'rate',
                     iconSize: 32.0,
                     initialValue: 1.0,
@@ -464,7 +467,7 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderImagePicker(
                     attribute: 'images',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Images',
                     ),
                     maxImages: 3,
@@ -490,8 +493,10 @@ class MyHomePageState extends State<MyHomePage> {
                     valueTransformer: (value) {
                       return value.isoCode;
                     },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'Country'),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Country',
+                    ),
                     validators: [
                       FormBuilderValidators.required(
                           errorText: 'This field required.'),
@@ -504,7 +509,7 @@ class MyHomePageState extends State<MyHomePage> {
                     // defaultSelectedCountryIsoCode: 'KE',
                     cursorColor: Colors.black,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Phone Number',
                     ),
@@ -519,7 +524,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
-                    decoration: InputDecoration(labelText: 'Signature'),
+                    decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
                     clearButtonText: 'Start Over',
@@ -528,11 +533,15 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderRadioGroup(
                     attribute: 'radio_group',
-                    decoration: InputDecoration(labelText: 'Radio Group'),
+                    decoration: const InputDecoration(labelText: 'Radio Group'),
                     onChanged: _onChanged,
                     options: [
-                      FormBuilderFieldOption(value: 'Male',),
-                      FormBuilderFieldOption(value: 'Female',),
+                      FormBuilderFieldOption(
+                        value: 'Male',
+                      ),
+                      FormBuilderFieldOption(
+                        value: 'Female',
+                      ),
                     ],
                   ),
                   SizedBox(height: 15),
@@ -548,8 +557,10 @@ class MyHomePageState extends State<MyHomePage> {
                         return InputDecorator(
                           decoration: InputDecoration(
                             labelText: 'FormBuilderCustomField',
-                            contentPadding:
-                            EdgeInsets.only(top: 10.0, bottom: 0.0),
+                            contentPadding: const EdgeInsets.only(
+                              top: 10.0,
+                              bottom: 0.0,
+                            ),
                             border: InputBorder.none,
                             errorText: field.errorText,
                           ),
@@ -558,7 +569,7 @@ class MyHomePageState extends State<MyHomePage> {
                             child: CupertinoPicker(
                               itemExtent: 30,
                               children:
-                              allCountries.map((c) => Text(c)).toList(),
+                                  allCountries.map((c) => Text(c)).toList(),
                               onSelectedItemChanged: (index) {
                                 print(index);
                                 field.didChange(allCountries[index]);

@@ -157,7 +157,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                 field.didChange([...field.value]..remove(item));
                               },
                               child: Container(
-                                margin: EdgeInsets.all(3),
+                                margin: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
                                   color: Colors.grey.withOpacity(.7),
                                   shape: BoxShape.circle,
@@ -165,7 +165,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                 alignment: Alignment.center,
                                 height: 22,
                                 width: 22,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.close,
                                   size: 18,
                                   color: Colors.white,

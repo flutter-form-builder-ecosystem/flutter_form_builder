@@ -103,7 +103,7 @@ class _FormBuilderSegmentedControlState
             errorText: field.errorText,
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: 10.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: CupertinoSegmentedControl(
               borderColor: _readOnly
                   ? Theme.of(context).disabledColor
@@ -119,7 +119,7 @@ class _FormBuilderSegmentedControlState
                 widget.options,
                 key: (option) => option.value,
                 value: (option) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   // ignore: deprecated_member_use_from_same_package
                   child: widget.textStyle != null
                       ? Text(
