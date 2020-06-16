@@ -117,7 +117,7 @@ packages:
       name: flutter_chips_input
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.2"
+    version: "1.8.3"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -213,7 +213,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+1"
+    version: "0.6.7+2"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -241,7 +241,7 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.1+1"
+    version: "0.6.2"
   logging:
     dependency: transitive
     description:
@@ -297,7 +297,7 @@ packages:
       name: node_preamble
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.10"
+    version: "1.4.12"
   package_config:
     dependency: transitive
     description:
@@ -505,7 +505,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.4"
+    version: "4.1.0"
   watcher:
     dependency: transitive
     description:
