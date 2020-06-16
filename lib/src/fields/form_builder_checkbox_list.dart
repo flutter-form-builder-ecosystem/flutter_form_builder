@@ -85,7 +85,7 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
                 currValue.remove(widget.options[i].value);
               }
               field.didChange(currValue);
-              if (widget.onChanged != null) widget.onChanged(currValue);
+              widget.onChanged?.call(currValue);
             },
     );
   }

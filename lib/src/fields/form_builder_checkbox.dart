@@ -79,7 +79,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
           : (bool value) {
               FocusScope.of(context).requestFocus(FocusNode());
               field.didChange(value);
-              if (widget.onChanged != null) widget.onChanged(value);
+              widget.onChanged?.call(value);
             },
     );
   }

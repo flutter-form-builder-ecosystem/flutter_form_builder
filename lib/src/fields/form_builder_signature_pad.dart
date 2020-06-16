@@ -81,7 +81,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       FocusScope.of(context).requestFocus(FocusNode());
       var value = await _getControllerValue();
       _fieldKey.currentState.didChange(value);
-      if (widget.onChanged != null) widget.onChanged(value);
+      widget.onChanged?.call(value);
     });
     super.initState();
   }

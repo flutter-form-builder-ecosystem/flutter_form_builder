@@ -124,7 +124,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                       : (double value) {
                           FocusScope.of(context).requestFocus(FocusNode());
                           field.didChange(value);
-                          if (widget.onChanged != null) widget.onChanged(value);
+                          widget.onChanged?.call(value);
                         },
                 ),
                 Row(
