@@ -91,15 +91,16 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderTypeAheadState state = field;
+            final theme = Theme.of(state.context);
 
             return TypeAheadField<T>(
               textFieldConfiguration: textFieldConfiguration.copyWith(
                 enabled: !state.readOnly,
                 controller: state.typeAheadController,
                 style: state.readOnly
-                    ? Theme.of(state.context).textTheme.subtitle1.copyWith(
-                          color: Theme.of(state.context).disabledColor,
-                        )
+                    ? theme.textTheme.subtitle1.copyWith(
+                        color: theme.disabledColor,
+                      )
                     : textFieldConfiguration.style,
                 focusNode: state.typeAheadFocusNode,
                 decoration: decoration.copyWith(
