@@ -98,7 +98,7 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
             errorText: field.errorText,
           ),
           child: Container(
-            padding: EdgeInsets.only(top: 10.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
