@@ -115,21 +115,21 @@ class _FormBuilderSegmentedControlState
                   ? Theme.of(context).disabledColor
                   : widget.pressedColor ?? Theme.of(context).primaryColor,
               groupValue: field.value,
-              children: Map.fromIterable(
-                widget.options,
-                key: (option) => option.value,
-                value: (option) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  // ignore: deprecated_member_use_from_same_package
-                  child: widget.textStyle != null
-                      ? Text(
-                          '${option.label ?? option.value}',
-                          // ignore: deprecated_member_use_from_same_package
-                          style: widget.textStyle,
-                        )
-                      : option,
-                ),
-              ),
+              children: {
+                for (var option in widget.options)
+                  option.value: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    // ignore: deprecated_member_use_from_same_package
+                    child: widget.textStyle != null
+                        ? Text(
+                            // ignore: deprecated_member_use_from_same_package
+                            '${option.label ?? option.value}',
+                            // ignore: deprecated_member_use_from_same_package
+                            style: widget.textStyle,
+                          )
+                        : option,
+                  ),
+              },
               padding: widget.padding,
               unselectedColor: widget.unselectedColor,
               onValueChanged: (dynamic value) {
