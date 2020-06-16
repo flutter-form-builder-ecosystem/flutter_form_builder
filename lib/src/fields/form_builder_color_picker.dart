@@ -71,6 +71,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                 errorText: state.errorText,
                 enabled: !state.readOnly,
                 suffixIcon: LayoutBuilder(
+                  key: ObjectKey(state.value),
                   builder: (context, constraints) {
                     return Container(
                       key: ObjectKey(state.value),
@@ -221,15 +222,11 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   }
 
   _colorChanged(Color color) {
-    setState(() {
-      _selectedColor = color;
-    });
+    _selectedColor = color;
   }
 
   _setTextFieldString() {
-    setState(() {
-      _effectiveController.text = valueString ?? '';
-    });
+    _effectiveController.text = valueString ?? '';
   }
 
   @override
