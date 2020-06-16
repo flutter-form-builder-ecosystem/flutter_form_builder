@@ -60,6 +60,7 @@ class FormBuilderPhoneField extends FormBuilderField {
   final TextStyle dialogTextStyle;
   final bool isCupertinoPicker;
   final double cupertinoPickerSheetHeight;
+  final TextAlignVertical textAlignVertical;
 
   FormBuilderPhoneField({
     Key key,
@@ -112,6 +113,7 @@ class FormBuilderPhoneField extends FormBuilderField {
     this.dialogTextStyle,
     this.isCupertinoPicker = false,
     this.cupertinoPickerSheetHeight,
+    this.textAlignVertical,
   })  : assert(initialValue == null ||
             controller == null ||
             defaultSelectedCountryIsoCode != null),
@@ -125,6 +127,7 @@ class FormBuilderPhoneField extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderPhoneFieldState state = field;
+
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
@@ -201,6 +204,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                       minLines: minLines,
                       showCursor: showCursor,
                       onTap: onTap,
+                      textAlignVertical: textAlignVertical,
                     ),
                   ),
                 ],
@@ -217,18 +221,24 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
   FormBuilderPhoneField get widget => super.widget;
 
   FocusNode _focusNode = FocusNode();
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ?? FocusNode());
+
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ?? FocusNode());
 
   TextEditingController _effectiveController = TextEditingController();
   Country _selectedDialogCountry;
 
   String get fullNumber {
-    return "+${_selectedDialogCountry.phoneCode}${_effectiveController.text}";
+    // When there is no phone number text, the field is empty -- the country
+    // prefix is only prepended when a phone number is specified.
+    final phoneText = _effectiveController.text;
+    return phoneText.isNotEmpty
+        ? '+${_selectedDialogCountry.phoneCode}$phoneText'
+        : phoneText;
   }
 
   @override
   void initState() {
-
     if (widget.controller != null) {
       _effectiveController = widget.controller;
     }
@@ -241,7 +251,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
     super.initState();
   }
 
-  _parsePhone() async {
+  Future<void> _parsePhone() async {
     if (initialValue != null && initialValue.isNotEmpty) {
       try {
         var parseResult = await PhoneNumber().parse(initialValue);
@@ -257,11 +267,9 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
     }
   }
 
-  _invokeChange() {
+  void _invokeChange() {
     didChange(fullNumber);
-    if (widget.onChanged != null) {
-      widget.onChanged(fullNumber);
-    }
+    widget.onChanged?.call(fullNumber);
   }
 
   void _openCupertinoCountryPicker() {
@@ -271,6 +279,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
         return CountryPickerCupertino(
           pickerSheetHeight: widget.cupertinoPickerSheetHeight ?? 300.0,
           onValuePicked: (Country country) {
+            _effectiveFocusNode.requestFocus();
             setState(() => _selectedDialogCountry = country);
             didChange(fullNumber);
           },
