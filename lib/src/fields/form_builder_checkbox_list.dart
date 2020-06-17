@@ -136,19 +136,18 @@ class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
               onTap: _readOnly
                   ? null
                   : () {
-                      var currentValue = [...field.value];
-                      if (!currentValue.contains(widget.options[i].value)) {
-                        currentValue.add(widget.options[i].value);
+                      final optionValue = widget.options[i].value;
+                      final currentValue = [...field.value];
+                      if (!currentValue.contains(optionValue)) {
+                        currentValue.add(optionValue);
                       } else {
-                        currentValue.remove(widget.options[i].value);
+                        currentValue.remove(optionValue);
                       }
                       field.didChange(currentValue);
-                      if (widget.onChanged != null) {
-                        widget.onChanged(currentValue);
-                      }
+                      widget.onChanged?.call(currentValue);
                     },
             ),
-            Divider(height: 0.0),
+            const Divider(height: 0.0),
           ]);
         }
         return InputDecorator(

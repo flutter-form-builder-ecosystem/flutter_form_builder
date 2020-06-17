@@ -263,14 +263,14 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         }
       },
       child: ConstrainedBox(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           minWidth: 100,
           maxWidth: 120,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Icon(Icons.arrow_drop_down),
+            const Icon(Icons.arrow_drop_down),
             CountryPickerUtils.getDefaultFlagImage(_selectedDialogCountry),
             Text(
               '+${_selectedDialogCountry.phoneCode} ',
@@ -319,7 +319,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             primaryColor: widget.cursorColor ?? Theme.of(context).primaryColor,
           ),
           child: CountryPickerDialog(
-            titlePadding: widget.titlePadding ?? EdgeInsets.all(8.0),
+            titlePadding: widget.titlePadding ?? const EdgeInsets.all(8.0),
             searchCursorColor:
                 widget.cursorColor ?? Theme.of(context).primaryColor,
             searchInputDecoration:

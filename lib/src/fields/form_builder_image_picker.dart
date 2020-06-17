@@ -131,7 +131,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(

@@ -114,7 +114,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     if (widget.controller != null) {
       _effectiveController = widget.controller;
     } else {
-      _effectiveController.text = "${_initialValue ?? ''}";
+      _effectiveController.text = _initialValue ?? '';
     }
 
     _effectiveController.addListener(() {

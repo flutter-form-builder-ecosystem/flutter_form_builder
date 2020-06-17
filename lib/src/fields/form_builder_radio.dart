@@ -79,13 +79,11 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
   }
 
   Widget _leading(FormFieldState<dynamic> field, int i) {
-    if (widget.leadingInput) return _radio(field, i);
-    return null;
+    return widget.leadingInput ? _radio(field, i) : null;
   }
 
   Widget _trailing(FormFieldState<dynamic> field, int i) {
-    if (!widget.leadingInput) return _radio(field, i);
-    return null;
+    return !widget.leadingInput ? _radio(field, i) : null;
   }
 
   @override
@@ -129,7 +127,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
                       widget.onChanged?.call(value);
                     },
             ),
-            Divider(
+            const Divider(
               height: 0.0,
             ),
           ]);
