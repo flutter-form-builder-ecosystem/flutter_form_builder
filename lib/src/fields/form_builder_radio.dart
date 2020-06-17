@@ -88,7 +88,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField(
       key: _fieldKey,

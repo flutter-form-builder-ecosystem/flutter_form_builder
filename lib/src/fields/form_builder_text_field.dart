@@ -125,7 +125,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return TextFormField(
       key: _fieldKey,

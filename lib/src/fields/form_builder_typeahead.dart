@@ -127,7 +127,7 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return TypeAheadFormField<T>(
       key: _fieldKey,

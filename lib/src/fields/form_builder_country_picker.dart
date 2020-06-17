@@ -80,7 +80,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField<Country>(
       key: _fieldKey,
