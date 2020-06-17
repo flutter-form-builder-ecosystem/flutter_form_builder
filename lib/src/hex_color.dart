@@ -9,10 +9,13 @@ extension HexColor on Color {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
+  /// Converts an rgba value (0-255) into a 2-digit Hex code.
+  String _hexValue(int rgbaVal) {
+    assert(rgbaVal == rgbaVal & 0xFF);
+    return rgbaVal.toRadixString(16).padLeft(2, '0').toUpperCase();
+  }
+
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
   String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0').toUpperCase()}'
-      '${red.toRadixString(16).padLeft(2, '0').toUpperCase()}'
-      '${green.toRadixString(16).padLeft(2, '0').toUpperCase()}'
-      '${blue.toRadixString(16).padLeft(2, '0').toUpperCase()}';
+      '${_hexValue(alpha)}${_hexValue(red)}${_hexValue(green)}${_hexValue(blue)}';
 }
