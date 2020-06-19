@@ -3,13 +3,22 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderRangeSlider extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final RangeValues initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
+  @override
+  final FormFieldSetter onSaved;
   final double max;
   final double min;
   final int divisions;
@@ -19,7 +28,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
   final ValueChanged<RangeValues> onChangeEnd;
   final RangeLabels labels;
   final RangeSemanticFormatterCallback semanticFormatterCallback;
-  final FormFieldSetter onSaved;
+  final DisplayValues displayValues;
 
   FormBuilderRangeSlider({
     Key key,
@@ -40,6 +49,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
     this.labels,
     this.semanticFormatterCallback,
     this.onSaved,
+    this.displayValues = DisplayValues.all,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -78,11 +88,19 @@ class FormBuilderRangeSlider extends FormBuilderField {
                               },
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text("$min"),
-                          Text("${field.value.start}   -   ${field.value.end}"),
-                          Text("$max"),
+                          if (displayValues != DisplayValues.none &&
+                              displayValues != DisplayValues.current)
+                            Text('${min}'),
+                          Spacer(),
+                          if (displayValues != DisplayValues.none &&
+                              displayValues != DisplayValues.minMax)
+                            Text(
+                                '${field.value.start}   -   ${field.value.end}'),
+                          Spacer(),
+                          if (displayValues != DisplayValues.none &&
+                              displayValues != DisplayValues.current)
+                            Text('${max}'),
                         ],
                       ),
                     ],
@@ -96,5 +114,6 @@ class FormBuilderRangeSlider extends FormBuilderField {
 }
 
 class _FormBuilderRangeSliderState extends FormBuilderFieldState {
+  @override
   FormBuilderRangeSlider get widget => super.widget;
 }

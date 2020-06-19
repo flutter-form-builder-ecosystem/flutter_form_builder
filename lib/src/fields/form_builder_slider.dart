@@ -3,14 +3,25 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
+enum DisplayValues { all, current, minMax, none }
+
 class FormBuilderSlider extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final double initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
+  @override
+  final FormFieldSetter onSaved;
 
   final double max;
   final double min;
@@ -22,9 +33,9 @@ class FormBuilderSlider extends FormBuilderField {
   final String label;
   final SemanticFormatterCallback semanticFormatterCallback;
   final NumberFormat numberFormat;
-  final FormFieldSetter onSaved;
+  final DisplayValues displayValues;
 
-  FormBuilderSlider({
+  FormBuilderSlider( {
     Key key,
     @required this.attribute,
     @required this.min,
@@ -44,6 +55,7 @@ class FormBuilderSlider extends FormBuilderField {
     this.semanticFormatterCallback,
     this.numberFormat,
     this.onSaved,
+    this.displayValues = DisplayValues.all,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -54,7 +66,7 @@ class FormBuilderSlider extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderSliderState state = field;
-            NumberFormat _numberFormat = numberFormat ?? NumberFormat("##0.0");
+            var _numberFormat = numberFormat ?? NumberFormat('##0.0');
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
@@ -83,11 +95,18 @@ class FormBuilderSlider extends FormBuilderField {
                             },
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text("${_numberFormat.format(min)}"),
-                        Text("${_numberFormat.format(field.value)}"),
-                        Text("${_numberFormat.format(max)}"),
+                        if (displayValues != DisplayValues.none &&
+                            displayValues != DisplayValues.current)
+                          Text('${min}'),
+                        Spacer(),
+                        if (displayValues != DisplayValues.none &&
+                            displayValues != DisplayValues.minMax)
+                          Text('${field.value}'),
+                        Spacer(),
+                        if (displayValues != DisplayValues.none &&
+                            displayValues != DisplayValues.current)
+                          Text('${max}'),
                       ],
                     ),
                   ],
@@ -102,5 +121,6 @@ class FormBuilderSlider extends FormBuilderField {
 }
 
 class _FormBuilderSliderState extends FormBuilderFieldState {
+  @override
   FormBuilderSlider get widget => super.widget;
 }
