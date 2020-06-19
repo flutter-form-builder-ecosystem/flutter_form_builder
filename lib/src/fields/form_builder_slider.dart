@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
+enum DisplayValues { all, current, minMax, none }
+
 class FormBuilderSlider extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -23,6 +25,7 @@ class FormBuilderSlider extends StatefulWidget {
   final SemanticFormatterCallback semanticFormatterCallback;
   final NumberFormat numberFormat;
   final FormFieldSetter onSaved;
+  final DisplayValues displayValues;
 
   FormBuilderSlider({
     Key key,
@@ -44,6 +47,7 @@ class FormBuilderSlider extends StatefulWidget {
     this.semanticFormatterCallback,
     this.numberFormat,
     this.onSaved,
+    this.displayValues = DisplayValues.all,
   }) : super(key: key);
 
   @override
@@ -128,11 +132,18 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                         },
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(_numberFormat.format(widget.min)),
-                    Text(_numberFormat.format(field.value)),
-                    Text(_numberFormat.format(widget.max)),
+                    if (widget.displayValues != DisplayValues.none &&
+                        widget.displayValues != DisplayValues.current)
+                      Text('${widget.min}'),
+                    Spacer(),
+                    if (widget.displayValues != DisplayValues.none &&
+                        widget.displayValues != DisplayValues.minMax)
+                      Text('${field.value}'),
+                    Spacer(),
+                    if (widget.displayValues != DisplayValues.none &&
+                        widget.displayValues != DisplayValues.current)
+                      Text('${widget.max}'),
                   ],
                 ),
               ],

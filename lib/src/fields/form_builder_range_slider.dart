@@ -20,6 +20,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
   final RangeLabels labels;
   final RangeSemanticFormatterCallback semanticFormatterCallback;
   final FormFieldSetter onSaved;
+  final DisplayValues displayValues;
 
   FormBuilderRangeSlider({
     Key key,
@@ -40,6 +41,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
     this.labels,
     this.semanticFormatterCallback,
     this.onSaved,
+    this.displayValues = DisplayValues.all,
   }) : super(key: key);
 
   @override
@@ -124,11 +126,15 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
                         },
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('${widget.min}'),
-                    Text('${field.value.start}   -   ${field.value.end}'),
-                    Text('${widget.max}'),
+                    if (widget.displayValues != DisplayValues.none && widget.displayValues != DisplayValues.current)
+                      Text('${widget.min}'),
+                    Spacer(),
+                    if (widget.displayValues != DisplayValues.none && widget.displayValues != DisplayValues.minMax)
+                      Text('${field.value.start}   -   ${field.value.end}'),
+                    Spacer(),
+                    if (widget.displayValues != DisplayValues.none && widget.displayValues != DisplayValues.current)
+                      Text('${widget.max}'),
                   ],
                 ),
               ],

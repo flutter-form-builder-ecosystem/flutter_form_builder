@@ -208,6 +208,7 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(
                       labelText: 'Number of things',
                     ),
+                    displayValues: DisplayValues.current,
                   ),
                   SizedBox(height: 15),
                   FormBuilderRangeSlider(
@@ -223,6 +224,7 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(
                       labelText: 'Price Range',
                     ),
+                    displayValues: DisplayValues.minMax,
                   ),
                   SizedBox(height: 15),
                   FormBuilderCheckbox(
@@ -233,9 +235,7 @@ class MyHomePageState extends State<MyHomePage> {
                     label: RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(
-                            text: 'I have read and agree to the ',
-                          ),
+                          TextSpan(text: 'I have read and agree to the '),
                           TextSpan(
                             text: 'Terms and Conditions',
                             style: TextStyle(color: Colors.blue),
