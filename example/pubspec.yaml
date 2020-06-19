@@ -12,6 +12,8 @@ dependencies:
 
   flutter_form_builder:
     path: ../
+  widget_with_codeview: ^1.0.3
+  cupertino_icons: any
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +21,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/sources/
