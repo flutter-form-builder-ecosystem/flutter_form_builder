@@ -82,7 +82,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField(
       key: _fieldKey,
@@ -141,7 +141,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                 if (widget.allowClear &&
                     !widget.readOnly &&
                     field.value != null) ...[
-                  VerticalDivider(),
+                  const VerticalDivider(),
                   InkWell(
                     child: widget.clearIcon,
                     onTap: () {
@@ -165,7 +165,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
 
 /*@override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return DropdownButtonFormField(
       key: _fieldKey,

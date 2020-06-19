@@ -106,7 +106,7 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField(
       key: _fieldKey,
@@ -161,9 +161,7 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
                               }
 
                               field.didChange(currentValue);
-                              if (widget.onChanged != null) {
-                                widget.onChanged(currentValue);
-                              }
+                              widget.onChanged?.call(currentValue);
                             },
                           );
                         },

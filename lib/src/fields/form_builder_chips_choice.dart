@@ -92,7 +92,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField(
       key: _fieldKey,
@@ -148,9 +148,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
                               FocusScope.of(context).requestFocus(FocusNode());
                               var choice = selected ? option.value : null;
                               field.didChange(choice);
-                              if (widget.onChanged != null) {
-                                widget.onChanged(choice);
-                              }
+                              widget.onChanged?.call(choice);
                             });
                           },
                   )

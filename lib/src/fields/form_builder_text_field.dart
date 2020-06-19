@@ -114,7 +114,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     if (widget.controller != null) {
       _effectiveController = widget.controller;
     } else {
-      _effectiveController.text = "${_initialValue ?? ''}";
+      _effectiveController.text = _initialValue ?? '';
     }
 
     _effectiveController.addListener(() {
@@ -125,7 +125,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return TextFormField(
       key: _fieldKey,

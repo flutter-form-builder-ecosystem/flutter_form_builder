@@ -368,7 +368,7 @@ This package is dependent on the following packages and plugins:
 * [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
 * [signature](https://pub.dev/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o) with some minor improvements to fit our usage
 * [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
-* [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours trully :-)](https://github.com/danvick)
+* [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours truly :-)](https://github.com/danvick)
 
 ### RELATED PACKAGES
 Here are other field types for `flutter_form_builder`:

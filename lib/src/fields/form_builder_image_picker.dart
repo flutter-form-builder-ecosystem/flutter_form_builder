@@ -100,7 +100,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField<List>(
       key: _fieldKey,
@@ -131,7 +131,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(

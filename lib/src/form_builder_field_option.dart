@@ -16,11 +16,7 @@ class FormBuilderFieldOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (child != null) {
-      return child;
-    } else {
-      // ignore: deprecated_member_use_from_same_package
-      return Text(label ?? value.toString());
-    }
+    // ignore: deprecated_member_use_from_same_package
+    return child ?? Text(label ?? value.toString());
   }
 }

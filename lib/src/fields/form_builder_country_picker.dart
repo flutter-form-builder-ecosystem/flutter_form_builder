@@ -80,7 +80,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = (_formState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField<Country>(
       key: _fieldKey,
@@ -123,7 +123,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
                 ),
                 Expanded(
                   child: Text(
-                    "${field.value?.name ?? ''}",
+                    field.value?.name ?? '',
                     style: widget.style,
                   ),
                 ),
@@ -163,7 +163,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
             primaryColor: widget.cursorColor ?? Theme.of(context).primaryColor,
           ),
           child: CountryPickerDialog(
-            titlePadding: widget.titlePadding ?? EdgeInsets.all(8.0),
+            titlePadding: widget.titlePadding ?? const EdgeInsets.all(8.0),
             searchCursorColor:
                 widget.cursorColor ?? Theme.of(context).primaryColor,
             searchInputDecoration:

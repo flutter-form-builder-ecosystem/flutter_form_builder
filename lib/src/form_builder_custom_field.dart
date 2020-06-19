@@ -63,7 +63,7 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
     /*return widget.formField
       ..onSaved = (T val) {
         _formState?.setValue(widget.attribute, val);
-        if (widget.formField.onSaved != null) widget.formField.onSaved(val);
+        widget.formField.onSaved?.call(val);
       }
       ..validator = (val) {
         for (int i = 0; i < widget.validators.length; i++) {
@@ -78,7 +78,7 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
       child: FormField(
         key: _fieldKey,
         onSaved: (val) {
-          if (widget.formField.onSaved != null) widget.formField.onSaved(val);
+          widget.formField.onSaved?.call(val);
           if (widget.valueTransformer != null) {
             var transformed = widget.valueTransformer(val);
             FormBuilder.of(context)
