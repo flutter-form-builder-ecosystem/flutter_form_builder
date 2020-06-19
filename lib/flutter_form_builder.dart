@@ -1,6 +1,7 @@
 library flutter_form_builder;
 
 export 'package:flutter_typeahead/flutter_typeahead.dart';
+export 'package:signature/signature.dart';
 
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_list.dart';
