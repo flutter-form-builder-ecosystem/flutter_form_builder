@@ -1,3 +1,7 @@
+## [3.11.2] - 19-Jun-2020
+* Deprecated `initialValue` for Signature field - here's no easy way of converting `Uint8List` to `List<Point>`. Use SignatureController to set initial signature
+* Added `displayValues` attribute to Slider and RangeSlider - choose which values to display under the slider
+
 ## [3.11.1] - 15-Jun-2020
 * Bumped up flutter_chips_input version. Contains major fix
 * Fixed bug preventing use of non-String value for `FormBuilderTypeAhead`.

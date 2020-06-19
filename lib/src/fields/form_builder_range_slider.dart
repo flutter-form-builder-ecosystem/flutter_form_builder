@@ -125,13 +125,16 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
                 ),
                 Row(
                   children: <Widget>[
-                    if (widget.displayValues != DisplayValues.none && widget.displayValues != DisplayValues.current)
+                    if (widget.displayValues != DisplayValues.none &&
+                        widget.displayValues != DisplayValues.current)
                       Text('${widget.min}'),
                     Spacer(),
-                    if (widget.displayValues != DisplayValues.none && widget.displayValues != DisplayValues.minMax)
+                    if (widget.displayValues != DisplayValues.none &&
+                        widget.displayValues != DisplayValues.minMax)
                       Text('${field.value.start}   -   ${field.value.end}'),
                     Spacer(),
-                    if (widget.displayValues != DisplayValues.none && widget.displayValues != DisplayValues.current)
+                    if (widget.displayValues != DisplayValues.none &&
+                        widget.displayValues != DisplayValues.current)
                       Text('${widget.max}'),
                   ],
                 ),

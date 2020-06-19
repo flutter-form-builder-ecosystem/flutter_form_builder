@@ -9,7 +9,8 @@ import 'package:signature/signature.dart';
 class FormBuilderSignaturePad extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  @Deprecated('There is currently no way of converting Uint8List to List<Point> - https://github.com/4Q-s-r-o/signature/issues/17.'
+  @Deprecated(
+      'There is currently no way of converting Uint8List to List<Point> - https://github.com/4Q-s-r-o/signature/issues/17.'
       'To Pass a list of points is initial value use `SignatureController`.')
   final Uint8List initialValue;
   final bool readOnly;
