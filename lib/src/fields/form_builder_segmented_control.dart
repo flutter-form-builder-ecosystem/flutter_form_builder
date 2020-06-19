@@ -4,16 +4,24 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSegmentedControl extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final dynamic initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
   final Color borderColor;
   final Color selectedColor;
   final Color pressedColor;
+  @override
   final FormFieldSetter onSaved;
 
   final List<FormBuilderFieldOption> options;
@@ -67,14 +75,13 @@ class FormBuilderSegmentedControl extends FormBuilderField {
                       ? Theme.of(state.context).disabledColor
                       : pressedColor ?? Theme.of(state.context).primaryColor,
                   groupValue: state.value,
-                  children: Map.fromIterable(
-                    options,
-                    key: (option) => option.value,
-                    value: (option) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: option,
-                    ),
-                  ),
+                  children: {
+                    for (var option in options)
+                      option.value: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: option,
+                      )
+                  },
                   padding: padding,
                   unselectedColor: unselectedColor,
                   onValueChanged: (dynamic value) {
@@ -96,5 +103,6 @@ class FormBuilderSegmentedControl extends FormBuilderField {
 }
 
 class _FormBuilderSegmentedControlState extends FormBuilderFieldState {
+  @override
   FormBuilderSegmentedControl get widget => super.widget;
 }

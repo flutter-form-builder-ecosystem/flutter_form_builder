@@ -3,20 +3,28 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderRadioList extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final dynamic initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
   final List<FormBuilderFieldOption> options;
 
   final Color activeColor;
+  @override
   final FormFieldSetter onSaved;
   final ListTileControlAffinity controlAffinity;
 
-  FormBuilderRadioList( {
+  FormBuilderRadioList({
     Key key,
     @required this.attribute,
     @required this.options,
@@ -39,8 +47,8 @@ class FormBuilderRadioList extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderRadioState state = field;
-            List<Widget> radioList = [];
-            for (int i = 0; i < options.length; i++) {
+            var radioList = [];
+            for (var i = 0; i < options.length; i++) {
               radioList.addAll([
                 RadioListTile(
                   dense: true,
@@ -78,5 +86,6 @@ class FormBuilderRadioList extends FormBuilderField {
 }
 
 class _FormBuilderRadioState extends FormBuilderFieldState {
+  @override
   FormBuilderRadioList get widget => super.widget;
 }

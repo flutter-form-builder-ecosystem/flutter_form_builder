@@ -7,15 +7,23 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 typedef String SelectionToTextTransformer<T>(T suggestion);
 
 class FormBuilderTypeAhead<T> extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final T initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final bool getImmediateSuggestions;
+  @override
   final bool autovalidate;
   final ErrorBuilder errorBuilder;
   final WidgetBuilder noItemsFoundBuilder;
@@ -152,6 +160,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
 }
 
 class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState {
+  @override
   FormBuilderTypeAhead get widget => super.widget;
 
   TextEditingController _typeAheadController;

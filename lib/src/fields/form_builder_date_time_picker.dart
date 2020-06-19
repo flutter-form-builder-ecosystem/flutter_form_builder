@@ -10,11 +10,17 @@ import 'package:intl/intl.dart';
 enum InputType { date, time, both }
 
 class FormBuilderDateTimePicker extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final DateTime initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueTransformer valueTransformer;
 
   /// The date/time picker dialogs to show.
@@ -83,6 +89,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 
   /// Preset the widget's value.
   final bool autofocus;
+  @override
   final bool autovalidate;
   final bool obscureText;
   final bool autocorrect;
@@ -90,6 +97,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   final int maxLines;
   final int maxLength;
   final List<TextInputFormatter> inputFormatters;
+  @override
   final bool enabled;
   final TransitionBuilder transitionBuilder;
 
@@ -261,6 +269,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 }
 
 class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
+  @override
   FormBuilderDateTimePicker get widget => super.widget;
   DateTime _initialValue;
   FocusNode _focusNode;
@@ -270,13 +279,14 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
   DateTime stateCurrentValue;
+
   DateFormat get dateFormat => _dateFormat;
   DateFormat _dateFormat;
 
   final _dateTimeFormats = {
     InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
     InputType.date: DateFormat('yyyy-MM-dd'),
-    InputType.time: DateFormat("HH:mm"),
+    InputType.time: DateFormat('HH:mm'),
   };
 
   @override
@@ -292,7 +302,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     setState(() {
       stateCurrentValue = value;
     });
@@ -322,7 +332,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         }
         break;
       default:
-        throw "Unexcepted input type ${widget.inputType}";
+        throw 'Unexcepted input type ${widget.inputType}';
         break;
     }
     newValue = newValue ?? currentValue;

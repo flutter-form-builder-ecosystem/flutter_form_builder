@@ -5,16 +5,24 @@ import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
 class FormBuilderTouchSpin extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final double initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
   final double step;
   final double min;
   final double max;
+  @override
   final FormFieldSetter onSaved;
   final Icon subtractIcon;
   final Icon addIcon;
@@ -99,5 +107,6 @@ class FormBuilderTouchSpin extends FormBuilderField {
 }
 
 class _FormBuilderTouchSpinState extends FormBuilderFieldState {
+  @override
   FormBuilderTouchSpin get widget => super.widget;
 }

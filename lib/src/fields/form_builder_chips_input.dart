@@ -3,12 +3,19 @@ import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderChipsInput<T> extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final List<T> initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final ChipsInputSuggestions findSuggestions;
@@ -32,7 +39,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
   final bool autofocus;
   final TextOverflow textOverflow;
 
-  FormBuilderChipsInput( {
+  FormBuilderChipsInput({
     Key key,
     @required this.attribute,
     @required this.chipBuilder,
@@ -106,5 +113,6 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
 }
 
 class _FormBuilderChipsInputState extends FormBuilderFieldState {
+  @override
   FormBuilderChipsInput get widget => super.widget;
 }

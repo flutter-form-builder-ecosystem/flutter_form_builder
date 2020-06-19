@@ -5,12 +5,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSwitch extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final bool initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final Widget title;
@@ -57,6 +64,7 @@ class FormBuilderSwitch extends FormBuilderField {
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final ListTileControlAffinity controlAffinity;
+  @override
   final FormFieldSetter onSaved;
 
   FormBuilderSwitch({

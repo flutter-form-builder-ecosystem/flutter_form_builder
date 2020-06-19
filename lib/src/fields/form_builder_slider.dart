@@ -35,7 +35,7 @@ class FormBuilderSlider extends FormBuilderField {
   final NumberFormat numberFormat;
   final DisplayValues displayValues;
 
-  FormBuilderSlider( {
+  FormBuilderSlider({
     Key key,
     @required this.attribute,
     @required this.min,

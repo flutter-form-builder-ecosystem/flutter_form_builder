@@ -4,13 +4,21 @@ import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormBuilderImagePicker extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final List initialValue;
+  @override
   final bool readOnly;
+  @override
   final ValueTransformer valueTransformer;
+  @override
   final ValueChanged onChanged;
+  @override
   final FormFieldSetter onSaved;
+  @override
   final InputDecoration decoration;
 
   final double previewWidth;
@@ -166,6 +174,7 @@ class FormBuilderImagePicker extends FormBuilderField {
 }
 
 class _FormBuilderImagePickerState extends FormBuilderFieldState {
+  @override
   FormBuilderImagePicker get widget => super.widget;
 
   bool get hasMaxImages {

@@ -7,7 +7,7 @@ class FormBuilderValidators {
   /// non-null result validation fails, otherwise, validation passes
   static FormFieldValidator compose(List<FormFieldValidator> validators) {
     return (valueCandidate) {
-      for (FormFieldValidator validator in validators) {
+      for (var validator in validators) {
         final validatorResult = validator.call(valueCandidate);
         if (validatorResult != null) {
           return validatorResult;
@@ -19,7 +19,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field have a non-empty value.
   static FormFieldValidator required({
-    String errorText = "This field cannot be empty.",
+    String errorText = 'This field cannot be empty.',
   }) {
     return (valueCandidate) {
       if (valueCandidate == null ||
@@ -36,7 +36,7 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value be true.
   /// Commonly used for required checkboxes.
   static FormFieldValidator requiredTrue({
-    String errorText = "This field must be set to true",
+    String errorText = 'This field must be set to true',
   }) {
     return (valueCandidate) {
       if (valueCandidate != true) {
@@ -58,7 +58,7 @@ class FormBuilderValidators {
               (valueCandidate is String &&
                   num.tryParse(valueCandidate) != null &&
                   num.tryParse(valueCandidate) < min))) {
-        return errorText ?? "Value must be greater than or equal to $min";
+        return errorText ?? 'Value must be greater than or equal to $min';
       }
       return null;
     };
@@ -76,7 +76,7 @@ class FormBuilderValidators {
             (valueCandidate is String &&
                 num.tryParse(valueCandidate) != null &&
                 num.tryParse(valueCandidate) > max)) {
-          return errorText ?? "Value must be less than or equal to $max";
+          return errorText ?? 'Value must be less than or equal to $max';
         }
       }
       return null;
@@ -94,7 +94,7 @@ class FormBuilderValidators {
       final valueLength = valueCandidate?.length ?? 0;
       if (valueLength < minLength && (!allowEmpty || valueLength > 0)) {
         return errorText ??
-            "Value must have a length greater than or equal to $minLength";
+            'Value must have a length greater than or equal to $minLength';
       }
       return null;
     };
@@ -109,7 +109,7 @@ class FormBuilderValidators {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.length > maxLength) {
         return errorText ??
-            "Value must have a length less than or equal to $maxLength";
+            'Value must have a length less than or equal to $maxLength';
       }
       return null;
     };
@@ -117,7 +117,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value to be a valid email address.
   static FormFieldValidator email({
-    String errorText = "This field requires a valid email address.",
+    String errorText = 'This field requires a valid email address.',
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
@@ -129,7 +129,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value to be a valid url.
   static FormFieldValidator url({
-    String errorText = "This field requires a valid URL address.",
+    String errorText = 'This field requires a valid URL address.',
     List<String> protocols = const ['http', 'https', 'ftp'],
     bool requireTld = true,
     bool requireProtocol = false,
@@ -154,7 +154,7 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value to match the provided regex pattern.
   static FormFieldValidator pattern(
     Pattern pattern, {
-    String errorText = "Value does not match pattern.",
+    String errorText = 'Value does not match pattern.',
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
@@ -166,7 +166,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value to be a valid number.
   static FormFieldValidator numeric({
-    String errorText = "Value must be numeric.",
+    String errorText = 'Value must be numeric.',
   }) {
     return (valueCandidate) {
       if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty) {
@@ -178,7 +178,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
   static FormFieldValidator creditCard({
-    String errorText = "This field requires a valid credit card number.",
+    String errorText = 'This field requires a valid credit card number.',
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
@@ -193,7 +193,7 @@ class FormBuilderValidators {
   // ignore: non_constant_identifier_names
   static FormFieldValidator IP({
     dynamic version,
-    String errorText = "This field requires a valid IP.",
+    String errorText = 'This field requires a valid IP.',
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
@@ -205,7 +205,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value to be a valid date string.
   static FormFieldValidator date({
-    String errorText = "This field requires a valid date string.",
+    String errorText = 'This field requires a valid date string.',
   }) {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
@@ -213,18 +213,5 @@ class FormBuilderValidators {
       }
       return null;
     };
-  }
-
-  /// Common validator method that tests [val] against [validators].  When a
-  /// validation generates an error message, it it returned, otherwise null.
-  static String validateValidators<T>(
-      T val, List<FormFieldValidator> validators) {
-    for (int i = 0; i < validators.length; i++) {
-      final validatorResult = validators[i](val);
-      if (validatorResult != null) {
-        return validatorResult;
-      }
-    }
-    return null;
   }
 }

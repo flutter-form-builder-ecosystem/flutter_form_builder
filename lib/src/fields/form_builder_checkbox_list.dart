@@ -3,18 +3,26 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final List<T> initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final List<FormBuilderFieldOption> options;
   final ListTileControlAffinity controlAffinity;
   final Color activeColor;
   final Color checkColor;
+
   // final Widget secondary;
 
   FormBuilderCheckboxList({
@@ -41,9 +49,9 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxListState<T> state = field;
+            var checkboxList = [];
 
-            List<Widget> checkboxList = [];
-            for (int i = 0; i < options.length; i++) {
+            for (var i = 0; i < options.length; i++) {
               checkboxList.addAll([
                 CheckboxListTile(
                   value: state.value.contains(options[i].value),
@@ -90,5 +98,6 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
 }
 
 class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
+  @override
   FormBuilderCheckboxList<T> get widget => super.widget;
 }

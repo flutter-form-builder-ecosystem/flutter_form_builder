@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderField<T> extends FormField<T> {
   final String attribute;
   final ValueTransformer valueTransformer;
+  @override
   final FormFieldValidator validator;
   final ValueChanged<T> onChanged;
   final bool readOnly;
@@ -68,7 +69,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   void initState() {
     super.initState();
     _formBuilderState = FormBuilder.of(context);
-    _readOnly = (_formBuilderState?.readOnly == true) ? true : widget.readOnly;
+    _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
     _formBuilderState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
         (_formBuilderState.initialValue.containsKey(widget.attribute)
@@ -88,7 +89,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     super.save();
     if (widget.valueTransformer != null) {
       var transformed = widget.valueTransformer(value);
-      FormBuilder.of(context)?.updateFormAttributeValue(widget.attribute, transformed);
+      FormBuilder.of(context)
+          ?.updateFormAttributeValue(widget.attribute, transformed);
     } else {
       _formBuilderState?.updateFormAttributeValue(widget.attribute, value);
     }
@@ -97,8 +99,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void didChange(T value) {
     super.didChange(value);
-    // requestFocus();
-    if (widget.onChanged != null) widget.onChanged(value);
+    widget.onChanged?.call(value);
   }
 
   @override

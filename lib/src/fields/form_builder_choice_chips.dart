@@ -4,13 +4,21 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
   // FormBuilder Settings
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final dynamic initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final FormFieldSetter onSaved;
+  @override
   final ValueTransformer valueTransformer;
   final List<FormBuilderFieldOption> options;
 

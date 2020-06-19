@@ -5,13 +5,21 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:rating_bar/rating_bar.dart';
 
 class FormBuilderRating extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final double initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final FormFieldSetter onSaved;
+  @override
   final ValueTransformer valueTransformer;
 
   final IconData icon;
@@ -103,5 +111,6 @@ class FormBuilderRating extends FormBuilderField {
 }
 
 class _FormBuilderRateState extends FormBuilderFieldState {
+  @override
   FormBuilderRating get widget => super.widget;
 }

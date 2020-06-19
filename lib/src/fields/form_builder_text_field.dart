@@ -8,14 +8,23 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderTextField extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final String initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
+  @override
   final bool enabled;
+  @override
   final bool autovalidate;
 
   final int maxLines;
@@ -46,6 +55,7 @@ class FormBuilderTextField extends FormBuilderField {
   final bool expands;
   final int minLines;
   final bool showCursor;
+  @override
   final FormFieldSetter onSaved;
   final VoidCallback onTap;
   final bool enableSuggestions;
@@ -146,7 +156,7 @@ class FormBuilderTextField extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderTextFieldState state = field;
-            final InputDecoration effectiveDecoration = (decoration ??
+            final effectiveDecoration = (decoration ??
                     const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
             void onChangedHandler(String value) {
@@ -211,6 +221,7 @@ class FormBuilderTextField extends FormBuilderField {
 }
 
 class _FormBuilderTextFieldState extends FormBuilderFieldState {
+  @override
   FormBuilderTextField get widget => super.widget;
 
   TextEditingController get _effectiveController =>

@@ -3,12 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCheckbox extends FormBuilderField<bool> {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final bool initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
   final Widget title;
   final Widget subtitle;
@@ -18,7 +25,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   final ListTileControlAffinity controlAffinity;
   final EdgeInsets contentPadding;
 
-  FormBuilderCheckbox(  {
+  FormBuilderCheckbox({
     Key key,
     @required this.attribute,
     @required this.title,
@@ -72,7 +79,6 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
 
   @override
   _FormBuilderCheckboxState createState() => _FormBuilderCheckboxState();
-
 }
 
 class _FormBuilderCheckboxState extends FormBuilderFieldState<bool> {

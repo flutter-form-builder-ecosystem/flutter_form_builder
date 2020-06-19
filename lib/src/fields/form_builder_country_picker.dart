@@ -4,17 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/country_picker_util.dart';
 
 class FormBuilderCountryPicker extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final TextStyle style;
+  @override
   final FormFieldSetter onSaved;
 
   // For country dialog
@@ -22,6 +28,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
   final EdgeInsets titlePadding;
   final bool isSearchable;
   final Text dialogTitle;
+  @override
   final String initialValue;
   final String defaultSelectedCountryIsoCode;
   final List<String> priorityListByIsoCode;
@@ -34,7 +41,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
   FormBuilderCountryPicker({
     Key key,
     @required this.attribute,
-    this.defaultSelectedCountryIsoCode = "US",
+    this.defaultSelectedCountryIsoCode = 'US',
     this.initialValue,
     this.validator,
     this.readOnly = false,
@@ -100,8 +107,9 @@ class FormBuilderCountryPicker extends FormBuilderField {
             );
           },
         );
-  
-  static void _openCupertinoCountryPicker(_FormBuilderCountryPickerState field) =>
+
+  static void _openCupertinoCountryPicker(
+          _FormBuilderCountryPickerState field) =>
       showCupertinoModalPopup<void>(
         context: field.context,
         builder: (BuildContext context) {
@@ -113,7 +121,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
                 : null,
             priorityList: field.widget.priorityListByIsoCode != null
                 ? List.generate(
-                field.widget.priorityListByIsoCode.length,
+                    field.widget.priorityListByIsoCode.length,
                     (index) => CountryPickerUtils.getCountryByIsoCode(
                         field.widget.priorityListByIsoCode[index]))
                 : null,
@@ -121,39 +129,41 @@ class FormBuilderCountryPicker extends FormBuilderField {
         },
       );
 
-  static void _openCountryPickerDialog(_FormBuilderCountryPickerState field) => showDialog(
-    context: field.context,
-    builder: (context) => Theme(
-      data: Theme.of(context).copyWith(
-        cursorColor: Theme.of(context).primaryColor,
-        primaryColor: field.widget.cursorColor ?? Theme.of(context).primaryColor,
-      ),
-      child: CountryPickerDialog(
-        titlePadding: field.widget.titlePadding ?? EdgeInsets.all(8.0),
-        searchCursorColor:
-        field.widget.cursorColor ?? Theme.of(context).cursorColor,
-        searchInputDecoration:
-        InputDecoration(hintText: field.widget.searchText ?? 'Search...'),
-        isSearchable: field.widget.isSearchable ?? true,
-        title: field.widget.dialogTitle ??
-            Text(
-              'Select Your Country',
-              style: field.widget.dialogTextStyle ?? field.widget.style,
-            ),
-        onValuePicked: (Country value) => field.didChange(value),
-        itemFilter: field.widget.countryFilterByIsoCode != null
-            ? (c) => field.widget.countryFilterByIsoCode.contains(c.isoCode)
-            : null,
-        priorityList: field.widget.priorityListByIsoCode != null
-            ? List.generate(
-            field.widget.priorityListByIsoCode.length,
-                (index) => CountryPickerUtils.getCountryByIsoCode(
-                    field.widget.priorityListByIsoCode[index]))
-            : null,
-        itemBuilder: _buildDialogItem,
-      ),
-    ),
-  );
+  static void _openCountryPickerDialog(_FormBuilderCountryPickerState field) =>
+      showDialog(
+        context: field.context,
+        builder: (context) => Theme(
+          data: Theme.of(context).copyWith(
+            cursorColor: Theme.of(context).primaryColor,
+            primaryColor:
+                field.widget.cursorColor ?? Theme.of(context).primaryColor,
+          ),
+          child: CountryPickerDialog(
+            titlePadding: field.widget.titlePadding ?? EdgeInsets.all(8.0),
+            searchCursorColor:
+                field.widget.cursorColor ?? Theme.of(context).cursorColor,
+            searchInputDecoration: InputDecoration(
+                hintText: field.widget.searchText ?? 'Search...'),
+            isSearchable: field.widget.isSearchable ?? true,
+            title: field.widget.dialogTitle ??
+                Text(
+                  'Select Your Country',
+                  style: field.widget.dialogTextStyle ?? field.widget.style,
+                ),
+            onValuePicked: (Country value) => field.didChange(value),
+            itemFilter: field.widget.countryFilterByIsoCode != null
+                ? (c) => field.widget.countryFilterByIsoCode.contains(c.isoCode)
+                : null,
+            priorityList: field.widget.priorityListByIsoCode != null
+                ? List.generate(
+                    field.widget.priorityListByIsoCode.length,
+                    (index) => CountryPickerUtils.getCountryByIsoCode(
+                        field.widget.priorityListByIsoCode[index]))
+                : null,
+            itemBuilder: _buildDialogItem,
+          ),
+        ),
+      );
 
   static Widget _buildDialogItem(Country country) {
     return Container(
@@ -173,7 +183,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
 class _FormBuilderCountryPickerState extends FormBuilderFieldState/*<String>*/ {
   FormBuilderCountryPicker get widget => super.widget;
 
-  /*@override
+/*@override
   void initState() {
     var _initialValue =
         CountryPickerUtil.getCountryByCodeOrName(widget.initialValue) ??

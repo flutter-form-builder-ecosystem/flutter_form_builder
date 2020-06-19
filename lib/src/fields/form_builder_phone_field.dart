@@ -8,14 +8,22 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:phone_number/phone_number.dart';
 
 class FormBuilderPhoneField extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final String initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
+  @override
   final bool autovalidate;
   final int maxLines;
   final TextInputType keyboardType;
@@ -35,6 +43,7 @@ class FormBuilderPhoneField extends FormBuilderField {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
+  @override
   final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
@@ -46,6 +55,7 @@ class FormBuilderPhoneField extends FormBuilderField {
   final bool expands;
   final int minLines;
   final bool showCursor;
+  @override
   final FormFieldSetter onSaved;
   final VoidCallback onTap;
 
@@ -107,7 +117,7 @@ class FormBuilderPhoneField extends FormBuilderField {
     this.titlePadding,
     this.dialogTitle,
     this.isSearchable,
-    this.defaultSelectedCountryIsoCode = "US",
+    this.defaultSelectedCountryIsoCode = 'US',
     this.priorityListByIsoCode,
     this.countryFilterByIsoCode,
     this.dialogTextStyle,
@@ -156,7 +166,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          "+${state._selectedDialogCountry.phoneCode} ",
+                          '+${state._selectedDialogCountry.phoneCode} ',
                           style: Theme.of(state.context)
                               .textTheme
                               .subtitle1
@@ -218,9 +228,10 @@ class FormBuilderPhoneField extends FormBuilderField {
 }
 
 class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
+  @override
   FormBuilderPhoneField get widget => super.widget;
 
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ?? (_focusNode ?? FocusNode());
@@ -262,7 +273,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
           _effectiveController.text = parseResult['national_number'];
         }
       } catch (error) {
-        _effectiveController.text = initialValue.replaceFirst("+", "");
+        _effectiveController.text = initialValue.replaceFirst('+', '');
       }
     }
   }
@@ -350,8 +361,8 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text("${country.name}"),
-        trailing: Text("+${country.phoneCode}"),
+        title: Text('${country.name}'),
+        trailing: Text('+${country.phoneCode}'),
       ),
     );
   }

@@ -15,7 +15,7 @@ class FormBuilderFieldOption extends StatelessWidget {
     if (child != null) {
       return child;
     } else {
-      return Text("${value.toString()}");
+      return Text('${value.toString()}');
     }
   }
 }

@@ -3,12 +3,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderDropdown extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final dynamic initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final Widget hint;
@@ -25,6 +32,7 @@ class FormBuilderDropdown extends FormBuilderField {
   final Color iconEnabledColor;
   final bool allowClear;
   final Widget clearIcon;
+  @override
   final FormFieldSetter onSaved;
 
   FormBuilderDropdown({
@@ -83,7 +91,7 @@ class FormBuilderDropdown extends FormBuilderField {
                                           (val) => val.value == field.value,
                                           orElse: () => null)
                                       ?.child ??
-                                  Text("${field.value.toString()}"))
+                                  Text('${field.value.toString()}'))
                               : disabledHint,
                           elevation: elevation,
                           iconSize: iconSize,
@@ -122,5 +130,6 @@ class FormBuilderDropdown extends FormBuilderField {
 }
 
 class _FormBuilderDropdownState extends FormBuilderFieldState {
+  @override
   FormBuilderDropdown get widget => super.widget;
 }

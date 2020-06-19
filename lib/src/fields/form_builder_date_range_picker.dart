@@ -10,14 +10,22 @@ import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
 class FormBuilderDateRangePicker extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final List<DateTime> initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
+  @override
   final bool autovalidate;
   final int maxLines;
   final TextInputType keyboardType;
@@ -37,6 +45,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
+  @override
   final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
@@ -56,6 +65,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   final Locale locale;
   final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
+  @override
   final FormFieldSetter onSaved;
 
   FormBuilderDateRangePicker({

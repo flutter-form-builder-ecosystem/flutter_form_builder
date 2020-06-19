@@ -141,6 +141,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
 
   final TextEditingController controller;
   final FocusNode focusNode;
+  @override
   final bool readOnly;
   final ColorPickerType colorPickerType;
 
@@ -172,11 +173,11 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
     _effectiveFocusNode.addListener(_handleFocus);
   }
 
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !readOnly) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
-      bool selected = await showDialog(
+      var selected = await showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -235,15 +236,15 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
           layoutBuilder: ,*/
         );
       default:
-        throw "Unknown ColorPickerType";
+        throw 'Unknown ColorPickerType';
     }
   }
 
-  _colorChanged(Color color) {
+  void _colorChanged(Color color) {
     _selectedColor = color;
   }
 
-  _setTextFieldString() {
+  void _setTextFieldString() {
     _effectiveController.text = valueString ?? '';
   }
 

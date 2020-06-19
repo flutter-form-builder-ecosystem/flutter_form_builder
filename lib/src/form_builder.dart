@@ -63,13 +63,13 @@ class FormBuilderState extends State<FormBuilder> {
     });
   }
 
-  registerFieldKey(String attribute, GlobalKey<FormFieldState> key) {
+  void registerFieldKey(String attribute, GlobalKey<FormFieldState> key) {
     // assert(_fieldKeys.containsKey(attribute) == false, "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
-    this._fieldKeys[attribute] = key;
+    _fieldKeys[attribute] = key;
   }
 
-  unregisterFieldKey(String attribute) {
-    this._fieldKeys.remove(attribute);
+  void unregisterFieldKey(String attribute) {
+    _fieldKeys.remove(attribute);
   }
 
   /*changeAttributeValue(String attribute, dynamic newValue) {

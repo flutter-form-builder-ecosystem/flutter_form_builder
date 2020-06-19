@@ -6,13 +6,21 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
 class FormBuilderSignaturePad extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final Uint8List initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueTransformer valueTransformer;
+  @override
   final ValueChanged onChanged;
+  @override
   final FormFieldSetter onSaved;
   final SignatureController controller;
 
@@ -29,7 +37,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.backgroundColor,
-    this.clearButtonText = "Clear",
+    this.clearButtonText = 'Clear',
     this.initialValue,
     this.width,
     this.height = 200,
@@ -63,7 +71,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
                     child: GestureDetector(
                       onVerticalDragUpdate: (_) {},
                       child: Signature(
-                        controller: state.signatureController,
+                        controller: state.effectiveController,
                         width: width,
                         height: height,
                         backgroundColor: backgroundColor,
@@ -75,7 +83,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
                       Expanded(child: SizedBox()),
                       FlatButton.icon(
                         onPressed: () {
-                          state.signatureController.clear();
+                          state.effectiveController.clear();
                           field.didChange(null);
                         },
                         label: Text(
@@ -102,19 +110,20 @@ class FormBuilderSignaturePad extends FormBuilderField {
 }
 
 class _FormBuilderSignaturePadState extends FormBuilderFieldState {
+  @override
   FormBuilderSignaturePad get widget => super.widget;
 
-  SignatureController signatureController;
+  SignatureController effectiveController;
 
-  SignatureController _controller = SignatureController();
+  final SignatureController _controller = SignatureController();
 
   @override
   void initState() {
     super.initState();
-    signatureController = widget.controller ?? _controller;
-    signatureController.addListener(() async {
-      var _value = await signatureController.toImage() != null
-          ? await signatureController.toPngBytes()
+    effectiveController = widget.controller ?? _controller;
+    effectiveController.addListener(() async {
+      var _value = await effectiveController.toImage() != null
+          ? await effectiveController.toPngBytes()
           : null;
       didChange(_value);
     });
@@ -122,11 +131,11 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState {
 
   @override
   void reset() {
-    signatureController?.clear();
+    effectiveController?.clear();
     super.reset();
   }
 
-  /*@override
+/*@override
   void didUpdateWidget(FormBuilderSignaturePad oldWidget) {
     print("Widget did update...");
     super.didUpdateWidget(oldWidget);

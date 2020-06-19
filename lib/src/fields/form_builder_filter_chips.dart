@@ -4,14 +4,22 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderFilterChip extends FormBuilderField<dynamic> {
   // FormBuilder Settings
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final dynamic initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
   final List<FormBuilderFieldOption> options;
+  @override
   final FormFieldSetter onSaved;
 
   // FilterChip Settings
@@ -143,5 +151,6 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
 }
 
 class _FormBuilderFilterChipState extends FormBuilderFieldState<dynamic> {
+  @override
   FormBuilderFilterChip get widget => super.widget;
 }

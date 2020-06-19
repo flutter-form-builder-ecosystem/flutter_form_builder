@@ -4,18 +4,26 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
 class FormBuilderRadioGroup extends FormBuilderField {
+  @override
   final String attribute;
+  @override
   final FormFieldValidator validator;
+  @override
   final dynamic initialValue;
+  @override
   final bool readOnly;
+  @override
   final InputDecoration decoration;
+  @override
   final ValueChanged onChanged;
+  @override
   final ValueTransformer valueTransformer;
 
   final bool leadingInput;
   final List<FormBuilderFieldOption> options;
   final MaterialTapTargetSize materialTapTargetSize;
   final Color activeColor;
+  @override
   final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
   final Axis direction;
@@ -61,10 +69,10 @@ class FormBuilderRadioGroup extends FormBuilderField {
                 onChanged: state.readOnly
                     ? null
                     : (value) {
-                  FocusScope.of(state.context).requestFocus(FocusNode());
-                  field.didChange(value);
-                  if (onChanged != null) onChanged(value);
-                },
+                        FocusScope.of(state.context).requestFocus(FocusNode());
+                        field.didChange(value);
+                        if (onChanged != null) onChanged(value);
+                      },
                 items: options
                     .map((option) => option.value)
                     .toList(growable: false),
@@ -87,5 +95,6 @@ class FormBuilderRadioGroup extends FormBuilderField {
 }
 
 class _FormBuilderRadioGroupState extends FormBuilderFieldState {
+  @override
   FormBuilderRadioGroup get widget => super.widget;
 }
