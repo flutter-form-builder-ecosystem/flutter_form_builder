@@ -125,9 +125,6 @@ class FormBuilderPhoneField extends StatefulWidget {
 class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   bool _readOnly = false;
   TextEditingController _effectiveController = TextEditingController();
-  FocusNode _focusNode;
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ?? FocusNode());
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   String _initialValue;
@@ -210,8 +207,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         return TextField(
           enabled: !_readOnly,
           style: widget.style,
-          focusNode:
-              _readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
+          focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
             errorText: field.errorText,
@@ -255,7 +251,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   Widget _textFieldPrefix(field) {
     return GestureDetector(
       onTap: () {
-        _effectiveFocusNode?.requestFocus();
+        FocusScope.of(context).requestFocus(FocusNode());
         if (widget.isCupertinoPicker) {
           _openCupertinoCountryPicker(field);
         } else {
@@ -333,7 +329,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             onValuePicked: (Country country) {
               setState(() => _selectedDialogCountry = country);
               _invokeChange(field);
-              _effectiveFocusNode?.requestFocus();
+              widget.focusNode?.requestFocus();
             },
             itemFilter: widget.countryFilterByIsoCode != null
                 ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
