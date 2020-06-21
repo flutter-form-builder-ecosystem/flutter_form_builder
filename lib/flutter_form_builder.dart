@@ -3,6 +3,7 @@ library flutter_form_builder;
 export 'package:flutter_typeahead/flutter_typeahead.dart';
 export 'package:signature/signature.dart';
 
+export './localization/form_builder_localizations.dart';
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_list.dart';
 export './src/fields/form_builder_chips_input.dart';

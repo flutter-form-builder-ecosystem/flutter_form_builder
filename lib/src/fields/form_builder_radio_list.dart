@@ -47,7 +47,7 @@ class FormBuilderRadioList extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderRadioState state = field;
-            var radioList = [];
+            List<Widget> radioList = [];
             for (var i = 0; i < options.length; i++) {
               radioList.addAll([
                 RadioListTile(

@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   flutter_typeahead: ^1.8.3
   intl: ^0.16.1
@@ -30,5 +32,6 @@ dev_dependencies:
     sdk: flutter
   test: ^1.14.1
   pedantic: ^1.9.0
+  intl_translation:
 
 flutter:

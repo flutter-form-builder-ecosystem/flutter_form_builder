@@ -49,7 +49,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxListState<T> state = field;
-            var checkboxList = [];
+            List<Widget> checkboxList = [];
 
             for (var i = 0; i < options.length; i++) {
               checkboxList.addAll([

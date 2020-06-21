@@ -27,6 +27,7 @@ class CompleteFormState extends State<CompleteForm> {
 
   @override
   Widget build(BuildContext context) {
+    print(Localizations.localeOf(context));
     return Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
@@ -245,7 +246,7 @@ class CompleteFormState extends State<CompleteForm> {
                         ),
                       ),
                       validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.requiredTrue(
+                        FormBuilderValidators.requireTrue(
                           errorText:
                               'You must accept terms and conditions to continue',
                         ),
@@ -445,7 +446,6 @@ class CompleteFormState extends State<CompleteForm> {
                         border: OutlineInputBorder(),
                       ),
                       attribute: 'signature',
-                      clearButtonText: 'Start Over',
                       border: Border.all(color: Colors.green),
                       onChanged: _onChanged,
                     ),
@@ -460,7 +460,7 @@ class CompleteFormState extends State<CompleteForm> {
                       },
                       colorPickerType: ColorPickerType.ColorPicker,
                       validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
+                        FormBuilderValidators.required(errorText: FormBuilderLocalizations.of(context).requiredErrorText),
                       ]),
                       // readOnly: true,
                     ),

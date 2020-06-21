@@ -73,7 +73,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     @required this.attribute,
     @required this.firstDate,
     @required this.lastDate,
-    @required this.format,
+    this.format,
     this.initialValue = const [],
     this.validator,
     this.readOnly = false,
@@ -203,6 +203,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
 }
 
 class FormBuilderDateRangePickerState extends FormBuilderFieldState {
+  @override
   FormBuilderDateRangePicker get widget => super.widget;
 
   FocusNode _effectiveFocusNode;
@@ -224,7 +225,7 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
     super.initState();
   }
 
-  _handleFocus() async {
+  Future<void> _handleFocus() async {
     if (_effectiveFocusNode.hasFocus) {
       _hideKeyboard();
       var initialFirstDate = value.isEmpty
@@ -233,7 +234,7 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
       var initialLastDate = value.isEmpty
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
-      final List<DateTime> picked = await date_range_picker.showDatePicker(
+      final picked = await date_range_picker.showDatePicker(
         context: context,
         initialFirstDate: initialFirstDate,
         initialLastDate: initialLastDate,
@@ -248,14 +249,14 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
     }
   }
 
-  _valueToText() {
+  String _valueToText() {
     if (value == null || value.isEmpty) {
-      return "";
+      return '';
     }
     if (value.length == 1) {
-      return "${format(value[0])}";
+      return '${format(value[0])}';
     }
-    return "${format(value[0])} - ${format(value[1])}";
+    return '${format(value[0])} - ${format(value[1])}';
   }
 
   void _hideKeyboard() {
@@ -263,9 +264,9 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
   }
 
   String format(DateTime date) =>
-      FormBuilderDateRangePicker.tryFormat(date, widget.format);
+      FormBuilderDateRangePicker.tryFormat(date, widget.format ?? intl.DateFormat.yMd());
 
-  _setTextFieldString() {
+  void _setTextFieldString() {
     setState(() {
       _effectiveController.text = _valueToText();
     });

@@ -284,9 +284,9 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   DateFormat _dateFormat;
 
   final _dateTimeFormats = {
-    InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
-    InputType.date: DateFormat('yyyy-MM-dd'),
-    InputType.time: DateFormat('HH:mm'),
+    InputType.both: DateFormat.yMd().add_jm(),
+    InputType.date: DateFormat.yMd(),
+    InputType.time: DateFormat.Hm(),
   };
 
   @override

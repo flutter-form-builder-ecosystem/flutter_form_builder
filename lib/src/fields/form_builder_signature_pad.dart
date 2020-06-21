@@ -37,7 +37,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.backgroundColor,
-    this.clearButtonText = 'Clear',
+    this.clearButtonText,
     this.initialValue,
     this.width,
     this.height = 200,
@@ -56,6 +56,8 @@ class FormBuilderSignaturePad extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderSignaturePadState state = field;
+            final theme = Theme.of(state.context);
+            final localizations = MaterialLocalizations.of(state.context);
 
             return InputDecorator(
               decoration: decoration.copyWith(
@@ -87,13 +89,12 @@ class FormBuilderSignaturePad extends FormBuilderField {
                           field.didChange(null);
                         },
                         label: Text(
-                          clearButtonText,
-                          style: TextStyle(
-                              color: Theme.of(state.context).errorColor),
+                          clearButtonText ?? localizations.cancelButtonLabel,
+                          style: TextStyle(color: theme.errorColor),
                         ),
                         icon: Icon(
                           Icons.clear,
-                          color: Theme.of(state.context).errorColor,
+                          color: theme.errorColor,
                         ),
                       ),
                     ],
@@ -113,14 +114,13 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState {
   @override
   FormBuilderSignaturePad get widget => super.widget;
 
-  SignatureController effectiveController;
+  SignatureController get effectiveController => widget.controller ?? _controller;
 
   final SignatureController _controller = SignatureController();
 
   @override
   void initState() {
     super.initState();
-    effectiveController = widget.controller ?? _controller;
     effectiveController.addListener(() async {
       var _value = await effectiveController.toImage() != null
           ? await effectiveController.toPngBytes()

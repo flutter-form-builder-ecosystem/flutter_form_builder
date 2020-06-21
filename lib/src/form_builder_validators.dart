@@ -35,7 +35,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value be true.
   /// Commonly used for required checkboxes.
-  static FormFieldValidator requiredTrue({
+  static FormFieldValidator requireTrue({
     String errorText = 'This field must be set to true',
   }) {
     return (valueCandidate) {
@@ -204,7 +204,7 @@ class FormBuilderValidators {
   }
 
   /// [FormFieldValidator] that requires the field's value to be a valid date string.
-  static FormFieldValidator date({
+  static FormFieldValidator dateString({
     String errorText = 'This field requires a valid date string.',
   }) {
     return (valueCandidate) {

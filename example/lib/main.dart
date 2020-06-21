@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'home_page.dart';
 
@@ -16,6 +18,15 @@ class MyApp extends StatelessWidget {
           labelStyle: TextStyle(color: Colors.purple),
         ),
       ),
+      localizationsDelegates: [
+        FormBuilderLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('es', ''),
+      ],
       home: HomePage(),
     );
   }
