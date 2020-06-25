@@ -28,7 +28,7 @@ class FormBuilderSlider extends StatefulWidget {
   final DisplayValues displayValues;
 
   final TextStyle minTextStyle;
-  final TextStyle fieldTextStyle;
+  final TextStyle textStyle;
   final TextStyle maxTextStyle;
 
   FormBuilderSlider({
@@ -52,9 +52,9 @@ class FormBuilderSlider extends StatefulWidget {
     this.numberFormat,
     this.onSaved,
     this.displayValues = DisplayValues.all,
-    this.minTextStyle = const TextStyle(),
-    this.fieldTextStyle = const TextStyle(),
-    this.maxTextStyle = const TextStyle(),
+    this.minTextStyle,
+    this.textStyle = const TextStyle(),
+    this.maxTextStyle,
   }) : super(key: key);
 
   @override
@@ -144,21 +144,21 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                         widget.displayValues != DisplayValues.current)
                       Text(
                         '${_numberFormat.format(widget.min)}',
-                        style: widget.minTextStyle,
+                        style: widget.minTextStyle ?? widget.textStyle,
                       ),
                     Spacer(),
                     if (widget.displayValues != DisplayValues.none &&
                         widget.displayValues != DisplayValues.minMax)
                       Text(
                         '${_numberFormat.format(field.value)}',
-                        style: widget.fieldTextStyle,
+                        style: widget.textStyle,
                       ),
                     Spacer(),
                     if (widget.displayValues != DisplayValues.none &&
                         widget.displayValues != DisplayValues.current)
                       Text(
                         '${_numberFormat.format(widget.max)}',
-                        style: widget.maxTextStyle,
+                        style: widget.maxTextStyle ?? widget.textStyle,
                       ),
                   ],
                 ),
