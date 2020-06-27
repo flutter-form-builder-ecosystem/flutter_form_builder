@@ -1,3 +1,6 @@
+## [3.11.3] - 21-Jun-2020
+* Reverted changes to PhoneField causing focus issues
+
 ## [3.11.2] - 19-Jun-2020
 * Deprecated `initialValue` for Signature field - here's no easy way of converting `Uint8List` to `List<Point>`. Use SignatureController to set initial signature
 * Added `displayValues` attribute to Slider and RangeSlider - choose which values to display under the slider
