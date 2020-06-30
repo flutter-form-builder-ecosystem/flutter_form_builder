@@ -47,7 +47,7 @@ class FormBuilderRadioList extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderRadioState state = field;
-            List<Widget> radioList = [];
+            var radioList = [];
             for (var i = 0; i < options.length; i++) {
               radioList.addAll([
                 RadioListTile(
@@ -75,7 +75,7 @@ class FormBuilderRadioList extends FormBuilderField {
                 errorText: field.errorText,
               ),
               child: Column(
-                children: radioList,
+                children: List<Widget>.from(radioList),
               ),
             );
           },

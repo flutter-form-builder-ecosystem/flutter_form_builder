@@ -151,6 +151,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
 }
 
 class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
+  @override
   FormBuilderColorPickerField get widget => super.widget;
 
   FocusNode _effectiveFocusNode;
@@ -208,7 +209,7 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
     }
   }
 
-  _buildColorPicker() {
+  Widget _buildColorPicker() {
     switch (widget.colorPickerType) {
       case ColorPickerType.ColorPicker:
         return ColorPicker(

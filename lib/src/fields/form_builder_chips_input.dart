@@ -33,6 +33,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
   final bool obscureText;
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
+  @override
   final FormFieldSetter onSaved;
   final FocusNode focusNode;
   final bool allowChipEditing;
