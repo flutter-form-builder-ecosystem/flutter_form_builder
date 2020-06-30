@@ -83,7 +83,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderField(
                     attribute: 'name',
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
+                      FormBuilderValidators.required(context),
                     ]),
                     initialValue: 'Algeria',
                     builder: (FormFieldState<dynamic> field) {
@@ -193,7 +193,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderSlider(
                     attribute: 'slider',
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.min(6),
+                      FormBuilderValidators.min(context, 6),
                     ]),
                     onChanged: _onChanged,
                     min: 0.0,
@@ -209,7 +209,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderRangeSlider(
                     attribute: 'range_slider',
                     validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.min(6)]),
+                        [FormBuilderValidators.min(context, 6)]),
                     onChanged: _onChanged,
                     min: 0.0,
                     max: 100.0,
@@ -245,6 +245,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.requireTrue(
+                        context,
                         errorText:
                             'You must accept terms and conditions to continue',
                       ),
@@ -259,9 +260,9 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
-                      FormBuilderValidators.max(70),
+                      FormBuilderValidators.required(context),
+                      FormBuilderValidators.numeric(context),
+                      FormBuilderValidators.max(context, 70),
                     ]),
                     keyboardType: TextInputType.number,
                   ),
@@ -274,7 +275,7 @@ class CompleteFormState extends State<CompleteForm> {
                     allowClear: true,
                     hint: Text('Select Gender'),
                     validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.required()]),
+                        [FormBuilderValidators.required(context)]),
                     items: genderOptions
                         .map((gender) => DropdownMenuItem(
                               value: gender,
@@ -317,7 +318,7 @@ class CompleteFormState extends State<CompleteForm> {
                     attribute: 'best_language',
                     onChanged: _onChanged,
                     validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.required()]),
+                        [FormBuilderValidators.required(context)]),
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
                         .map((lang) => FormBuilderFieldOption(
                               value: lang,
@@ -450,7 +451,7 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                     colorPickerType: ColorPickerType.ColorPicker,
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
+                      FormBuilderValidators.required(context,
                           errorText: FormBuilderLocalizations.of(context)
                               .requiredErrorText),
                     ]),
@@ -471,7 +472,7 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: 'Country'),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
+                      FormBuilderValidators.required(context,
                           errorText: 'This field required.'),
                     ]),
                   ),
@@ -489,9 +490,9 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                     priorityListByIsoCode: ['US'],
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.numeric(
+                      FormBuilderValidators.numeric(context,
                           errorText: 'Invalid phone number'),
-                      FormBuilderValidators.required(
+                      FormBuilderValidators.required(context,
                           errorText: 'This field required'),
                     ]),
                   ),
