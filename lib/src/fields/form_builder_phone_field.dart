@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:phone_number/phone_number.dart';
 
+//TODO: Switch country_pickers for country_code_picker
 class FormBuilderPhoneField extends FormBuilderField {
   @override
   final String attribute;
