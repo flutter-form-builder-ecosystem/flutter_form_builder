@@ -23,7 +23,6 @@ class FormBuilderPhoneField extends FormBuilderField {
   final ValueChanged onChanged;
   @override
   final ValueTransformer valueTransformer;
-
   @override
   final bool autovalidate;
   final int maxLines;
