@@ -60,7 +60,7 @@ class FormBuilderSegmentedControl extends FormBuilderField {
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: field.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Padding(
                 padding: EdgeInsets.only(top: 10.0),

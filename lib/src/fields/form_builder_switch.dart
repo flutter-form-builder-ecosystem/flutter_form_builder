@@ -99,10 +99,11 @@ class FormBuilderSwitch extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderSwitchState state = field;
+
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: state.readOnly,
-                errorText: field.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
               ),
               child: SwitchListTile(
                 dense: true,

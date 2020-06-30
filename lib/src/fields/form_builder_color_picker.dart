@@ -86,7 +86,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
             return TextField(
               style: style,
               decoration: decoration.copyWith(
-                errorText: state.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
                 enabled: !state.readOnly,
                 suffixIcon: LayoutBuilder(
                   key: ObjectKey(state.value),

@@ -72,6 +72,7 @@ class FormBuilderDropdown extends FormBuilderField {
 
               return InputDecorator(
                 decoration: decoration.copyWith(
+                  enabled: !state.readOnly,
                   errorText: field.errorText,
                 ),
                 child: DropdownButtonHideUnderline(

@@ -82,7 +82,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
     this.dialogSize,
     this.initialSelection,
     this.onInit,
-  })  : // assert(initialValue != null),
+  }) : // assert(initialValue != null),
         super(
           key: key,
           initialValue: initialValue,
@@ -99,7 +99,8 @@ class FormBuilderCountryPicker extends FormBuilderField {
 
             return InputDecorator(
               decoration: decoration.copyWith(
-                errorText: field.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
+                enabled: !state.readOnly,
               ),
               child: CountryCodePicker(
                 onChanged: (CountryCode e) {

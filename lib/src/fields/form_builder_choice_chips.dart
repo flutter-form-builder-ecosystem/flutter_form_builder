@@ -83,7 +83,7 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
               return InputDecorator(
                 decoration: decoration.copyWith(
                   enabled: !state.readOnly,
-                  errorText: field.errorText,
+                  errorText: decoration?.errorText ?? field.errorText,
                 ),
                 child: Wrap(
                   direction: direction,

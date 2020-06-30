@@ -49,35 +49,35 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxListState<T> state = field;
-            List<Widget> checkboxList = [];
+            var checkboxList = [];
 
             for (var i = 0; i < options.length; i++) {
-              checkboxList.addAll([
-                CheckboxListTile(
-                  value: state.value.contains(options[i].value),
-                  title: options[i],
-                  onChanged: state.readOnly
-                      ? null
-                      : (val) {
-                          var currentValue = [...state.value];
-                          if (!currentValue.contains(options[i].value)) {
-                            currentValue.add(options[i].value);
-                          } else {
-                            currentValue.remove(options[i].value);
-                          }
-                          state.didChange(currentValue);
-                        },
-                  dense: true,
-                  isThreeLine: false,
-                  controlAffinity: controlAffinity,
-                  // secondary: secondary,
-                  activeColor: activeColor,
-                  checkColor: checkColor,
-                ),
-                Divider(
-                  height: 0.0,
-                ),
-              ]);
+              checkboxList.addAll(
+                [
+                  CheckboxListTile(
+                    value: state.value.contains(options[i].value),
+                    title: options[i],
+                    onChanged: state.readOnly
+                        ? null
+                        : (val) {
+                            var currentValue = [...state.value];
+                            if (!currentValue.contains(options[i].value)) {
+                              currentValue.add(options[i].value);
+                            } else {
+                              currentValue.remove(options[i].value);
+                            }
+                            state.didChange(currentValue);
+                          },
+                    dense: true,
+                    isThreeLine: false,
+                    controlAffinity: controlAffinity,
+                    // secondary: secondary,
+                    activeColor: activeColor,
+                    checkColor: checkColor,
+                  ),
+                  Divider(height: 0.0),
+                ],
+              );
             }
             return InputDecorator(
               decoration: decoration.copyWith(
@@ -86,7 +86,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
               ),
               child: Column(
                 key: ObjectKey(state.value),
-                children: checkboxList,
+                children: List<Widget>.from(checkboxList),
               ),
             );
           },

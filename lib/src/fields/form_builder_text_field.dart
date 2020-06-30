@@ -170,7 +170,7 @@ class FormBuilderTextField extends FormBuilderField {
               controller: state._effectiveController,
               focusNode: focusNode,
               decoration:
-                  effectiveDecoration.copyWith(errorText: field.errorText),
+                  effectiveDecoration.copyWith(errorText: decoration?.errorText ?? field.errorText,),
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               style: style,

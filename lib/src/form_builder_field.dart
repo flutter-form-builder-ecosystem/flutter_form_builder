@@ -112,6 +112,11 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     }
   }
 
+  @override
+  bool validate() {
+    return super.validate() && widget.decoration?.errorText == null;
+  }
+
   void requestFocus() {
     FocusScope.of(context).requestFocus(FocusNode());
   }

@@ -84,7 +84,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
                 enabled: !state.readOnly,
                 decoration: decoration.copyWith(
                   enabled: !state.readOnly,
-                  errorText: field.errorText,
+                  errorText: decoration?.errorText ?? field.errorText,
                 ),
                 findSuggestions: findSuggestions,
                 onChanged: (data) {

@@ -460,6 +460,7 @@ class CompleteFormState extends State<CompleteForm> {
                     attribute: 'photos',
                     decoration: InputDecoration(
                       labelText: 'Pick Photos',
+                      // errorText: 'Error Text',
                     ),
                     maxImages: 1,
                   ),
@@ -467,9 +468,6 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderCountryPicker(
                     initialValue: 'Germany',
                     attribute: 'country',
-                    valueTransformer: (value) {
-                      return value.isoCode;
-                    },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: 'Country'),
                     validator: FormBuilderValidators.compose([

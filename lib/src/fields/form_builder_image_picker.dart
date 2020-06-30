@@ -85,7 +85,7 @@ class FormBuilderImagePicker extends FormBuilderField {
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: field.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Container(
                 height: previewHeight,

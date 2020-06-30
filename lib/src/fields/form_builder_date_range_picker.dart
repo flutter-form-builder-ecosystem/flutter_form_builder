@@ -153,7 +153,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
                   : state.effectiveFocusNode,
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: field.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
               ),
               // initialValue: "${_initialValue ?? ''}",
               maxLines: maxLines,

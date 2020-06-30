@@ -142,7 +142,7 @@ class FormBuilderPhoneField extends FormBuilderField {
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: state.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Row(
                 children: <Widget>[

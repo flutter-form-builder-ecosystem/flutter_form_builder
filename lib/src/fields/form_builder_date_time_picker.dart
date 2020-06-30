@@ -198,68 +198,72 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.useRootNavigator = true,
     this.alwaysUse24HourFormat = false,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            attribute: attribute,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            // onChanged: onChanged,
-            readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final _FormBuilderDateTimePickerState state = field;
-              return DateTimeField(
-                key: state.fieldKey,
-                initialValue: state.initialValue,
-                format: state.dateFormat,
-                /*onSaved: (val) {
-            var value = _fieldKey.currentState.value;
-            var transformed;
-            if (valueTransformer != null) {
-              transformed = valueTransformer(val);
-              _formState?.setAttributeValue(attribute, transformed);
-            } else
-              _formState?.setAttributeValue(attribute, value);
-            if (onSaved != null) {
-              onSaved(transformed ?? value);
-            }
-          },*/
-                validator: validator,
-                onShowPicker: state.onShowPicker,
-                autovalidate: autovalidate,
-                resetIcon: resetIcon,
-                textDirection: textDirection,
-                textAlign: textAlign,
-                maxLength: maxLength,
-                autofocus: autofocus,
-                decoration: decoration,
-                readOnly: true,
-                enabled: state.readOnly ? false : enabled,
-                autocorrect: autocorrect,
-                controller: state.textFieldController,
-                focusNode: state.focusNode,
-                inputFormatters: inputFormatters,
-                keyboardType: keyboardType,
-                maxLengthEnforced: maxLengthEnforced,
-                maxLines: maxLines,
-                obscureText: obscureText,
-                showCursor: showCursor,
-                minLines: minLines,
-                expands: expands,
-                style: style,
-                onEditingComplete: onEditingComplete,
-                buildCounter: buildCounter,
-                cursorColor: cursorColor,
-                cursorRadius: cursorRadius,
-                cursorWidth: cursorWidth,
-                enableInteractiveSelection: enableInteractiveSelection,
-                keyboardAppearance: keyboardAppearance,
-                onFieldSubmitted: onFieldSubmitted,
-                scrollPadding: scrollPadding,
-                strutStyle: strutStyle,
-                textCapitalization: textCapitalization,
-                textInputAction: textInputAction,
-              );
-            });
+          key: key,
+          initialValue: initialValue,
+          attribute: attribute,
+          validator: validator,
+          valueTransformer: valueTransformer,
+          // onChanged: onChanged,
+          readOnly: readOnly,
+          builder: (FormFieldState field) {
+            final _FormBuilderDateTimePickerState state = field;
+            return DateTimeField(
+              key: state.fieldKey,
+              initialValue: state.initialValue,
+              format: state.dateFormat,
+              /*onSaved: (val) {
+                var value = _fieldKey.currentState.value;
+                var transformed;
+                if (valueTransformer != null) {
+                  transformed = valueTransformer(val);
+                  _formState?.setAttributeValue(attribute, transformed);
+                } else
+                  _formState?.setAttributeValue(attribute, value);
+                if (onSaved != null) {
+                  onSaved(transformed ?? value);
+                }
+              },*/
+              validator: validator,
+              onShowPicker: state.onShowPicker,
+              autovalidate: autovalidate,
+              resetIcon: resetIcon,
+              textDirection: textDirection,
+              textAlign: textAlign,
+              maxLength: maxLength,
+              autofocus: autofocus,
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: decoration?.errorText ?? field.errorText,
+              ),
+              readOnly: true,
+              enabled: state.readOnly ? false : enabled,
+              autocorrect: autocorrect,
+              controller: state.textFieldController,
+              focusNode: state.focusNode,
+              inputFormatters: inputFormatters,
+              keyboardType: keyboardType,
+              maxLengthEnforced: maxLengthEnforced,
+              maxLines: maxLines,
+              obscureText: obscureText,
+              showCursor: showCursor,
+              minLines: minLines,
+              expands: expands,
+              style: style,
+              onEditingComplete: onEditingComplete,
+              buildCounter: buildCounter,
+              cursorColor: cursorColor,
+              cursorRadius: cursorRadius,
+              cursorWidth: cursorWidth,
+              enableInteractiveSelection: enableInteractiveSelection,
+              keyboardAppearance: keyboardAppearance,
+              onFieldSubmitted: onFieldSubmitted,
+              scrollPadding: scrollPadding,
+              strutStyle: strutStyle,
+              textCapitalization: textCapitalization,
+              textInputAction: textInputAction,
+            );
+          },
+        );
 
   final StrutStyle strutStyle;
 
