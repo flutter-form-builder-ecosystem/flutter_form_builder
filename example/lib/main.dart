@@ -23,10 +23,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [
-        Locale('en', ''),
-        Locale('es', ''),
-      ],
+      supportedLocales: [Locale('en', ''), Locale('es', '')],
       home: HomePage(),
     );
   }

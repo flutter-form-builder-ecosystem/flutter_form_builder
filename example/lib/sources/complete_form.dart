@@ -80,34 +80,6 @@ class CompleteFormState extends State<CompleteForm> {
                           value: 'Test 4', child: Text('Test 4')),
                     ],
                   ),
-                  FormBuilderField(
-                    attribute: 'name',
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context),
-                    ]),
-                    initialValue: 'Algeria',
-                    builder: (FormFieldState<dynamic> field) {
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'Select option',
-                          contentPadding:
-                              EdgeInsets.only(top: 10.0, bottom: 0.0),
-                          border: InputBorder.none,
-                          errorText: field.errorText,
-                        ),
-                        child: Container(
-                          height: 200,
-                          child: CupertinoPicker(
-                            itemExtent: 30,
-                            children: allCountries.map((c) => Text(c)).toList(),
-                            onSelectedItemChanged: (index) {
-                              field.didChange(allCountries[index]);
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                  ),
                   FormBuilderColorPickerField(
                     attribute: 'color_picker',
                     // initialValue: Colors.yellow,
@@ -440,29 +412,9 @@ class CompleteFormState extends State<CompleteForm> {
                     border: Border.all(color: Colors.green),
                     onChanged: _onChanged,
                   ),
-                  FormBuilderColorPickerField(
-                    attribute: 'color',
-                    // initialValue: Colors.red,
-                    decoration: InputDecoration(
-                      labelText: 'Text',
-                    ),
-                    onChanged: (val) {
-                      print(val);
-                    },
-                    colorPickerType: ColorPickerType.ColorPicker,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: FormBuilderLocalizations.of(context)
-                              .requiredErrorText),
-                    ]),
-                    // readOnly: true,
-                  ),
                   FormBuilderImagePicker(
                     attribute: 'photos',
-                    decoration: InputDecoration(
-                      labelText: 'Pick Photos',
-                      // errorText: 'Error Text',
-                    ),
+                    decoration: InputDecoration(labelText: 'Pick Photos'),
                     maxImages: 1,
                   ),
                   SizedBox(height: 15),

@@ -1,3 +1,13 @@
+## [4.0.0-alpha.3] - 01-Jul-2020
+* Localize validation error texts
+* Dropped `country_picker` package for `country_code_pickers` in PhoneField which supports localized countries
+* Allow setting of `InputDecoration.errorText` which invalidates the field. Allows external validation like server validation
+* ColorPicker show Hexadecimal code in TextField instead of `Color.toString()`
+* Do away with validators attribute, use normal validator instead of list of validators
+* Added `FormBuilderValidators.compose()` which composes multiple `FormFieldValidator`s into one
+* ColorPicker, DateRangePicker, DateTimePicker - set TextField readOnly to true. Prevents keyboard popup
+* Improvements to example: break down to several pages; also show code in example app
+
 ## [3.11.0] - 14-Jun-2020
 * Added `FormBuilderRadioGroup` field
 * Revised ImageSourceSheet to use the new Image Picker api, and added support for web platform.
