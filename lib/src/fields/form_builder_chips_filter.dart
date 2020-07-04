@@ -144,7 +144,7 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
             children: <Widget>[
               for (FormBuilderFieldOption option in widget.options)
                 FilterChip(
-                  label: option.child,
+                  label: option,
                   selected: field.value.contains(option.value),
                   onSelected: _readOnly
                       ? null
