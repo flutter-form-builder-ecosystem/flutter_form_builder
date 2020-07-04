@@ -156,8 +156,7 @@ class FormBuilderTextField extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderTextFieldState state = field;
-            final effectiveDecoration = (decoration ??
-                    const InputDecoration())
+            final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);
             void onChangedHandler(String value) {
               if (onChanged != null) {
@@ -169,8 +168,9 @@ class FormBuilderTextField extends FormBuilderField {
             return TextField(
               controller: state._effectiveController,
               focusNode: focusNode,
-              decoration:
-                  effectiveDecoration.copyWith(errorText: decoration?.errorText ?? field.errorText,),
+              decoration: effectiveDecoration.copyWith(
+                errorText: decoration?.errorText ?? field.errorText,
+              ),
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               style: style,

@@ -135,7 +135,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isEmail(valueCandidate.trim())) {
           return errorText ??
-            FormBuilderLocalizations.of(context).emailErrorText;
+              FormBuilderLocalizations.of(context).emailErrorText;
         }
       }
       return null;
@@ -162,8 +162,7 @@ class FormBuilderValidators {
             allowUnderscore: allowUnderscore,
             hostWhitelist: hostWhitelist,
             hostBlacklist: hostBlacklist)) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).urlErrorText;
+          return errorText ?? FormBuilderLocalizations.of(context).urlErrorText;
         }
       }
       return null;
@@ -228,8 +227,7 @@ class FormBuilderValidators {
     return (valueCandidate) {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!isIP(valueCandidate, version)) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).ipErrorText;
+          return errorText ?? FormBuilderLocalizations.of(context).ipErrorText;
         }
       }
       return null;

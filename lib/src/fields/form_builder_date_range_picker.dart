@@ -263,8 +263,8 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
     Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
   }
 
-  String format(DateTime date) =>
-      FormBuilderDateRangePicker.tryFormat(date, widget.format ?? intl.DateFormat.yMd());
+  String format(DateTime date) => FormBuilderDateRangePicker.tryFormat(
+      date, widget.format ?? intl.DateFormat.yMd());
 
   void _setTextFieldString() {
     setState(() {

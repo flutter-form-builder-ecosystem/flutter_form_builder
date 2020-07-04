@@ -1,3 +1,7 @@
+## [4.0.0-alpha.4] - 04-Jul-2020
+* Added static getter for FormBuilderLocalizations delegate 
+* Fix issue where setting app localization is required for built-in validation to work 
+
 ## [4.0.0-alpha.3] - 01-Jul-2020
 * Localize validation error texts
 * Dropped `country_picker` package for `country_code_pickers` in PhoneField which supports localized countries

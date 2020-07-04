@@ -66,7 +66,7 @@ class FormBuilderSlider extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderSliderState state = field;
-            var _numberFormat = numberFormat ?? NumberFormat('##0.0');
+            // var _numberFormat = numberFormat ?? NumberFormat('##0.0');
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
