@@ -33,35 +33,35 @@ class FormBuilderChoiceChip extends StatefulWidget {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
 
-  FormBuilderChoiceChip(
-      {Key key,
-      @required this.attribute,
-      @required this.options,
-      this.initialValue,
-      this.validators = const [],
-      this.readOnly = false,
-      this.decoration = const InputDecoration(),
-      this.onChanged,
-      this.valueTransformer,
-      this.onSaved,
-      this.selectedColor,
-      this.disabledColor,
-      this.backgroundColor,
-      this.shadowColor,
-      this.selectedShadowColor,
-      this.shape,
-      this.elevation,
-      this.pressElevation,
-      this.materialTapTargetSize,
-      this.direction = Axis.horizontal,
-      this.alignment = WrapAlignment.start,
-      this.crossAxisAlignment = WrapCrossAlignment.start,
-      this.runAlignment = WrapAlignment.start,
-      this.runSpacing = 0.0,
-      this.spacing = 0.0,
-      this.textDirection,
-      this.verticalDirection = VerticalDirection.down})
-      : super(key: key);
+  FormBuilderChoiceChip({
+    Key key,
+    @required this.attribute,
+    @required this.options,
+    this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
+    this.onChanged,
+    this.valueTransformer,
+    this.onSaved,
+    this.selectedColor,
+    this.disabledColor,
+    this.backgroundColor,
+    this.shadowColor,
+    this.selectedShadowColor,
+    this.shape,
+    this.elevation,
+    this.pressElevation,
+    this.materialTapTargetSize,
+    this.direction = Axis.horizontal,
+    this.alignment = WrapAlignment.start,
+    this.crossAxisAlignment = WrapCrossAlignment.start,
+    this.runAlignment = WrapAlignment.start,
+    this.runSpacing = 0.0,
+    this.spacing = 0.0,
+    this.textDirection,
+    this.verticalDirection = VerticalDirection.down,
+  }) : super(key: key);
 
   @override
   _FormBuilderChoiceChipState createState() => _FormBuilderChoiceChipState();
@@ -139,7 +139,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
                     elevation: widget.elevation,
                     pressElevation: widget.pressElevation,
                     materialTapTargetSize: widget.materialTapTargetSize,
-                    label: option.child,
+                    label: option,
                     selected: field.value == option.value,
                     onSelected: _readOnly
                         ? null
