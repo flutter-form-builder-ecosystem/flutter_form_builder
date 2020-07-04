@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       localizationsDelegates: [
-        FormBuilderLocalizationsDelegate(),
+        FormBuilderLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],

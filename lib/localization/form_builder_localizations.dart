@@ -16,9 +16,17 @@ class FormBuilderLocalizations {
     });
   }
 
+  static const LocalizationsDelegate<FormBuilderLocalizations> delegate =
+      _FormBuilderLocalizationsDelegate();
+
   static FormBuilderLocalizations of(BuildContext context) {
+    /*return Localizations.of<FormBuilderLocalizations>(
+        context, FormBuilderLocalizations);*/
     return Localizations.of<FormBuilderLocalizations>(
-        context, FormBuilderLocalizations);
+          context,
+          FormBuilderLocalizations,
+        ) ??
+        FormBuilderLocalizations();
   }
 
   String get requiredErrorText {
@@ -100,15 +108,15 @@ class FormBuilderLocalizations {
       );
 
   String get dateStringErrorText => Intl.message(
-    'This field requires a valid date string.',
+        'This field requires a valid date string.',
         name: 'dateStringErrorText',
         desc: 'Error Text for date string field',
       );
 }
 
-class FormBuilderLocalizationsDelegate
+class _FormBuilderLocalizationsDelegate
     extends LocalizationsDelegate<FormBuilderLocalizations> {
-  const FormBuilderLocalizationsDelegate();
+  const _FormBuilderLocalizationsDelegate();
 
   @override
   bool isSupported(Locale locale) {
@@ -121,7 +129,7 @@ class FormBuilderLocalizationsDelegate
   }
 
   @override
-  bool shouldReload(FormBuilderLocalizationsDelegate old) {
+  bool shouldReload(_FormBuilderLocalizationsDelegate old) {
     return false;
   }
 }

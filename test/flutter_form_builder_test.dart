@@ -9,7 +9,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
@@ -32,7 +32,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
@@ -54,7 +54,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
@@ -80,7 +80,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
@@ -102,7 +102,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
@@ -124,7 +124,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
@@ -150,7 +150,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         localizationsDelegates: [
-          FormBuilderLocalizationsDelegate(),
+          FormBuilderLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
