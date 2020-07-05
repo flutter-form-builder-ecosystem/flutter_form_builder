@@ -32,6 +32,8 @@ class FormBuilderChoiceChip extends StatefulWidget {
   final double runSpacing, spacing;
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
+  final EdgeInsets labelPadding;
+  final TextStyle labelStyle;
 
   FormBuilderChoiceChip({
     Key key,
@@ -61,6 +63,8 @@ class FormBuilderChoiceChip extends StatefulWidget {
     this.spacing = 0.0,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
+    this.labelPadding,
+    this.labelStyle,
   }) : super(key: key);
 
   @override
@@ -151,7 +155,9 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
                               widget.onChanged?.call(choice);
                             });
                           },
-                  )
+                    labelPadding: widget.labelPadding,
+                    labelStyle: widget.labelStyle,
+                  ),
               ]),
         );
       },
