@@ -6,7 +6,7 @@ class FormBuilderFieldOption extends StatelessWidget {
   final Widget child;
   final dynamic value;
 
-  FormBuilderFieldOption({
+  const FormBuilderFieldOption({
     Key key,
     this.label,
     @required this.value,
