@@ -9,9 +9,6 @@ import 'package:signature/signature.dart';
 class FormBuilderSignaturePad extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-/*   @Deprecated(
-      'There is currently no way of converting Uint8List to List<Point> - https://github.com/4Q-s-r-o/signature/issues/17.'
-      'To Pass a list of points is initial value use `SignatureController`.') */
   final Uint8List initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -141,7 +138,9 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                   border: Border.all(color: Colors.grey),
                 ),
                 child: _savedValue != null || _readOnly
+                    // Display Signature as read only
                     ? Card(
+                        elevation: 0,
                         color: widget.backgroundColor,
                         child: Image.memory(
                           _savedValue,
@@ -149,6 +148,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                           width: widget.width,
                         ),
                       )
+                    // Display the Signature pad in input mode in edit mode
                     : GestureDetector(
                         onVerticalDragUpdate: (_) {},
                         child: Signature(
@@ -159,31 +159,29 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                         ),
                       ),
               ),
-              _readOnly
-                  ? const SizedBox(height: 0)
-                  : Row(
-                      children: <Widget>[
-                        Expanded(child: SizedBox()),
-                        FlatButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              _savedValue = null;
-                            });
-                            _effectiveController.clear();
-                            field.didChange(null);
-                          },
-                          label: Text(
-                            widget.clearButtonText,
-                            style:
-                                TextStyle(color: Theme.of(context).errorColor),
-                          ),
-                          icon: Icon(
-                            Icons.clear,
-                            color: Theme.of(context).errorColor,
-                          ),
-                        ),
-                      ],
+              if (!_readOnly)
+                Row(
+                  children: <Widget>[
+                    Expanded(child: SizedBox()),
+                    FlatButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          _savedValue = null;
+                        });
+                        _effectiveController.clear();
+                        field.didChange(null);
+                      },
+                      label: Text(
+                        widget.clearButtonText,
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      ),
+                      icon: Icon(
+                        Icons.clear,
+                        color: Theme.of(context).errorColor,
+                      ),
                     ),
+                  ],
+                ),
             ],
           ),
         );
