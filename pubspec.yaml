@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_typeahead: ^1.8.3
+  flutter_typeahead: ^1.8.5
   intl: ^0.16.1
   flutter_chips_input: ^1.8.3
   datetime_picker_formfield: ^1.0.0
@@ -19,7 +19,7 @@ dependencies:
   validators: ^2.0.0+1
   date_range_picker: ^1.0.6
   flutter_touch_spin: ^1.0.1
-  image_picker: ^0.6.7+2
+  image_picker: ^0.6.7+4
   rating_bar: ^0.2.0
   country_pickers: ^1.3.0
   phone_number: ^0.6.2+3
