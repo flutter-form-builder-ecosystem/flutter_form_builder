@@ -9,9 +9,6 @@ import 'package:signature/signature.dart';
 class FormBuilderSignaturePad extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
-  @Deprecated(
-      'There is currently no way of converting Uint8List to List<Point> - https://github.com/4Q-s-r-o/signature/issues/17.'
-      'To Pass a list of points is initial value use `SignatureController`.')
   final Uint8List initialValue;
   final bool readOnly;
   final InputDecoration decoration;
@@ -62,9 +59,11 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
   SignatureController _effectiveController;
+  Uint8List _savedValue;
 
   @override
   void initState() {
+    _savedValue = widget.initialValue;
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _effectiveController = widget.controller ??
@@ -78,7 +77,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
               widget.controller?.penStrokeWidth ?? widget.penStrokeWidth,
         );
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
-      _initialValue = await _getControllerValue();
+      _initialValue = widget.initialValue ?? await _getControllerValue();
     });
     _effectiveController.addListener(() async {
       FocusScope.of(context).requestFocus(FocusNode());
@@ -119,6 +118,9 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
+        setState(() {
+          _savedValue = transformed ?? val;
+        });
         if (widget.onSaved != null) {
           widget.onSaved(transformed ?? val);
         }
@@ -135,35 +137,51 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                 ),
-                child: GestureDetector(
-                  onVerticalDragUpdate: (_) {},
-                  child: Signature(
-                    width: widget.width,
-                    height: widget.height,
-                    backgroundColor: widget.backgroundColor,
-                    controller: _effectiveController,
-                  ),
+                child: _savedValue != null || _readOnly
+                    // Display Signature as read only
+                    ? Card(
+                        elevation: 0,
+                        color: widget.backgroundColor,
+                        child: Image.memory(
+                          _savedValue,
+                          height: widget.height,
+                          width: widget.width,
+                        ),
+                      )
+                    // Display the Signature pad in input mode in edit mode
+                    : GestureDetector(
+                        onVerticalDragUpdate: (_) {},
+                        child: Signature(
+                          width: widget.width,
+                          height: widget.height,
+                          backgroundColor: widget.backgroundColor,
+                          controller: _effectiveController,
+                        ),
+                      ),
+              ),
+              if (!_readOnly)
+                Row(
+                  children: <Widget>[
+                    Expanded(child: SizedBox()),
+                    FlatButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          _savedValue = null;
+                        });
+                        _effectiveController.clear();
+                        field.didChange(null);
+                      },
+                      label: Text(
+                        widget.clearButtonText,
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      ),
+                      icon: Icon(
+                        Icons.clear,
+                        color: Theme.of(context).errorColor,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(child: SizedBox()),
-                  FlatButton.icon(
-                    onPressed: () {
-                      _effectiveController.clear();
-                      field.didChange(null);
-                    },
-                    label: Text(
-                      widget.clearButtonText,
-                      style: TextStyle(color: Theme.of(context).errorColor),
-                    ),
-                    icon: Icon(
-                      Icons.clear,
-                      color: Theme.of(context).errorColor,
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         );

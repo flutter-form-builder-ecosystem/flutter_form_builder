@@ -379,25 +379,6 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(growable: false),
                   ),
                   SizedBox(height: 15),
-                  /*FormBuilderRadioGroup(
-                    decoration: const InputDecoration(labelText: 'Pick a number'),
-                    attribute: 'number',
-                    readOnly: true,
-                    options: [
-                      FormBuilderFieldOption(
-                        value: 1,
-                        child: Text('One'),
-                      ),
-                      FormBuilderFieldOption(
-                        value: 2,
-                        child: Text('Two'),
-                      ),
-                      FormBuilderFieldOption(
-                        value: 3,
-                        child: Text('Three'),
-                      ),
-                    ],
-                  ),*/
                   SizedBox(height: 15),
                   FormBuilderSegmentedControl(
                     decoration:
@@ -522,6 +503,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
+                    //initialValue: sampleSignature,
                     decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
@@ -581,43 +563,46 @@ class MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Row(
+            ButtonBar(
               children: <Widget>[
-                Expanded(
-                  child: MaterialButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      if (_fbKey.currentState.saveAndValidate()) {
-                        print(_fbKey
-                            .currentState.value['contact_person'].runtimeType);
-                        print(_fbKey.currentState.value);
-                      } else {
-                        print(_fbKey
-                            .currentState.value['contact_person'].runtimeType);
-                        print(_fbKey.currentState.value);
-                        print('validation failed');
-                      }
-                    },
+                MaterialButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white),
                   ),
+                  onPressed: () {
+                    if (_fbKey.currentState.saveAndValidate()) {
+                      print(_fbKey
+                          .currentState.value['contact_person'].runtimeType);
+                      print(_fbKey.currentState.value);
+                    } else {
+                      print(_fbKey
+                          .currentState.value['contact_person'].runtimeType);
+                      print(_fbKey.currentState.value);
+                      print('validation failed');
+                    }
+                  },
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                Expanded(
-                  child: MaterialButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      'Reset',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      _fbKey.currentState.reset();
-                    },
+                MaterialButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text(
+                    'Save',
+                    style: TextStyle(color: Colors.white),
                   ),
+                  onPressed: () {
+                    _fbKey.currentState.save();
+                  },
+                ),
+                MaterialButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text(
+                    'Reset',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    _fbKey.currentState.reset();
+                  },
                 ),
               ],
             ),
