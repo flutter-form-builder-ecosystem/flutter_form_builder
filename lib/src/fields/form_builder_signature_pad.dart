@@ -77,7 +77,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
               widget.controller?.penStrokeWidth ?? widget.penStrokeWidth,
         );
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
-      _initialValue = await _getControllerValue();
+      _initialValue = widget.initialValue ?? await _getControllerValue();
     });
     _effectiveController.addListener(() async {
       FocusScope.of(context).requestFocus(FocusNode());
