@@ -8,10 +8,15 @@ class FormBuilderFieldOption extends StatelessWidget {
 
   const FormBuilderFieldOption({
     Key key,
-    this.label,
-    @required this.value,
+    @Deprecated('Use `child` instead. Will be removed in the next major version.')
+        // ignore: deprecated_member_use_from_same_package
+        this.label,
+    @required
+        this.value,
     this.child,
-  })  : assert(label == null || child == null),
+  })  :
+        // ignore: deprecated_member_use_from_same_package
+        assert(label == null || child == null),
         super(key: key);
 
   @override
