@@ -503,7 +503,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
-                    //initialValue: sampleSignature,
+                    initialValue: sampleSignature,
                     decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
@@ -574,12 +574,8 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     onPressed: () {
                       if (_fbKey.currentState.saveAndValidate()) {
-                        print(_fbKey
-                            .currentState.value['contact_person'].runtimeType);
                         print(_fbKey.currentState.value);
                       } else {
-                        print(_fbKey
-                            .currentState.value['contact_person'].runtimeType);
                         print(_fbKey.currentState.value);
                         print('validation failed');
                       }

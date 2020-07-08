@@ -1,3 +1,10 @@
+## [3.11.4] - 08-Jul-2020
+* Added text styles options to Slider
+* Re-implement number formatting on Slider field
+* Fix bug in ChoiceChip & FilterChip where using FieldOption label instead of child breaks. Closes #348
+* Added `labelPadding` and `labelStyle` to ChoiceChip field
+* Fix SignaturePad initialValue. 
+
 ## [3.11.3] - 21-Jun-2020
 * Reverted changes to PhoneField causing focus issues
 
