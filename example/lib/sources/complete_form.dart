@@ -34,7 +34,6 @@ class CompleteFormState extends State<CompleteForm> {
         child: Column(
           children: <Widget>[
             FormBuilder(
-              // context,
               key: _fbKey,
               autovalidate: true,
               initialValue: {
@@ -225,10 +224,7 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderTextField(
                     attribute: 'age',
-                    decoration: InputDecoration(
-                      labelText:
-                          'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                    ),
+                    decoration: InputDecoration(labelText: 'Age'),
                     onChanged: _onChanged,
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([

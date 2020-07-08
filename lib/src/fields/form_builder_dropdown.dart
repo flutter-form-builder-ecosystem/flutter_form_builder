@@ -35,6 +35,14 @@ class FormBuilderDropdown extends FormBuilderField {
   @override
   final FormFieldSetter onSaved;
 
+  final VoidCallback onTap;
+  final FocusNode focusNode;
+  final bool autofocus;
+  final Color dropdownColor;
+  final Color focusColor;
+  final double itemHeight;
+  final List<Widget> Function(BuildContext) selectedItemBuilder;
+
   FormBuilderDropdown({
     Key key,
     @required this.attribute,
@@ -59,6 +67,13 @@ class FormBuilderDropdown extends FormBuilderField {
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
     this.onSaved,
+    this.onTap,
+    this.focusNode,
+    this.autofocus = false,
+    this.dropdownColor,
+    this.focusColor,
+    this.itemHeight,
+    this.selectedItemBuilder,
   }) : /*: assert(allowClear == true || clearIcon != null)*/ super(
             key: key,
             initialValue: initialValue,
@@ -105,6 +120,13 @@ class FormBuilderDropdown extends FormBuilderField {
                               : (value) {
                                   _changeValue(field, value);
                                 },
+                          onTap: onTap,
+                          focusNode: focusNode,
+                          autofocus: autofocus,
+                          dropdownColor: dropdownColor,
+                          focusColor: focusColor,
+                          itemHeight: itemHeight,
+                          selectedItemBuilder: selectedItemBuilder,
                         ),
                       ),
                       if (allowClear && !readOnly && field.value != null) ...[

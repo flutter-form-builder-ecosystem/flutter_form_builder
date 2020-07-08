@@ -40,6 +40,10 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
   final double runSpacing, spacing;
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
+  final EdgeInsets labelPadding;
+  final TextStyle labelStyle;
+  final EdgeInsets padding;
+  final VisualDensity visualDensity;
 
   FormBuilderChoiceChip({
     Key key,
@@ -69,6 +73,10 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
     this.spacing = 0.0,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
+    this.labelPadding,
+    this.labelStyle,
+    this.padding,
+    this.visualDensity,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -114,6 +122,10 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
                                 var choice = selected ? option.value : null;
                                 field.didChange(choice);
                               },
+                        labelStyle: labelStyle,
+                        labelPadding: labelPadding,
+                        padding: padding,
+                        visualDensity: visualDensity,
                       ),
                   ],
                 ),

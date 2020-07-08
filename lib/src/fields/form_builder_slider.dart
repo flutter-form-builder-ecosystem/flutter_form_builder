@@ -34,6 +34,9 @@ class FormBuilderSlider extends FormBuilderField {
   final SemanticFormatterCallback semanticFormatterCallback;
   final NumberFormat numberFormat;
   final DisplayValues displayValues;
+  final TextStyle minTextStyle;
+  final TextStyle textStyle;
+  final TextStyle maxTextStyle;
 
   FormBuilderSlider({
     Key key,
@@ -56,6 +59,9 @@ class FormBuilderSlider extends FormBuilderField {
     this.numberFormat,
     this.onSaved,
     this.displayValues = DisplayValues.all,
+    this.minTextStyle,
+    this.textStyle,
+    this.maxTextStyle,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -66,7 +72,7 @@ class FormBuilderSlider extends FormBuilderField {
           readOnly: readOnly,
           builder: (FormFieldState field) {
             final _FormBuilderSliderState state = field;
-            // var _numberFormat = numberFormat ?? NumberFormat('##0.0');
+            var _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
@@ -98,15 +104,18 @@ class FormBuilderSlider extends FormBuilderField {
                       children: <Widget>[
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
-                          Text('${min}'),
+                          Text('${_numberFormat.format(min)}',
+                              style: minTextStyle ?? textStyle),
                         Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.minMax)
-                          Text('${field.value}'),
+                          Text('${_numberFormat.format(field.value)}',
+                              style: textStyle),
                         Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
-                          Text('${max}'),
+                          Text('${_numberFormat.format(max)}',
+                              style: maxTextStyle ?? textStyle),
                       ],
                     ),
                   ],

@@ -159,7 +159,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                           },
                     child: Row(
                       children: <Widget>[
-                        Icon(Icons.arrow_drop_down),
+                        const Icon(Icons.arrow_drop_down),
                         SizedBox(width: 10),
                         CountryPickerUtils.getDefaultFlagImage(
                           state._selectedDialogCountry,

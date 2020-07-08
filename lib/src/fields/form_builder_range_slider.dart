@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 class FormBuilderRangeSlider extends FormBuilderField {
   @override
@@ -29,6 +30,10 @@ class FormBuilderRangeSlider extends FormBuilderField {
   final RangeLabels labels;
   final RangeSemanticFormatterCallback semanticFormatterCallback;
   final DisplayValues displayValues;
+  final TextStyle minTextStyle;
+  final TextStyle textStyle;
+  final TextStyle maxTextStyle;
+  final NumberFormat numberFormat;
 
   FormBuilderRangeSlider({
     Key key,
@@ -50,6 +55,10 @@ class FormBuilderRangeSlider extends FormBuilderField {
     this.semanticFormatterCallback,
     this.onSaved,
     this.displayValues = DisplayValues.all,
+    this.minTextStyle,
+    this.textStyle,
+    this.maxTextStyle,
+    this.numberFormat,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -60,6 +69,8 @@ class FormBuilderRangeSlider extends FormBuilderField {
             readOnly: readOnly,
             builder: (FormFieldState field) {
               final _FormBuilderRangeSliderState state = field;
+              var _numberFormat = numberFormat ?? NumberFormat.compact();
+
               return InputDecorator(
                 decoration: decoration.copyWith(
                   enabled: !state.readOnly,
@@ -91,16 +102,24 @@ class FormBuilderRangeSlider extends FormBuilderField {
                         children: <Widget>[
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.current)
-                            Text('${min}'),
+                            Text(
+                              '${_numberFormat.format(min)}',
+                              style: minTextStyle ?? textStyle,
+                            ),
                           Spacer(),
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.minMax)
                             Text(
-                                '${field.value.start}   -   ${field.value.end}'),
+                              '${_numberFormat.format(field.value.start)} - ${_numberFormat.format(field.value.end)}',
+                              style: textStyle,
+                            ),
                           Spacer(),
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.current)
-                            Text('${max}'),
+                            Text(
+                              '${_numberFormat.format(max)}',
+                              style: maxTextStyle ?? textStyle,
+                            ),
                         ],
                       ),
                     ],
