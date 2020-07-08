@@ -16,12 +16,12 @@ class HomePage extends StatelessWidget {
           ListTile(
             title: Text('Complete Form'),
             trailing: Icon(CupertinoIcons.right_chevron),
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => CodePage(
-              title: 'Complete Form',
-              child: CompleteForm(),
-              sourceFilePath: 'lib/sources/complete_form.dart',
-            ))),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CodePage(
+                      title: 'Complete Form',
+                      child: CompleteForm(),
+                      sourceFilePath: 'lib/sources/complete_form.dart',
+                    ))),
           ),
           Divider(),
         ],

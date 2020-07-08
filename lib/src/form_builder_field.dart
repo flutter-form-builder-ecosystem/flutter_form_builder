@@ -49,9 +49,12 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   bool get readOnly => _readOnly;
 
-  bool get isPristine => value == _initialValue;
+  bool get pristine => !_dirty;
 
-  bool get autovalidate => !isPristine && widget.autovalidate;
+  bool get dirty => !_dirty;
+
+  // Only autovalidate if dirty
+  bool get autovalidate => dirty && widget.autovalidate;
 
   GlobalKey<FormFieldState> get fieldKey => _fieldKey;
 
@@ -62,6 +65,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   FormBuilderState _formBuilderState;
 
   bool _readOnly = false;
+
+  bool _dirty = false;
 
   T _initialValue;
 
@@ -87,24 +92,21 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void save() {
     super.save();
-    if (widget.valueTransformer != null) {
-      var transformed = widget.valueTransformer(value);
-      FormBuilder.of(context)
-          ?.updateFormAttributeValue(widget.attribute, transformed);
-    } else {
-      _formBuilderState?.updateFormAttributeValue(widget.attribute, value);
-    }
+    _formBuilderState?.updateFormAttributeValue(
+        widget.attribute, widget.valueTransformer?.call(value) ?? value);
   }
 
   @override
   void didChange(T value) {
+    setState(() {
+      _dirty = true;
+    });
     super.didChange(value);
     widget.onChanged?.call(value);
   }
 
   @override
   void reset() {
-    // print("Resetting ${widget.attribute}");
     super.reset();
     setValue(_initialValue);
     if (widget.onReset != null) {
@@ -117,7 +119,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     return super.validate() && widget.decoration?.errorText == null;
   }
 
-  void requestFocus() {
+/*void requestFocus() {
     FocusScope.of(context).requestFocus(FocusNode());
-  }
+  }*/
 }

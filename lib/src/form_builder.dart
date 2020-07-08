@@ -2,6 +2,69 @@ import 'package:flutter/material.dart';
 
 typedef ValueTransformer<T> = dynamic Function(T value);
 
+/*class FormBuilder extends Form {
+  @override
+  final VoidCallback onChanged;
+  @override
+  final WillPopCallback onWillPop;
+  @override
+  final Widget child;
+  @override
+  final bool autovalidate;
+  final bool readOnly;
+  final Map<String, dynamic> initialValue;
+
+  const FormBuilder({
+    Key key,
+    @required this.child,
+    this.autovalidate = false,
+    this.onWillPop,
+    this.onChanged,
+    this.readOnly,
+    this.initialValue = const {},
+  }) : super(
+          key: key,
+          autovalidate: autovalidate,
+          child: child,
+          onChanged: onChanged,
+          onWillPop: onWillPop,
+        );
+
+  static FormBuilderState of(BuildContext context) =>
+      context.findAncestorStateOfType<FormBuilderState>();
+}
+
+class FormBuilderState extends FormState {
+  @override
+  FormBuilder get widget => super.widget;
+
+  Map<String, dynamic> _value;
+
+  Map<String, dynamic> get value => {...widget.initialValue ?? {}, ..._value};
+
+  Map<String, dynamic> get initialValue => widget.initialValue;
+
+  bool get readOnly => widget.readOnly;
+
+  @override
+  void initState() {
+    super.initState();
+    // _fieldKeys = {};
+    _value = {};
+  }
+
+  void updateFormAttributeValue(String attribute, dynamic value) {
+    setState(() {
+      _value = {..._value, attribute: value};
+    });
+  }
+
+  bool saveAndValidate() {
+    save();
+    return validate();
+  }
+}*/
+
 class FormBuilder extends StatefulWidget {
   //final BuildContext context;
   final Function(Map<String, dynamic>) onChanged;
@@ -97,10 +160,6 @@ class FormBuilderState extends State<FormBuilder> {
 
   void reset() {
     _formKey.currentState.reset();
-    /*_fieldKeys.forEach((mapKey, fieldKey) {
-      // print("Reseting $mapKey");
-      fieldKey.currentState.reset();
-    });*/
   }
 
   @override
@@ -111,10 +170,7 @@ class FormBuilderState extends State<FormBuilder> {
       autovalidate: widget.autovalidate,
       onWillPop: widget.onWillPop,
       onChanged: () {
-        if (widget.onChanged != null) {
-          save();
-          widget.onChanged(value);
-        }
+        widget.onChanged?.call(value);
       },
     );
   }

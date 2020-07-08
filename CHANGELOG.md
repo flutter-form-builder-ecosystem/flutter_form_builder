@@ -1,3 +1,6 @@
+## [4.0.0-alpha.5] - 08-Jul-2020
+* Improvements to dirty check for FormBuilderField - fixes autovalidate only when dirty
+
 ## [4.0.0-alpha.4] - 04-Jul-2020
 * Added static getter for FormBuilderLocalizations delegate 
 * Fix issue where setting app localization is required for built-in validation to work 
