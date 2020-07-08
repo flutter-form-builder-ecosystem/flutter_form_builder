@@ -379,25 +379,6 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(growable: false),
                   ),
                   SizedBox(height: 15),
-                  /*FormBuilderRadioGroup(
-                    decoration: const InputDecoration(labelText: 'Pick a number'),
-                    attribute: 'number',
-                    readOnly: true,
-                    options: [
-                      FormBuilderFieldOption(
-                        value: 1,
-                        child: Text('One'),
-                      ),
-                      FormBuilderFieldOption(
-                        value: 2,
-                        child: Text('Two'),
-                      ),
-                      FormBuilderFieldOption(
-                        value: 3,
-                        child: Text('Three'),
-                      ),
-                    ],
-                  ),*/
                   SizedBox(height: 15),
                   FormBuilderSegmentedControl(
                     decoration:
@@ -522,7 +503,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
-                    initialValue: sampleSignature,
+                    //initialValue: sampleSignature,
                     decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
