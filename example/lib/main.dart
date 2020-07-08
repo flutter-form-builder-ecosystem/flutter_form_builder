@@ -522,6 +522,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
+                    initialValue: sampleSignature,
                     decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
