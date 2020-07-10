@@ -141,6 +141,16 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   final TextCapitalization textCapitalization;
   final bool alwaysUse24HourFormat;
 
+  final String cancelText;
+  final String confirmText;
+  final String errorFormatText;
+  final String errorInvalidText;
+  final String fieldHintText;
+  final String fieldLabelText;
+  final String helpText;
+  final DatePickerEntryMode initialEntryMode;
+  final RouteSettings routeSettings;
+
   FormBuilderDateTimePicker({
     Key key,
     @required this.attribute,
@@ -197,6 +207,15 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.strutStyle,
     this.useRootNavigator = true,
     this.alwaysUse24HourFormat = false,
+    this.cancelText,
+    this.confirmText,
+    this.errorFormatText,
+    this.errorInvalidText,
+    this.fieldHintText,
+    this.fieldLabelText,
+    this.helpText,
+    this.initialEntryMode,
+    this.routeSettings,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -368,6 +387,15 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
                 child: child,
               );
             },
+        cancelText: widget.cancelText,
+        confirmText: widget.confirmText,
+        errorFormatText: widget.errorFormatText,
+        errorInvalidText: widget.errorInvalidText,
+        fieldHintText: widget.fieldHintText,
+        fieldLabelText: widget.fieldLabelText,
+        helpText: widget.helpText,
+        initialEntryMode: widget.initialEntryMode,
+        routeSettings: widget.routeSettings,
       );
     }
   }
@@ -391,6 +419,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
               );
             },
         useRootNavigator: widget.useRootNavigator,
+        routeSettings: widget.routeSettings,
       ).then(
         (result) {
           return result ??
