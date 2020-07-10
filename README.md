@@ -320,7 +320,7 @@ Column(
 ```
 
 ## l10n
-Just add the FormBuilderLocalizations.delegate in the list of your app delegates
+Just add the `FormBuilderLocalizations.delegate` in the list of your app delegates
 
 ```dart
   return MaterialApp(
@@ -457,6 +457,40 @@ FormBuilderTextField(
 ),
 ```
 
+### Programmatically inducing an error
+Declare a variable to hold your error:
+```dart
+String _emailError;
+```
+
+Use the variable as the `errorText` within `InputDecoration`
+```dart
+FormBuilderTextField(
+  attribute: 'email',
+  decoration: InputDecoration(
+    labelText: 'Email', 
+    errorText: _emailError,
+  ),
+  validator: FormBuilderValidators.compose([
+      FormBuilderValidators.required(context),
+      FormBuilderValidators.email(context),
+  ]),
+),
+```
+
+Set the error text
+```dart
+RaisedButton(
+  child: Text('Submit'),
+  onPressed: () async {
+    if(checkIfEmailExists()){
+      setState(() => _emailError = 'Email already taken.');
+    }
+  },
+),
+```
+
+
 ### Conditional validation
 You can also validate a field based on the value of another field
 ```
@@ -507,9 +541,13 @@ This package is dependent on the following packages and plugins:
 * [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
 * [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours truly :-)](https://github.com/danvick)
 
-## FUTURE PLANS: 
-
 ## SUPPORT
-If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
+### PRs
+Any kind of support in the form of Pull Requests are always appreciated.
+
+We especially welcome efforts to internationalize/localize the package by translating the default validation error texts.
+
+### Coffee :-)
+If this package was helpful to you in delivering your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
