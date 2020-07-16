@@ -26,6 +26,13 @@ class FormBuilderDropdown extends StatefulWidget {
   final bool allowClear;
   final Widget clearIcon;
   final FormFieldSetter onSaved;
+  final double itemHeight;
+  final Color focusColor;
+  final Color dropdownColor;
+  final bool autofocus;
+  final FocusNode focusNode;
+  final VoidCallback onTap;
+  final List<Widget> Function(BuildContext) selectedItemBuilder;
 
   FormBuilderDropdown({
     Key key,
@@ -51,6 +58,13 @@ class FormBuilderDropdown extends StatefulWidget {
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
     this.onSaved,
+    this.itemHeight,
+    this.focusColor,
+    this.dropdownColor,
+    this.autofocus = false,
+    this.focusNode,
+    this.onTap,
+    this.selectedItemBuilder,
   }) : super(key: key) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
@@ -107,8 +121,10 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
           decoration: widget.decoration.copyWith(
             errorText: field.errorText,
           ),
+          isEmpty: field.value == null,
           child: DropdownButtonHideUnderline(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Expanded(
                   child: DropdownButton(
@@ -136,6 +152,13 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                         : (value) {
                             _changeValue(field, value);
                           },
+                    itemHeight: widget.itemHeight,
+                    focusColor: widget.focusColor,
+                    dropdownColor: widget.dropdownColor,
+                    autofocus: widget.autofocus,
+                    focusNode: widget.focusNode,
+                    onTap: widget.onTap,
+                    selectedItemBuilder: widget.selectedItemBuilder,
                   ),
                 ),
                 if (widget.allowClear &&
@@ -148,7 +171,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                       _changeValue(field, null);
                     },
                   ),
-                ]
+                ],
               ],
             ),
           ),
