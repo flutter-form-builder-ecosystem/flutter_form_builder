@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderDropdown extends StatefulWidget {
+class FormBuilderDropdown<T> extends StatefulWidget {
   final String attribute;
-  final List<FormFieldValidator> validators;
-  final dynamic initialValue;
+  final List<FormFieldValidator<T>> validators;
+  final T initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
   final Widget hint;
-  final List<DropdownMenuItem> items;
+  final List<DropdownMenuItem<T>> items;
   final bool isExpanded;
   final TextStyle style;
   final bool isDense;
@@ -25,7 +25,7 @@ class FormBuilderDropdown extends StatefulWidget {
   final Color iconEnabledColor;
   final bool allowClear;
   final Widget clearIcon;
-  final FormFieldSetter onSaved;
+  final FormFieldSetter<T> onSaved;
   final double itemHeight;
   final Color focusColor;
   final Color dropdownColor;
@@ -68,14 +68,14 @@ class FormBuilderDropdown extends StatefulWidget {
   }) : super(key: key) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
-  _FormBuilderDropdownState createState() => _FormBuilderDropdownState();
+  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState();
 }
 
-class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
+class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  dynamic _initialValue;
+  T _initialValue;
 
   @override
   void initState() {
@@ -116,7 +116,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
           widget.onSaved(transformed ?? val);
         }
       },
-      builder: (FormFieldState<dynamic> field) {
+      builder: (FormFieldState<T> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             errorText: field.errorText,
@@ -127,7 +127,7 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: DropdownButton(
+                  child: DropdownButton<T>(
                     isExpanded: widget.isExpanded,
                     hint: widget.hint,
                     items: widget.items,
