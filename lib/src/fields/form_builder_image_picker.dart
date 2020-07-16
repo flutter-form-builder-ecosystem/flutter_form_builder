@@ -155,6 +155,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             InkWell(
                               onTap: () {
                                 field.didChange([...field.value]..remove(item));
+                                widget.onChanged?.call(field.value);
                               },
                               child: Container(
                                 margin: const EdgeInsets.all(3),
@@ -202,6 +203,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                     widget.preferredCameraDevice,
                                 onImageSelected: (image) {
                                   field.didChange([...field.value, image]);
+                                  widget.onChanged?.call(field.value);
                                   Navigator.of(context).pop();
                                 },
                               );
