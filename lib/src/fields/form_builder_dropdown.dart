@@ -19,6 +19,7 @@ class FormBuilderDropdown<T> extends StatefulWidget {
   final int elevation;
   final Widget disabledHint;
   final double iconSize;
+  @Deprecated('Underline in DropdownButton is ignored.')
   final Widget underline;
   final Widget icon;
   final Color iconDisabledColor;
@@ -181,7 +182,6 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
   }
 
   void _changeValue(FormFieldState field, value) {
-    FocusScope.of(context).requestFocus(FocusNode());
     field.didChange(value);
     widget.onChanged?.call(value);
   }
