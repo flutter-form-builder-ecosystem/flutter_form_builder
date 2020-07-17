@@ -43,6 +43,7 @@ class FormBuilderImagePicker extends StatefulWidget {
   final Widget galleryIcon;
   final Widget cameraLabel;
   final Widget galleryLabel;
+  final EdgeInsets bottomSheetPadding;
 
   const FormBuilderImagePicker({
     Key key,
@@ -68,6 +69,7 @@ class FormBuilderImagePicker extends StatefulWidget {
     this.galleryIcon = const Icon(Icons.image),
     this.cameraLabel = const Text('Camera'),
     this.galleryLabel = const Text('Gallery'),
+    this.bottomSheetPadding = const EdgeInsets.all(0),
   }) : super(key: key);
 
   @override
@@ -131,7 +133,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
       },
       builder: (field) {
         var theme = Theme.of(context);
-        
+
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
@@ -217,6 +219,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                   widget.onChanged?.call(field.value);
                                   Navigator.of(context).pop();
                                 },
+                                bottomSheetPadding: widget.bottomSheetPadding,
                               );
                             },
                           );

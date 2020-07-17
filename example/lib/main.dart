@@ -282,12 +282,6 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: 'gender',
                     decoration: const InputDecoration(
                       labelText: 'Gender',
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.green,
-                          width: 20,
-                        ),
-                      ),
                     ),
                     // initialValue: 'Male',
                     hint: Text('Select Gender'),
@@ -298,6 +292,8 @@ class MyHomePageState extends State<MyHomePage> {
                               child: Text('$gender'),
                             ))
                         .toList(),
+                    // isExpanded: false,
+                    allowClear: true,
                   ),
                   SizedBox(height: 15),
                   FormBuilderTypeAhead(
@@ -461,6 +457,7 @@ class MyHomePageState extends State<MyHomePage> {
                         return null;
                       }
                     ],
+                    onChanged: _onChanged,
                   ),
                   SizedBox(height: 15),
                   FormBuilderCountryPicker(
@@ -516,12 +513,8 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(labelText: 'Radio Group'),
                     onChanged: _onChanged,
                     options: [
-                      FormBuilderFieldOption(
-                        value: 'Male',
-                      ),
-                      FormBuilderFieldOption(
-                        value: 'Female',
-                      ),
+                      FormBuilderFieldOption(value: 'Male'),
+                      FormBuilderFieldOption(value: 'Female'),
                     ],
                   ),
                   SizedBox(height: 15),
@@ -582,9 +575,7 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                SizedBox(width: 20),
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).accentColor,

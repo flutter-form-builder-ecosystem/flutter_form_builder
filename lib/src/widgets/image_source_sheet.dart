@@ -37,6 +37,7 @@ class ImageSourceBottomSheet extends StatelessWidget {
   final Widget galleryIcon;
   final Widget cameraLabel;
   final Widget galleryLabel;
+  final EdgeInsets bottomSheetPadding;
 
   ImageSourceBottomSheet({
     Key key,
@@ -50,6 +51,7 @@ class ImageSourceBottomSheet extends StatelessWidget {
     this.galleryIcon,
     this.cameraLabel,
     this.galleryLabel,
+    this.bottomSheetPadding,
   })  : assert(null != onImage || null != onImageSelected),
         super(key: key);
 
@@ -83,7 +85,7 @@ class ImageSourceBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 20),
+      padding: bottomSheetPadding,
       child: Wrap(
         children: <Widget>[
           ListTile(

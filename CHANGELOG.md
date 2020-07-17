@@ -1,3 +1,12 @@
+## [3.11.5] - 17-Jul-2020
+* Included more `showDatePicker` function options
+* Fixed bug where `onChanged` not triggered by ImagePicker. Closes #366
+* Deprecate `underline` for Dropdown. Ignored
+* Added more options for DropdownButton. Closes #153, #337
+* Type `FormBuilderDropdown` class. Closes #360
+* Included options to set camera and gallery icons and label. Closes #340
+* Added `bottomSheetPadding` option for ImagePicker. Closes #339
+
 ## [3.11.4] - 08-Jul-2020
 * Added text styles options to Slider
 * Re-implement number formatting on Slider field
