@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ImageSourceSheet extends StatelessWidget {
+class ImageSourceBottomSheet extends StatelessWidget {
   /// Optional maximum height of image
   final double maxHeight;
 
@@ -33,7 +33,12 @@ class ImageSourceSheet extends StatelessWidget {
   /// available.
   final Function(File) onImageSelected;
 
-  ImageSourceSheet({
+  final Widget cameraIcon;
+  final Widget galleryIcon;
+  final Widget cameraLabel;
+  final Widget galleryLabel;
+
+  ImageSourceBottomSheet({
     Key key,
     this.maxHeight,
     this.maxWidth,
@@ -41,6 +46,10 @@ class ImageSourceSheet extends StatelessWidget {
     this.preferredCameraDevice = CameraDevice.rear,
     this.onImage,
     this.onImageSelected,
+    this.cameraIcon,
+    this.galleryIcon,
+    this.cameraLabel,
+    this.galleryLabel,
   })  : assert(null != onImage || null != onImageSelected),
         super(key: key);
 
@@ -74,16 +83,17 @@ class ImageSourceSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(bottom: 20),
       child: Wrap(
         children: <Widget>[
           ListTile(
-            leading: const Icon(Icons.camera_enhance),
-            title: Text('Camera'),
+            leading: cameraIcon,
+            title: cameraLabel,
             onTap: () => _onPickImage(ImageSource.camera),
           ),
           ListTile(
-            leading: const Icon(Icons.image),
-            title: Text('Gallery'),
+            leading: galleryIcon,
+            title: galleryLabel,
             onTap: () => _onPickImage(ImageSource.gallery),
           )
         ],
