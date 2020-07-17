@@ -147,6 +147,7 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
                     icon: widget.icon,
                     iconDisabledColor: widget.iconDisabledColor,
                     iconEnabledColor: widget.iconEnabledColor,
+                    // ignore: deprecated_member_use_from_same_package
                     underline: widget.underline,
                     onChanged: _readOnly
                         ? null
