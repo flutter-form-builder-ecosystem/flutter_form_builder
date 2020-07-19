@@ -6,8 +6,9 @@ import 'package:intl/intl.dart';
 
 class FormBuilderLocalizations {
   static Future<FormBuilderLocalizations> load(Locale locale) {
-    final name =
-        locale.countryCode.isEmpty ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? true)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
 
     return initializeMessages(localeName).then((bool _) {
