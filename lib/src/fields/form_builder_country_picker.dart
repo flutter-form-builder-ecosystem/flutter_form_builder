@@ -91,6 +91,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
               ),
               child: CountryCodePicker(
                 onChanged: (CountryCode e) {
+                  state.requestFocus();
                   state.didChange(e.toString());
                 },
                 initialSelection: initialSelection,

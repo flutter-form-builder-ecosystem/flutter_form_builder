@@ -63,7 +63,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 onChanged: state.readOnly
                     ? null
                     : (val) {
-                  state.requestFocus();
+                        state.requestFocus();
                         state.didChange(val);
                       },
                 checkColor: checkColor,

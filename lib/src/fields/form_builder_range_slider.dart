@@ -89,6 +89,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
                         onChanged: state.readOnly
                             ? null
                             : (RangeValues values) {
+                                state.requestFocus();
                                 field.didChange(values);
                               },
                       ),

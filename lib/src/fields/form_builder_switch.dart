@@ -106,6 +106,7 @@ class FormBuilderSwitch extends FormBuilderField {
                 onChanged: state.readOnly
                     ? null
                     : (val) {
+                        state.requestFocus();
                         field.didChange(val);
                       },
                 activeColor: activeColor,

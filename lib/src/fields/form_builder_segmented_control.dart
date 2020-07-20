@@ -71,11 +71,12 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                       option.value: Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: option,
-                      )
+                      ),
                   },
                   padding: padding,
                   unselectedColor: unselectedColor,
                   onValueChanged: (dynamic value) {
+                    state.requestFocus();
                     if (state.readOnly) {
                       field.reset();
                     } else {

@@ -116,6 +116,7 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState {
   void initState() {
     super.initState();
     effectiveController.addListener(() async {
+      requestFocus();
       var _value = await effectiveController.toImage() != null
           ? await effectiveController.toPngBytes()
           : null;

@@ -90,6 +90,7 @@ class FormBuilderSlider extends FormBuilderField {
                       onChanged: state.readOnly
                           ? null
                           : (double value) {
+                              state.requestFocus();
                               field.didChange(value);
                             },
                     ),

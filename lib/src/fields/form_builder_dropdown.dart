@@ -124,7 +124,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         InkWell(
                           child: clearIcon,
                           onTap: () {
-                            _changeValue(field, null);
+                            _changeValue(state, null);
                           },
                         ),
                       ]
@@ -134,8 +134,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
               );
             });
 
-  static void _changeValue(FormFieldState field, value) {
-    field.didChange(value);
+  static void _changeValue(_FormBuilderDropdownState state, value) {
+    state.requestFocus();
+    state.didChange(value);
   }
 
   @override

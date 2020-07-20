@@ -113,6 +113,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
                                 } else {
                                   currentValue.remove(option.value);
                                 }
+                                state.requestFocus();
                                 field.didChange(currentValue);
                               },
                         selectedColor: selectedColor,

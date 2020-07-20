@@ -113,7 +113,8 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                             ? null
                             : (bool selected) {
                                 var choice = selected ? option.value : null;
-                                field.didChange(choice);
+                                state.requestFocus();
+                                state.didChange(choice);
                               },
                         labelStyle: labelStyle,
                         labelPadding: labelPadding,

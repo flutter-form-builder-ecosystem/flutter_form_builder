@@ -62,9 +62,8 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 onChanged: state.readOnly
                     ? null
                     : (value) {
-                        FocusScope.of(state.context).requestFocus(FocusNode());
+                        state.requestFocus();
                         field.didChange(value);
-                        onChanged?.call(value);
                       },
                 items: options
                     .map((option) => option.value)

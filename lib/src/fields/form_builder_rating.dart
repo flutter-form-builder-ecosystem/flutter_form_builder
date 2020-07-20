@@ -94,6 +94,7 @@ class FormBuilderRating extends FormBuilderField {
       halfFilledColor: field.widget.halfFilledColor,
       size: field.widget.iconSize,
       onRatingChanged: (val) {
+        field.requestFocus();
         field.didChange(val);
       },
     );

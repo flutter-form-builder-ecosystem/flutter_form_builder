@@ -101,6 +101,7 @@ class FormBuilderImagePicker extends FormBuilderField {
                             if (!state.readOnly)
                               InkWell(
                                 onTap: () {
+                                  state.requestFocus();
                                   field.didChange(
                                       [...field.value]..remove(item));
                                 },
@@ -146,6 +147,7 @@ class FormBuilderImagePicker extends FormBuilderField {
                                 imageQuality: imageQuality,
                                 preferredCameraDevice: preferredCameraDevice,
                                 onImageSelected: (image) {
+                                  state.requestFocus();
                                   field
                                       .didChange([...field.value ?? [], image]);
                                   Navigator.of(state.context).pop();

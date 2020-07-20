@@ -52,6 +52,7 @@ class FormBuilderRadioList<T> extends FormBuilderField<T> {
                   onChanged: state.readOnly
                       ? null
                       : (val) {
+                          state.requestFocus();
                           field.didChange(options[i].value);
                         },
                   controlAffinity: controlAffinity,
