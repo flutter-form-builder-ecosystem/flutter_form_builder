@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderField<T> extends FormField<T> {
@@ -72,6 +73,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   FocusNode _node;
 
+  FocusAttachment _nodeAttachment;
+
   bool _focused = false;
 
   @override
@@ -87,7 +90,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
             : null);
     _node = widget.focusNode ?? FocusNode(debugLabel: '${widget.attribute}');
     _node.addListener(_handleFocusChange);
-    // _nodeAttachment = _node.attach(context, onKey: _handleKeyPress);
+    _nodeAttachment = _node.attach(context, onKey: _handleKeyPress);
     setValue(_initialValue);
   }
 
@@ -97,6 +100,17 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
         _focused = _node.hasFocus;
       });
     }
+  }
+
+  bool _handleKeyPress(FocusNode node, RawKeyEvent event) {
+    if (event is RawKeyDownEvent) {
+      print('Focus node ${node.debugLabel} got key event: ${event.logicalKey}');
+      if (event.logicalKey == LogicalKeyboardKey.tab) {
+        FocusScope.of(context).nextFocus();
+        return true;
+      }
+    }
+    return false;
   }
 
   @override

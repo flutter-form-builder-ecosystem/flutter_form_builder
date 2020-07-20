@@ -166,7 +166,7 @@ class FormBuilderState extends State<FormBuilder> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: widget.child,
+      child: FocusTraversalGroup(child: widget.child),
       autovalidate: widget.autovalidate,
       onWillPop: widget.onWillPop,
       onChanged: () {
