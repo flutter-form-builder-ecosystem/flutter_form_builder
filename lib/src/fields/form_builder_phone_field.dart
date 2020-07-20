@@ -14,7 +14,6 @@ class FormBuilderPhoneField extends FormBuilderField {
   final bool obscureText;
   final TextStyle style;
   final TextEditingController controller;
-  final FocusNode focusNode;
   final TextCapitalization textCapitalization;
   final TextInputAction textInputAction;
   final StrutStyle strutStyle;
@@ -66,6 +65,7 @@ class FormBuilderPhoneField extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -79,7 +79,6 @@ class FormBuilderPhoneField extends FormBuilderField {
     this.keyboardType = TextInputType.phone,
     this.style,
     this.controller,
-    this.focusNode,
     this.textInputAction,
     this.strutStyle,
     this.textDirection,

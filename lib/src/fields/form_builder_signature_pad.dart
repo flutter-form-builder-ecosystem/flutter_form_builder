@@ -27,6 +27,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.backgroundColor,
     this.clearButtonText,
     this.width,

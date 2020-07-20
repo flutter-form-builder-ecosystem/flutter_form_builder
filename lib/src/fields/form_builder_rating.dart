@@ -29,6 +29,7 @@ class FormBuilderRating extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.max = 5.0,
     this.icon = Icons.star,
     this.iconSize = 24.0,

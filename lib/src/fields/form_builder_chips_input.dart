@@ -17,7 +17,6 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   final bool obscureText;
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
-  final FocusNode focusNode;
   final bool allowChipEditing;
   final bool autofocus;
   final TextOverflow textOverflow;
@@ -36,6 +35,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.chipBuilder,
     @required this.suggestionBuilder,
     @required this.findSuggestions,
@@ -49,7 +49,6 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     this.keyboardAppearance = Brightness.light,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
-    this.focusNode,
     this.allowChipEditing = false,
     this.autofocus = false,
     this.textOverflow,

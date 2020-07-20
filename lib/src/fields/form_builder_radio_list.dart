@@ -21,6 +21,7 @@ class FormBuilderRadioList<T> extends FormBuilderField<T> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.activeColor,
     @required this.options,
     this.controlAffinity = ListTileControlAffinity.leading,

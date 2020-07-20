@@ -44,6 +44,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.options,
     this.selectedColor,
     this.disabledColor,

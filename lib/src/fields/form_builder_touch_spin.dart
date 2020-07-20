@@ -36,6 +36,7 @@ class FormBuilderTouchSpin extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.step,
     this.min = 1,
     this.max = 9999,
@@ -78,7 +79,8 @@ class FormBuilderTouchSpin extends FormBuilderField {
                 onChanged: state.readOnly
                     ? null
                     : (value) {
-                        field.didChange(value);
+                        state.requestFocus();
+                        state.didChange(value);
                       },
                 displayFormat: displayFormat,
                 textStyle: textStyle,

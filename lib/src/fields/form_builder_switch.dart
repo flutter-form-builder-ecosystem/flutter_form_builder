@@ -64,6 +64,7 @@ class FormBuilderSwitch extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.title,
     this.activeColor,
     this.activeTrackColor,

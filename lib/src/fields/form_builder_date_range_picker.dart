@@ -15,7 +15,6 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   final bool obscureText;
   final TextStyle style;
   final TextEditingController controller;
-  final FocusNode focusNode;
   final TextCapitalization textCapitalization;
   final TextInputAction textInputAction;
   final StrutStyle strutStyle;
@@ -61,6 +60,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.firstDate,
     @required this.lastDate,
     this.format,
@@ -77,7 +77,6 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     this.keyboardType,
     this.style,
     this.controller,
-    this.focusNode,
     this.textInputAction,
     this.strutStyle,
     this.textDirection,
@@ -203,10 +202,8 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
   @override
   void initState() {
     _effectiveFocusNode = widget.focusNode ?? FocusNode();
-    _effectiveController = widget.controller ??
-        TextEditingController(
-          text: _valueToText(),
-        );
+    _effectiveController =
+        widget.controller ?? TextEditingController(text: _valueToText());
     _effectiveFocusNode.addListener(_handleFocus);
     super.initState();
   }
@@ -214,10 +211,10 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
   Future<void> _handleFocus() async {
     if (_effectiveFocusNode.hasFocus) {
       _hideKeyboard();
-      var initialFirstDate = value.isEmpty
+      var initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
-      var initialLastDate = value.isEmpty
+      var initialLastDate = value?.isEmpty ?? true
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
       final picked = await date_range_picker.showDatePicker(

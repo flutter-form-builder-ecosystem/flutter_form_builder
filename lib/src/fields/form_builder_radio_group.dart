@@ -27,6 +27,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.options,
     this.leadingInput = false,
     this.materialTapTargetSize,

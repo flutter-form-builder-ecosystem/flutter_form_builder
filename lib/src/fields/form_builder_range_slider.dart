@@ -33,6 +33,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.min,
     @required this.max,
     this.divisions,

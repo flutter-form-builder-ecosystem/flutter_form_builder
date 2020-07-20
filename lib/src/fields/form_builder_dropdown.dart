@@ -18,7 +18,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   final bool allowClear;
   final Widget clearIcon;
   final VoidCallback onTap;
-  final FocusNode focusNode;
   final bool autofocus;
   final Color dropdownColor;
   final Color focusColor;
@@ -39,6 +38,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.items,
     this.isExpanded = true,
     this.isDense = true,
@@ -54,7 +54,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
     this.onTap,
-    this.focusNode,
     this.autofocus = false,
     this.dropdownColor,
     this.focusColor,

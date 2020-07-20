@@ -27,6 +27,9 @@ extension on Color {
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
 
 class FormBuilderColorPickerField extends FormBuilderField<Color> {
+  final TextEditingController controller;
+  final ColorPickerType colorPickerType;
+
   FormBuilderColorPickerField({
     Key key,
     @required String attribute,
@@ -39,8 +42,8 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     FormFieldSetter<Color> onSaved,
     VoidCallback onReset,
     this.controller,
-    this.focusNode,
-    this.readOnly = false,
+    FocusNode focusNode,
+    bool readOnly = false,
     this.colorPickerType = ColorPickerType.ColorPicker,
     InputDecoration decoration = const InputDecoration(),
     TextCapitalization textCapitalization = TextCapitalization.none,
@@ -140,12 +143,6 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
             );
           },
         );
-
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  @override
-  final bool readOnly;
-  final ColorPickerType colorPickerType;
 
   @override
   _FormBuilderColorPickerFieldState createState() =>

@@ -24,6 +24,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.options,
     this.controlAffinity = ListTileControlAffinity.leading,
     this.activeColor,
@@ -61,6 +62,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
                             } else {
                               currentValue.remove(options[i].value);
                             }
+                            state.requestFocus();
                             state.didChange(currentValue);
                           },
                     dense: true,

@@ -44,6 +44,7 @@ class FormBuilderImagePicker extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.previewWidth = 130,
     this.previewHeight = 130,
     this.previewMargin,

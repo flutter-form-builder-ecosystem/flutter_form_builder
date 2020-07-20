@@ -9,10 +9,11 @@ class FormBuilderField<T> extends FormField<T> {
   final bool readOnly;
   final InputDecoration decoration;
   final VoidCallback onReset;
+  final FocusNode focusNode;
 
   FormBuilderField({
-    //From Super
     Key key,
+    //From Super
     FormFieldSetter<T> onSaved,
     T initialValue,
     bool autovalidate = false,
@@ -25,6 +26,7 @@ class FormBuilderField<T> extends FormField<T> {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.onReset,
+    this.focusNode,
   }) : super(
           key: key,
           onSaved: onSaved,
@@ -68,6 +70,10 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   T _initialValue;
 
+  FocusNode _node;
+
+  bool _focused = false;
+
   @override
   void initState() {
     super.initState();
@@ -75,10 +81,22 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
     _formBuilderState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formBuilderState.initialValue.containsKey(widget.attribute)
+        ((_formBuilderState?.initialValue?.containsKey(widget.attribute) ??
+                false)
             ? _formBuilderState.initialValue[widget.attribute]
             : null);
+    _node = widget.focusNode ?? FocusNode(debugLabel: '${widget.attribute}');
+    _node.addListener(_handleFocusChange);
+    // _nodeAttachment = _node.attach(context, onKey: _handleKeyPress);
     setValue(_initialValue);
+  }
+
+  void _handleFocusChange() {
+    if (_node.hasFocus != _focused) {
+      setState(() {
+        _focused = _node.hasFocus;
+      });
+    }
   }
 
   @override
@@ -107,9 +125,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   void reset() {
     super.reset();
     setValue(_initialValue);
-    if (widget.onReset != null) {
-      widget.onReset();
-    }
+    widget.onReset?.call();
   }
 
   @override
@@ -117,7 +133,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     return super.validate() && widget.decoration?.errorText == null;
   }
 
-/*void requestFocus() {
-    FocusScope.of(context).requestFocus(FocusNode());
-  }*/
+  void requestFocus() {
+    FocusScope.of(context).requestFocus(_node);
+  }
 }

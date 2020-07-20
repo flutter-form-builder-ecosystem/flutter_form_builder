@@ -69,7 +69,6 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   /// `null` if [format] fails to parse the text.
   final ValueChanged<DateTime> onFieldSubmitted;
   final TextEditingController controller;
-  final FocusNode focusNode;
   final TextInputType keyboardType;
   final TextStyle style;
   final TextAlign textAlign;
@@ -148,6 +147,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
@@ -174,7 +174,6 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.selectableDayPredicate,
     this.textDirection,
     this.controller,
-    this.focusNode,
     this.style,
     this.maxLength,
     this.inputFormatters,

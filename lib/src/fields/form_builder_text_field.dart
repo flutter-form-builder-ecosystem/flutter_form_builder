@@ -13,7 +13,6 @@ class FormBuilderTextField extends FormBuilderField {
   final bool obscureText;
   final TextStyle style;
   final TextEditingController controller;
-  final FocusNode focusNode;
   final TextCapitalization textCapitalization;
   final TextInputAction textInputAction;
   final StrutStyle strutStyle;
@@ -62,6 +61,7 @@ class FormBuilderTextField extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -75,7 +75,6 @@ class FormBuilderTextField extends FormBuilderField {
     this.keyboardType,
     this.style,
     this.controller,
-    this.focusNode,
     this.textInputAction,
     this.strutStyle,
     this.textDirection,

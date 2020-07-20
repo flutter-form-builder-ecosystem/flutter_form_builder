@@ -233,6 +233,7 @@ class CompleteFormState extends State<CompleteForm> {
                       FormBuilderValidators.max(context, 70),
                     ]),
                     keyboardType: TextInputType.number,
+                    textInputAction: TextInputAction.next,
                   ),
                   FormBuilderDropdown(
                     attribute: 'gender',

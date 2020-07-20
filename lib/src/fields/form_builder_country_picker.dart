@@ -43,6 +43,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     this.favorite = const [],
     this.textStyle,
     this.padding = const EdgeInsets.all(0.0),

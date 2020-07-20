@@ -49,6 +49,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
     this.getImmediateSuggestions = false,

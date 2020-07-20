@@ -17,14 +17,15 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     @required String attribute,
     FormFieldValidator validator,
     bool initialValue,
-    bool readOnly,
-    InputDecoration decoration,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
     ValueChanged onChanged,
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
     bool autovalidate = false,
     VoidCallback onReset,
+    FocusNode focusNode,
     @required this.title,
     this.activeColor,
     this.checkColor,
@@ -62,6 +63,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 onChanged: state.readOnly
                     ? null
                     : (val) {
+                  state.requestFocus();
                         state.didChange(val);
                       },
                 checkColor: checkColor,
