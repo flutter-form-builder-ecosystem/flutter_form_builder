@@ -1,3 +1,12 @@
+## [4.0.0-alpha.6] - 20-Jul-2020
+* Added focusNode to all fields. 
+* Attempted tab/next support - work in progress
+* Request Focus to Field when change is attempted.
+* Include guide to programmatically inducing errors to README. Closes #123
+* Fixed bug in Localization where `Locale.countrycCode` is `null`. Closes #369
+* Added more options to DatePicker for showDatePicker() Flutter function
+* Rename `updateFormAttributeValue` to `setInternalAttributeValue` to avoid confusion
+
 ## [4.0.0-alpha.5] - 08-Jul-2020
 * Improvements to dirty check for FormBuilderField - fixes autovalidate only when dirty
 

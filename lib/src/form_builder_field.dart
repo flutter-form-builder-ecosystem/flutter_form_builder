@@ -73,8 +73,6 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   FocusNode _node;
 
-  FocusAttachment _nodeAttachment;
-
   bool _focused = false;
 
   @override
@@ -90,7 +88,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
             : null);
     _node = widget.focusNode ?? FocusNode(debugLabel: '${widget.attribute}');
     _node.addListener(_handleFocusChange);
-    _nodeAttachment = _node.attach(context, onKey: _handleKeyPress);
+    _node.attach(context, onKey: _handleKeyPress);
     setValue(_initialValue);
   }
 
@@ -114,15 +112,9 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   }
 
   @override
-  void dispose() {
-    _formBuilderState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
-  @override
   void save() {
     super.save();
-    _formBuilderState?.updateFormAttributeValue(
+    _formBuilderState?.setInternalAttributeValue(
         widget.attribute, widget.valueTransformer?.call(value) ?? value);
   }
 
@@ -149,5 +141,14 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   void requestFocus() {
     FocusScope.of(context).requestFocus(_node);
+  }
+
+  @override
+  void dispose() {
+    _formBuilderState?.unregisterFieldKey(widget.attribute);
+    _node.removeListener(_handleFocusChange);
+    // The attachment will automatically be detached in dispose().
+    _node.dispose();
+    super.dispose();
   }
 }

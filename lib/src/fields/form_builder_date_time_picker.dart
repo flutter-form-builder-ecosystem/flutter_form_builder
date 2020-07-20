@@ -169,7 +169,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.initialDate,
     // this.onSaved,
     this.onFieldSubmitted,
-    this.initialDatePickerMode,
+    this.initialDatePickerMode = DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
     this.textDirection,
@@ -199,7 +199,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.fieldHintText,
     this.fieldLabelText,
     this.helpText,
-    this.initialEntryMode,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
     this.routeSettings,
   }) : super(
           key: key,

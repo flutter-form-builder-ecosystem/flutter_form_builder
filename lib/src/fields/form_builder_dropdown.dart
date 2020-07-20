@@ -11,7 +11,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   final int elevation;
   final Widget disabledHint;
   final double iconSize;
-  final Widget underline;
   final Widget icon;
   final Color iconDisabledColor;
   final Color iconEnabledColor;
@@ -47,7 +46,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.hint,
     this.style,
     this.disabledHint,
-    this.underline,
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
@@ -79,11 +77,14 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                 decoration: decoration.copyWith(
                   enabled: !state.readOnly,
                   errorText: field.errorText,
+                  floatingLabelBehavior: hint == null
+                      ? decoration.floatingLabelBehavior
+                      : FloatingLabelBehavior.always,
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: DropdownButtonHideUnderline(
                         child: DropdownButton(
                           isExpanded: isExpanded,
                           hint: hint,
@@ -104,7 +105,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                           icon: icon,
                           iconDisabledColor: iconDisabledColor,
                           iconEnabledColor: iconEnabledColor,
-                          underline: underline,
                           onChanged: state.readOnly
                               ? null
                               : (value) {
@@ -119,17 +119,17 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                           selectedItemBuilder: selectedItemBuilder,
                         ),
                       ),
-                      if (allowClear && !readOnly && field.value != null) ...[
-                        VerticalDivider(),
-                        InkWell(
-                          child: clearIcon,
-                          onTap: () {
-                            _changeValue(state, null);
-                          },
-                        ),
-                      ]
-                    ],
-                  ),
+                    ),
+                    if (allowClear && !readOnly && field.value != null) ...[
+                      VerticalDivider(),
+                      InkWell(
+                        child: clearIcon,
+                        onTap: () {
+                          _changeValue(state, null);
+                        },
+                      ),
+                    ]
+                  ],
                 ),
               );
             });
