@@ -19,13 +19,13 @@ dependencies:
   flutter_colorpicker: ^0.3.4
   flutter_chips_input: ^1.8.3
   flutter_touch_spin: ^1.0.1
-  flutter_typeahead: ^1.8.5
+  flutter_typeahead: ^1.8.6
   group_radio_button: ^1.0.1
-  image_picker: ^0.6.7+2
+  image_picker: ^0.6.7+4
   intl: ^0.16.1
   phone_number: ^0.6.2+3
   rating_bar: ^0.2.0
-  signature: ^3.1.2
+  signature: ^3.2.0
   validators: ^2.0.1
 
 dev_dependencies:
