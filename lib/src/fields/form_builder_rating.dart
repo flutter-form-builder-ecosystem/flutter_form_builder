@@ -5,23 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:rating_bar/rating_bar.dart';
 
 class FormBuilderRating extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final double initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final FormFieldSetter onSaved;
-  @override
-  final ValueTransformer valueTransformer;
-
   final IconData icon;
   final double iconSize;
   final double max;
@@ -34,17 +17,21 @@ class FormBuilderRating extends FormBuilderField {
 
   FormBuilderRating({
     Key key,
-    @required this.attribute,
-    this.initialValue = 1.0,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    double initialValue = 1.0,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.max = 5.0,
     this.icon = Icons.star,
     this.iconSize = 24.0,
-    this.onChanged,
-    this.valueTransformer,
-    this.onSaved,
     this.filledColor,
     this.emptyIcon = Icons.star,
     this.emptyColor,
@@ -59,6 +46,11 @@ class FormBuilderRating extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderRateState state = field;
 

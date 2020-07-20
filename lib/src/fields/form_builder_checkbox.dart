@@ -3,20 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCheckbox extends FormBuilderField<bool> {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final bool initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
   final Widget title;
   final Widget subtitle;
   final Widget secondary;
@@ -26,15 +12,20 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   final EdgeInsets contentPadding;
 
   FormBuilderCheckbox({
+    //From Super
     Key key,
-    @required this.attribute,
+    @required String attribute,
+    FormFieldValidator validator,
+    bool initialValue,
+    bool readOnly,
+    InputDecoration decoration,
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.title,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
     this.activeColor,
     this.checkColor,
     this.subtitle,
@@ -49,6 +40,11 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxState state = field;
 

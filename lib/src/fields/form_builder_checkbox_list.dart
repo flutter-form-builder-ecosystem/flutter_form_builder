@@ -3,21 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final List<T> initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
   final List<FormBuilderFieldOption> options;
   final ListTileControlAffinity controlAffinity;
   final Color activeColor;
@@ -27,15 +12,20 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
 
   FormBuilderCheckboxList({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    List<T> initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.options,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
     this.controlAffinity = ListTileControlAffinity.leading,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
     this.activeColor,
     this.checkColor,
     // this.secondary,
@@ -47,6 +37,11 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxListState<T> state = field;
             var checkboxList = [];

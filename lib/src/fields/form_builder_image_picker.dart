@@ -4,23 +4,6 @@ import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormBuilderImagePicker extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final List initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final ValueTransformer valueTransformer;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final FormFieldSetter onSaved;
-  @override
-  final InputDecoration decoration;
-
   final double previewWidth;
   final double previewHeight;
   final EdgeInsets previewMargin;
@@ -49,17 +32,21 @@ class FormBuilderImagePicker extends FormBuilderField {
 
   FormBuilderImagePicker({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validator,
-    this.valueTransformer,
-    this.onChanged,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    List initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.previewWidth = 130,
     this.previewHeight = 130,
     this.previewMargin,
-    this.readOnly = false,
-    this.onSaved,
-    this.decoration = const InputDecoration(),
     this.iconColor,
     this.maxHeight,
     this.maxWidth,
@@ -70,12 +57,17 @@ class FormBuilderImagePicker extends FormBuilderField {
   })  : assert(maxImages == null || maxImages >= 0),
         super(
           key: key,
-          initialValue: initialValue ?? [],
+          initialValue: initialValue,
           attribute: attribute,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderImagePickerState state = field;
             final theme = Theme.of(state.context);

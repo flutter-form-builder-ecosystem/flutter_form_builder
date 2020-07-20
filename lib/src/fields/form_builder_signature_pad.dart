@@ -6,24 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
 class FormBuilderSignaturePad extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final Uint8List initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueTransformer valueTransformer;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final FormFieldSetter onSaved;
   final SignatureController controller;
-
   final double width;
   final double height;
   final Color backgroundColor;
@@ -32,18 +15,22 @@ class FormBuilderSignaturePad extends FormBuilderField {
 
   FormBuilderSignaturePad({
     Key key,
-    @required this.attribute,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    Uint8List initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.backgroundColor,
     this.clearButtonText,
-    this.initialValue,
     this.width,
     this.height = 200,
-    this.valueTransformer,
-    this.onChanged,
-    this.onSaved,
     this.controller,
     this.border,
   }) : super(
@@ -54,6 +41,11 @@ class FormBuilderSignaturePad extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderSignaturePadState state = field;
             final theme = Theme.of(state.context);

@@ -3,26 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderFilterChip extends FormBuilderField<dynamic> {
-  // FormBuilder Settings
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final dynamic initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
   final List<FormBuilderFieldOption> options;
-  @override
-  final FormFieldSetter onSaved;
-
-  // FilterChip Settings
   final double elevation, pressElevation;
   final Color selectedColor,
       disabledColor,
@@ -51,15 +32,19 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
 
   FormBuilderFilterChip({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    List initialValue = const [],
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.options,
-    this.initialValue = const [],
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.onSaved,
-    this.valueTransformer,
     this.selectedColor,
     this.disabledColor,
     this.backgroundColor,
@@ -92,6 +77,11 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
+            autovalidate: autovalidate,
+            onSaved: onSaved,
+            enabled: enabled,
+            onReset: onReset,
+            decoration: decoration,
             builder: (FormFieldState field) {
               final _FormBuilderFilterChipState state = field;
               return InputDecorator(

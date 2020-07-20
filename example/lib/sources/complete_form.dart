@@ -281,8 +281,9 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                   ),
                   FormBuilderRadioList(
-                    decoration:
-                        InputDecoration(labelText: 'My chosen language'),
+                    decoration: InputDecoration(
+                      labelText: 'My chosen language',
+                    ),
                     attribute: 'best_language',
                     onChanged: _onChanged,
                     validator: FormBuilderValidators.compose(

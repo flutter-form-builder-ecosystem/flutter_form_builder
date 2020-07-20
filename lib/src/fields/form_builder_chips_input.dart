@@ -2,24 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderChipsInput<T> extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final List<T> initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
+class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   final ChipsInputSuggestions findSuggestions;
-
   // final ValueChanged<List<T>> onChanged;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
@@ -33,8 +17,6 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
   final bool obscureText;
   final double suggestionsBoxMaxHeight;
   final TextCapitalization textCapitalization;
-  @override
-  final FormFieldSetter onSaved;
   final FocusNode focusNode;
   final bool allowChipEditing;
   final bool autofocus;
@@ -42,17 +24,22 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
 
   FormBuilderChipsInput({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    List<T> initialValue = const [],
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.chipBuilder,
     @required this.suggestionBuilder,
     @required this.findSuggestions,
-    this.initialValue = const [],
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
     this.maxChips,
-    this.onChanged,
-    this.valueTransformer,
     this.textStyle,
     this.actionLabel,
     this.suggestionsBoxMaxHeight,
@@ -62,7 +49,6 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
     this.keyboardAppearance = Brightness.light,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
-    this.onSaved,
     this.focusNode,
     this.allowChipEditing = false,
     this.autofocus = false,
@@ -75,6 +61,11 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
+            autovalidate: autovalidate,
+            onSaved: onSaved,
+            enabled: enabled,
+            onReset: onReset,
+            decoration: decoration,
             builder: (FormFieldState field) {
               final _FormBuilderChipsInputState state = field;
 
@@ -110,10 +101,10 @@ class FormBuilderChipsInput<T> extends FormBuilderField {
             });
 
   @override
-  _FormBuilderChipsInputState createState() => _FormBuilderChipsInputState();
+  _FormBuilderChipsInputState<T> createState() => _FormBuilderChipsInputState();
 }
 
-class _FormBuilderChipsInputState extends FormBuilderFieldState {
+class _FormBuilderChipsInputState<T> extends FormBuilderFieldState<List<T>> {
   @override
-  FormBuilderChipsInput get widget => super.widget;
+  FormBuilderChipsInput<T> get widget => super.widget;
 }

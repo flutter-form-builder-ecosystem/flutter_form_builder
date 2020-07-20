@@ -2,24 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
-  // FormBuilder Settings
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final dynamic initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final FormFieldSetter onSaved;
-  @override
-  final ValueTransformer valueTransformer;
+class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   final List<FormBuilderFieldOption> options;
 
   // FilterChip Settings
@@ -47,15 +30,19 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
 
   FormBuilderChoiceChip({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    T initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.options,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
-    this.onSaved,
     this.selectedColor,
     this.disabledColor,
     this.backgroundColor,
@@ -85,8 +72,13 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
-            builder: (FormFieldState field) {
-              final _FormBuilderChoiceChipState state = field;
+            autovalidate: autovalidate,
+            onSaved: onSaved,
+            enabled: enabled,
+            onReset: onReset,
+            decoration: decoration,
+            builder: (FormFieldState<T> field) {
+              final _FormBuilderChoiceChipState<T> state = field;
 
               return InputDecorator(
                 decoration: decoration.copyWith(
@@ -133,7 +125,10 @@ class FormBuilderChoiceChip extends FormBuilderField<dynamic> {
             });
 
   @override
-  _FormBuilderChoiceChipState createState() => _FormBuilderChoiceChipState();
+  _FormBuilderChoiceChipState<T> createState() => _FormBuilderChoiceChipState();
 }
 
-class _FormBuilderChoiceChipState extends FormBuilderFieldState<dynamic> {}
+class _FormBuilderChoiceChipState<T> extends FormBuilderFieldState<T> {
+  @override
+  FormBuilderChoiceChip<T> get widget => super.widget;
+}

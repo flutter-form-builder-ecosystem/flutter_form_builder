@@ -8,25 +8,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderTextField extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final String initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-  @override
-  final bool enabled;
-  @override
-  final bool autovalidate;
-
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -55,8 +36,6 @@ class FormBuilderTextField extends FormBuilderField {
   final bool expands;
   final int minLines;
   final bool showCursor;
-  @override
-  final FormFieldSetter onSaved;
   final VoidCallback onTap;
   final bool enableSuggestions;
   final TextAlignVertical textAlignVertical;
@@ -71,17 +50,22 @@ class FormBuilderTextField extends FormBuilderField {
 
   FormBuilderTextField({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.autovalidate = false,
-    this.maxLines,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    String initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
+    this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enabled = true,
     this.enableInteractiveSelection = true,
     this.maxLengthEnforced = true,
     this.textAlign = TextAlign.start,
@@ -103,12 +87,9 @@ class FormBuilderTextField extends FormBuilderField {
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
-    this.onChanged,
-    this.valueTransformer,
     this.expands = false,
     this.minLines,
     this.showCursor,
-    this.onSaved,
     this.onTap,
     this.enableSuggestions = false,
     this.textAlignVertical,
@@ -154,6 +135,11 @@ class FormBuilderTextField extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderTextFieldState state = field;
             final effectiveDecoration = (decoration ?? const InputDecoration())

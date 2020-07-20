@@ -5,25 +5,9 @@ import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
 class FormBuilderTouchSpin extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final double initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
   final double step;
   final double min;
   final double max;
-  @override
-  final FormFieldSetter onSaved;
   final Icon subtractIcon;
   final Icon addIcon;
   final double iconSize;
@@ -40,17 +24,21 @@ class FormBuilderTouchSpin extends FormBuilderField {
 
   FormBuilderTouchSpin({
     Key key,
-    @required this.attribute,
-    @required this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    @required double initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.step,
     this.min = 1,
     this.max = 9999,
-    this.onChanged,
-    this.valueTransformer,
-    this.onSaved,
     this.iconSize = 24.0,
     this.displayFormat,
     this.subtractIcon = const Icon(Icons.remove),
@@ -67,6 +55,11 @@ class FormBuilderTouchSpin extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderTouchSpinState state = field;
 

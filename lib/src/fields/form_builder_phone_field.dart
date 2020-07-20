@@ -9,22 +9,6 @@ import 'package:phone_number/phone_number.dart';
 
 //TODO: Switch country_pickers for country_code_picker
 class FormBuilderPhoneField extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final String initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-  @override
-  final bool autovalidate;
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -43,8 +27,6 @@ class FormBuilderPhoneField extends FormBuilderField {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
-  @override
-  final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
   final Color cursorColor;
@@ -55,8 +37,6 @@ class FormBuilderPhoneField extends FormBuilderField {
   final bool expands;
   final int minLines;
   final bool showCursor;
-  @override
-  final FormFieldSetter onSaved;
   final VoidCallback onTap;
 
   // For country dialog
@@ -74,17 +54,22 @@ class FormBuilderPhoneField extends FormBuilderField {
 
   FormBuilderPhoneField({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.autovalidate = false,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    String initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enabled = true,
     this.enableInteractiveSelection = true,
     this.maxLengthEnforced = true,
     this.textAlign = TextAlign.start,
@@ -106,12 +91,9 @@ class FormBuilderPhoneField extends FormBuilderField {
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
-    this.onChanged,
-    this.valueTransformer,
     this.expands = false,
     this.minLines,
     this.showCursor,
-    this.onSaved,
     this.onTap,
     this.searchText,
     this.titlePadding,
@@ -135,6 +117,11 @@ class FormBuilderPhoneField extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderPhoneFieldState state = field;
 

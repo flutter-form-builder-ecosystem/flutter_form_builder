@@ -2,40 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderRadioList extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final dynamic initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
+class FormBuilderRadioList<T> extends FormBuilderField<T> {
   final List<FormBuilderFieldOption> options;
-
   final Color activeColor;
-  @override
-  final FormFieldSetter onSaved;
   final ListTileControlAffinity controlAffinity;
 
   FormBuilderRadioList({
     Key key,
-    @required this.attribute,
-    @required this.options,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    T initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.activeColor,
-    this.onSaved,
+    @required this.options,
     this.controlAffinity = ListTileControlAffinity.leading,
   }) : super(
           key: key,
@@ -45,6 +32,11 @@ class FormBuilderRadioList extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderRadioState state = field;
             var radioList = [];
@@ -82,10 +74,10 @@ class FormBuilderRadioList extends FormBuilderField {
         );
 
   @override
-  _FormBuilderRadioState createState() => _FormBuilderRadioState();
+  _FormBuilderRadioState<T> createState() => _FormBuilderRadioState();
 }
 
-class _FormBuilderRadioState extends FormBuilderFieldState {
+class _FormBuilderRadioState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderRadioList get widget => super.widget;
+  FormBuilderRadioList<T> get widget => super.widget;
 }

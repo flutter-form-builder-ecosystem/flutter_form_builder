@@ -10,23 +10,6 @@ import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
 class FormBuilderDateRangePicker extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final List<DateTime> initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
-  @override
-  final bool autovalidate;
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -45,8 +28,6 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
-  @override
-  final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
   final Color cursorColor;
@@ -65,25 +46,28 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   final Locale locale;
   final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
-  @override
-  final FormFieldSetter onSaved;
 
   FormBuilderDateRangePicker({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    List<DateTime> initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.firstDate,
     @required this.lastDate,
     this.format,
-    this.initialValue = const [],
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.autovalidate = false,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enabled = true,
     this.enableInteractiveSelection = true,
     this.maxLengthEnforced = true,
     this.textAlign = TextAlign.start,
@@ -105,8 +89,6 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
-    this.onChanged,
-    this.valueTransformer,
     this.expands = false,
     this.minLines,
     this.showCursor,
@@ -115,7 +97,6 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     this.initialDatePickerMode = date_range_picker.DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
-    this.onSaved,
   }) : /*TODO: Fix assertion
         assert(
             initialValue == null ||
@@ -142,6 +123,11 @@ class FormBuilderDateRangePicker extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final FormBuilderDateRangePickerState state = field;
 

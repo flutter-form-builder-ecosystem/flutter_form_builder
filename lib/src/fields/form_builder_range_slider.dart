@@ -4,22 +4,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
 class FormBuilderRangeSlider extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final RangeValues initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-  @override
-  final FormFieldSetter onSaved;
   final double max;
   final double min;
   final int divisions;
@@ -37,23 +21,27 @@ class FormBuilderRangeSlider extends FormBuilderField {
 
   FormBuilderRangeSlider({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    RangeValues initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.min,
     @required this.max,
-    @required this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
     this.divisions,
-    this.onChanged,
-    this.valueTransformer,
     this.activeColor,
     this.inactiveColor,
     this.onChangeStart,
     this.onChangeEnd,
     this.labels,
     this.semanticFormatterCallback,
-    this.onSaved,
     this.displayValues = DisplayValues.all,
     this.minTextStyle,
     this.textStyle,
@@ -67,6 +55,11 @@ class FormBuilderRangeSlider extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
+            autovalidate: autovalidate,
+            onSaved: onSaved,
+            enabled: enabled,
+            onReset: onReset,
+            decoration: decoration,
             builder: (FormFieldState field) {
               final _FormBuilderRangeSliderState state = field;
               var _numberFormat = numberFormat ?? NumberFormat.compact();

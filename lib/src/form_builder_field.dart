@@ -5,28 +5,26 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderField<T> extends FormField<T> {
   final String attribute;
   final ValueTransformer valueTransformer;
-  @override
-  final FormFieldValidator validator;
   final ValueChanged<T> onChanged;
   final bool readOnly;
   final InputDecoration decoration;
   final VoidCallback onReset;
 
   FormBuilderField({
-    @required this.attribute,
-    @required FormFieldBuilder<T> builder,
-    this.valueTransformer,
-    this.validator,
-    this.onChanged,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onReset,
     //From Super
     Key key,
     FormFieldSetter<T> onSaved,
     T initialValue,
     bool autovalidate = false,
     bool enabled = true,
+    FormFieldValidator validator,
+    @required FormFieldBuilder<T> builder,
+    @required this.attribute,
+    this.valueTransformer,
+    this.onChanged,
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
+    this.onReset,
   }) : super(
           key: key,
           onSaved: onSaved,

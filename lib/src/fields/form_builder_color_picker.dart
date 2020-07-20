@@ -37,7 +37,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     ValueTransformer valueTransformer,
     ValueChanged onChanged,
     FormFieldSetter<Color> onSaved,
-    //
+    VoidCallback onReset,
     this.controller,
     this.focusNode,
     this.readOnly = false,
@@ -75,12 +75,14 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           initialValue: initialValue,
           attribute: attribute,
           validator: validator,
-          enabled: enabled,
-          autovalidate: autovalidate,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: true,
+          readOnly: readOnly,
+          autovalidate: autovalidate,
           onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderColorPickerFieldState state = field;
             return TextField(

@@ -4,26 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderCountryPicker extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
-  @override
-  final FormFieldSetter onSaved;
-  @override
-  final bool enabled;
-  @override
-  final String initialValue;
+class FormBuilderCountryPicker extends FormBuilderField<String> {
   final String initialSelection;
   final bool showCountryOnly;
   final bool showOnlyCountryWhenClosed;
@@ -50,14 +31,18 @@ class FormBuilderCountryPicker extends FormBuilderField {
 
   FormBuilderCountryPicker({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
-    this.onSaved,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    String initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.favorite = const [],
     this.textStyle,
     this.padding = const EdgeInsets.all(0.0),
@@ -74,7 +59,6 @@ class FormBuilderCountryPicker extends FormBuilderField {
     this.showFlagMain,
     this.itemBuilder,
     this.flagWidth = 32.0,
-    this.enabled = true,
     this.textOverflow = TextOverflow.ellipsis,
     this.comparator,
     this.countryFilter,
@@ -88,12 +72,14 @@ class FormBuilderCountryPicker extends FormBuilderField {
           initialValue: initialValue,
           attribute: attribute,
           validator: validator,
-          enabled: enabled,
-          /* autovalidate: autovalidate,*/
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: true,
+          readOnly: readOnly,
+          autovalidate: autovalidate,
           onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderCountryPickerState state = field;
 
@@ -104,7 +90,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
               ),
               child: CountryCodePicker(
                 onChanged: (CountryCode e) {
-                  state.didChange(e);
+                  state.didChange(e.toString());
                 },
                 initialSelection: initialSelection,
                 showCountryOnly: showOnlyCountryWhenClosed,
@@ -140,7 +126,7 @@ class FormBuilderCountryPicker extends FormBuilderField {
       _FormBuilderCountryPickerState();
 }
 
-class _FormBuilderCountryPickerState extends FormBuilderFieldState/*<String>*/ {
+class _FormBuilderCountryPickerState extends FormBuilderFieldState<String> {
   @override
   FormBuilderCountryPicker get widget => super.widget;
 }

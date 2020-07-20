@@ -2,22 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderDropdown extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final dynamic initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
+class FormBuilderDropdown<T> extends FormBuilderField<T> {
   final Widget hint;
   final List<DropdownMenuItem> items;
   final bool isExpanded;
@@ -32,9 +17,6 @@ class FormBuilderDropdown extends FormBuilderField {
   final Color iconEnabledColor;
   final bool allowClear;
   final Widget clearIcon;
-  @override
-  final FormFieldSetter onSaved;
-
   final VoidCallback onTap;
   final FocusNode focusNode;
   final bool autofocus;
@@ -45,28 +27,32 @@ class FormBuilderDropdown extends FormBuilderField {
 
   FormBuilderDropdown({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    T initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.items,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
     this.isExpanded = true,
     this.isDense = true,
     this.elevation = 8,
     this.iconSize = 24.0,
     this.hint,
-    this.initialValue,
     this.style,
     this.disabledHint,
-    this.onChanged,
-    this.valueTransformer,
     this.underline,
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
-    this.onSaved,
     this.onTap,
     this.focusNode,
     this.autofocus = false,
@@ -82,6 +68,11 @@ class FormBuilderDropdown extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
+            autovalidate: autovalidate,
+            onSaved: onSaved,
+            enabled: enabled,
+            onReset: onReset,
+            decoration: decoration,
             builder: (FormFieldState field) {
               final _FormBuilderDropdownState state = field;
 
@@ -149,10 +140,10 @@ class FormBuilderDropdown extends FormBuilderField {
   }
 
   @override
-  _FormBuilderDropdownState createState() => _FormBuilderDropdownState();
+  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState();
 }
 
-class _FormBuilderDropdownState extends FormBuilderFieldState {
+class _FormBuilderDropdownState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderDropdown get widget => super.widget;
+  FormBuilderDropdown<T> get widget => super.widget;
 }

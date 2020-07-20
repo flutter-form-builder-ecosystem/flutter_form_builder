@@ -3,28 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:group_radio_button/group_radio_button.dart';
 
-class FormBuilderRadioGroup extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final dynamic initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
+class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
   final bool leadingInput;
   final List<FormBuilderFieldOption> options;
   final MaterialTapTargetSize materialTapTargetSize;
   final Color activeColor;
-  @override
-  final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
   final Axis direction;
   final MainAxisAlignment horizontalAlignment;
@@ -32,18 +15,22 @@ class FormBuilderRadioGroup extends FormBuilderField {
 
   FormBuilderRadioGroup({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    T initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.options,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
     this.leadingInput = false,
     this.materialTapTargetSize,
     this.activeColor,
-    this.onSaved,
     this.contentPadding = const EdgeInsets.all(0.0),
     this.direction = Axis.horizontal,
     this.horizontalAlignment = MainAxisAlignment.start,
@@ -56,6 +43,11 @@ class FormBuilderRadioGroup extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderRadioGroupState state = field;
 
@@ -77,6 +69,7 @@ class FormBuilderRadioGroup extends FormBuilderField {
                     .map((option) => option.value)
                     .toList(growable: false),
                 itemBuilder: (item) {
+                  // return item;
                   return RadioButtonBuilder(
                     item.toString(),
                     textPosition: RadioButtonTextPosition.right,
@@ -91,10 +84,10 @@ class FormBuilderRadioGroup extends FormBuilderField {
         );
 
   @override
-  _FormBuilderRadioGroupState createState() => _FormBuilderRadioGroupState();
+  _FormBuilderRadioGroupState<T> createState() => _FormBuilderRadioGroupState();
 }
 
-class _FormBuilderRadioGroupState extends FormBuilderFieldState {
+class _FormBuilderRadioGroupState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderRadioGroup get widget => super.widget;
+  FormBuilderRadioGroup<T> get widget => super.widget;
 }

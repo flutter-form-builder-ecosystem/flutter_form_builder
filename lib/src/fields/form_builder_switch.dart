@@ -5,21 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSwitch extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final bool initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
   final Widget title;
   final Widget subtitle;
   final Widget secondary;
@@ -64,19 +49,22 @@ class FormBuilderSwitch extends FormBuilderField {
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final ListTileControlAffinity controlAffinity;
-  @override
-  final FormFieldSetter onSaved;
 
   FormBuilderSwitch({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    bool initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.title,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
     this.activeColor,
     this.activeTrackColor,
     this.inactiveThumbColor,
@@ -86,7 +74,6 @@ class FormBuilderSwitch extends FormBuilderField {
     this.subtitle,
     this.secondary,
     this.controlAffinity = ListTileControlAffinity.trailing,
-    this.onSaved,
     this.contentPadding = const EdgeInsets.all(0.0),
   }) : super(
           key: key,
@@ -95,8 +82,12 @@ class FormBuilderSwitch extends FormBuilderField {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          onSaved: onSaved,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderSwitchState state = field;
 

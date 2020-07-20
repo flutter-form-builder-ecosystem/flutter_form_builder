@@ -7,24 +7,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 typedef SelectionToTextTransformer<T> = String Function(T suggestion);
 
 class FormBuilderTypeAhead<T> extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final T initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
-
   final bool getImmediateSuggestions;
-  @override
-  final bool autovalidate;
   final ErrorBuilder errorBuilder;
   final WidgetBuilder noItemsFoundBuilder;
   final WidgetBuilder loadingBuilder;
@@ -54,15 +37,21 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
 
   FormBuilderTypeAhead({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    T initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.itemBuilder,
     @required this.suggestionsCallback,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
-    this.autovalidate = false,
     this.selectionToTextTransformer,
     this.errorBuilder,
     this.noItemsFoundBuilder,
@@ -81,8 +70,6 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
     this.hideSuggestionsOnKeyboardHide = true,
     this.keepSuggestionsOnLoading = true,
     this.autoFlipDirection = false,
-    this.onChanged,
-    this.valueTransformer,
     this.suggestionsBoxController,
     this.keepSuggestionsOnSuggestionSelected = false,
     this.onSuggestionSelected,
@@ -97,6 +84,11 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderTypeAheadState state = field;
             final theme = Theme.of(state.context);

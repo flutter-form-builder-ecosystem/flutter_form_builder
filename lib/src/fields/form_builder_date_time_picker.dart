@@ -10,19 +10,6 @@ import 'package:intl/intl.dart';
 enum InputType { date, time, both }
 
 class FormBuilderDateTimePicker extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final DateTime initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueTransformer valueTransformer;
-
   /// The date/time picker dialogs to show.
   final InputType inputType;
 
@@ -89,16 +76,12 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 
   /// Preset the widget's value.
   final bool autofocus;
-  @override
-  final bool autovalidate;
   final bool obscureText;
   final bool autocorrect;
   final bool maxLengthEnforced;
   final int maxLines;
   final int maxLength;
   final List<TextInputFormatter> inputFormatters;
-  @override
-  final bool enabled;
   final TransitionBuilder transitionBuilder;
 
   /// Called when the time chooser dialog should be shown. In the future the
@@ -153,14 +136,22 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 
   FormBuilderDateTimePicker({
     Key key,
-    @required this.attribute,
-    this.validator,
-    this.readOnly = false,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    DateTime initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
     this.enableInteractiveSelection = true,
-    this.decoration = const InputDecoration(),
     this.resetIcon = const Icon(Icons.close),
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.keyboardType = TextInputType.text,
@@ -171,9 +162,6 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.maxLines = 1,
     this.maxLengthEnforced = true,
     this.expands = false,
-    this.autovalidate = false,
-    // this.editable = true,
-    this.initialValue,
     this.format,
     this.firstDate,
     this.lastDate,
@@ -188,10 +176,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.controller,
     this.focusNode,
     this.style,
-    this.enabled,
     this.maxLength,
     this.inputFormatters,
-    this.valueTransformer,
     this.transitionBuilder,
     this.timePicker,
     this.datePicker,
@@ -222,8 +208,13 @@ class FormBuilderDateTimePicker extends FormBuilderField {
           attribute: attribute,
           validator: validator,
           valueTransformer: valueTransformer,
-          // onChanged: onChanged,
+          onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderDateTimePickerState state = field;
             return DateTimeField(

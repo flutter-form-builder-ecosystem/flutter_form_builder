@@ -3,49 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSegmentedControl extends FormBuilderField {
-  @override
-  final String attribute;
-  @override
-  final FormFieldValidator validator;
-  @override
-  final dynamic initialValue;
-  @override
-  final bool readOnly;
-  @override
-  final InputDecoration decoration;
-  @override
-  final ValueChanged onChanged;
-  @override
-  final ValueTransformer valueTransformer;
+class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
   final Color borderColor;
   final Color selectedColor;
   final Color pressedColor;
-  @override
-  final FormFieldSetter onSaved;
-
   final List<FormBuilderFieldOption> options;
-
   final EdgeInsetsGeometry padding;
-
   final Color unselectedColor;
 
   FormBuilderSegmentedControl({
     Key key,
-    @required this.attribute,
+    //From Super
+    @required String attribute,
+    FormFieldValidator validator,
+    T initialValue,
+    bool readOnly = false,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged onChanged,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter onSaved,
+    bool autovalidate = false,
+    VoidCallback onReset,
     @required this.options,
-    this.initialValue,
-    this.validator,
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
     this.borderColor,
     this.selectedColor,
     this.pressedColor,
     this.padding,
     this.unselectedColor,
-    this.onSaved,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -54,6 +39,11 @@ class FormBuilderSegmentedControl extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderSegmentedControlState state = field;
 
@@ -98,11 +88,11 @@ class FormBuilderSegmentedControl extends FormBuilderField {
         );
 
   @override
-  _FormBuilderSegmentedControlState createState() =>
+  _FormBuilderSegmentedControlState<T> createState() =>
       _FormBuilderSegmentedControlState();
 }
 
-class _FormBuilderSegmentedControlState extends FormBuilderFieldState {
+class _FormBuilderSegmentedControlState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderSegmentedControl get widget => super.widget;
+  FormBuilderSegmentedControl<T> get widget => super.widget;
 }
