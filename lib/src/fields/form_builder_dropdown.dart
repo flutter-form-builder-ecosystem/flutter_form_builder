@@ -121,13 +121,16 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             errorText: field.errorText,
+            floatingLabelBehavior: widget.hint == null
+                ? widget.decoration.floatingLabelBehavior
+                : FloatingLabelBehavior.always,
           ),
           isEmpty: field.value == null,
-          child: DropdownButtonHideUnderline(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: DropdownButtonHideUnderline(
                   child: DropdownButton<T>(
                     isExpanded: widget.isExpanded,
                     hint: widget.hint,
@@ -163,19 +166,19 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
                     selectedItemBuilder: widget.selectedItemBuilder,
                   ),
                 ),
-                if (widget.allowClear &&
-                    !widget.readOnly &&
-                    field.value != null) ...[
-                  const VerticalDivider(),
-                  InkWell(
-                    child: widget.clearIcon,
-                    onTap: () {
-                      _changeValue(field, null);
-                    },
-                  ),
-                ],
+              ),
+              if (widget.allowClear &&
+                  !widget.readOnly &&
+                  field.value != null) ...[
+                const VerticalDivider(),
+                InkWell(
+                  child: widget.clearIcon,
+                  onTap: () {
+                    _changeValue(field, null);
+                  },
+                ),
               ],
-            ),
+            ],
           ),
         );
       },
