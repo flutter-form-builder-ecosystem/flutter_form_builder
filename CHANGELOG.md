@@ -1,7 +1,8 @@
 ## [3.11.6] - 20-Jul-2020
-* Fixed error 'The getter 'initialValue' was called on null' if no FormBuiderState ancestry. Closes #364
-* Fixed issue where DropdownButton hint overlaps with labelText. Closes #372
-* Fix 'initialEntryMode != null' assertion in DateTimePicker. Closes #373
+* Upgraded dependencies
+* Fixed error '`The getter 'initialValue' was called on null`' if no `FormBuilderState` ancestry. Closes #364
+* Fixed issue where DropdownButton `hint` overlaps with `labelText`. Closes #372
+* Fix '`initialEntryMode != null`' assertion in DateTimePicker. Closes #373
 
 ## [3.11.5] - 17-Jul-2020
 * Included more `showDatePicker` function options
