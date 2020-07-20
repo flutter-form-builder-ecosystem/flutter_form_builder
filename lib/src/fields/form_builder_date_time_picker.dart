@@ -179,7 +179,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.validator,
     this.onSaved,
     this.onFieldSubmitted,
-    this.initialDatePickerMode,
+    this.initialDatePickerMode = DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
     this.textDirection,
@@ -213,7 +213,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.fieldHintText,
     this.fieldLabelText,
     this.helpText,
-    this.initialEntryMode,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
