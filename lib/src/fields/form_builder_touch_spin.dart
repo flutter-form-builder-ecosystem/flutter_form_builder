@@ -103,5 +103,5 @@ class FormBuilderTouchSpin extends FormBuilderField {
 
 class _FormBuilderTouchSpinState extends FormBuilderFieldState {
   @override
-  FormBuilderTouchSpin get widget => super.widget;
+  FormBuilderTouchSpin get widget => super.widget as FormBuilderTouchSpin;
 }

@@ -106,5 +106,5 @@ class FormBuilderRating extends FormBuilderField {
 
 class _FormBuilderRateState extends FormBuilderFieldState {
   @override
-  FormBuilderRating get widget => super.widget;
+  FormBuilderRating get widget => super.widget as FormBuilderRating;
 }

@@ -155,7 +155,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
 
 class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState {
   @override
-  FormBuilderTypeAhead get widget => super.widget;
+  FormBuilderTypeAhead get widget => super.widget as FormBuilderTypeAhead;
 
   TextEditingController _typeAheadController;
   FocusNode _typeAheadFocusNode;

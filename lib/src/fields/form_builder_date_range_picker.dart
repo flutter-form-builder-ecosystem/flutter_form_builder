@@ -189,7 +189,8 @@ class FormBuilderDateRangePicker extends FormBuilderField {
 
 class FormBuilderDateRangePickerState extends FormBuilderFieldState {
   @override
-  FormBuilderDateRangePicker get widget => super.widget;
+  FormBuilderDateRangePicker get widget =>
+      super.widget as FormBuilderDateRangePicker;
 
   FocusNode _effectiveFocusNode;
 

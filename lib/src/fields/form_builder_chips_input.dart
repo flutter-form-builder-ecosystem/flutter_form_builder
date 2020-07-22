@@ -105,5 +105,5 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
 
 class _FormBuilderChipsInputState<T> extends FormBuilderFieldState<List<T>> {
   @override
-  FormBuilderChipsInput<T> get widget => super.widget;
+  FormBuilderChipsInput<T> get widget => super.widget as FormBuilderChipsInput;
 }

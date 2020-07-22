@@ -128,5 +128,5 @@ class FormBuilderSwitch extends FormBuilderField {
 
 class _FormBuilderSwitchState extends FormBuilderFieldState {
   @override
-  FormBuilderSwitch get widget => super.widget;
+  FormBuilderSwitch get widget => super.widget as FormBuilderSwitch;
 }

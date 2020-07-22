@@ -145,5 +145,5 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
 
 class _FormBuilderDropdownState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderDropdown<T> get widget => super.widget;
+  FormBuilderDropdown<T> get widget => super.widget as FormBuilderDropdown;
 }

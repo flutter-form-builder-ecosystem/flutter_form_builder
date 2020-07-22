@@ -96,5 +96,6 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
 
 class _FormBuilderSegmentedControlState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderSegmentedControl<T> get widget => super.widget;
+  FormBuilderSegmentedControl<T> get widget =>
+      super.widget as FormBuilderSegmentedControl;
 }

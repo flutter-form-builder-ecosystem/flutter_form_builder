@@ -151,7 +151,8 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
 
 class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   @override
-  FormBuilderColorPickerField get widget => super.widget;
+  FormBuilderColorPickerField get widget =>
+      super.widget as FormBuilderColorPickerField;
 
   FocusNode _effectiveFocusNode;
   TextEditingController _effectiveController;

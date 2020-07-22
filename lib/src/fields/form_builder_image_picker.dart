@@ -170,7 +170,7 @@ class FormBuilderImagePicker extends FormBuilderField {
 
 class _FormBuilderImagePickerState extends FormBuilderFieldState {
   @override
-  FormBuilderImagePicker get widget => super.widget;
+  FormBuilderImagePicker get widget => super.widget as FormBuilderImagePicker;
 
   bool get hasMaxImages {
     if (widget.maxImages == null || value == null) {

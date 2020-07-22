@@ -215,7 +215,7 @@ class FormBuilderPhoneField extends FormBuilderField {
 
 class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
   @override
-  FormBuilderPhoneField get widget => super.widget;
+  FormBuilderPhoneField get widget => super.widget as FormBuilderPhoneField;
 
   final FocusNode _focusNode = FocusNode();
 

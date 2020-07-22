@@ -132,5 +132,5 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
 
 class _FormBuilderChoiceChipState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderChoiceChip<T> get widget => super.widget;
+  FormBuilderChoiceChip<T> get widget => super.widget as FormBuilderChoiceChip;
 }

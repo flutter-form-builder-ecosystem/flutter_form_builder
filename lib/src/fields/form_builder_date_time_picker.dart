@@ -283,7 +283,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
 
 class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   @override
-  FormBuilderDateTimePicker get widget => super.widget;
+  FormBuilderDateTimePicker get widget =>
+      super.widget as FormBuilderDateTimePicker;
   DateTime _initialValue;
   FocusNode _focusNode;
 

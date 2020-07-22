@@ -144,5 +144,5 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
 
 class _FormBuilderFilterChipState extends FormBuilderFieldState<dynamic> {
   @override
-  FormBuilderFilterChip get widget => super.widget;
+  FormBuilderFilterChip get widget => super.widget as FormBuilderFilterChip;
 }

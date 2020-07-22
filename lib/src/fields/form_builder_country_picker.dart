@@ -130,5 +130,6 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
 
 class _FormBuilderCountryPickerState extends FormBuilderFieldState<String> {
   @override
-  FormBuilderCountryPicker get widget => super.widget;
+  FormBuilderCountryPicker get widget =>
+      super.widget as FormBuilderCountryPicker;
 }

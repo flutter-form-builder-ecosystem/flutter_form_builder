@@ -89,5 +89,5 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
 
 class _FormBuilderRadioGroupState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderRadioGroup<T> get widget => super.widget;
+  FormBuilderRadioGroup<T> get widget => super.widget as FormBuilderRadioGroup;
 }

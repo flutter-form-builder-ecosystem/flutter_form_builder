@@ -125,5 +125,5 @@ class FormBuilderSlider extends FormBuilderField {
 
 class _FormBuilderSliderState extends FormBuilderFieldState {
   @override
-  FormBuilderSlider get widget => super.widget;
+  FormBuilderSlider get widget => super.widget as FormBuilderSlider;
 }

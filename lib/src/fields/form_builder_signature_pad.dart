@@ -105,7 +105,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
 
 class _FormBuilderSignaturePadState extends FormBuilderFieldState {
   @override
-  FormBuilderSignaturePad get widget => super.widget;
+  FormBuilderSignaturePad get widget => super.widget as FormBuilderSignaturePad;
 
   SignatureController get effectiveController =>
       widget.controller ?? _controller;

@@ -96,5 +96,6 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
 
 class _FormBuilderCheckboxListState<T> extends FormBuilderFieldState<List<T>> {
   @override
-  FormBuilderCheckboxList<T> get widget => super.widget;
+  FormBuilderCheckboxList<T> get widget =>
+      super.widget as FormBuilderCheckboxList;
 }
