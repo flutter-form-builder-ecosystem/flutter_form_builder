@@ -142,14 +142,12 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderDateTimePicker(
                     attribute: 'date',
-                    // onChanged: _onChanged,
                     inputType: InputType.time,
                     decoration: InputDecoration(
                       labelText: 'Appointment Time',
                     ),
                     initialTime: TimeOfDay(hour: 8, minute: 0),
-                    // initialValue: DateTime.now(),
-                    // readonly: true,
+                    pickerType: PickerType.cupertino,
                   ),
                   FormBuilderDateRangePicker(
                     attribute: 'date_range',

@@ -4,10 +4,13 @@ import 'dart:ui' as ui;
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/utils.dart';
 import 'package:intl/intl.dart';
 
 enum InputType { date, time, both }
+enum PickerType { material, cupertino }
 
 class FormBuilderDateTimePicker extends FormBuilderField {
   /// The date/time picker dialogs to show.
@@ -133,6 +136,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   final DatePickerEntryMode initialEntryMode;
   final RouteSettings routeSettings;
 
+  final PickerType pickerType;
+
   FormBuilderDateTimePicker({
     Key key,
     //From Super
@@ -149,6 +154,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     VoidCallback onReset,
     FocusNode focusNode,
     this.inputType = InputType.both,
+    this.pickerType = PickerType.material,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
     this.enableInteractiveSelection = true,
@@ -216,22 +222,11 @@ class FormBuilderDateTimePicker extends FormBuilderField {
           decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderDateTimePickerState state = field;
+
             return DateTimeField(
               key: state.fieldKey,
               initialValue: state.initialValue,
               format: state.dateFormat,
-              /*onSaved: (val) {
-                var value = _fieldKey.currentState.value;
-                var transformed;
-                if (valueTransformer != null) {
-                  transformed = valueTransformer(val);
-                  _formState?.setAttributeValue(attribute, transformed);
-                } else
-                  _formState?.setAttributeValue(attribute, value);
-                if (onSaved != null) {
-                  onSaved(transformed ?? value);
-                }
-              },*/
               validator: validator,
               onShowPicker: state.onShowPicker,
               autovalidate: autovalidate,
@@ -294,8 +289,8 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   TextEditingController _textFieldController;
   DateTime stateCurrentValue;
 
-  DateFormat get dateFormat => _dateFormat;
-  DateFormat _dateFormat;
+  DateFormat get dateFormat =>
+      widget.format ?? _dateTimeFormats[widget.inputType];
 
   final _dateTimeFormats = {
     InputType.both: DateFormat.yMd().add_jm(),
@@ -309,9 +304,8 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     stateCurrentValue = _initialValue;
     _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
-    _dateFormat = widget.format ?? _dateTimeFormats[widget.inputType];
     _textFieldController.text =
-        _initialValue == null ? '' : _dateFormat.format(_initialValue);
+        _initialValue == null ? '' : dateFormat.format(_initialValue);
     _focusNode.addListener(_handleFocus);
   }
 
@@ -359,6 +353,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     if (widget.datePicker != null) {
       return widget.datePicker(context);
     } else {
+      if (widget.pickerType == PickerType.cupertino) {
+        return DatePicker.showDatePicker(
+          context,
+          showTitleActions: true,
+          minTime: widget.firstDate,
+          maxTime: widget.lastDate,
+          currentTime: currentValue,
+          locale: enumValueFromString(
+              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
+              LocaleType.values),
+        );
+      }
       return showDatePicker(
         context: context,
         selectableDayPredicate: widget.selectableDayPredicate,
@@ -396,6 +402,36 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
+      if (widget.pickerType == PickerType.cupertino) {
+        if (widget.alwaysUse24HourFormat) {
+          return DatePicker.showTimePicker(
+            context,
+            showTitleActions: true,
+            currentTime: currentValue,
+            showSecondsColumn: false,
+            locale: enumValueFromString(
+                (widget.locale ?? Localizations.localeOf(context))
+                    ?.languageCode,
+                LocaleType.values),
+          ).then(
+            (result) {
+              return TimeOfDay.fromDateTime(result ?? currentValue);
+            },
+          );
+        }
+        return DatePicker.showTime12hPicker(
+          context,
+          showTitleActions: true,
+          currentTime: currentValue,
+          locale: enumValueFromString(
+              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
+              LocaleType.values),
+        ).then(
+          (result) {
+            return TimeOfDay.fromDateTime(result ?? currentValue);
+          },
+        );
+      }
       return showTimePicker(
         context: context,
         initialTime: currentValue != null
