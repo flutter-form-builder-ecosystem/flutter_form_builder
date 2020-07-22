@@ -127,8 +127,7 @@ class FormBuilderTextField extends FormBuilderField {
         assert(enableInteractiveSelection != null),
         super(
           key: key,
-          initialValue:
-              controller != null ? controller.text : (initialValue ?? ''),
+          initialValue: controller != null ? controller.text : initialValue,
           attribute: attribute,
           validator: validator,
           valueTransformer: valueTransformer,
@@ -165,7 +164,6 @@ class FormBuilderTextField extends FormBuilderField {
               textDirection: textDirection,
               textCapitalization: textCapitalization,
               autofocus: autofocus,
-              // toolbarOptions: toolbarOptions,
               readOnly: readOnly,
               showCursor: showCursor,
               obscureText: obscureText,
@@ -207,7 +205,7 @@ class FormBuilderTextField extends FormBuilderField {
 
 class _FormBuilderTextFieldState extends FormBuilderFieldState {
   @override
-  FormBuilderTextField get widget => super.widget;
+  FormBuilderTextField get widget => super.widget as FormBuilderTextField;
 
   TextEditingController get _effectiveController =>
       widget.controller ?? _controller;
@@ -218,7 +216,7 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
   void initState() {
     super.initState();
     if (widget.controller == null) {
-      _controller = TextEditingController(text: widget.initialValue);
+      _controller = TextEditingController(text: initialValue);
     } else {
       widget.controller.addListener(_handleControllerChanged);
     }
@@ -245,6 +243,7 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
   @override
   void dispose() {
     widget.controller?.removeListener(_handleControllerChanged);
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -252,7 +251,7 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
   void reset() {
     super.reset();
     setState(() {
-      _effectiveController.text = widget.initialValue ?? '';
+      _effectiveController.text = initialValue ?? '';
     });
   }
 
