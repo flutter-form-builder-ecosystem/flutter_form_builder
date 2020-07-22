@@ -39,6 +39,8 @@ class CompleteFormState extends State<CompleteForm> {
               initialValue: {
                 'movie_rating': 5,
                 'best_language': 'Dart',
+                'age': '13',
+                'gender': 'Male'
               },
               readOnly: false,
               child: Column(
@@ -232,6 +234,7 @@ class CompleteFormState extends State<CompleteForm> {
                       FormBuilderValidators.numeric(context),
                       FormBuilderValidators.max(context, 70),
                     ]),
+                    // initialValue: '12',
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                   ),
@@ -281,7 +284,7 @@ class CompleteFormState extends State<CompleteForm> {
                       }
                     },
                   ),
-                  FormBuilderRadioList(
+                  FormBuilderRadioGroup(
                     decoration: InputDecoration(
                       labelText: 'My chosen language',
                     ),
@@ -295,6 +298,7 @@ class CompleteFormState extends State<CompleteForm> {
                               child: Text('$lang'),
                             ))
                         .toList(growable: false),
+                    controlAffinity: ControlAffinity.trailing,
                   ),
                   FormBuilderSegmentedControl(
                     decoration:
@@ -336,7 +340,7 @@ class CompleteFormState extends State<CompleteForm> {
                     max: 5.0,
                     onChanged: _onChanged,
                   ),
-                  FormBuilderCheckboxList(
+                  FormBuilderCheckboxGroup(
                     decoration:
                         InputDecoration(labelText: 'The language of my people'),
                     attribute: 'languages',
@@ -349,6 +353,11 @@ class CompleteFormState extends State<CompleteForm> {
                       FormBuilderFieldOption(value: 'Objective-C'),
                     ],
                     onChanged: _onChanged,
+                    separator: VerticalDivider(
+                      width: 10,
+                      thickness: 5,
+                      color: Colors.red,
+                    ),
                   ),
                   FormBuilderField(
                     attribute: 'custom',
@@ -481,7 +490,8 @@ class CompleteFormState extends State<CompleteForm> {
                   width: 20,
                 ),
                 Expanded(
-                  child: MaterialButton(
+                  child: OutlineButton(
+                    focusNode: FocusNode(),
                     color: Theme.of(context).accentColor,
                     child: Text(
                       'Reset',

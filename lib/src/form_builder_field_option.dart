@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class FormBuilderFieldOption extends StatelessWidget {
+class FormBuilderFieldOption<T> extends StatelessWidget {
   final Widget child;
-  final dynamic value;
+  final T value;
 
   const FormBuilderFieldOption({
     Key key,

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
-import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
-import 'package:group_radio_button/group_radio_button.dart';
 
-class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
+class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
 
-  FormBuilderRadioGroup({
+  // final Widget secondary;
+
+  FormBuilderCheckboxGroup({
     Key key,
     //From Super
     @required String attribute,
     FormFieldValidator validator,
-    T initialValue,
+    List<T> initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged onChanged,
@@ -24,10 +24,12 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     FocusNode focusNode,
     @required List<FormBuilderFieldOption> options,
     Color activeColor,
+    Color checkColor,
     Color focusColor,
     Color hoverColor,
     List<T> disabled,
     MaterialTapTargetSize materialTapTargetSize,
+    bool tristate = false,
     Axis wrapDirection = Axis.horizontal,
     WrapAlignment wrapAlignment = WrapAlignment.start,
     double wrapSpacing = 0.0,
@@ -38,7 +40,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     VerticalDirection wrapVerticalDirection = VerticalDirection.down,
     Widget separator,
     ControlAffinity controlAffinity = ControlAffinity.leading,
-    GroupedRadioOrientation orientation = GroupedRadioOrientation.wrap,
+    GroupedCheckboxOrientation orientation = GroupedCheckboxOrientation.wrap,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -53,14 +55,14 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState field) {
-            final _FormBuilderRadioGroupState state = field;
-
+            final _FormBuilderCheckboxGroupState<T> state = field;
+            
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
+                errorText: field.errorText,
               ),
-              child: GroupedRadio(
+              child: GroupedCheckbox(
                 orientation: orientation,
                 value: initialValue,
                 options: options,
@@ -69,9 +71,11 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 },
                 activeColor: activeColor,
                 focusColor: focusColor,
+                checkColor: checkColor,
                 materialTapTargetSize: materialTapTargetSize,
                 disabled: disabled,
                 hoverColor: hoverColor,
+                tristate: tristate,
                 wrapAlignment: wrapAlignment,
                 wrapCrossAxisAlignment: wrapCrossAxisAlignment,
                 wrapDirection: wrapDirection,
@@ -88,10 +92,12 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
         );
 
   @override
-  _FormBuilderRadioGroupState<T> createState() => _FormBuilderRadioGroupState();
+  _FormBuilderCheckboxGroupState<T> createState() =>
+      _FormBuilderCheckboxGroupState();
 }
 
-class _FormBuilderRadioGroupState<T> extends FormBuilderFieldState<T> {
+class _FormBuilderCheckboxGroupState<T> extends FormBuilderFieldState<List<T>> {
   @override
-  FormBuilderRadioGroup<T> get widget => super.widget as FormBuilderRadioGroup;
+  FormBuilderCheckboxGroup<T> get widget =>
+      super.widget as FormBuilderCheckboxGroup;
 }
