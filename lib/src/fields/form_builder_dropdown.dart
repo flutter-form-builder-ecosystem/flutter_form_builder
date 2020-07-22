@@ -76,7 +76,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
               return InputDecorator(
                 decoration: decoration.copyWith(
                   enabled: !state.readOnly,
-                  errorText: field.errorText,
+                  errorText: decoration?.errorText ?? field.errorText,
                   floatingLabelBehavior: hint == null
                       ? decoration.floatingLabelBehavior
                       : FloatingLabelBehavior.always,

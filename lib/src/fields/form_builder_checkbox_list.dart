@@ -79,7 +79,7 @@ class FormBuilderCheckboxList<T> extends FormBuilderField<List<T>> {
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: field.errorText,
+                errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Column(
                 key: ObjectKey(state.value),
