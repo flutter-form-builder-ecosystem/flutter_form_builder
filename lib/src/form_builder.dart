@@ -66,12 +66,45 @@ class FormBuilderState extends FormState {
 }*/
 
 class FormBuilder extends StatefulWidget {
-  //final BuildContext context;
-  final Function(Map<String, dynamic>) onChanged;
+  /// Called when one of the form fields changes.
+  ///
+  /// In addition to this callback being invoked, all the form fields themselves
+  /// will rebuild.
+  final VoidCallback onChanged;
+
+  /// Enables the form to veto attempts by the user to dismiss the [ModalRoute]
+  /// that contains the form.
+  ///
+  /// If the callback returns a Future that resolves to false, the form's route
+  /// will not be popped.
+  ///
+  /// See also:
+  ///
+  ///  * [WillPopScope], another widget that provides a way to intercept the
+  ///    back button.
   final WillPopCallback onWillPop;
+
+  /// The widget below this widget in the tree.
+  ///
+  /// This is the root of the widget hierarchy that contains this form.
+  ///
+  /// {@macro flutter.widgets.child}
   final Widget child;
+
+  /// Whether the field value can be changed. Defaults to false.
+  /// If true, all form fields will not accept user input.
   final bool readOnly;
+
+  /// If true, form fields will validate and update their error text
+  /// immediately after every change. Otherwise, you must call
+  /// [FormState.validate] to validate.
   final bool autovalidate;
+
+  /// An optional Map of field initialValues. Keys correspond to the field's
+  /// attribute and value to the initialValue of the field.
+  ///
+  /// The initialValues set here will be ignored if the field has a local
+  /// initialValue set.
   final Map<String, dynamic> initialValue;
 
   const FormBuilder({
@@ -135,16 +168,6 @@ class FormBuilderState extends State<FormBuilder> {
     _fieldKeys.remove(attribute);
   }
 
-  /*changeAttributeValue(String attribute, dynamic newValue) {
-    print(this.fieldKeys[attribute]);
-    if (this.fieldKeys[attribute] != null){
-      print("Current $attribute value: ${this.fieldKeys[attribute].currentState.value}");
-      print("Trying to change $attribute to $newValue");
-      this.fieldKeys[attribute].currentState.didChange(newValue);
-      print("$attribute value after: ${this.fieldKeys[attribute].currentState.value}");
-    }
-  }*/
-
   void save() {
     _formKey.currentState.save();
   }
@@ -172,9 +195,7 @@ class FormBuilderState extends State<FormBuilder> {
       ),
       autovalidate: widget.autovalidate,
       onWillPop: widget.onWillPop,
-      onChanged: () {
-        widget.onChanged?.call(value);
-      },
+      onChanged: widget.onChanged,
     );
   }
 }

@@ -3,12 +3,41 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderField<T> extends FormField<T> {
+  /// Used to reference the field within the form, or to reference form data
+  /// after the form is submitted.
   final String attribute;
+
+  /// Called just before field value is saved. Used to massage data just before
+  /// committing the value.
+  ///
+  /// This sample shows how to convert age in a [FormBuilderTextField] to number
+  /// so that the final value is numeric instead of a String
+  ///
+  /// ```dart
+  ///   FormBuilderTextField(
+  ///     attribute: 'age',
+  ///     decoration: InputDecoration(labelText: 'Age'),
+  ///     valueTransformer: (text) => num.tryParse(text),
+  ///     validator: FormBuilderValidators.numeric(context),
+  ///     initialValue: '18',
+  ///     keyboardType: TextInputType.number,
+  ///  ),
+  /// ```
   final ValueTransformer valueTransformer;
+
+  /// Called when the field value is changed.
   final ValueChanged<T> onChanged;
+
+  /// Whether the field value can be changed. Defaults to false
   final bool readOnly;
+
+  /// The border, labels, icons, and styles used to decorate the field.
   final InputDecoration decoration;
+
+  /// Called when the field value is reset.
   final VoidCallback onReset;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode focusNode;
 
   FormBuilderField({
