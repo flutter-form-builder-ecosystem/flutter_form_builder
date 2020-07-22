@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderField<T> extends FormField<T> {
@@ -71,9 +70,11 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   T _initialValue;
 
-  FocusNode _node;
+  FocusNode _focusNode;
 
-  bool _focused = false;
+  FocusNode get _effectiveFocusNode =>
+      widget.focusNode ??
+      (_focusNode ??= FocusNode(debugLabel: '${widget.attribute}'));
 
   @override
   void initState() {
@@ -86,29 +87,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
                 false)
             ? _formBuilderState.initialValue[widget.attribute]
             : null);
-    _node = widget.focusNode ?? FocusNode(debugLabel: '${widget.attribute}');
-    _node.addListener(_handleFocusChange);
-    _node.attach(context, onKey: _handleKeyPress);
     setValue(_initialValue);
-  }
-
-  void _handleFocusChange() {
-    if (_node.hasFocus != _focused) {
-      setState(() {
-        _focused = _node.hasFocus;
-      });
-    }
-  }
-
-  bool _handleKeyPress(FocusNode node, RawKeyEvent event) {
-    if (event is RawKeyDownEvent) {
-      print('Focus node ${node.debugLabel} got key event: ${event.logicalKey}');
-      if (event.logicalKey == LogicalKeyboardKey.tab) {
-        FocusScope.of(context).nextFocus();
-        return true;
-      }
-    }
-    return false;
   }
 
   @override
@@ -130,7 +109,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void reset() {
     super.reset();
-    setValue(_initialValue);
+    setValue(initialValue);
     widget.onReset?.call();
   }
 
@@ -140,15 +119,14 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   }
 
   void requestFocus() {
-    FocusScope.of(context).requestFocus(_node);
+    FocusScope.of(context).requestFocus(_effectiveFocusNode);
   }
 
   @override
   void dispose() {
     _formBuilderState?.unregisterFieldKey(widget.attribute);
-    _node.removeListener(_handleFocusChange);
     // The attachment will automatically be detached in dispose().
-    _node.dispose();
+    _focusNode?.dispose();
     super.dispose();
   }
 }
