@@ -4,7 +4,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
-
   // final Widget secondary;
 
   FormBuilderCheckboxGroup({
@@ -56,7 +55,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxGroupState<T> state = field;
-            
+
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
@@ -66,7 +65,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                 orientation: orientation,
                 value: initialValue,
                 options: options,
-                onChanged: (val){
+                onChanged: (val) {
                   field.didChange(val);
                 },
                 activeColor: activeColor,

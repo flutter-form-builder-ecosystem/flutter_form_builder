@@ -3,10 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
-import 'package:group_radio_button/group_radio_button.dart';
 
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
-
   FormBuilderRadioGroup({
     Key key,
     //From Super
@@ -64,7 +62,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 orientation: orientation,
                 value: initialValue,
                 options: options,
-                onChanged: (val){
+                onChanged: (val) {
                   field.didChange(val);
                 },
                 activeColor: activeColor,

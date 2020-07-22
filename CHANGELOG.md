@@ -1,3 +1,9 @@
+## [4.0.0-alpha.7] - 22-Jul-2020
+* Added new field - `FormBuilderCheckboxGroup`. Closes #188, 
+* New `FormBuilderRadioGroup` implementation similar to `FormBuilderCheckboxGroup`. Fixes issue where `FormBuilderFieldOption.child` is ignored Closes #335
+* Set FocusTraversalGroup policy
+* Fixed bug where TextField where `initialValue` from `FormBuilder` is ignored. Closes #370
+
 ## [4.0.0-alpha.6] - 20-Jul-2020
 * Added focusNode to all fields. 
 * Attempted tab/next support - work in progress
