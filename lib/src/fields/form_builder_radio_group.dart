@@ -56,14 +56,15 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
+                errorText: decoration?.errorText ?? state.errorText,
               ),
               child: GroupedRadio(
                 orientation: orientation,
                 value: initialValue,
                 options: options,
                 onChanged: (val) {
-                  field.didChange(val);
+                  state.requestFocus();
+                  state.didChange(val);
                 },
                 activeColor: activeColor,
                 focusColor: focusColor,
