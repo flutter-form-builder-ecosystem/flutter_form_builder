@@ -140,19 +140,16 @@ class FormBuilderTextField extends FormBuilderField {
           decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderTextFieldState state = field;
-            final effectiveDecoration = (decoration ?? const InputDecoration())
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);
+            /*final effectiveDecoration = (decoration ?? const InputDecoration())
+                .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
             void onChangedHandler(String value) {
-              if (onChanged != null) {
-                onChanged(value);
-              }
-              field.didChange(value);
+              state.didChange(value);
             }
 
             return TextField(
               controller: state._effectiveController,
               focusNode: focusNode,
-              decoration: effectiveDecoration.copyWith(
+              decoration: decoration.copyWith(
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               keyboardType: keyboardType,
@@ -217,32 +214,11 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
     super.initState();
     if (widget.controller == null) {
       _controller = TextEditingController(text: initialValue);
-    } else {
-      widget.controller.addListener(_handleControllerChanged);
-    }
-  }
-
-  @override
-  void didUpdateWidget(FormBuilderTextField oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.controller != oldWidget.controller) {
-      oldWidget.controller?.removeListener(_handleControllerChanged);
-      widget.controller?.addListener(_handleControllerChanged);
-
-      if (oldWidget.controller != null && widget.controller == null) {
-        _controller =
-            TextEditingController.fromValue(oldWidget.controller.value);
-      }
-      if (widget.controller != null) {
-        setValue(widget.controller.text);
-        if (oldWidget.controller == null) _controller = null;
-      }
     }
   }
 
   @override
   void dispose() {
-    widget.controller?.removeListener(_handleControllerChanged);
     _controller?.dispose();
     super.dispose();
   }
@@ -253,18 +229,5 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
     setState(() {
       _effectiveController.text = initialValue ?? '';
     });
-  }
-
-  void _handleControllerChanged() {
-    // Suppress changes that originated from within this class.
-    //
-    // In the case where a controller has been passed in to this widget, we
-    // register this change listener. In these cases, we'll also receive change
-    // notifications for changes originating from within this class -- for
-    // example, the reset() method. In such cases, the FormField value will
-    // already have been set.
-    if (_effectiveController.text != value) {
-      didChange(_effectiveController.text);
-    }
   }
 }

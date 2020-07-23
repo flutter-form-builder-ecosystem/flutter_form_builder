@@ -19,15 +19,16 @@ class CompleteFormState extends State<CompleteForm> {
   bool readOnly = false;
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormFieldState> _specifyTextFieldKey =
-      GlobalKey<FormFieldState>();
+  final GlobalKey<FormBuilderFieldState> _genderKey = GlobalKey();
+  final GlobalKey<FormBuilderFieldState> _ageKey = GlobalKey();
+  bool _ageHasError = false;
+  bool _genderHasError = false;
 
   final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
   Widget build(BuildContext context) {
-    print(Localizations.localeOf(context));
     return Padding(
       padding: EdgeInsets.all(10),
       child: SingleChildScrollView(
@@ -223,9 +224,22 @@ class CompleteFormState extends State<CompleteForm> {
                     ]),
                   ),
                   FormBuilderTextField(
+                    key: _ageKey,
+                    autovalidate: true,
                     attribute: 'age',
-                    decoration: InputDecoration(labelText: 'Age'),
-                    onChanged: _onChanged,
+                    decoration: InputDecoration(
+                      labelText: 'Age',
+                      suffixIcon: _ageHasError
+                          ? Icon(Icons.error, color: Colors.red)
+                          : Icon(Icons.check, color: Colors.green),
+                    ),
+                    onChanged: (val) {
+                      setState(() {
+                        print(val);
+                        _ageHasError = !_ageKey.currentState.validate();
+                        // _genderHasError = !_fbKey.currentState.fields['gender'].currentState.validate();
+                      });
+                    },
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(context),
@@ -237,9 +251,14 @@ class CompleteFormState extends State<CompleteForm> {
                     textInputAction: TextInputAction.next,
                   ),
                   FormBuilderDropdown(
+                    key: _genderKey,
+                    // autovalidate: true,
                     attribute: 'gender',
                     decoration: InputDecoration(
                       labelText: 'Gender',
+                      suffix: _genderHasError
+                          ? Icon(Icons.error)
+                          : Icon(Icons.check),
                     ),
                     // initialValue: 'Male',
                     allowClear: true,
@@ -252,6 +271,13 @@ class CompleteFormState extends State<CompleteForm> {
                               child: Text('$gender'),
                             ))
                         .toList(),
+                    onChanged: (val) {
+                      print(val);
+                      setState(() {
+                        _genderHasError = !_genderKey.currentState.validate();
+                        // _genderHasError = _genderKey.currentState.hasError;
+                      });
+                    },
                   ),
                   FormBuilderTypeAhead(
                     decoration: InputDecoration(
@@ -356,57 +382,6 @@ class CompleteFormState extends State<CompleteForm> {
                       thickness: 5,
                       color: Colors.red,
                     ),
-                  ),
-                  FormBuilderField(
-                    attribute: 'custom',
-                    valueTransformer: (val) {
-                      if (val == 'Other') {
-                        return _specifyTextFieldKey.currentState.value;
-                      }
-                      return val;
-                    },
-                    builder: (FormFieldState<String> field) {
-                      var languages = ['English', 'Spanish', 'Somali', 'Other'];
-                      return InputDecorator(
-                        decoration: InputDecoration(
-                          labelText: 'What\'s your preferred language?',
-                        ),
-                        child: Column(
-                          children: languages
-                              .map(
-                                (lang) => Row(
-                                  children: <Widget>[
-                                    Radio<dynamic>(
-                                      value: lang,
-                                      groupValue: field.value,
-                                      onChanged: (dynamic value) {
-                                        field.didChange(lang);
-                                      },
-                                    ),
-                                    lang != 'Other'
-                                        ? Text(lang)
-                                        : Expanded(
-                                            child: Row(
-                                              children: <Widget>[
-                                                Text(
-                                                  lang,
-                                                ),
-                                                SizedBox(width: 20),
-                                                Expanded(
-                                                  child: TextFormField(
-                                                    key: _specifyTextFieldKey,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                  ],
-                                ),
-                              )
-                              .toList(growable: false),
-                        ),
-                      );
-                    },
                   ),
                   FormBuilderSignaturePad(
                     decoration: InputDecoration(

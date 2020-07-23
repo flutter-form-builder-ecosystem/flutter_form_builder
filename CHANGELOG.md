@@ -1,3 +1,8 @@
+## [4.0.0-alpha.8] - 23-Jul-2020
+* Fixed erratic keyboard behavior on `FormBuilderTextField`
+* Added documentation for `FormBuilder` & `FormBuilderField` attributes
+* Fixed issue where `FormBuilderRadioGroup` not submitting value
+
 ## [4.0.0-alpha.7] - 22-Jul-2020
 * Added new field - `FormBuilderCheckboxGroup`. Closes #188, 
 * New `FormBuilderRadioGroup` implementation similar to `FormBuilderCheckboxGroup`. Fixes issue where `FormBuilderFieldOption.child` is ignored Closes #335
