@@ -224,7 +224,6 @@ class FormBuilderDateTimePicker extends FormBuilderField {
             final _FormBuilderDateTimePickerState state = field;
 
             return DateTimeField(
-              key: state.fieldKey,
               initialValue: state.initialValue,
               format: state.dateFormat,
               validator: validator,

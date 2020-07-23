@@ -40,6 +40,8 @@ class FormBuilderField<T> extends FormField<T> {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode focusNode;
 
+  //TODO: implement bool autofocus, ValueChanged<bool> onValidated
+
   FormBuilderField({
     Key key,
     //From Super
@@ -85,11 +87,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   // Only autovalidate if dirty
   bool get autovalidate => dirty && widget.autovalidate;
 
-  GlobalKey<FormFieldState> get fieldKey => _fieldKey;
-
   T get initialValue => _initialValue;
-
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
 
   FormBuilderState _formBuilderState;
 
@@ -110,7 +108,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     super.initState();
     _formBuilderState = FormBuilder.of(context);
     _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
-    _formBuilderState?.registerFieldKey(widget.attribute, _fieldKey);
+    _formBuilderState?.registerField(widget.attribute, this);
     _initialValue = widget.initialValue ??
         ((_formBuilderState?.initialValue?.containsKey(widget.attribute) ??
                 false)
@@ -127,11 +125,11 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   }
 
   @override
-  void didChange(T value) {
+  void didChange(T val) {
     setState(() {
       _dirty = true;
     });
-    super.didChange(value);
+    super.didChange(val);
     widget.onChanged?.call(value);
   }
 
@@ -153,7 +151,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   @override
   void dispose() {
-    _formBuilderState?.unregisterFieldKey(widget.attribute);
+    _formBuilderState?.unregisterField(widget.attribute);
     // The attachment will automatically be detached in dispose().
     _focusNode?.dispose();
     super.dispose();

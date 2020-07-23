@@ -494,30 +494,34 @@ RaisedButton(
 ### Conditional validation
 You can also validate a field based on the value of another field
 ```
-FormBuilderRadio(
+FormBuilderRadioGroup(
   decoration: InputDecoration(labelText: 'My best language'),
-  attribute: "best_language",
+  attribute: 'my_language',
   validator: FormBuilderValidators.required(context),
   options: [
-    "Dart",
-    "Kotlin",
-    "Java",
-    "Swift",
-    "Objective-C",
-    "Other"
+    'Dart',
+    'Kotlin',
+    'Java',
+    'Swift',
+    'Objective-C',
+    'Other'
   ]
-      .map((lang) => FormBuilderFieldOption(value: lang))
-      .toList(growable: false),
-),
-FormBuilderTextField(
-    attribute: "specify",
-    decoration: InputDecoration(labelText: "If Other, please specify"),
-    validator:
-      (val){
-          if(_fbKey.currentState.fields['best_language'].currentState.value == "Other" && (val == null || val.isEmpty))
-              return "Kindly specify your language";
-      },
-),
+    .map((lang) => FormBuilderFieldOption(value: lang))
+    .toList(growable: false),
+  ),
+  FormBuilderTextField(
+    attribute: 'specify',
+    decoration:
+        InputDecoration(labelText: 'If Other, please specify'),
+    validator: (val) {
+      if (_fbKey.currentState.fields['my_language']?.value ==
+              'Other' &&
+          (val == null || val.isEmpty)) {
+        return 'Kindly specify your language';
+      }
+      return null;
+    },
+  ),
 ```
 
 ## CREDITS

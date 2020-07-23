@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 typedef ValueTransformer<T> = dynamic Function(T value);
 
@@ -128,7 +129,7 @@ class FormBuilderState extends State<FormBuilder> {
   //TODO: Find way to assert no duplicates in field attributes
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Map<String, GlobalKey<FormFieldState>> _fieldKeys;
+  Map<String, FormBuilderFieldState> _fields;
 
   Map<String, dynamic> _value;
 
@@ -136,20 +137,20 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, dynamic> get initialValue => widget.initialValue;
 
-  Map<String, GlobalKey<FormFieldState>> get fields => _fieldKeys;
+  Map<String, FormBuilderFieldState> get fields => _fields;
 
   bool get readOnly => widget.readOnly;
 
   @override
   void initState() {
     super.initState();
-    _fieldKeys = {};
+    _fields = {};
     _value = {};
   }
 
   @override
   void dispose() {
-    _fieldKeys = null;
+    _fields = null;
     super.dispose();
   }
 
@@ -159,13 +160,12 @@ class FormBuilderState extends State<FormBuilder> {
     });
   }
 
-  void registerFieldKey(String attribute, GlobalKey<FormFieldState> key) {
-    // assert(_fieldKeys.containsKey(attribute) == false, "Field with attribute '$attribute' already exists. Make sure that two or more fields don't have the same attribute name.");
-    _fieldKeys[attribute] = key;
+  void registerField(String attribute, FormBuilderFieldState field) {
+    _fields[attribute] = field;
   }
 
-  void unregisterFieldKey(String attribute) {
-    _fieldKeys.remove(attribute);
+  void unregisterField(String attribute) {
+    _fields.remove(attribute);
   }
 
   void save() {
