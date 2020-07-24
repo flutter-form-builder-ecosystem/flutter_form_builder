@@ -39,6 +39,12 @@ class FormBuilderImagePicker extends StatefulWidget {
 
   final int maxImages;
 
+  final Widget cameraIcon;
+  final Widget galleryIcon;
+  final Widget cameraLabel;
+  final Widget galleryLabel;
+  final EdgeInsets bottomSheetPadding;
+
   const FormBuilderImagePicker({
     Key key,
     @required this.attribute,
@@ -59,6 +65,11 @@ class FormBuilderImagePicker extends StatefulWidget {
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
     this.maxImages,
+    this.cameraIcon = const Icon(Icons.camera_enhance),
+    this.galleryIcon = const Icon(Icons.image),
+    this.cameraLabel = const Text('Camera'),
+    this.galleryLabel = const Text('Gallery'),
+    this.bottomSheetPadding = const EdgeInsets.all(0),
   }) : super(key: key);
 
   @override
@@ -121,6 +132,8 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
         }
       },
       builder: (field) {
+        var theme = Theme.of(context);
+
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
@@ -131,9 +144,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               Container(
                 height: widget.imageHeight,
                 child: ListView(
@@ -155,6 +166,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             InkWell(
                               onTap: () {
                                 field.didChange([...field.value]..remove(item));
+                                widget.onChanged?.call(field.value);
                               },
                               child: Container(
                                 margin: const EdgeInsets.all(3),
@@ -182,28 +194,32 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             height: widget.imageHeight,
                             child: Icon(Icons.camera_enhance,
                                 color: _readOnly
-                                    ? Theme.of(context).disabledColor
-                                    : widget.iconColor ??
-                                        Theme.of(context).primaryColor),
+                                    ? theme.disabledColor
+                                    : widget.iconColor ?? theme.primaryColor),
                             color: (_readOnly
-                                    ? Theme.of(context).disabledColor
-                                    : widget.iconColor ??
-                                        Theme.of(context).primaryColor)
+                                    ? theme.disabledColor
+                                    : widget.iconColor ?? theme.primaryColor)
                                 .withAlpha(50)),
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
                             builder: (_) {
-                              return ImageSourceSheet(
+                              return ImageSourceBottomSheet(
                                 maxHeight: widget.maxHeight,
                                 maxWidth: widget.maxWidth,
                                 imageQuality: widget.imageQuality,
                                 preferredCameraDevice:
                                     widget.preferredCameraDevice,
+                                cameraIcon: widget.cameraIcon,
+                                galleryIcon: widget.galleryIcon,
+                                cameraLabel: widget.cameraLabel,
+                                galleryLabel: widget.galleryLabel,
                                 onImageSelected: (image) {
                                   field.didChange([...field.value, image]);
+                                  widget.onChanged?.call(field.value);
                                   Navigator.of(context).pop();
                                 },
+                                bottomSheetPadding: widget.bottomSheetPadding,
                               );
                             },
                           );

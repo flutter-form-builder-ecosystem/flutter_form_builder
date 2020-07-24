@@ -1,3 +1,28 @@
+## [3.11.6] - 20-Jul-2020
+* Upgraded dependencies
+* Fixed error '`The getter 'initialValue' was called on null`' if no `FormBuilderState` ancestry. Closes #364
+* Fixed issue where DropdownButton `hint` overlaps with `labelText`. Closes #372
+* Fix '`initialEntryMode != null`' assertion in DateTimePicker. Closes #373
+
+## [3.11.5] - 17-Jul-2020
+* Included more `showDatePicker` function options
+* Fixed bug where `onChanged` not triggered by ImagePicker. Closes #366
+* Deprecate `underline` for Dropdown. Ignored
+* Added more options for DropdownButton. Closes #153, #337
+* Type `FormBuilderDropdown` class. Closes #360
+* Included options to set camera and gallery icons and label. Closes #340
+* Added `bottomSheetPadding` option for ImagePicker. Closes #339
+
+## [3.11.4] - 08-Jul-2020
+* Added text styles options to Slider
+* Re-implement number formatting on Slider field
+* Fix bug in ChoiceChip & FilterChip where using FieldOption label instead of child breaks. Closes #348
+* Added `labelPadding` and `labelStyle` to ChoiceChip field
+* Fix SignaturePad initialValue. 
+
+## [3.11.3] - 21-Jun-2020
+* Reverted changes to PhoneField causing focus issues
+
 ## [3.11.2] - 19-Jun-2020
 * Deprecated `initialValue` for Signature field - here's no easy way of converting `Uint8List` to `List<Point>`. Use SignatureController to set initial signature
 * Added `displayValues` attribute to Slider and RangeSlider - choose which values to display under the slider

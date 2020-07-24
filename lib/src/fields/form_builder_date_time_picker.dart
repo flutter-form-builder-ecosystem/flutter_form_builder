@@ -138,6 +138,15 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final double cursorWidth;
   final TextCapitalization textCapitalization;
   final bool alwaysUse24HourFormat;
+  final RouteSettings routeSettings;
+  final String cancelText;
+  final String confirmText;
+  final String errorFormatText;
+  final String errorInvalidText;
+  final String fieldHintText;
+  final String fieldLabelText;
+  final String helpText;
+  final DatePickerEntryMode initialEntryMode;
 
   FormBuilderDateTimePicker({
     Key key,
@@ -170,7 +179,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.validator,
     this.onSaved,
     this.onFieldSubmitted,
-    this.initialDatePickerMode,
+    this.initialDatePickerMode = DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
     this.textDirection,
@@ -196,6 +205,15 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.strutStyle,
     this.useRootNavigator = true,
     this.alwaysUse24HourFormat = false,
+    this.routeSettings,
+    this.cancelText,
+    this.confirmText,
+    this.errorFormatText,
+    this.errorInvalidText,
+    this.fieldHintText,
+    this.fieldLabelText,
+    this.helpText,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
@@ -261,7 +279,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        alwaysUse24HourFormat: true,
+        alwaysUse24HourFormat: widget.alwaysUse24HourFormat,
       ),
       child: DateTimeField(
         key: _fieldKey,
@@ -368,6 +386,15 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         locale: widget.locale,
         textDirection: widget.textDirection,
         useRootNavigator: widget.useRootNavigator,
+        routeSettings: widget.routeSettings,
+        cancelText: widget.cancelText,
+        confirmText: widget.confirmText,
+        errorFormatText: widget.errorFormatText,
+        errorInvalidText: widget.errorInvalidText,
+        fieldHintText: widget.fieldHintText,
+        fieldLabelText: widget.fieldLabelText,
+        helpText: widget.helpText,
+        initialEntryMode: widget.initialEntryMode,
         builder: widget.builder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
@@ -399,6 +426,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
               );
             },
         useRootNavigator: widget.useRootNavigator,
+        routeSettings: widget.routeSettings,
       ).then(
         (result) {
           return result ??

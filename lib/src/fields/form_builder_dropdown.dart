@@ -2,30 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderDropdown extends StatefulWidget {
+class FormBuilderDropdown<T> extends StatefulWidget {
   final String attribute;
-  final List<FormFieldValidator> validators;
-  final dynamic initialValue;
+  final List<FormFieldValidator<T>> validators;
+  final T initialValue;
   final bool readOnly;
   final InputDecoration decoration;
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
   final Widget hint;
-  final List<DropdownMenuItem> items;
+  final List<DropdownMenuItem<T>> items;
   final bool isExpanded;
   final TextStyle style;
   final bool isDense;
   final int elevation;
   final Widget disabledHint;
   final double iconSize;
+  @Deprecated('Underline in DropdownButton is ignored.')
   final Widget underline;
   final Widget icon;
   final Color iconDisabledColor;
   final Color iconEnabledColor;
   final bool allowClear;
   final Widget clearIcon;
-  final FormFieldSetter onSaved;
+  final FormFieldSetter<T> onSaved;
+  final double itemHeight;
+  final Color focusColor;
+  final Color dropdownColor;
+  final bool autofocus;
+  final FocusNode focusNode;
+  final VoidCallback onTap;
+  final List<Widget> Function(BuildContext) selectedItemBuilder;
 
   FormBuilderDropdown({
     Key key,
@@ -51,25 +59,32 @@ class FormBuilderDropdown extends StatefulWidget {
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
     this.onSaved,
+    this.itemHeight,
+    this.focusColor,
+    this.dropdownColor,
+    this.autofocus = false,
+    this.focusNode,
+    this.onTap,
+    this.selectedItemBuilder,
   }) : super(key: key) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
-  _FormBuilderDropdownState createState() => _FormBuilderDropdownState();
+  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState();
 }
 
-class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
+class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   FormBuilderState _formState;
-  dynamic _initialValue;
+  T _initialValue;
 
   @override
   void initState() {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
+            ? _formState?.initialValue[widget.attribute]
             : null);
     super.initState();
   }
@@ -102,16 +117,21 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
           widget.onSaved(transformed ?? val);
         }
       },
-      builder: (FormFieldState<dynamic> field) {
+      builder: (FormFieldState<T> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             errorText: field.errorText,
+            floatingLabelBehavior: widget.hint == null
+                ? widget.decoration.floatingLabelBehavior
+                : FloatingLabelBehavior.always,
           ),
-          child: DropdownButtonHideUnderline(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: DropdownButton(
+          isEmpty: field.value == null,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<T>(
                     isExpanded: widget.isExpanded,
                     hint: widget.hint,
                     items: widget.items,
@@ -130,27 +150,35 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
                     icon: widget.icon,
                     iconDisabledColor: widget.iconDisabledColor,
                     iconEnabledColor: widget.iconEnabledColor,
+                    // ignore: deprecated_member_use_from_same_package
                     underline: widget.underline,
                     onChanged: _readOnly
                         ? null
                         : (value) {
                             _changeValue(field, value);
                           },
+                    itemHeight: widget.itemHeight,
+                    focusColor: widget.focusColor,
+                    dropdownColor: widget.dropdownColor,
+                    autofocus: widget.autofocus,
+                    focusNode: widget.focusNode,
+                    onTap: widget.onTap,
+                    selectedItemBuilder: widget.selectedItemBuilder,
                   ),
                 ),
-                if (widget.allowClear &&
-                    !widget.readOnly &&
-                    field.value != null) ...[
-                  const VerticalDivider(),
-                  InkWell(
-                    child: widget.clearIcon,
-                    onTap: () {
-                      _changeValue(field, null);
-                    },
-                  ),
-                ]
+              ),
+              if (widget.allowClear &&
+                  !widget.readOnly &&
+                  field.value != null) ...[
+                const VerticalDivider(),
+                InkWell(
+                  child: widget.clearIcon,
+                  onTap: () {
+                    _changeValue(field, null);
+                  },
+                ),
               ],
-            ),
+            ],
           ),
         );
       },
@@ -158,7 +186,6 @@ class _FormBuilderDropdownState extends State<FormBuilderDropdown> {
   }
 
   void _changeValue(FormFieldState field, value) {
-    FocusScope.of(context).requestFocus(FocusNode());
     field.didChange(value);
     widget.onChanged?.call(value);
   }

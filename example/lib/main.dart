@@ -282,12 +282,6 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: 'gender',
                     decoration: const InputDecoration(
                       labelText: 'Gender',
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.green,
-                          width: 20,
-                        ),
-                      ),
                     ),
                     // initialValue: 'Male',
                     hint: Text('Select Gender'),
@@ -298,6 +292,8 @@ class MyHomePageState extends State<MyHomePage> {
                               child: Text('$gender'),
                             ))
                         .toList(),
+                    // isExpanded: false,
+                    allowClear: true,
                   ),
                   SizedBox(height: 15),
                   FormBuilderTypeAhead(
@@ -379,25 +375,6 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(growable: false),
                   ),
                   SizedBox(height: 15),
-                  /*FormBuilderRadioGroup(
-                    decoration: const InputDecoration(labelText: 'Pick a number'),
-                    attribute: 'number',
-                    readOnly: true,
-                    options: [
-                      FormBuilderFieldOption(
-                        value: 1,
-                        child: Text('One'),
-                      ),
-                      FormBuilderFieldOption(
-                        value: 2,
-                        child: Text('Two'),
-                      ),
-                      FormBuilderFieldOption(
-                        value: 3,
-                        child: Text('Three'),
-                      ),
-                    ],
-                  ),*/
                   SizedBox(height: 15),
                   FormBuilderSegmentedControl(
                     decoration:
@@ -480,6 +457,7 @@ class MyHomePageState extends State<MyHomePage> {
                         return null;
                       }
                     ],
+                    onChanged: _onChanged,
                   ),
                   SizedBox(height: 15),
                   FormBuilderCountryPicker(
@@ -522,6 +500,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
+                    initialValue: sampleSignature,
                     decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
@@ -534,12 +513,8 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(labelText: 'Radio Group'),
                     onChanged: _onChanged,
                     options: [
-                      FormBuilderFieldOption(
-                        value: 'Male',
-                      ),
-                      FormBuilderFieldOption(
-                        value: 'Female',
-                      ),
+                      FormBuilderFieldOption(value: 'Male'),
+                      FormBuilderFieldOption(value: 'Female'),
                     ],
                   ),
                   SizedBox(height: 15),
@@ -592,21 +567,15 @@ class MyHomePageState extends State<MyHomePage> {
                     ),
                     onPressed: () {
                       if (_fbKey.currentState.saveAndValidate()) {
-                        print(_fbKey
-                            .currentState.value['contact_person'].runtimeType);
                         print(_fbKey.currentState.value);
                       } else {
-                        print(_fbKey
-                            .currentState.value['contact_person'].runtimeType);
                         print(_fbKey.currentState.value);
                         print('validation failed');
                       }
                     },
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                SizedBox(width: 20),
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).accentColor,
