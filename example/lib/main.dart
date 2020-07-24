@@ -360,11 +360,10 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                   SizedBox(height: 15),
-                  FormBuilderRadio(
+                  FormBuilderRadioGroup(
                     decoration:
                         InputDecoration(labelText: 'My chosen language'),
                     attribute: 'best_language',
-                    leadingInput: true,
                     onChanged: _onChanged,
                     validators: [FormBuilderValidators.required()],
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
@@ -424,12 +423,11 @@ class MyHomePageState extends State<MyHomePage> {
                     isHalfAllowed: true,
                   ),
                   SizedBox(height: 15),
-                  FormBuilderCheckboxList(
+                  FormBuilderCheckboxGroup(
                     decoration:
                         InputDecoration(labelText: 'The language of my people'),
                     attribute: 'languages',
                     initialValue: ['Dart'],
-                    leadingInput: true,
                     options: [
                       FormBuilderFieldOption(value: 'Dart'),
                       FormBuilderFieldOption(value: 'Kotlin'),
@@ -513,8 +511,8 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(labelText: 'Radio Group'),
                     onChanged: _onChanged,
                     options: [
-                      FormBuilderFieldOption(value: 'Male'),
-                      FormBuilderFieldOption(value: 'Female'),
+                      FormBuilderFieldOption(value: 'M', child: Text('Male')),
+                      FormBuilderFieldOption(value: 'F', child: Text('Female')),
                     ],
                   ),
                   SizedBox(height: 15),

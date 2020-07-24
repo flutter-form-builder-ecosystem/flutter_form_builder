@@ -5,6 +5,7 @@ export 'package:signature/signature.dart';
 
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_list.dart';
+export './src/fields/form_builder_checkbox_group.dart';
 export './src/fields/form_builder_chips_choice.dart';
 export './src/fields/form_builder_chips_filter.dart';
 export './src/fields/form_builder_chips_input.dart';
@@ -28,6 +29,8 @@ export './src/fields/form_builder_switch.dart';
 export './src/fields/form_builder_text_field.dart';
 export './src/fields/form_builder_touch_spin.dart';
 export './src/fields/form_builder_typeahead.dart';
+export './src/widgets/grouped_checkbox.dart';
+export './src/widgets/grouped_radio.dart';
 export './src/form_builder.dart';
 export './src/form_builder_custom_field.dart';
 export './src/form_builder_field_option.dart';
