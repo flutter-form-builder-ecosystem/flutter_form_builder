@@ -66,18 +66,18 @@ class ImageSourceBottomSheet extends StatelessWidget {
       preferredCameraDevice: preferredCameraDevice,
     );
     if (null != pickedFile) {
-      if (null != onImage) {
-        onImage(await pickedFile.readAsBytes());
-      }
-
-      if (null != onImageSelected) {
-        // Warning:  this will not work on the web platform because pickedFile
-        // will instead point to a network resource.
-        assert(!kIsWeb);
-
-        final imageFile = File(pickedFile.path);
-        assert(null != imageFile);
-        onImageSelected(imageFile);
+      if (kIsWeb) {
+        if (null != onImage) {
+          onImage(await pickedFile.readAsBytes());
+        }
+      } else {
+        if (null != onImageSelected) {
+          // Warning:  this will not work on the web platform because pickedFile
+          // will instead point to a network resource.
+          final imageFile = File(pickedFile.path);
+          assert(null != imageFile);
+          onImageSelected(imageFile);
+        }
       }
     }
   }
