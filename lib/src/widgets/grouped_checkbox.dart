@@ -267,30 +267,30 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       value: selectedListItems.contains(widget.options[index].value),
       tristate: widget.tristate,
       onChanged: (widget.disabled != null &&
-          widget.disabled.contains(widget.options.elementAt(index).value))
+              widget.disabled.contains(widget.options.elementAt(index).value))
           ? null
           : (bool selected) {
-        selected
-            ? selectedListItems.add(widget.options[index].value)
-            : selectedListItems.remove(widget.options[index].value);
-        setState(() {
-          widget.onChanged(selectedListItems);
-        });
-      },
+              selected
+                  ? selectedListItems.add(widget.options[index].value)
+                  : selectedListItems.remove(widget.options[index].value);
+              setState(() {
+                widget.onChanged(selectedListItems);
+              });
+            },
     );
     var label = GestureDetector(
       child: widget.options[index],
       onTap: (widget.disabled != null &&
-          widget.disabled.contains(widget.options.elementAt(index).value))
+              widget.disabled.contains(widget.options.elementAt(index).value))
           ? null
           : () {
-        !selectedListItems.contains(widget.options[index].value)
-            ? selectedListItems.add(widget.options[index].value)
-            : selectedListItems.remove(widget.options[index].value);
-        setState(() {
-          widget.onChanged(selectedListItems);
-        });
-      },
+              !selectedListItems.contains(widget.options[index].value)
+                  ? selectedListItems.add(widget.options[index].value)
+                  : selectedListItems.remove(widget.options[index].value);
+              setState(() {
+                widget.onChanged(selectedListItems);
+              });
+            },
     );
 
     return Row(

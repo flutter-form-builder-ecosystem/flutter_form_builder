@@ -308,7 +308,7 @@ class MyHomePageState extends State<MyHomePage> {
                       );
                     },
                     controller: TextEditingController(text: ''),
-                    initialValue: 'Uganda',
+                    initialValue: 'Kenya',
                     suggestionsCallback: (query) {
                       if (query.isNotEmpty) {
                         var lowercaseQuery = query.toLowerCase();

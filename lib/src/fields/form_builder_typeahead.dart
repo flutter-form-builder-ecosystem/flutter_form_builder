@@ -105,6 +105,7 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         : widget.textFieldConfiguration.focusNode;
 
     _initialValue = widget.initialValue ??
+        _typeAheadController.text ??
         (_formState.initialValue.containsKey(widget.attribute)
             ? _formState.initialValue[widget.attribute]
             : null);
@@ -198,14 +199,6 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   @override
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
-    /*if (widget.controller == null) {
-      _typeAheadController?.dispose();
-    } else {
-      _typeAheadController?.removeListener(_handleStringOnChanged);
-    }
-    if (widget.textFieldConfiguration.focusNode == null) {
-      _typeAheadFocusNode?.dispose();
-    }*/
     super.dispose();
   }
 }

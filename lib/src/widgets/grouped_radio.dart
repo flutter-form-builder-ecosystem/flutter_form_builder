@@ -300,4 +300,3 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
 }
 
 enum GroupedRadioOrientation { horizontal, vertical, wrap }
-

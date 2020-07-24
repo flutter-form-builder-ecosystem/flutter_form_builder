@@ -1,3 +1,9 @@
+## [3.12.0] - 24-Jul-2020
+* Added new field `FormBuilderCheckboxGroup`. Closes #188
+* Removed `group_radio_button` library dependency, made own implementation with label fix. Closes #376, #335
+* Add web support for ImagePicker. Courtesy of [vin-fandemand](https://github.com/vin-fandemand)
+* Fixed bug where value within `TextEditingController` ignored in `FormBuilderTypeahead`
+
 ## [3.11.6] - 20-Jul-2020
 * Upgraded dependencies
 * Fixed error '`The getter 'initialValue' was called on null`' if no `FormBuilderState` ancestry. Closes #364
