@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:group_radio_button/group_radio_button.dart';
+import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
+import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
 class FormBuilderRadioGroup extends StatefulWidget {
   final String attribute;
@@ -12,15 +13,29 @@ class FormBuilderRadioGroup extends StatefulWidget {
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
-  final bool leadingInput;
   final List<FormBuilderFieldOption> options;
   final MaterialTapTargetSize materialTapTargetSize;
   final Color activeColor;
   final FormFieldSetter onSaved;
-  final EdgeInsets contentPadding;
-  final Axis direction;
-  final MainAxisAlignment horizontalAlignment;
-  final double spaceBetween;
+  final Color focusColor;
+  final Color hoverColor;
+  final List disabled;
+  final Axis wrapDirection;
+  final WrapAlignment wrapAlignment;
+
+  final double wrapSpacing;
+
+  final WrapAlignment wrapRunAlignment;
+
+  final double wrapRunSpacing;
+
+  final WrapCrossAlignment wrapCrossAxisAlignment;
+
+  final VerticalDirection wrapVerticalDirection;
+  final TextDirection wrapTextDirection;
+  final Widget separator;
+  final ControlAffinity controlAffinity; // = ControlAffinity.leading;
+  final GroupedRadioOrientation orientation; // = GroupedRadioOrientation.wrap;
 
   FormBuilderRadioGroup({
     Key key,
@@ -32,14 +47,23 @@ class FormBuilderRadioGroup extends StatefulWidget {
     this.decoration = const InputDecoration(),
     this.onChanged,
     this.valueTransformer,
-    this.leadingInput = false,
-    this.materialTapTargetSize,
-    this.activeColor,
     this.onSaved,
-    this.contentPadding = const EdgeInsets.all(0.0),
-    this.direction = Axis.horizontal,
-    this.horizontalAlignment = MainAxisAlignment.start,
-    this.spaceBetween,
+    this.materialTapTargetSize,
+    this.wrapDirection = Axis.horizontal,
+    this.wrapAlignment = WrapAlignment.start,
+    this.wrapSpacing = 0.0,
+    this.wrapRunAlignment = WrapAlignment.start,
+    this.wrapRunSpacing = 0.0,
+    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+    this.wrapVerticalDirection = VerticalDirection.down,
+    this.controlAffinity = ControlAffinity.leading,
+    this.orientation = GroupedRadioOrientation.wrap,
+    this.activeColor,
+    this.focusColor,
+    this.hoverColor,
+    this.disabled,
+    this.wrapTextDirection,
+    this.separator,
   }) : super(key: key);
 
   @override
@@ -87,9 +111,7 @@ class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
@@ -97,27 +119,31 @@ class _FormBuilderRadioGroupState extends State<FormBuilderRadioGroup> {
             enabled: !_readOnly,
             errorText: field.errorText,
           ),
-          child: RadioGroup.builder(
-            groupValue: field.value,
-            onChanged: _readOnly
-                ? null
-                : (value) {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    field.didChange(value);
-                    widget.onChanged?.call(value);
-                  },
-            items: widget.options
-                .map((option) => option.value)
-                .toList(growable: false),
-            itemBuilder: (item) {
-              return RadioButtonBuilder(
-                item.toString(),
-                textPosition: RadioButtonTextPosition.right,
-              );
+          child: GroupedRadio(
+            orientation: widget.orientation,
+            value: field.value,
+            options: widget.options,
+            onChanged: (val) {
+              field.didChange(val);
+              widget.onChanged?.call(val);
             },
-            direction: widget.direction,
-            horizontalAlignment: widget.horizontalAlignment,
-            spacebetween: widget.spaceBetween,
+            activeColor: widget.activeColor,
+            focusColor: widget.focusColor,
+            materialTapTargetSize: widget.materialTapTargetSize,
+            disabled: !_readOnly
+                ? widget.disabled
+                : widget.options.map((e) => e.value).toList(),
+            hoverColor: widget.hoverColor,
+            wrapAlignment: widget.wrapAlignment,
+            wrapCrossAxisAlignment: widget.wrapCrossAxisAlignment,
+            wrapDirection: widget.wrapDirection,
+            wrapRunAlignment: widget.wrapRunAlignment,
+            wrapRunSpacing: widget.wrapRunSpacing,
+            wrapSpacing: widget.wrapSpacing,
+            wrapTextDirection: widget.wrapTextDirection,
+            wrapVerticalDirection: widget.wrapVerticalDirection,
+            separator: widget.separator,
+            controlAffinity: widget.controlAffinity,
           ),
         );
       },
