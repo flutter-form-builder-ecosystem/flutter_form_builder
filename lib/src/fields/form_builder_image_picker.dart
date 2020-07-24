@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
@@ -158,9 +159,11 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             width: widget.imageWidth,
                             height: widget.imageHeight,
                             margin: widget.imageMargin,
-                            child: item is String
-                                ? Image.network(item, fit: BoxFit.cover)
-                                : Image.file(item, fit: BoxFit.cover),
+                            child: kIsWeb
+                                ? Image.memory(item, fit: BoxFit.cover)
+                                : item is String
+                                    ? Image.network(item, fit: BoxFit.cover)
+                                    : Image.file(item, fit: BoxFit.cover),
                           ),
                           if (!_readOnly)
                             InkWell(
@@ -215,6 +218,11 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                 cameraLabel: widget.cameraLabel,
                                 galleryLabel: widget.galleryLabel,
                                 onImageSelected: (image) {
+                                  field.didChange([...field.value, image]);
+                                  widget.onChanged?.call(field.value);
+                                  Navigator.of(context).pop();
+                                },
+                                onImage: (image) {
                                   field.didChange([...field.value, image]);
                                   widget.onChanged?.call(field.value);
                                   Navigator.of(context).pop();
