@@ -49,7 +49,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   FormBuilderDateRangePicker({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     List<DateTime> initialValue,
     bool readOnly = false,
@@ -117,7 +117,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
         super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

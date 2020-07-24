@@ -31,7 +31,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   FormBuilderChoiceChip({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     T initialValue,
     bool readOnly = false,
@@ -68,7 +68,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   }) : super(
             key: key,
             initialValue: initialValue,
-            attribute: attribute,
+            name: name,
             validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,

@@ -14,7 +14,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   FormBuilderCheckbox({
     //From Super
     Key key,
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     bool initialValue,
     bool readOnly = false,
@@ -36,7 +36,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   }) : super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

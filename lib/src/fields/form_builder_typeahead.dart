@@ -38,7 +38,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
   FormBuilderTypeAhead({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     T initialValue,
     bool readOnly = false,
@@ -80,7 +80,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
         super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

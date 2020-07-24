@@ -24,7 +24,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   FormBuilderChipsInput({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     List<T> initialValue = const [],
     bool readOnly = false,
@@ -55,7 +55,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   }) : super(
             key: key,
             initialValue: initialValue,
-            attribute: attribute,
+            name: name,
             validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,

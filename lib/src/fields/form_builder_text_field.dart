@@ -50,7 +50,7 @@ class FormBuilderTextField extends FormBuilderField {
   FormBuilderTextField({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     String initialValue,
     bool readOnly = false,
@@ -128,7 +128,7 @@ class FormBuilderTextField extends FormBuilderField {
         super(
           key: key,
           initialValue: controller != null ? controller.text : initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

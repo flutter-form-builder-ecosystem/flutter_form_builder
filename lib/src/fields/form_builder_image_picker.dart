@@ -33,7 +33,7 @@ class FormBuilderImagePicker extends FormBuilderField {
   FormBuilderImagePicker({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     List initialValue,
     bool readOnly = false,
@@ -59,7 +59,7 @@ class FormBuilderImagePicker extends FormBuilderField {
         super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

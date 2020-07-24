@@ -5,7 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderField<T> extends FormField<T> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
-  final String attribute;
+  final String name;
 
   /// Called just before field value is saved. Used to massage data just before
   /// committing the value.
@@ -15,7 +15,7 @@ class FormBuilderField<T> extends FormField<T> {
   ///
   /// ```dart
   ///   FormBuilderTextField(
-  ///     attribute: 'age',
+  ///     name: 'age',
   ///     decoration: InputDecoration(labelText: 'Age'),
   ///     valueTransformer: (text) => num.tryParse(text),
   ///     validator: FormBuilderValidators.numeric(context),
@@ -51,7 +51,7 @@ class FormBuilderField<T> extends FormField<T> {
     bool enabled = true,
     FormFieldValidator validator,
     @required FormFieldBuilder<T> builder,
-    @required this.attribute,
+    @required this.name,
     this.valueTransformer,
     this.onChanged,
     this.readOnly = false,
@@ -101,18 +101,18 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   FocusNode get _effectiveFocusNode =>
       widget.focusNode ??
-      (_focusNode ??= FocusNode(debugLabel: '${widget.attribute}'));
+      (_focusNode ??= FocusNode(debugLabel: '${widget.name}'));
 
   @override
   void initState() {
     super.initState();
     _formBuilderState = FormBuilder.of(context);
     _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
-    _formBuilderState?.registerField(widget.attribute, this);
+    _formBuilderState?.registerField(widget.name, this);
     _initialValue = widget.initialValue ??
-        ((_formBuilderState?.initialValue?.containsKey(widget.attribute) ??
+        ((_formBuilderState?.initialValue?.containsKey(widget.name) ??
                 false)
-            ? _formBuilderState.initialValue[widget.attribute]
+            ? _formBuilderState.initialValue[widget.name]
             : null);
     setValue(_initialValue);
   }
@@ -120,8 +120,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void save() {
     super.save();
-    _formBuilderState?.setInternalAttributeValue(
-        widget.attribute, widget.valueTransformer?.call(value) ?? value);
+    _formBuilderState?.setInternalFieldValue(
+        widget.name, widget.valueTransformer?.call(value) ?? value);
   }
 
   @override
@@ -151,7 +151,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   @override
   void dispose() {
-    _formBuilderState?.unregisterField(widget.attribute);
+    _formBuilderState?.unregisterField(widget.name);
     // The attachment will automatically be detached in dispose().
     _focusNode?.dispose();
     super.dispose();

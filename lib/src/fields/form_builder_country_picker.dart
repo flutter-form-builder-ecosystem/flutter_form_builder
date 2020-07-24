@@ -32,7 +32,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
   FormBuilderCountryPicker({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     String initialValue,
     bool readOnly = false,
@@ -71,7 +71,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
         super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

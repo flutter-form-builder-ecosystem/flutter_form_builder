@@ -25,7 +25,7 @@ class FormBuilderTouchSpin extends FormBuilderField {
   FormBuilderTouchSpin({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     @required double initialValue,
     bool readOnly = false,
@@ -51,7 +51,7 @@ class FormBuilderTouchSpin extends FormBuilderField {
   }) : super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

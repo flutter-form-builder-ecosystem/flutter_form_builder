@@ -141,7 +141,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   FormBuilderDateTimePicker({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     DateTime initialValue,
     bool readOnly = false,
@@ -210,7 +210,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   }) : super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

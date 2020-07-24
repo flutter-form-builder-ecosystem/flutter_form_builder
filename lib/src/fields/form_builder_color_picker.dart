@@ -32,7 +32,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
 
   FormBuilderColorPickerField({
     Key key,
-    @required String attribute,
+    @required String name,
     Color initialValue,
     FormFieldValidator validator,
     bool enabled = true,
@@ -76,7 +76,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
   }) : super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

@@ -26,7 +26,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   FormBuilderDropdown({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     T initialValue,
     bool readOnly = false,
@@ -60,7 +60,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   }) : /*: assert(allowClear == true || clearIcon != null)*/ super(
             key: key,
             initialValue: initialValue,
-            attribute: attribute,
+            name: name,
             validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,

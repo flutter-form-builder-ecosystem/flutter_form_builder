@@ -18,7 +18,7 @@ class FormBuilderRating extends FormBuilderField {
   FormBuilderRating({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     double initialValue = 1.0,
     bool readOnly = false,
@@ -42,7 +42,7 @@ class FormBuilderRating extends FormBuilderField {
   }) : super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

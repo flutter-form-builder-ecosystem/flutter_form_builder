@@ -54,7 +54,7 @@ class FormBuilderPhoneField extends FormBuilderField {
   FormBuilderPhoneField({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     String initialValue,
     bool readOnly = false,
@@ -111,7 +111,7 @@ class FormBuilderPhoneField extends FormBuilderField {
         super(
           key: key,
           initialValue: initialValue,
-          attribute: attribute,
+          name: name,
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,

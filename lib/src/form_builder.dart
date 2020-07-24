@@ -54,9 +54,9 @@ class FormBuilderState extends FormState {
     _value = {};
   }
 
-  void updateFormAttributeValue(String attribute, dynamic value) {
+  void updateFormAttributeValue(String name, dynamic value) {
     setState(() {
-      _value = {..._value, attribute: value};
+      _value = {..._value, name: value};
     });
   }
 
@@ -102,7 +102,7 @@ class FormBuilder extends StatefulWidget {
   final bool autovalidate;
 
   /// An optional Map of field initialValues. Keys correspond to the field's
-  /// attribute and value to the initialValue of the field.
+  /// name and value to the initialValue of the field.
   ///
   /// The initialValues set here will be ignored if the field has a local
   /// initialValue set.
@@ -126,7 +126,7 @@ class FormBuilder extends StatefulWidget {
 }
 
 class FormBuilderState extends State<FormBuilder> {
-  //TODO: Find way to assert no duplicates in field attributes
+  //TODO: Find way to assert no duplicates in field names
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Map<String, FormBuilderFieldState> _fields;
@@ -154,18 +154,18 @@ class FormBuilderState extends State<FormBuilder> {
     super.dispose();
   }
 
-  void setInternalAttributeValue(String attribute, dynamic value) {
+  void setInternalFieldValue(String name, dynamic value) {
     setState(() {
-      _value = {..._value, attribute: value};
+      _value = {..._value, name: value};
     });
   }
 
-  void registerField(String attribute, FormBuilderFieldState field) {
-    _fields[attribute] = field;
+  void registerField(String name, FormBuilderFieldState field) {
+    _fields[name] = field;
   }
 
-  void unregisterField(String attribute) {
-    _fields.remove(attribute);
+  void unregisterField(String name) {
+    _fields.remove(name);
   }
 
   void save() {

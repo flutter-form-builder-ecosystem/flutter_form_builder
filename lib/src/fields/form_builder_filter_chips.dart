@@ -33,7 +33,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
   FormBuilderFilterChip({
     Key key,
     //From Super
-    @required String attribute,
+    @required String name,
     FormFieldValidator validator,
     List initialValue = const [],
     bool readOnly = false,
@@ -73,7 +73,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
   }) : super(
             key: key,
             initialValue: initialValue,
-            attribute: attribute,
+            name: name,
             validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,
