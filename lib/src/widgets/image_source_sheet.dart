@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data' show Uint8List;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class ImageSourceBottomSheet extends StatelessWidget {
   /// Callback when an image is selected.
   ///
   /// **Note**: This will work on web platform whereas [onImageSelected] will not.
-  final Function(Image) onImage;
+  final Function(Uint8List) onImage;
 
   /// Callback when an image is selected.
   ///
@@ -66,8 +67,7 @@ class ImageSourceBottomSheet extends StatelessWidget {
     );
     if (null != pickedFile) {
       if (null != onImage) {
-        final image = Image.memory(await pickedFile.readAsBytes());
-        onImage(image);
+        onImage(await pickedFile.readAsBytes());
       }
 
       if (null != onImageSelected) {
