@@ -18,7 +18,7 @@ dev_dependencies:
     sdk: flutter
 
 dependency_overrides:
-  flutter_chips_input: ^1.9.0-dev.3
+  # flutter_chips_input: ^1.9.0-dev.3 TODO: Enable if on pre-release Flutter branch
 
 flutter:
   uses-material-design: true
