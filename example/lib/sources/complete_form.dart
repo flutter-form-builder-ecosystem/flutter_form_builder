@@ -48,7 +48,7 @@ class CompleteFormState extends State<CompleteForm> {
                 children: <Widget>[
                   FormBuilderFilterChip(
                     name: 'filter_chip',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Select many options',
                     ),
                     options: [
@@ -66,7 +66,7 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderChoiceChip(
                     name: 'choice_chip',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Select an option',
                     ),
                     options: [
@@ -86,10 +86,10 @@ class CompleteFormState extends State<CompleteForm> {
                     name: 'color_picker',
                     // initialValue: Colors.yellow,
                     colorPickerType: ColorPickerType.MaterialPicker,
-                    decoration: InputDecoration(labelText: 'Pick Color'),
+                    decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
                   FormBuilderChipsInput(
-                    decoration: InputDecoration(labelText: 'Chips'),
+                    decoration: const InputDecoration(labelText: 'Chips'),
                     name: 'chips_test',
                     onChanged: _onChanged,
                     initialValue: [
@@ -144,7 +144,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderDateTimePicker(
                     name: 'date',
                     inputType: InputType.time,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Appointment Time',
                     ),
                     initialTime: TimeOfDay(hour: 8, minute: 0),
@@ -156,7 +156,7 @@ class CompleteFormState extends State<CompleteForm> {
                     lastDate: DateTime(2030),
                     format: DateFormat('yyyy-MM-dd'),
                     onChanged: _onChanged,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Date Range',
                       helperText: 'Helper text',
                       hintText: 'Hint text',
@@ -174,7 +174,7 @@ class CompleteFormState extends State<CompleteForm> {
                     divisions: 20,
                     activeColor: Colors.red,
                     inactiveColor: Colors.pink[100],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Number of things',
                     ),
                   ),
@@ -189,7 +189,7 @@ class CompleteFormState extends State<CompleteForm> {
                     divisions: 20,
                     activeColor: Colors.red,
                     inactiveColor: Colors.pink[100],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Price Range',
                     ),
                   ),
@@ -280,7 +280,7 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                   ),
                   FormBuilderTypeAhead(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Country',
                     ),
                     name: 'country',
@@ -309,7 +309,7 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                   ),
                   FormBuilderRadioGroup(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'My chosen language',
                     ),
                     name: 'best_language',
@@ -325,8 +325,8 @@ class CompleteFormState extends State<CompleteForm> {
                     controlAffinity: ControlAffinity.trailing,
                   ),
                   FormBuilderSegmentedControl(
-                    decoration:
-                        InputDecoration(labelText: 'Movie Rating (Archer)'),
+                    decoration: const InputDecoration(
+                        labelText: 'Movie Rating (Archer)'),
                     name: 'movie_rating',
                     // initialValue: 1,
                     // textStyle: TextStyle(fontWeight: FontWeight.bold),
@@ -342,13 +342,13 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                   ),
                   FormBuilderSwitch(
-                    title: Text('I Accept the tems and conditions'),
+                    title: const Text('I Accept the tems and conditions'),
                     name: 'accept_terms_switch',
                     initialValue: true,
                     onChanged: _onChanged,
                   ),
                   FormBuilderTouchSpin(
-                    decoration: InputDecoration(labelText: 'TouchSpin'),
+                    decoration: const InputDecoration(labelText: 'TouchSpin'),
                     name: 'touch_spin',
                     initialValue: 10,
                     step: 1,
@@ -357,7 +357,8 @@ class CompleteFormState extends State<CompleteForm> {
                     subtractIcon: Icon(Icons.arrow_left),
                   ),
                   FormBuilderRating(
-                    decoration: InputDecoration(labelText: 'Rate this form'),
+                    decoration:
+                        const InputDecoration(labelText: 'Rate this form'),
                     name: 'rate',
                     iconSize: 32.0,
                     initialValue: 1.0,
@@ -365,8 +366,8 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                   ),
                   FormBuilderCheckboxGroup(
-                    decoration:
-                        InputDecoration(labelText: 'The language of my people'),
+                    decoration: const InputDecoration(
+                        labelText: 'The language of my people'),
                     name: 'languages',
                     initialValue: ['Dart'],
                     options: [
@@ -384,7 +385,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                   ),
                   FormBuilderSignaturePad(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Signature',
                       border: OutlineInputBorder(),
                     ),
@@ -394,14 +395,14 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderImagePicker(
                     name: 'photos',
-                    decoration: InputDecoration(labelText: 'Pick Photos'),
+                    decoration: const InputDecoration(labelText: 'Pick Photos'),
                     maxImages: 1,
                   ),
                   SizedBox(height: 15),
                   FormBuilderCountryPicker(
                     initialValue: 'Germany',
                     name: 'country',
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(), labelText: 'Country'),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(context,
@@ -415,7 +416,7 @@ class CompleteFormState extends State<CompleteForm> {
                     // defaultSelectedCountryIsoCode: 'KE',
                     cursorColor: Colors.black,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Phone Number',
                         hintText: 'Hint'),
@@ -428,15 +429,23 @@ class CompleteFormState extends State<CompleteForm> {
                           errorText: 'This field required'),
                     ]),
                   ),
-                  /*SizedBox(height: 15),
-                    FormBuilderSignaturePad(
-                      decoration: InputDecoration(labelText: 'Signature'),
-                      name: 'signature',
-                      // height: 250,
-                      clearButtonText: 'Start Over',
-                      onChanged: _onChanged,
-                    ),*/
                   SizedBox(height: 15),
+                  FormBuilderSearchableDropdown<Contact>(
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                    ),
+                    name: 'searchable',
+                    items: contacts
+                        .map((e) => DropdownMenuItem(
+                              value: e,
+                              child: Text('${e.name}'),
+                            ))
+                        .toList(),
+                    hint: 'Select one',
+                    searchHint: 'Select one',
+                    isExpanded: true,
+                    onChanged: _onChanged,
+                  ),
                 ],
               ),
             ),
@@ -459,9 +468,7 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                   ),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
+                SizedBox(width: 20),
                 Expanded(
                   child: OutlineButton(
                     focusNode: FocusNode(),
