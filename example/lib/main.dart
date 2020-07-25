@@ -44,6 +44,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
+  final _ageController = TextEditingController(text: '45');
 
   @override
   Widget build(BuildContext context) {
@@ -261,6 +262,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   FormBuilderTextField(
                     attribute: 'age',
+                    controller: _ageController,
                     decoration: const InputDecoration(
                       labelText:
                           'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',

@@ -98,7 +98,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = List.of(widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : []));
     super.initState();
@@ -128,9 +128,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (field) {
         var theme = Theme.of(context);

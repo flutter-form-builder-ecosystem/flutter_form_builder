@@ -96,9 +96,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val.name);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val.name);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<Country> field) {
         return GestureDetector(

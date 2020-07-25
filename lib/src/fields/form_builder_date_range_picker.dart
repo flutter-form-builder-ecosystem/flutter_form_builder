@@ -163,7 +163,7 @@ class FormBuilderDateRangePickerState
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = _currentValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : []);
     _controller = TextEditingController(
@@ -196,9 +196,7 @@ class FormBuilderDateRangePickerState
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       autovalidate: widget.autovalidate ?? false,
       builder: (FormFieldState<List<DateTime>> field) {

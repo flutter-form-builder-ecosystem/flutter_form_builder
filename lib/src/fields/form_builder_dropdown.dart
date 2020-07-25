@@ -113,9 +113,7 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<T> field) {
         return InputDecorator(

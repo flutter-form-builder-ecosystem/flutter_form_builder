@@ -108,7 +108,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     if (widget.controller != null) {
@@ -139,9 +139,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       enabled: !_readOnly,
       style: widget.style,

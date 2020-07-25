@@ -245,7 +245,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     stateCurrentValue = _initialValue;
@@ -294,9 +294,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           } else {
             _formState?.setAttributeValue(widget.attribute, value);
           }
-          if (widget.onSaved != null) {
-            widget.onSaved(transformed ?? value);
-          }
+          widget.onSaved?.call(transformed ?? val);
         },
         validator: (val) =>
             FormBuilderValidators.validateValidators(val, widget.validators),
