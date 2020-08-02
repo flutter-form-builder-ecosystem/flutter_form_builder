@@ -108,7 +108,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderColorPicker(
                     attribute: 'color_picker',
                     // initialValue: Colors.yellow,
-                    colorPickerType: ColorPickerType.SlidePicker,
+                    colorPickerType: ColorPickerType.BlockPicker,
                     decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
                   SizedBox(height: 15),

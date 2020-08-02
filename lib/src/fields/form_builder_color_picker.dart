@@ -157,6 +157,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
       autovalidate: widget.autovalidate ?? false,
       builder: (FormFieldState<Color> field) {
         _effectiveController.text = HexColor(field.value)?.toHex();
+        final defaultBorderColor = Colors.grey;
 
         return TextField(
           style: widget.style,
@@ -174,9 +175,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(constraints.minHeight / 2),
                     ),
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
+                    border: Border.all(color: field.value ?? defaultBorderColor),
                   ),
                 );
               },
