@@ -108,7 +108,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
   Widget _buildRatingBar(FormFieldState<dynamic> field) {
     if (_readOnly) {
       return RatingBar.readOnly(
-        initialRating: field.value,
+        initialRating: field.value.toDouble(),
         maxRating: widget.max.toInt(),
         filledIcon: widget.icon,
         filledColor: widget.filledColor,
@@ -122,7 +122,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
     }
     return RatingBar(
       key: ObjectKey(field.value),
-      initialRating: field.value,
+      initialRating: field.value.toDouble(),
       maxRating: widget.max.toInt(),
       filledIcon: widget.icon,
       filledColor: widget.filledColor,
