@@ -192,7 +192,8 @@ Column(
 ## Input widgets
 The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
-* `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
+* `FormBuilderCheckboxList` - List of Checkboxes for multiple selection with options listed vertically.
+* `FormBuilderCheckboxGroup` - List of Checkboxes for multiple selection. Unlike in `FormBuilderCheckboxList`, options can either be shown vertically or horizontally.
 * `FormBuilderChipsInput` - Takes a list of `Chip`s as input and suggests more options on typing
 * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
 * `FormBuilderColorPicker` - For `Color` input selection
@@ -203,8 +204,8 @@ The currently supported fields include:
 * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
 * `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
 * `FormBuilderPhoneField` - International phone number input. 
-* `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
-* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRadio` - Used to select one value from a list of Radio Widgets listed vertically. 
+* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets. Unlike in `FormBuilderRadio`, options can either be shown vertically or horizontally.
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
 * `FormBuilderRate` - For selection of a numerical value as a rating 
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
