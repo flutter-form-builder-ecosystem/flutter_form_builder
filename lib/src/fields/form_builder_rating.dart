@@ -68,7 +68,7 @@ class FormBuilderRating extends FormBuilderField {
   static Widget _buildRatingBar(_FormBuilderRateState field) {
     if (field.readOnly) {
       return RatingBar.readOnly(
-        initialRating: field.value,
+        initialRating: field.value?.toDouble(),
         maxRating: field.widget.max.toInt(),
         filledIcon: field.widget.icon,
         filledColor: field.widget.filledColor,
@@ -83,7 +83,7 @@ class FormBuilderRating extends FormBuilderField {
 
     return RatingBar(
       key: ObjectKey(field.value),
-      initialRating: field.value,
+      initialRating: field.value?.toDouble(),
       maxRating: field.widget.max.toInt(),
       filledIcon: field.widget.icon,
       filledColor: field.widget.filledColor,
