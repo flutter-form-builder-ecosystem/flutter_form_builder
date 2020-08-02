@@ -204,6 +204,14 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   T selectedValue;
 
   @override
+  void initState() {
+    if (widget.value != null) {
+      selectedValue = widget.value;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var finalWidget = generateItems();
     return finalWidget;
@@ -212,9 +220,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   Widget generateItems() {
     var content = <Widget>[];
     Widget finalWidget;
-    if (widget.value != null) {
-      selectedValue = widget.value;
-    }
     var widgetList = <Widget>[];
     for (var i = 0; i < widget.options.length; i++) {
       widgetList.add(item(i));
@@ -263,6 +268,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
           : (T selected) {
               setState(() {
                 selectedValue = selected;
+                widget.onChanged?.call(selectedValue);
               });
             },
     );
