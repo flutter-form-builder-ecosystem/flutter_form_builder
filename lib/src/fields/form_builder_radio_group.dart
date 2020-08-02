@@ -60,7 +60,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
               ),
               child: GroupedRadio(
                 orientation: orientation,
-                value: initialValue,
+                value: state.value,
                 options: options,
                 onChanged: (val) {
                   state.requestFocus();

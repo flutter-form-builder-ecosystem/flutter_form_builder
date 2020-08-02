@@ -63,7 +63,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
               ),
               child: GroupedCheckbox(
                 orientation: orientation,
-                value: initialValue,
+                value: field.value,
                 options: options,
                 onChanged: (val) {
                   field.didChange(val);
