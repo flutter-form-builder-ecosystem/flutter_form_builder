@@ -112,7 +112,7 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-          widget.onSaved?.call(transformed ?? val);
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

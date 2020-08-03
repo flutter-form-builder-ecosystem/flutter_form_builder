@@ -175,7 +175,8 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(constraints.minHeight / 2),
                     ),
-                    border: Border.all(color: field.value ?? defaultBorderColor),
+                    border:
+                        Border.all(color: field.value ?? defaultBorderColor),
                   ),
                 );
               },

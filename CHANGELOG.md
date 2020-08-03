@@ -1,7 +1,10 @@
+## [3.12.2] - 03-Aug-2020
+* Convert FormBuilderRating value to double for RatingBar. Closes #392
+
 ## [3.12.1] - 03-Aug-2020
 * Deprecate `FormBuilderRadio` in favour of `FormBuilderRadioGroup`
 * Deprecate `FormBuilderCheckbox` in favour of `FormBuilderCheckboxGroup`
-* Convert FormBuilderRating value to double for RatingBar. Closes #392
+* Fix bug `"NoSuchMethodError: invalid member on null: 'initialValue'"` when fields not wrapped in `FormBuilder`
 
 ## [3.12.0] - 24-Jul-2020
 * Added new field `FormBuilderCheckboxGroup`. Closes #188
