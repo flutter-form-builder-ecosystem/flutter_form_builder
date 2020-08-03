@@ -230,4 +230,9 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
       _effectiveController.text = initialValue ?? '';
     });
   }
+
+  @override
+  void patchValue(dynamic val){
+    _effectiveController.text = val;
+  }
 }

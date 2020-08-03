@@ -60,9 +60,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
               child: Column(
                 children: <Widget>[
                   Container(
-                    decoration: BoxDecoration(
-                      border: border,
-                    ),
+                    decoration: BoxDecoration(border: border),
                     child: GestureDetector(
                       onVerticalDragUpdate: (_) {},
                       child: Signature(
@@ -85,10 +83,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
                           clearButtonText ?? localizations.cancelButtonLabel,
                           style: TextStyle(color: theme.errorColor),
                         ),
-                        icon: Icon(
-                          Icons.clear,
-                          color: theme.errorColor,
-                        ),
+                        icon: Icon(Icons.clear, color: theme.errorColor),
                       ),
                     ],
                   ),

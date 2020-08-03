@@ -92,10 +92,6 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: const InputDecoration(labelText: 'Chips'),
                     name: 'chips_test',
                     onChanged: _onChanged,
-                    initialValue: [
-                      Contact('Andrew', 'stock@man.com',
-                          'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-                    ],
                     maxChips: 5,
                     findSuggestions: (String query) {
                       if (query.isNotEmpty) {
@@ -189,9 +185,7 @@ class CompleteFormState extends State<CompleteForm> {
                     divisions: 20,
                     activeColor: Colors.red,
                     inactiveColor: Colors.pink[100],
-                    decoration: const InputDecoration(
-                      labelText: 'Price Range',
-                    ),
+                    decoration: const InputDecoration(labelText: 'Price Range'),
                   ),
                   FormBuilderCheckbox(
                     name: 'accept_terms',
@@ -326,7 +320,8 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderSegmentedControl(
                     decoration: const InputDecoration(
-                        labelText: 'Movie Rating (Archer)'),
+                      labelText: 'Movie Rating (Archer)',
+                    ),
                     name: 'movie_rating',
                     // initialValue: 1,
                     // textStyle: TextStyle(fontWeight: FontWeight.bold),
@@ -403,7 +398,9 @@ class CompleteFormState extends State<CompleteForm> {
                     initialValue: 'Germany',
                     name: 'country',
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), labelText: 'Country'),
+                      border: OutlineInputBorder(),
+                      labelText: 'Country',
+                    ),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(context,
                           errorText: 'This field required.'),
@@ -433,6 +430,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderSearchableDropdown<Contact>(
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
+                      border: OutlineInputBorder(),
                     ),
                     name: 'searchable',
                     items: contacts
@@ -459,12 +457,26 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      if (_fbKey.currentState.saveAndValidate()) {
+                      _fbKey.currentState.fields['color_picker']
+                          .patchValue(Colors.black);
+                      _fbKey.currentState.patchValue({
+                        'age': '50',
+                        'slider': 6.7,
+                        'filter_chip': ['Test 1'],
+                        'choice_chip': 'Test 2',
+                        'rate': 4,
+                        'chips_test': [
+                          Contact('Andrew', 'stock@man.com',
+                              'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
+                        ],
+                      });
+
+                      /*if (_fbKey.currentState.saveAndValidate()) {
                         print(_fbKey.currentState.value);
                       } else {
                         print(_fbKey.currentState.value);
                         print('validation failed');
-                      }
+                      }*/
                     },
                   ),
                 ),
@@ -473,10 +485,7 @@ class CompleteFormState extends State<CompleteForm> {
                   child: OutlineButton(
                     focusNode: FocusNode(),
                     color: Theme.of(context).accentColor,
-                    child: Text(
-                      'Reset',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child: Text('Reset', style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       _fbKey.currentState.reset();
                     },

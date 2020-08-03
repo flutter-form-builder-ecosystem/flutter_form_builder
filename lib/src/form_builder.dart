@@ -185,6 +185,12 @@ class FormBuilderState extends State<FormBuilder> {
     _formKey.currentState.reset();
   }
 
+  void patchValue(Map<String, dynamic> val){
+    val.forEach((key, value) {
+      _fields[key]?.patchValue(value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(

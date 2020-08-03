@@ -156,4 +156,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     _focusNode?.dispose();
     super.dispose();
   }
+
+  void patchValue(T value){
+    didChange(value);
+  }
 }
