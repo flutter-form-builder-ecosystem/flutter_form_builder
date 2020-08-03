@@ -61,7 +61,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
     this.disabledHint,
     this.icon = const Icon(Icons.arrow_drop_down),
     this.underline,
-    this.doneButton,
+    this.doneButton = 'Done',
     this.label,
     this.closeButton = 'Close',
     this.displayClearIcon = true,
@@ -101,12 +101,13 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 enabled: state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
-              child: SearchableDropdown.single(
+              child: /*SearchableDropdown.single(
+                value: state.value,
                 items: items,
-                onChanged: (val){
+                onChanged: (val) {
+                  state.requestFocus();
                   state.didChange(val);
                 },
-                // value: state.value,
                 style: style,
                 searchHint: searchHint,
                 hint: hint,
@@ -128,13 +129,48 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 selectedValueWidgetFn: selectedValueWidgetFn,
                 keyboardType: keyboardType,
                 validator: validator,
-                // assertUniqueValue: assertUniqueValue,
                 displayItem: displayItem,
                 dialogBox: dialogBox,
                 menuConstraints: menuConstraints,
                 readOnly: readOnly,
                 menuBackgroundColor: menuBackgroundColor,
-              ),
+                assertUniqueValue: assertUniqueValue,
+              )*/
+              SearchableDropdown.multiple(
+                items: items,
+                onChanged: (val) {
+                  state.requestFocus();
+                  state.didChange(val);
+                },
+                style: style,
+                searchHint: searchHint,
+                hint: hint,
+                disabledHint: disabledHint,
+                icon: icon,
+                underline: underline,
+                doneButton: doneButton,
+                label: label,
+                closeButton: closeButton,
+                displayClearIcon: displayClearIcon,
+                clearIcon: clearIcon,
+                iconEnabledColor: iconEnabledColor,
+                iconDisabledColor: iconDisabledColor,
+                iconSize: iconSize,
+                isExpanded: isExpanded,
+                isCaseSensitiveSearch: isCaseSensitiveSearch,
+                searchFn: searchFn,
+                onClear: onClear,
+                selectedValueWidgetFn: selectedValueWidgetFn,
+                keyboardType: keyboardType,
+                validator: validator,
+                displayItem: displayItem,
+                dialogBox: dialogBox,
+                menuConstraints: menuConstraints,
+                readOnly: readOnly,
+                menuBackgroundColor: menuBackgroundColor,
+                selectedItems: ,
+              )
+              ,
             );
           },
         );
