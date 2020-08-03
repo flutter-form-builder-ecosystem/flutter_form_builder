@@ -178,7 +178,7 @@ packages:
       name: flutter_typeahead
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.6"
+    version: "1.8.7"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

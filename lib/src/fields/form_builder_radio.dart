@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+@Deprecated('Prefer using `FormBuilderRadioGroup` instead')
 class FormBuilderRadio extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -39,6 +40,7 @@ class FormBuilderRadio extends StatefulWidget {
   _FormBuilderRadioState createState() => _FormBuilderRadioState();
 }
 
+// ignore: deprecated_member_use_from_same_package
 class _FormBuilderRadioState extends State<FormBuilderRadio> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();

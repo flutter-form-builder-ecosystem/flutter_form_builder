@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+@Deprecated('Prefer using `FormBuilderCheckboxGroup` instead')
 class FormBuilderCheckboxList extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -44,6 +45,7 @@ class FormBuilderCheckboxList extends StatefulWidget {
       _FormBuilderCheckboxListState();
 }
 
+// ignore: deprecated_member_use_from_same_package
 class _FormBuilderCheckboxListState extends State<FormBuilderCheckboxList> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
