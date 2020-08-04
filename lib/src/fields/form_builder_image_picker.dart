@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
@@ -29,8 +30,13 @@ class FormBuilderImagePicker extends FormBuilderField {
 
   final Function(Image) onImage;
   final int maxImages;
+  final Widget cameraIcon;
+  final Widget galleryIcon;
+  final Widget cameraLabel;
+  final Widget galleryLabel;
+  final EdgeInsets bottomSheetPadding;
 
-  FormBuilderImagePicker({
+  FormBuilderImagePicker( {
     Key key,
     //From Super
     @required String name,
@@ -55,6 +61,11 @@ class FormBuilderImagePicker extends FormBuilderField {
     this.preferredCameraDevice = CameraDevice.rear,
     this.onImage,
     this.maxImages,
+    this.cameraIcon = const Icon(Icons.camera_enhance),
+    this.galleryIcon = const Icon(Icons.image),
+    this.cameraLabel = const Text('Camera'),
+    this.galleryLabel = const Text('Gallery'),
+    this.bottomSheetPadding = const EdgeInsets.all(0),
   })  : assert(maxImages == null || maxImages >= 0),
         super(
           key: key,
@@ -94,9 +105,11 @@ class FormBuilderImagePicker extends FormBuilderField {
                               width: previewWidth,
                               height: previewHeight,
                               margin: previewMargin,
-                              child: item is String
-                                  ? Image.network(item, fit: BoxFit.cover)
-                                  : Image.file(item, fit: BoxFit.cover),
+                              child: kIsWeb
+                                  ? Image.memory(item, fit: BoxFit.cover)
+                                  : item is String
+                                      ? Image.network(item, fit: BoxFit.cover)
+                                      : Image.file(item, fit: BoxFit.cover),
                             ),
                             if (!state.readOnly)
                               InkWell(
@@ -141,15 +154,27 @@ class FormBuilderImagePicker extends FormBuilderField {
                           showModalBottomSheet(
                             context: state.context,
                             builder: (_) {
-                              return ImageSourceSheet(
+                              return ImageSourceBottomSheet(
                                 maxHeight: maxHeight,
                                 maxWidth: maxWidth,
                                 imageQuality: imageQuality,
                                 preferredCameraDevice: preferredCameraDevice,
+                                bottomSheetPadding: bottomSheetPadding,
+                                cameraIcon: cameraIcon,
+                                cameraLabel: cameraLabel,
+                                galleryIcon: galleryIcon,
+                                galleryLabel: galleryLabel,
                                 onImageSelected: (image) {
                                   state.requestFocus();
-                                  field
-                                      .didChange([...field.value ?? [], image]);
+                                  field.didChange([
+                                    ...field.value ?? [],
+                                    image,
+                                  ]);
+                                  Navigator.of(state.context).pop();
+                                },
+                                onImage: (image) {
+                                  field.didChange([...field.value, image]);
+                                  onChanged?.call(field.value);
                                   Navigator.of(state.context).pop();
                                 },
                               );
