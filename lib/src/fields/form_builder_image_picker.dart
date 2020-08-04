@@ -36,7 +36,7 @@ class FormBuilderImagePicker extends FormBuilderField {
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
 
-  FormBuilderImagePicker( {
+  FormBuilderImagePicker({
     Key key,
     //From Super
     @required String name,

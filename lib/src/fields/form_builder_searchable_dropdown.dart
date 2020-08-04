@@ -101,7 +101,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 enabled: state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
-              child: /*SearchableDropdown.single(
+              child:
+                  /*SearchableDropdown.single(
                 value: state.value,
                 items: items,
                 onChanged: (val) {
@@ -136,7 +137,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 menuBackgroundColor: menuBackgroundColor,
                 assertUniqueValue: assertUniqueValue,
               )*/
-              SearchableDropdown.multiple(
+                  SearchableDropdown.multiple(
                 items: items,
                 onChanged: (val) {
                   state.requestFocus();
@@ -168,9 +169,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 menuConstraints: menuConstraints,
                 readOnly: readOnly,
                 menuBackgroundColor: menuBackgroundColor,
-                selectedItems: ,
-              )
-              ,
+                // selectedItems: ,
+              ),
             );
           },
         );

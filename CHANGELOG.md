@@ -1,3 +1,9 @@
+## [4.0.0-alpha.9] - 05-Aug-2020
+* Improved programmatically changing field values. Multiple fields can be updated once 
+* Fix conversion to double error in `FormBuilderRating`
+* Removed redundant `FormBuilderRadioList` and `FormBuilderCheckboxList` fields
+* Other minor fixes from v3 commits
+
 ## [4.0.0-alpha.8] - 23-Jul-2020
 * Fixed erratic keyboard behavior on `FormBuilderTextField`
 * Added documentation for `FormBuilder` & `FormBuilderField` attributes

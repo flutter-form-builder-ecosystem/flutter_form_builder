@@ -198,6 +198,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.7"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   glob:
     dependency: transitive
     description:
@@ -247,6 +252,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.7+4"
+  image_picker_for_web:
+    dependency: "direct main"
+    description:
+      name: image_picker_for_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+1"
   image_picker_platform_interface:
     dependency: transitive
     description:

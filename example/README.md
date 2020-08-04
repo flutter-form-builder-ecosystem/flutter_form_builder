@@ -12,7 +12,7 @@ FormBuilder(
   child: Column(
     children: <Widget>[
       FormBuilderFilterChip(
-        attribute: 'filter_chip',
+        name: 'filter_chip',
         decoration: InputDecoration(
           labelText: 'Select many options',
         ),
@@ -30,7 +30,7 @@ FormBuilder(
         ],
       ),
       FormBuilderChoiceChip(
-        attribute: 'choice_chip',
+        name: 'choice_chip',
         decoration: InputDecoration(
           labelText: 'Select an option',
         ),
@@ -48,14 +48,14 @@ FormBuilder(
         ],
       ),
       FormBuilderColorPickerField(
-        attribute: 'color_picker',
+        name: 'color_picker',
         // initialValue: Colors.yellow,
         colorPickerType: ColorPickerType.MaterialPicker,
         decoration: InputDecoration(labelText: 'Pick Color'),
       ),
       FormBuilderChipsInput(
         decoration: InputDecoration(labelText: 'Chips'),
-        attribute: 'chips_test',
+        name: 'chips_test',
         onChanged: _onChanged,
         initialValue: [
           Contact('Andrew', 'stock@man.com',
@@ -107,7 +107,7 @@ FormBuilder(
         },
       ),
       FormBuilderDateTimePicker(
-        attribute: 'date',
+        name: 'date',
         // onChanged: _onChanged,
         inputType: InputType.time,
         decoration: InputDecoration(
@@ -118,7 +118,7 @@ FormBuilder(
         // readonly: true,
       ),
       FormBuilderDateRangePicker(
-        attribute: 'date_range',
+        name: 'date_range',
         firstDate: DateTime(1970),
         lastDate: DateTime(2030),
         format: DateFormat('yyyy-MM-dd'),
@@ -130,7 +130,7 @@ FormBuilder(
         ),
       ),
       FormBuilderSlider(
-        attribute: 'slider',
+        name: 'slider',
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.min(context, 6),
         ]),
@@ -146,7 +146,7 @@ FormBuilder(
         ),
       ),
       FormBuilderCheckbox(
-        attribute: 'accept_terms',
+        name: 'accept_terms',
         initialValue: false,
         onChanged: _onChanged,
         title: RichText(
@@ -176,7 +176,7 @@ FormBuilder(
         ]),
       ),
       FormBuilderTextField(
-        attribute: 'age',
+        name: 'age',
         decoration: InputDecoration(
           labelText:
               'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
@@ -191,7 +191,7 @@ FormBuilder(
         keyboardType: TextInputType.number,
       ),
       FormBuilderDropdown(
-        attribute: 'gender',
+        name: 'gender',
         decoration: InputDecoration(
           labelText: 'Gender',
         ),
@@ -211,7 +211,7 @@ FormBuilder(
         decoration: InputDecoration(
           labelText: 'Country',
         ),
-        attribute: 'country',
+        name: 'country',
         onChanged: _onChanged,
         itemBuilder: (context, country) {
           return ListTile(
@@ -239,7 +239,7 @@ FormBuilder(
       FormBuilderRadioList(
         decoration:
             InputDecoration(labelText: 'My chosen language'),
-        attribute: 'best_language',
+        name: 'best_language',
         onChanged: _onChanged,
         validator: FormBuilderValidators.compose(
             [FormBuilderValidators.required(context)]),
@@ -252,7 +252,7 @@ FormBuilder(
       ),
       FormBuilderTouchSpin(
         decoration: InputDecoration(labelText: 'Stepper'),
-        attribute: 'stepper',
+        name: 'stepper',
         initialValue: 10,
         step: 1,
         iconSize: 48.0,
@@ -261,7 +261,7 @@ FormBuilder(
       ),
       FormBuilderRating(
         decoration: InputDecoration(labelText: 'Rate this form'),
-        attribute: 'rate',
+        name: 'rate',
         iconSize: 32.0,
         initialValue: 1.0,
         max: 5.0,

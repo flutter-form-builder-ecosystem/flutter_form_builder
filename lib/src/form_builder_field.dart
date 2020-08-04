@@ -110,8 +110,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
     _formBuilderState?.registerField(widget.name, this);
     _initialValue = widget.initialValue ??
-        ((_formBuilderState?.initialValue?.containsKey(widget.name) ??
-                false)
+        ((_formBuilderState?.initialValue?.containsKey(widget.name) ?? false)
             ? _formBuilderState.initialValue[widget.name]
             : null);
     setValue(_initialValue);
@@ -157,7 +156,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     super.dispose();
   }
 
-  void patchValue(T value){
+  void patchValue(T value) {
     didChange(value);
   }
 }

@@ -232,7 +232,7 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
   }
 
   @override
-  void patchValue(dynamic val){
+  void patchValue(dynamic val) {
     _effectiveController.text = val;
   }
 }

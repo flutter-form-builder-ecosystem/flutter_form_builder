@@ -21,7 +21,7 @@ Column(
       child: Column(
         children: <Widget>[
           FormBuilderFilterChip(
-            attribute: 'filter_chip',
+            name: 'filter_chip',
             decoration: InputDecoration(
               labelText: 'Select many options',
             ),
@@ -39,7 +39,7 @@ Column(
             ],
           ),
           FormBuilderChoiceChip(
-            attribute: 'choice_chip',
+            name: 'choice_chip',
             decoration: InputDecoration(
               labelText: 'Select an option',
             ),
@@ -57,14 +57,14 @@ Column(
             ],
           ),
           FormBuilderColorPickerField(
-            attribute: 'color_picker',
+            name: 'color_picker',
             // initialValue: Colors.yellow,
             colorPickerType: ColorPickerType.MaterialPicker,
             decoration: InputDecoration(labelText: 'Pick Color'),
           ),
           FormBuilderChipsInput(
             decoration: InputDecoration(labelText: 'Chips'),
-            attribute: 'chips_test',
+            name: 'chips_test',
             onChanged: _onChanged,
             initialValue: [
               Contact('Andrew', 'stock@man.com',
@@ -116,7 +116,7 @@ Column(
             },
           ),
           FormBuilderDateTimePicker(
-            attribute: 'date',
+            name: 'date',
             // onChanged: _onChanged,
             inputType: InputType.time,
             decoration: InputDecoration(
@@ -127,7 +127,7 @@ Column(
             // readonly: true,
           ),
           FormBuilderDateRangePicker(
-            attribute: 'date_range',
+            name: 'date_range',
             firstDate: DateTime(1970),
             lastDate: DateTime(2030),
             format: DateFormat('yyyy-MM-dd'),
@@ -139,7 +139,7 @@ Column(
             ),
           ),
           FormBuilderSlider(
-            attribute: 'slider',
+            name: 'slider',
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.min(context, 6),
             ]),
@@ -155,7 +155,7 @@ Column(
             ),
           ),
           FormBuilderCheckbox(
-            attribute: 'accept_terms',
+            name: 'accept_terms',
             initialValue: false,
             onChanged: _onChanged,
             title: RichText(
@@ -185,7 +185,7 @@ Column(
             ]),
           ),
           FormBuilderTextField(
-            attribute: 'age',
+            name: 'age',
             decoration: InputDecoration(
               labelText:
                   'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
@@ -200,7 +200,7 @@ Column(
             keyboardType: TextInputType.number,
           ),
           FormBuilderDropdown(
-            attribute: 'gender',
+            name: 'gender',
             decoration: InputDecoration(
               labelText: 'Gender',
             ),
@@ -220,7 +220,7 @@ Column(
             decoration: InputDecoration(
               labelText: 'Country',
             ),
-            attribute: 'country',
+            name: 'country',
             onChanged: _onChanged,
             itemBuilder: (context, country) {
               return ListTile(
@@ -248,7 +248,7 @@ Column(
           FormBuilderRadioList(
             decoration:
                 InputDecoration(labelText: 'My chosen language'),
-            attribute: 'best_language',
+            name: 'best_language',
             onChanged: _onChanged,
             validator: FormBuilderValidators.compose(
                 [FormBuilderValidators.required(context)]),
@@ -261,7 +261,7 @@ Column(
           ),
           FormBuilderTouchSpin(
             decoration: InputDecoration(labelText: 'Stepper'),
-            attribute: 'stepper',
+            name: 'stepper',
             initialValue: 10,
             step: 1,
             iconSize: 48.0,
@@ -270,7 +270,7 @@ Column(
           ),
           FormBuilderRating(
             decoration: InputDecoration(labelText: 'Rate this form'),
-            attribute: 'rate',
+            name: 'rate',
             iconSize: 32.0,
             initialValue: 1.0,
             max: 5.0,
@@ -386,7 +386,7 @@ var options = ["Option 1", "Option 2", "Option 3"];
 
 ```dart
 FormBuilderField(
-  attribute: "name",
+  name: "name",
   validator: FormBuilderValidators.compose([
     FormBuilderValidators.required(context),
   ]),
@@ -412,6 +412,25 @@ FormBuilderField(
     );
   },
 ),
+```
+
+### Programmatically changing field value
+You can either change the value of one field at a time like so:
+```dart
+_fbKey.currentState.fields['color_picker'].patchValue(Colors.black);
+```
+Or multiple field value like so:
+```dart
+_fbKey.currentState.patchValue({
+  'age': '50',
+  'slider': 6.7,
+  'filter_chip': ['Test 1'],
+  'choice_chip': 'Test 2',
+  'rate': 4,
+  'chips_test': [
+    Contact('Andrew', 'stock@man.com', 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
+  ],
+});
 ```
 
 ## Validation
@@ -443,7 +462,7 @@ Available built-in validators include:
 Validation example:
 ```dart
 FormBuilderTextField(
-  attribute: "age",
+  name: "age",
   decoration: InputDecoration(labelText: "Age"),
   validator: FormBuilderValidators.compose([
     FormBuilderValidators.numeric(context, errorText: "La edad debe ser numérica."),
@@ -466,7 +485,7 @@ String _emailError;
 Use the variable as the `errorText` within `InputDecoration`
 ```dart
 FormBuilderTextField(
-  attribute: 'email',
+  name: 'email',
   decoration: InputDecoration(
     labelText: 'Email', 
     errorText: _emailError,
@@ -496,7 +515,7 @@ You can also validate a field based on the value of another field
 ```
 FormBuilderRadioGroup(
   decoration: InputDecoration(labelText: 'My best language'),
-  attribute: 'my_language',
+  name: 'my_language',
   validator: FormBuilderValidators.required(context),
   options: [
     'Dart',
@@ -510,7 +529,7 @@ FormBuilderRadioGroup(
     .toList(growable: false),
   ),
   FormBuilderTextField(
-    attribute: 'specify',
+    name: 'specify',
     decoration:
         InputDecoration(labelText: 'If Other, please specify'),
     validator: (val) {
