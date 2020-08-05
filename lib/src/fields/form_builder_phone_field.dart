@@ -153,9 +153,6 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();
-    _effectiveController.addListener(() {
-      _invokeChange(_fieldKey.currentState);
-    });
     super.initState();
   }
 
@@ -165,8 +162,10 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         var parseResult = await PhoneNumber().parse(_initialValue);
         print(parseResult);
         if (parseResult != null) {
-          _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
-              parseResult['country_code']);
+          setState(() {
+            _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
+                parseResult['country_code']);
+          });
           _effectiveController.text = parseResult['national_number'];
         }
       } catch (error) {
@@ -176,9 +175,8 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   }
 
   void _invokeChange(FormFieldState field) {
-    final newFullNumber = fullNumber;
-    field.didChange(newFullNumber);
-    widget.onChanged?.call(newFullNumber);
+    field.didChange(fullNumber);
+    widget.onChanged?.call(fullNumber);
   }
 
   @override
@@ -214,6 +212,9 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             prefix: _textFieldPrefix(field),
           ),
           // initialValue: "${_initialValue ?? ''}",
+          onChanged: (val) {
+            _invokeChange(field);
+          },
           maxLines: widget.maxLines,
           keyboardType: widget.keyboardType,
           obscureText: widget.obscureText,

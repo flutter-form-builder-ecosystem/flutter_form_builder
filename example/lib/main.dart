@@ -237,7 +237,9 @@ class MyHomePageState extends State<MyHomePage> {
                     label: RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(text: 'I have read and agree to the ', style: TextStyle(color: Colors.black)),
+                          TextSpan(
+                              text: 'I have read and agree to the ',
+                              style: TextStyle(color: Colors.black)),
                           TextSpan(
                             text: 'Terms and Conditions',
                             style: TextStyle(color: Colors.blue),
@@ -263,8 +265,8 @@ class MyHomePageState extends State<MyHomePage> {
                     controller: _ageController,
                     decoration: InputDecoration(
                       labelText: 'Age',
-                      suffixIcon: _ageHasError ?
-                          Icon(Icons.error, color: Colors.red)
+                      suffixIcon: _ageHasError
+                          ? Icon(Icons.error, color: Colors.red)
                           : Icon(Icons.check, color: Colors.green),
                     ),
                     onChanged: (val) {
@@ -601,5 +603,3 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-

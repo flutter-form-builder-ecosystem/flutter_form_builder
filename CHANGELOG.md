@@ -1,3 +1,8 @@
+## [3.12.3] - 05-Aug-2020
+* Fixed bug in parsing phone number from `FormBuilderPhoneField`'s `initialValue`
+* Added more TextField options: `toolbarOptions`, `smartQuotesType`, `smartDashesType`, `scrollPhysics`, `enableSuggestions`
+* Fixed `onChanged` bug on TextField
+
 ## [3.12.2] - 03-Aug-2020
 * Convert FormBuilderRating value to double for RatingBar. Closes #392
 
