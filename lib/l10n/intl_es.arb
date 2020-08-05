@@ -6,12 +6,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "requireTrueErrorText": "This field must be set to true.",
-  "@requireTrueErrorText": {
-    "description": "Error Text for required field",
-    "type": "text",
-    "placeholders": {}
-  },
   "minErrorText": "Value must be greater than or equal to {min}.",
   "@minErrorText": {
     "description": "Error Text for required field",
@@ -56,8 +50,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "patternErrorText": "Value does not match pattern.",
-  "@patternErrorText": {
+  "matchErrorText": "Value does not match pattern.",
+  "@matchErrorText": {
     "description": "Error Text for pattern field",
     "type": "text",
     "placeholders": {}

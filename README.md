@@ -419,7 +419,7 @@ You can either change the value of one field at a time like so:
 ```dart
 _fbKey.currentState.fields['color_picker'].patchValue(Colors.black);
 ```
-Or multiple field value like so:
+Or multiple fields value like so:
 ```dart
 _fbKey.currentState.patchValue({
   'age': '50',

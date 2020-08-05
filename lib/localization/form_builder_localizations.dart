@@ -34,14 +34,15 @@ class FormBuilderLocalizations {
     return Intl.message(
       'This field cannot be empty.',
       name: 'requiredErrorText',
-      desc: 'Error Text for required field',
+      desc: 'Error Text for required validator',
     );
   }
 
-  String get requireTrueErrorText => Intl.message(
-        'This field must be set to true.',
-        name: 'requireTrueErrorText',
-        desc: 'Error Text for required field',
+  String equalErrorText(value) => Intl.message(
+        'This field value must be equal to $value.',
+        name: 'equalErrorText',
+        args: [value],
+        desc: 'Error Text for equal validator',
       );
 
   String minErrorText(min) => Intl.message(
@@ -55,14 +56,14 @@ class FormBuilderLocalizations {
         'Value must have a length greater than or equal to $minLength',
         name: 'minLengthErrorText',
         args: [minLength],
-        desc: 'Error Text for required field',
+        desc: 'Error Text for minLength validator',
       );
 
   String maxErrorText(max) => Intl.message(
         'Value must be less than or equal to $max',
         name: 'maxErrorText',
         args: [max],
-        desc: 'Error Text for required field',
+        desc: 'Error Text for max validator',
       );
 
   String maxLengthErrorText(maxLength) => Intl.message(
@@ -75,43 +76,43 @@ class FormBuilderLocalizations {
   String get emailErrorText => Intl.message(
         'This field requires a valid email address.',
         name: 'emailErrorText',
-        desc: 'Error Text for email field',
+        desc: 'Error Text for email validator',
       );
 
   String get urlErrorText => Intl.message(
         'This field requires a valid URL address.',
         name: 'urlErrorText',
-        desc: 'Error Text for URL field',
+        desc: 'Error Text for URL validator',
       );
 
-  String get patternErrorText => Intl.message(
+  String get matchErrorText => Intl.message(
         'Value does not match pattern.',
-        name: 'patternErrorText',
-        desc: 'Error Text for pattern field',
+        name: 'matchErrorText',
+        desc: 'Error Text for pattern validator',
       );
 
   String get numericErrorText => Intl.message(
         'Value must be numeric.',
         name: 'numericErrorText',
-        desc: 'Error Text for numeric field',
+        desc: 'Error Text for numeric validator',
       );
 
   String get creditCardErrorText => Intl.message(
         'This field requires a valid credit card number.',
         name: 'creditCardErrorText',
-        desc: 'Error Text for credit card field',
+        desc: 'Error Text for credit card validator',
       );
 
   String get ipErrorText => Intl.message(
         'This field requires a valid IP.',
         name: 'ipErrorText',
-        desc: 'Error Text for IP address field',
+        desc: 'Error Text for IP address validator',
       );
 
   String get dateStringErrorText => Intl.message(
         'This field requires a valid date string.',
         name: 'dateStringErrorText',
-        desc: 'Error Text for date string field',
+        desc: 'Error Text for date string validator',
       );
 }
 

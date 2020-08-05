@@ -38,12 +38,13 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value be true.
   /// Commonly used for required checkboxes.
-  static FormFieldValidator requireTrue(
-    BuildContext context, {
+  static FormFieldValidator equal(
+    BuildContext context,
+    dynamic value, {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != true) {
+      if (valueCandidate != value) {
         return errorText ??
             FormBuilderLocalizations.of(context).requiredErrorText;
       }
@@ -170,7 +171,7 @@ class FormBuilderValidators {
   }
 
   /// [FormFieldValidator] that requires the field's value to match the provided regex pattern.
-  static FormFieldValidator pattern(
+  static FormFieldValidator match(
     BuildContext context,
     Pattern pattern, {
     String errorText,
@@ -179,7 +180,7 @@ class FormBuilderValidators {
       if (valueCandidate != null && valueCandidate.isNotEmpty) {
         if (!RegExp(pattern).hasMatch(valueCandidate)) {
           return errorText ??
-              FormBuilderLocalizations.of(context).patternErrorText;
+              FormBuilderLocalizations.of(context).matchErrorText;
         }
       }
       return null;

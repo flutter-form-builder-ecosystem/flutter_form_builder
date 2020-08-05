@@ -210,8 +210,9 @@ class CompleteFormState extends State<CompleteForm> {
                       ),
                     ),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.requireTrue(
+                      FormBuilderValidators.equal(
                         context,
+                        true,
                         errorText:
                             'You must accept terms and conditions to continue',
                       ),
@@ -229,9 +230,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        print(val);
                         _ageHasError = !_ageKey.currentState.validate();
-                        // _genderHasError = !_fbKey.currentState.fields['gender'].currentState.validate();
                       });
                     },
                     // valueTransformer: (text) => num.tryParse(text),
