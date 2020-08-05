@@ -46,6 +46,11 @@ class FormBuilderTextField extends StatefulWidget {
   final bool showCursor;
   final FormFieldSetter onSaved;
   final VoidCallback onTap;
+  final ToolbarOptions toolbarOptions;
+  final SmartQuotesType smartQuotesType;
+  final SmartDashesType smartDashesType;
+  final ScrollPhysics scrollPhysics;
+  final bool enableSuggestions;
 
   FormBuilderTextField({
     Key key,
@@ -89,6 +94,11 @@ class FormBuilderTextField extends StatefulWidget {
     this.showCursor,
     this.onSaved,
     this.onTap,
+    this.toolbarOptions,
+    this.smartQuotesType,
+    this.smartDashesType,
+    this.scrollPhysics,
+    this.enableSuggestions = true,
   })  : assert(initialValue == null || controller == null),
         super(key: key);
 
@@ -116,10 +126,6 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
     } else {
       _effectiveController.text = _initialValue ?? '';
     }
-
-    _effectiveController.addListener(() {
-      widget.onChanged?.call(_effectiveController.text);
-    });
     super.initState();
   }
 
@@ -148,6 +154,14 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
         enabled: !_readOnly,
       ),
       autovalidate: widget.autovalidate ?? false,
+      onChanged: (val) {
+        widget.onChanged?.call(_effectiveController.text);
+      },
+      toolbarOptions: widget.toolbarOptions,
+      smartQuotesType: widget.smartQuotesType,
+      smartDashesType: widget.smartDashesType,
+      scrollPhysics: widget.scrollPhysics,
+      enableSuggestions: widget.enableSuggestions,
       // initialValue: "${_initialValue ?? ''}",
       maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,

@@ -45,6 +45,7 @@ class MyHomePageState extends State<MyHomePage> {
   final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
   final _ageController = TextEditingController(text: '45');
+  bool _ageHasError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -236,7 +237,7 @@ class MyHomePageState extends State<MyHomePage> {
                     label: RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(text: 'I have read and agree to the '),
+                          TextSpan(text: 'I have read and agree to the ', style: TextStyle(color: Colors.black)),
                           TextSpan(
                             text: 'Terms and Conditions',
                             style: TextStyle(color: Colors.blue),
@@ -256,26 +257,30 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   SizedBox(height: 15),
-                  Text(
-                    'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                  ),
                   FormBuilderTextField(
                     attribute: 'age',
+                    // autovalidate: true,
                     controller: _ageController,
-                    decoration: const InputDecoration(
-                      labelText:
-                          'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                    decoration: InputDecoration(
+                      labelText: 'Age',
+                      suffixIcon: _ageHasError ?
+                          Icon(Icons.error, color: Colors.red)
+                          : Icon(Icons.check, color: Colors.green),
                     ),
-                    onChanged: _onChanged,
+                    onChanged: (val) {
+                      print(val);
+                      setState(() {
+                        _ageHasError = !_fbKey
+                            .currentState.fields['age'].currentState
+                            .validate();
+                      });
+                    },
                     valueTransformer: (text) {
                       return text == null ? null : num.tryParse(text);
                     },
                     validators: [
                       FormBuilderValidators.required(),
                       FormBuilderValidators.numeric(),
-                      // FormBuilderValidators.max(70),
-                      FormBuilderValidators.minLength(2, allowEmpty: true),
                     ],
                     keyboardType: TextInputType.number,
                   ),
@@ -596,3 +601,5 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
