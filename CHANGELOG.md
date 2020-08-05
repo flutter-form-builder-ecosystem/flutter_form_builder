@@ -1,3 +1,8 @@
+## [4.0.0-alpha.10] - 05-Aug-2020
+* Renamed `pattern` validator to `match`.
+* Rename `requireTrue` validator to `equal` to allow equality check with other types. Closes #397
+* 
+
 ## [4.0.0-alpha.9] - 05-Aug-2020
 * Improved programmatically changing field values. Multiple fields can be updated once 
 * Fix conversion to double error in `FormBuilderRating`

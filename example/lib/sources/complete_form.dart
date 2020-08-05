@@ -19,8 +19,6 @@ class CompleteFormState extends State<CompleteForm> {
   bool readOnly = false;
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormBuilderFieldState> _genderKey = GlobalKey();
-  final GlobalKey<FormBuilderFieldState> _ageKey = GlobalKey();
   bool _ageHasError = false;
   bool _genderHasError = false;
 
@@ -219,7 +217,6 @@ class CompleteFormState extends State<CompleteForm> {
                     ]),
                   ),
                   FormBuilderTextField(
-                    key: _ageKey,
                     autovalidate: true,
                     name: 'age',
                     decoration: InputDecoration(
@@ -230,7 +227,8 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        _ageHasError = !_ageKey.currentState.validate();
+                        _ageHasError =
+                            !_fbKey.currentState.fields['age'].validate();
                       });
                     },
                     // valueTransformer: (text) => num.tryParse(text),
@@ -244,7 +242,6 @@ class CompleteFormState extends State<CompleteForm> {
                     textInputAction: TextInputAction.next,
                   ),
                   FormBuilderDropdown(
-                    key: _genderKey,
                     // autovalidate: true,
                     name: 'gender',
                     decoration: InputDecoration(
@@ -267,8 +264,8 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: (val) {
                       print(val);
                       setState(() {
-                        _genderHasError = !_genderKey.currentState.validate();
-                        // _genderHasError = _genderKey.currentState.hasError;
+                        _genderHasError =
+                            !_fbKey.currentState.fields['gender'].validate();
                       });
                     },
                   ),
@@ -408,16 +405,13 @@ class CompleteFormState extends State<CompleteForm> {
                   SizedBox(height: 15),
                   FormBuilderPhoneField(
                     name: 'phone_number',
-                    initialValue: '+254',
-                    // defaultSelectedCountryIsoCode: 'KE',
-                    cursorColor: Colors.black,
-                    // style: TextStyle(color: Colors.black, fontSize: 18),
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Phone Number',
-                        hintText: 'Hint'),
+                      border: OutlineInputBorder(),
+                      labelText: 'Phone Number',
+                      hintText: 'Hint',
+                    ),
                     onChanged: _onChanged,
-                    priorityListByIsoCode: ['US'],
+                    priorityListByIsoCode: ['KE'],
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.numeric(context,
                           errorText: 'Invalid phone number'),
@@ -456,19 +450,7 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      _fbKey.currentState.fields['color_picker']
-                          .patchValue(Colors.black);
-                      _fbKey.currentState.patchValue({
-                        'age': '50',
-                        'slider': 6.7,
-                        'filter_chip': ['Test 1'],
-                        'choice_chip': 'Test 2',
-                        'rate': 4,
-                        'chips_test': [
-                          Contact('Andrew', 'stock@man.com',
-                              'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-                        ],
-                      });
+                      _fbKey.currentState.fields['color_picker'].requestFocus();
 
                       /*if (_fbKey.currentState.saveAndValidate()) {
                         print(_fbKey.currentState.value);

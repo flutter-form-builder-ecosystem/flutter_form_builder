@@ -173,6 +173,9 @@ class FormBuilderPhoneField extends FormBuilderField {
                         hintText: decoration.hintText,
                         hintStyle: decoration.hintStyle,
                       ),
+                      onChanged: (val) {
+                        state.invokeChange();
+                      },
                       maxLines: maxLines,
                       keyboardType: keyboardType,
                       obscureText: obscureText,
@@ -236,26 +239,25 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
 
   @override
   void initState() {
+    super.initState();
     if (widget.controller != null) {
       _effectiveController = widget.controller;
     }
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();
-    _effectiveController.addListener(() {
-      _invokeChange();
-    });
-    super.initState();
   }
 
   Future<void> _parsePhone() async {
+    print('initialValue: $initialValue');
     if (initialValue != null && initialValue.isNotEmpty) {
       try {
         var parseResult = await PhoneNumber().parse(initialValue);
-        print(parseResult);
         if (parseResult != null) {
-          _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
-              parseResult['country_code']);
+          setState(() {
+            _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
+                parseResult['country_code']);
+          });
           _effectiveController.text = parseResult['national_number'];
         }
       } catch (error) {
@@ -264,7 +266,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
     }
   }
 
-  void _invokeChange() {
+  void invokeChange() {
     didChange(fullNumber);
     widget.onChanged?.call(fullNumber);
   }
@@ -321,7 +323,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
                 ),
             onValuePicked: (Country country) {
               setState(() => _selectedDialogCountry = country);
-              _invokeChange();
+              invokeChange();
             },
             itemFilter: widget.countryFilterByIsoCode != null
                 ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
