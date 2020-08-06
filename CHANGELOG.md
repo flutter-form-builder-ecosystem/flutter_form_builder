@@ -1,3 +1,6 @@
+## [3.13.0] - 06-Aug-2020
+* Added support for Flutter v1.20
+
 ## [3.12.3] - 05-Aug-2020
 * Fixed bug in parsing phone number from `FormBuilderPhoneField`'s `initialValue`
 * Added more TextField options: `toolbarOptions`, `smartQuotesType`, `smartDashesType`, `scrollPhysics`, `enableSuggestions`

@@ -77,6 +77,7 @@ class _FormBuilderSegmentedControlState
   @override
   Widget build(BuildContext context) {
     _readOnly = _formState?.readOnly == true || widget.readOnly;
+    final theme = Theme.of(context);
 
     return FormField(
       key: _fieldKey,
@@ -104,14 +105,14 @@ class _FormBuilderSegmentedControlState
             padding: const EdgeInsets.only(top: 10.0),
             child: CupertinoSegmentedControl(
               borderColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.borderColor ?? Theme.of(context).primaryColor,
+                  ? theme.disabledColor
+                  : widget.borderColor ?? theme.primaryColor,
               selectedColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.selectedColor ?? Theme.of(context).primaryColor,
+                  ? theme.disabledColor
+                  : widget.selectedColor ?? theme.primaryColor,
               pressedColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.pressedColor ?? Theme.of(context).primaryColor,
+                  ? theme.disabledColor
+                  : widget.pressedColor ?? theme.primaryColor,
               groupValue: field.value,
               children: {
                 for (var option in widget.options)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -20,6 +21,12 @@ class FormBuilderCheckbox extends StatefulWidget {
   final bool tristate;
   final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
+  final Color focusColor;
+  final Color hoverColor;
+  final FocusNode focusNode;
+  final bool autoFocus;
+  final MouseCursor mouseCursor;
+  final VisualDensity visualDensity;
 
   FormBuilderCheckbox({
     Key key,
@@ -38,6 +45,12 @@ class FormBuilderCheckbox extends StatefulWidget {
     this.tristate = false,
     this.onSaved,
     this.contentPadding = const EdgeInsets.all(0.0),
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+    this.autoFocus = false,
+    this.mouseCursor,
+    this.visualDensity,
   }) : super(key: key);
 
   @override
@@ -81,6 +94,12 @@ class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
               field.didChange(value);
               widget.onChanged?.call(value);
             },
+      focusColor: widget.focusColor,
+      hoverColor: widget.hoverColor,
+      focusNode: widget.focusNode,
+      autofocus: widget.autoFocus,
+      mouseCursor: widget.mouseCursor,
+      visualDensity: widget.visualDensity,
     );
   }
 

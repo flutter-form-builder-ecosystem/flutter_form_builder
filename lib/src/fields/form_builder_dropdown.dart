@@ -31,6 +31,7 @@ class FormBuilderDropdown<T> extends StatefulWidget {
   final Color focusColor;
   final Color dropdownColor;
   final bool autofocus;
+  final bool autovalidate;
   final FocusNode focusNode;
   final VoidCallback onTap;
   final List<Widget> Function(BuildContext) selectedItemBuilder;
@@ -63,6 +64,7 @@ class FormBuilderDropdown<T> extends StatefulWidget {
     this.focusColor,
     this.dropdownColor,
     this.autofocus = false,
+    this.autovalidate = false,
     this.focusNode,
     this.onTap,
     this.selectedItemBuilder,
@@ -100,6 +102,7 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
     _readOnly = _formState?.readOnly == true || widget.readOnly;
 
     return FormField(
+      autovalidate: widget.autovalidate,
       key: _fieldKey,
       enabled: !_readOnly,
       initialValue: _initialValue,

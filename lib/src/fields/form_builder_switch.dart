@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -63,6 +64,13 @@ class FormBuilderSwitch extends StatefulWidget {
   final DragStartBehavior dragStartBehavior;
   final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
+  final MouseCursor mouseCursor;
+  final bool autofocus;
+  final FocusNode focusNode;
+  final Color hoverColor;
+  final Color focusColor;
+  final ImageErrorListener onActiveThumbImageError;
+  final ImageErrorListener onInactiveThumbImageError;
 
   FormBuilderSwitch({
     Key key,
@@ -84,6 +92,13 @@ class FormBuilderSwitch extends StatefulWidget {
     this.dragStartBehavior = DragStartBehavior.start,
     this.onSaved,
     this.contentPadding = const EdgeInsets.all(0.0),
+    this.mouseCursor,
+    this.autofocus = false,
+    this.focusNode,
+    this.hoverColor,
+    this.focusColor,
+    this.onActiveThumbImageError,
+    this.onInactiveThumbImageError,
   }) : super(key: key);
 
   @override
@@ -161,6 +176,13 @@ class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
                 inactiveThumbImage: widget.activeThumbImage,
                 inactiveTrackColor: widget.inactiveTrackColor,
                 materialTapTargetSize: widget.materialTapTargetSize,
+                mouseCursor: widget.mouseCursor,
+                autofocus: widget.autofocus,
+                focusNode: widget.focusNode,
+                hoverColor: widget.hoverColor,
+                focusColor: widget.focusColor,
+                onActiveThumbImageError: widget.onActiveThumbImageError,
+                onInactiveThumbImageError: widget.onInactiveThumbImageError,
               ),
               onTap: _readOnly
                   ? null

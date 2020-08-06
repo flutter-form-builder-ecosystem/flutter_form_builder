@@ -51,6 +51,8 @@ class FormBuilderTextField extends StatefulWidget {
   final SmartDashesType smartDashesType;
   final ScrollPhysics scrollPhysics;
   final bool enableSuggestions;
+  final Iterable<String> autofillHints;
+  final String obscuringCharacter;
 
   FormBuilderTextField({
     Key key,
@@ -60,7 +62,7 @@ class FormBuilderTextField extends StatefulWidget {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.autovalidate = false,
-    this.maxLines,
+    this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -99,6 +101,8 @@ class FormBuilderTextField extends StatefulWidget {
     this.smartDashesType,
     this.scrollPhysics,
     this.enableSuggestions = true,
+    this.autofillHints,
+    this.obscuringCharacter = '•',
   })  : assert(initialValue == null || controller == null),
         super(key: key);
 
@@ -192,6 +196,8 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       minLines: widget.minLines,
       showCursor: widget.showCursor,
       onTap: widget.onTap,
+      autofillHints: widget.autofillHints,
+      obscuringCharacter: widget.obscuringCharacter,
     );
   }
 

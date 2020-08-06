@@ -39,6 +39,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// The latest choosable date. Defaults to 2100.
   final DateTime lastDate;
+  final DateTime currentDate;
 
   /// The initial time prefilled in the picker dialog when it is shown. Defaults
   /// to noon. Explicitly set this to `null` to use the current time.
@@ -147,6 +148,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final String fieldLabelText;
   final String helpText;
   final DatePickerEntryMode initialEntryMode;
+  final TimePickerEntryMode timePickerInitialEntryMode;
 
   FormBuilderDateTimePicker({
     Key key,
@@ -214,6 +216,8 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.fieldLabelText,
     this.helpText,
     this.initialEntryMode = DatePickerEntryMode.calendar,
+    this.currentDate,
+    this.timePickerInitialEntryMode,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
@@ -360,7 +364,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         }
         break;
       default:
-        throw 'Unexcepted input type ${widget.inputType}';
+        throw 'Unexpected input type ${widget.inputType}';
         break;
     }
     newValue = newValue ?? currentValue;
@@ -393,6 +397,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         fieldLabelText: widget.fieldLabelText,
         helpText: widget.helpText,
         initialEntryMode: widget.initialEntryMode,
+        currentDate: widget.currentDate,
         builder: widget.builder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
@@ -425,6 +430,10 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
             },
         useRootNavigator: widget.useRootNavigator,
         routeSettings: widget.routeSettings,
+        initialEntryMode: widget.timePickerInitialEntryMode,
+        helpText: widget.helpText,
+        confirmText: widget.confirmText,
+        cancelText: widget.cancelText,
       ).then(
         (result) {
           return result ??
