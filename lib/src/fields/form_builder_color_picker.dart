@@ -135,6 +135,12 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
   }
 
   @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _readOnly = _formState?.readOnly == true || widget.readOnly;
 
