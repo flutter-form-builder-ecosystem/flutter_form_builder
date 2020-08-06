@@ -124,7 +124,7 @@ class FormBuilderPhoneField extends StatefulWidget {
 
 class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   bool _readOnly = false;
-  TextEditingController _effectiveController = TextEditingController();
+  TextEditingController _effectiveController;
   FormBuilderState _formState;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   String _initialValue;
@@ -147,9 +147,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
         ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
-    if (widget.controller != null) {
-      _effectiveController = widget.controller;
-    }
+    _effectiveController = widget.controller ?? TextEditingController();
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();

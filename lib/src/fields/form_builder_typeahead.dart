@@ -197,6 +197,9 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
   @override
   void dispose() {
     _formState?.unregisterFieldKey(widget.attribute);
+    if (widget.controller == null) {
+      _typeAheadController.dispose();
+    }
     super.dispose();
   }
 }
