@@ -217,7 +217,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.helpText,
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.currentDate,
-    this.timePickerInitialEntryMode,
+    this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
