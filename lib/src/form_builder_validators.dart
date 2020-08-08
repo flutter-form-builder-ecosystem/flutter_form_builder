@@ -193,7 +193,7 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (num.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty) {
+      if (num.tryParse(valueCandidate ?? '') == null) {
         return errorText ??
             FormBuilderLocalizations.of(context).numericErrorText;
       }
