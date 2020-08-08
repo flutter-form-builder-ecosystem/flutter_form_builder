@@ -1,3 +1,8 @@
+## [3.13.1] - 08-Aug-2020
+* Added default value to `timePickerInitialEntryMode` to be consistent with `showTimePicker` API. Closes #403
+* Ensure `TextEditingController`s aren't unused and are properly disposed.
+* Use latest version of `flutter_chips_input` with fix for "Bad UTF-8 found..."
+
 ## [3.13.0] - 06-Aug-2020
 * Added support for Flutter v1.20
 
