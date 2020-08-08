@@ -3,6 +3,7 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -46,6 +47,9 @@ class FormBuilderTextField extends FormBuilderField {
   final SmartDashesType smartDashesType;
   final SmartQuotesType smartQuotesType;
   final ToolbarOptions toolbarOptions;
+  final Iterable<String> autofillHints;
+  final String obscuringCharacter;
+  final MouseCursor mouseCursor;
 
   FormBuilderTextField({
     Key key,
@@ -100,6 +104,9 @@ class FormBuilderTextField extends FormBuilderField {
     this.smartQuotesType,
     this.toolbarOptions,
     this.selectionHeightStyle = ui.BoxHeightStyle.tight,
+    this.autofillHints,
+    this.obscuringCharacter = '•',
+    this.mouseCursor,
   })  : assert(initialValue == null || controller == null),
         assert(textAlign != null),
         assert(autofocus != null),
@@ -192,6 +199,9 @@ class FormBuilderTextField extends FormBuilderField {
               smartDashesType: smartDashesType,
               smartQuotesType: smartQuotesType,
               toolbarOptions: toolbarOptions,
+              mouseCursor: mouseCursor,
+              obscuringCharacter: obscuringCharacter,
+              autofillHints: autofillHints,
             );
           },
         );

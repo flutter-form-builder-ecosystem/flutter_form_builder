@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -10,6 +11,9 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   final Color checkColor;
   final ListTileControlAffinity controlAffinity;
   final EdgeInsets contentPadding;
+  final bool autofocus;
+  final bool tristate;
+  final bool selected;
 
   FormBuilderCheckbox({
     //From Super
@@ -33,6 +37,9 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.secondary,
     this.controlAffinity = ListTileControlAffinity.leading,
     this.contentPadding = const EdgeInsets.all(0.0),
+    this.autofocus = false,
+    this.tristate = false,
+    this.selected = false,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -70,6 +77,10 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 activeColor: activeColor,
                 secondary: secondary,
                 controlAffinity: controlAffinity,
+                autofocus: autofocus,
+                tristate: tristate,
+                contentPadding: contentPadding,
+                selected: selected,
               ),
             );
           },

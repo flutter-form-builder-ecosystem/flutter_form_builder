@@ -47,6 +47,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
           decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderSegmentedControlState state = field;
+            final theme = Theme.of(state.context);
 
             return InputDecorator(
               decoration: decoration.copyWith(
@@ -55,16 +56,16 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
               ),
               child: Padding(
                 padding: EdgeInsets.only(top: 10.0),
-                child: CupertinoSegmentedControl(
+                child: CupertinoSegmentedControl<T>(
                   borderColor: state.readOnly
-                      ? Theme.of(state.context).disabledColor
-                      : borderColor ?? Theme.of(state.context).primaryColor,
+                      ? theme.disabledColor
+                      : borderColor ?? theme.primaryColor,
                   selectedColor: state.readOnly
-                      ? Theme.of(state.context).disabledColor
-                      : selectedColor ?? Theme.of(state.context).primaryColor,
+                      ? theme.disabledColor
+                      : selectedColor ?? theme.primaryColor,
                   pressedColor: state.readOnly
-                      ? Theme.of(state.context).disabledColor
-                      : pressedColor ?? Theme.of(state.context).primaryColor,
+                      ? theme.disabledColor
+                      : pressedColor ?? theme.primaryColor,
                   groupValue: state.value,
                   children: {
                     for (var option in options)
@@ -75,7 +76,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                   },
                   padding: padding,
                   unselectedColor: unselectedColor,
-                  onValueChanged: (dynamic value) {
+                  onValueChanged: (T value) {
                     state.requestFocus();
                     if (state.readOnly) {
                       field.reset();

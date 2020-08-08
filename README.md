@@ -442,19 +442,19 @@ max, minLength, maxLength, IP, credit card etc. with default `errorText` in Engl
 ability to include you own error message that will display whenever validation fails.
 
 Available built-in validators include:
-* `FormBuilderValidators.required()` - requires the field have a non-empty value.
-* `FormBuilderValidators.numeric()` - requires the field's value to be a valid number.
-* `FormBuilderValidators.min()` - requires the field's value to be greater than or equal to the provided number.
-* `FormBuilderValidators.max()` - requires the field's value to be less than or equal to the provided number.
-* `FormBuilderValidators.minLength()` - requires the length of the field's value to be greater than or equal to the provided minimum length.
-* `FormBuilderValidators.maxLength()` - requires the length of the field's value to be less than or equal to the provided maximum length.
-* `FormBuilderValidators.pattern()` - requires the field's value to match the provided regex pattern.
-* `FormBuilderValidators.email()` - requires the field's value to be a valid email address.
-* ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
-* `FormBuilderValidators.IP()` - requires the field's value to be a valid IP address.
 * `FormBuilderValidators.creditCard()` - requires the field's value to be a valid credit card number.
 * `FormBuilderValidators.date()` - requires the field's value to be a valid date string.
-* `FormBuilderValidators.requiredTrue()` - requires the field's value be true.
+* `FormBuilderValidators.email()` - requires the field's value to be a valid email address.
+* `FormBuilderValidators.equal()` - requires the field's value be equal to provided object.
+* `FormBuilderValidators.IP()` - requires the field's value to be a valid IP address.
+* `FormBuilderValidators.match()` - requires the field's value to match the provided regex pattern.
+* `FormBuilderValidators.max()` - requires the field's value to be less than or equal to the provided number.
+* `FormBuilderValidators.maxLength()` - requires the length of the field's value to be less than or equal to the provided maximum length.
+* `FormBuilderValidators.min()` - requires the field's value to be greater than or equal to the provided number.
+* `FormBuilderValidators.minLength()` - requires the length of the field's value to be greater than or equal to the provided minimum length.
+* `FormBuilderValidators.numeric()` - requires the field's value to be a valid number.
+* `FormBuilderValidators.required()` - requires the field have a non-empty value.
+* ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
 
 ### Using multiple validators
 `FormBuilderValidators` class comes with a very useful static function named `compose()` which takes in any number of `FormFieldValidator` functions. On validation each validator is run and if any returns a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the returned string.

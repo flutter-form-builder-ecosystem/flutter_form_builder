@@ -49,6 +49,8 @@ class FormBuilderSwitch extends FormBuilderField {
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final ListTileControlAffinity controlAffinity;
+  final bool autofocus;
+  final bool selected;
 
   FormBuilderSwitch({
     Key key,
@@ -76,6 +78,8 @@ class FormBuilderSwitch extends FormBuilderField {
     this.secondary,
     this.controlAffinity = ListTileControlAffinity.trailing,
     this.contentPadding = const EdgeInsets.all(0.0),
+    this.autofocus = false,
+    this.selected = false,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -117,6 +121,9 @@ class FormBuilderSwitch extends FormBuilderField {
                 inactiveTrackColor: inactiveTrackColor,
                 secondary: secondary,
                 subtitle: subtitle,
+                autofocus: autofocus,
+                selected: selected,
+                controlAffinity: controlAffinity,
               ),
             );
           },

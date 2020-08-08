@@ -36,6 +36,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   /// The latest choosable date. Defaults to 2100.
   final DateTime lastDate;
 
+  final DateTime currentDate;
+
   /// The initial time prefilled in the picker dialog when it is shown. Defaults
   /// to noon. Explicitly set this to `null` to use the current time.
   final TimeOfDay initialTime;
@@ -137,6 +139,10 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   final RouteSettings routeSettings;
 
   final PickerType pickerType;
+  final DateChangedCallback onConfirm;
+  final DateCancelledCallback onCancel;
+  final DatePickerTheme theme;
+  final TimePickerEntryMode timePickerInitialEntryMode;
 
   FormBuilderDateTimePicker({
     Key key,
@@ -207,6 +213,11 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     this.helpText,
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.routeSettings,
+    this.currentDate,
+    this.onConfirm,
+    this.onCancel,
+    this.theme,
+    this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -339,7 +350,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         }
         break;
       default:
-        throw 'Unexcepted input type ${widget.inputType}';
+        throw 'Unexpected input type ${widget.inputType}';
         break;
     }
     newValue = newValue ?? currentValue;
@@ -353,16 +364,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
       return widget.datePicker(context);
     } else {
       if (widget.pickerType == PickerType.cupertino) {
-        return DatePicker.showDatePicker(
-          context,
-          showTitleActions: true,
-          minTime: widget.firstDate,
-          maxTime: widget.lastDate,
-          currentTime: currentValue,
-          locale: enumValueFromString(
-              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
-              LocaleType.values),
-        );
+        return DatePicker.showDatePicker(context,
+            showTitleActions: true,
+            minTime: widget.firstDate,
+            maxTime: widget.lastDate,
+            currentTime: currentValue,
+            locale: enumValueFromString(
+                (widget.locale ?? Localizations.localeOf(context))
+                    ?.languageCode,
+                LocaleType.values),
+            theme: widget.theme,
+            onCancel: widget.onCancel,
+            onConfirm: widget.onConfirm);
       }
       return showDatePicker(
         context: context,
@@ -392,6 +405,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         helpText: widget.helpText,
         initialEntryMode: widget.initialEntryMode,
         routeSettings: widget.routeSettings,
+        currentDate: widget.currentDate,
       );
     }
   }
@@ -446,6 +460,10 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
             },
         useRootNavigator: widget.useRootNavigator,
         routeSettings: widget.routeSettings,
+        initialEntryMode: widget.timePickerInitialEntryMode,
+        helpText: widget.helpText,
+        confirmText: widget.confirmText,
+        cancelText: widget.cancelText,
       ).then(
         (result) {
           return result ??

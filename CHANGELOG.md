@@ -1,7 +1,9 @@
-## [4.0.0-alpha.10] - 05-Aug-2020
+## [4.0.0-beta.1] - 09-Aug-2020
+* Flutter v1.20 improvements
+* Fix bug in `FormBuilderValidators.numeric` if valueCandidate is `null`
 * Renamed `pattern` validator to `match`.
 * Rename `requireTrue` validator to `equal` to allow equality check with other types. Closes #397
-* 
+* Fix bug in parsing phone number from `FormBuilderPhoneField.initialValue`
 
 ## [4.0.0-alpha.9] - 05-Aug-2020
 * Improved programmatically changing field values. Multiple fields can be updated once 

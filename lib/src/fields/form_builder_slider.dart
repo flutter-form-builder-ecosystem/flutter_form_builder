@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -20,6 +21,8 @@ class FormBuilderSlider extends FormBuilderField {
   final TextStyle minTextStyle;
   final TextStyle textStyle;
   final TextStyle maxTextStyle;
+  final bool autofocus;
+  final MouseCursor mouseCursor;
 
   FormBuilderSlider({
     Key key,
@@ -50,6 +53,8 @@ class FormBuilderSlider extends FormBuilderField {
     this.minTextStyle,
     this.textStyle,
     this.maxTextStyle,
+    this.autofocus = false,
+    this.mouseCursor,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -93,23 +98,32 @@ class FormBuilderSlider extends FormBuilderField {
                               state.requestFocus();
                               field.didChange(value);
                             },
+                      autofocus: autofocus,
+                      mouseCursor: mouseCursor,
+                      focusNode: focusNode,
                     ),
                     Row(
                       children: <Widget>[
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
-                          Text('${_numberFormat.format(min)}',
-                              style: minTextStyle ?? textStyle),
+                          Text(
+                            '${_numberFormat.format(min)}',
+                            style: minTextStyle ?? textStyle,
+                          ),
                         Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.minMax)
-                          Text('${_numberFormat.format(field.value)}',
-                              style: textStyle),
+                          Text(
+                            '${_numberFormat.format(field.value)}',
+                            style: textStyle,
+                          ),
                         Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
-                          Text('${_numberFormat.format(max)}',
-                              style: maxTextStyle ?? textStyle),
+                          Text(
+                            '${_numberFormat.format(max)}',
+                            style: maxTextStyle ?? textStyle,
+                          ),
                       ],
                     ),
                   ],
