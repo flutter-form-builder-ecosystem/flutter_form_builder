@@ -46,7 +46,7 @@ class FormBuilderValidators {
     return (valueCandidate) {
       if (valueCandidate != value) {
         return errorText ??
-            FormBuilderLocalizations.of(context).requiredErrorText;
+            FormBuilderLocalizations.of(context).equalErrorText(value);
       }
       return null;
     };
