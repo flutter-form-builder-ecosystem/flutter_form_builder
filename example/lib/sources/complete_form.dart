@@ -44,6 +44,13 @@ class CompleteFormState extends State<CompleteForm> {
               readOnly: false,
               child: Column(
                 children: <Widget>[
+                  FormBuilderLocationField(
+                    name: 'location',
+                    decoration: InputDecoration(labelText: 'Location'),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   FormBuilderFilterChip(
                     name: 'filter_chip',
                     decoration: const InputDecoration(
@@ -420,7 +427,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ]),
                   ),
                   SizedBox(height: 15),
-                  FormBuilderSearchableDropdown<Contact>(
+                  /*FormBuilderSearchableDropdown<Contact>(
                     decoration: InputDecoration(
                       labelText: 'Phone Number',
                       border: OutlineInputBorder(),
@@ -436,7 +443,7 @@ class CompleteFormState extends State<CompleteForm> {
                     searchHint: 'Select one',
                     isExpanded: true,
                     onChanged: _onChanged,
-                  ),
+                  ),*/
                 ],
               ),
             ),
