@@ -11,11 +11,16 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-
   flutter_form_builder:
     path: ../
   widget_with_codeview: ^1.0.3
   cupertino_icons: any
+
+dependency_overrides:
+  flutter_datetime_picker:
+    git:
+      url: https://github.com/ditheshthegreat/flutter_datetime_picker
+      ref: patch-1
 
 dev_dependencies:
   flutter_test:
