@@ -18,7 +18,7 @@ class FormBuilderRangeSlider extends StatefulWidget {
   final ValueChanged<RangeValues> onChangeStart;
   final ValueChanged<RangeValues> onChangeEnd;
   final RangeLabels labels;
-  final RangeSemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback semanticFormatterCallback;
   final FormFieldSetter onSaved;
 
   FormBuilderRangeSlider({
@@ -57,9 +57,7 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
-            ? _formState.initialValue[widget.attribute]
-            : null);
+        (_formState.initialValue.containsKey(widget.attribute) ? _formState.initialValue[widget.attribute] : null);
     super.initState();
   }
 
@@ -79,8 +77,7 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
       initialValue: _initialValue,
       validator: (val) {
         for (int i = 0; i < widget.validators.length; i++) {
-          if (widget.validators[i](val) != null)
-            return widget.validators[i](val);
+          if (widget.validators[i](val) != null) return widget.validators[i](val);
         }
         return null;
       },
@@ -122,8 +119,7 @@ class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
                       : (RangeValues values) {
                           FocusScope.of(context).requestFocus(FocusNode());
                           field.didChange(values);
-                          if (widget.onChanged != null)
-                            widget.onChanged(values);
+                          if (widget.onChanged != null) widget.onChanged(values);
                         },
                 ),
                 Row(

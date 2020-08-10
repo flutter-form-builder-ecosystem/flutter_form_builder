@@ -1,3 +1,6 @@
+## [3.9.1] - 10-Aug-2020
+* Fixed `RangeSemanticFormatterCallback` error. Changed field with `SemanticFormatterCallback`.
+
 ## [3.9.0] - 03-May-2020
 * New field type `FormBuilderImagePicker` courtesy of [Gustavo Vítor](https://github.com/gustavovitor)
 * Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/form_builder_map_field) to [sy_flutter_widgets](https://pub.dev/packages/rating_bar) with more configuration options
