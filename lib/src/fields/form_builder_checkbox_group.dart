@@ -128,7 +128,7 @@ class _FormBuilderCheckboxGroupState<T>
       builder: (FormFieldState field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: _readOnly,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: GroupedCheckbox(
