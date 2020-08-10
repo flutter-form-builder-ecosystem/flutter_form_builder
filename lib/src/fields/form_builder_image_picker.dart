@@ -39,7 +39,7 @@ class FormBuilderImagePicker extends StatefulWidget {
   final CameraDevice preferredCameraDevice;
 
   final int maxImages;
-  final String defaultImage;
+  final ImageProvider defaultImage;
   final Widget cameraIcon;
   final Widget galleryIcon;
   final Widget cameraLabel;
@@ -195,7 +195,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                         Image(
                           width: widget.imageWidth,
                           height: widget.imageHeight,
-                          image: AssetImage(widget.defaultImage),
+                          image: widget.defaultImage,
                         ):Container(
                           width: widget.imageWidth,
                           height: widget.imageHeight,

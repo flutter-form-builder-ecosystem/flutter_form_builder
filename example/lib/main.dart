@@ -452,6 +452,7 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(
                       labelText: 'Images',
                     ),
+                    defaultImage: NetworkImage('https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
                     maxImages: 3,
                     iconColor: Colors.red,
                     // readOnly: true,
