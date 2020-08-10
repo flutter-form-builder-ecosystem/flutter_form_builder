@@ -84,24 +84,33 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   bool get dirty => !_dirty;
 
-  // Only autovalidate if dirty
-  bool get autovalidate => dirty && widget.autovalidate;
+  // Only autovalidate if touched
+  bool get autovalidate =>
+      _touched &&
+      (widget.autovalidate || _formBuilderState?.autovalidate == true);
 
   T get initialValue => _initialValue;
 
   FormBuilderState _formBuilderState;
 
+  @override
+  bool get hasError => super.hasError && widget.decoration?.errorText != null;
+
+  @override
+  bool get isValid => super.isValid && widget.decoration?.errorText == null;
+
   bool _readOnly = false;
 
   bool _dirty = false;
+
+  bool _touched = false;
 
   T _initialValue;
 
   FocusNode _focusNode;
 
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ??
-      (_focusNode ??= FocusNode(debugLabel: '${widget.name}'));
+  FocusNode get effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -113,6 +122,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
         ((_formBuilderState?.initialValue?.containsKey(widget.name) ?? false)
             ? _formBuilderState.initialValue[widget.name]
             : null);
+    effectiveFocusNode.addListener(setTouchedHandler);
     setValue(_initialValue);
   }
 
@@ -123,11 +133,16 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
         widget.name, widget.valueTransformer?.call(value) ?? value);
   }
 
+  void setTouchedHandler() {
+    if (effectiveFocusNode.hasFocus && _touched == false) {
+      setState(() => _touched = true);
+      print('${widget.name} touched');
+    }
+  }
+
   @override
   void didChange(T val) {
-    setState(() {
-      _dirty = true;
-    });
+    setState(() => _dirty = true);
     super.didChange(val);
     widget.onChanged?.call(value);
   }
@@ -145,7 +160,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   }
 
   void requestFocus() {
-    FocusScope.of(context).requestFocus(_effectiveFocusNode);
+    FocusScope.of(context).requestFocus(effectiveFocusNode);
   }
 
   @override

@@ -141,6 +141,8 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool get readOnly => widget.readOnly;
 
+  bool get autovalidate => widget.autovalidate;
+
   @override
   void initState() {
     super.initState();

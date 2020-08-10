@@ -53,6 +53,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxState state = field;
 

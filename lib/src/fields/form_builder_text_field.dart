@@ -145,6 +145,7 @@ class FormBuilderTextField extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final _FormBuilderTextFieldState state = field;
             /*final effectiveDecoration = (decoration ?? const InputDecoration())
@@ -155,7 +156,7 @@ class FormBuilderTextField extends FormBuilderField {
 
             return TextField(
               controller: state._effectiveController,
-              focusNode: focusNode,
+              focusNode: state.effectiveFocusNode,
               decoration: decoration.copyWith(
                 errorText: decoration?.errorText ?? field.errorText,
               ),

@@ -103,7 +103,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
                         color: theme.disabledColor,
                       )
                     : textFieldConfiguration.style,
-                focusNode: state.typeAheadFocusNode,
+                focusNode: state.effectiveFocusNode,
                 decoration: decoration.copyWith(
                   enabled: !state.readOnly,
                   errorText: decoration?.errorText ?? field.errorText,
@@ -158,18 +158,12 @@ class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState {
   FormBuilderTypeAhead get widget => super.widget as FormBuilderTypeAhead;
 
   TextEditingController _typeAheadController;
-  FocusNode _typeAheadFocusNode;
-
-  FocusNode get typeAheadFocusNode => _typeAheadFocusNode;
 
   TextEditingController get typeAheadController => _typeAheadController;
 
   @override
   void initState() {
     super.initState();
-    _typeAheadFocusNode = readOnly
-        ? AlwaysDisabledFocusNode()
-        : widget.textFieldConfiguration.focusNode;
     _typeAheadController = widget.controller ??
         TextEditingController(text: widget.initialValue?.toString());
   }

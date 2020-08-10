@@ -154,12 +154,9 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   FormBuilderColorPickerField get widget =>
       super.widget as FormBuilderColorPickerField;
 
-  FocusNode _effectiveFocusNode;
   TextEditingController _effectiveController;
 
   TextEditingController get effectiveController => _effectiveController;
-
-  FocusNode get effectiveFocusNode => _effectiveFocusNode;
 
   String get valueString => value?.toHex();
 
@@ -168,10 +165,9 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
   @override
   void initState() {
     super.initState();
-    _effectiveFocusNode = widget.focusNode ?? FocusNode();
     _effectiveController = widget.controller ?? TextEditingController();
     _effectiveController.text = valueString;
-    _effectiveFocusNode.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   Future<void> _handleFocus() async {

@@ -83,6 +83,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
             enabled: enabled,
             onReset: onReset,
             decoration: decoration,
+            focusNode: focusNode,
             builder: (FormFieldState field) {
               final _FormBuilderFilterChipState state = field;
               return InputDecorator(

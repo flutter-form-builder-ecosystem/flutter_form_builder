@@ -53,6 +53,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final _FormBuilderCheckboxGroupState<T> state = field;
 
@@ -66,6 +67,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                 value: field.value,
                 options: options,
                 onChanged: (val) {
+                  state.requestFocus();
                   field.didChange(val);
                 },
                 activeColor: activeColor,

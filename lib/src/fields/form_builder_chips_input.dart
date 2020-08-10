@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   final ChipsInputSuggestions findSuggestions;
+
   // final ValueChanged<List<T>> onChanged;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
@@ -65,6 +66,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
             enabled: enabled,
             onReset: onReset,
             decoration: decoration,
+            focusNode: focusNode,
             builder: (FormFieldState field) {
               final _FormBuilderChipsInputState state = field;
 
@@ -94,7 +96,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
                 textCapitalization: textCapitalization,
                 allowChipEditing: allowChipEditing,
                 autofocus: autofocus,
-                focusNode: focusNode,
+                focusNode: state.effectiveFocusNode,
                 textOverflow: textOverflow,
               );
             });

@@ -80,6 +80,7 @@ class FormBuilderImagePicker extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final _FormBuilderImagePickerState state = field;
             final theme = Theme.of(state.context);

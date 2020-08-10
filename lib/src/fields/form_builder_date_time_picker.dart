@@ -231,6 +231,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final _FormBuilderDateTimePickerState state = field;
 
@@ -253,7 +254,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
               enabled: state.readOnly ? false : enabled,
               autocorrect: autocorrect,
               controller: state.textFieldController,
-              focusNode: state.focusNode,
+              focusNode: state.effectiveFocusNode,
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
               maxLengthEnforced: maxLengthEnforced,
@@ -291,9 +292,6 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   FormBuilderDateTimePicker get widget =>
       super.widget as FormBuilderDateTimePicker;
   DateTime _initialValue;
-  FocusNode _focusNode;
-
-  FocusNode get focusNode => _focusNode;
 
   TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
@@ -312,11 +310,10 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   void initState() {
     super.initState();
     stateCurrentValue = _initialValue;
-    _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
     _textFieldController.text =
         _initialValue == null ? '' : dateFormat.format(_initialValue);
-    _focusNode.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
@@ -324,7 +321,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     setState(() {
       stateCurrentValue = value;
     });
-    if (_focusNode.hasFocus) {
+    if (effectiveFocusNode.hasFocus) {
       _textFieldController.clear();
     }
   }

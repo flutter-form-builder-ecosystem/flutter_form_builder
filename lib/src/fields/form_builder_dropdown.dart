@@ -111,7 +111,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                                   _changeValue(field, value);
                                 },
                           onTap: onTap,
-                          focusNode: focusNode,
+                          focusNode: state.effectiveFocusNode,
                           autofocus: autofocus,
                           dropdownColor: dropdownColor,
                           focusColor: focusColor,

@@ -127,6 +127,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final FormBuilderDateRangePickerState state = field;
 
@@ -192,25 +193,20 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
   FormBuilderDateRangePicker get widget =>
       super.widget as FormBuilderDateRangePicker;
 
-  FocusNode _effectiveFocusNode;
-
-  FocusNode get effectiveFocusNode => _effectiveFocusNode;
-
   TextEditingController _effectiveController;
 
   TextEditingController get effectiveController => _effectiveController;
 
   @override
   void initState() {
-    _effectiveFocusNode = widget.focusNode ?? FocusNode();
     _effectiveController =
         widget.controller ?? TextEditingController(text: _valueToText());
-    _effectiveFocusNode.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
     super.initState();
   }
 
   Future<void> _handleFocus() async {
-    if (_effectiveFocusNode.hasFocus) {
+    if (effectiveFocusNode.hasFocus) {
       _hideKeyboard();
       var initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
@@ -271,7 +267,6 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
   @override
   void dispose() {
     _effectiveController?.dispose();
-    _effectiveFocusNode?.dispose();
     super.dispose();
   }
 }

@@ -78,6 +78,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
             enabled: enabled,
             onReset: onReset,
             decoration: decoration,
+            focusNode: focusNode,
             builder: (FormFieldState<T> field) {
               final _FormBuilderChoiceChipState<T> state = field;
 

@@ -100,7 +100,7 @@ class FormBuilderSlider extends FormBuilderField {
                             },
                       autofocus: autofocus,
                       mouseCursor: mouseCursor,
-                      focusNode: focusNode,
+                      focusNode: state.effectiveFocusNode,
                     ),
                     Row(
                       children: <Widget>[

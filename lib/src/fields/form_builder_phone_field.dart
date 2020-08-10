@@ -135,8 +135,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                     onTap: state.readOnly
                         ? null
                         : () {
-                            FocusScope.of(state.context)
-                                .requestFocus(state._effectiveFocusNode);
+                            state.requestFocus();
                             if (isCupertinoPicker) {
                               state._openCupertinoCountryPicker();
                             } else {
@@ -165,7 +164,7 @@ class FormBuilderPhoneField extends FormBuilderField {
                     child: TextField(
                       enabled: !state.readOnly,
                       style: style,
-                      focusNode: state._effectiveFocusNode,
+                      focusNode: state.effectiveFocusNode,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
@@ -220,11 +219,6 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
   @override
   FormBuilderPhoneField get widget => super.widget as FormBuilderPhoneField;
 
-  final FocusNode _focusNode = FocusNode();
-
-  FocusNode get _effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ?? FocusNode());
-
   TextEditingController _effectiveController = TextEditingController();
   Country _selectedDialogCountry;
 
@@ -278,7 +272,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
         return CountryPickerCupertino(
           pickerSheetHeight: widget.cupertinoPickerSheetHeight ?? 300.0,
           onValuePicked: (Country country) {
-            _effectiveFocusNode.requestFocus();
+            effectiveFocusNode.requestFocus();
             setState(() => _selectedDialogCountry = country);
             didChange(fullNumber);
           },
