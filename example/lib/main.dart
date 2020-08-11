@@ -63,6 +63,7 @@ class MyHomePageState extends State<MyHomePage> {
               // autovalidate: true,
               initialValue: {
                 'movie_rating': 3,
+                'filter_chip': ['Test', 'Test 1'],
               },
               readOnly: false,
               child: Column(
@@ -70,7 +71,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderFilterChip(
                     attribute: 'filter_chip',
                     decoration: const InputDecoration(
-                      labelText: 'Select many options',
+                      labelText: 'Filter Chip',
                     ),
                     options: [
                       FormBuilderFieldOption(
@@ -452,7 +453,8 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(
                       labelText: 'Images',
                     ),
-                    defaultImage: NetworkImage('https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
+                    defaultImage: NetworkImage(
+                        'https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
                     maxImages: 3,
                     iconColor: Colors.red,
                     // readOnly: true,

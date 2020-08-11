@@ -105,7 +105,7 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         : widget.textFieldConfiguration.focusNode;
 
     _initialValue = widget.initialValue ??
-        _typeAheadController.text ??
+        widget.controller?.text ??
         ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);

@@ -89,7 +89,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
       return false;
     } else {
       return /*_fieldKey.currentState.value != null &&*/ _fieldKey
-          .currentState.value.length >=
+              .currentState.value.length >=
           widget.maxImages;
     }
   }
@@ -161,8 +161,8 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             child: kIsWeb
                                 ? Image.memory(item, fit: BoxFit.cover)
                                 : item is String
-                                ? Image.network(item, fit: BoxFit.cover)
-                                : Image.file(item, fit: BoxFit.cover),
+                                    ? Image.network(item, fit: BoxFit.cover)
+                                    : Image.file(item, fit: BoxFit.cover),
                           ),
                           if (!_readOnly)
                             InkWell(
@@ -191,24 +191,26 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                     }).toList()),
                     if (!_readOnly && !_hasMaxImages)
                       GestureDetector(
-                        child: widget.defaultImage != null?
-                        Image(
-                          width: widget.imageWidth,
-                          height: widget.imageHeight,
-                          image: widget.defaultImage,
-                        ):Container(
-                          width: widget.imageWidth,
-                          height: widget.imageHeight,
-                          child: Icon(Icons.camera_enhance,
-                              color: _readOnly
-                                  ? theme.disabledColor
-                                  : widget.iconColor ?? theme.primaryColor
-                          ),
-                          color: (_readOnly
-                              ? theme.disabledColor
-                              : widget.iconColor ?? theme.primaryColor)
-                              .withAlpha(50),
-                        ),
+                        child: widget.defaultImage != null
+                            ? Image(
+                                width: widget.imageWidth,
+                                height: widget.imageHeight,
+                                image: widget.defaultImage,
+                              )
+                            : Container(
+                                width: widget.imageWidth,
+                                height: widget.imageHeight,
+                                child: Icon(Icons.camera_enhance,
+                                    color: _readOnly
+                                        ? theme.disabledColor
+                                        : widget.iconColor ??
+                                            theme.primaryColor),
+                                color: (_readOnly
+                                        ? theme.disabledColor
+                                        : widget.iconColor ??
+                                            theme.primaryColor)
+                                    .withAlpha(50),
+                              ),
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
@@ -218,7 +220,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                                 maxWidth: widget.maxWidth,
                                 imageQuality: widget.imageQuality,
                                 preferredCameraDevice:
-                                widget.preferredCameraDevice,
+                                    widget.preferredCameraDevice,
                                 cameraIcon: widget.cameraIcon,
                                 galleryIcon: widget.galleryIcon,
                                 cameraLabel: widget.cameraLabel,

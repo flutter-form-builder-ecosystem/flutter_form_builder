@@ -1,3 +1,8 @@
+## [3.13.2] - 11-Aug-2020
+* Added `defaultImage` attribute to `FormBuilderImagePicker`, acts as placeholder. Courtesy [luwenbin8023](https://github.com/luwenbin8023)
+* Fix bug in `FormBuilderCheckboxGroup` where `InputDecoration` isn't enabled. Closes #405
+* Fix issue where form's initialValue would potentially be ignored. Fixes #341
+
 ## [3.13.1] - 08-Aug-2020
 * Added default value to `timePickerInitialEntryMode` to be consistent with `showTimePicker` API. Closes #403
 * Ensure `TextEditingController`s aren't unused and are properly disposed.
