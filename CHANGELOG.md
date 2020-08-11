@@ -1,3 +1,6 @@
+## [3.14.0-alpha.1] - 11-Aug-2020
+* Fixed `RangeSemanticFormatterCallback` error. Changed field with `SemanticFormatterCallback`.
+
 ## [3.13.2] - 11-Aug-2020
 * Added `defaultImage` attribute to `FormBuilderImagePicker`, acts as placeholder. Courtesy [luwenbin8023](https://github.com/luwenbin8023)
 * Fix bug in `FormBuilderCheckboxGroup` where `InputDecoration` isn't enabled. Closes #405
