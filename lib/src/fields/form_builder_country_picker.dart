@@ -100,14 +100,16 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
       },
       builder: (FormFieldState<Country> field) {
         return GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-            if (widget.isCupertinoPicker) {
-              _openCupertinoCountryPicker(field);
-            } else {
-              _openCountryPickerDialog(field);
-            }
-          },
+          onTap: _readOnly
+              ? null
+              : () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  if (widget.isCupertinoPicker) {
+                    _openCupertinoCountryPicker(field);
+                  } else {
+                    _openCountryPickerDialog(field);
+                  }
+                },
           child: InputDecorator(
             decoration: widget.decoration.copyWith(
               errorText: field.errorText,
@@ -116,14 +118,9 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
               key: ObjectKey(field.value),
               children: [
                 CountryPickerUtils.getDefaultFlagImage(field.value),
-                SizedBox(
-                  width: 10,
-                ),
+                SizedBox(width: 10),
                 Expanded(
-                  child: Text(
-                    field.value?.name ?? '',
-                    style: widget.style,
-                  ),
+                  child: Text(field.value?.name ?? '', style: widget.style),
                 ),
               ],
             ),
@@ -192,8 +189,8 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text(country.name),
-        // visualDensity: VisualDensity.compact, //TODO: Re-enable after Flutter 1.17
+        title: Text('${country.name}'),
+        visualDensity: VisualDensity.compact,
       ),
     );
   }
