@@ -12,7 +12,8 @@ dependencies:
 
   flutter_typeahead: ^1.8.7
   intl: ^0.16.1
-  flutter_chips_input: ^1.9.1
+  flutter_chips_input:
+    git: https://github.com/ryanhz/flutter_chips_input.git
   datetime_picker_formfield: ^1.0.0
   flutter_colorpicker: ^0.3.4
   signature: ^3.2.0
