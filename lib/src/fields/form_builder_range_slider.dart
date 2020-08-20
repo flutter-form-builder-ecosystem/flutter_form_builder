@@ -12,7 +12,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
   final ValueChanged<RangeValues> onChangeStart;
   final ValueChanged<RangeValues> onChangeEnd;
   final RangeLabels labels;
-  final RangeSemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback semanticFormatterCallback;
   final DisplayValues displayValues;
   final TextStyle minTextStyle;
   final TextStyle textStyle;
