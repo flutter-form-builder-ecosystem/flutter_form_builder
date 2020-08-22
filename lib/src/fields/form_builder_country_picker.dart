@@ -136,7 +136,10 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
         builder: (BuildContext context) {
           return CountryPickerCupertino(
             pickerSheetHeight: widget.cupertinoPickerSheetHeight ?? 300.0,
-            onValuePicked: (Country value) => field.didChange(value),
+            onValuePicked: (Country value) {
+              field.didChange(value);
+              widget.onChanged?.call(value);
+            },
             itemFilter: widget.countryFilterByIsoCode != null
                 ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
                 : null,
@@ -169,7 +172,10 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
                   'Select Your Country',
                   style: widget.dialogTextStyle ?? widget.style,
                 ),
-            onValuePicked: (Country value) => field.didChange(value),
+            onValuePicked: (Country value) {
+              field.didChange(value);
+              widget.onChanged?.call(value);
+            },
             itemFilter: widget.countryFilterByIsoCode != null
                 ? (c) => widget.countryFilterByIsoCode.contains(c.isoCode)
                 : null,
