@@ -30,12 +30,13 @@ class FormBuilderCountryPicker extends StatefulWidget {
   final bool isCupertinoPicker;
   final double cupertinoPickerSheetHeight;
   final Color cursorColor;
+  final String placeholderText;
 
   FormBuilderCountryPicker({
     Key key,
     @required this.attribute,
-    this.defaultSelectedCountryIsoCode = 'US',
-    @required this.initialValue,
+    this.defaultSelectedCountryIsoCode,
+    this.initialValue,
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
@@ -53,8 +54,8 @@ class FormBuilderCountryPicker extends StatefulWidget {
     this.isCupertinoPicker = false,
     this.cupertinoPickerSheetHeight,
     this.cursorColor,
-  })  : assert(initialValue != null),
-        super(key: key);
+    this.placeholderText = 'Select country',
+  }) : super(key: key);
 
   @override
   _FormBuilderCountryPickerState createState() =>
@@ -117,10 +118,14 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
             child: Row(
               key: ObjectKey(field.value),
               children: [
-                CountryPickerUtils.getDefaultFlagImage(field.value),
+                if (field.value != null)
+                  CountryPickerUtils.getDefaultFlagImage(field.value),
                 SizedBox(width: 10),
                 Expanded(
-                  child: Text(field.value?.name ?? '', style: widget.style),
+                  child: Text(
+                    field.value?.name ?? widget.placeholderText ?? '',
+                    style: widget.style,
+                  ),
                 ),
               ],
             ),
