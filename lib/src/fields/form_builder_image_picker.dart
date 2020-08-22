@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -158,11 +160,18 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             width: widget.imageWidth,
                             height: widget.imageHeight,
                             margin: widget.imageMargin,
+                            /*child: kIsWeb
+                                ? Image.memory(item, fit: BoxFit.cover)
+                                : item is String
+                                    ? Image.network(item, fit: BoxFit.cover)
+                                    : Image.file(item, fit: BoxFit.cover),*/
                             child: kIsWeb
                                 ? Image.memory(item, fit: BoxFit.cover)
                                 : item is String
                                     ? Image.network(item, fit: BoxFit.cover)
-                                    : Image.file(item, fit: BoxFit.cover),
+                                    : item is File
+                                        ? Image.file(item, fit: BoxFit.cover)
+                                        : item,
                           ),
                           if (!_readOnly)
                             InkWell(

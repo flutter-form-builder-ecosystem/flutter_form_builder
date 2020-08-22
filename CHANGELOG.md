@@ -1,3 +1,10 @@
+## [3.13.3] - 11-Aug-2020
+* Fix bug where CountryPicker still works in readOnly. Closes #413
+* Fixed bug where onChanged is not fired in CountryPicker. Closes #424
+* Allow null initialValue for CountryPicker. Closes #421
+* Minor improvements for ImagePicker on web platform. Closes #414
+* Added video tutorial reference to README
+
 ## [3.14.0-alpha.1] - 11-Aug-2020
 * Fixed `RangeSemanticFormatterCallback` error. Changed field with `SemanticFormatterCallback`.
 

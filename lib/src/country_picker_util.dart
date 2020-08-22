@@ -4,7 +4,7 @@ import 'package:country_pickers/country.dart';
 class CountryPickerUtil {
   static Country _getCountryByField(
       String Function(Country) fieldAccessor, String query) {
-    final queryUpperCase = query.toUpperCase();
+    final queryUpperCase = query?.toUpperCase();
     return countryList.firstWhere(
         (country) => fieldAccessor(country).toUpperCase() == queryUpperCase,
         orElse: () => null);
