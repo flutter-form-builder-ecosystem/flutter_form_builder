@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
         // brightness: Brightness.dark,
         inputDecorationTheme: const InputDecorationTheme(
           // labelStyle: TextStyle(color: Colors.purple),
-          border: OutlineInputBorder(
-            gapPadding: 10,
-          ),
+          border: OutlineInputBorder(gapPadding: 10),
         ),
       ),
       home: MyHomePage(),
@@ -64,15 +62,14 @@ class MyHomePageState extends State<MyHomePage> {
               initialValue: {
                 'movie_rating': 3,
                 'filter_chip': ['Test', 'Test 1'],
+                'date': DateTime.now(),
               },
               readOnly: false,
               child: Column(
                 children: <Widget>[
                   FormBuilderFilterChip(
                     attribute: 'filter_chip',
-                    decoration: const InputDecoration(
-                      labelText: 'Filter Chip',
-                    ),
+                    decoration: const InputDecoration(labelText: 'Filter Chip'),
                     options: [
                       FormBuilderFieldOption(
                           value: 'Test', child: Text('Test')),
@@ -171,7 +168,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderDateTimePicker(
                     attribute: 'date',
                     onChanged: _onChanged,
-                    inputType: InputType.time,
+                    inputType: InputType.both,
                     decoration: const InputDecoration(
                       labelText: 'Appointment Time',
                     ),
@@ -471,9 +468,9 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderCountryPicker(
-                    initialValue: 'Germany',
+                    // initialValue: 'Germany',
                     attribute: 'country',
-                    cursorColor: Colors.black,
+                    readOnly: true,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
                     priorityListByIsoCode: ['US'],
                     valueTransformer: (value) {
@@ -491,7 +488,6 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderPhoneField(
                     attribute: 'phone_number',
-                    initialValue: '+254',
                     // defaultSelectedCountryIsoCode: 'KE',
                     cursorColor: Colors.black,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
