@@ -1,4 +1,7 @@
-## [3.13.3] - 11-Aug-2020
+## [3.14.0-alpha.2] - 22-Aug-2020
+* Include changes made in v3.13.3
+
+## [3.13.3] - 22-Aug-2020
 * Fix bug where CountryPicker still works in readOnly. Closes #413
 * Fixed bug where onChanged is not fired in CountryPicker. Closes #424
 * Allow null initialValue for CountryPicker. Closes #421
