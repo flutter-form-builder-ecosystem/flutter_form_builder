@@ -82,7 +82,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     super.initState();
@@ -112,9 +112,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

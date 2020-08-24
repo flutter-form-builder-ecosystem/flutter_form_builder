@@ -125,13 +125,19 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     _textEditingController =
         TextEditingController(text: HexColor(_initialValue)?.toHex());
     widget.focusNode?.addListener(_handleFocus);
     _focusNode.addListener(_handleFocus);
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -152,13 +158,12 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       autovalidate: widget.autovalidate ?? false,
       builder: (FormFieldState<Color> field) {
         _effectiveController.text = HexColor(field.value)?.toHex();
+        final defaultBorderColor = Colors.grey;
 
         return TextField(
           style: widget.style,
@@ -176,9 +181,8 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(constraints.minHeight / 2),
                     ),
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
+                    border:
+                        Border.all(color: field.value ?? defaultBorderColor),
                   ),
                 );
               },

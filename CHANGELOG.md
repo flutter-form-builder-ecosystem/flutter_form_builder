@@ -1,3 +1,64 @@
+## [3.13.3] - 22-Aug-2020
+* Fix bug where CountryPicker still works in readOnly. Closes #413
+* Fixed bug where onChanged is not fired in CountryPicker. Closes #424
+* Allow null initialValue for CountryPicker. Closes #421
+* Minor improvements for ImagePicker on web platform. Closes #414
+* Added video tutorial reference to README
+
+## [3.13.2] - 11-Aug-2020
+* Added `defaultImage` attribute to `FormBuilderImagePicker`, acts as placeholder. Courtesy [luwenbin8023](https://github.com/luwenbin8023)
+* Fix bug in `FormBuilderCheckboxGroup` where `InputDecoration` isn't enabled. Closes #405
+* Fix issue where form's initialValue would potentially be ignored. Fixes #341
+
+## [3.13.1] - 08-Aug-2020
+* Added default value to `timePickerInitialEntryMode` to be consistent with `showTimePicker` API. Closes #403
+* Ensure `TextEditingController`s aren't unused and are properly disposed.
+* Use latest version of `flutter_chips_input` with fix for "Bad UTF-8 found..."
+
+## [3.13.0] - 06-Aug-2020
+* Added support for Flutter v1.20
+
+## [3.12.3] - 05-Aug-2020
+* Fixed bug in parsing phone number from `FormBuilderPhoneField`'s `initialValue`
+* Added more TextField options: `toolbarOptions`, `smartQuotesType`, `smartDashesType`, `scrollPhysics`, `enableSuggestions`
+* Fixed `onChanged` bug on TextField
+
+## [3.12.2] - 03-Aug-2020
+* Convert FormBuilderRating value to double for RatingBar. Closes #392
+
+## [3.12.1] - 03-Aug-2020
+* Deprecate `FormBuilderRadio` in favour of `FormBuilderRadioGroup`
+* Deprecate `FormBuilderCheckbox` in favour of `FormBuilderCheckboxGroup`
+* Fix bug `"NoSuchMethodError: invalid member on null: 'initialValue'"` when fields not wrapped in `FormBuilder`
+
+## [3.12.0] - 24-Jul-2020
+* Added new field `FormBuilderCheckboxGroup`. Closes #188
+* Removed `group_radio_button` library dependency, made own implementation with label fix. Closes #376, #335
+* Add web support for ImagePicker. Courtesy of [vin-fandemand](https://github.com/vin-fandemand)
+* Fixed bug where value within `TextEditingController` ignored in `FormBuilderTypeahead`
+
+## [3.11.6] - 20-Jul-2020
+* Upgraded dependencies
+* Fixed error '`The getter 'initialValue' was called on null`' if no `FormBuilderState` ancestry. Closes #364
+* Fixed issue where DropdownButton `hint` overlaps with `labelText`. Closes #372
+* Fix '`initialEntryMode != null`' assertion in DateTimePicker. Closes #373
+
+## [3.11.5] - 17-Jul-2020
+* Included more `showDatePicker` function options
+* Fixed bug where `onChanged` not triggered by ImagePicker. Closes #366
+* Deprecate `underline` for Dropdown. Ignored
+* Added more options for DropdownButton. Closes #153, #337
+* Type `FormBuilderDropdown` class. Closes #360
+* Included options to set camera and gallery icons and label. Closes #340
+* Added `bottomSheetPadding` option for ImagePicker. Closes #339
+
+## [3.11.4] - 08-Jul-2020
+* Added text styles options to Slider
+* Re-implement number formatting on Slider field
+* Fix bug in ChoiceChip & FilterChip where using FieldOption label instead of child breaks. Closes #348
+* Added `labelPadding` and `labelStyle` to ChoiceChip field
+* Fix SignaturePad initialValue. 
+
 ## [3.11.3] - 21-Jun-2020
 * Reverted changes to PhoneField causing focus issues
 

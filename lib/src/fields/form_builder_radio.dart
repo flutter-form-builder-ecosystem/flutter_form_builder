@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+@Deprecated('Prefer using `FormBuilderRadioGroup` instead')
 class FormBuilderRadio extends StatefulWidget {
   final String attribute;
   final List<FormFieldValidator> validators;
@@ -39,6 +40,7 @@ class FormBuilderRadio extends StatefulWidget {
   _FormBuilderRadioState createState() => _FormBuilderRadioState();
 }
 
+// ignore: deprecated_member_use_from_same_package
 class _FormBuilderRadioState extends State<FormBuilderRadio> {
   bool _readOnly = false;
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
@@ -50,7 +52,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     super.initState();
@@ -104,9 +106,7 @@ class _FormBuilderRadioState extends State<FormBuilderRadio> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         final radioList = <Widget>[];

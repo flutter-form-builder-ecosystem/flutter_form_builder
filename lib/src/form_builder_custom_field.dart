@@ -46,7 +46,7 @@ class FormBuilderCustomFieldState<T> extends State<FormBuilderCustomField<T>> {
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.formField.initialValue ??
         (widget.initialValue ??
-            (_formState.initialValue.containsKey(widget.attribute)
+            ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
                 ? _formState.initialValue[widget.attribute]
                 : null));
     super.initState();

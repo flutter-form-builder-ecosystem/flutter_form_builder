@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -30,6 +31,9 @@ class FormBuilderSlider extends StatefulWidget {
   final TextStyle minTextStyle;
   final TextStyle textStyle;
   final TextStyle maxTextStyle;
+  final FocusNode focusNode;
+  final bool autofocus;
+  final MouseCursor mouseCursor;
 
   FormBuilderSlider({
     Key key,
@@ -55,6 +59,9 @@ class FormBuilderSlider extends StatefulWidget {
     this.minTextStyle,
     this.textStyle = const TextStyle(),
     this.maxTextStyle,
+    this.focusNode,
+    this.autofocus = false,
+    this.mouseCursor,
   }) : super(key: key);
 
   @override
@@ -73,7 +80,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     _numberFormat = widget.numberFormat ?? NumberFormat('##0.0');
@@ -104,9 +111,7 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
@@ -130,6 +135,9 @@ class _FormBuilderSliderState extends State<FormBuilderSlider> {
                   onChangeStart: widget.onChangeStart,
                   label: widget.label,
                   semanticFormatterCallback: widget.semanticFormatterCallback,
+                  focusNode: widget.focusNode,
+                  autofocus: widget.autofocus,
+                  mouseCursor: widget.mouseCursor,
                   onChanged: _readOnly
                       ? null
                       : (double value) {

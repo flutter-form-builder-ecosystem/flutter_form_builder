@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
@@ -38,11 +41,18 @@ class FormBuilderImagePicker extends StatefulWidget {
   final CameraDevice preferredCameraDevice;
 
   final int maxImages;
+  final ImageProvider defaultImage;
+  final Widget cameraIcon;
+  final Widget galleryIcon;
+  final Widget cameraLabel;
+  final Widget galleryLabel;
+  final EdgeInsets bottomSheetPadding;
 
   const FormBuilderImagePicker({
     Key key,
     @required this.attribute,
     this.initialValue,
+    this.defaultImage,
     this.validators = const [],
     this.valueTransformer,
     this.labelText,
@@ -59,6 +69,11 @@ class FormBuilderImagePicker extends StatefulWidget {
     this.imageQuality,
     this.preferredCameraDevice = CameraDevice.rear,
     this.maxImages,
+    this.cameraIcon = const Icon(Icons.camera_enhance),
+    this.galleryIcon = const Icon(Icons.image),
+    this.cameraLabel = const Text('Camera'),
+    this.galleryLabel = const Text('Gallery'),
+    this.bottomSheetPadding = const EdgeInsets.all(0),
   }) : super(key: key);
 
   @override
@@ -86,7 +101,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = List.of(widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : []));
     super.initState();
@@ -116,11 +131,11 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (field) {
+        var theme = Theme.of(context);
+
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
@@ -131,9 +146,7 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               Container(
                 height: widget.imageHeight,
                 child: ListView(
@@ -147,14 +160,24 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                             width: widget.imageWidth,
                             height: widget.imageHeight,
                             margin: widget.imageMargin,
-                            child: item is String
-                                ? Image.network(item, fit: BoxFit.cover)
-                                : Image.file(item, fit: BoxFit.cover),
+                            /*child: kIsWeb
+                                ? Image.memory(item, fit: BoxFit.cover)
+                                : item is String
+                                    ? Image.network(item, fit: BoxFit.cover)
+                                    : Image.file(item, fit: BoxFit.cover),*/
+                            child: kIsWeb
+                                ? Image.memory(item, fit: BoxFit.cover)
+                                : item is String
+                                    ? Image.network(item, fit: BoxFit.cover)
+                                    : item is File
+                                        ? Image.file(item, fit: BoxFit.cover)
+                                        : item,
                           ),
                           if (!_readOnly)
                             InkWell(
                               onTap: () {
                                 field.didChange([...field.value]..remove(item));
+                                widget.onChanged?.call(field.value);
                               },
                               child: Container(
                                 margin: const EdgeInsets.all(3),
@@ -177,33 +200,51 @@ class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
                     }).toList()),
                     if (!_readOnly && !_hasMaxImages)
                       GestureDetector(
-                        child: Container(
-                            width: widget.imageWidth,
-                            height: widget.imageHeight,
-                            child: Icon(Icons.camera_enhance,
-                                color: _readOnly
-                                    ? Theme.of(context).disabledColor
-                                    : widget.iconColor ??
-                                        Theme.of(context).primaryColor),
-                            color: (_readOnly
-                                    ? Theme.of(context).disabledColor
-                                    : widget.iconColor ??
-                                        Theme.of(context).primaryColor)
-                                .withAlpha(50)),
+                        child: widget.defaultImage != null
+                            ? Image(
+                                width: widget.imageWidth,
+                                height: widget.imageHeight,
+                                image: widget.defaultImage,
+                              )
+                            : Container(
+                                width: widget.imageWidth,
+                                height: widget.imageHeight,
+                                child: Icon(Icons.camera_enhance,
+                                    color: _readOnly
+                                        ? theme.disabledColor
+                                        : widget.iconColor ??
+                                            theme.primaryColor),
+                                color: (_readOnly
+                                        ? theme.disabledColor
+                                        : widget.iconColor ??
+                                            theme.primaryColor)
+                                    .withAlpha(50),
+                              ),
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
                             builder: (_) {
-                              return ImageSourceSheet(
+                              return ImageSourceBottomSheet(
                                 maxHeight: widget.maxHeight,
                                 maxWidth: widget.maxWidth,
                                 imageQuality: widget.imageQuality,
                                 preferredCameraDevice:
                                     widget.preferredCameraDevice,
+                                cameraIcon: widget.cameraIcon,
+                                galleryIcon: widget.galleryIcon,
+                                cameraLabel: widget.cameraLabel,
+                                galleryLabel: widget.galleryLabel,
                                 onImageSelected: (image) {
                                   field.didChange([...field.value, image]);
+                                  widget.onChanged?.call(field.value);
                                   Navigator.of(context).pop();
                                 },
+                                onImage: (image) {
+                                  field.didChange([...field.value, image]);
+                                  widget.onChanged?.call(field.value);
+                                  Navigator.of(context).pop();
+                                },
+                                bottomSheetPadding: widget.bottomSheetPadding,
                               );
                             },
                           );

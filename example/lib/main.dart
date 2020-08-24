@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
         // brightness: Brightness.dark,
         inputDecorationTheme: const InputDecorationTheme(
           // labelStyle: TextStyle(color: Colors.purple),
-          border: OutlineInputBorder(
-            gapPadding: 10,
-          ),
+          border: OutlineInputBorder(gapPadding: 10),
         ),
       ),
       home: MyHomePage(),
@@ -44,6 +42,8 @@ class MyHomePageState extends State<MyHomePage> {
 
   final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
+  final _ageController = TextEditingController(text: '45');
+  bool _ageHasError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +61,15 @@ class MyHomePageState extends State<MyHomePage> {
               // autovalidate: true,
               initialValue: {
                 'movie_rating': 3,
+                'filter_chip': ['Test', 'Test 1'],
+                'date': DateTime.now(),
               },
               readOnly: false,
               child: Column(
                 children: <Widget>[
                   FormBuilderFilterChip(
                     attribute: 'filter_chip',
-                    decoration: const InputDecoration(
-                      labelText: 'Select many options',
-                    ),
+                    decoration: const InputDecoration(labelText: 'Filter Chip'),
                     options: [
                       FormBuilderFieldOption(
                           value: 'Test', child: Text('Test')),
@@ -107,7 +107,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderColorPicker(
                     attribute: 'color_picker',
                     // initialValue: Colors.yellow,
-                    colorPickerType: ColorPickerType.SlidePicker,
+                    colorPickerType: ColorPickerType.BlockPicker,
                     decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
                   SizedBox(height: 15),
@@ -168,7 +168,7 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderDateTimePicker(
                     attribute: 'date',
                     onChanged: _onChanged,
-                    inputType: InputType.time,
+                    inputType: InputType.both,
                     decoration: const InputDecoration(
                       labelText: 'Appointment Time',
                     ),
@@ -235,7 +235,9 @@ class MyHomePageState extends State<MyHomePage> {
                     label: RichText(
                       text: TextSpan(
                         children: [
-                          TextSpan(text: 'I have read and agree to the '),
+                          TextSpan(
+                              text: 'I have read and agree to the ',
+                              style: TextStyle(color: Colors.black)),
                           TextSpan(
                             text: 'Terms and Conditions',
                             style: TextStyle(color: Colors.blue),
@@ -255,25 +257,30 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   SizedBox(height: 15),
-                  Text(
-                    'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                  ),
                   FormBuilderTextField(
                     attribute: 'age',
-                    decoration: const InputDecoration(
-                      labelText:
-                          'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+                    // autovalidate: true,
+                    controller: _ageController,
+                    decoration: InputDecoration(
+                      labelText: 'Age',
+                      suffixIcon: _ageHasError
+                          ? Icon(Icons.error, color: Colors.red)
+                          : Icon(Icons.check, color: Colors.green),
                     ),
-                    onChanged: _onChanged,
+                    onChanged: (val) {
+                      print(val);
+                      setState(() {
+                        _ageHasError = !_fbKey
+                            .currentState.fields['age'].currentState
+                            .validate();
+                      });
+                    },
                     valueTransformer: (text) {
                       return text == null ? null : num.tryParse(text);
                     },
                     validators: [
                       FormBuilderValidators.required(),
                       FormBuilderValidators.numeric(),
-                      // FormBuilderValidators.max(70),
-                      FormBuilderValidators.minLength(2, allowEmpty: true),
                     ],
                     keyboardType: TextInputType.number,
                   ),
@@ -282,12 +289,6 @@ class MyHomePageState extends State<MyHomePage> {
                     attribute: 'gender',
                     decoration: const InputDecoration(
                       labelText: 'Gender',
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.green,
-                          width: 20,
-                        ),
-                      ),
                     ),
                     // initialValue: 'Male',
                     hint: Text('Select Gender'),
@@ -298,6 +299,8 @@ class MyHomePageState extends State<MyHomePage> {
                               child: Text('$gender'),
                             ))
                         .toList(),
+                    // isExpanded: false,
+                    allowClear: true,
                   ),
                   SizedBox(height: 15),
                   FormBuilderTypeAhead(
@@ -312,7 +315,7 @@ class MyHomePageState extends State<MyHomePage> {
                       );
                     },
                     controller: TextEditingController(text: ''),
-                    initialValue: 'Uganda',
+                    initialValue: 'Kenya',
                     suggestionsCallback: (query) {
                       if (query.isNotEmpty) {
                         var lowercaseQuery = query.toLowerCase();
@@ -364,11 +367,10 @@ class MyHomePageState extends State<MyHomePage> {
                     },
                   ),
                   SizedBox(height: 15),
-                  FormBuilderRadio(
+                  FormBuilderRadioGroup(
                     decoration:
                         InputDecoration(labelText: 'My chosen language'),
                     attribute: 'best_language',
-                    leadingInput: true,
                     onChanged: _onChanged,
                     validators: [FormBuilderValidators.required()],
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
@@ -428,12 +430,11 @@ class MyHomePageState extends State<MyHomePage> {
                     isHalfAllowed: true,
                   ),
                   SizedBox(height: 15),
-                  FormBuilderCheckboxList(
+                  FormBuilderCheckboxGroup(
                     decoration:
                         InputDecoration(labelText: 'The language of my people'),
                     attribute: 'languages',
                     initialValue: ['Dart'],
-                    leadingInput: true,
                     options: [
                       FormBuilderFieldOption(value: 'Dart'),
                       FormBuilderFieldOption(value: 'Kotlin'),
@@ -449,6 +450,8 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(
                       labelText: 'Images',
                     ),
+                    defaultImage: NetworkImage(
+                        'https://cohenwoodworking.com/wp-content/uploads/2016/09/image-placeholder-500x500.jpg'),
                     maxImages: 3,
                     iconColor: Colors.red,
                     // readOnly: true,
@@ -461,12 +464,13 @@ class MyHomePageState extends State<MyHomePage> {
                         return null;
                       }
                     ],
+                    onChanged: _onChanged,
                   ),
                   SizedBox(height: 15),
                   FormBuilderCountryPicker(
-                    initialValue: 'Germany',
+                    // initialValue: 'Germany',
                     attribute: 'country',
-                    cursorColor: Colors.black,
+                    readOnly: true,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
                     priorityListByIsoCode: ['US'],
                     valueTransformer: (value) {
@@ -484,7 +488,6 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderPhoneField(
                     attribute: 'phone_number',
-                    initialValue: '+254',
                     // defaultSelectedCountryIsoCode: 'KE',
                     cursorColor: Colors.black,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
@@ -503,7 +506,7 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderSignaturePad(
-                    //initialValue: sampleSignature,
+                    initialValue: sampleSignature,
                     decoration: const InputDecoration(labelText: 'Signature'),
                     attribute: 'signature',
                     // height: 250,
@@ -516,12 +519,8 @@ class MyHomePageState extends State<MyHomePage> {
                     decoration: const InputDecoration(labelText: 'Radio Group'),
                     onChanged: _onChanged,
                     options: [
-                      FormBuilderFieldOption(
-                        value: 'Male',
-                      ),
-                      FormBuilderFieldOption(
-                        value: 'Female',
-                      ),
+                      FormBuilderFieldOption(value: 'M', child: Text('Male')),
+                      FormBuilderFieldOption(value: 'F', child: Text('Female')),
                     ],
                   ),
                   SizedBox(height: 15),
@@ -565,36 +564,26 @@ class MyHomePageState extends State<MyHomePage> {
             ),
             ButtonBar(
               children: <Widget>[
-                MaterialButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(color: Colors.white),
+                Expanded(
+                  child: MaterialButton(
+                    color: Theme.of(context).accentColor,
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      if (_fbKey.currentState.saveAndValidate()) {
+                        print(_fbKey.currentState.value);
+                      } else {
+                        print(_fbKey.currentState.value);
+                        print('validation failed');
+                      }
+                    },
                   ),
-                  onPressed: () {
-                    if (_fbKey.currentState.saveAndValidate()) {
-                      print(_fbKey
-                          .currentState.value['contact_person'].runtimeType);
-                      print(_fbKey.currentState.value);
-                    } else {
-                      print(_fbKey
-                          .currentState.value['contact_person'].runtimeType);
-                      print(_fbKey.currentState.value);
-                      print('validation failed');
-                    }
-                  },
                 ),
-                MaterialButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text(
-                    'Save',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    _fbKey.currentState.save();
-                  },
-                ),
-                MaterialButton(
+                SizedBox(width: 20),
+                Expanded(
+                    child: MaterialButton(
                   color: Theme.of(context).accentColor,
                   child: Text(
                     'Reset',
@@ -603,7 +592,7 @@ class MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     _fbKey.currentState.reset();
                   },
-                ),
+                )),
               ],
             ),
           ],

@@ -121,9 +121,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
         setState(() {
           _savedValue = transformed ?? val;
         });
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(

@@ -59,7 +59,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     super.initState();
@@ -89,9 +89,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
@@ -108,7 +106,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
   Widget _buildRatingBar(FormFieldState<dynamic> field) {
     if (_readOnly) {
       return RatingBar.readOnly(
-        initialRating: field.value,
+        initialRating: field.value.toDouble(),
         maxRating: widget.max.toInt(),
         filledIcon: widget.icon,
         filledColor: widget.filledColor,
@@ -122,7 +120,7 @@ class _FormBuilderRateState extends State<FormBuilderRate> {
     }
     return RatingBar(
       key: ObjectKey(field.value),
-      initialRating: field.value,
+      initialRating: field.value.toDouble(),
       maxRating: widget.max.toInt(),
       filledIcon: widget.icon,
       filledColor: widget.filledColor,

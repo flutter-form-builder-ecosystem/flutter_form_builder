@@ -1,10 +1,11 @@
 import 'dart:io';
+import 'dart:typed_data' show Uint8List;
 
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ImageSourceSheet extends StatelessWidget {
+class ImageSourceBottomSheet extends StatelessWidget {
   /// Optional maximum height of image
   final double maxHeight;
 
@@ -25,7 +26,7 @@ class ImageSourceSheet extends StatelessWidget {
   /// Callback when an image is selected.
   ///
   /// **Note**: This will work on web platform whereas [onImageSelected] will not.
-  final Function(Image) onImage;
+  final Function(Uint8List) onImage;
 
   /// Callback when an image is selected.
   ///
@@ -33,7 +34,13 @@ class ImageSourceSheet extends StatelessWidget {
   /// available.
   final Function(File) onImageSelected;
 
-  ImageSourceSheet({
+  final Widget cameraIcon;
+  final Widget galleryIcon;
+  final Widget cameraLabel;
+  final Widget galleryLabel;
+  final EdgeInsets bottomSheetPadding;
+
+  ImageSourceBottomSheet({
     Key key,
     this.maxHeight,
     this.maxWidth,
@@ -41,6 +48,11 @@ class ImageSourceSheet extends StatelessWidget {
     this.preferredCameraDevice = CameraDevice.rear,
     this.onImage,
     this.onImageSelected,
+    this.cameraIcon,
+    this.galleryIcon,
+    this.cameraLabel,
+    this.galleryLabel,
+    this.bottomSheetPadding,
   })  : assert(null != onImage || null != onImageSelected),
         super(key: key);
 
@@ -54,19 +66,18 @@ class ImageSourceSheet extends StatelessWidget {
       preferredCameraDevice: preferredCameraDevice,
     );
     if (null != pickedFile) {
-      if (null != onImage) {
-        final image = Image.memory(await pickedFile.readAsBytes());
-        onImage(image);
-      }
-
-      if (null != onImageSelected) {
-        // Warning:  this will not work on the web platform because pickedFile
-        // will instead point to a network resource.
-        assert(!kIsWeb);
-
-        final imageFile = File(pickedFile.path);
-        assert(null != imageFile);
-        onImageSelected(imageFile);
+      if (kIsWeb) {
+        if (null != onImage) {
+          onImage(await pickedFile.readAsBytes());
+        }
+      } else {
+        if (null != onImageSelected) {
+          // Warning:  this will not work on the web platform because pickedFile
+          // will instead point to a network resource.
+          final imageFile = File(pickedFile.path);
+          assert(null != imageFile);
+          onImageSelected(imageFile);
+        }
       }
     }
   }
@@ -74,16 +85,17 @@ class ImageSourceSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: bottomSheetPadding,
       child: Wrap(
         children: <Widget>[
           ListTile(
-            leading: const Icon(Icons.camera_enhance),
-            title: Text('Camera'),
+            leading: cameraIcon,
+            title: cameraLabel,
             onTap: () => _onPickImage(ImageSource.camera),
           ),
           ListTile(
-            leading: const Icon(Icons.image),
-            title: Text('Gallery'),
+            leading: galleryIcon,
+            title: galleryLabel,
             onTap: () => _onPickImage(ImageSource.gallery),
           )
         ],

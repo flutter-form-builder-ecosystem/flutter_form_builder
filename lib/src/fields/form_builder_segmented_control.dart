@@ -62,7 +62,7 @@ class _FormBuilderSegmentedControlState
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     super.initState();
@@ -77,6 +77,7 @@ class _FormBuilderSegmentedControlState
   @override
   Widget build(BuildContext context) {
     _readOnly = _formState?.readOnly == true || widget.readOnly;
+    final theme = Theme.of(context);
 
     return FormField(
       key: _fieldKey,
@@ -92,9 +93,7 @@ class _FormBuilderSegmentedControlState
         } else {
           _formState?.setAttributeValue(widget.attribute, val);
         }
-        if (widget.onSaved != null) {
-          widget.onSaved(transformed ?? val);
-        }
+        widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
@@ -106,14 +105,14 @@ class _FormBuilderSegmentedControlState
             padding: const EdgeInsets.only(top: 10.0),
             child: CupertinoSegmentedControl(
               borderColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.borderColor ?? Theme.of(context).primaryColor,
+                  ? theme.disabledColor
+                  : widget.borderColor ?? theme.primaryColor,
               selectedColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.selectedColor ?? Theme.of(context).primaryColor,
+                  ? theme.disabledColor
+                  : widget.selectedColor ?? theme.primaryColor,
               pressedColor: _readOnly
-                  ? Theme.of(context).disabledColor
-                  : widget.pressedColor ?? Theme.of(context).primaryColor,
+                  ? theme.disabledColor
+                  : widget.pressedColor ?? theme.primaryColor,
               groupValue: field.value,
               children: {
                 for (var option in widget.options)

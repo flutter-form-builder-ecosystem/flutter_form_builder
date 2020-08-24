@@ -39,6 +39,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// The latest choosable date. Defaults to 2100.
   final DateTime lastDate;
+  final DateTime currentDate;
 
   /// The initial time prefilled in the picker dialog when it is shown. Defaults
   /// to noon. Explicitly set this to `null` to use the current time.
@@ -138,6 +139,16 @@ class FormBuilderDateTimePicker extends StatefulWidget {
   final double cursorWidth;
   final TextCapitalization textCapitalization;
   final bool alwaysUse24HourFormat;
+  final RouteSettings routeSettings;
+  final String cancelText;
+  final String confirmText;
+  final String errorFormatText;
+  final String errorInvalidText;
+  final String fieldHintText;
+  final String fieldLabelText;
+  final String helpText;
+  final DatePickerEntryMode initialEntryMode;
+  final TimePickerEntryMode timePickerInitialEntryMode;
 
   FormBuilderDateTimePicker({
     Key key,
@@ -170,7 +181,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.validator,
     this.onSaved,
     this.onFieldSubmitted,
-    this.initialDatePickerMode,
+    this.initialDatePickerMode = DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
     this.textDirection,
@@ -196,6 +207,17 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.strutStyle,
     this.useRootNavigator = true,
     this.alwaysUse24HourFormat = false,
+    this.routeSettings,
+    this.cancelText,
+    this.confirmText,
+    this.errorFormatText,
+    this.errorInvalidText,
+    this.fieldHintText,
+    this.fieldLabelText,
+    this.helpText,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
+    this.currentDate,
+    this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
   }) : super(key: key);
 
   final StrutStyle strutStyle;
@@ -227,7 +249,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
-        (_formState.initialValue.containsKey(widget.attribute)
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : null);
     stateCurrentValue = _initialValue;
@@ -251,8 +273,11 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
   @override
   void dispose() {
-    super.dispose();
     _formState?.unregisterFieldKey(widget.attribute);
+    if (widget.controller == null) {
+      _textFieldController.dispose();
+    }
+    super.dispose();
   }
 
   @override
@@ -261,7 +286,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        alwaysUse24HourFormat: true,
+        alwaysUse24HourFormat: widget.alwaysUse24HourFormat,
       ),
       child: DateTimeField(
         key: _fieldKey,
@@ -276,9 +301,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
           } else {
             _formState?.setAttributeValue(widget.attribute, value);
           }
-          if (widget.onSaved != null) {
-            widget.onSaved(transformed ?? value);
-          }
+          widget.onSaved?.call(transformed ?? val);
         },
         validator: (val) =>
             FormBuilderValidators.validateValidators(val, widget.validators),
@@ -344,7 +367,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         }
         break;
       default:
-        throw 'Unexcepted input type ${widget.inputType}';
+        throw 'Unexpected input type ${widget.inputType}';
         break;
     }
     newValue = newValue ?? currentValue;
@@ -368,6 +391,16 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         locale: widget.locale,
         textDirection: widget.textDirection,
         useRootNavigator: widget.useRootNavigator,
+        routeSettings: widget.routeSettings,
+        cancelText: widget.cancelText,
+        confirmText: widget.confirmText,
+        errorFormatText: widget.errorFormatText,
+        errorInvalidText: widget.errorInvalidText,
+        fieldHintText: widget.fieldHintText,
+        fieldLabelText: widget.fieldLabelText,
+        helpText: widget.helpText,
+        initialEntryMode: widget.initialEntryMode,
+        currentDate: widget.currentDate,
         builder: widget.builder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
@@ -399,6 +432,11 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
               );
             },
         useRootNavigator: widget.useRootNavigator,
+        routeSettings: widget.routeSettings,
+        initialEntryMode: widget.timePickerInitialEntryMode,
+        helpText: widget.helpText,
+        confirmText: widget.confirmText,
+        cancelText: widget.cancelText,
       ).then(
         (result) {
           return result ??
