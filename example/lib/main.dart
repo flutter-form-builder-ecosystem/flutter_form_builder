@@ -368,12 +368,20 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderRadioGroup(
+                    orientation: GroupedRadioOrientation.wrap,
                     decoration:
                         InputDecoration(labelText: 'My chosen language'),
                     attribute: 'best_language',
                     onChanged: _onChanged,
                     validators: [FormBuilderValidators.required()],
-                    options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
+                    options: [
+                      'Dart',
+                      'Kotlin',
+                      'Java',
+                      'Swift',
+                      'Objective-C',
+                      'A Very long text that would overflow to the next line and crash'
+                    ]
                         .map((lang) => FormBuilderFieldOption(
                               value: lang,
                               child: Text('$lang'),
@@ -562,7 +570,7 @@ class MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Row(
+            ButtonBar(
               children: <Widget>[
                 Expanded(
                   child: MaterialButton(
@@ -583,17 +591,16 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(width: 20),
                 Expanded(
-                  child: MaterialButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      'Reset',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      _fbKey.currentState.reset();
-                    },
+                    child: MaterialButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text(
+                    'Reset',
+                    style: TextStyle(color: Colors.white),
                   ),
-                ),
+                  onPressed: () {
+                    _fbKey.currentState.reset();
+                  },
+                )),
               ],
             ),
           ],
