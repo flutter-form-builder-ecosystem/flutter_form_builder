@@ -1,3 +1,10 @@
+## [4.0.0-beta.2] - 22-Aug-2020
+* Added new field FormBuilderLocationField
+* Use latest flutter_datetime_picker. Fixes "Error: Type 'DiagnosticableMixin' not found". Closes #406
+* Fixed bug where initialValue not set in DateTimePicker. Closes #425
+* Fixed issue where equal validator yields required errorText
+* Fixes to focus and focusNodes, check if field is touched.
+
 ## [4.0.0-beta.1] - 09-Aug-2020
 * Flutter v1.20 improvements
 * Fix bug in `FormBuilderValidators.numeric` if valueCandidate is `null`

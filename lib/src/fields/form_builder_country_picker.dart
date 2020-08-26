@@ -81,7 +81,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-        focusNode: focusNode,
+          focusNode: focusNode,
           builder: (FormFieldState field) {
             final _FormBuilderCountryPickerState state = field;
 
