@@ -291,11 +291,10 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   @override
   FormBuilderDateTimePicker get widget =>
       super.widget as FormBuilderDateTimePicker;
-  DateTime _initialValue;
 
   TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
-  DateTime stateCurrentValue;
+  // DateTime stateCurrentValue;
 
   DateFormat get dateFormat =>
       widget.format ?? _dateTimeFormats[widget.inputType];
@@ -309,26 +308,22 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   @override
   void initState() {
     super.initState();
-    stateCurrentValue = _initialValue;
     _textFieldController = widget.controller ?? TextEditingController();
     _textFieldController.text =
-        _initialValue == null ? '' : dateFormat.format(_initialValue);
-    effectiveFocusNode.addListener(_handleFocus);
+        initialValue == null ? '' : dateFormat.format(initialValue);
+    // effectiveFocusNode.addListener(_handleFocus);
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
-  Future<void> _handleFocus() async {
-    setState(() {
-      stateCurrentValue = value;
-    });
+  /*Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus) {
       _textFieldController.clear();
     }
-  }
+  }*/
 
   Future<DateTime> onShowPicker(
       BuildContext context, DateTime currentValue) async {
-    currentValue = stateCurrentValue;
+    currentValue = value;
     DateTime newValue;
     switch (widget.inputType) {
       case InputType.date:
@@ -350,9 +345,9 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         throw 'Unexpected input type ${widget.inputType}';
         break;
     }
-    newValue = newValue ?? currentValue;
-    didChange(newValue);
-    return newValue;
+    var finalValue = newValue ?? currentValue;
+    didChange(finalValue);
+    return finalValue;
   }
 
   Future<DateTime> _showDatePicker(

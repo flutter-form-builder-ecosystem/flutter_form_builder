@@ -144,6 +144,7 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderDateTimePicker(
                     name: 'date',
+                    initialValue: DateTime.now(),
                     inputType: InputType.time,
                     decoration: const InputDecoration(
                       labelText: 'Appointment Time',
