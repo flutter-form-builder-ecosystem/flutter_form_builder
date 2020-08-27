@@ -95,7 +95,7 @@ class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
           transformed = widget.valueTransformer(val);
           _formState?.setAttributeValue(widget.attribute, transformed);
         } else {
-          _formState?.setAttributeValue(widget.attribute, val.name);
+          _formState?.setAttributeValue(widget.attribute, val?.name);
         }
         widget.onSaved?.call(transformed ?? val);
       },
