@@ -141,6 +141,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
 
   @override
   void initState() {
+    super.initState();
     _formState = FormBuilder.of(context);
     _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _initialValue = widget.initialValue ??
@@ -151,7 +152,6 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();
-    super.initState();
   }
 
   Future<void> _parsePhone() async {
@@ -167,8 +167,10 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           _effectiveController.text = parseResult['national_number'];
         }
       } catch (error) {
+        print(error);
         _effectiveController.text = _initialValue.replaceFirst('+', '');
       }
+      setState(() {});
     }
   }
 
@@ -183,7 +185,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
 
     return FormField(
       key: _fieldKey,
-      initialValue: fullNumber,
+      initialValue: _initialValue,
       autovalidate: widget.autovalidate,
       validator: (val) =>
           FormBuilderValidators.validateValidators(val, widget.validators),

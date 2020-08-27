@@ -368,12 +368,20 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderRadioGroup(
+                    orientation: GroupedRadioOrientation.wrap,
                     decoration:
                         InputDecoration(labelText: 'My chosen language'),
                     attribute: 'best_language',
                     onChanged: _onChanged,
                     validators: [FormBuilderValidators.required()],
-                    options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
+                    options: [
+                      'Dart',
+                      'Kotlin',
+                      'Java',
+                      'Swift',
+                      'Objective-C',
+                      'A Very long text that would overflow to the next line and crash'
+                    ]
                         .map((lang) => FormBuilderFieldOption(
                               value: lang,
                               child: Text('$lang'),
@@ -470,12 +478,9 @@ class MyHomePageState extends State<MyHomePage> {
                   FormBuilderCountryPicker(
                     // initialValue: 'Germany',
                     attribute: 'country',
-                    readOnly: true,
+                    // readOnly: true,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
                     priorityListByIsoCode: ['US'],
-                    valueTransformer: (value) {
-                      return value.isoCode;
-                    },
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Country',
@@ -488,6 +493,7 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderPhoneField(
                     attribute: 'phone_number',
+                    initialValue: '+25443534543567',
                     // defaultSelectedCountryIsoCode: 'KE',
                     cursorColor: Colors.black,
                     // style: TextStyle(color: Colors.black, fontSize: 18),
@@ -498,10 +504,8 @@ class MyHomePageState extends State<MyHomePage> {
                     onChanged: _onChanged,
                     priorityListByIsoCode: ['US'],
                     validators: [
-                      FormBuilderValidators.numeric(
-                          errorText: 'Invalid phone number'),
                       FormBuilderValidators.required(
-                          errorText: 'This field reqired')
+                          errorText: 'This field required')
                     ],
                   ),
                   SizedBox(height: 15),
@@ -583,17 +587,16 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(width: 20),
                 Expanded(
-                  child: MaterialButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      'Reset',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      _fbKey.currentState.reset();
-                    },
+                    child: MaterialButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text(
+                    'Reset',
+                    style: TextStyle(color: Colors.white),
                   ),
-                ),
+                  onPressed: () {
+                    _fbKey.currentState.reset();
+                  },
+                )),
               ],
             ),
           ],

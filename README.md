@@ -2,11 +2,15 @@
 
 This package helps in creation of Flutter Forms by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form.
 
-[![Youtube Video Tutorial](https://imgur.com/AWzRq5Hl.png)](https://www.youtube.com/watch?v=7FBELQq808M)<br/>
+[![Youtube Video Tutorial](https://imgur.com/AWzRq5Hl.png)](https://www.youtube.com/watch?v=7FBELQq808M)
+
 [Check out the video tutorial from SyntacOps on Youtube](https://www.youtube.com/watch?v=7FBELQq808M)
 
 ## Simple Usage
 To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+    For Flutter 1.17.x, use version 3.12.x
+    For Flutter 1.20.x, use version 3.13.x
+    For Flutter channel > stable (beta, dev, master), use version 3.14.0-alpha.x
 
 ### Example
 ```dart
