@@ -1,3 +1,6 @@
+## [3.14.0-alpha.3] - 22-Aug-2020
+* Include changes made in v3.13.4
+
 ## [3.13.4] - 27-Aug-2020
 * Fixed bug where `CountryPicker.onSaved` breaks if value is null
 * Fixed bug where `initialValue` not saved
