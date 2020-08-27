@@ -1,3 +1,9 @@
+## [3.13.4] - 27-Aug-2020
+* Fixed bug where `CountryPicker.onSaved` breaks if value is null
+* Fixed bug where `initialValue` not saved
+* Fix for label overflows in `RadioGroup` & `CheckboxGroup`
+* Upgrade to latest `flutter_chips_input`. Fixes bugs in Flutter pre-release channels
+
 ## [3.13.3] - 22-Aug-2020
 * Fix bug where CountryPicker still works in readOnly. Closes #413
 * Fixed bug where onChanged is not fired in CountryPicker. Closes #424
