@@ -298,10 +298,10 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       children: <Widget>[
         if (widget.controlAffinity == ControlAffinity.leading) ...[
           control,
-          label
+          Flexible(child: label),
         ],
         if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          label,
+          Flexible(child: label),
           control
         ],
         if (widget.separator != null &&

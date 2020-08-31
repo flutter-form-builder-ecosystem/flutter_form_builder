@@ -284,11 +284,11 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
       children: <Widget>[
         if (widget.controlAffinity == ControlAffinity.leading) ...[
           control,
-          label
+          Flexible(child: label),
         ],
         if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          label,
-          control
+          Flexible(child: label),
+          control,
         ],
         if (widget.separator != null &&
             widget.options[index] != widget.options.last)
