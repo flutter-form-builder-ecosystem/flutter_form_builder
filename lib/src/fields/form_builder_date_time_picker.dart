@@ -235,13 +235,22 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
   FocusNode _focusNode;
   TextEditingController _textFieldController;
   DateTime stateCurrentValue;
-  DateFormat _dateFormat;
 
-  final _dateTimeFormats = {
-    InputType.both: DateFormat("EEEE, MMMM d, yyyy 'at' h:mma"),
-    InputType.date: DateFormat('yyyy-MM-dd'),
-    InputType.time: DateFormat('HH:mm'),
-  };
+  DateFormat get dateFormat =>
+      widget.format ?? _dateTimeFormats[widget.inputType];
+  Map _dateTimeFormats;
+
+  /*@override
+  void didChangeDependencies() {
+    var myLocale = widget.locale ?? Localizations.localeOf(context);
+    print(myLocale);
+    _dateTimeFormats = {
+      InputType.both: DateFormat.yMMMd(myLocale.toString()).add_Hms(),
+      InputType.date: DateFormat.yMd(myLocale.toString()),
+      InputType.time: DateFormat.Hm(myLocale.toString()),
+    };
+    super.didChangeDependencies();
+  }*/
 
   @override
   void initState() {
@@ -255,9 +264,14 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
     stateCurrentValue = _initialValue;
     _focusNode = widget.focusNode ?? FocusNode();
     _textFieldController = widget.controller ?? TextEditingController();
-    _dateFormat = widget.format ?? _dateTimeFormats[widget.inputType];
+    // var appLocale = Localizations.localeOf(context);
+    _dateTimeFormats = {
+      InputType.both: DateFormat.yMd(widget.locale?.toString()).add_Hms(),
+      InputType.date: DateFormat.yMd(widget.locale?.toString()),
+      InputType.time: DateFormat.Hm(widget.locale?.toString()),
+    };
     _textFieldController.text =
-        _initialValue == null ? '' : _dateFormat.format(_initialValue);
+        _initialValue == null ? '' : dateFormat.format(_initialValue);
     _focusNode.addListener(_handleFocus);
   }
 
@@ -291,7 +305,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
       child: DateTimeField(
         key: _fieldKey,
         initialValue: _initialValue,
-        format: _dateFormat,
+        format: dateFormat,
         onSaved: (val) {
           var value = _fieldKey.currentState.value;
           var transformed;
