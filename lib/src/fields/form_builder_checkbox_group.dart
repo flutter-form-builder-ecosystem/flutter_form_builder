@@ -39,7 +39,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     VerticalDirection wrapVerticalDirection = VerticalDirection.down,
     Widget separator,
     ControlAffinity controlAffinity = ControlAffinity.leading,
-    GroupedCheckboxOrientation orientation = GroupedCheckboxOrientation.wrap,
+    OptionsOrientation orientation = OptionsOrientation.wrap,
   }) : super(
           key: key,
           initialValue: initialValue,

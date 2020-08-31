@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'grouped_checkbox.dart';
-
 class GroupedRadio<T> extends StatefulWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
   final List<FormBuilderFieldOption> options;
@@ -17,7 +15,7 @@ class GroupedRadio<T> extends StatefulWidget {
   final List<T> disabled;
 
   /// Specifies the orientation of the elements in itemList.
-  final GroupedRadioOrientation orientation;
+  final OptionsOrientation orientation;
 
   /// Called when the value of the checkbox group changes.
   final ValueChanged<T> onChanged;
@@ -219,13 +217,13 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
     for (var i = 0; i < widget.options.length; i++) {
       widgetList.add(item(i));
     }
-    if (widget.orientation == GroupedRadioOrientation.vertical) {
+    if (widget.orientation == OptionsOrientation.vertical) {
       for (final item in widgetList) {
         content.add(Row(children: <Widget>[item]));
       }
       finalWidget = SingleChildScrollView(
           scrollDirection: Axis.vertical, child: Column(children: content));
-    } else if (widget.orientation == GroupedRadioOrientation.horizontal) {
+    } else if (widget.orientation == OptionsOrientation.horizontal) {
       for (final item in widgetList) {
         content.add(Column(children: <Widget>[item]));
       }
@@ -299,6 +297,3 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
     );
   }
 }
-
-enum GroupedRadioOrientation { horizontal, vertical, wrap }
-// enum ControlAffinity { leading, trailing }
