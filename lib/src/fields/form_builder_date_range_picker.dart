@@ -225,7 +225,9 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
         textDirection: widget.textDirection,
         selectableDayPredicate: widget.selectableDayPredicate,
       );
-      didChange(picked);
+      if (picked != null) {
+        didChange(picked);
+      }
     }
   }
 
