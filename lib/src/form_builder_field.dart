@@ -94,7 +94,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   FormBuilderState _formBuilderState;
 
   @override
-  bool get hasError => super.hasError && widget.decoration?.errorText != null;
+  bool get hasError => super.hasError || widget.decoration?.errorText != null;
 
   @override
   bool get isValid => super.isValid && widget.decoration?.errorText == null;

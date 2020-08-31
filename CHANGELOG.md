@@ -1,3 +1,6 @@
+## [4.0.0-beta.3] - 31-Aug-2020
+* Fixed bug where validate() always returns true. Closes #440
+
 ## [4.0.0-beta.2] - 22-Aug-2020
 * Added new field FormBuilderLocationField
 * Use latest flutter_datetime_picker. Fixes "Error: Type 'DiagnosticableMixin' not found". Closes #406
