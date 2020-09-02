@@ -30,7 +30,7 @@ dependencies:
   validators: ^2.0.1
   flutter_datetime_picker: ^1.4.0
   searchable_dropdown: ^1.1.3
-  google_maps_flutter: ^0.5.30
+  google_maps_flutter: ^0.5.31
 
 dev_dependencies:
   flutter_test:
