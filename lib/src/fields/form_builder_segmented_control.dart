@@ -4,12 +4,35 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
-  final Color borderColor;
-  final Color selectedColor;
-  final Color pressedColor;
-  final List<FormBuilderFieldOption> options;
-  final EdgeInsetsGeometry padding;
+  /// The color used to fill the backgrounds of unselected widgets and as the
+  /// text color of the selected widget.
+  ///
+  /// Defaults to [CupertinoTheme]'s `primaryContrastingColor` if null.
   final Color unselectedColor;
+
+  /// The color used to fill the background of the selected widget and as the text
+  /// color of unselected widgets.
+  ///
+  /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+  final Color selectedColor;
+
+  /// The color used as the border around each widget.
+  ///
+  /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+  final Color borderColor;
+
+  /// The color used to fill the background of the widget the user is
+  /// temporarily interacting with through a long press or drag.
+  ///
+  /// Defaults to the selectedColor at 20% opacity if null.
+  final Color pressedColor;
+
+  /// The CupertinoSegmentedControl will be placed inside this padding
+  ///
+  /// Defaults to EdgeInsets.symmetric(horizontal: 16.0)
+  final EdgeInsetsGeometry padding;
+
+  final List<FormBuilderFieldOption> options;
 
   FormBuilderSegmentedControl({
     Key key,

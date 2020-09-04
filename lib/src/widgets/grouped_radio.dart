@@ -222,13 +222,17 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
         content.add(Row(children: <Widget>[item]));
       }
       finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.vertical, child: Column(children: content));
+        scrollDirection: Axis.vertical,
+        child: Column(children: content),
+      );
     } else if (widget.orientation == OptionsOrientation.horizontal) {
       for (final item in widgetList) {
         content.add(Column(children: <Widget>[item]));
       }
       finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.horizontal, child: Row(children: content));
+        scrollDirection: Axis.horizontal,
+        child: Row(children: content),
+      );
     } else {
       finalWidget = SingleChildScrollView(
         child: Wrap(

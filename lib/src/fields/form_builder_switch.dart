@@ -5,8 +5,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSwitch extends FormBuilderField {
+  /// The primary content of the list tile.
+  ///
+  /// Typically a [Text] widget.
   final Widget title;
+
+  /// Additional content displayed below the title.
+  ///
+  /// Typically a [Text] widget.
   final Widget subtitle;
+
+  /// A widget to display on the opposite side of the tile from the switch.
+  ///
+  /// Typically an [Icon] widget.
   final Widget secondary;
 
   /// The color to use when this switch is on.
@@ -45,12 +56,29 @@ class FormBuilderSwitch extends FormBuilderField {
   /// Ignored if this switch is created with [Switch.adaptive].
   final ImageProvider inactiveThumbImage;
 
+  /// The tile's internal padding.
+  ///
+  /// Insets a [SwitchListTile]'s contents: its [title], [subtitle],
+  /// [secondary], and [Switch] widgets.
+  ///
+  /// If null, [ListTile]'s default of `EdgeInsets.symmetric(horizontal: 16.0)`
+  /// is used.
   final EdgeInsets contentPadding;
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final ListTileControlAffinity controlAffinity;
-  final bool autofocus;
+
+  /// Whether to render icons and text in the [activeColor].
+  ///
+  /// No effort is made to automatically coordinate the [selected] state and the
+  /// [value] state. To have the list tile appear selected when the switch is
+  /// on, pass the same value to both.
+  ///
+  /// Normally, this property is left to its default value, false.
   final bool selected;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
 
   FormBuilderSwitch({
     Key key,
