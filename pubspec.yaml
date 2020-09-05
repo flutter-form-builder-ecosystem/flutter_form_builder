@@ -1,6 +1,6 @@
 name: flutter_form_builder
 description: Package to build Material Form with fields like TextField, DropDown, Switches etc. with ability to create custom FormFields and composability and reuse validation functions.
-version: 3.13.4
+version: 3.13.5
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
@@ -13,7 +13,7 @@ dependencies:
 
   flutter_typeahead: ^1.8.8
   intl: ^0.16.1
-  flutter_chips_input: ^1.9.3
+  flutter_chips_input: ^1.9.4
   datetime_picker_formfield: ^1.0.0
   flutter_colorpicker: ^0.3.4
   signature: ^3.2.0

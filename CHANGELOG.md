@@ -1,3 +1,8 @@
+## [3.13.5] - 08-Sep-2020
+* Fixed bug in `DateRangePicker` where `onChanged` fires before change. Closes #434
+* Use app's locale for default DateTimePicker display formatting
+* Update to latest `flutter_chips_input`. Fixes #415
+
 ## [3.13.4] - 27-Aug-2020
 * Fixed bug where `CountryPicker.onSaved` breaks if value is null
 * Fixed bug where `initialValue` not saved
