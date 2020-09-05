@@ -1,43 +1,104 @@
 import 'dart:ui';
 
+import 'package:dropdown_search/dropdown_search.dart' as dropdown_search;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class FormBuilderSearchableDropdown<T> extends FormBuilderField {
-  final List<DropdownMenuItem<T>> items;
-  final TextStyle style;
-  final dynamic searchHint;
-  final dynamic hint;
-  final dynamic disabledHint;
-  final dynamic icon;
+  /// final List<DropdownMenuItem<T>> items;
 
-  final dynamic underline;
-  final dynamic doneButton;
-  final dynamic label;
-  final dynamic closeButton;
+  ///DropDownSearch hint
+  final String hint;
 
-  final bool displayClearIcon;
+  ///show/hide the search box
+  final bool showSearchBox;
 
-  final Icon clearIcon;
+  ///true if the filter on items is applied onlie (via API)
+  final bool isFilteredOnline;
 
-  final Color iconEnabledColor;
-  final Color iconDisabledColor;
-  final double iconSize;
-  final bool isExpanded;
+  ///show/hide clear selected item
+  final bool showClearButton;
 
-  final bool isCaseSensitiveSearch;
-  final Function searchFn;
-  final Function onClear;
-  final Function selectedValueWidgetFn;
-  final TextInputType keyboardType;
+  ///offline items list
+  final List<T> items;
 
-  final bool assertUniqueValue;
-  final Function displayItem;
-  final bool dialogBox;
-  final BoxConstraints menuConstraints;
-  final Color menuBackgroundColor;
+  ///selected item
+  final T selectedItem;
+
+  ///function that returns item from API
+  final dropdown_search.DropdownSearchOnFind<T> onFind;
+
+  ///to customize list of items UI
+  final dropdown_search.DropdownSearchBuilder<T> dropdownBuilder;
+
+  ///to customize selected item
+  final dropdown_search.DropdownSearchPopupItemBuilder<T> popupItemBuilder;
+
+  ///decoration for search box
+  final InputDecoration searchBoxDecoration;
+
+  ///the title for dialog/menu/bottomSheet
+  final Color popupBackgroundColor;
+
+  ///custom widget for the popup title
+  final Widget popupTitle;
+
+  ///customize the fields the be shown
+  final dropdown_search.DropdownSearchItemAsString<T> itemAsString;
+
+  ///	custom filter function
+  final dropdown_search.DropdownSearchFilterFn<T> filterFn;
+
+  ///MENU / DIALOG/ BOTTOM_SHEET
+  final dropdown_search.Mode mode;
+
+  ///the max height for dialog/bottomSheet/Menu
+  final double maxHeight;
+
+  ///the max width for the dialog
+  final double dialogMaxWidth;
+
+  ///select the selected item in the menu/dialog/bottomSheet of items
+  final bool showSelectedItem;
+
+  ///function that compares two object with the same type to detected if it's the selected item or not
+  final dropdown_search.DropdownSearchCompareFn<T> compareFn;
+
+  ///custom layout for empty results
+  final WidgetBuilder emptyBuilder;
+
+  ///custom layout for loading items
+  final WidgetBuilder loadingBuilder;
+
+  ///custom layout for error
+  final dropdown_search.ErrorBuilder errorBuilder;
+
+  ///the search box will be focused if true
+  final bool autoFocusSearchBox;
+
+  ///custom shape for the popup
+  final ShapeBorder popupShape;
+
+  ///handle auto validation
+  final bool autoValidate;
+
+  ///custom dropdown clear button icon widget
+  final Widget clearButton;
+
+  ///custom dropdown icon button widget
+  final Widget dropDownButton;
+
+  ///If true, the dropdownBuilder will continue the uses of material behavior
+  ///This will be useful if you want to handle a custom UI only if the item !=null
+  final bool dropdownBuilderSupportsNullItem;
+
+  ///defines if an item of the popup is enabled or not, if the item is disabled,
+  ///it cannot be clicked
+  final dropdown_search.DropdownSearchPopupItemEnabled<T> popupItemDisabled;
+
+  ///set a custom color for the popup barrier
+  final Color popupBarrierColor;
 
   FormBuilderSearchableDropdown({
     Key key,
@@ -55,31 +116,35 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
     VoidCallback onReset,
     FocusNode focusNode,
     @required this.items,
-    this.style,
-    this.searchHint,
+    this.autoValidate = false,
+    this.mode = dropdown_search.Mode.DIALOG,
     this.hint,
-    this.disabledHint,
-    this.icon = const Icon(Icons.arrow_drop_down),
-    this.underline,
-    this.doneButton = 'Done',
-    this.label,
-    this.closeButton = 'Close',
-    this.displayClearIcon = true,
-    this.clearIcon = const Icon(Icons.clear),
-    this.iconEnabledColor,
-    this.iconDisabledColor,
-    this.iconSize = 24.0,
-    this.isExpanded = false,
-    this.isCaseSensitiveSearch = false,
-    this.searchFn,
-    this.onClear,
-    this.selectedValueWidgetFn,
-    this.keyboardType = TextInputType.text,
-    this.assertUniqueValue = true,
-    this.displayItem,
-    this.dialogBox = true,
-    this.menuConstraints,
-    this.menuBackgroundColor,
+    this.isFilteredOnline = false,
+    this.popupTitle,
+    this.selectedItem,
+    this.onFind,
+    this.dropdownBuilder,
+    this.popupItemBuilder,
+    this.showSearchBox = true,
+    this.showClearButton = false,
+    this.searchBoxDecoration,
+    this.popupBackgroundColor,
+    this.maxHeight,
+    this.filterFn,
+    this.itemAsString,
+    this.showSelectedItem = false,
+    this.compareFn,
+    this.emptyBuilder,
+    this.loadingBuilder,
+    this.errorBuilder,
+    this.autoFocusSearchBox = false,
+    this.dialogMaxWidth,
+    this.clearButton,
+    this.dropDownButton,
+    this.dropdownBuilderSupportsNullItem = false,
+    this.popupShape,
+    this.popupItemDisabled,
+    this.popupBarrierColor,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -101,75 +166,45 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 enabled: state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
-              child:
-                  /*SearchableDropdown.single(
-                value: state.value,
+              child: dropdown_search.DropdownSearch<T>(
                 items: items,
+                maxHeight: 300,
+                onFind: onFind,
                 onChanged: (val) {
                   state.requestFocus();
                   state.didChange(val);
                 },
-                style: style,
-                searchHint: searchHint,
+                showSearchBox: showSearchBox,
                 hint: hint,
-                disabledHint: disabledHint,
-                icon: icon,
-                underline: underline,
-                doneButton: doneButton,
-                label: label,
-                closeButton: closeButton,
-                displayClearIcon: displayClearIcon,
-                clearIcon: clearIcon,
-                iconEnabledColor: iconEnabledColor,
-                iconDisabledColor: iconDisabledColor,
-                iconSize: iconSize,
-                isExpanded: isExpanded,
-                isCaseSensitiveSearch: isCaseSensitiveSearch,
-                searchFn: searchFn,
-                onClear: onClear,
-                selectedValueWidgetFn: selectedValueWidgetFn,
-                keyboardType: keyboardType,
-                validator: validator,
-                displayItem: displayItem,
-                dialogBox: dialogBox,
-                menuConstraints: menuConstraints,
-                readOnly: readOnly,
-                menuBackgroundColor: menuBackgroundColor,
-                assertUniqueValue: assertUniqueValue,
-              )*/
-                  SearchableDropdown.multiple(
-                items: items,
-                onChanged: (val) {
-                  state.requestFocus();
-                  state.didChange(val);
-                },
-                style: style,
-                searchHint: searchHint,
-                hint: hint,
-                disabledHint: disabledHint,
-                icon: icon,
-                underline: underline,
-                doneButton: doneButton,
-                label: label,
-                closeButton: closeButton,
-                displayClearIcon: displayClearIcon,
-                clearIcon: clearIcon,
-                iconEnabledColor: iconEnabledColor,
-                iconDisabledColor: iconDisabledColor,
-                iconSize: iconSize,
-                isExpanded: isExpanded,
-                isCaseSensitiveSearch: isCaseSensitiveSearch,
-                searchFn: searchFn,
-                onClear: onClear,
-                selectedValueWidgetFn: selectedValueWidgetFn,
-                keyboardType: keyboardType,
-                validator: validator,
-                displayItem: displayItem,
-                dialogBox: dialogBox,
-                menuConstraints: menuConstraints,
-                readOnly: readOnly,
-                menuBackgroundColor: menuBackgroundColor,
-                // selectedItems: ,
+                enabled: enabled,
+                autoFocusSearchBox: autoFocusSearchBox,
+                autoValidate: autoFocusSearchBox,
+                clearButton: clearButton,
+                compareFn: compareFn,
+                dialogMaxWidth: dialogMaxWidth,
+                dropdownBuilder: dropdownBuilder,
+                dropdownBuilderSupportsNullItem:
+                    dropdownBuilderSupportsNullItem,
+                dropDownButton: dropDownButton,
+                dropdownSearchDecoration:
+                    InputDecoration.collapsed(hintText: hint),
+                emptyBuilder: emptyBuilder,
+                errorBuilder: errorBuilder,
+                filterFn: filterFn,
+                isFilteredOnline: isFilteredOnline,
+                itemAsString: itemAsString,
+                loadingBuilder: loadingBuilder,
+                popupBackgroundColor: popupBackgroundColor,
+                mode: mode,
+                popupBarrierColor: popupBarrierColor,
+                popupItemBuilder: popupItemBuilder,
+                popupItemDisabled: popupItemDisabled,
+                popupShape: popupShape,
+                popupTitle: popupTitle,
+                searchBoxDecoration: searchBoxDecoration,
+                selectedItem: state.value,
+                showClearButton: showClearButton,
+                showSelectedItem: showSelectedItem,
               ),
             );
           },

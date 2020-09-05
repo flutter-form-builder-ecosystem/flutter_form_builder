@@ -1,3 +1,7 @@
+## [4.0.0-beta.5] - 05-Sept-2020
+* Finished implementation of `FormBuilderSearchableDropdown`.
+* Deprecated `FormBuilderCountryPicker` - redundant due to `FormBuilderSearchableDropdown` inclusion.
+
 ## [4.0.0-beta.4] - 04-Sept-2020
 * Fix for label overflows in Radio & Checkbox Groups
 * Fixed bug in `FormBuilderDateRangePicker` where if dialog dismissed, current value is cleared

@@ -27,6 +27,7 @@ class CompleteFormState extends State<CompleteForm> {
 
   @override
   Widget build(BuildContext context) {
+    print('Rebuilding...............');
     return Padding(
       padding: EdgeInsets.all(10),
       child: SingleChildScrollView(
@@ -44,13 +45,16 @@ class CompleteFormState extends State<CompleteForm> {
               readOnly: false,
               child: Column(
                 children: <Widget>[
+                  FormBuilderSearchableDropdown(
+                    name: 'searchable_dropdown',
+                    items: allCountries,
+                    onChanged: _onChanged,
+                  ),
                   FormBuilderLocationField(
                     name: 'location',
                     decoration: InputDecoration(labelText: 'Location'),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  SizedBox(height: 15),
                   FormBuilderFilterChip(
                     name: 'filter_chip',
                     decoration: const InputDecoration(
@@ -398,6 +402,7 @@ class CompleteFormState extends State<CompleteForm> {
                     maxImages: 1,
                   ),
                   SizedBox(height: 15),
+                  // ignore: deprecated_member_use
                   FormBuilderCountryPicker(
                     initialValue: 'Germany',
                     name: 'country',
@@ -458,14 +463,12 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      _fbKey.currentState.fields['color_picker'].requestFocus();
-
-                      /*if (_fbKey.currentState.saveAndValidate()) {
+                      if (_fbKey.currentState.saveAndValidate()) {
                         print(_fbKey.currentState.value);
                       } else {
                         print(_fbKey.currentState.value);
                         print('validation failed');
-                      }*/
+                      }
                     },
                   ),
                 ),
