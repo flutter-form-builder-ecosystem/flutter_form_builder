@@ -256,6 +256,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             decoration: decoration,
             builder: (FormFieldState field) {
               final _FormBuilderDropdownState state = field;
+              // DropdownButtonFormField
+              // TextFormField
 
               return InputDecorator(
                 decoration: decoration.copyWith(
@@ -289,7 +291,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                           icon: icon,
                           iconDisabledColor: iconDisabledColor,
                           iconEnabledColor: iconEnabledColor,
-                          onChanged: state.readOnly
+                          onChanged: (state.readOnly || !enabled)
                               ? null
                               : (value) {
                                   _changeValue(field, value);
