@@ -8,6 +8,7 @@ class FormBuilderImagePicker extends FormBuilderField {
   final double previewWidth;
   final double previewHeight;
   final EdgeInsets previewMargin;
+  final ImageProvider placeholderImage;
 
   final Color iconColor;
 
@@ -36,7 +37,7 @@ class FormBuilderImagePicker extends FormBuilderField {
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
 
-  FormBuilderImagePicker({
+  FormBuilderImagePicker( {
     Key key,
     //From Super
     @required String name,
@@ -66,6 +67,7 @@ class FormBuilderImagePicker extends FormBuilderField {
     this.cameraLabel = const Text('Camera'),
     this.galleryLabel = const Text('Gallery'),
     this.bottomSheetPadding = const EdgeInsets.all(0),
+    this.placeholderImage,
   })  : assert(maxImages == null || maxImages >= 0),
         super(
           key: key,
@@ -140,7 +142,12 @@ class FormBuilderImagePicker extends FormBuilderField {
                       }).toList()),
                     if (!state.readOnly && !state.hasMaxImages)
                       GestureDetector(
-                        child: Container(
+                        child: placeholderImage != null?
+                        Image(
+                          width: previewWidth,
+                          height: previewHeight,
+                          image: placeholderImage,
+                        ) : Container(
                             width: previewWidth,
                             height: previewHeight,
                             child: Icon(Icons.camera_enhance,
