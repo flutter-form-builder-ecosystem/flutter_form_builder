@@ -294,23 +294,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
 
   TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
+
   // DateTime stateCurrentValue;
 
   DateFormat get dateFormat =>
       widget.format ?? _dateTimeFormats[widget.inputType];
 
-  final _dateTimeFormats = {
-    InputType.both: DateFormat.yMd().add_jm(),
-    InputType.date: DateFormat.yMd(),
-    InputType.time: DateFormat.Hm(),
-  };
+  Map _dateTimeFormats;
 
   @override
   void initState() {
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
-    _textFieldController.text =
-        initialValue == null ? '' : dateFormat.format(initialValue);
     // effectiveFocusNode.addListener(_handleFocus);
   }
 
@@ -320,6 +315,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
       _textFieldController.clear();
     }
   }*/
+  @override
+  void didChangeDependencies() {
+    var appLocale = widget.locale ?? Localizations.localeOf(context);
+    _dateTimeFormats = {
+      InputType.both: DateFormat.yMd(appLocale.toString()).add_Hms(),
+      InputType.date: DateFormat.yMd(appLocale.toString()),
+      InputType.time: DateFormat.Hm(appLocale.toString()),
+    };
+    _textFieldController.text =
+        initialValue == null ? '' : dateFormat.format(initialValue);
+    super.didChangeDependencies();
+  }
 
   Future<DateTime> onShowPicker(
       BuildContext context, DateTime currentValue) async {
@@ -356,18 +363,19 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
       return widget.datePicker(context);
     } else {
       if (widget.pickerType == PickerType.cupertino) {
-        return DatePicker.showDatePicker(context,
-            showTitleActions: true,
-            minTime: widget.firstDate,
-            maxTime: widget.lastDate,
-            currentTime: currentValue,
-            locale: enumValueFromString(
-                (widget.locale ?? Localizations.localeOf(context))
-                    ?.languageCode,
-                LocaleType.values),
-            theme: widget.theme,
-            onCancel: widget.onCancel,
-            onConfirm: widget.onConfirm);
+        return DatePicker.showDatePicker(
+          context,
+          showTitleActions: true,
+          minTime: widget.firstDate,
+          maxTime: widget.lastDate,
+          currentTime: currentValue,
+          locale: enumValueFromString(
+              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
+              LocaleType.values),
+          theme: widget.theme,
+          onCancel: widget.onCancel,
+          onConfirm: widget.onConfirm,
+        );
       }
       return showDatePicker(
         context: context,
