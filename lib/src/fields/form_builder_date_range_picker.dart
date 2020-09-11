@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:core';
+import 'dart:math';
 
 import 'package:date_range_picker/date_range_picker.dart' as date_range_picker;
 import 'package:flutter/material.dart';
@@ -256,6 +257,9 @@ class FormBuilderDateRangePickerState
         selectableDayPredicate: widget.selectableDayPredicate,
       );
       if (picked != null) {
+        if(picked.length == 1){
+          picked.add(picked[0]);
+        }
         _fieldKey.currentState.didChange(picked);
         widget.onChanged?.call(picked);
         _setCurrentValue(picked);
