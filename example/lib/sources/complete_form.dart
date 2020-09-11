@@ -149,7 +149,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderDateTimePicker(
                     name: 'date',
                     initialValue: DateTime.now(),
-                    inputType: InputType.time,
+                    inputType: InputType.both,
                     decoration: const InputDecoration(
                       labelText: 'Appointment Time',
                     ),
@@ -400,20 +400,6 @@ class CompleteFormState extends State<CompleteForm> {
                     name: 'photos',
                     decoration: const InputDecoration(labelText: 'Pick Photos'),
                     maxImages: 1,
-                  ),
-                  SizedBox(height: 15),
-                  // ignore: deprecated_member_use
-                  FormBuilderCountryPicker(
-                    initialValue: 'Germany',
-                    name: 'country',
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Country',
-                    ),
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context,
-                          errorText: 'This field required.'),
-                    ]),
                   ),
                   SizedBox(height: 15),
                   FormBuilderPhoneField(

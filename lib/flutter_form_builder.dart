@@ -12,7 +12,6 @@ export './src/fields/form_builder_checkbox_group.dart';
 export './src/fields/form_builder_chips_input.dart';
 export './src/fields/form_builder_choice_chips.dart';
 export './src/fields/form_builder_color_picker.dart';
-export './src/fields/form_builder_country_picker.dart';
 export './src/fields/form_builder_date_range_picker.dart';
 export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
