@@ -129,6 +129,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
   String _initialValue;
   Country _selectedDialogCountry;
+  bool phoneNumberValid = true;
 
   String get fullNumber {
     // When there is no phone number text, the field is empty -- the country
@@ -151,30 +152,37 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     _effectiveController = widget.controller ?? TextEditingController();
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
-    _parsePhone();
+    _validatePhoneNumber(_initialValue, setVal: true);
   }
 
-  Future<void> _parsePhone() async {
-    if (_initialValue != null && _initialValue.isNotEmpty) {
+  void _validatePhoneNumber(String val, {bool setVal = false}) async {
+    if (val != null && val.isNotEmpty) {
       try {
-        var parseResult = await PhoneNumber().parse(_initialValue);
-        print(parseResult);
-        if (parseResult != null) {
+        final result = await PhoneNumber().parse(val);
+        if (result != null) {
           setState(() {
-            _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
-                parseResult['country_code']);
+            phoneNumberValid = true;
+            if (setVal) {
+              _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
+                  result['country_code']);
+              _effectiveController.text = result['national_number'];
+            }
           });
-          _effectiveController.text = parseResult['national_number'];
         }
-      } catch (error) {
-        print(error);
-        _effectiveController.text = _initialValue.replaceFirst('+', '');
+      } on PlatformException catch (_) {
+        setState(() {
+          phoneNumberValid = false;
+        });
       }
-      setState(() {});
+    } else {
+      setState(() {
+        phoneNumberValid = true;
+      });
     }
   }
 
   void _invokeChange(FormFieldState field) {
+    _validatePhoneNumber(fullNumber);
     field.didChange(fullNumber);
     widget.onChanged?.call(fullNumber);
   }
@@ -187,8 +195,14 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
       key: _fieldKey,
       initialValue: _initialValue,
       autovalidate: widget.autovalidate,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
+      validator: (val) {
+        if (phoneNumberValid) {
+          return FormBuilderValidators.validateValidators(
+              val, widget.validators);
+        } else {
+          return 'This field requires a valid phone number.';
+        }
+      },
       onSaved: (val) {
         var transformed;
         if (widget.valueTransformer != null) {
