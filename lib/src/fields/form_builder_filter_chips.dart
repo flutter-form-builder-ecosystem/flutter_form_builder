@@ -3,16 +3,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderFilterChip extends FormBuilderField<dynamic> {
+  //TODO: Add documentation
   final List<FormBuilderFieldOption> options;
   final double elevation, pressElevation;
-  final Color selectedColor,
-      disabledColor,
-      backgroundColor,
-      selectedShadowColor,
-      shadowColor;
+  final Color selectedColor;
+  final Color disabledColor;
+  final Color backgroundColor;
+  final Color selectedShadowColor;
+  final Color shadowColor;
   final ShapeBorder shape;
   final MaterialTapTargetSize materialTapTargetSize;
-
   // Wrap Settings
   final Axis direction;
   final WrapAlignment alignment;

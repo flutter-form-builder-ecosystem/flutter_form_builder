@@ -46,34 +46,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// This sample shows a `DropdownButton` with a button with [Text] that
   /// corresponds to but is unique from [DropdownMenuItem].
   ///
-  /// ```dart
-  /// final List<String> items = <String>['1','2','3'];
-  /// String selectedItem = '1';
-  ///
-  /// @override
-  /// Widget build(BuildContext context) {
-  ///   return Padding(
-  ///     padding: const EdgeInsets.symmetric(horizontal: 12.0),
-  ///     child: DropdownButton<String>(
-  ///       value: selectedItem,
-  ///       onChanged: (String string) => setState(() => selectedItem = string),
-  ///       selectedItemBuilder: (BuildContext context) {
-  ///         return items.map<Widget>((String item) {
-  ///           return Text(item);
-  ///         }).toList();
-  ///       },
-  ///       items: items.map((String item) {
-  ///         return DropdownMenuItem<String>(
-  ///           child: Text('Log $item'),
-  ///           value: item,
-  ///         );
-  ///       }).toList(),
-  ///     ),
-  ///   );
-  /// }
-  /// ```
-  /// {@end-tool}
-  ///
   /// If this callback is null, the [DropdownMenuItem] from [items]
   /// that matches [value] will be displayed.
   final DropdownButtonBuilder selectedItemBuilder;
@@ -242,83 +214,84 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.itemHeight,
     this.selectedItemBuilder,
   }) : /*: assert(allowClear == true || clearIcon != null)*/ super(
-            key: key,
-            initialValue: initialValue,
-            name: name,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            autovalidate: autovalidate,
-            onSaved: onSaved,
-            enabled: enabled,
-            onReset: onReset,
-            decoration: decoration,
-            builder: (FormFieldState field) {
-              final _FormBuilderDropdownState state = field;
-              // DropdownButtonFormField
-              // TextFormField
+          key: key,
+          initialValue: initialValue,
+          name: name,
+          validator: validator,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          autovalidate: autovalidate,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          builder: (FormFieldState field) {
+            final _FormBuilderDropdownState state = field;
+            // DropdownButtonFormField
+            // TextFormField
 
-              return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: decoration?.errorText ?? field.errorText,
-                  floatingLabelBehavior: hint == null
-                      ? decoration.floatingLabelBehavior
-                      : FloatingLabelBehavior.always,
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          isExpanded: isExpanded,
-                          hint: hint,
-                          items: items,
-                          value: field.value,
-                          style: style,
-                          isDense: isDense,
-                          disabledHint: field.value != null
-                              ? (items
-                                      .firstWhere(
-                                          (val) => val.value == field.value,
-                                          orElse: () => null)
-                                      ?.child ??
-                                  Text('${field.value.toString()}'))
-                              : disabledHint,
-                          elevation: elevation,
-                          iconSize: iconSize,
-                          icon: icon,
-                          iconDisabledColor: iconDisabledColor,
-                          iconEnabledColor: iconEnabledColor,
-                          onChanged: (state.readOnly || !enabled)
-                              ? null
-                              : (value) {
-                                  _changeValue(field, value);
-                                },
-                          onTap: onTap,
-                          focusNode: state.effectiveFocusNode,
-                          autofocus: autofocus,
-                          dropdownColor: dropdownColor,
-                          focusColor: focusColor,
-                          itemHeight: itemHeight,
-                          selectedItemBuilder: selectedItemBuilder,
-                        ),
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: !state.readOnly,
+                errorText: decoration?.errorText ?? field.errorText,
+                floatingLabelBehavior: hint == null
+                    ? decoration.floatingLabelBehavior
+                    : FloatingLabelBehavior.always,
+              ),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        isExpanded: isExpanded,
+                        hint: hint,
+                        items: items,
+                        value: field.value,
+                        style: style,
+                        isDense: isDense,
+                        disabledHint: field.value != null
+                            ? (items
+                                    .firstWhere(
+                                        (val) => val.value == field.value,
+                                        orElse: () => null)
+                                    ?.child ??
+                                Text('${field.value.toString()}'))
+                            : disabledHint,
+                        elevation: elevation,
+                        iconSize: iconSize,
+                        icon: icon,
+                        iconDisabledColor: iconDisabledColor,
+                        iconEnabledColor: iconEnabledColor,
+                        onChanged: (state.readOnly || !enabled)
+                            ? null
+                            : (value) {
+                                _changeValue(field, value);
+                              },
+                        onTap: onTap,
+                        focusNode: state.effectiveFocusNode,
+                        autofocus: autofocus,
+                        dropdownColor: dropdownColor,
+                        focusColor: focusColor,
+                        itemHeight: itemHeight,
+                        selectedItemBuilder: selectedItemBuilder,
                       ),
                     ),
-                    if (allowClear && !readOnly && field.value != null) ...[
-                      VerticalDivider(),
-                      InkWell(
-                        child: clearIcon,
-                        onTap: () {
-                          _changeValue(state, null);
-                        },
-                      ),
-                    ]
-                  ],
-                ),
-              );
-            });
+                  ),
+                  if (allowClear && !readOnly && field.value != null) ...[
+                    VerticalDivider(),
+                    InkWell(
+                      child: clearIcon,
+                      onTap: () {
+                        _changeValue(state, null);
+                      },
+                    ),
+                  ]
+                ],
+              ),
+            );
+          },
+        );
 
   static void _changeValue(_FormBuilderDropdownState state, value) {
     state.requestFocus();

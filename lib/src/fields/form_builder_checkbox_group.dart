@@ -4,7 +4,25 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
-  // final Widget secondary;
+  final List<FormBuilderFieldOption> options;
+  final Color activeColor;
+  final Color checkColor;
+  final Color focusColor;
+  final Color hoverColor;
+  final List<T> disabled;
+  final MaterialTapTargetSize materialTapTargetSize;
+  final bool tristate;
+  final Axis wrapDirection;
+  final WrapAlignment wrapAlignment;
+  final double wrapSpacing;
+  final WrapAlignment wrapRunAlignment;
+  final double wrapRunSpacing;
+  final WrapCrossAlignment wrapCrossAxisAlignment;
+  final TextDirection wrapTextDirection;
+  final VerticalDirection wrapVerticalDirection;
+  final Widget separator;
+  final ControlAffinity controlAffinity;
+  final OptionsOrientation orientation;
 
   FormBuilderCheckboxGroup({
     Key key,
@@ -21,25 +39,25 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     bool autovalidate = false,
     VoidCallback onReset,
     FocusNode focusNode,
-    @required List<FormBuilderFieldOption> options,
-    Color activeColor,
-    Color checkColor,
-    Color focusColor,
-    Color hoverColor,
-    List<T> disabled,
-    MaterialTapTargetSize materialTapTargetSize,
-    bool tristate = false,
-    Axis wrapDirection = Axis.horizontal,
-    WrapAlignment wrapAlignment = WrapAlignment.start,
-    double wrapSpacing = 0.0,
-    WrapAlignment wrapRunAlignment = WrapAlignment.start,
-    double wrapRunSpacing = 0.0,
-    WrapCrossAlignment wrapCrossAxisAlignment = WrapCrossAlignment.start,
-    TextDirection wrapTextDirection,
-    VerticalDirection wrapVerticalDirection = VerticalDirection.down,
-    Widget separator,
-    ControlAffinity controlAffinity = ControlAffinity.leading,
-    OptionsOrientation orientation = OptionsOrientation.wrap,
+    @required this.options,
+    this.activeColor,
+    this.checkColor,
+    this.focusColor,
+    this.hoverColor,
+    this.disabled,
+    this.materialTapTargetSize,
+    this.tristate = false,
+    this.wrapDirection = Axis.horizontal,
+    this.wrapAlignment = WrapAlignment.start,
+    this.wrapSpacing = 0.0,
+    this.wrapRunAlignment = WrapAlignment.start,
+    this.wrapRunSpacing = 0.0,
+    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+    this.wrapTextDirection,
+    this.wrapVerticalDirection = VerticalDirection.down,
+    this.separator,
+    this.controlAffinity = ControlAffinity.leading,
+    this.orientation = OptionsOrientation.wrap,
   }) : super(
           key: key,
           initialValue: initialValue,

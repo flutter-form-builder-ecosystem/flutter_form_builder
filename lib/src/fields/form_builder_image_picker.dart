@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormBuilderImagePicker extends FormBuilderField {
+  //TODO: Add documentation
   final double previewWidth;
   final double previewHeight;
   final EdgeInsets previewMargin;

@@ -32,6 +32,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
   /// Defaults to EdgeInsets.symmetric(horizontal: 16.0)
   final EdgeInsetsGeometry padding;
 
+  /// The list of options the user can select.
   final List<FormBuilderFieldOption> options;
 
   FormBuilderSegmentedControl({

@@ -3,6 +3,7 @@ import 'package:flutter_chips_input/flutter_chips_input.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
+  //TODO: Add documentation
   final ChipsInputSuggestions findSuggestions;
 
   // final ValueChanged<List<T>> onChanged;

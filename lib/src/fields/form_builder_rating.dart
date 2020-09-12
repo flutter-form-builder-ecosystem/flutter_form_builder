@@ -5,14 +5,31 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:rating_bar/rating_bar.dart';
 
 class FormBuilderRating extends FormBuilderField {
+  /// Icon to be used to denote the value of the widget
   final IconData icon;
+
+  /// Size of the icon to be used to denote the value of the widget
   final double iconSize;
+
+  /// The maximum values the user can put in
   final double max;
+
+  /// Fill color of the icon to be used to denote empty values
   final Color filledColor;
+
+  /// Icon to be used to denote the value of the widget
   final IconData emptyIcon;
+
+  /// Fill color of the icon to be used when the icon is empty
   final Color emptyColor;
+
+  /// Whether half values are allowed. If false only whole numbers are allowed
   final bool isHalfAllowed;
+
+  /// Icon to be used to denote half values
   final IconData halfFilledIcon;
+
+  /// Fill color of the icon to be used when the value is half
   final Color halfFilledColor;
 
   FormBuilderRating({

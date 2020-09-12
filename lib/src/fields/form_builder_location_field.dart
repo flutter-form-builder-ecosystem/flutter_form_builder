@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/src/widgets/location_field_dialog.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
+  //TODO: Add documentation
   final IconData markerIcon;
   final double markerIconSize;
   final Color markerIconColor;

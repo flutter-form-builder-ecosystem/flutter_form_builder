@@ -27,8 +27,40 @@ extension on Color {
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
 
 class FormBuilderColorPickerField extends FormBuilderField<Color> {
+  //TODO: Add documentation
   final TextEditingController controller;
   final ColorPickerType colorPickerType;
+  final TextCapitalization textCapitalization;
+
+  final TextAlign textAlign;
+
+  final TextInputType keyboardType;
+  final TextInputAction textInputAction;
+  final TextStyle style;
+  final StrutStyle strutStyle;
+  final TextDirection textDirection;
+  final bool autofocus;
+
+  final bool obscureText;
+  final bool autocorrect;
+  final bool maxLengthEnforced;
+
+  final int maxLines;
+  final bool expands;
+
+  final bool showCursor;
+  final int minLines;
+  final int maxLength;
+  final VoidCallback onEditingComplete;
+  final ValueChanged<String> onFieldSubmitted;
+  final List<TextInputFormatter> inputFormatters;
+  final double cursorWidth ;
+  final Radius cursorRadius;
+  final Color cursorColor;
+  final Brightness keyboardAppearance;
+  final EdgeInsets scrollPadding ;
+  final bool enableInteractiveSelection ;
+  final InputCounterWidgetBuilder buildCounter;
 
   FormBuilderColorPickerField({
     Key key,
@@ -42,37 +74,37 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     FormFieldSetter<Color> onSaved,
     VoidCallback onReset,
     this.controller,
+    InputDecoration decoration = const InputDecoration(),
     FocusNode focusNode,
     bool readOnly = false,
     this.colorPickerType = ColorPickerType.ColorPicker,
-    InputDecoration decoration = const InputDecoration(),
-    TextCapitalization textCapitalization = TextCapitalization.none,
-    TextAlign textAlign = TextAlign.start,
-    TextInputType keyboardType,
-    TextInputAction textInputAction,
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextDirection textDirection,
-    bool autofocus = false,
-    bool obscureText = false,
-    bool autocorrect = true,
-    bool maxLengthEnforced = true,
-    int maxLines = 1,
-    bool expands = false,
-    bool showCursor,
-    int minLines,
-    int maxLength,
-    VoidCallback onEditingComplete,
-    ValueChanged<String> onFieldSubmitted,
+    this.textCapitalization = TextCapitalization.none,
+    this.textAlign = TextAlign.start,
+    this.keyboardType,
+    this.textInputAction,
+    this.style,
+    this.strutStyle,
+    this. textDirection,
+    this. autofocus = false,
+    this. obscureText = false,
+    this. autocorrect = true,
+    this. maxLengthEnforced = true,
+    this. maxLines = 1,
+    this. expands = false,
+    this. showCursor,
+    this. minLines,
+    this. maxLength,
+    this. onEditingComplete,
+    this. onFieldSubmitted,
     // FormFieldValidator<String> validator,
-    List<TextInputFormatter> inputFormatters,
-    double cursorWidth = 2.0,
-    Radius cursorRadius,
-    Color cursorColor,
-    Brightness keyboardAppearance,
-    EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
-    bool enableInteractiveSelection = true,
-    InputCounterWidgetBuilder buildCounter,
+    this. inputFormatters,
+    this. cursorWidth = 2.0,
+    this. cursorRadius,
+    this. cursorColor,
+    this. keyboardAppearance,
+    this. scrollPadding = const EdgeInsets.all(20.0),
+    this. enableInteractiveSelection = true,
+    this. buildCounter,
   }) : super(
           key: key,
           initialValue: initialValue,

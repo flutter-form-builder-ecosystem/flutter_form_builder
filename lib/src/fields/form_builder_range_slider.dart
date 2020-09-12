@@ -13,27 +13,6 @@ class FormBuilderRangeSlider extends FormBuilderField {
   /// The values passed will be the last [values] that the slider had before the
   /// change began.
   ///
-  /// {@tool snippet}
-  ///
-  /// ```dart
-  /// RangeSlider(
-  ///   values: _rangeValues,
-  ///   min: 1.0,
-  ///   max: 10.0,
-  ///   onChanged: (RangeValues newValues) {
-  ///     setState(() {
-  ///       _rangeValues = newValues;
-  ///     });
-  ///   },
-  ///   onChangeStart: (RangeValues startValues) {
-  ///     print('Started change at $startValues');
-  ///   },
-  /// )
-  /// ```
-  /// {@end-tool}
-  ///
-  /// See also:
-  ///
   ///  * [onChangeEnd] for a callback that is called when the value change is
   ///    complete.
   final ValueChanged<RangeValues> onChangeStart;
@@ -47,25 +26,6 @@ class FormBuilderRangeSlider extends FormBuilderField {
   /// This callback shouldn't be used to update the slider [values] (use
   /// [onChanged] for that). Rather, it should be used to know when the user has
   /// completed selecting a new [values] by ending a drag or a click.
-  ///
-  /// {@tool snippet}
-  ///
-  /// ```dart
-  /// RangeSlider(
-  ///   values: _rangeValues,
-  ///   min: 1.0,
-  ///   max: 10.0,
-  ///   onChanged: (RangeValues newValues) {
-  ///     setState(() {
-  ///       _rangeValues = newValues;
-  ///     });
-  ///   },
-  ///   onChangeEnd: (RangeValues endValues) {
-  ///     print('Ended change at $endValues');
-  ///   },
-  /// )
-  /// ```
-  /// {@end-tool}
   ///
   /// See also:
   ///
@@ -135,28 +95,6 @@ class FormBuilderRangeSlider extends FormBuilderField {
   ///
   /// This is used by accessibility frameworks like TalkBack on Android to
   /// inform users what the currently selected value is with more context.
-  ///
-  /// {@tool snippet}
-  ///
-  /// In the example below, a slider for currency values is configured to
-  /// announce a value with a currency label.
-  ///
-  /// ```dart
-  /// RangeSlider(
-  ///   values: _dollarsRange,
-  ///   min: 20.0,
-  ///   max: 330.0,
-  ///   onChanged: (RangeValues newValues) {
-  ///     setState(() {
-  ///       _dollarsRange = newValues;
-  ///     });
-  ///   },
-  ///   semanticFormatterCallback: (RangeValues rangeValues) {
-  ///     return '${rangeValues.start.round()} - ${rangeValues.end.round()} dollars';
-  ///   }
-  ///  )
-  /// ```
-  /// {@end-tool}
   final RangeSemanticFormatterCallback semanticFormatterCallback;
 
   final DisplayValues displayValues;

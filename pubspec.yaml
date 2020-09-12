@@ -22,14 +22,14 @@ dependencies:
   flutter_touch_spin: ^1.0.1
   flutter_typeahead: ^1.8.8
   image_picker: ^0.6.7+7
-  image_picker_for_web: ^0.1.0+1
+  image_picker_for_web: ^0.1.0+2
   intl: ^0.16.1
   phone_number: ^0.6.2+4
   rating_bar: ^0.2.0
   signature: ^3.2.0
   validators: ^2.0.1
   flutter_datetime_picker: ^1.4.0
-  google_maps_flutter: ^0.5.31
+  google_maps_flutter: ^0.5.32
   dropdown_search: ^0.4.4
 
 dev_dependencies:

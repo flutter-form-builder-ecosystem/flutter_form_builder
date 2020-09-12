@@ -16,27 +16,6 @@ class FormBuilderSlider extends FormBuilderField {
   /// The value passed will be the last [value] that the slider had before the
   /// change began.
   ///
-  /// {@tool snippet}
-  ///
-  /// ```dart
-  /// Slider(
-  ///   value: _duelCommandment.toDouble(),
-  ///   min: 1.0,
-  ///   max: 10.0,
-  ///   divisions: 10,
-  ///   label: '$_duelCommandment',
-  ///   onChanged: (double newValue) {
-  ///     setState(() {
-  ///       _duelCommandment = newValue.round();
-  ///     });
-  ///   },
-  ///   onChangeStart: (double startValue) {
-  ///     print('Started change at $startValue');
-  ///   },
-  /// )
-  /// ```
-  /// {@end-tool}
-  ///
   /// See also:
   ///
   ///  * [onChangeEnd] for a callback that is called when the value change is
@@ -48,28 +27,6 @@ class FormBuilderSlider extends FormBuilderField {
   /// This callback shouldn't be used to update the slider [value] (use
   /// [onChanged] for that), but rather to know when the user has completed
   /// selecting a new [value] by ending a drag or a click.
-  ///
-  /// {@tool snippet}
-  ///
-  /// ```dart
-  /// Slider(
-  ///   value: _duelCommandment.toDouble(),
-  ///   min: 1.0,
-  ///   max: 10.0,
-  ///   divisions: 10,
-  ///   label: '$_duelCommandment',
-  ///   onChanged: (double newValue) {
-  ///     setState(() {
-  ///       _duelCommandment = newValue.round();
-  ///     });
-  ///   },
-  ///   onChangeEnd: (double newValue) {
-  ///     print('Ended change on $newValue');
-  ///   },
-  /// )
-  /// ```
-  /// {@end-tool}
-  ///
   /// See also:
   ///
   ///  * [onChangeStart] for a callback that is called when a value change
@@ -158,39 +115,12 @@ class FormBuilderSlider extends FormBuilderField {
   /// The callback used to create a semantic value from a slider value.
   ///
   /// Defaults to formatting values as a percentage.
-  ///
-  /// This is used by accessibility frameworks like TalkBack on Android to
-  /// inform users what the currently selected value is with more context.
-  ///
-  /// {@tool snippet}
-  ///
-  /// In the example below, a slider for currency values is configured to
-  /// announce a value with a currency label.
-  ///
-  /// ```dart
-  /// Slider(
-  ///   value: _dollars.toDouble(),
-  ///   min: 20.0,
-  ///   max: 330.0,
-  ///   label: '$_dollars dollars',
-  ///   onChanged: (double newValue) {
-  ///     setState(() {
-  ///       _dollars = newValue.round();
-  ///     });
-  ///   },
-  ///   semanticFormatterCallback: (double newValue) {
-  ///     return '${newValue.round()} dollars';
-  ///   }
-  ///  )
-  /// ```
-  /// {@end-tool}
-  ///
-  /// Ignored if this slider is created with [Slider.adaptive]
   final SemanticFormatterCallback semanticFormatterCallback;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
+  ///TODO: Add documentation
   final NumberFormat numberFormat;
   final DisplayValues displayValues;
   final TextStyle minTextStyle;

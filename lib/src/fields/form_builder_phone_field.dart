@@ -9,6 +9,7 @@ import 'package:phone_number/phone_number.dart';
 
 //TODO: Switch country_pickers for country_code_picker
 class FormBuilderPhoneField extends FormBuilderField {
+  //TODO: Add documentation
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;

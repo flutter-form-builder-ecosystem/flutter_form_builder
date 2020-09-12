@@ -4,6 +4,25 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
+  final List<FormBuilderFieldOption> options;
+  final Color activeColor;
+  final Color focusColor;
+  final Color hoverColor;
+  final List<T> disabled;
+  final MaterialTapTargetSize materialTapTargetSize;
+  final Axis wrapDirection;
+  final WrapAlignment wrapAlignment;
+  final double wrapSpacing;
+  final WrapAlignment wrapRunAlignment;
+  final double wrapRunSpacing;
+  final WrapCrossAlignment wrapCrossAxisAlignment;
+  final TextDirection wrapTextDirection;
+  final VerticalDirection wrapVerticalDirection;
+  final Widget separator;
+  final ControlAffinity controlAffinity;
+
+  final OptionsOrientation orientation;
+
   FormBuilderRadioGroup({
     Key key,
     //From Super
@@ -19,23 +38,23 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     bool autovalidate = false,
     VoidCallback onReset,
     FocusNode focusNode,
-    @required List<FormBuilderFieldOption> options,
-    Color activeColor,
-    Color focusColor,
-    Color hoverColor,
-    List<T> disabled,
-    MaterialTapTargetSize materialTapTargetSize,
-    Axis wrapDirection = Axis.horizontal,
-    WrapAlignment wrapAlignment = WrapAlignment.start,
-    double wrapSpacing = 0.0,
-    WrapAlignment wrapRunAlignment = WrapAlignment.start,
-    double wrapRunSpacing = 0.0,
-    WrapCrossAlignment wrapCrossAxisAlignment = WrapCrossAlignment.start,
-    TextDirection wrapTextDirection,
-    VerticalDirection wrapVerticalDirection = VerticalDirection.down,
-    Widget separator,
-    ControlAffinity controlAffinity = ControlAffinity.leading,
-    OptionsOrientation orientation = OptionsOrientation.wrap,
+    @required this.options,
+    this.activeColor,
+    this.focusColor,
+    this.hoverColor,
+    this.disabled,
+    this.materialTapTargetSize,
+    this.wrapDirection = Axis.horizontal,
+    this.wrapAlignment = WrapAlignment.start,
+    this.wrapSpacing = 0.0,
+    this.wrapRunAlignment = WrapAlignment.start,
+    this.wrapRunSpacing = 0.0,
+    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+    this.wrapTextDirection,
+    this.wrapVerticalDirection = VerticalDirection.down,
+    this.separator,
+    this.controlAffinity = ControlAffinity.leading,
+    this.orientation = OptionsOrientation.wrap,
   }) : super(
           key: key,
           initialValue: initialValue,

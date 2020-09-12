@@ -6,11 +6,24 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
 class FormBuilderSignaturePad extends FormBuilderField {
+  /// Controls the value of the signature pad.
+  ///
+  /// If null, this widget will create its own [TextEditingController].
   final SignatureController controller;
+
+  /// Width of the canvas
   final double width;
+
+  /// Height of the canvas
   final double height;
+
+  /// Color of the canvas
   final Color backgroundColor;
+
+  /// Text to be displayed on the clear button which clears user input from the canvas
   final String clearButtonText;
+
+  /// Styles the canvas border
   final Border border;
 
   FormBuilderSignaturePad({
