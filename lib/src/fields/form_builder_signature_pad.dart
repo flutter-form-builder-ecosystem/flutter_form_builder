@@ -144,7 +144,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                         elevation: 0,
                         color: widget.backgroundColor,
                         child: Image.memory(
-                          _savedValue,
+                          _savedValue ?? Uint8List(0),
                           height: widget.height,
                           width: widget.width,
                         ),
