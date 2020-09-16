@@ -101,6 +101,12 @@ class FormBuilder extends StatefulWidget {
   /// [FormState.validate] to validate.
   final bool autovalidate;
 
+  /// If true, form fields will validate if they lose Focus (user has finished editing)
+  /// and - in case of validation errors - on every change. This behavior provides a user experience
+  /// where validation errors will only be shown if the user has finished editing and
+  /// will be dismissed as soon as the error has been corrected.
+  final bool validateOnBlur;
+
   /// An optional Map of field initialValues. Keys correspond to the field's
   /// name and value to the initialValue of the field.
   ///
@@ -114,6 +120,7 @@ class FormBuilder extends StatefulWidget {
     this.readOnly = false,
     this.onChanged,
     this.autovalidate = false,
+    this.validateOnBlur = false,
     this.onWillPop,
     this.initialValue = const {},
   }) : super(key: key);
@@ -142,6 +149,8 @@ class FormBuilderState extends State<FormBuilder> {
   bool get readOnly => widget.readOnly;
 
   bool get autovalidate => widget.autovalidate;
+
+  bool get validateOnBlur => widget.validateOnBlur;
 
   @override
   void initState() {

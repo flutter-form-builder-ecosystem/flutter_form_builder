@@ -43,6 +43,12 @@ class FormBuilderField<T> extends FormField<T> {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode focusNode;
 
+  /// If true, form fields will validate if they lose Focus (user has finished editing)
+  /// and - in case of validation errors - on every change. This behavior provides a user experience
+  /// where validation errors will only be shown if the user has finished editing and
+  /// will be dismissed as soon as the error has been corrected.
+  final bool validateOnBlur;
+
   //TODO: implement bool autofocus, ValueChanged<bool> onValidated
 
   FormBuilderField({
@@ -61,6 +67,7 @@ class FormBuilderField<T> extends FormField<T> {
     this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
+    this.validateOnBlur = false,
   }) : super(
           key: key,
           onSaved: onSaved,
@@ -91,6 +98,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   bool get autovalidate =>
       _touched &&
       (widget.autovalidate || _formBuilderState?.autovalidate == true);
+
+  bool get validateOnBlur => widget.validateOnBlur || _formBuilderState?.validateOnBlur == true;
 
   T get initialValue => _initialValue;
 
@@ -140,6 +149,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     if (effectiveFocusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
       print('${widget.name} touched');
+    } else if (validateOnBlur) {
+      validate();
     }
   }
 
@@ -148,6 +159,9 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
     setState(() => _dirty = true);
     super.didChange(val);
     widget.onChanged?.call(value);
+    if (hasError && validateOnBlur) {
+      validate();
+    }
   }
 
   @override
