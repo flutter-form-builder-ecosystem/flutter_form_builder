@@ -133,7 +133,7 @@ class _FormBuilderCheckboxGroupState<T>
           ),
           child: GroupedCheckbox(
             orientation: widget.orientation,
-            value: widget.initialValue,
+            value: field.value,
             options: widget.options,
             onChanged: (val) {
               field.didChange(val);
