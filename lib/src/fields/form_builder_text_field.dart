@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderTextField extends FormBuilderField {
+class FormBuilderTextField extends FormBuilderField<String> {
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
@@ -289,7 +289,7 @@ class FormBuilderTextField extends FormBuilderField {
   /// {@macro flutter.services.autofill.autofillHints}
   final Iterable<String> autofillHints;
 
-  FormBuilderTextField( {
+  FormBuilderTextField({
     Key key,
     //From Super
     @required String name,
@@ -389,6 +389,9 @@ class FormBuilderTextField extends FormBuilderField {
             /*final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
             void onChangedHandler(String value) {
+              /*if (onChanged != null) {
+                onChanged(value);
+              }*/
               state.didChange(value);
             }
 
@@ -449,7 +452,7 @@ class FormBuilderTextField extends FormBuilderField {
   _FormBuilderTextFieldState createState() => _FormBuilderTextFieldState();
 }
 
-class _FormBuilderTextFieldState extends FormBuilderFieldState {
+class _FormBuilderTextFieldState extends FormBuilderFieldState<String> {
   @override
   FormBuilderTextField get widget => super.widget as FormBuilderTextField;
 
@@ -485,6 +488,15 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
   @override
   void patchValue(dynamic val) {
     _effectiveController.text = val;
+  }
+
+  @override
+  void didChange(String value) {
+    super.didChange(value);
+
+    if (_effectiveController.text != value) {
+      _effectiveController.text = value;
+    }
   }
 
   void _handleControllerChanged() {
