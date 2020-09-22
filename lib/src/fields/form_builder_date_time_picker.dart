@@ -156,7 +156,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     this.inputType = InputType.both,
@@ -226,7 +226,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -240,7 +240,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
               format: state.dateFormat,
               validator: validator,
               onShowPicker: state.onShowPicker,
-              autovalidate: autovalidate,
+              autovalidate: autovalidateMode != AutovalidateMode.disabled && autovalidateMode != null,
               resetIcon: resetIcon,
               textDirection: textDirection,
               textAlign: textAlign,
@@ -283,21 +283,19 @@ class FormBuilderDateTimePicker extends FormBuilderField {
   final StrutStyle strutStyle;
 
   @override
-  _FormBuilderDateTimePickerState createState() =>
-      _FormBuilderDateTimePickerState();
+  _FormBuilderDateTimePickerState createState() => _FormBuilderDateTimePickerState();
 }
 
 class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   @override
-  FormBuilderDateTimePicker get widget =>
-      super.widget as FormBuilderDateTimePicker;
+  FormBuilderDateTimePicker get widget => super.widget as FormBuilderDateTimePicker;
 
   TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
+
   // DateTime stateCurrentValue;
 
-  DateFormat get dateFormat =>
-      widget.format ?? _dateTimeFormats[widget.inputType];
+  DateFormat get dateFormat => widget.format ?? _dateTimeFormats[widget.inputType];
 
   final _dateTimeFormats = {
     InputType.both: DateFormat.yMd().add_jm(),
@@ -309,8 +307,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   void initState() {
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
-    _textFieldController.text =
-        initialValue == null ? '' : dateFormat.format(initialValue);
+    _textFieldController.text = initialValue == null ? '' : dateFormat.format(initialValue);
     // effectiveFocusNode.addListener(_handleFocus);
   }
 
@@ -321,8 +318,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     }
   }*/
 
-  Future<DateTime> onShowPicker(
-      BuildContext context, DateTime currentValue) async {
+  Future<DateTime> onShowPicker(BuildContext context, DateTime currentValue) async {
     currentValue = value;
     DateTime newValue;
     switch (widget.inputType) {
@@ -331,8 +327,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         break;
       case InputType.time:
         var newTime = await _showTimePicker(context, currentValue);
-        newValue =
-            newTime != null ? DateTimeField.convert(newTime) : currentValue;
+        newValue = newTime != null ? DateTimeField.convert(newTime) : currentValue;
         break;
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
@@ -350,8 +345,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     return finalValue;
   }
 
-  Future<DateTime> _showDatePicker(
-      BuildContext context, DateTime currentValue) {
+  Future<DateTime> _showDatePicker(BuildContext context, DateTime currentValue) {
     if (widget.datePicker != null) {
       return widget.datePicker(context);
     } else {
@@ -362,9 +356,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
             maxTime: widget.lastDate,
             currentTime: currentValue,
             locale: enumValueFromString(
-                (widget.locale ?? Localizations.localeOf(context))
-                    ?.languageCode,
-                LocaleType.values),
+                (widget.locale ?? Localizations.localeOf(context))?.languageCode, LocaleType.values),
             theme: widget.theme,
             onCancel: widget.onCancel,
             onConfirm: widget.onConfirm);
@@ -372,8 +364,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
       return showDatePicker(
         context: context,
         selectableDayPredicate: widget.selectableDayPredicate,
-        initialDatePickerMode:
-            widget.initialDatePickerMode ?? DatePickerMode.day,
+        initialDatePickerMode: widget.initialDatePickerMode ?? DatePickerMode.day,
         initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
         firstDate: widget.firstDate ?? DateTime(1900),
         lastDate: widget.lastDate ?? DateTime(2100),
@@ -383,8 +374,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         builder: widget.transitionBuilder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
                 child: child,
               );
             },
@@ -402,8 +392,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     }
   }
 
-  Future<TimeOfDay> _showTimePicker(
-      BuildContext context, DateTime currentValue) {
+  Future<TimeOfDay> _showTimePicker(BuildContext context, DateTime currentValue) {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
@@ -415,9 +404,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
             currentTime: currentValue,
             showSecondsColumn: false,
             locale: enumValueFromString(
-                (widget.locale ?? Localizations.localeOf(context))
-                    ?.languageCode,
-                LocaleType.values),
+                (widget.locale ?? Localizations.localeOf(context))?.languageCode, LocaleType.values),
           ).then(
             (result) {
               return TimeOfDay.fromDateTime(result ?? currentValue);
@@ -428,9 +415,8 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
           context,
           showTitleActions: true,
           currentTime: currentValue,
-          locale: enumValueFromString(
-              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
-              LocaleType.values),
+          locale:
+              enumValueFromString((widget.locale ?? Localizations.localeOf(context))?.languageCode, LocaleType.values),
         ).then(
           (result) {
             return TimeOfDay.fromDateTime(result ?? currentValue);
@@ -445,8 +431,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         builder: widget.transitionBuilder ??
             (BuildContext context, Widget child) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
                 child: child,
               );
             },
@@ -458,10 +443,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         cancelText: widget.cancelText,
       ).then(
         (result) {
-          return result ??
-              (currentValue != null
-                  ? TimeOfDay.fromDateTime(currentValue)
-                  : null);
+          return result ?? (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
         },
       );
     }

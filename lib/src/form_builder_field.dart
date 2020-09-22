@@ -50,7 +50,7 @@ class FormBuilderField<T> extends FormField<T> {
     //From Super
     FormFieldSetter<T> onSaved,
     T initialValue,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     bool enabled = true,
     FormFieldValidator validator,
     @required FormFieldBuilder<T> builder,
@@ -65,7 +65,7 @@ class FormBuilderField<T> extends FormField<T> {
           key: key,
           onSaved: onSaved,
           initialValue: initialValue,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           enabled: enabled,
           builder: builder,
           validator: validator,
@@ -87,10 +87,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   bool get dirty => !_dirty;
 
-  // Only autovalidate if touched
-  bool get autovalidate =>
-      _touched &&
-      (widget.autovalidate || _formBuilderState?.autovalidate == true);
+  AutovalidateMode get autovalidateMode => widget.autovalidateMode;
 
   T get initialValue => _initialValue;
 
@@ -112,8 +109,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   FocusNode _focusNode;
 
-  FocusNode get effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -132,8 +128,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void save() {
     super.save();
-    _formBuilderState?.setInternalFieldValue(
-        widget.name, widget.valueTransformer?.call(value) ?? value);
+    _formBuilderState?.setInternalFieldValue(widget.name, widget.valueTransformer?.call(value) ?? value);
   }
 
   void setTouchedHandler() {
