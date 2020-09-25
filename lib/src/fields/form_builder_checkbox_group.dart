@@ -143,7 +143,9 @@ class _FormBuilderCheckboxGroupState<T>
             focusColor: widget.focusColor,
             checkColor: widget.checkColor,
             materialTapTargetSize: widget.materialTapTargetSize,
-            disabled: widget.disabled,
+            disabled: _readOnly
+                ? widget.options.map((e) => e.value).toList()
+                : widget.disabled,
             hoverColor: widget.hoverColor,
             tristate: widget.tristate,
             wrapAlignment: widget.wrapAlignment,

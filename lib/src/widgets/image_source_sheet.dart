@@ -39,6 +39,8 @@ class ImageSourceBottomSheet extends StatelessWidget {
   final Widget cameraLabel;
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
+  
+  bool _isPickingImage = false;
 
   ImageSourceBottomSheet({
     Key key,
@@ -57,6 +59,8 @@ class ImageSourceBottomSheet extends StatelessWidget {
         super(key: key);
 
   Future<void> _onPickImage(ImageSource source) async {
+    if(_isPickingImage) return;
+    _isPickingImage = true;
     final imagePicker = ImagePicker();
     final pickedFile = await imagePicker.getImage(
       source: source,
@@ -65,6 +69,7 @@ class ImageSourceBottomSheet extends StatelessWidget {
       imageQuality: imageQuality,
       preferredCameraDevice: preferredCameraDevice,
     );
+    _isPickingImage = false;
     if (null != pickedFile) {
       if (kIsWeb) {
         if (null != onImage) {
@@ -84,22 +89,24 @@ class ImageSourceBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: bottomSheetPadding,
-      child: Wrap(
-        children: <Widget>[
-          ListTile(
-            leading: cameraIcon,
-            title: cameraLabel,
-            onTap: () => _onPickImage(ImageSource.camera),
-          ),
-          ListTile(
-            leading: galleryIcon,
-            title: galleryLabel,
-            onTap: () => _onPickImage(ImageSource.gallery),
-          )
-        ],
-      ),
+    return WillPopScope(
+      onWillPop: () async => !_isPickingImage,
+      child: Container(
+        padding: bottomSheetPadding,
+        child: Wrap(
+          children: <Widget>[
+            ListTile(
+              leading: cameraIcon,
+              title: cameraLabel,
+              onTap: () => _onPickImage(ImageSource.camera),
+            ),
+            ListTile(
+              leading: galleryIcon,
+              title: galleryLabel,
+              onTap: () => _onPickImage(ImageSource.gallery),
+            )
+          ],
+        ),
     );
   }
 }
