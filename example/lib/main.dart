@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 
 import 'data.dart';
@@ -21,6 +22,18 @@ class MyApp extends StatelessWidget {
           border: OutlineInputBorder(gapPadding: 10),
         ),
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      // locale: Locale('ru'),
+      supportedLocales: [
+        Locale('en', 'GB'),
+        Locale('en', 'US'),
+        Locale('es', ''),
+        Locale('ru'),
+      ],
       home: MyHomePage(),
     );
   }
@@ -173,6 +186,7 @@ class MyHomePageState extends State<MyHomePage> {
                       labelText: 'Appointment Time',
                     ),
                     validator: (val) => null,
+                    // locale: Locale('ru'),
                     initialTime: TimeOfDay(hour: 8, minute: 0),
                     // initialValue: DateTime.now(),
                     // readonly: true,

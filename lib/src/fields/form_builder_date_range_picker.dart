@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:core';
+import 'dart:math';
 
 import 'package:date_range_picker/date_range_picker.dart' as date_range_picker;
 import 'package:flutter/material.dart';
@@ -166,15 +167,9 @@ class FormBuilderDateRangePickerState
         ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
             ? _formState.initialValue[widget.attribute]
             : []);
-    _controller = TextEditingController(
-      text: _valueToText(),
-    );
-    _effectiveController.addListener(() {
-      widget.onChanged?.call(_effectiveController.text);
-    });
+    _controller = TextEditingController(text: _valueToText());
     _focusNode = FocusNode();
-    widget.focusNode?.addListener(_handleFocus);
-    _focusNode?.addListener(_handleFocus);
+    _effectiveFocusNode?.addListener(_handleFocus);
     super.initState();
   }
 
@@ -261,9 +256,15 @@ class FormBuilderDateRangePickerState
         textDirection: widget.textDirection,
         selectableDayPredicate: widget.selectableDayPredicate,
       );
-      _fieldKey.currentState.didChange(picked);
-      _setCurrentValue(picked);
-      _effectiveController.text = _valueToText();
+      if (picked != null) {
+        if (picked.length == 1) {
+          picked.add(picked[0]);
+        }
+        _fieldKey.currentState.didChange(picked);
+        widget.onChanged?.call(picked);
+        _setCurrentValue(picked);
+        _effectiveController.text = _valueToText();
+      }
     }
   }
 
@@ -291,8 +292,9 @@ class FormBuilderDateRangePickerState
 
   @override
   void dispose() {
+    _focusNode?.dispose();
     _formState?.unregisterFieldKey(widget.attribute);
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 }

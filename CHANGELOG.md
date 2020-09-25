@@ -1,3 +1,17 @@
+## [3.13.6] - 25-Sep-2020
+* Fixed bug in DateRangePicker where user can just pick one date. Closes #434
+* Fix bug where FormBuilderCheckboxGroup value set to widget.initialValue. Closes #467
+* Prevent events from happening while picking image with ImagePicker
+* Added null check for val in onSaved and validator
+* Fix `GroupedCheckbox` not disabled when read only
+* Added phone validation and fixed `initialValue` parsing
+* Fix `Image.memory` throwing error when value is `null`
+
+## [3.13.5] - 08-Sep-2020
+* Fixed bug in `DateRangePicker` where `onChanged` fires before change. Closes #434
+* Use app's locale for default DateTimePicker display formatting
+* Update to latest `flutter_chips_input`. Fixes #415
+
 ## [3.14.0-alpha.3] - 22-Aug-2020
 * Include changes made in v3.13.4
 

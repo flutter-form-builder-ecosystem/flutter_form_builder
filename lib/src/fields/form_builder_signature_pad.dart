@@ -108,9 +108,12 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       key: _fieldKey,
       enabled: !_readOnly,
       initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
+      validator: (val) {
+        if (_savedValue != null && val == null) return;
+        FormBuilderValidators.validateValidators(val, widget.validators);
+      },
       onSaved: (val) {
+        if (_savedValue != null && val == null) return;
         var transformed;
         if (widget.valueTransformer != null) {
           transformed = widget.valueTransformer(val);
@@ -141,7 +144,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                         elevation: 0,
                         color: widget.backgroundColor,
                         child: Image.memory(
-                          _savedValue,
+                          _savedValue ?? Uint8List(0),
                           height: widget.height,
                           width: widget.width,
                         ),
