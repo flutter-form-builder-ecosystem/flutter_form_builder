@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ImageSourceBottomSheet extends StatelessWidget {
+class ImageSourceBottomSheet extends StatefulWidget {
   /// Optional maximum height of image
   final double maxHeight;
 
@@ -39,8 +39,6 @@ class ImageSourceBottomSheet extends StatelessWidget {
   final Widget cameraLabel;
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
-  
-  bool _isPickingImage = false;
 
   ImageSourceBottomSheet({
     Key key,
@@ -58,30 +56,37 @@ class ImageSourceBottomSheet extends StatelessWidget {
   })  : assert(null != onImage || null != onImageSelected),
         super(key: key);
 
+  @override
+  _ImageSourceBottomSheetState createState() => _ImageSourceBottomSheetState();
+}
+
+class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
+  bool _isPickingImage = false;
+
   Future<void> _onPickImage(ImageSource source) async {
-    if(_isPickingImage) return;
+    if (_isPickingImage) return;
     _isPickingImage = true;
     final imagePicker = ImagePicker();
     final pickedFile = await imagePicker.getImage(
       source: source,
-      maxHeight: maxHeight,
-      maxWidth: maxWidth,
-      imageQuality: imageQuality,
-      preferredCameraDevice: preferredCameraDevice,
+      maxHeight: widget.maxHeight,
+      maxWidth: widget.maxWidth,
+      imageQuality: widget.imageQuality,
+      preferredCameraDevice: widget.preferredCameraDevice,
     );
     _isPickingImage = false;
     if (null != pickedFile) {
       if (kIsWeb) {
-        if (null != onImage) {
-          onImage(await pickedFile.readAsBytes());
+        if (null != widget.onImage) {
+          widget.onImage(await pickedFile.readAsBytes());
         }
       } else {
-        if (null != onImageSelected) {
+        if (null != widget.onImageSelected) {
           // Warning:  this will not work on the web platform because pickedFile
           // will instead point to a network resource.
           final imageFile = File(pickedFile.path);
           assert(null != imageFile);
-          onImageSelected(imageFile);
+          widget.onImageSelected(imageFile);
         }
       }
     }
@@ -92,21 +97,22 @@ class ImageSourceBottomSheet extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async => !_isPickingImage,
       child: Container(
-        padding: bottomSheetPadding,
+        padding: widget.bottomSheetPadding,
         child: Wrap(
           children: <Widget>[
             ListTile(
-              leading: cameraIcon,
-              title: cameraLabel,
+              leading: widget.cameraIcon,
+              title: widget.cameraLabel,
               onTap: () => _onPickImage(ImageSource.camera),
             ),
             ListTile(
-              leading: galleryIcon,
-              title: galleryLabel,
+              leading: widget.galleryIcon,
+              title: widget.galleryLabel,
               onTap: () => _onPickImage(ImageSource.gallery),
             )
           ],
         ),
+      ),
     );
   }
 }

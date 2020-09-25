@@ -257,7 +257,7 @@ class FormBuilderDateRangePickerState
         selectableDayPredicate: widget.selectableDayPredicate,
       );
       if (picked != null) {
-        if(picked.length == 1){
+        if (picked.length == 1) {
           picked.add(picked[0]);
         }
         _fieldKey.currentState.didChange(picked);
