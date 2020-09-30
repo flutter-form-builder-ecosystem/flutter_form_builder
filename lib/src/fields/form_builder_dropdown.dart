@@ -265,6 +265,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                       ? decoration.floatingLabelBehavior
                       : FloatingLabelBehavior.always,
                 ),
+                isEmpty: state.value == null,
                 child: Row(
                   children: <Widget>[
                     Expanded(
