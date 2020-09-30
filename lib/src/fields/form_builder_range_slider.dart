@@ -157,7 +157,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
   ///  )
   /// ```
   /// {@end-tool}
-  final RangeSemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback semanticFormatterCallback;
 
   final DisplayValues displayValues;
   final TextStyle minTextStyle;

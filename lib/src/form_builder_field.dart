@@ -90,7 +90,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   // Only autovalidate if touched
   bool get autovalidate =>
       _touched &&
-      (widget.autovalidate || _formBuilderState?.autovalidate == true);
+      (widget.autovalidateMode != AutovalidateMode.disabled || _formBuilderState?.autovalidate == true);
 
   T get initialValue => _initialValue;
 
