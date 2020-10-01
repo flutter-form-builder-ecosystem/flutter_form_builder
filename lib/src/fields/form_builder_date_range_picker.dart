@@ -19,7 +19,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -69,7 +69,7 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
-    this.autovalidate = false,
+    this.autovalidateMode,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -193,7 +193,7 @@ class FormBuilderDateRangePickerState
         }
         widget.onSaved?.call(transformed ?? val);
       },
-      autovalidate: widget.autovalidate ?? false,
+      autovalidateMode: widget.autovalidateMode,
       builder: (FormFieldState<List<DateTime>> field) {
         return TextField(
           enabled: !_readOnly,

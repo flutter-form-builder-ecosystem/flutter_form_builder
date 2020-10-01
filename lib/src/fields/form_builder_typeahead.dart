@@ -14,7 +14,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
   final ValueTransformer valueTransformer;
 
   final bool getImmediateSuggestions;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final ErrorBuilder errorBuilder;
   final WidgetBuilder noItemsFoundBuilder;
   final WidgetBuilder loadingBuilder;
@@ -51,7 +51,7 @@ class FormBuilderTypeAhead<T> extends StatefulWidget {
     this.readOnly = false,
     this.decoration = const InputDecoration(),
     this.getImmediateSuggestions = false,
-    this.autovalidate = false,
+    this.autovalidateMode,
     this.selectionToTextTransformer,
     this.errorBuilder,
     this.noItemsFoundBuilder,
@@ -144,7 +144,8 @@ class _FormBuilderTypeAheadState<T> extends State<FormBuilderTypeAhead<T>> {
         }
         widget.onSaved?.call(transformed ?? val);
       },
-      autovalidate: widget.autovalidate,
+      //autovalidateMode: widget.autovalidateMode,
+      autovalidate: widget.autovalidateMode == AutovalidateMode.always,
       textFieldConfiguration: widget.textFieldConfiguration.copyWith(
         enabled: !_readOnly,
         controller: _typeAheadController,

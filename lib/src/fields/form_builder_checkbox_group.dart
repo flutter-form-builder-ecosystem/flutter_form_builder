@@ -13,7 +13,7 @@ class FormBuilderCheckboxGroup<T> extends StatefulWidget {
   final ValueTransformer valueTransformer;
   final bool enabled;
   final FormFieldSetter onSaved;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final List<FormBuilderFieldOption> options;
   final Color activeColor;
   final Color checkColor;
@@ -51,7 +51,7 @@ class FormBuilderCheckboxGroup<T> extends StatefulWidget {
     this.valueTransformer,
     this.enabled = true,
     this.onSaved,
-    this.autovalidate = false,
+    this.autovalidateMode,
     @required this.options,
     this.activeColor,
     this.checkColor,

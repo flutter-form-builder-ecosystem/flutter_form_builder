@@ -17,7 +17,7 @@ class FormBuilderPhoneField extends StatefulWidget {
   final ValueChanged onChanged;
   final ValueTransformer valueTransformer;
 
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -69,7 +69,7 @@ class FormBuilderPhoneField extends StatefulWidget {
     this.validators = const [],
     this.readOnly = false,
     this.decoration = const InputDecoration(),
-    this.autovalidate = false,
+    this.autovalidateMode,
     this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -194,7 +194,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     return FormField(
       key: _fieldKey,
       initialValue: _initialValue,
-      autovalidate: widget.autovalidate,
+      autovalidateMode: widget.autovalidateMode,
       validator: (val) {
         if (phoneNumberValid) {
           return FormBuilderValidators.validateValidators(

@@ -13,7 +13,7 @@ class FormBuilderColorPicker extends StatefulWidget {
   final Color initialValue;
   final List<FormFieldValidator> validators;
   final bool enabled;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final ValueTransformer valueTransformer;
   final ValueChanged onChanged;
   final FormFieldSetter<Color> onSaved;
@@ -64,7 +64,7 @@ class FormBuilderColorPicker extends StatefulWidget {
     this.initialValue,
     this.validators = const [],
     this.enabled = true,
-    this.autovalidate = false,
+    this.autovalidateMode,
     this.valueTransformer,
     this.onChanged,
     this.onSaved,
@@ -160,7 +160,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
         }
         widget.onSaved?.call(transformed ?? val);
       },
-      autovalidate: widget.autovalidate ?? false,
+      autovalidateMode: widget.autovalidateMode,
       builder: (FormFieldState<Color> field) {
         _effectiveController.text = HexColor(field.value)?.toHex();
         final defaultBorderColor = Colors.grey;

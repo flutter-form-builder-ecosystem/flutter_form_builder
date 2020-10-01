@@ -48,7 +48,7 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   var data;
-  bool autoValidate = true;
+  AutovalidateMode autovalidateMode = AutovalidateMode.always;
   bool readOnly = false;
   bool showSegmentedControl = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
@@ -71,7 +71,6 @@ class MyHomePageState extends State<MyHomePage> {
             FormBuilder(
               // context,
               key: _fbKey,
-              // autovalidate: true,
               initialValue: {
                 'movie_rating': 3,
                 'filter_chip': ['Test', 'Test 1'],
@@ -273,7 +272,6 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderTextField(
                     attribute: 'age',
-                    // autovalidate: true,
                     controller: _ageController,
                     decoration: InputDecoration(
                       labelText: 'Age',

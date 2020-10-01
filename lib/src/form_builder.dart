@@ -8,7 +8,7 @@ class FormBuilder extends StatefulWidget {
   final WillPopCallback onWillPop;
   final Widget child;
   final bool readOnly;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final Map<String, dynamic> initialValue;
 
   const FormBuilder({
@@ -16,7 +16,7 @@ class FormBuilder extends StatefulWidget {
     @required this.child,
     this.readOnly = false,
     this.onChanged,
-    this.autovalidate = false,
+    this.autovalidateMode,
     this.onWillPop,
     this.initialValue = const {},
   }) : super(key: key);
@@ -108,7 +108,7 @@ class FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       child: widget.child,
-      autovalidate: widget.autovalidate,
+      autovalidateMode: widget.autovalidateMode,
       onWillPop: widget.onWillPop,
       onChanged: () {
         if (widget.onChanged != null) {

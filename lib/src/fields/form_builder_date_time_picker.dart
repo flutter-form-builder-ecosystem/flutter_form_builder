@@ -90,7 +90,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
 
   /// Preset the widget's value.
   final bool autofocus;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final bool obscureText;
   final bool autocorrect;
   final bool maxLengthEnforced;
@@ -170,7 +170,7 @@ class FormBuilderDateTimePicker extends StatefulWidget {
     this.maxLines = 1,
     this.maxLengthEnforced = true,
     this.expands = false,
-    this.autovalidate = false,
+    this.autovalidateMode,
     // this.editable = true,
     this.initialValue,
     this.format,
@@ -323,7 +323,7 @@ class _FormBuilderDateTimePickerState extends State<FormBuilderDateTimePicker> {
         onChanged: (val) {
           widget.onChanged?.call(val);
         },
-        autovalidate: widget.autovalidate,
+        autovalidate: widget.autovalidateMode == AutovalidateMode.always,
         resetIcon: widget.resetIcon,
         textDirection: widget.textDirection,
         textAlign: widget.textAlign,
