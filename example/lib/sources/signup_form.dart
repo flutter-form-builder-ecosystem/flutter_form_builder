@@ -80,7 +80,11 @@ class _SignupFormState extends State<SignupForm> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    _formKey.currentState.saveAndValidate();
+                    if (_formKey.currentState.saveAndValidate()) {
+                      print('Valid');
+                    } else {
+                      print('Invalid');
+                    }
                   },
                 )
               ],

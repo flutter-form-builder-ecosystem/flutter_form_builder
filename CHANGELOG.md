@@ -1,6 +1,19 @@
+## [4.0.0-beta.5] - 05-Sept-2020
+* Finished implementation of `FormBuilderSearchableDropdown`.
+* Deprecated `FormBuilderCountryPicker` - redundant due to `FormBuilderSearchableDropdown` inclusion.
+
+## [4.0.0-beta.4] - 04-Sept-2020
+* Fix for label overflows in Radio & Checkbox Groups
+* Fixed bug in `FormBuilderDateRangePicker` where if dialog dismissed, current value is cleared
+* Fix bug where changes from user defined `TextEditingController` in `FormBuilderTextField` not detected. Closes #448
+* Improvements to documentation
+
+## [4.0.0-beta.3] - 31-Aug-2020
+* Fixed bug where validate() always returns true. Closes #440
+
 ## [4.0.0-beta.2] - 22-Aug-2020
 * Added new field FormBuilderLocationField
-* Use latest flutter_datetime_picker. Fixes "Error: Type 'DiagnosticableMixin' not found". Closes #406
+* Use latest flutter_datetime_picker. Fixes `"Error: Type 'DiagnosticableMixin' not found"`. Closes #406
 * Fixed bug where initialValue not set in DateTimePicker. Closes #425
 * Fixed issue where equal validator yields required errorText
 * Fixes to focus and focusNodes, check if field is touched.

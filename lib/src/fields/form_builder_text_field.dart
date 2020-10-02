@@ -63,7 +63,7 @@ class FormBuilderTextField extends FormBuilderField {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     this.maxLines = 1,
@@ -114,7 +114,7 @@ class FormBuilderTextField extends FormBuilderField {
         assert(obscureText != null),
         assert(autocorrect != null),
         assert(enableSuggestions != null),
-        assert(autovalidate != null),
+        assert(autovalidateMode != null),
         assert(maxLengthEnforced != null),
         assert(scrollPadding != null),
         assert(maxLines == null || maxLines > 0),
@@ -140,7 +140,7 @@ class FormBuilderTextField extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -225,6 +225,8 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
     super.initState();
     if (widget.controller == null) {
       _controller = TextEditingController(text: initialValue);
+    } else {
+      widget.controller.addListener(_handleControllerChanged);
     }
   }
 
@@ -245,5 +247,18 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState {
   @override
   void patchValue(dynamic val) {
     _effectiveController.text = val;
+  }
+
+  void _handleControllerChanged() {
+    // Suppress changes that originated from within this class.
+    //
+    // In the case where a controller has been passed in to this widget, we
+    // register this change listener. In these cases, we'll also receive change
+    // notifications for changes originating from within this class -- for
+    // example, the reset() method. In such cases, the FormField value will
+    // already have been set.
+    if (_effectiveController.text != value) {
+      didChange(_effectiveController.text);
+    }
   }
 }

@@ -4,6 +4,7 @@ export 'package:country_code_picker/country_code_picker.dart';
 export 'package:flutter_typeahead/flutter_typeahead.dart';
 export 'package:google_maps_flutter/google_maps_flutter.dart';
 export 'package:signature/signature.dart';
+export 'package:dropdown_search/dropdown_search.dart' hide ErrorBuilder;
 
 export './localization/form_builder_localizations.dart';
 export './src/fields/form_builder_checkbox.dart';

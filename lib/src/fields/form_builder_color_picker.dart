@@ -9,12 +9,12 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 extension on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
-  static Color fromHex(String hexString) {
+  /*static Color fromHex(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
-  }
+  }*/
 
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
   String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
@@ -36,7 +36,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     Color initialValue,
     FormFieldValidator validator,
     bool enabled = true,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     ValueTransformer valueTransformer,
     ValueChanged onChanged,
     FormFieldSetter<Color> onSaved,
@@ -81,7 +81,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,

@@ -15,7 +15,7 @@ class GroupedCheckbox<T> extends StatefulWidget {
   final List<T> disabled;
 
   /// Specifies the orientation of the elements in itemList.
-  final GroupedCheckboxOrientation orientation;
+  final OptionsOrientation orientation;
 
   /// Called when the value of the checkbox group changes.
   final ValueChanged<List<T>> onChanged;
@@ -227,13 +227,13 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
     for (var i = 0; i < widget.options.length; i++) {
       widgetList.add(item(i));
     }
-    if (widget.orientation == GroupedCheckboxOrientation.vertical) {
+    if (widget.orientation == OptionsOrientation.vertical) {
       for (final item in widgetList) {
         content.add(Row(children: <Widget>[item]));
       }
       finalWidget = SingleChildScrollView(
           scrollDirection: Axis.vertical, child: Column(children: content));
-    } else if (widget.orientation == GroupedCheckboxOrientation.horizontal) {
+    } else if (widget.orientation == OptionsOrientation.horizontal) {
       for (final item in widgetList) {
         content.add(Column(children: <Widget>[item]));
       }
@@ -298,10 +298,10 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       children: <Widget>[
         if (widget.controlAffinity == ControlAffinity.leading) ...[
           control,
-          label
+          Flexible(child: label),
         ],
         if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          label,
+          Flexible(child: label),
           control
         ],
         if (widget.separator != null &&
@@ -311,6 +311,3 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
     );
   }
 }
-
-enum GroupedCheckboxOrientation { horizontal, vertical, wrap }
-enum ControlAffinity { leading, trailing }

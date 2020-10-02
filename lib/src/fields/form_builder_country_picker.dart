@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+@Deprecated(
+    'Will be removed due to its limited applicability. Can be replaced with `FormBuilderSearchableDropdown`')
 class FormBuilderCountryPicker extends FormBuilderField<String> {
   final String initialSelection;
   final bool showCountryOnly;
@@ -41,7 +43,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     this.favorite = const [],
@@ -76,7 +78,7 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -131,6 +133,8 @@ class FormBuilderCountryPicker extends FormBuilderField<String> {
 
 class _FormBuilderCountryPickerState extends FormBuilderFieldState<String> {
   @override
+  // ignore: deprecated_member_use_from_same_package
   FormBuilderCountryPicker get widget =>
+      // ignore: deprecated_member_use_from_same_package
       super.widget as FormBuilderCountryPicker;
 }

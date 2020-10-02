@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
@@ -17,7 +16,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     @required List<FormBuilderFieldOption> options,
@@ -36,7 +35,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     VerticalDirection wrapVerticalDirection = VerticalDirection.down,
     Widget separator,
     ControlAffinity controlAffinity = ControlAffinity.leading,
-    GroupedRadioOrientation orientation = GroupedRadioOrientation.wrap,
+    OptionsOrientation orientation = OptionsOrientation.wrap,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -45,7 +44,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
