@@ -1,3 +1,6 @@
+## [3.14.0] - 02-Oct-2020
+* Added support for Flutter v1.22
+
 ## [3.14.0-alpha.4] - 30-Sep-2020
 * Include changes made in v3.13.5 & v3.13.6
 * Fix build for flutter >=1.21.0-9.1.pre
