@@ -129,6 +129,11 @@ class FormBuilderRangeSlider extends FormBuilderField {
   /// appearance of various components of the slider.
   final Color inactiveColor;
 
+  final ValueChanged<RangeValues> onChangeStart;
+  final ValueChanged<RangeValues> onChangeEnd;
+  final RangeLabels labels;
+ 
+
   /// The callback used to create a semantic value from the slider's values.
   ///
   /// Defaults to formatting values as a percentage.
@@ -157,7 +162,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
   ///  )
   /// ```
   /// {@end-tool}
-  final RangeSemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback semanticFormatterCallback;
 
   final DisplayValues displayValues;
   final TextStyle minTextStyle;
