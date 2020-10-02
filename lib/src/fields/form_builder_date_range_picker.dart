@@ -59,7 +59,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     @required this.firstDate,
@@ -123,7 +123,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -227,7 +227,7 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState {
         selectableDayPredicate: widget.selectableDayPredicate,
       );
       if (picked != null) {
-        if(picked.length == 1){
+        if (picked.length == 1) {
           picked.add(picked[0]);
         }
         didChange(picked);

@@ -38,7 +38,7 @@ class FormBuilderImagePicker extends FormBuilderField {
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
 
-  FormBuilderImagePicker( {
+  FormBuilderImagePicker({
     Key key,
     //From Super
     @required String name,
@@ -50,7 +50,7 @@ class FormBuilderImagePicker extends FormBuilderField {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     this.previewWidth = 130,
@@ -78,7 +78,7 @@ class FormBuilderImagePicker extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -143,22 +143,23 @@ class FormBuilderImagePicker extends FormBuilderField {
                       }).toList()),
                     if (!state.readOnly && !state.hasMaxImages)
                       GestureDetector(
-                        child: placeholderImage != null?
-                        Image(
-                          width: previewWidth,
-                          height: previewHeight,
-                          image: placeholderImage,
-                        ) : Container(
-                            width: previewWidth,
-                            height: previewHeight,
-                            child: Icon(Icons.camera_enhance,
-                                color: state.readOnly
-                                    ? disabledColor
-                                    : iconColor ?? primaryColor),
-                            color: (state.readOnly
-                                    ? disabledColor
-                                    : iconColor ?? primaryColor)
-                                .withAlpha(50)),
+                        child: placeholderImage != null
+                            ? Image(
+                                width: previewWidth,
+                                height: previewHeight,
+                                image: placeholderImage,
+                              )
+                            : Container(
+                                width: previewWidth,
+                                height: previewHeight,
+                                child: Icon(Icons.camera_enhance,
+                                    color: state.readOnly
+                                        ? disabledColor
+                                        : iconColor ?? primaryColor),
+                                color: (state.readOnly
+                                        ? disabledColor
+                                        : iconColor ?? primaryColor)
+                                    .withAlpha(50)),
                         onTap: () {
                           showModalBottomSheet(
                             context: state.context,

@@ -95,7 +95,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
   ///
   /// This is used by accessibility frameworks like TalkBack on Android to
   /// inform users what the currently selected value is with more context.
-  final RangeSemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback semanticFormatterCallback;
 
   final DisplayValues displayValues;
   final TextStyle minTextStyle;
@@ -115,7 +115,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     @required this.min,
@@ -140,7 +140,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
             valueTransformer: valueTransformer,
             onChanged: onChanged,
             readOnly: readOnly,
-            autovalidate: autovalidate,
+            autovalidateMode: autovalidateMode,
             onSaved: onSaved,
             enabled: enabled,
             onReset: onReset,

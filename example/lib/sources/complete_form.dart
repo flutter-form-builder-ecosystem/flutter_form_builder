@@ -229,7 +229,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ]),
                   ),
                   FormBuilderTextField(
-                    autovalidate: true,
+                    autovalidateMode: AutovalidateMode.always,
                     name: 'age',
                     decoration: InputDecoration(
                       labelText: 'Age',

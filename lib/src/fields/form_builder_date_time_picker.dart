@@ -156,7 +156,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     this.inputType = InputType.both,
@@ -226,7 +226,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -240,7 +240,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
               format: state.dateFormat,
               validator: validator,
               onShowPicker: state.onShowPicker,
-              autovalidate: autovalidate,
+              autovalidate: autovalidateMode != AutovalidateMode.disabled &&
+                  autovalidateMode != null,
               resetIcon: resetIcon,
               textDirection: textDirection,
               textAlign: textAlign,
@@ -300,12 +301,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   DateFormat get dateFormat =>
       widget.format ?? _dateTimeFormats[widget.inputType];
 
-  Map _dateTimeFormats;
+  Map _dateTimeFormats = {
+    InputType.both: DateFormat.yMd().add_Hms(),
+    InputType.date: DateFormat.yMd(),
+    InputType.time: DateFormat.Hm(),
+  };
 
   @override
   void initState() {
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
+    _textFieldController.text =
+        initialValue == null ? '' : dateFormat.format(initialValue);
     // effectiveFocusNode.addListener(_handleFocus);
   }
 

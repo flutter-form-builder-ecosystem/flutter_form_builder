@@ -16,6 +16,9 @@ dependencies:
   widget_with_codeview: ^1.0.3
   cupertino_icons: any
 
+dependency_overrides:
+  modal_bottom_sheet: ^0.2.1+1-dev
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

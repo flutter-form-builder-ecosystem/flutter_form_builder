@@ -54,12 +54,12 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
-  final double cursorWidth ;
+  final double cursorWidth;
   final Radius cursorRadius;
   final Color cursorColor;
   final Brightness keyboardAppearance;
-  final EdgeInsets scrollPadding ;
-  final bool enableInteractiveSelection ;
+  final EdgeInsets scrollPadding;
+  final bool enableInteractiveSelection;
   final InputCounterWidgetBuilder buildCounter;
 
   FormBuilderColorPickerField({
@@ -68,7 +68,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     Color initialValue,
     FormFieldValidator validator,
     bool enabled = true,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     ValueTransformer valueTransformer,
     ValueChanged onChanged,
     FormFieldSetter<Color> onSaved,
@@ -84,27 +84,27 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     this.textInputAction,
     this.style,
     this.strutStyle,
-    this. textDirection,
-    this. autofocus = false,
-    this. obscureText = false,
-    this. autocorrect = true,
-    this. maxLengthEnforced = true,
-    this. maxLines = 1,
-    this. expands = false,
-    this. showCursor,
-    this. minLines,
-    this. maxLength,
-    this. onEditingComplete,
-    this. onFieldSubmitted,
+    this.textDirection,
+    this.autofocus = false,
+    this.obscureText = false,
+    this.autocorrect = true,
+    this.maxLengthEnforced = true,
+    this.maxLines = 1,
+    this.expands = false,
+    this.showCursor,
+    this.minLines,
+    this.maxLength,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
     // FormFieldValidator<String> validator,
-    this. inputFormatters,
-    this. cursorWidth = 2.0,
-    this. cursorRadius,
-    this. cursorColor,
-    this. keyboardAppearance,
-    this. scrollPadding = const EdgeInsets.all(20.0),
-    this. enableInteractiveSelection = true,
-    this. buildCounter,
+    this.inputFormatters,
+    this.cursorWidth = 2.0,
+    this.cursorRadius,
+    this.cursorColor,
+    this.keyboardAppearance,
+    this.scrollPadding = const EdgeInsets.all(20.0),
+    this.enableInteractiveSelection = true,
+    this.buildCounter,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -113,7 +113,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,

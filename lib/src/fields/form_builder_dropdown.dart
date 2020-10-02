@@ -191,7 +191,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     ValueTransformer valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
-    bool autovalidate = false,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
     @required this.items,
@@ -221,7 +221,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           valueTransformer: valueTransformer,
           onChanged: onChanged,
           readOnly: readOnly,
-          autovalidate: autovalidate,
+          autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
@@ -239,6 +239,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                     ? decoration.floatingLabelBehavior
                     : FloatingLabelBehavior.always,
               ),
+              isEmpty: state.value == null,
               child: Row(
                 children: <Widget>[
                   Expanded(
