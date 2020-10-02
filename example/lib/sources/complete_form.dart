@@ -419,23 +419,6 @@ class CompleteFormState extends State<CompleteForm> {
                     ]),
                   ),
                   SizedBox(height: 15),
-                  /*FormBuilderSearchableDropdown<Contact>(
-                    decoration: InputDecoration(
-                      labelText: 'Phone Number',
-                      border: OutlineInputBorder(),
-                    ),
-                    name: 'searchable',
-                    items: contacts
-                        .map((e) => DropdownMenuItem(
-                              value: e,
-                              child: Text('${e.name}'),
-                            ))
-                        .toList(),
-                    hint: 'Select one',
-                    searchHint: 'Select one',
-                    isExpanded: true,
-                    onChanged: _onChanged,
-                  ),*/
                 ],
               ),
             ),

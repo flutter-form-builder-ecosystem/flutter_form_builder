@@ -1,8 +1,19 @@
-## [4.0.0-beta.5] - 05-Sept-2020
+## [4.0.0-RC.1] - 02-Oct-2020
+* Added compatibility for Flutter v1.22
+* Documentation improvements
+* hide floating label if field is empty
+* Add default placeholder image for ImagePicker
+* For default DateTimePicker format, use localized DateTime formats
+* Fixed bug in DateRangePicker where user can just pick one date
+* Fix bug in dropdown where setting enabled to false doesn't affect input. Closes #450
+* Bumped flutter_chips_input from v1.9.3 to v1.9.4
+* **BREAKING CHANGE**: Removed CountryPicker field because of limited use. Replaced with SearchableDropdown with similar functionality but not only limited to countries.
+
+## [4.0.0-beta.5] - 05-Sep-2020
 * Finished implementation of `FormBuilderSearchableDropdown`.
 * Deprecated `FormBuilderCountryPicker` - redundant due to `FormBuilderSearchableDropdown` inclusion.
 
-## [4.0.0-beta.4] - 04-Sept-2020
+## [4.0.0-beta.4] - 04-Sep-2020
 * Fix for label overflows in Radio & Checkbox Groups
 * Fixed bug in `FormBuilderDateRangePicker` where if dialog dismissed, current value is cleared
 * Fix bug where changes from user defined `TextEditingController` in `FormBuilderTextField` not detected. Closes #448
