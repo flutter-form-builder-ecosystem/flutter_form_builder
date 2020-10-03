@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "11.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.39.14"
+    version: "0.40.4"
   archive:
     dependency: transitive
     description:
@@ -49,7 +49,7 @@ packages:
       name: basic_utils
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.7"
+    version: "2.6.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -77,7 +77,7 @@ packages:
       name: cli_util
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4"
+    version: "0.2.0"
   clock:
     dependency: transitive
     description:
@@ -112,21 +112,14 @@ packages:
       name: coverage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.11"
+    version: "0.14.1"
   crypto:
     dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.4"
-  csslib:
-    dependency: transitive
-    description:
-      name: csslib
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.16.1"
+    version: "2.1.5"
   date_range_picker:
     dependency: "direct main"
     description:
@@ -173,14 +166,14 @@ packages:
       name: flutter_keyboard_visibility
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.2.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.8"
+    version: "1.0.11"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -212,13 +205,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  html:
-    dependency: transitive
-    description:
-      name: html
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.14.0+3"
   http:
     dependency: transitive
     description:
@@ -246,7 +232,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.12"
+    version: "2.1.18"
   image_picker:
     dependency: "direct main"
     description:
@@ -267,7 +253,7 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   intl:
     dependency: "direct main"
     description:
@@ -323,7 +309,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.6+3"
+    version: "0.9.7"
   node_interop:
     dependency: transitive
     description:
@@ -372,7 +358,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.0"
+    version: "3.1.0"
   phone_number:
     dependency: "direct main"
     description:
@@ -386,7 +372,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   pointycastle:
     dependency: transitive
     description:
@@ -428,7 +414,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.7"
+    version: "0.7.9"
   shelf_packages_handler:
     dependency: transitive
     description:
@@ -566,7 +552,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "5.2.0"
   watcher:
     dependency: transitive
     description:
@@ -594,7 +580,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.6.1"
+    version: "4.5.1"
   yaml:
     dependency: transitive
     description:
