@@ -1,3 +1,9 @@
+## [4.0.0-pre.3] - 02-Oct-2020
+* Changed Version naming for release candidates from `-RC.*` to `-pre.*` 
+
+## [4.0.0-RC.2] - 02-Oct-2020
+* More documentation improvements
+
 ## [4.0.0-RC.1] - 02-Oct-2020
 * Added compatibility for Flutter v1.22
 * Documentation improvements
