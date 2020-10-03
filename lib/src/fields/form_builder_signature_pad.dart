@@ -163,8 +163,8 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
               if (!_readOnly)
                 Row(
                   children: <Widget>[
-                    Expanded(child: SizedBox()),
-                    FlatButton.icon(
+                    const Expanded(child: SizedBox()),
+                    TextButton.icon(
                       onPressed: () {
                         setState(() {
                           _savedValue = null;
