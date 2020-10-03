@@ -235,6 +235,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
       await showDialog(
         context: context,
         builder: (BuildContext context) {
+          final materialLocalizations = MaterialLocalizations.of(context);
           Color pickedColor =
               _fieldKey.currentState.value ?? Colors.transparent;
           return AlertDialog(
@@ -292,14 +293,13 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
             ),
             actions: <Widget>[
               TextButton(
-                child:
-                    Text(MaterialLocalizations.of(context).cancelButtonLabel),
+                child: Text(materialLocalizations.cancelButtonLabel),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
               ),
               TextButton(
-                child: Text(MaterialLocalizations.of(context).okButtonLabel),
+                child: Text(materialLocalizations.okButtonLabel),
                 onPressed: () {
                   _setColor(pickedColor);
                   Navigator.of(context).pop(true);
