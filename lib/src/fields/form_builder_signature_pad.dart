@@ -127,6 +127,7 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
         widget.onSaved?.call(transformed ?? val);
       },
       builder: (FormFieldState<dynamic> field) {
+        final errorColor = Theme.of(context).errorColor;
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: !_readOnly,
@@ -174,11 +175,11 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
                       },
                       label: Text(
                         widget.clearButtonText,
-                        style: TextStyle(color: Theme.of(context).errorColor),
+                        style: TextStyle(color: errorColor),
                       ),
                       icon: Icon(
                         Icons.clear,
-                        color: Theme.of(context).errorColor,
+                        color: errorColor,
                       ),
                     ),
                   ],
