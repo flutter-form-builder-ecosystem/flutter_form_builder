@@ -109,8 +109,8 @@ class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
       enabled: !_readOnly,
       initialValue: _initialValue,
       validator: (val) {
-        if (_savedValue != null && val == null) return;
-        FormBuilderValidators.validateValidators(val, widget.validators);
+        if (_savedValue != null && val == null) return null;
+        return FormBuilderValidators.validateValidators(val, widget.validators);
       },
       onSaved: (val) {
         if (_savedValue != null && val == null) return;
