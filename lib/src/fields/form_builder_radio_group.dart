@@ -84,10 +84,12 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                   state.requestFocus();
                   state.didChange(val);
                 },
+                disabled: state.readOnly
+                    ? options.map((e) => e.value).toList()
+                    : disabled,
                 activeColor: activeColor,
                 focusColor: focusColor,
                 materialTapTargetSize: materialTapTargetSize,
-                disabled: disabled,
                 hoverColor: hoverColor,
                 wrapAlignment: wrapAlignment,
                 wrapCrossAxisAlignment: wrapCrossAxisAlignment,
