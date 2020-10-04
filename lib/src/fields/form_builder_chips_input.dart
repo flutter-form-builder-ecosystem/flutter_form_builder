@@ -21,6 +21,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   final bool allowChipEditing;
   final bool autofocus;
   final TextOverflow textOverflow;
+  final MaterialDecoration materialDecoration;
 
   FormBuilderChipsInput({
     Key key,
@@ -53,6 +54,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     this.allowChipEditing = false,
     this.autofocus = false,
     this.textOverflow,
+    this.materialDecoration = const MaterialDecoration(elevation: 4.0, type: MaterialType.canvas)
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -98,6 +100,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
                 autofocus: autofocus,
                 focusNode: state.effectiveFocusNode,
                 textOverflow: textOverflow,
+                materialDecoration: materialDecoration
               );
             });
 
