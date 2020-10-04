@@ -87,7 +87,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
                   Row(
                     children: <Widget>[
                       Expanded(child: SizedBox()),
-                      FlatButton.icon(
+                      TextButton.icon(
                         onPressed: () {
                           state.effectiveController.clear();
                           field.didChange(null);

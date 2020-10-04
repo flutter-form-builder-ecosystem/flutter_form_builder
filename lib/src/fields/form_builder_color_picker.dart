@@ -217,13 +217,13 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
               child: _buildColorPicker(),
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text(materialLocalizations.cancelButtonLabel),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
               ),
-              FlatButton(
+              TextButton(
                 child: Text(materialLocalizations.okButtonLabel),
                 onPressed: () {
                   Navigator.of(context).pop(true);
