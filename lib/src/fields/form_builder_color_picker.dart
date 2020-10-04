@@ -209,6 +209,8 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
       var selected = await showDialog(
         context: context,
         builder: (BuildContext context) {
+          final materialLocalizations = MaterialLocalizations.of(context);
+
           return AlertDialog(
             // title: null, //const Text('Pick a color!'),
             content: SingleChildScrollView(
@@ -216,13 +218,13 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
             ),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Cancel'),
+                child: Text(materialLocalizations.cancelButtonLabel),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
               ),
               FlatButton(
-                child: const Text('OK'),
+                child: Text(materialLocalizations.okButtonLabel),
                 onPressed: () {
                   Navigator.of(context).pop(true);
                 },
