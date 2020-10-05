@@ -27,7 +27,6 @@ class CompleteFormState extends State<CompleteForm> {
 
   @override
   Widget build(BuildContext context) {
-    print('Rebuilding...............');
     return Padding(
       padding: EdgeInsets.all(10),
       child: SingleChildScrollView(
@@ -35,7 +34,7 @@ class CompleteFormState extends State<CompleteForm> {
           children: <Widget>[
             FormBuilder(
               key: _fbKey,
-              autovalidate: true,
+              autovalidateMode: AutovalidateMode.disabled,
               initialValue: {
                 'movie_rating': 5,
                 'best_language': 'Dart',
@@ -417,6 +416,12 @@ class CompleteFormState extends State<CompleteForm> {
                       FormBuilderValidators.required(context,
                           errorText: 'This field required'),
                     ]),
+                  ),
+                  SizedBox(height: 15),
+                  FormBuilderFilePicker(
+                    name: 'files',
+                    previewImages: false,
+                    decoration: InputDecoration(labelText: 'Files filed'),
                   ),
                   SizedBox(height: 15),
                 ],

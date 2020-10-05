@@ -29,15 +29,18 @@ dependencies:
   signature: ^3.2.0
   validators: ^2.0.1
   flutter_datetime_picker: ^1.4.0
-  google_maps_flutter: ^0.5.32
+  google_maps_flutter: ^1.0.2
   dropdown_search: ^0.4.4
+  file_picker: ^2.0.6
+  permission_handler: ^5.0.1+1
+  # file_picker_platform_interface: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   test:
-  pedantic: ^1.9.0
-  intl_translation:
+  pedantic: ^1.9.2
+  intl_translation: any
   # flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localization/form_builder_localizations.dart
   #flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb
 
