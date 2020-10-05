@@ -96,10 +96,11 @@ class FormBuilder extends StatefulWidget {
   /// If true, all form fields will not accept user input.
   final bool readOnly;
 
-  /// If true, form fields will validate and update their error text
-  /// immediately after every change. Otherwise, you must call
-  /// [FormState.validate] to validate.
-  final bool autovalidate;
+  /// Used to enable/disable form fields auto validation and update their error
+  /// text.
+  ///
+  /// {@macro flutter.widgets.form.autovalidateMode}
+  final AutovalidateMode autovalidateMode;
 
   /// An optional Map of field initialValues. Keys correspond to the field's
   /// name and value to the initialValue of the field.
@@ -113,7 +114,7 @@ class FormBuilder extends StatefulWidget {
     @required this.child,
     this.readOnly = false,
     this.onChanged,
-    this.autovalidate = false,
+    this.autovalidateMode,
     this.onWillPop,
     this.initialValue = const {},
   }) : super(key: key);
@@ -140,8 +141,6 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, FormBuilderFieldState> get fields => _fields;
 
   bool get readOnly => widget.readOnly;
-
-  bool get autovalidate => widget.autovalidate;
 
   @override
   void initState() {
@@ -201,7 +200,7 @@ class FormBuilderState extends State<FormBuilder> {
         policy: WidgetOrderTraversalPolicy(),
         child: widget.child,
       ),
-      autovalidate: widget.autovalidate,
+      autovalidateMode: widget.autovalidateMode,
       onWillPop: widget.onWillPop,
       onChanged: widget.onChanged,
     );

@@ -78,11 +78,11 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
+                errorText: decoration?.errorText ?? state.errorText,
               ),
               child: GroupedCheckbox(
                 orientation: orientation,
-                value: field.value,
+                value: state.value,
                 options: options,
                 onChanged: (val) {
                   state.requestFocus();

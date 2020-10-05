@@ -109,7 +109,7 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
               leading: widget.galleryIcon,
               title: widget.galleryLabel,
               onTap: () => _onPickImage(ImageSource.gallery),
-            )
+            ),
           ],
         ),
       ),

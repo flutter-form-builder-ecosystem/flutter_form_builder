@@ -50,7 +50,7 @@ class FormBuilderField<T> extends FormField<T> {
     //From Super
     FormFieldSetter<T> onSaved,
     T initialValue,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
     bool enabled = true,
     FormFieldValidator validator,
     @required FormFieldBuilder<T> builder,
@@ -83,12 +83,6 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   bool get readOnly => _readOnly;
 
-  bool get pristine => !_dirty;
-
-  bool get dirty => !_dirty;
-
-  AutovalidateMode get autovalidateMode => widget.autovalidateMode;
-
   T get initialValue => _initialValue;
 
   FormBuilderState _formBuilderState;
@@ -100,8 +94,6 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   bool get isValid => super.isValid && widget.decoration?.errorText == null;
 
   bool _readOnly = false;
-
-  bool _dirty = false;
 
   bool _touched = false;
 
@@ -139,10 +131,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
       print('${widget.name} touched');
     }
   }
-
   @override
   void didChange(T val) {
-    setState(() => _dirty = true);
     super.didChange(val);
     widget.onChanged?.call(value);
   }

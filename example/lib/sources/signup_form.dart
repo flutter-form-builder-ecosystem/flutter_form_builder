@@ -17,7 +17,7 @@ class _SignupFormState extends State<SignupForm> {
           padding: const EdgeInsets.all(8.0),
           child: FormBuilder(
             key: _formKey,
-            autovalidate: true,
+            autovalidateMode: AutovalidateMode.disabled,
             child: Column(
               children: [
                 FormBuilderTextField(
