@@ -486,8 +486,9 @@ class _FormBuilderTextFieldState extends FormBuilderFieldState<String> {
   }
 
   @override
-  void patchValue(dynamic val) {
+  void patchValue(String val) {
     _effectiveController.text = val;
+    _effectiveController.selection = TextSelection.collapsed(offset: val?.length ?? -1);
   }
 
   @override
