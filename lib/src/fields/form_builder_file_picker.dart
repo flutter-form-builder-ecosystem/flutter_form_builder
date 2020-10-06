@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -255,7 +256,19 @@ class _FormBuilderFilePickerState
       case 'jpg':
       case 'jpeg':
       case 'png':
+      case 'gif':
         return Icons.image;
+      case 'xls':
+      case 'xlsx':
+        return CommunityMaterialIcons.file_excel;
+      case 'doc':
+      case 'docx':
+        return CommunityMaterialIcons.file_word;
+      case 'pdf':
+        return CommunityMaterialIcons.file_pdf;
+      case 'txt':
+      case 'log':
+        return CommunityMaterialIcons.script_text;
       default:
         return Icons.insert_drive_file;
     }

@@ -33,7 +33,7 @@ dependencies:
   dropdown_search: ^0.4.4
   file_picker: ^2.0.6
   permission_handler: ^5.0.1+1
-  # file_picker_platform_interface: ^2.0.0
+  community_material_icon: ^5.4.55
 
 dev_dependencies:
   flutter_test:
