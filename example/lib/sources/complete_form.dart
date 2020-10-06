@@ -18,7 +18,7 @@ class CompleteFormState extends State<CompleteForm> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
-  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   bool _ageHasError = false;
   bool _genderHasError = false;
 
@@ -33,7 +33,7 @@ class CompleteFormState extends State<CompleteForm> {
         child: Column(
           children: <Widget>[
             FormBuilder(
-              key: _fbKey,
+              key: _formKey,
               autovalidateMode: AutovalidateMode.disabled,
               initialValue: {
                 'movie_rating': 5,
@@ -52,6 +52,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderLocationField(
                     name: 'location',
                     decoration: InputDecoration(labelText: 'Location'),
+                    onChanged: _onChanged,
                   ),
                   SizedBox(height: 15),
                   FormBuilderFilterChip(
@@ -239,7 +240,7 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: (val) {
                       setState(() {
                         _ageHasError =
-                            !_fbKey.currentState.fields['age'].validate();
+                            !_formKey.currentState.fields['age'].validate();
                       });
                     },
                     // valueTransformer: (text) => num.tryParse(text),
@@ -276,7 +277,7 @@ class CompleteFormState extends State<CompleteForm> {
                       print(val);
                       setState(() {
                         _genderHasError =
-                            !_fbKey.currentState.fields['gender'].validate();
+                            !_formKey.currentState.fields['gender'].validate();
                       });
                     },
                   ),
@@ -437,10 +438,10 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      if (_fbKey.currentState.saveAndValidate()) {
-                        print(_fbKey.currentState.value);
+                      if (_formKey.currentState.saveAndValidate()) {
+                        print(_formKey.currentState.value);
                       } else {
-                        print(_fbKey.currentState.value);
+                        print(_formKey.currentState.value);
                         print('validation failed');
                       }
                     },
@@ -453,7 +454,7 @@ class CompleteFormState extends State<CompleteForm> {
                     color: Theme.of(context).accentColor,
                     child: Text('Reset', style: TextStyle(color: Colors.white)),
                     onPressed: () {
-                      _fbKey.currentState.reset();
+                      _formKey.currentState.reset();
                     },
                   ),
                 ),

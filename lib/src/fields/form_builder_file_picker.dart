@@ -173,6 +173,8 @@ class _FormBuilderFilePickerState
   }
 
   Widget defaultFileViewer(List<PlatformFile> files, FormFieldState field) {
+    final theme = Theme.of(context);
+
     return LayoutBuilder(
       builder: (context, constraints) {
         var count = 3;
@@ -208,14 +210,14 @@ class _FormBuilderFilePickerState
                                 color: Colors.white,
                                 size: 56,
                               ),
-                              color: Theme.of(context).primaryColor,
+                              color: theme.primaryColor,
                             ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 2),
                       child: Text(
                         '${files[index].name}',
-                        style: Theme.of(context).textTheme.caption,
+                        style: theme.textTheme.caption,
                         maxLines: 2,
                         overflow: TextOverflow.clip,
                       ),

@@ -34,6 +34,10 @@ class LocationFieldDialog extends StatefulWidget {
   final bool scrollGesturesEnabled;
   final bool tiltGesturesEnabled;
   final bool trafficEnabled;
+  final bool zoomControlsEnabled;
+  final bool liteModeEnabled;
+  final CameraPositionCallback onCameraMove;
+  final MapCreatedCallback onMapCreated;
 
   const LocationFieldDialog({
     Key key,
@@ -64,7 +68,7 @@ class LocationFieldDialog extends StatefulWidget {
     this.rotateGesturesEnabled,
     this.scrollGesturesEnabled,
     this.tiltGesturesEnabled,
-    this.trafficEnabled,
+    this.trafficEnabled, this.zoomControlsEnabled, this.liteModeEnabled, this.onCameraMove, this.onMapCreated,
   }) : super(key: key);
 
   @override
@@ -74,15 +78,23 @@ class LocationFieldDialog extends StatefulWidget {
 class _LocationFieldDialogState extends State<LocationFieldDialog> {
   final Completer<GoogleMapController> _controllerCompleter = Completer();
   CameraPosition _value;
+  CameraPosition _initialCameraPosition;
 
   @override
   void initState() {
-    _value = widget.initialCameraPosition;
+    _initialCameraPosition = widget.initialCameraPosition ??
+        CameraPosition(
+          target: LatLng(37.42796133580664, -122.085749655962),
+          zoom: 14.4746,
+        );
+    _value = _initialCameraPosition;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
@@ -103,18 +115,16 @@ class _LocationFieldDialogState extends State<LocationFieldDialog> {
                 height: maxHeight,
                 width: maxWidth,
                 child: GoogleMap(
-                  initialCameraPosition: widget.initialCameraPosition ??
-                      CameraPosition(
-                        target: LatLng(37.42796133580664, -122.085749655962),
-                        zoom: 14.4746,
-                      ),
+                  initialCameraPosition: _initialCameraPosition,
                   onMapCreated: (GoogleMapController controller) {
                     if (!_controllerCompleter.isCompleted) {
                       _controllerCompleter.complete(controller);
                     }
+                    widget.onMapCreated?.call(controller);
                   },
                   onCameraMove: (CameraPosition newPosition) {
                     _value = newPosition;
+                    widget.onCameraMove?.call(newPosition);
                   },
                   mapType: widget.mapType,
                   myLocationButtonEnabled: widget.myLocationButtonEnabled,
@@ -140,6 +150,8 @@ class _LocationFieldDialogState extends State<LocationFieldDialog> {
                   scrollGesturesEnabled: widget.scrollGesturesEnabled,
                   tiltGesturesEnabled: widget.tiltGesturesEnabled,
                   trafficEnabled: widget.trafficEnabled,
+                  liteModeEnabled: widget.liteModeEnabled,
+                  zoomControlsEnabled: widget.zoomControlsEnabled,
                 ),
               ),
               Padding(
@@ -149,10 +161,10 @@ class _LocationFieldDialogState extends State<LocationFieldDialog> {
                   children: [
                     FloatingActionButton(
                       backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
+                          theme.scaffoldBackgroundColor,
                       child: Icon(
                         Icons.close,
-                        color: Theme.of(context).textTheme.bodyText1.color,
+                        color: theme.textTheme.bodyText1.color,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop(null);
