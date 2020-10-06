@@ -1,3 +1,11 @@
+## [4.0.0-pre.4] - 06-Oct-2020
+* Added new field: FilePicker
+* Included v3 to v4 migration guide to README
+* Ensure options disabled for RadioGroup & CheckboxGroup if readOnly
+* Prevent events from happening while picking image (#460)
+* Use localized text for ok and cancel button labels for ColorPicker dialog
+* Minor improvements and documentation added for LocationField
+
 ## [4.0.0-pre.3] - 02-Oct-2020
 * Changed Version naming for release candidates from `-RC.*` to `-pre.*` 
 

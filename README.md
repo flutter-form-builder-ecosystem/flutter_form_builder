@@ -1,13 +1,32 @@
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
+
 # Flutter FormBuilder - flutter_form_builder
 
-This package helps in creation of Flutter Forms by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form.
+This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes, 
+and collect final user input.
 
 ## Simple Usage
-To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+To use this plugin, add `flutter_form_builder` as a 
+[dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+
+### Migrating from v3 to v4
+Improvements:
+* Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
+* Ability to programatically induce an error to a field - could be especially useful for server-side validation. 
+* New field types including: LocationField, SearchableDropdown and FilePickerField
+* Better composition of validators.
+
+Breaking changes:
+* Rename `attribute` option in all fields to `name`.
+* `validators` attribute has been renamed to `validator` which takes Flutter's 
+[FormFieldValidator]() object. To compose multiple `FormFieldValidator`s together, use 
+`FormBuilderValidators.compose()` which takes a list of `FormFieldValidator` objects. 
+* Due to its limited use, `FormBuilderCountryPicker` was removed from the package. Its functionality could be achieved with use of `FormBuilderSearchableDropdown` which is more extensible.
+* `FormBuilderCustomField` functionality is now achievable using `FormBuilderField` class which is the base class from which all fields are built in v4. Follow [these instrictions](https://pub.dev/packages/flutter_form_builder#) to construct your own custom form field using `FormBuilderField`
 
 ### Example
 ```dart
-final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 ```
 **Note:** Avoid defining the GlobalKey inside your build method because this will create a new GlobalKey on every build cycle bringing about some erratic behavior.
 
@@ -15,7 +34,7 @@ final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 Column(
   children: <Widget>[
     FormBuilder(
-      key: _fbKey,
+      key: _formKey,
       autovalidate: true,
       // readonly: true,
       child: Column(
@@ -289,9 +308,9 @@ Column(
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              _fbKey.currentState.save();
-              if (_fbKey.currentState.validate()) {
-                print(_fbKey.currentState.value);
+              _formKey.currentState.save();
+              if (_formKey.currentState.validate()) {
+                print(_formKey.currentState.value);
               } else {
                 print("validation failed");
               }
@@ -309,7 +328,7 @@ Column(
               style: TextStyle(color: Colors.white),
             ),
             onPressed: () {
-              _fbKey.currentState.reset();
+              _formKey.currentState.reset();
             },
           ),
         ),
@@ -320,7 +339,7 @@ Column(
 ```
 
 ## l10n
-Just add the `FormBuilderLocalizations.delegate` in the list of your app delegates
+Just add the `FormBuilderLocalizations.delegate` in the list of your app's `      localizationsDelegates`
 
 ```dart
   return MaterialApp(
@@ -336,7 +355,6 @@ Just add the `FormBuilderLocalizations.delegate` in the list of your app delegat
         GlobalWidgetsLocalizations.delegate,
       ],
 ```
- 
 
 
 ## Input widgets
@@ -350,8 +368,9 @@ The currently supported fields include:
 * `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
+* `FormBuilderFilePicker` - Picks image(s) from user device storage.
 * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
-* `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
+* `FormBuilderImagePicker` - Picks image(s) from Gallery or Camera.
 * `FormBuilderPhoneField` - International phone number input. 
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
@@ -369,7 +388,7 @@ In order to create an input field in the form, along with the label, and any app
 
 | Attribute | Type  | Default | Required | Description |
 |-----------|-------|---------|-------------|----------|
-| `attribute` | `String` | `null` | `true` | This will form the key in the form value Map |
+| `name` | `String` | `null` | `true` | This will form the key in the form value Map |
 | `initialValue` | `dynamic` | `null`  | `false` | The initial value of the input field |
 | `readOnly` | `bool` | `false` | `false` | Determines whether the field widget will accept user input. This value will be ignored if the `readOnly` attribute of `FormBuilder` widget is set to `true` |
 | `decoration` | `InputDecoration` | `InputDecoration()` | `false` | |
@@ -417,11 +436,11 @@ FormBuilderField(
 ### Programmatically changing field value
 You can either change the value of one field at a time like so:
 ```dart
-_fbKey.currentState.fields['color_picker'].patchValue(Colors.black);
+_formKey.currentState.fields['color_picker'].patchValue(Colors.black);
 ```
 Or multiple fields value like so:
 ```dart
-_fbKey.currentState.patchValue({
+_formKey.currentState.patchValue({
   'age': '50',
   'slider': 6.7,
   'filter_chip': ['Test 1'],
@@ -434,12 +453,13 @@ _fbKey.currentState.patchValue({
 ```
 
 ## Validation
-The `validator` attribute in fields take in a `FormFieldValidator` which checks the validity of the field. A `FormFieldValidator` returns `null` if validation is successful and a `String` for the `errorText` if validation fails.
+The `validator` attribute in fields take in a `FormFieldValidator` which checks the validity of the 
+field. A `FormFieldValidator` returns `null` if validation is successful and a `String` for the 
+`errorText` if validation fails.
 
 ### Built-in Validators
-This package comes with several most common `FormFieldValidator`s such as required, numeric, mail, URL, min, 
-max, minLength, maxLength, IP, credit card etc. with default `errorText` in English but with 
-ability to include you own error message that will display whenever validation fails.
+This package comes with several most common `FormFieldValidator`s such as required, numeric, mail, 
+URL, min, max, minLength, maxLength, IP, credit card etc. with default `errorText`.
 
 Available built-in validators include:
 * `FormBuilderValidators.creditCard()` - requires the field's value to be a valid credit card number.
@@ -457,15 +477,18 @@ Available built-in validators include:
 * ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
 
 ### Using multiple validators
-`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes in any number of `FormFieldValidator` functions. On validation each validator is run and if any returns a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the returned string.
+`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes 
+any number of `FormFieldValidator` functions. On validation each validator is run and if any returns
+ a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the 
+returned string.
 
 Validation example:
 ```dart
 FormBuilderTextField(
-  name: "age",
-  decoration: InputDecoration(labelText: "Age"),
+  name: 'age',
+  decoration: InputDecoration(labelText: 'Age'),
   validator: FormBuilderValidators.compose([
-    FormBuilderValidators.numeric(context, errorText: "La edad debe ser numérica."),
+    FormBuilderValidators.numeric(context, errorText: 'La edad debe ser numérica.'),
     FormBuilderValidators.max(context, 70),
     (val){
       if(val < 0)
@@ -512,7 +535,7 @@ RaisedButton(
 
 ### Conditional validation
 You can also validate a field based on the value of another field
-```
+```dart
 FormBuilderRadioGroup(
   decoration: InputDecoration(labelText: 'My best language'),
   name: 'my_language',
@@ -533,7 +556,7 @@ FormBuilderRadioGroup(
     decoration:
         InputDecoration(labelText: 'If Other, please specify'),
     validator: (val) {
-      if (_fbKey.currentState.fields['my_language']?.value ==
+      if (_formKey.currentState.fields['my_language']?.value ==
               'Other' &&
           (val == null || val.isEmpty)) {
         return 'Kindly specify your language';
@@ -565,12 +588,14 @@ This package is dependent on the following packages and plugins:
 * [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours truly :-)](https://github.com/danvick)
 
 ## SUPPORT
-### PRs
-Any kind of support in the form of Pull Requests are always appreciated.
+### Issues and PRs
+Any kind of support in the form of reporting bugs, answering questions or PRs is always appreciated.
 
-We especially welcome efforts to internationalize/localize the package by translating the default validation error texts.
+We especially welcome efforts to internationalize/localize the package by translating the default 
+validation `errorText` strings.
 
 ### Coffee :-)
-If this package was helpful to you in delivering your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
+If this package was helpful to you in delivering your project or you just wanna to support this 
+package, a cup of coffee would be highly appreciated ;-)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)

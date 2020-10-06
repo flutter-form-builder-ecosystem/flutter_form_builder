@@ -68,7 +68,11 @@ class LocationFieldDialog extends StatefulWidget {
     this.rotateGesturesEnabled,
     this.scrollGesturesEnabled,
     this.tiltGesturesEnabled,
-    this.trafficEnabled, this.zoomControlsEnabled, this.liteModeEnabled, this.onCameraMove, this.onMapCreated,
+    this.trafficEnabled,
+    this.zoomControlsEnabled,
+    this.liteModeEnabled,
+    this.onCameraMove,
+    this.onMapCreated,
   }) : super(key: key);
 
   @override
@@ -160,8 +164,7 @@ class _LocationFieldDialogState extends State<LocationFieldDialog> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     FloatingActionButton(
-                      backgroundColor:
-                          theme.scaffoldBackgroundColor,
+                      backgroundColor: theme.scaffoldBackgroundColor,
                       child: Icon(
                         Icons.close,
                         color: theme.textTheme.bodyText1.color,

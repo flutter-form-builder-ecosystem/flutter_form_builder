@@ -131,6 +131,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
       print('${widget.name} touched');
     }
   }
+
   @override
   void didChange(T val) {
     super.didChange(val);
