@@ -6,7 +6,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "minErrorText": "Value must be greater than or equal to {min}.",
+  "minErrorText": "El valor debe ser mayor o igual que {min}.",
   "@minErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -14,7 +14,7 @@
       "min": {}
     }
   },
-  "minLengthErrorText": "Value must have a length greater than or equal to {minLength}",
+  "minLengthErrorText": "El valor debe tener una longitud mayor o igual a {minLength}",
   "@minLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -22,7 +22,7 @@
       "minLength": {}
     }
   },
-  "maxErrorText": "Value must be less than or equal to {max}",
+  "maxErrorText": "El valor debe ser menor o igual que {max}.",
   "@maxErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -30,7 +30,7 @@
       "max": {}
     }
   },
-  "maxLengthErrorText": "Value must have a length less than or equal to {maxLength}",
+  "maxLengthErrorText": "El valor debe tener una longitud menor o igual a {maxLength}",
   "@maxLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -38,43 +38,43 @@
       "maxLength": {}
     }
   },
-  "emailErrorText": "This field requires a valid email address.",
+  "emailErrorText": "Este campo requiere una dirección de correo electrónico válida.",
   "@emailErrorText": {
     "description": "Error Text for email field",
     "type": "text",
     "placeholders": {}
   },
-  "urlErrorText": "This field requires a valid URL address.",
+  "urlErrorText": "Este campo requiere una dirección URL válida.",
   "@urlErrorText": {
     "description": "Error Text for URL field",
     "type": "text",
     "placeholders": {}
   },
-  "matchErrorText": "Value does not match pattern.",
+  "matchErrorText": "El valor no coincide con el patrón requerido.",
   "@matchErrorText": {
     "description": "Error Text for pattern field",
     "type": "text",
     "placeholders": {}
   },
-  "numericErrorText": "Value must be numeric.",
+  "numericErrorText": "El valor debe ser numérico.",
   "@numericErrorText": {
     "description": "Error Text for numeric field",
     "type": "text",
     "placeholders": {}
   },
-  "creditCardErrorText": "This field requires a valid credit card number.",
+  "creditCardErrorText": "Este campo requiere un número de tarjeta de crédito válido.",
   "@creditCardErrorText": {
     "description": "Error Text for credit card field",
     "type": "text",
     "placeholders": {}
   },
-  "ipErrorText": "This field requires a valid IP.",
+  "ipErrorText": "Este campo requiere una IP válida.",
   "@ipErrorText": {
     "description": "Error Text for IP address field",
     "type": "text",
     "placeholders": {}
   },
-  "dateStringErrorText": "This field requires a valid date string.",
+  "dateStringErrorText": "Este campo requiere una cadena de fecha válida.",
   "@dateStringErrorText": {
     "description": "Error Text for date string field",
     "type": "text",

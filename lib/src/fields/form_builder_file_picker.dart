@@ -221,6 +221,7 @@ class _FormBuilderFilePickerState
                         maxLines: 2,
                         overflow: TextOverflow.clip,
                       ),
+                      width: double.infinity,
                       color: Colors.white.withOpacity(.8),
                     ),
                     if (!readOnly)
@@ -238,8 +239,11 @@ class _FormBuilderFilePickerState
                             alignment: Alignment.center,
                             height: 22,
                             width: 22,
-                            child: Icon(Icons.close,
-                                size: 18, color: Colors.white),
+                            child: Icon(
+                              Icons.close,
+                              size: 18,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

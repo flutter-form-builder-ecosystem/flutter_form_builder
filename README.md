@@ -532,7 +532,6 @@ RaisedButton(
 ),
 ```
 
-
 ### Conditional validation
 You can also validate a field based on the value of another field
 ```dart
@@ -593,6 +592,28 @@ Any kind of support in the form of reporting bugs, answering questions or PRs is
 
 We especially welcome efforts to internationalize/localize the package by translating the default 
 validation `errorText` strings.
+
+### Localizing messages
+1. With the app’s root directory as the current directory, generate `l10n/intl_messages.arb` 
+from `lib/localization/form_builder_localizations.dart`:
+
+    ```flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localization/form_builder_localizations.dart```
+
+2. The `intl_messages.arb` file is a JSON format map with one entry for each `Intl.message()` 
+function defined in `lib/localization/form_builder_localizations.dart`. This file serves as a template for the different translations 
+(for example `intl_en.arb` and `intl_es.arb` are English and Spanish translations respectively). You are therefore you are required to copy the `intl_messages.arb` and put the content in a new file with the name of your locale with a name with format `intl_<locale>.arb` (e.g. `intl_fr.arb` for French Translations).
+
+3. Translate the messages in the new file to the required language.
+
+4. With the app’s root directory as the current directory, generate `intl_messages_<locale>.dart` for your `intl_<locale>.arb` file and update `intl_messages_all.dart`, which imports all of the messages files:
+
+  ```flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_<en>.arb lib/l10n/intl_messages.arb```
+
+  e.g. To generate for French run: ```flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_fr.arb lib/l10n/intl_messages.arb```
+
+  - Alternatively you could run the following command to generate Dart translation files for all the `intl_<locale>.arb` files in the `l10n/` directory: 
+
+  ```flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb```
 
 ### Coffee :-)
 If this package was helpful to you in delivering your project or you just wanna to support this 
