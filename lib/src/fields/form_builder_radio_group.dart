@@ -67,6 +67,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          focusNode: focusNode,
           decoration: decoration,
           builder: (FormFieldState field) {
             final _FormBuilderRadioGroupState state = field;
