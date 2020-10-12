@@ -11,7 +11,7 @@ To use this plugin, add `flutter_form_builder` as a [dependency in your pubspec.
 
   - For Flutter 1.17.x, use version 3.12.x
   - For Flutter 1.20.x, use version 3.13.x
-  - For Flutter channel > stable (beta, dev, master), use version 3.14.0-alpha.x
+  - For Flutter 1.22.X, use version 3.14.x
 
 ### Example
 ```dart
