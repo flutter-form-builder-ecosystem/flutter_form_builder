@@ -203,7 +203,7 @@ class FormBuilderValidators {
   /// Common validator method that tests [val] against [validators].  When a
   /// validation generates an error message, it it returned, otherwise null.
   static String validateValidators<T>(
-      T val, List<FormFieldValidator> validators) {
+      T val, List<FormFieldValidator<T>> validators) {
     for (var i = 0; i < validators.length; i++) {
       final validatorResult = validators[i](val);
       if (validatorResult != null) {
