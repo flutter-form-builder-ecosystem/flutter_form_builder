@@ -13,6 +13,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
   final Color shadowColor;
   final ShapeBorder shape;
   final MaterialTapTargetSize materialTapTargetSize;
+
   // Wrap Settings
   final Axis direction;
   final WrapAlignment alignment;
@@ -29,6 +30,7 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
   final EdgeInsets labelPadding;
 
   // final VisualDensity visualDensity;
+  final int maxChips;
 
   FormBuilderFilterChip({
     Key key,
@@ -69,75 +71,82 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
     this.labelStyle,
     this.showCheckmark = true,
     this.labelPadding,
+    this.maxChips,
     // this.visualDensity,
-  }) : super(
-            key: key,
-            initialValue: initialValue,
-            name: name,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            autovalidateMode: autovalidateMode,
-            onSaved: onSaved,
-            enabled: enabled,
-            onReset: onReset,
-            decoration: decoration,
-            focusNode: focusNode,
-            builder: (FormFieldState field) {
-              final _FormBuilderFilterChipState state = field;
-              return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: state.readOnly,
-                  errorText: decoration?.errorText ?? field.errorText,
-                ),
-                child: Wrap(
-                  direction: direction,
-                  alignment: alignment,
-                  crossAxisAlignment: crossAxisAlignment,
-                  runAlignment: runAlignment,
-                  runSpacing: runSpacing,
-                  spacing: spacing,
-                  textDirection: textDirection,
-                  verticalDirection: verticalDirection,
-                  children: <Widget>[
-                    for (FormBuilderFieldOption option in options)
-                      FilterChip(
-                        label: option.child,
-                        selected: field.value.contains(option.value),
-                        onSelected: state.readOnly
-                            ? null
-                            : (bool selected) {
-                                var currentValue = [...field.value];
-                                if (selected) {
-                                  currentValue.add(option.value);
-                                } else {
-                                  currentValue.remove(option.value);
-                                }
-                                state.requestFocus();
-                                field.didChange(currentValue);
-                              },
-                        selectedColor: selectedColor,
-                        disabledColor: disabledColor,
-                        backgroundColor: backgroundColor,
-                        shadowColor: shadowColor,
-                        selectedShadowColor: selectedShadowColor,
-                        shape: shape,
-                        elevation: elevation,
-                        pressElevation: pressElevation,
-                        materialTapTargetSize: materialTapTargetSize,
-                        padding: padding,
-                        checkmarkColor: checkmarkColor,
-                        clipBehavior: clipBehavior,
-                        labelStyle: labelStyle,
-                        showCheckmark: showCheckmark,
-                        labelPadding: labelPadding,
-                        // visualDensity: visualDensity,
-                      ),
-                  ],
-                ),
-              );
-            });
+  })  : assert((maxChips == null || initialValue == null) ||
+            (initialValue.length <= maxChips)),
+        super(
+          key: key,
+          initialValue: initialValue,
+          name: name,
+          validator: validator,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState field) {
+            final _FormBuilderFilterChipState state = field;
+            return InputDecorator(
+              decoration: decoration.copyWith(
+                enabled: state.readOnly,
+                errorText: decoration?.errorText ?? field.errorText,
+              ),
+              child: Wrap(
+                direction: direction,
+                alignment: alignment,
+                crossAxisAlignment: crossAxisAlignment,
+                runAlignment: runAlignment,
+                runSpacing: runSpacing,
+                spacing: spacing,
+                textDirection: textDirection,
+                verticalDirection: verticalDirection,
+                children: <Widget>[
+                  for (FormBuilderFieldOption option in options)
+                    FilterChip(
+                      label: option.child,
+                      selected: field.value.contains(option.value),
+                      onSelected: (state.readOnly ||
+                              (maxChips != null &&
+                                  (field.value.length >= maxChips &&
+                                      !field.value.contains(option.value))))
+                          ? null
+                          : (bool selected) {
+                              var currentValue = [...field.value];
+                              if (selected) {
+                                currentValue.add(option.value);
+                              } else {
+                                currentValue.remove(option.value);
+                              }
+                              state.requestFocus();
+                              field.didChange(currentValue);
+                            },
+                      selectedColor: selectedColor,
+                      disabledColor: disabledColor,
+                      backgroundColor: backgroundColor,
+                      shadowColor: shadowColor,
+                      selectedShadowColor: selectedShadowColor,
+                      shape: shape,
+                      elevation: elevation,
+                      pressElevation: pressElevation,
+                      materialTapTargetSize: materialTapTargetSize,
+                      padding: padding,
+                      checkmarkColor: checkmarkColor,
+                      clipBehavior: clipBehavior,
+                      labelStyle: labelStyle,
+                      showCheckmark: showCheckmark,
+                      labelPadding: labelPadding,
+                      // visualDensity: visualDensity,
+                    ),
+                ],
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderFilterChipState createState() => _FormBuilderFilterChipState();

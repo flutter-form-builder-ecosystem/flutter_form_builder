@@ -12,7 +12,7 @@ To use this plugin, add `flutter_form_builder` as a
 ### Migrating from v3 to v4
 Improvements:
 * Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
-* Ability to programatically induce an error to a field - could be especially useful for server-side validation. 
+* Ability to programmatically induce an error to a field - could be especially useful for server-side validation. 
 * New field types including: LocationField, SearchableDropdown and FilePickerField
 * Better composition of validators.
 
