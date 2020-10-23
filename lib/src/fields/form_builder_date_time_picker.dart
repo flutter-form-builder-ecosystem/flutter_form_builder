@@ -322,7 +322,9 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
       _textFieldController.clear();
     }
   }*/
-  @override
+  
+  /*@override
+  //TODO: Use after_init package?
   void didChangeDependencies() {
     var appLocale = widget.locale ?? Localizations.localeOf(context);
     _dateTimeFormats = {
@@ -332,8 +334,8 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
     };
     _textFieldController.text =
         initialValue == null ? '' : dateFormat.format(initialValue);
-    super.didChangeDependencies();
-  }
+    // super.didChangeDependencies();
+  }*/
 
   Future<DateTime> onShowPicker(
       BuildContext context, DateTime currentValue) async {
@@ -480,5 +482,12 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         },
       );
     }
+  }
+
+  @override
+  void patchValue(dynamic val) {
+    super.patchValue(val);
+    textFieldController.text =
+        val == null ? '' : dateFormat.format(val);
   }
 }
