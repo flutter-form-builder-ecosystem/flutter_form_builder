@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSearchableDropdown<T> extends FormBuilderField {
+class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   /// final List<DropdownMenuItem<T>> items;
 
   ///DropDownSearch hint
@@ -178,7 +178,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
                 hint: hint,
                 enabled: enabled,
                 autoFocusSearchBox: autoFocusSearchBox,
-                autoValidate: autoFocusSearchBox,
+                autoValidate: autovalidateMode == AutovalidateMode.always,
                 clearButton: clearButton,
                 compareFn: compareFn,
                 dialogMaxWidth: dialogMaxWidth,
@@ -211,12 +211,12 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField {
         );
 
   @override
-  _FormBuilderSearchableDropdownState createState() =>
+  _FormBuilderSearchableDropdownState<T> createState() =>
       _FormBuilderSearchableDropdownState();
 }
 
-class _FormBuilderSearchableDropdownState extends FormBuilderFieldState {
+class _FormBuilderSearchableDropdownState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderSearchableDropdown get widget =>
-      super.widget as FormBuilderSearchableDropdown;
+  FormBuilderSearchableDropdown<T> get widget =>
+      super.widget as FormBuilderSearchableDropdown<T>;
 }
