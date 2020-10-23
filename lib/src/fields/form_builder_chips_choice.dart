@@ -33,6 +33,7 @@ class FormBuilderChoiceChip extends StatefulWidget {
   final TextDirection textDirection;
   final VerticalDirection verticalDirection;
   final EdgeInsets labelPadding;
+  final EdgeInsets padding;
   final TextStyle labelStyle;
 
   FormBuilderChoiceChip({
@@ -64,7 +65,7 @@ class FormBuilderChoiceChip extends StatefulWidget {
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
     this.labelPadding,
-    this.labelStyle,
+    this.labelStyle, this.padding,
   }) : super(key: key);
 
   @override
@@ -155,6 +156,7 @@ class _FormBuilderChoiceChipState extends State<FormBuilderChoiceChip> {
                           },
                     labelPadding: widget.labelPadding,
                     labelStyle: widget.labelStyle,
+                    padding: widget.padding,
                   ),
               ]),
         );
