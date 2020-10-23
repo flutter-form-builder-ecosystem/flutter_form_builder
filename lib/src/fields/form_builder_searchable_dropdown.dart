@@ -66,10 +66,10 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final dropdown_search.DropdownSearchCompareFn<T> compareFn;
 
   ///custom layout for empty results
-  final WidgetBuilder emptyBuilder;
+  final EmptyBuilder emptyBuilder;
 
   ///custom layout for loading items
-  final WidgetBuilder loadingBuilder;
+  final LoadingBuilder loadingBuilder;
 
   ///custom layout for error
   final dropdown_search.ErrorBuilder errorBuilder;
@@ -178,7 +178,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 hint: hint,
                 enabled: enabled,
                 autoFocusSearchBox: autoFocusSearchBox,
-                autoValidate: autovalidateMode == AutovalidateMode.always,
+                autoValidateMode: autovalidateMode,
                 clearButton: clearButton,
                 compareFn: compareFn,
                 dialogMaxWidth: dialogMaxWidth,
