@@ -1,3 +1,7 @@
+## [3.14.1] - 24-Oct-2020
+* Remove phone number validation internally. Closes #499
+* Include padding option for ChoiceChips. Closes #504
+
 ## [3.14.0] - 02-Oct-2020
 * Added support for Flutter v1.22
 

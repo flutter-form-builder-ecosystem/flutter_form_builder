@@ -542,9 +542,7 @@ class MyHomePageState extends State<MyHomePage> {
                   SizedBox(height: 15),
                   FormBuilderCustomField(
                     attribute: 'name',
-                    validators: [
-                      FormBuilderValidators.required(),
-                    ],
+                    validators: [FormBuilderValidators.required()],
                     initialValue: 'Argentina',
                     formField: FormField(
                       enabled: true,
@@ -583,10 +581,8 @@ class MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).accentColor,
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    child:
+                        Text('Submit', style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       if (_fbKey.currentState.saveAndValidate()) {
                         print(_fbKey.currentState.value);
@@ -599,16 +595,14 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(width: 20),
                 Expanded(
-                    child: MaterialButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text(
-                    'Reset',
-                    style: TextStyle(color: Colors.white),
+                  child: MaterialButton(
+                    color: Theme.of(context).accentColor,
+                    child: Text('Reset', style: TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      _fbKey.currentState.reset();
+                    },
                   ),
-                  onPressed: () {
-                    _fbKey.currentState.reset();
-                  },
-                )),
+                ),
               ],
             ),
           ],

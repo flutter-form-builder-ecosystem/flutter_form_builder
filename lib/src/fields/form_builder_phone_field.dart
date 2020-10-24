@@ -169,15 +169,12 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
             }
           });
         }
-      } on PlatformException catch (_) {
+      } on PlatformException catch (e) {
+        print(e);
         setState(() {
           phoneNumberValid = false;
         });
       }
-    } else {
-      setState(() {
-        phoneNumberValid = true;
-      });
     }
   }
 
@@ -195,14 +192,8 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
       key: _fieldKey,
       initialValue: _initialValue,
       autovalidateMode: widget.autovalidateMode,
-      validator: (val) {
-        if (phoneNumberValid) {
-          return FormBuilderValidators.validateValidators(
-              val, widget.validators);
-        } else {
-          return 'This field requires a valid phone number.';
-        }
-      },
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
       onSaved: (val) {
         var transformed;
         if (widget.valueTransformer != null) {

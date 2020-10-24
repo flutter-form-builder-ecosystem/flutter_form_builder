@@ -65,7 +65,8 @@ class FormBuilderChoiceChip extends StatefulWidget {
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
     this.labelPadding,
-    this.labelStyle, this.padding,
+    this.labelStyle,
+    this.padding,
   }) : super(key: key);
 
   @override
