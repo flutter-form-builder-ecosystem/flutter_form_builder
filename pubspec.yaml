@@ -1,6 +1,6 @@
 name: flutter_form_builder
 description: This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes, and collect final user input.
-version: 4.0.0-pre.4
+version: 4.0.0-pre.5
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
@@ -34,6 +34,7 @@ dependencies:
   file_picker: ^2.0.6
   permission_handler: ^5.0.1+1
   community_material_icon: ^5.4.55
+  after_init: ^0.1.2
 
 dev_dependencies:
   flutter_test:

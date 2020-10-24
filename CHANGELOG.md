@@ -1,3 +1,11 @@
+## [4.0.0-pre.5] - 24-Oct-2020
+* Number of Chips to be selected in FilterChip can now be limited by setting `maxChips` attribute. Closes #500
+* After calling patchValue on TextField, take cursor to end of text. Closes #477
+* Fix compile error in SearchableDropdown caused by breacking change in `dropdown_search` package. Closes #507
+* Fixed bug: calling patchValue on DateTimePIcker doesn't update TextField. Closes #505
+* Fixed regression in DateTimePicker where field didn't work. Closes #496
+* Documentation improvements
+
 ## [4.0.0-pre.4] - 06-Oct-2020
 * Added new field: FilePicker
 * Included v3 to v4 migration guide to README
