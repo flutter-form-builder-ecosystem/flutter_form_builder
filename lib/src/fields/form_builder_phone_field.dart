@@ -247,13 +247,13 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
     print('initialValue: $initialValue');
     if (initialValue != null && initialValue.isNotEmpty) {
       try {
-        var parseResult = await PhoneNumber().parse(initialValue);
+        var parseResult = await PhoneNumberUtil().parse(initialValue);
         if (parseResult != null) {
           setState(() {
             _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
-                parseResult['country_code']);
+                parseResult.countryCode);
           });
-          _effectiveController.text = parseResult['national_number'];
+          _effectiveController.text = parseResult.nationalNumber;
         }
       } catch (error) {
         _effectiveController.text = initialValue.replaceFirst('+', '');
