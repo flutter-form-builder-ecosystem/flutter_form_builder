@@ -93,7 +93,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       if (maxFiles != null)
-                        Text('${state._files.length}/${maxFiles}'),
+                        Text('${state._files.length} / $maxFiles'),
                       InkWell(
                         child: selector,
                         onTap: (state.readOnly ||
@@ -169,7 +169,7 @@ class _FormBuilderFilePickerState
       _files.removeAt(index);
     });
     field.didChange(_files);
-    if (widget.onChanged != null) widget.onChanged(_files);
+    widget.onChanged?.call(_files);
   }
 
   Widget defaultFileViewer(List<PlatformFile> files, FormFieldState field) {
