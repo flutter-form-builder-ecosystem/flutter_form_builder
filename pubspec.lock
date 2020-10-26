@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.0"
+  after_init:
+    dependency: "direct main"
+    description:
+      name: after_init
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   analyzer:
     dependency: transitive
     description:
@@ -112,7 +119,7 @@ packages:
       name: country_code_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.0"
+    version: "1.6.0"
   country_pickers:
     dependency: "direct main"
     description:
@@ -168,7 +175,7 @@ packages:
       name: dropdown_search
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.4"
+    version: "0.4.5"
   fake_async:
     dependency: transitive
     description:
@@ -182,7 +189,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.11"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -265,7 +272,7 @@ packages:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
@@ -314,7 +321,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+11"
+    version: "0.6.7+12"
   image_picker_for_web:
     dependency: "direct main"
     description:
@@ -398,7 +405,7 @@ packages:
       name: modal_bottom_sheet
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.2.2"
   node_interop:
     dependency: transitive
     description:
@@ -468,7 +475,7 @@ packages:
       name: phone_number
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.2+4"
+    version: "0.8.0"
   plugin_platform_interface:
     dependency: transitive
     description:

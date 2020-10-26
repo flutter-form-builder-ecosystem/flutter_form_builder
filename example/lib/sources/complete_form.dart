@@ -60,6 +60,8 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: const InputDecoration(
                       labelText: 'Select many options',
                     ),
+                    initialValue: ['Test', 'Test 1', 'Test 2'],
+                    maxChips: 3,
                     options: [
                       FormBuilderFieldOption(
                           value: 'Test', child: Text('Test')),

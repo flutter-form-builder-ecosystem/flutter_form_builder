@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:rating_bar/rating_bar.dart';
 
-class FormBuilderRating extends FormBuilderField {
+class FormBuilderRating extends FormBuilderField<double> {
   /// Icon to be used to denote the value of the widget
   final IconData icon;
 
@@ -121,7 +121,7 @@ class FormBuilderRating extends FormBuilderField {
   _FormBuilderRateState createState() => _FormBuilderRateState();
 }
 
-class _FormBuilderRateState extends FormBuilderFieldState {
+class _FormBuilderRateState extends FormBuilderFieldState<double> {
   @override
   FormBuilderRating get widget => super.widget as FormBuilderRating;
 }

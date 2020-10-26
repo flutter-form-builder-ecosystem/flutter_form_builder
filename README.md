@@ -1,5 +1,5 @@
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
-
+<a href="https://www.patreon.com/danvick"><img height=35 src="https://images.milled.com/2020-01-19/Gpcdn365K2wKyBNN/7kgewOM81ULv.png"/></a>
 # Flutter FormBuilder - flutter_form_builder
 
 This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes, 
@@ -12,7 +12,7 @@ To use this plugin, add `flutter_form_builder` as a
 ### Migrating from v3 to v4
 Improvements:
 * Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
-* Ability to programatically induce an error to a field - could be especially useful for server-side validation. 
+* Ability to programmatically induce an error to a field - could be especially useful for server-side validation. 
 * New field types including: LocationField, SearchableDropdown and FilePickerField
 * Better composition of validators.
 

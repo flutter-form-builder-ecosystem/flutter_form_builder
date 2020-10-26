@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 
+import 'package:after_init/after_init.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -288,7 +289,8 @@ class FormBuilderDateTimePicker extends FormBuilderField {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
+class _FormBuilderDateTimePickerState extends FormBuilderFieldState
+    with AfterInitMixin {
   @override
   FormBuilderDateTimePicker get widget =>
       super.widget as FormBuilderDateTimePicker;
@@ -298,22 +300,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
 
   // DateTime stateCurrentValue;
 
-  DateFormat get dateFormat =>
-      widget.format ?? _dateTimeFormats[widget.inputType];
-
-  Map _dateTimeFormats = {
-    InputType.both: DateFormat.yMd().add_Hms(),
-    InputType.date: DateFormat.yMd(),
-    InputType.time: DateFormat.Hm(),
-  };
+  DateFormat get dateFormat => widget.format ?? _getDefaultDateTimeFormat();
 
   @override
   void initState() {
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
+  }
+
+  @override
+  void didInitState() {
     _textFieldController.text =
         initialValue == null ? '' : dateFormat.format(initialValue);
-    // effectiveFocusNode.addListener(_handleFocus);
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
@@ -322,17 +320,18 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
       _textFieldController.clear();
     }
   }*/
-  @override
-  void didChangeDependencies() {
+
+  DateFormat _getDefaultDateTimeFormat() {
     var appLocale = widget.locale ?? Localizations.localeOf(context);
-    _dateTimeFormats = {
-      InputType.both: DateFormat.yMd(appLocale.toString()).add_Hms(),
-      InputType.date: DateFormat.yMd(appLocale.toString()),
-      InputType.time: DateFormat.Hm(appLocale.toString()),
-    };
-    _textFieldController.text =
-        initialValue == null ? '' : dateFormat.format(initialValue);
-    super.didChangeDependencies();
+    switch (widget.inputType) {
+      case InputType.time:
+        return DateFormat.Hm(appLocale.toString());
+      case InputType.date:
+        return DateFormat.yMd(appLocale.toString());
+      case InputType.both:
+      default:
+        return DateFormat.yMd(appLocale.toString()).add_Hms();
+    }
   }
 
   Future<DateTime> onShowPicker(
@@ -480,5 +479,11 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
         },
       );
     }
+  }
+
+  @override
+  void patchValue(dynamic val) {
+    super.patchValue(val);
+    textFieldController.text = val == null ? '' : dateFormat.format(val);
   }
 }
