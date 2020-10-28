@@ -3,17 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
-class FormBuilderCheckboxGroup<T> extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final List<T> initialValue;
-  final bool readOnly;
+class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final InputDecoration decoration;
   final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
-  final bool enabled;
-  final FormFieldSetter onSaved;
-  final AutovalidateMode autovalidateMode;
   final List<FormBuilderFieldOption> options;
   final Color activeColor;
   final Color checkColor;
@@ -43,15 +35,15 @@ class FormBuilderCheckboxGroup<T> extends StatefulWidget {
 
   FormBuilderCheckboxGroup({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.readOnly = false,
+    @required String attribute,
+    List<T> initialValue,
+    bool readOnly = false,
     this.decoration = const InputDecoration(),
     this.onChanged,
-    this.valueTransformer,
-    this.enabled = true,
-    this.onSaved,
-    this.autovalidateMode,
+    ValueTransformer valueTransformer,
+    bool enabled = true,
+    FormFieldSetter<List<T>> onSaved,
+    AutovalidateMode autovalidateMode,
     @required this.options,
     this.activeColor,
     this.checkColor,
@@ -71,9 +63,16 @@ class FormBuilderCheckboxGroup<T> extends StatefulWidget {
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
     this.orientation = GroupedCheckboxOrientation.wrap,
-    this.validators = const [],
+    List<FormFieldValidator<List<T>>> validators = const [],
   }) : super(
           key: key,
+          attribute: attribute,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
         );
 
   @override
@@ -82,53 +81,19 @@ class FormBuilderCheckboxGroup<T> extends StatefulWidget {
 }
 
 class _FormBuilderCheckboxGroupState<T>
-    extends State<FormBuilderCheckboxGroup> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  dynamic _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
+    extends FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> {
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
     return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
       builder: (FormFieldState field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
           ),
           child: GroupedCheckbox(
@@ -143,7 +108,8 @@ class _FormBuilderCheckboxGroupState<T>
             focusColor: widget.focusColor,
             checkColor: widget.checkColor,
             materialTapTargetSize: widget.materialTapTargetSize,
-            disabled: _readOnly
+            // TODO Confirm if this should be readOnly or !enabled
+            disabled: readOnly
                 ? widget.options.map((e) => e.value).toList()
                 : widget.disabled,
             hoverColor: widget.hoverColor,

@@ -4,16 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 
-class FormBuilderTextField extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final String initialValue;
-  final bool readOnly;
+class FormBuilderTextField extends FormBuilderField<String> {
   final InputDecoration decoration;
   final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
-
-  final AutovalidateMode autovalidateMode;
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -33,7 +26,6 @@ class FormBuilderTextField extends StatefulWidget {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
-  final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
   final Color cursorColor;
@@ -44,7 +36,6 @@ class FormBuilderTextField extends StatefulWidget {
   final bool expands;
   final int minLines;
   final bool showCursor;
-  final FormFieldSetter onSaved;
   final VoidCallback onTap;
   final ToolbarOptions toolbarOptions;
   final SmartQuotesType smartQuotesType;
@@ -56,17 +47,17 @@ class FormBuilderTextField extends StatefulWidget {
 
   FormBuilderTextField({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
+    @required String attribute,
+    String initialValue,
+    List<FormFieldValidator<String>> validators = const [],
+    bool readOnly = false,
     this.decoration = const InputDecoration(),
-    this.autovalidateMode,
+    AutovalidateMode autovalidateMode,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enabled = true,
+    bool enabled = true,
     this.enableInteractiveSelection = true,
     this.maxLengthEnforced = true,
     this.textAlign = TextAlign.start,
@@ -90,11 +81,11 @@ class FormBuilderTextField extends StatefulWidget {
     this.keyboardAppearance,
     this.buildCounter,
     this.onChanged,
-    this.valueTransformer,
+    ValueTransformer valueTransformer,
     this.expands = false,
     this.minLines,
     this.showCursor,
-    this.onSaved,
+    FormFieldSetter<String> onSaved,
     this.onTap,
     this.toolbarOptions,
     this.smartQuotesType,
@@ -104,57 +95,42 @@ class FormBuilderTextField extends StatefulWidget {
     this.autofillHints,
     this.obscuringCharacter = '•',
   })  : assert(initialValue == null || controller == null),
-        super(key: key);
+        super(
+          key: key,
+          attribute: attribute,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
   FormBuilderTextFieldState createState() => FormBuilderTextFieldState();
 }
 
-class FormBuilderTextFieldState extends State<FormBuilderTextField> {
-  bool _readOnly = false;
+class FormBuilderTextFieldState
+    extends FormBuilderFieldState<FormBuilderTextField, String> {
   TextEditingController _effectiveController;
-  FormBuilderState _formState;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  String _initialValue;
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    if (widget.controller != null) {
-      _effectiveController = widget.controller;
-    } else {
-      _effectiveController = TextEditingController(text: _initialValue ?? '');
-    }
     super.initState();
+    _effectiveController =
+        widget.controller ?? TextEditingController(text: initialValue ?? '');
   }
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
     return TextFormField(
-      key: _fieldKey,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
-      enabled: !_readOnly,
+      key: fieldKey,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
+      enabled: widget.enabled,
       style: widget.style,
-      focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
-      decoration: widget.decoration.copyWith(enabled: !_readOnly),
+      focusNode: readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
+      decoration: widget.decoration.copyWith(enabled: widget.enabled),
       autovalidateMode: widget.autovalidateMode,
       onChanged: (val) {
         widget.onChanged?.call(_effectiveController.text);
@@ -164,7 +140,6 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       smartDashesType: widget.smartDashesType,
       scrollPhysics: widget.scrollPhysics,
       enableSuggestions: widget.enableSuggestions,
-      // initialValue: "${_initialValue ?? ''}",
       maxLines: widget.maxLines,
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
@@ -189,7 +164,7 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
       textDirection: widget.textDirection,
       textInputAction: widget.textInputAction,
       strutStyle: widget.strutStyle,
-      readOnly: _readOnly,
+      readOnly: readOnly,
       expands: widget.expands,
       minLines: widget.minLines,
       showCursor: widget.showCursor,
@@ -201,7 +176,6 @@ class FormBuilderTextFieldState extends State<FormBuilderTextField> {
 
   @override
   void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
     if (widget.controller == null) {
       _effectiveController.dispose();
     }

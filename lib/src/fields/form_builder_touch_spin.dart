@@ -4,18 +4,12 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
-class FormBuilderTouchSpin extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final num initialValue;
-  final bool readOnly;
+class FormBuilderTouchSpin extends FormBuilderField<num> {
   final InputDecoration decoration;
   final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
   final num step;
   final num min;
   final num max;
-  final FormFieldSetter onSaved;
   final Icon subtractIcon;
   final Icon addIcon;
   final num iconSize;
@@ -32,17 +26,19 @@ class FormBuilderTouchSpin extends StatefulWidget {
 
   FormBuilderTouchSpin({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
+    @required String attribute,
+    num initialValue,
+    List<FormFieldValidator<num>> validators = const [],
+    bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
     this.decoration = const InputDecoration(),
     this.step,
     this.min = 1,
     this.max = 9999,
     this.onChanged,
-    this.valueTransformer,
-    this.onSaved,
+    ValueTransformer valueTransformer,
+    FormFieldSetter<num> onSaved,
     this.iconSize = 24.0,
     this.displayFormat,
     this.subtractIcon = const Icon(Icons.remove),
@@ -51,59 +47,36 @@ class FormBuilderTouchSpin extends StatefulWidget {
     this.textStyle = const TextStyle(fontSize: 24),
     this.iconActiveColor,
     this.iconDisabledColor,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+          attribute: attribute,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
   _FormBuilderTouchSpinState createState() => _FormBuilderTouchSpinState();
 }
 
-class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  num _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
+class _FormBuilderTouchSpinState
+    extends FormBuilderFieldState<FormBuilderTouchSpin, num> {
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
     return FormField(
-      enabled: !_readOnly,
-      key: _fieldKey,
-      initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
+      autovalidateMode: widget.autovalidateMode,
+      enabled: widget.enabled,
+      key: fieldKey,
+      initialValue: initialValue,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
       builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
           ),
           child: TouchSpin(
@@ -113,7 +86,7 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
             step: widget.step,
             value: field.value,
             iconSize: widget.iconSize,
-            onChanged: _readOnly
+            onChanged: readOnly
                 ? null
                 : (value) {
                     FocusScope.of(context).requestFocus(FocusNode());
@@ -129,7 +102,7 @@ class _FormBuilderTouchSpinState extends State<FormBuilderTouchSpin> {
             iconDisabledColor:
                 widget.iconDisabledColor ?? Theme.of(context).disabledColor,
             iconPadding: widget.iconPadding,
-            enabled: !_readOnly,
+            enabled: widget.enabled,
           ),
         );
       },
