@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 typedef ValueTransformer<T> = dynamic Function(T value);
 
 class FormBuilder extends StatefulWidget {
-  //final BuildContext context;
   final Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
   final Widget child;
@@ -118,4 +118,78 @@ class FormBuilderState extends State<FormBuilder> {
       },
     );
   }
+}
+
+abstract class FormBuilderField<T> extends StatefulWidget {
+  /// Unique Attribute Name
+  final String attribute;
+
+  /// Whether the field can be changed. Defaults to false.
+  final bool readOnly;
+  final List<FormFieldValidator<T>> validators;
+  final ValueTransformer valueTransformer;
+
+  // Common FormField fields...
+  final AutovalidateMode autovalidateMode;
+
+  /// Whether the form is able to receive user input. Defaults to true.
+  final bool enabled;
+  final T initialValue;
+  final FormFieldSetter<T> onSaved;
+
+  FormBuilderField({
+    Key key,
+    @required this.attribute,
+    this.readOnly = false,
+    this.autovalidateMode,
+    this.enabled = true,
+    this.initialValue,
+    this.onSaved,
+    this.valueTransformer,
+    this.validators = const [],
+  })  : assert(null != attribute),
+        assert(null != readOnly),
+        assert(null != enabled),
+        super(key: key);
+
+  void _save(FormBuilderState formBuilderState, T newValue) {
+    final saveValue =
+        null != valueTransformer ? valueTransformer.call(newValue) : newValue;
+    formBuilderState?.setAttributeValue(attribute, saveValue);
+    onSaved?.call(saveValue);
+  }
+}
+
+abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+    extends State<F> {
+  final GlobalKey<FormFieldState> fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState formState;
+
+  /// Field's Read Only state when either Field or Form is read only.
+  bool readOnly;
+
+  T initialValue;
+
+  @override
+  void initState() {
+    super.initState();
+    formState = FormBuilder.of(context);
+    formState?.registerFieldKey(widget.attribute, fieldKey);
+    readOnly = widget.readOnly || formState?.readOnly == true;
+    initialValue = widget.initialValue ??
+        ((formState?.initialValue?.containsKey(widget.attribute) ?? false)
+            ? formState.initialValue[widget.attribute]
+            : null);
+  }
+
+  @override
+  void dispose() {
+    formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
+  }
+
+  void save(T newValue) => widget._save(formState, newValue);
+
+  String validate(T val) =>
+      FormBuilderValidators.validateValidators(val, widget.validators);
 }
