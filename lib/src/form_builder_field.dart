@@ -121,8 +121,15 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
   @override
   void save() {
     super.save();
-    _formBuilderState?.setInternalFieldValue(
-        widget.name, widget.valueTransformer?.call(value) ?? value);
+    if (_formBuilderState.widget.skipReadOnly) {
+      if (!readOnly) {
+        _formBuilderState?.setInternalFieldValue(
+            widget.name, widget.valueTransformer?.call(value) ?? value);
+      }
+    } else {
+      _formBuilderState?.setInternalFieldValue(
+          widget.name, widget.valueTransformer?.call(value) ?? value);
+    }
   }
 
   void setTouchedHandler() {

@@ -34,6 +34,7 @@ class CompleteFormState extends State<CompleteForm> {
           children: <Widget>[
             FormBuilder(
               key: _formKey,
+              skipReadOnly: true,
               autovalidateMode: AutovalidateMode.disabled,
               initialValue: {
                 'movie_rating': 5,
@@ -48,6 +49,7 @@ class CompleteFormState extends State<CompleteForm> {
                     name: 'searchable_dropdown',
                     items: allCountries,
                     onChanged: _onChanged,
+                    readOnly: true,
                   ),
                   FormBuilderLocationField(
                     name: 'location',
@@ -57,6 +59,7 @@ class CompleteFormState extends State<CompleteForm> {
                   SizedBox(height: 15),
                   FormBuilderFilterChip(
                     name: 'filter_chip',
+                    readOnly: true,
                     decoration: const InputDecoration(
                       labelText: 'Select many options',
                     ),
