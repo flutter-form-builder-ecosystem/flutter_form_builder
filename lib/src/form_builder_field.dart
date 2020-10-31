@@ -156,6 +156,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
 
   @override
   void dispose() {
+    effectiveFocusNode.removeListener(setTouchedHandler);
     _formBuilderState?.unregisterField(widget.name);
     // The attachment will automatically be detached in dispose().
     _focusNode?.dispose();
