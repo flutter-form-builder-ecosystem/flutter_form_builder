@@ -100,7 +100,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
                 focusNode: state.effectiveFocusNode,
                 textOverflow: textOverflow,
               );
-            });
+            },);
 
   @override
   _FormBuilderChipsInputState<T> createState() => _FormBuilderChipsInputState();
