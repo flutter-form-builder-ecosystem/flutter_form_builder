@@ -2,6 +2,11 @@
 
 This package helps in creation of Flutter Forms by providing the syntactic sugar for creating a Form Widget and reduce the boilerplate needed to build a form, validate fields, react to changes, and collect the value of the Form.
 
+[![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/CI?style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions?query=workflow%3ACI)
+[![Codecov](https://img.shields.io/codecov/c/github/danvick/flutter_form_builder?style=for-the-badge)](https://codecov.io/gh/danvick/flutter_form_builder/)
+![OSS Lifecycle](https://img.shields.io/osslifecycle/danvick/flutter_form_builder?style=for-the-badge)
+
 [![Youtube Video Tutorial](https://imgur.com/AWzRq5Hl.png)](https://www.youtube.com/watch?v=7FBELQq808M)
 
 [Check out the video tutorial from SyntacOps on Youtube](https://www.youtube.com/watch?v=7FBELQq808M)
@@ -211,11 +216,11 @@ The currently supported fields include:
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
 * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
 * `FormBuilderImagePicker` - Picker a image from Gallery or Camera and stores it in a List of images, File or String. **Note**: This picker is available for iOS and Android.
-* `FormBuilderPhoneField` - International phone number input. 
-* ~~`FormBuilderRadio`~~ - Used to select one value from a list of Radio Widgets listed vertically. 
+* `FormBuilderPhoneField` - International phone number input.
+* ~~`FormBuilderRadio`~~ - Used to select one value from a list of Radio Widgets listed vertically.
 * `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets. Unlike in `FormBuilderRadio`, options can either be shown vertically or horizontally.
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
-* `FormBuilderRate` - For selection of a numerical value as a rating 
+* `FormBuilderRate` - For selection of a numerical value as a rating
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
@@ -279,12 +284,12 @@ FormBuilderCustomField(
 ```
 
 ## Validation
-The `validators` attribute in fields take in any number of `FormFieldValidator` allowing composability 
+The `validators` attribute in fields take in any number of `FormFieldValidator` allowing composability
 of validation functions as well as allow reusability of already defined validator methods.
 
 ### Built-in Validators
-The package comes with several most common `FormFieldValidator`s such as required, numeric, mail, URL, min, 
-max, minLength, maxLength, IP, credit card etc. with default `errorText` in English but with 
+The package comes with several most common `FormFieldValidator`s such as required, numeric, mail, URL, min,
+max, minLength, maxLength, IP, credit card etc. with default `errorText` in English but with
 ability to include you own error message that will display whenever validation fails.
 
 Available built-in validators include:
@@ -384,7 +389,7 @@ Here are other field types for `flutter_form_builder`:
 - [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A file picker field for `FlutterFormBuilder`.
 - [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) - A map input field for `FlutterFormBuilder`.
 
-## FUTURE PLANS: 
+## FUTURE PLANS:
 ### Improvements
 - [X] Allow addition of custom input types
 - [X] Improve documentation by showing complete list of input types and their usage and options
@@ -395,7 +400,7 @@ Here are other field types for `flutter_form_builder`:
 - [X] For RangeSlider use Flutter provided
 
 ### Known Issues
-* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior in Flutter 
+* Setting `autovalidate` to `true` validates fields immediately they're rendered even if pristine - which is the default behavior in Flutter
 * Form's `reset()` doesn't clear SignaturePad - You'll be forced to clear manually
 
 ## SUPPORT
