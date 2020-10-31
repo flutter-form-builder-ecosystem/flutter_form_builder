@@ -228,17 +228,22 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       widgetList.add(item(i));
     }
     if (widget.orientation == OptionsOrientation.vertical) {
-      for (final item in widgetList) {
-        content.add(Row(children: <Widget>[item]));
-      }
       finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.vertical, child: Column(children: content));
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: widgetList,
+        ),
+      );
     } else if (widget.orientation == OptionsOrientation.horizontal) {
-      for (final item in widgetList) {
-        content.add(Column(children: <Widget>[item]));
-      }
       finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.horizontal, child: Row(children: content));
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: widgetList.map((item) {
+            return Column(children: <Widget>[item]);
+          }).toList(),
+        ),
+      );
     } else {
       finalWidget = SingleChildScrollView(
         child: Wrap(
@@ -298,10 +303,10 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       children: <Widget>[
         if (widget.controlAffinity == ControlAffinity.leading) ...[
           control,
-          Flexible(child: label),
+          Flexible(flex: 1, child: label),
         ],
         if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          Flexible(child: label),
+          Flexible(flex: 1, child: label),
           control
         ],
         if (widget.separator != null &&
