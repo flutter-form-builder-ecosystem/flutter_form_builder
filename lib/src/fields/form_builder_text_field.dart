@@ -410,7 +410,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
               textDirection: textDirection,
               textCapitalization: textCapitalization,
               autofocus: autofocus,
-              readOnly: readOnly,
+              readOnly: state.readOnly,
               showCursor: showCursor,
               obscureText: obscureText,
               autocorrect: autocorrect,
