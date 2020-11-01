@@ -68,7 +68,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     //From Super
     Key key,
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<bool> validator,
     bool initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
