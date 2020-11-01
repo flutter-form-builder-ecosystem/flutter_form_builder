@@ -293,7 +293,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<String> validator,
     String initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
