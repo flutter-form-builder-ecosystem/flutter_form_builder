@@ -32,10 +32,10 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     List<T> initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<List<T>> onChanged,
+    ValueTransformer<List<T>> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<List<T>> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -72,7 +72,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<List<T>> field) {
             final _FormBuilderCheckboxGroupState<T> state = field;
 
             return InputDecorator(
