@@ -3,69 +3,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 typedef ValueTransformer<T> = dynamic Function(T value);
 
-/*class FormBuilder extends Form {
-  @override
-  final VoidCallback onChanged;
-  @override
-  final WillPopCallback onWillPop;
-  @override
-  final Widget child;
-  @override
-  final bool autovalidate;
-  final bool readOnly;
-  final Map<String, dynamic> initialValue;
-
-  const FormBuilder({
-    Key key,
-    @required this.child,
-    this.autovalidate = false,
-    this.onWillPop,
-    this.onChanged,
-    this.readOnly,
-    this.initialValue = const {},
-  }) : super(
-          key: key,
-          autovalidate: autovalidate,
-          child: child,
-          onChanged: onChanged,
-          onWillPop: onWillPop,
-        );
-
-  static FormBuilderState of(BuildContext context) =>
-      context.findAncestorStateOfType<FormBuilderState>();
-}
-
-class FormBuilderState extends FormState {
-  @override
-  FormBuilder get widget => super.widget;
-
-  Map<String, dynamic> _value;
-
-  Map<String, dynamic> get value => {...widget.initialValue ?? {}, ..._value};
-
-  Map<String, dynamic> get initialValue => widget.initialValue;
-
-  bool get readOnly => widget.readOnly;
-
-  @override
-  void initState() {
-    super.initState();
-    // _fieldKeys = {};
-    _value = {};
-  }
-
-  void updateFormAttributeValue(String name, dynamic value) {
-    setState(() {
-      _value = {..._value, name: value};
-    });
-  }
-
-  bool saveAndValidate() {
-    save();
-    return validate();
-  }
-}*/
-
 class FormBuilder extends StatefulWidget {
   /// Called when one of the form fields changes.
   ///
@@ -109,6 +46,14 @@ class FormBuilder extends StatefulWidget {
   /// initialValue set.
   final Map<String, dynamic> initialValue;
 
+  /// Whether the form should ignore submitting values from readOnly fields.
+  /// This behavior is common in HTML forms where readonly values are not
+  /// submitted when the form is submitted.
+  ///
+  /// If true, in the final form value, there will be no values for readOnly
+  /// fields
+  final bool skipReadOnly;
+
   const FormBuilder({
     Key key,
     @required this.child,
@@ -117,6 +62,7 @@ class FormBuilder extends StatefulWidget {
     this.autovalidateMode,
     this.onWillPop,
     this.initialValue = const {},
+    this.skipReadOnly = false,
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>
@@ -158,6 +104,12 @@ class FormBuilderState extends State<FormBuilder> {
   void setInternalFieldValue(String name, dynamic value) {
     setState(() {
       _value = {..._value, name: value};
+    });
+  }
+
+  void removeInternalFieldValue(String name) {
+    setState(() {
+      _value = {..._value..remove(name)};
     });
   }
 

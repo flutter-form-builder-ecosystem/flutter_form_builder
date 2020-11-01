@@ -323,9 +323,7 @@ Column(
             },
           ),
         ),
-        SizedBox(
-          width: 20,
-        ),
+        SizedBox(width: 20),
         Expanded(
           child: MaterialButton(
             color: Theme.of(context).accentColor,
@@ -394,13 +392,14 @@ In order to create an input field in the form, along with the label, and any app
 
 | Attribute | Type  | Default | Required | Description |
 |-----------|-------|---------|-------------|----------|
-| `name` | `String` | `null` | `true` | This will form the key in the form value Map |
-| `initialValue` | `dynamic` | `null`  | `false` | The initial value of the input field |
-| `readOnly` | `bool` | `false` | `false` | Determines whether the field widget will accept user input. This value will be ignored if the `readOnly` attribute of `FormBuilder` widget is set to `true` |
-| `decoration` | `InputDecoration` | `InputDecoration()` | `false` | |
-| `validator` | `FormFieldValidator` | `null` | `false` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
-| `onChanged` | `ValueChanged<T>` | `null` | `false` | This event function will fire immediately the the field value changes |
-| `valueTransformer` | `ValueTransformer<T>` | `null` | `false` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
+| `name` | `String` | `null` | `Yes` | This will form the key in the form value Map |
+| `initialValue` | `dynamic` | `null`  | `No` | The initial value of the input field |
+| `readOnly` | `bool` | `false` | `No` | Determines whether the field widget will accept user input. This value will be ignored if the `readOnly` attribute of `FormBuilder` widget is set to `true` |
+| `decoration` | `InputDecoration` | `InputDecoration()` | `No` | Defines the border, labels, icons, and styles used to decorate the field. |
+| `validator` | `FormFieldValidator` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
+| `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
+| `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
+| `skipReadOnly` | `bool` | `false` | `No` | Determines whether the field and its value will be included in the final form value `Map` |
 The rest of the attributes will be determined by the type of Widget being used.
 
 ### Building your own custom field
@@ -571,27 +570,6 @@ FormBuilderRadioGroup(
   ),
 ```
 
-## CREDITS
-### Contributors
-<a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
-  <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
-</a>
-
-Made with [contributors-img](https://contributors-img.firebaseapp.com).
-
-### Dependencies
-This package is dependent on the following packages and plugins:
-* [country_code_picker](https://github.com/anicdh/country_code_picker) by [](https://github.com/)
-* [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
-* [datetime_picker_formfield](https://pub.dev/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
-* [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
-* [flutter_typeahead](https://pub.dev/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
-* [phone_number](https://pub.dev/packages/phone_number) by [](https://github.com/)
-* [rating_bar](https://pub.dev/packages/rating_bar) by [Joshua Matta](https://github.com/joshmatta)
-* [signature](https://pub.dev/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o)
-* [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
-* [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours truly :-)](https://github.com/danvick)
-
 ## SUPPORT
 ### Issues and PRs
 Any kind of support in the form of reporting bugs, answering questions or PRs is always appreciated.
@@ -628,3 +606,24 @@ If this package was helpful to you in delivering your project or you just wanna 
 package, a cup of coffee would be highly appreciated ;-)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
+
+## CREDITS
+### Contributors
+<a href="https://github.com/danvick/flutter_form_builder/graphs/contributors">
+  <img src="https://contributors-img.firebaseapp.com/image?repo=danvick/flutter_form_builder" />
+</a>
+
+Made with [contributors-img](https://contributors-img.firebaseapp.com).
+
+### Dependencies
+This package is dependent on the following packages and plugins:
+* [country_code_picker](https://github.com/anicdh/country_code_picker) by [](https://github.com/)
+* [date_range_picker](https://github.com/anicdh/date_range_picker) by [anicdh](https://github.com/anicdh)
+* [datetime_picker_formfield](https://pub.dev/packages/datetime_picker_formfield) by [Jacob Phillips](https://github.com/jifalops)
+* [flutter_colorpicker](https://pub.dev/packages/flutter_colorpicker) by [mchome](https://github.com/mchome)
+* [flutter_typeahead](https://pub.dev/packages/flutter_typeahead) by [AbdulRahmanAlHamali](https://github.com/AbdulRahmanAlHamali)
+* [phone_number](https://pub.dev/packages/phone_number) by [](https://github.com/)
+* [rating_bar](https://pub.dev/packages/rating_bar) by [Joshua Matta](https://github.com/joshmatta)
+* [signature](https://pub.dev/packages/signature) by [4Q s.r.o.](https://github.com/4Q-s-r-o)
+* [validators](https://pub.dev/packages/validators) by [dart-league](https://github.com/dart-league)
+* [flutter_chips_input](https://pub.dev/packages/flutter_chips_input) & [flutter_touch_spin](https://pub.dev/packages/flutter_touch_spin) by [Yours truly :-)](https://github.com/danvick)

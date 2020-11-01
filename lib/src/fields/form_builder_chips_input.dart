@@ -55,52 +55,53 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     this.autofocus = false,
     this.textOverflow,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            name: name,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            readOnly: readOnly,
-            autovalidateMode: autovalidateMode,
-            onSaved: onSaved,
-            enabled: enabled,
-            onReset: onReset,
-            decoration: decoration,
-            focusNode: focusNode,
-            builder: (FormFieldState field) {
-              final _FormBuilderChipsInputState state = field;
+          key: key,
+          initialValue: initialValue,
+          name: name,
+          validator: validator,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState field) {
+            final _FormBuilderChipsInputState state = field;
 
-              return ChipsInput(
-                key: ObjectKey(state.value),
-                initialValue: field.value,
+            return ChipsInput(
+              key: ObjectKey(state.value),
+              initialValue: field.value,
+              enabled: !state.readOnly,
+              decoration: decoration.copyWith(
                 enabled: !state.readOnly,
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: decoration?.errorText ?? field.errorText,
-                ),
-                findSuggestions: findSuggestions,
-                onChanged: (data) {
-                  field.didChange(data);
-                },
-                maxChips: maxChips,
-                chipBuilder: chipBuilder,
-                suggestionBuilder: suggestionBuilder,
-                textStyle: textStyle,
-                actionLabel: actionLabel,
-                autocorrect: autocorrect,
-                inputAction: inputAction,
-                inputType: inputType,
-                keyboardAppearance: keyboardAppearance,
-                obscureText: obscureText,
-                suggestionsBoxMaxHeight: suggestionsBoxMaxHeight,
-                textCapitalization: textCapitalization,
-                allowChipEditing: allowChipEditing,
-                autofocus: autofocus,
-                focusNode: state.effectiveFocusNode,
-                textOverflow: textOverflow,
-              );
-            },);
+                errorText: decoration?.errorText ?? field.errorText,
+              ),
+              findSuggestions: findSuggestions,
+              onChanged: (data) {
+                field.didChange(data);
+              },
+              maxChips: maxChips,
+              chipBuilder: chipBuilder,
+              suggestionBuilder: suggestionBuilder,
+              textStyle: textStyle,
+              actionLabel: actionLabel,
+              autocorrect: autocorrect,
+              inputAction: inputAction,
+              inputType: inputType,
+              keyboardAppearance: keyboardAppearance,
+              obscureText: obscureText,
+              suggestionsBoxMaxHeight: suggestionsBoxMaxHeight,
+              textCapitalization: textCapitalization,
+              allowChipEditing: allowChipEditing,
+              autofocus: autofocus,
+              focusNode: state.effectiveFocusNode,
+              textOverflow: textOverflow,
+            );
+          },
+        );
 
   @override
   _FormBuilderChipsInputState<T> createState() => _FormBuilderChipsInputState();

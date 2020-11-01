@@ -4,7 +4,7 @@ String enumValueToString(Object o) {
 
 T enumValueFromString<T>(String key, Iterable<T> values) {
   return values.firstWhere(
-      (v) => v != null && key == enumValueToString(v),
-      orElse: () => null,
-    );
+    (v) => v != null && key == enumValueToString(v),
+    orElse: () => null,
+  );
 }
