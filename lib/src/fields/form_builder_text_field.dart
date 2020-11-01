@@ -173,7 +173,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
 
   /// The color to use when painting the cursor.
   ///
-  /// Defaults to [ThemeData.cursorColor] or [CupertinoTheme.primaryColor]
+  /// Defaults to [TextSelectionThemeData.cursorColor] or [CupertinoTheme.primaryColor]
   /// depending on [ThemeData.platform].
   final Color cursorColor;
 
