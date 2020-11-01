@@ -5,9 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderSwitch extends FormBuilderField<bool> {
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-
   final Widget label;
 
   /// The color to use when this switch is on.
@@ -69,15 +66,16 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   FormBuilderSwitch({
     Key key,
     @required String attribute,
-    @required this.label,
-    bool initialValue,
-    List<FormFieldValidator<bool>> validators = const [],
+    bool readOnly = false,
     AutovalidateMode autovalidateMode,
     bool enabled = true,
-    bool readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    ValueTransformer valueTransformer,
+    bool initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<bool> onChanged,
+    FormFieldSetter<bool> onSaved,
+    ValueTransformer<bool> valueTransformer,
+    List<FormFieldValidator<bool>> validators = const [],
+    @required this.label,
     this.activeColor,
     this.activeTrackColor,
     this.inactiveThumbColor,
@@ -86,8 +84,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     this.inactiveThumbImage,
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
-    FormFieldSetter<bool> onSaved,
-    this.contentPadding = const EdgeInsets.all(0.0),
+    this.contentPadding = EdgeInsets.zero,
     this.mouseCursor,
     this.autofocus = false,
     this.focusNode,
@@ -98,9 +95,12 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   }) : super(
           key: key,
           attribute: attribute,
+          readOnly: readOnly,
           autovalidateMode: autovalidateMode,
           enabled: enabled,
           initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
           onSaved: onSaved,
           valueTransformer: valueTransformer,
           validators: validators,
@@ -111,16 +111,16 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
 }
 
 class _FormBuilderSwitchState
-    extends FormBuilderFieldState<FormBuilderSwitch, bool> {
+    extends FormBuilderFieldState<FormBuilderSwitch, bool, bool> {
   @override
   Widget build(BuildContext context) {
-    return FormField(
+    return FormField<bool>(
         key: fieldKey,
         enabled: widget.enabled,
         initialValue: initialValue ?? false,
         validator: (val) => validate(val),
         onSaved: (val) => save(val),
-        builder: (FormFieldState<dynamic> field) {
+        builder: (FormFieldState<bool> field) {
           return InputDecorator(
             decoration: widget.decoration.copyWith(
               enabled: widget.enabled,

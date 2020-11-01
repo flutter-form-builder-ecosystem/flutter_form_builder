@@ -8,16 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:phone_number/phone_number.dart';
 
-class FormBuilderPhoneField extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final String initialValue;
-  final bool readOnly;
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
-
-  final AutovalidateMode autovalidateMode;
+class FormBuilderPhoneField extends FormBuilderField<String> {
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -36,7 +27,6 @@ class FormBuilderPhoneField extends StatefulWidget {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
-  final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
   final Color cursorColor;
@@ -47,7 +37,6 @@ class FormBuilderPhoneField extends StatefulWidget {
   final bool expands;
   final int minLines;
   final bool showCursor;
-  final FormFieldSetter onSaved;
   final VoidCallback onTap;
 
   // For country dialog
@@ -64,17 +53,20 @@ class FormBuilderPhoneField extends StatefulWidget {
 
   FormBuilderPhoneField({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.autovalidateMode,
+    @required String attribute,
+    bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    String initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<String> onChanged,
+    FormFieldSetter<String> onSaved,
+    ValueTransformer<String> valueTransformer,
+    List<FormFieldValidator<String>> validators = const [],
     this.maxLines,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enabled = true,
     this.enableInteractiveSelection = true,
     this.maxLengthEnforced = true,
     this.textAlign = TextAlign.start,
@@ -96,12 +88,9 @@ class FormBuilderPhoneField extends StatefulWidget {
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
-    this.onChanged,
-    this.valueTransformer,
     this.expands = false,
     this.minLines,
     this.showCursor,
-    this.onSaved,
     this.onTap,
     this.searchText,
     this.titlePadding,
@@ -116,18 +105,27 @@ class FormBuilderPhoneField extends StatefulWidget {
   })  : assert(initialValue == null ||
             controller == null ||
             defaultSelectedCountryIsoCode != null),
-        super(key: key);
+        super(
+          key: key,
+          attribute: attribute,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
   FormBuilderPhoneFieldState createState() => FormBuilderPhoneFieldState();
 }
 
-class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
-  bool _readOnly = false;
+class FormBuilderPhoneFieldState
+    extends FormBuilderFieldState<FormBuilderPhoneField, String, String> {
   TextEditingController _effectiveController;
-  FormBuilderState _formState;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  String _initialValue;
   Country _selectedDialogCountry;
   bool phoneNumberValid = true;
 
@@ -143,16 +141,10 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
   @override
   void initState() {
     super.initState();
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
     _effectiveController = widget.controller ?? TextEditingController();
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
-    _validatePhoneNumber(_initialValue, setVal: true);
+    _validatePhoneNumber(initialValue, setVal: true);
   }
 
   void _validatePhoneNumber(String val, {bool setVal = false}) async {
@@ -178,7 +170,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     }
   }
 
-  void _invokeChange(FormFieldState field) {
+  void _invokeChange(FormFieldState<String> field) {
     _validatePhoneNumber(fullNumber);
     field.didChange(fullNumber);
     widget.onChanged?.call(fullNumber);
@@ -186,31 +178,20 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      initialValue: _initialValue,
+    return FormField<String>(
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue,
       autovalidateMode: widget.autovalidateMode,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
-      builder: (FormFieldState field) {
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
+      builder: (FormFieldState<String> field) {
         return TextField(
-          enabled: !_readOnly,
+          enabled: widget.enabled,
           style: widget.style,
-          focusNode: _readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
+          focusNode: readOnly ? AlwaysDisabledFocusNode() : widget.focusNode,
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
             // prefixIcon: widget.decoration.prefixIcon == null ? _textFieldPrefix(field) : widget.decoration.prefixIcon,
             // prefix: widget.decoration.prefixIcon != null ? _textFieldPrefix(field) : null,
@@ -242,7 +223,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
           textDirection: widget.textDirection,
           textInputAction: widget.textInputAction,
           strutStyle: widget.strutStyle,
-          readOnly: _readOnly,
+          readOnly: readOnly,
           expands: widget.expands,
           minLines: widget.minLines,
           showCursor: widget.showCursor,
@@ -282,7 +263,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     );
   }
 
-  void _openCupertinoCountryPicker(FormFieldState field) {
+  void _openCupertinoCountryPicker(FormFieldState<String> field) {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) {
@@ -309,7 +290,7 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
     );
   }
 
-  void _openCountryPickerDialog(FormFieldState field) {
+  void _openCountryPickerDialog(FormFieldState<String> field) {
     showDialog(
       context: context,
       builder: (context) {
@@ -368,7 +349,6 @@ class FormBuilderPhoneFieldState extends State<FormBuilderPhoneField> {
 
   @override
   void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
     if (widget.controller == null) {
       _effectiveController.dispose();
     }

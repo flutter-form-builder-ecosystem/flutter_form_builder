@@ -5,8 +5,6 @@ import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
 class FormBuilderTouchSpin extends FormBuilderField<num> {
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
   final num step;
   final num min;
   final num max;
@@ -27,18 +25,18 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
   FormBuilderTouchSpin({
     Key key,
     @required String attribute,
-    num initialValue,
-    List<FormFieldValidator<num>> validators = const [],
     bool readOnly = false,
     AutovalidateMode autovalidateMode,
     bool enabled = true,
-    this.decoration = const InputDecoration(),
+    num initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<num> onChanged,
+    FormFieldSetter<num> onSaved,
+    ValueTransformer<num> valueTransformer,
+    List<FormFieldValidator<num>> validators = const [],
     this.step,
     this.min = 1,
     this.max = 9999,
-    this.onChanged,
-    ValueTransformer valueTransformer,
-    FormFieldSetter<num> onSaved,
     this.iconSize = 24.0,
     this.displayFormat,
     this.subtractIcon = const Icon(Icons.remove),
@@ -50,9 +48,12 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
   }) : super(
           key: key,
           attribute: attribute,
+          readOnly: readOnly,
           autovalidateMode: autovalidateMode,
           enabled: enabled,
           initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
           onSaved: onSaved,
           valueTransformer: valueTransformer,
           validators: validators,
@@ -63,17 +64,17 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
 }
 
 class _FormBuilderTouchSpinState
-    extends FormBuilderFieldState<FormBuilderTouchSpin, num> {
+    extends FormBuilderFieldState<FormBuilderTouchSpin, num, num> {
   @override
   Widget build(BuildContext context) {
-    return FormField(
-      autovalidateMode: widget.autovalidateMode,
-      enabled: widget.enabled,
+    return FormField<num>(
       key: fieldKey,
+      enabled: widget.enabled,
       initialValue: initialValue,
+      autovalidateMode: widget.autovalidateMode,
       validator: (val) => validate(val),
       onSaved: (val) => save(val),
-      builder: (FormFieldState<dynamic> field) {
+      builder: (FormFieldState<num> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: widget.enabled,

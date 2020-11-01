@@ -4,9 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
   final Color activeColor;
   final Color checkColor;
   final Color focusColor;
@@ -36,14 +34,15 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   FormBuilderCheckboxGroup({
     Key key,
     @required String attribute,
-    List<T> initialValue,
     bool readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    ValueTransformer valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<List<T>> onSaved,
     AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    List<T> initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<List<T>> onChanged,
+    FormFieldSetter<List<T>> onSaved,
+    ValueTransformer<List<T>> valueTransformer,
+    List<FormFieldValidator<List<T>>> validators = const [],
     @required this.options,
     this.activeColor,
     this.checkColor,
@@ -63,13 +62,15 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
     this.orientation = GroupedCheckboxOrientation.wrap,
-    List<FormFieldValidator<List<T>>> validators = const [],
   }) : super(
           key: key,
           attribute: attribute,
+          readOnly: readOnly,
           autovalidateMode: autovalidateMode,
           enabled: enabled,
           initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
           onSaved: onSaved,
           valueTransformer: valueTransformer,
           validators: validators,
@@ -77,26 +78,27 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
 
   @override
   _FormBuilderCheckboxGroupState<T> createState() =>
-      _FormBuilderCheckboxGroupState();
+      _FormBuilderCheckboxGroupState<T>();
 }
 
-class _FormBuilderCheckboxGroupState<T>
-    extends FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> {
+class _FormBuilderCheckboxGroupState<T> extends FormBuilderFieldState<
+    FormBuilderCheckboxGroup<T>, List<T>, List<T>> {
   @override
   Widget build(BuildContext context) {
-    return FormField(
+    return FormField<List<T>>(
       key: fieldKey,
       enabled: widget.enabled,
       initialValue: initialValue,
+      autovalidateMode: widget.autovalidateMode,
       validator: (val) => validate(val),
       onSaved: (val) => save(val),
-      builder: (FormFieldState field) {
+      builder: (FormFieldState<List<T>> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
             enabled: widget.enabled,
             errorText: field.errorText,
           ),
-          child: GroupedCheckbox(
+          child: GroupedCheckbox<T>(
             orientation: widget.orientation,
             value: field.value,
             options: widget.options,

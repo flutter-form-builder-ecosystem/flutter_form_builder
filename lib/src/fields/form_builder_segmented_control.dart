@@ -3,24 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSegmentedControl extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final dynamic initialValue;
-  final bool readOnly;
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
+class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
+  final List<FormBuilderFieldOption<T>> options;
+
   final Color borderColor;
   final Color selectedColor;
   final Color pressedColor;
-  final FormFieldSetter onSaved;
 
   @Deprecated(
       "Use `FormBuilderFieldOption`'s `child` property to style your option")
   final TextStyle textStyle;
-
-  final List<FormBuilderFieldOption> options;
 
   final EdgeInsetsGeometry padding;
 
@@ -28,89 +20,71 @@ class FormBuilderSegmentedControl extends StatefulWidget {
 
   FormBuilderSegmentedControl({
     Key key,
-    @required this.attribute,
+    @required String attribute,
+    bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    T initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<T> onChanged,
+    FormFieldSetter<T> onSaved,
+    ValueTransformer<T> valueTransformer,
+    List<FormFieldValidator<T>> validators = const [],
     @required this.options,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.valueTransformer,
     this.borderColor,
     this.selectedColor,
     this.pressedColor,
     this.textStyle,
     this.padding,
     this.unselectedColor,
-    this.onSaved,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+          attribute: attribute,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
-  _FormBuilderSegmentedControlState createState() =>
-      _FormBuilderSegmentedControlState();
+  _FormBuilderSegmentedControlState<T> createState() =>
+      _FormBuilderSegmentedControlState<T>();
 }
 
-class _FormBuilderSegmentedControlState
-    extends State<FormBuilderSegmentedControl> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  dynamic _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
+class _FormBuilderSegmentedControlState<T>
+    extends FormBuilderFieldState<FormBuilderSegmentedControl<T>, T, T> {
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
     final theme = Theme.of(context);
 
-    return FormField(
-      key: _fieldKey,
-      initialValue: _initialValue,
-      enabled: !_readOnly,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
-      builder: (FormFieldState<dynamic> field) {
+    return FormField<T>(
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue,
+      autovalidateMode: widget.autovalidateMode,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
+      builder: (FormFieldState<T> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
           ),
           child: Padding(
             padding: const EdgeInsets.only(top: 10.0),
-            child: CupertinoSegmentedControl(
-              borderColor: _readOnly
+            child: CupertinoSegmentedControl<T>(
+              borderColor: readOnly
                   ? theme.disabledColor
                   : widget.borderColor ?? theme.primaryColor,
-              selectedColor: _readOnly
+              selectedColor: readOnly
                   ? theme.disabledColor
                   : widget.selectedColor ?? theme.primaryColor,
-              pressedColor: _readOnly
+              pressedColor: readOnly
                   ? theme.disabledColor
                   : widget.pressedColor ?? theme.primaryColor,
               groupValue: field.value,
@@ -131,9 +105,9 @@ class _FormBuilderSegmentedControlState
               },
               padding: widget.padding,
               unselectedColor: widget.unselectedColor,
-              onValueChanged: (dynamic value) {
+              onValueChanged: (T value) {
                 FocusScope.of(context).requestFocus(FocusNode());
-                if (_readOnly) {
+                if (readOnly) {
                   field.reset();
                 } else {
                   field.didChange(value);

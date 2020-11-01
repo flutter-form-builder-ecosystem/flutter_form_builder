@@ -2,15 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderDropdown<T> extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator<T>> validators;
-  final T initialValue;
-  final bool readOnly;
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
-
+class FormBuilderDropdown<T> extends FormBuilderField<T> {
   final Widget hint;
   final List<DropdownMenuItem<T>> items;
   final bool isExpanded;
@@ -26,98 +18,76 @@ class FormBuilderDropdown<T> extends StatefulWidget {
   final Color iconEnabledColor;
   final bool allowClear;
   final Widget clearIcon;
-  final FormFieldSetter<T> onSaved;
   final double itemHeight;
   final Color focusColor;
   final Color dropdownColor;
   final bool autofocus;
-  final AutovalidateMode autovalidateMode;
   final FocusNode focusNode;
   final VoidCallback onTap;
   final List<Widget> Function(BuildContext) selectedItemBuilder;
 
   FormBuilderDropdown({
     Key key,
-    @required this.attribute,
+    @required String attribute,
+    bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    T initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<T> onChanged,
+    FormFieldSetter<T> onSaved,
+    ValueTransformer<T> valueTransformer,
+    List<FormFieldValidator<T>> validators = const [],
     @required this.items,
-    this.validators = const [],
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
     this.isExpanded = true,
     this.isDense = true,
     this.elevation = 8,
     this.iconSize = 24.0,
     this.hint,
-    this.initialValue,
     this.style,
     this.disabledHint,
-    this.onChanged,
-    this.valueTransformer,
     this.underline,
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
     this.allowClear = false,
     this.clearIcon = const Icon(Icons.close),
-    this.onSaved,
     this.itemHeight,
     this.focusColor,
     this.dropdownColor,
     this.autofocus = false,
-    this.autovalidateMode,
     this.focusNode,
     this.onTap,
     this.selectedItemBuilder,
-  }) : super(key: key) /*: assert(allowClear == true || clearIcon != null)*/;
+  }) : super(
+          key: key,
+          attribute: attribute,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        ) /*: assert(allowClear == true || clearIcon != null)*/;
 
   @override
-  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState();
+  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState<T>();
 }
 
-class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  T _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState?.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
+class _FormBuilderDropdownState<T>
+    extends FormBuilderFieldState<FormBuilderDropdown<T>, T, T> {
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
-    return FormField(
+    return FormField<T>(
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue,
       autovalidateMode: widget.autovalidateMode,
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
       builder: (FormFieldState<T> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
@@ -153,7 +123,7 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
                     iconEnabledColor: widget.iconEnabledColor,
                     // ignore: deprecated_member_use_from_same_package
                     underline: widget.underline,
-                    onChanged: _readOnly
+                    onChanged: readOnly
                         ? null
                         : (value) {
                             _changeValue(field, value);
@@ -186,7 +156,7 @@ class _FormBuilderDropdownState<T> extends State<FormBuilderDropdown<T>> {
     );
   }
 
-  void _changeValue(FormFieldState field, value) {
+  void _changeValue(FormFieldState<T> field, value) {
     field.didChange(value);
     widget.onChanged?.call(value);
   }

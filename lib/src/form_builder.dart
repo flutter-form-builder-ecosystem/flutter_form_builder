@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 typedef ValueTransformer<T> = dynamic Function(T value);
 
 class FormBuilder extends StatefulWidget {
-  final Function(Map<String, dynamic>) onChanged;
+  final void Function(Map<String, dynamic>) onChanged;
   final WillPopCallback onWillPop;
   final Widget child;
   final bool readOnly;
@@ -30,7 +30,7 @@ class FormBuilder extends StatefulWidget {
 
 class FormBuilderState extends State<FormBuilder> {
   //TODO: Find way to assert no duplicates in field attributes
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   Map<String, GlobalKey<FormFieldState>> _fieldKeys;
 
@@ -127,7 +127,9 @@ abstract class FormBuilderField<T> extends StatefulWidget {
   /// Whether the field can be changed. Defaults to false.
   final bool readOnly;
   final List<FormFieldValidator<T>> validators;
-  final ValueTransformer valueTransformer;
+  final ValueTransformer<T> valueTransformer;
+  final ValueChanged<T> onChanged;
+  final InputDecoration decoration;
 
   // Common FormField fields...
   final AutovalidateMode autovalidateMode;
@@ -137,19 +139,22 @@ abstract class FormBuilderField<T> extends StatefulWidget {
   final T initialValue;
   final FormFieldSetter<T> onSaved;
 
-  FormBuilderField({
+  const FormBuilderField({
     Key key,
     @required this.attribute,
-    this.readOnly = false,
-    this.autovalidateMode,
-    this.enabled = true,
-    this.initialValue,
-    this.onSaved,
-    this.valueTransformer,
-    this.validators = const [],
+    @required this.readOnly, // = false
+    @required this.autovalidateMode,
+    @required this.enabled, // = true
+    @required this.initialValue,
+    @required this.decoration, // = const InputDecoration()
+    @required this.onChanged,
+    @required this.onSaved,
+    @required this.valueTransformer,
+    @required this.validators, // = const []
   })  : assert(null != attribute),
         assert(null != readOnly),
         assert(null != enabled),
+        assert(null != decoration),
         super(key: key);
 
   void _save(FormBuilderState formBuilderState, T newValue) {
@@ -160,15 +165,24 @@ abstract class FormBuilderField<T> extends StatefulWidget {
   }
 }
 
-abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T, S>
     extends State<F> {
-  final GlobalKey<FormFieldState> fieldKey = GlobalKey<FormFieldState>();
+  final fieldKey = GlobalKey<FormFieldState<T>>();
   FormBuilderState formState;
 
   /// Field's Read Only state when either Field or Form is read only.
   bool readOnly;
 
   T initialValue;
+
+  /// Optional override to transform the stored value into
+  /// an actual value.  (This can be thought of the opposite of the
+  /// valueTransformer)
+  T initialValueTransformer(S storedInitialValue) {
+    // Default is a pass-through, which is appropriate for most cases.
+    assert(S is T);
+    return storedInitialValue as T;
+  }
 
   @override
   void initState() {
@@ -191,5 +205,5 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void save(T newValue) => widget._save(formState, newValue);
 
   String validate(T val) =>
-      FormBuilderValidators.validateValidators(val, widget.validators);
+      FormBuilderValidators.validateValidators<T>(val, widget.validators);
 }

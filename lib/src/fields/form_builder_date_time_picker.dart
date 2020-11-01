@@ -10,8 +10,6 @@ import 'package:intl/intl.dart';
 enum InputType { date, time, both }
 
 class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
-  final InputDecoration decoration;
-
   /// The date/time picker dialogs to show.
   final InputType inputType;
 
@@ -101,11 +99,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// this widget.
   final Future<DateTime> Function(BuildContext context) datePicker;
 
-  /// Called whenever the state's value changes, e.g. after picker value(s)
-  /// have been selected or when the field loses focus. To listen for all text
-  /// changes, use the [controller] and [focusNode].
-  final ValueChanged<DateTime> onChanged;
-
   final bool showCursor;
 
   final int minLines;
@@ -142,13 +135,19 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   FormBuilderDateTimePicker({
     Key key,
     @required String attribute,
-    List<FormFieldValidator<DateTime>> validators = const [],
     bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    DateTime initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<DateTime> onChanged,
+    FormFieldSetter<DateTime> onSaved,
+    ValueTransformer<DateTime> valueTransformer,
+    List<FormFieldValidator<DateTime>> validators = const [],
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
     this.enableInteractiveSelection = true,
-    this.decoration = const InputDecoration(),
     this.resetIcon = const Icon(Icons.close),
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.keyboardType = TextInputType.text,
@@ -159,15 +158,11 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.maxLines = 1,
     this.maxLengthEnforced = true,
     this.expands = false,
-    AutovalidateMode autovalidateMode,
-    DateTime initialValue,
     this.format,
     this.firstDate,
     this.lastDate,
-    this.onChanged,
     this.initialDate,
     this.validator,
-    FormFieldSetter<DateTime> onSaved,
     this.onFieldSubmitted,
     this.initialDatePickerMode = DatePickerMode.day,
     this.locale,
@@ -176,10 +171,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.controller,
     this.focusNode,
     this.style,
-    bool enabled = true,
     this.maxLength,
     this.inputFormatters,
-    ValueTransformer valueTransformer,
     this.builder,
     this.timePicker,
     this.datePicker,
@@ -209,9 +202,12 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   }) : super(
           key: key,
           attribute: attribute,
+          readOnly: readOnly,
           autovalidateMode: autovalidateMode,
           enabled: enabled,
           initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
           onSaved: onSaved,
           valueTransformer: valueTransformer,
           validators: validators,
@@ -224,8 +220,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState
-    extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
+class _FormBuilderDateTimePickerState extends FormBuilderFieldState<
+    FormBuilderDateTimePicker, DateTime, DateTime> {
   FocusNode _focusNode;
   TextEditingController _textFieldController;
   DateTime _stateCurrentValue;

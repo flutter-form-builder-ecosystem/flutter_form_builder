@@ -9,16 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
-class FormBuilderDateRangePicker extends StatefulWidget {
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final List<DateTime> initialValue;
-  final bool readOnly;
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
-
-  final AutovalidateMode autovalidateMode;
+class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -37,7 +28,6 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
-  final bool enabled;
   final double cursorWidth;
   final Radius cursorRadius;
   final Color cursorColor;
@@ -56,24 +46,26 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   final Locale locale;
   final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
-  final FormFieldSetter onSaved;
 
   FormBuilderDateRangePicker({
     Key key,
-    @required this.attribute,
+    @required String attribute,
+    bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    List<DateTime> initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<List<DateTime>> onChanged,
+    FormFieldSetter<List<DateTime>> onSaved,
+    ValueTransformer<List<DateTime>> valueTransformer,
+    List<FormFieldValidator<List<DateTime>>> validators = const [],
     @required this.firstDate,
     @required this.lastDate,
     @required this.format,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.autovalidateMode,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enabled = true,
     this.enableInteractiveSelection = true,
     this.maxLengthEnforced = true,
     this.textAlign = TextAlign.start,
@@ -95,8 +87,6 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
-    this.onChanged,
-    this.valueTransformer,
     this.expands = false,
     this.minLines,
     this.showCursor,
@@ -105,7 +95,6 @@ class FormBuilderDateRangePicker extends StatefulWidget {
     this.initialDatePickerMode = date_range_picker.DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
-    this.onSaved,
   })  : assert(
             initialValue == null ||
                 lastDate == null ||
@@ -123,7 +112,19 @@ class FormBuilderDateRangePicker extends StatefulWidget {
                 firstDate == null ||
                 lastDate.isAfter(firstDate),
             'lastDate must be on or after firstDate'),
-        super(key: key);
+        super(
+          key: key,
+          attribute: attribute,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
   FormBuilderDateRangePickerState createState() =>
@@ -141,13 +142,9 @@ class FormBuilderDateRangePicker extends StatefulWidget {
   }
 }
 
-class FormBuilderDateRangePickerState
-    extends State<FormBuilderDateRangePicker> {
-  bool _readOnly = false;
+class FormBuilderDateRangePickerState extends FormBuilderFieldState<
+    FormBuilderDateRangePicker, List<DateTime>, List<DateTime>> {
   TextEditingController _controller;
-  FormBuilderState _formState;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  List<DateTime> _initialValue;
   List<DateTime> _currentValue;
   FocusNode _focusNode;
 
@@ -160,47 +157,28 @@ class FormBuilderDateRangePickerState
 
   @override
   void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = _currentValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : []);
+    super.initState();
     _controller = TextEditingController(text: _valueToText());
     _focusNode = FocusNode();
     _effectiveFocusNode?.addListener(_handleFocus);
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
+    return FormField<List<DateTime>>(
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue,
       autovalidateMode: widget.autovalidateMode,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
       builder: (FormFieldState<List<DateTime>> field) {
         return TextField(
-          enabled: !_readOnly,
+          enabled: widget.enabled,
           style: widget.style,
-          focusNode:
-              _readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
+          focusNode: readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
           ),
           // initialValue: "${_initialValue ?? ''}",
@@ -259,7 +237,7 @@ class FormBuilderDateRangePickerState
         if (picked.length == 1) {
           picked.add(picked[0]);
         }
-        _fieldKey.currentState.didChange(picked);
+        fieldKey.currentState.didChange(picked);
         widget.onChanged?.call(picked);
         _setCurrentValue(picked);
         _effectiveController.text = _valueToText();
@@ -292,7 +270,6 @@ class FormBuilderDateRangePickerState
   @override
   void dispose() {
     _focusNode?.dispose();
-    _formState?.unregisterFieldKey(widget.attribute);
     _controller?.dispose();
     super.dispose();
   }
