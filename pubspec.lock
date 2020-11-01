@@ -113,13 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  country_code_picker:
-    dependency: "direct main"
-    description:
-      name: country_code_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.6.0"
   country_pickers:
     dependency: "direct main"
     description:
@@ -175,7 +168,7 @@ packages:
       name: dropdown_search
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.5"
+    version: "0.4.6"
   fake_async:
     dependency: transitive
     description:
@@ -272,7 +265,7 @@ packages:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.5"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
@@ -399,13 +392,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.7"
-  modal_bottom_sheet:
-    dependency: transitive
-    description:
-      name: modal_bottom_sheet
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.2"
   node_interop:
     dependency: transitive
     description:
