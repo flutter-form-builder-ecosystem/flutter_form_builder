@@ -8,7 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:phone_number/phone_number.dart';
 
 //TODO: Switch country_pickers for country_code_picker
-class FormBuilderPhoneField extends FormBuilderField {
+class FormBuilderPhoneField extends FormBuilderField<String> {
   //TODO: Add documentation
   final int maxLines;
   final TextInputType keyboardType;
@@ -60,10 +60,10 @@ class FormBuilderPhoneField extends FormBuilderField {
     String initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<String> onChanged,
+    ValueTransformer<String> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<String> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -122,7 +122,7 @@ class FormBuilderPhoneField extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<String> field) {
             final _FormBuilderPhoneFieldState state = field;
 
             return InputDecorator(
@@ -216,7 +216,7 @@ class FormBuilderPhoneField extends FormBuilderField {
   _FormBuilderPhoneFieldState createState() => _FormBuilderPhoneFieldState();
 }
 
-class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
+class _FormBuilderPhoneFieldState extends FormBuilderFieldState<String> {
   @override
   FormBuilderPhoneField get widget => super.widget as FormBuilderPhoneField;
 
