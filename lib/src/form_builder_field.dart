@@ -27,7 +27,7 @@ class FormBuilderField<T> extends FormField<T> {
   ///     keyboardType: TextInputType.number,
   ///  ),
   /// ```
-  final ValueTransformer valueTransformer;
+  final ValueTransformer<T> valueTransformer;
 
   /// Called when the field value is changed.
   final ValueChanged<T> onChanged;
