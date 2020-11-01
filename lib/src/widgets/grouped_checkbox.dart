@@ -218,7 +218,6 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
   }
 
   Widget generateItems() {
-    var content = <Widget>[];
     Widget finalWidget;
     if (widget.value != null) {
       selectedListItems = widget.value;
