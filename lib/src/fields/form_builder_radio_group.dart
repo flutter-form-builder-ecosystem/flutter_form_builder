@@ -27,7 +27,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<T> validator,
     T initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
