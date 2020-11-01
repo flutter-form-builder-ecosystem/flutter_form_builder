@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 enum DisplayValues { all, current, minMax, none }
 
-class FormBuilderSlider extends FormBuilderField {
+class FormBuilderSlider extends FormBuilderField<double> {
   /// Called when the user starts selecting a new value for the slider.
   ///
   /// This callback shouldn't be used to update the slider [value] (use
@@ -135,10 +135,10 @@ class FormBuilderSlider extends FormBuilderField {
     @required double initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<double> onChanged,
+    ValueTransformer<double> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<double> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -171,7 +171,7 @@ class FormBuilderSlider extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<double> field) {
             final _FormBuilderSliderState state = field;
             var _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
@@ -240,7 +240,7 @@ class FormBuilderSlider extends FormBuilderField {
   _FormBuilderSliderState createState() => _FormBuilderSliderState();
 }
 
-class _FormBuilderSliderState extends FormBuilderFieldState {
+class _FormBuilderSliderState extends FormBuilderFieldState<double> {
   @override
   FormBuilderSlider get widget => super.widget as FormBuilderSlider;
 }
