@@ -36,7 +36,7 @@ class FormBuilderRating extends FormBuilderField<double> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<double> validator,
     double initialValue = 1.0,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
