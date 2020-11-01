@@ -202,20 +202,19 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   T selectedValue;
 
   @override
-  Widget build(BuildContext context) {
-    var finalWidget = generateItems();
-    return finalWidget;
+  void initState() {
+    super.initState();
+
+    selectedValue = widget.value;
   }
 
-  Widget generateItems() {
-    Widget finalWidget;
-    if (widget.value != null) {
-      selectedValue = widget.value;
-    }
-    var widgetList = <Widget>[];
+  @override
+  Widget build(BuildContext context) {
+    final widgetList = <Widget>[];
     for (var i = 0; i < widget.options.length; i++) {
       widgetList.add(item(i));
     }
+    Widget finalWidget;
     if (widget.orientation == OptionsOrientation.vertical) {
       finalWidget = SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -252,50 +251,45 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   }
 
   Widget item(int index) {
-    var control = Radio<T>(
+    final option = widget.options[index];
+    final optionValue = option.value;
+    final isOptionDisabled = true == widget.disabled?.contains(optionValue);
+    final control = Radio<T>(
       groupValue: selectedValue,
       activeColor: widget.activeColor,
       focusColor: widget.focusColor,
       hoverColor: widget.hoverColor,
       materialTapTargetSize: widget.materialTapTargetSize,
-      value: widget.options[index].value,
-      onChanged: (widget.disabled != null &&
-              widget.disabled.contains(widget.options.elementAt(index).value))
+      value: optionValue,
+      onChanged: isOptionDisabled
           ? null
           : (T selected) {
               setState(() {
                 selectedValue = selected;
               });
-              widget.onChanged?.call(selectedValue);
+              widget.onChanged(selectedValue);
             },
     );
 
     var label = GestureDetector(
       child: widget.options[index],
-      onTap: (widget.disabled != null &&
-              widget.disabled.contains(widget.options.elementAt(index).value))
+      onTap: isOptionDisabled
           ? null
           : () {
               setState(() {
-                selectedValue = widget.options[index].value;
+                selectedValue = optionValue;
               });
-              widget.onChanged?.call(selectedValue);
+              widget.onChanged(selectedValue);
             },
     );
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (widget.controlAffinity == ControlAffinity.leading) ...[
-          control,
-          Flexible(child: label),
-        ],
-        if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          Flexible(child: label),
-          control,
-        ],
-        if (widget.separator != null &&
-            widget.options[index] != widget.options.last)
+        if (widget.controlAffinity == ControlAffinity.leading) control,
+        Flexible(child: label),
+        if (widget.controlAffinity == ControlAffinity.trailing) control,
+        if (widget.separator != null && index != widget.options.length - 1)
           widget.separator,
       ],
     );
