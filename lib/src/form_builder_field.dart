@@ -1,3 +1,4 @@
+import 'package:after_init/after_init.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -75,7 +76,7 @@ class FormBuilderField<T> extends FormField<T> {
   FormBuilderFieldState<T> createState() => FormBuilderFieldState();
 }
 
-class FormBuilderFieldState<T> extends FormFieldState<T> {
+class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin{
   @override
   FormBuilderField<T> get widget => super.widget;
 
@@ -105,11 +106,10 @@ class FormBuilderFieldState<T> extends FormFieldState<T> {
       widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
-  void initState() {
-    super.initState();
+  void didInitState() {
     _formBuilderState = FormBuilder.of(context);
-    _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
     _formBuilderState?.registerField(widget.name, this);
+    _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
     _initialValue = widget.initialValue ??
         ((_formBuilderState?.initialValue?.containsKey(widget.name) ?? false)
             ? _formBuilderState.initialValue[widget.name]

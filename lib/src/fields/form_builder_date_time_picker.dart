@@ -289,8 +289,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends FormBuilderFieldState
-    with AfterInitMixin {
+class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
   @override
   FormBuilderDateTimePicker get widget =>
       super.widget as FormBuilderDateTimePicker;
