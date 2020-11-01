@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 
-import 'package:after_init/after_init.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -309,6 +308,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
 
   @override
   void didInitState() {
+    super.didInitState();
     _textFieldController.text =
         initialValue == null ? '' : dateFormat.format(initialValue);
   }
