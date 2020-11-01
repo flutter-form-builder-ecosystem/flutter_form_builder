@@ -2,17 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderFilterChip extends StatefulWidget {
-  // FormBuilder Settings
-  final String attribute;
-  final List<FormFieldValidator> validators;
-  final dynamic initialValue;
-  final bool readOnly;
-  final InputDecoration decoration;
-  final ValueChanged onChanged;
-  final ValueTransformer valueTransformer;
-  final List<FormBuilderFieldOption> options;
-  final FormFieldSetter onSaved;
+class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
+  final List<FormBuilderFieldOption<T>> options;
 
   // FilterChip Settings
   final double elevation, pressElevation;
@@ -42,15 +33,17 @@ class FormBuilderFilterChip extends StatefulWidget {
 
   FormBuilderFilterChip({
     Key key,
-    @required this.attribute,
+    @required String attribute,
+    bool readOnly = false,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    List<T> initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<List<T>> onChanged,
+    FormFieldSetter<List<T>> onSaved,
+    ValueTransformer<List<T>> valueTransformer,
+    List<FormFieldValidator<List<T>>> validators = const [],
     @required this.options,
-    this.initialValue,
-    this.validators = const [],
-    this.readOnly = false,
-    this.decoration = const InputDecoration(),
-    this.onChanged,
-    this.onSaved,
-    this.valueTransformer,
     this.selectedColor,
     this.disabledColor,
     this.backgroundColor,
@@ -75,59 +68,40 @@ class FormBuilderFilterChip extends StatefulWidget {
     this.showCheckmark = true,
     this.labelPadding,
     // this.visualDensity,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+          attribute: attribute,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
-  _FormBuilderFilterChipState createState() => _FormBuilderFilterChipState();
+  _FormBuilderFilterChipState<T> createState() =>
+      _FormBuilderFilterChipState<T>();
 }
 
-class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  dynamic _initialValue;
-
-  @override
-  void initState() {
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _formState?.unregisterFieldKey(widget.attribute);
-    super.dispose();
-  }
-
+class _FormBuilderFilterChipState<T>
+    extends FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>, List<T>> {
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
-    return FormField(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue ?? [],
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
-      builder: (FormFieldState<dynamic> field) {
+    return FormField<List<T>>(
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue ?? const [],
+      autovalidateMode: widget.autovalidateMode,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
+      builder: (FormFieldState<List<T>> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
           ),
           child: Wrap(
@@ -140,11 +114,11 @@ class _FormBuilderFilterChipState extends State<FormBuilderFilterChip> {
             textDirection: widget.textDirection,
             verticalDirection: widget.verticalDirection,
             children: <Widget>[
-              for (FormBuilderFieldOption option in widget.options)
+              for (FormBuilderFieldOption<T> option in widget.options)
                 FilterChip(
                   label: option,
                   selected: field.value.contains(option.value),
-                  onSelected: _readOnly
+                  onSelected: readOnly
                       ? null
                       : (bool selected) {
                           setState(

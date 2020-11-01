@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class FormBuilderFieldOption extends StatelessWidget {
+class FormBuilderFieldOption<T> extends StatelessWidget {
   @Deprecated('Use `child` instead. Will be removed in the next major version.')
   final String label;
   final Widget child;
-  final dynamic value;
+  final T value;
 
   const FormBuilderFieldOption({
     Key key,

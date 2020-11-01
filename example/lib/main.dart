@@ -378,7 +378,7 @@ class MyHomePageState extends State<MyHomePage> {
                       }
                     },
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderRadioGroup(
                     orientation: GroupedRadioOrientation.wrap,
                     decoration:
@@ -400,13 +400,13 @@ class MyHomePageState extends State<MyHomePage> {
                             ))
                         .toList(growable: false),
                   ),
-                  SizedBox(height: 15),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderSegmentedControl(
-                    decoration:
-                        InputDecoration(labelText: 'Movie Rating (Archer)'),
+                    decoration: const InputDecoration(
+                        labelText: 'Movie Rating (Archer)'),
                     attribute: 'movie_rating',
-                    textStyle: TextStyle(fontWeight: FontWeight.bold),
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold),
                     options: List.generate(5, (i) => i + 1)
                         .map((number) => FormBuilderFieldOption(
                               value: number,
@@ -418,7 +418,7 @@ class MyHomePageState extends State<MyHomePage> {
                         .toList(),
                     onChanged: _onChanged,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderSwitch(
                     label: Text('I Accept the tems and conditions'),
                     attribute: 'accept_terms_switch',
@@ -451,11 +451,11 @@ class MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 15),
                   FormBuilderCheckboxGroup(
-                    decoration:
-                        InputDecoration(labelText: 'The language of my people'),
+                    decoration: const InputDecoration(
+                        labelText: 'The language of my people'),
                     attribute: 'languages',
                     initialValue: ['Dart'],
-                    options: [
+                    options: const [
                       FormBuilderFieldOption(value: 'Dart'),
                       FormBuilderFieldOption(value: 'Kotlin'),
                       FormBuilderFieldOption(value: 'Java'),
@@ -464,7 +464,7 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                     onChanged: _onChanged,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderImagePicker(
                     attribute: 'images',
                     decoration: const InputDecoration(
@@ -540,38 +540,34 @@ class MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   SizedBox(height: 15),
-                  FormBuilderCustomField(
+                  FormBuilderCustomField<String>(
                     attribute: 'name',
                     validators: [FormBuilderValidators.required()],
                     initialValue: 'Argentina',
-                    formField: FormField(
-                      enabled: true,
-                      builder: (FormFieldState<dynamic> field) {
-                        return InputDecorator(
-                          decoration: InputDecoration(
-                            labelText: 'FormBuilderCustomField',
-                            contentPadding: const EdgeInsets.only(
-                              top: 10.0,
-                              bottom: 0.0,
-                            ),
-                            border: InputBorder.none,
-                            errorText: field.errorText,
+                    builder: (FormFieldState<String> field) {
+                      return InputDecorator(
+                        decoration: InputDecoration(
+                          labelText: 'FormBuilderCustomField',
+                          contentPadding: const EdgeInsets.only(
+                            top: 10.0,
+                            bottom: 0.0,
                           ),
-                          child: Container(
-                            height: 200,
-                            child: CupertinoPicker(
-                              itemExtent: 30,
-                              children:
-                                  allCountries.map((c) => Text(c)).toList(),
-                              onSelectedItemChanged: (index) {
-                                print(index);
-                                field.didChange(allCountries[index]);
-                              },
-                            ),
+                          border: InputBorder.none,
+                          errorText: field.errorText,
+                        ),
+                        child: Container(
+                          height: 200,
+                          child: CupertinoPicker(
+                            itemExtent: 30,
+                            children: allCountries.map((c) => Text(c)).toList(),
+                            onSelectedItemChanged: (index) {
+                              print(index);
+                              field.didChange(allCountries[index]);
+                            },
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

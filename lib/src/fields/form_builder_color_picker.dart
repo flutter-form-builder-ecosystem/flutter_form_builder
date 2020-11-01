@@ -8,21 +8,11 @@ import 'package:flutter_form_builder/src/hex_color.dart';
 
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker, SlidePicker }
 
-class FormBuilderColorPicker extends StatefulWidget {
-  final String attribute;
-  final Color initialValue;
-  final List<FormFieldValidator> validators;
-  final bool enabled;
-  final AutovalidateMode autovalidateMode;
-  final ValueTransformer valueTransformer;
-  final ValueChanged onChanged;
-  final FormFieldSetter<Color> onSaved;
+class FormBuilderColorPicker extends FormBuilderField<Color> {
   final TextEditingController controller;
   final FocusNode focusNode;
-  final bool readOnly;
 
   final ColorPickerType colorPickerType;
-  final InputDecoration decoration;
   final TextCapitalization textCapitalization;
 
   final TextAlign textAlign;
@@ -60,20 +50,19 @@ class FormBuilderColorPicker extends StatefulWidget {
 
   FormBuilderColorPicker({
     Key key,
-    @required this.attribute,
-    this.initialValue,
-    this.validators = const [],
-    this.enabled = true,
-    this.autovalidateMode,
-    this.valueTransformer,
-    this.onChanged,
-    this.onSaved,
-    //
+    @required String attribute,
+    AutovalidateMode autovalidateMode,
+    bool enabled = true,
+    Color initialValue,
+    InputDecoration decoration = const InputDecoration(),
+    ValueChanged<Color> onChanged,
+    FormFieldSetter<Color> onSaved,
+    bool readOnly = false,
+    ValueTransformer<Color> valueTransformer,
+    List<FormFieldValidator<Color>> validators = const [],
     this.controller,
     this.focusNode,
-    this.readOnly = false,
     this.colorPickerType = ColorPickerType.ColorPicker,
-    this.decoration = const InputDecoration(),
     this.textCapitalization = TextCapitalization.none,
     this.textAlign = TextAlign.start,
     this.keyboardType,
@@ -100,36 +89,44 @@ class FormBuilderColorPicker extends StatefulWidget {
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableInteractiveSelection = true,
     this.buildCounter,
-  });
+  }) : super(
+          key: key,
+          attribute: attribute,
+          readOnly: readOnly,
+          autovalidateMode: autovalidateMode,
+          enabled: enabled,
+          initialValue: initialValue,
+          decoration: decoration,
+          onChanged: onChanged,
+          onSaved: onSaved,
+          valueTransformer: valueTransformer,
+          validators: validators,
+        );
 
   @override
   _FormBuilderColorPickerState createState() => _FormBuilderColorPickerState();
 }
 
-class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
-  bool _readOnly = false;
-  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
-  FormBuilderState _formState;
-  Color _initialValue;
+class _FormBuilderColorPickerState
+    extends FormBuilderFieldState<FormBuilderColorPicker, Color, String> {
   final _focusNode = FocusNode();
   TextEditingController _textEditingController;
 
   TextEditingController get _effectiveController =>
       widget.controller ?? _textEditingController;
 
+  /// Converts a Color Hex code value into a Color value
+  @override
+  Color initialValueTransformer(String storedInitialValue) {
+    return HexColor.fromHex(storedInitialValue);
+  }
+
   FocusNode get effectiveFocusNode => widget.focusNode ?? _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _formState = FormBuilder.of(context);
-    _formState?.registerFieldKey(widget.attribute, _fieldKey);
-    _initialValue = widget.initialValue ??
-        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
-            ? _formState.initialValue[widget.attribute]
-            : null);
-    _textEditingController =
-        TextEditingController(text: HexColor(_initialValue)?.toHex());
+    _textEditingController = TextEditingController(text: initialValue?.toHex());
     widget.focusNode?.addListener(_handleFocus);
     _focusNode.addListener(_handleFocus);
   }
@@ -142,33 +139,21 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
 
   @override
   Widget build(BuildContext context) {
-    _readOnly = _formState?.readOnly == true || widget.readOnly;
-
     return FormField<Color>(
-      key: _fieldKey,
-      enabled: !_readOnly,
-      initialValue: _initialValue,
-      validator: (val) =>
-          FormBuilderValidators.validateValidators(val, widget.validators),
-      onSaved: (val) {
-        var transformed;
-        if (widget.valueTransformer != null) {
-          transformed = widget.valueTransformer(val);
-          _formState?.setAttributeValue(widget.attribute, transformed);
-        } else {
-          _formState?.setAttributeValue(widget.attribute, val);
-        }
-        widget.onSaved?.call(transformed ?? val);
-      },
+      key: fieldKey,
+      enabled: widget.enabled,
+      initialValue: initialValue,
       autovalidateMode: widget.autovalidateMode,
+      validator: (val) => validate(val),
+      onSaved: (val) => save(val),
       builder: (FormFieldState<Color> field) {
-        _effectiveController.text = HexColor(field.value)?.toHex();
+        _effectiveController.text = field.value?.toHex();
         final defaultBorderColor = Colors.grey;
 
         return TextField(
           style: widget.style,
           decoration: widget.decoration.copyWith(
-            enabled: !_readOnly,
+            enabled: widget.enabled,
             errorText: field.errorText,
             suffixIcon: LayoutBuilder(
               key: ObjectKey(field.value),
@@ -188,7 +173,7 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
               },
             ),
           ),
-          enabled: !_readOnly,
+          enabled: widget.enabled,
           readOnly: true,
           controller: _effectiveController,
           focusNode: effectiveFocusNode,
@@ -223,21 +208,21 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
   }
 
   void _setColor(Color color) {
-    _fieldKey.currentState.didChange(color);
+    assert(null != color);
+    fieldKey.currentState.didChange(color);
     widget.onChanged?.call(color);
-    _effectiveController.text = HexColor(color)?.toHex();
+    _effectiveController.text = HexColor(color).toHex();
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus && !_readOnly) {
+    if (effectiveFocusNode.hasFocus && widget.enabled) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
       await showDialog(
         context: context,
         builder: (BuildContext context) {
           final materialLocalizations = MaterialLocalizations.of(context);
-          Color pickedColor =
-              _fieldKey.currentState.value ?? Colors.transparent;
+          var pickedColor = fieldKey.currentState.value ?? Colors.transparent;
           return AlertDialog(
             // title: null, //const Text('Pick a color!'),
             content: SingleChildScrollView(
@@ -295,14 +280,14 @@ class _FormBuilderColorPickerState extends State<FormBuilderColorPicker> {
               TextButton(
                 child: Text(materialLocalizations.cancelButtonLabel),
                 onPressed: () {
-                  Navigator.of(context).pop(false);
+                  Navigator.pop(context, false);
                 },
               ),
               TextButton(
                 child: Text(materialLocalizations.okButtonLabel),
                 onPressed: () {
                   _setColor(pickedColor);
-                  Navigator.of(context).pop(true);
+                  Navigator.pop(context, true);
                 },
               ),
             ],
