@@ -301,7 +301,9 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState {
       builder: (context) {
         return Theme(
           data: Theme.of(context).copyWith(
-            cursorColor: widget.cursorColor,
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: widget.cursorColor,
+            ),
             primaryColor: widget.cursorColor ?? Theme.of(context).primaryColor,
           ),
           child: CountryPickerDialog(
