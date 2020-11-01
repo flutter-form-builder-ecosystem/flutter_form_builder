@@ -5,7 +5,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 typedef SelectionToTextTransformer<T> = String Function(T suggestion);
 
-class FormBuilderTypeAhead<T> extends FormBuilderField {
+class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   /// Called with the search pattern to get the search suggestions.
   ///
   /// This callback must not be null. It is be called by the TypeAhead widget
@@ -263,10 +263,10 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
     T initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<T> onChanged,
+    ValueTransformer<T> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<T> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -310,8 +310,8 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
-            final _FormBuilderTypeAheadState state = field;
+          builder: (FormFieldState<T> field) {
+            final _FormBuilderTypeAheadState<T> state = field;
             final theme = Theme.of(state.context);
 
             return TypeAheadField<T>(
@@ -373,9 +373,9 @@ class FormBuilderTypeAhead<T> extends FormBuilderField {
       _FormBuilderTypeAheadState<T>();
 }
 
-class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState {
+class _FormBuilderTypeAheadState<T> extends FormBuilderFieldState<T> {
   @override
-  FormBuilderTypeAhead get widget => super.widget as FormBuilderTypeAhead;
+  FormBuilderTypeAhead<T> get widget => super.widget as FormBuilderTypeAhead;
 
   TextEditingController _typeAheadController;
 
