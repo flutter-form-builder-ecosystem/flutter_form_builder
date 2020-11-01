@@ -76,15 +76,19 @@ class FormBuilderField<T> extends FormField<T> {
   FormBuilderFieldState<T> createState() => FormBuilderFieldState();
 }
 
-class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin{
+class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin {
   @override
   FormBuilderField<T> get widget => super.widget;
 
   FormBuilderState get formState => _formBuilderState;
 
-  bool get readOnly => _readOnly;
+  bool get readOnly => _formBuilderState?.readOnly == true || widget.readOnly;
 
-  T get initialValue => _initialValue;
+  T get initialValue =>
+      widget.initialValue ??
+      ((_formBuilderState?.initialValue?.containsKey(widget.name) ?? false)
+          ? _formBuilderState.initialValue[widget.name]
+          : null);
 
   FormBuilderState _formBuilderState;
 
@@ -94,11 +98,7 @@ class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin{
   @override
   bool get isValid => super.isValid && widget.decoration?.errorText == null;
 
-  bool _readOnly = false;
-
   bool _touched = false;
-
-  T _initialValue;
 
   FocusNode _focusNode;
 
@@ -109,13 +109,8 @@ class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin{
   void didInitState() {
     _formBuilderState = FormBuilder.of(context);
     _formBuilderState?.registerField(widget.name, this);
-    _readOnly = _formBuilderState?.readOnly == true || widget.readOnly;
-    _initialValue = widget.initialValue ??
-        ((_formBuilderState?.initialValue?.containsKey(widget.name) ?? false)
-            ? _formBuilderState.initialValue[widget.name]
-            : null);
     effectiveFocusNode.addListener(setTouchedHandler);
-    setValue(_initialValue);
+    setValue(initialValue);
   }
 
   @override
