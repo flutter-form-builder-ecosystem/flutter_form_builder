@@ -72,8 +72,8 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     bool initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<bool> onChanged,
+    ValueTransformer<bool> valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
@@ -103,7 +103,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<bool> field) {
             final _FormBuilderCheckboxState state = field;
 
             return InputDecorator(
