@@ -201,25 +201,28 @@ class FormBuilderValidators {
     };
   }
 
+  // TODO(any): l10n
   /// [FormFieldValidator] that requires the field's value to be a valid integer.
-  static FormFieldValidator integer({
+  static FormFieldValidator integer(
+    BuildContext context, {
     String errorText = 'Value must be an integer.',
   }) {
     return (valueCandidate) {
-      if (int.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty) {
+      if (int.tryParse(valueCandidate ?? '') == null) {
         return errorText;
       }
       return null;
     };
   }
 
+  // TODO(any): l10n
   /// [FormFieldValidator] that requires the field's value to be a valid double.
-  static FormFieldValidator double_({
+  static FormFieldValidator double_(
+    BuildContext context, {
     String errorText = 'Value must be a double.',
   }) {
     return (valueCandidate) {
-      if (double.tryParse(valueCandidate) == null &&
-          valueCandidate.isNotEmpty) {
+      if (double.tryParse(valueCandidate ?? '') == null) {
         return errorText;
       }
       return null;
