@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class GroupedRadio<T> extends StatefulWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
 
   /// A list of string which specifies automatically checked checkboxes.
   /// Every element must match an item from itemList.
@@ -195,7 +195,7 @@ class GroupedRadio<T> extends StatefulWidget {
   });
 
   @override
-  _GroupedRadioState createState() => _GroupedRadioState();
+  _GroupedRadioState<T> createState() => _GroupedRadioState<T>();
 }
 
 class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
@@ -208,7 +208,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   }
 
   Widget generateItems() {
-    var content = <Widget>[];
     Widget finalWidget;
     if (widget.value != null) {
       selectedValue = widget.value;
