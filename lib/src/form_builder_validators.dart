@@ -201,6 +201,31 @@ class FormBuilderValidators {
     };
   }
 
+  /// [FormFieldValidator] that requires the field's value to be a valid integer.
+  static FormFieldValidator integer({
+    String errorText = 'Value must be an integer.',
+  }) {
+    return (valueCandidate) {
+      if (int.tryParse(valueCandidate) == null && valueCandidate.isNotEmpty) {
+        return errorText;
+      }
+      return null;
+    };
+  }
+
+  /// [FormFieldValidator] that requires the field's value to be a valid double.
+  static FormFieldValidator double_({
+    String errorText = 'Value must be a double.',
+  }) {
+    return (valueCandidate) {
+      if (double.tryParse(valueCandidate) == null &&
+          valueCandidate.isNotEmpty) {
+        return errorText;
+      }
+      return null;
+    };
+  }
+
   /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
   static FormFieldValidator creditCard(
     BuildContext context, {
