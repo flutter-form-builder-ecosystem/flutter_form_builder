@@ -116,14 +116,12 @@ class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin {
   @override
   void save() {
     super.save();
-    if (_formBuilderState.widget.skipReadOnly) {
-      if (!readOnly) {
-        _formBuilderState?.setInternalFieldValue(
-            widget.name, widget.valueTransformer?.call(value) ?? value);
-      }
-    } else {
+    if (!_formBuilderState.widget.skipReadOnly ||
+        (_formBuilderState.widget.skipReadOnly && !readOnly)) {
       _formBuilderState?.setInternalFieldValue(
           widget.name, widget.valueTransformer?.call(value) ?? value);
+    } else {
+      _formBuilderState?.removeInternalFieldValue(widget.name);
     }
   }
 

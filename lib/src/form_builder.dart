@@ -107,6 +107,12 @@ class FormBuilderState extends State<FormBuilder> {
     });
   }
 
+  void removeInternalFieldValue(String name) {
+    setState(() {
+      _value = {..._value..remove(name)};
+    });
+  }
+
   void registerField(String name, FormBuilderFieldState field) {
     _fields[name] = field;
   }

@@ -98,7 +98,8 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderColorPickerField(
                     name: 'color_picker',
-                    // initialValue: Colors.yellow,
+                    initialValue: Colors.yellow,
+                    // readOnly: true,
                     colorPickerType: ColorPickerType.MaterialPicker,
                     decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
