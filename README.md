@@ -2,25 +2,31 @@
 <a href="https://www.patreon.com/danvick"><img height=35 src="https://images.milled.com/2020-01-19/Gpcdn365K2wKyBNN/7kgewOM81ULv.png"/></a>
 # Flutter FormBuilder - flutter_form_builder
 
-This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes, 
+This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes,
 and collect final user input.
 
+[![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/CI?style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions?query=workflow%3ACI)
+[![Codecov](https://img.shields.io/codecov/c/github/danvick/flutter_form_builder?style=for-the-badge)](https://codecov.io/gh/danvick/flutter_form_builder/)
+[![GitHub](https://img.shields.io/github/license/danvick/flutter_form_builder?style=for-the-badge)](LICENSE)
+[![OSS Lifecycle](https://img.shields.io/osslifecycle/danvick/flutter_form_builder?style=for-the-badge)](#support)
+
 ## Simple Usage
-To use this plugin, add `flutter_form_builder` as a 
+To use this plugin, add `flutter_form_builder` as a
 [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
 ### Migrating from v3 to v4
 Improvements:
 * Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
-* Ability to programmatically induce an error to a field - could be especially useful for server-side validation. 
+* Ability to programmatically induce an error to a field - could be especially useful for server-side validation.
 * New field types including: LocationField, SearchableDropdown and FilePickerField
 * Better composition of validators.
 
 Breaking changes:
 * Rename `attribute` option in all fields to `name`.
-* `validators` attribute has been renamed to `validator` which takes Flutter's 
-[FormFieldValidator]() object. To compose multiple `FormFieldValidator`s together, use 
-`FormBuilderValidators.compose()` which takes a list of `FormFieldValidator` objects. 
+* `validators` attribute has been renamed to `validator` which takes Flutter's
+[FormFieldValidator]() object. To compose multiple `FormFieldValidator`s together, use
+`FormBuilderValidators.compose()` which takes a list of `FormFieldValidator` objects.
 * Due to its limited use, `FormBuilderCountryPicker` was removed from the package. Its functionality could be achieved with use of `FormBuilderSearchableDropdown` which is more extensible.
 * `FormBuilderCustomField` functionality is now achievable using `FormBuilderField` class which is the base class from which all fields are built in v4. Follow [these instrictions](#building-your-own-custom-field) to construct your own custom form field using `FormBuilderField`
 
@@ -375,7 +381,7 @@ The currently supported fields include:
 * `FormBuilderRadio` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
-* `FormBuilderRating` - For selection of a numerical value as a rating 
+* `FormBuilderRating` - For selection of a numerical value as a rating
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
 * `FormBuilderSignaturePad` - Presents a drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
@@ -453,12 +459,12 @@ _formKey.currentState.patchValue({
 ```
 
 ## Validation
-The `validator` attribute in fields take in a `FormFieldValidator` which checks the validity of the 
-field. A `FormFieldValidator` returns `null` if validation is successful and a `String` for the 
+The `validator` attribute in fields take in a `FormFieldValidator` which checks the validity of the
+field. A `FormFieldValidator` returns `null` if validation is successful and a `String` for the
 `errorText` if validation fails.
 
 ### Built-in Validators
-This package comes with several most common `FormFieldValidator`s such as required, numeric, mail, 
+This package comes with several most common `FormFieldValidator`s such as required, numeric, mail,
 URL, min, max, minLength, maxLength, IP, credit card etc. with default `errorText`.
 
 Available built-in validators include:
@@ -477,9 +483,9 @@ Available built-in validators include:
 * ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
 
 ### Using multiple validators
-`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes 
+`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes
 any number of `FormFieldValidator` functions. On validation each validator is run and if any returns
- a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the 
+ a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the
 returned string.
 
 Validation example:
@@ -510,7 +516,7 @@ Use the variable as the `errorText` within `InputDecoration`
 FormBuilderTextField(
   name: 'email',
   decoration: InputDecoration(
-    labelText: 'Email', 
+    labelText: 'Email',
     errorText: _emailError,
   ),
   validator: FormBuilderValidators.compose([
@@ -590,17 +596,17 @@ This package is dependent on the following packages and plugins:
 ### Issues and PRs
 Any kind of support in the form of reporting bugs, answering questions or PRs is always appreciated.
 
-We especially welcome efforts to internationalize/localize the package by translating the default 
+We especially welcome efforts to internationalize/localize the package by translating the default
 validation `errorText` strings.
 
 ### Localizing messages
-1. With the app’s root directory as the current directory, generate `l10n/intl_messages.arb` 
+1. With the app’s root directory as the current directory, generate `l10n/intl_messages.arb`
 from `lib/localization/form_builder_localizations.dart`:
 
     ```flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localization/form_builder_localizations.dart```
 
-2. The `intl_messages.arb` file is a JSON format map with one entry for each `Intl.message()` 
-function defined in `lib/localization/form_builder_localizations.dart`. This file serves as a template for the different translations 
+2. The `intl_messages.arb` file is a JSON format map with one entry for each `Intl.message()`
+function defined in `lib/localization/form_builder_localizations.dart`. This file serves as a template for the different translations
 (for example `intl_en.arb` and `intl_es.arb` are English and Spanish translations respectively). You are therefore you are required to copy the `intl_messages.arb` and put the content in a new file with the name of your locale with a name with format `intl_<locale>.arb` (e.g. `intl_fr.arb` for French Translations).
 
 3. Translate the messages in the new file to the required language.
@@ -611,14 +617,14 @@ function defined in `lib/localization/form_builder_localizations.dart`. This fil
 
   e.g. To generate for French run: ```flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_fr.arb lib/l10n/intl_messages.arb```
 
-  - Alternatively you could run the following command to generate Dart translation files for all the `intl_<locale>.arb` files in the `l10n/` directory: 
+  - Alternatively you could run the following command to generate Dart translation files for all the `intl_<locale>.arb` files in the `l10n/` directory:
 
   ```flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb```
 
 5. Submit your PR and be of help to millions of people all over the world!
 
 ### Coffee :-)
-If this package was helpful to you in delivering your project or you just wanna to support this 
+If this package was helpful to you in delivering your project or you just wanna to support this
 package, a cup of coffee would be highly appreciated ;-)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
