@@ -150,14 +150,14 @@ class FormBuilderPhoneFieldState
   void _validatePhoneNumber(String val, {bool setVal = false}) async {
     if (val != null && val.isNotEmpty) {
       try {
-        final result = await PhoneNumber().parse(val);
+        final result = await PhoneNumberUtil().parse(val);
         if (result != null) {
           setState(() {
             phoneNumberValid = true;
             if (setVal) {
               _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
-                  result['country_code']);
-              _effectiveController.text = result['national_number'];
+                  result.countryCode);
+              _effectiveController.text = result.nationalNumber;
             }
           });
         }

@@ -239,7 +239,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.7+11"
+    version: "0.6.7+12"
   image_picker_for_web:
     dependency: "direct main"
     description:
@@ -365,7 +365,7 @@ packages:
       name: phone_number
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.2+4"
+    version: "0.8.0"
   plugin_platform_interface:
     dependency: transitive
     description:
