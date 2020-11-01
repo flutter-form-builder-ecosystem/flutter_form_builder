@@ -298,7 +298,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueTransformer<String> valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
