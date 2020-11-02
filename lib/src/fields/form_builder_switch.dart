@@ -105,7 +105,7 @@ class FormBuilderSwitch extends FormBuilderField {
     this.subtitle,
     this.secondary,
     this.controlAffinity = ListTileControlAffinity.trailing,
-    this.contentPadding = const EdgeInsets.all(0.0),
+    this.contentPadding = EdgeInsets.zero,
     this.autofocus = false,
     this.selected = false,
   }) : super(

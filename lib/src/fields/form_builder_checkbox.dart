@@ -85,7 +85,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.subtitle,
     this.secondary,
     this.controlAffinity = ListTileControlAffinity.leading,
-    this.contentPadding = const EdgeInsets.all(0.0),
+    this.contentPadding = EdgeInsets.zero,
     this.autofocus = false,
     this.tristate = false,
     this.selected = false,
