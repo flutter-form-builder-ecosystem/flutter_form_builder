@@ -407,4 +407,4 @@ Here are other field types for `flutter_form_builder`:
 ## SUPPORT
 If this package was helpful to you in delivering on your project or you just wanna to support this project, a cup of coffee would be highly appreciated ;-)
 
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz) [![Join the chat at https://gitter.im/flutter_form_builder/version_4](https://badges.gitter.im/flutter_form_builder/version_4.svg)](https://gitter.im/flutter_form_builder/version_4?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
