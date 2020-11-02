@@ -209,23 +209,24 @@ class GroupedCheckbox<T> extends StatefulWidget {
 }
 
 class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
-  List<T> selectedListItems = <T>[];
+  final selectedListItems = <T>[];
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.value != null) {
+      selectedListItems.addAll(widget.value);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    var finalWidget = generateItems();
-    return finalWidget;
-  }
-
-  Widget generateItems() {
-    Widget finalWidget;
-    if (widget.value != null) {
-      selectedListItems = widget.value;
-    }
-    var widgetList = <Widget>[];
+    final widgetList = <Widget>[];
     for (var i = 0; i < widget.options.length; i++) {
       widgetList.add(item(i));
     }
+    Widget finalWidget;
     if (widget.orientation == OptionsOrientation.vertical) {
       finalWidget = SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -262,35 +263,36 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
   }
 
   Widget item(int index) {
-    var control = Checkbox(
+    final option = widget.options[index];
+    final optionValue = option.value;
+    final isOptionDisabled = true == widget.disabled?.contains(optionValue);
+    final control = Checkbox(
       activeColor: widget.activeColor,
       checkColor: widget.checkColor,
       focusColor: widget.focusColor,
       hoverColor: widget.hoverColor,
       materialTapTargetSize: widget.materialTapTargetSize,
-      value: selectedListItems.contains(widget.options[index].value),
+      value: selectedListItems.contains(optionValue),
       tristate: widget.tristate,
-      onChanged: (widget.disabled != null &&
-              widget.disabled.contains(widget.options.elementAt(index).value))
+      onChanged: isOptionDisabled
           ? null
           : (bool selected) {
               selected
-                  ? selectedListItems.add(widget.options[index].value)
-                  : selectedListItems.remove(widget.options[index].value);
+                  ? selectedListItems.add(optionValue)
+                  : selectedListItems.remove(optionValue);
               setState(() {
                 widget.onChanged(selectedListItems);
               });
             },
     );
-    var label = GestureDetector(
-      child: widget.options[index],
-      onTap: (widget.disabled != null &&
-              widget.disabled.contains(widget.options.elementAt(index).value))
+    final label = GestureDetector(
+      child: option,
+      onTap: isOptionDisabled
           ? null
           : () {
-              !selectedListItems.contains(widget.options[index].value)
-                  ? selectedListItems.add(widget.options[index].value)
-                  : selectedListItems.remove(widget.options[index].value);
+              selectedListItems.contains(optionValue)
+                  ? selectedListItems.remove(optionValue)
+                  : selectedListItems.add(optionValue);
               setState(() {
                 widget.onChanged(selectedListItems);
               });
@@ -300,16 +302,10 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (widget.controlAffinity == ControlAffinity.leading) ...[
-          control,
-          Flexible(flex: 1, child: label),
-        ],
-        if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          Flexible(flex: 1, child: label),
-          control
-        ],
-        if (widget.separator != null &&
-            widget.options[index] != widget.options.last)
+        if (widget.controlAffinity == ControlAffinity.leading) control,
+        Flexible(flex: 1, child: label),
+        if (widget.controlAffinity == ControlAffinity.trailing) control,
+        if (widget.separator != null && index != widget.options.length - 1)
           widget.separator,
       ],
     );
