@@ -126,7 +126,6 @@ class FormBuilderSwitch extends FormBuilderField {
 
             return InputDecorator(
               decoration: decoration.copyWith(
-                enabled: state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               child: SwitchListTile(

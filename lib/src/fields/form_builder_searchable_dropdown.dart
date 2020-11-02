@@ -163,7 +163,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
 
             return InputDecorator(
               decoration: decoration.copyWith(
-                enabled: state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               child: dropdown_search.DropdownSearch<T>(

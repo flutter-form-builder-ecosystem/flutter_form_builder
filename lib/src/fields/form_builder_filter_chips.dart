@@ -93,7 +93,6 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
             final _FormBuilderFilterChipState state = field;
             return InputDecorator(
               decoration: decoration.copyWith(
-                enabled: state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Wrap(
