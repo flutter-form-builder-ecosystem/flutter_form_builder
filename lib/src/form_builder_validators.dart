@@ -52,39 +52,46 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the field's value to be greater than
-  /// or equal to the provided number.
+  // TODO(any): implement inclusive in l10n
+  /// [FormFieldValidator] that requires the field's value to be more than
+  /// (or equal) to the provided number.
   static FormFieldValidator min(
     BuildContext context,
     num min, {
+    bool inclusive = true,
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null &&
-          ((valueCandidate is num && valueCandidate < min) ||
-              (valueCandidate is String &&
-                  num.tryParse(valueCandidate) != null &&
-                  num.tryParse(valueCandidate) < min))) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).minErrorText(min);
+      if (valueCandidate != null) {
+        final number = valueCandidate is num
+            ? valueCandidate
+            : num.tryParse(valueCandidate.toString());
+
+        if (number != null && (inclusive ? number < min : number <= min)) {
+          return errorText ??
+              FormBuilderLocalizations.of(context).minErrorText(min);
+        }
       }
       return null;
     };
   }
 
+  // TODO(any): implement inclusive in l10n
   /// [FormFieldValidator] that requires the field's value to be less than
-  /// or equal to the provided number.
+  /// (or equal) to the provided number.
   static FormFieldValidator max(
     BuildContext context,
     num max, {
+    bool inclusive = true,
     String errorText,
   }) {
     return (valueCandidate) {
       if (valueCandidate != null) {
-        if ((valueCandidate is num && valueCandidate > max) ||
-            (valueCandidate is String &&
-                num.tryParse(valueCandidate) != null &&
-                num.tryParse(valueCandidate) > max)) {
+        final number = valueCandidate is num
+            ? valueCandidate
+            : num.tryParse(valueCandidate.toString());
+
+        if (number != null && (inclusive ? number > max : number >= max)) {
           return errorText ??
               FormBuilderLocalizations.of(context).maxErrorText(max);
         }
@@ -193,7 +200,7 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (num.tryParse(valueCandidate ?? '') == null) {
+      if (valueCandidate.isNotEmpty && num.tryParse(valueCandidate) == null) {
         return errorText ??
             FormBuilderLocalizations.of(context).numericErrorText;
       }
@@ -201,7 +208,6 @@ class FormBuilderValidators {
     };
   }
 
-  // TODO(any): l10n
   /// [FormFieldValidator] that requires the field's value to be a valid integer.
   static FormFieldValidator integer(
     BuildContext context, {
@@ -209,10 +215,10 @@ class FormBuilderValidators {
     int radix,
   }) {
     return (valueCandidate) {
-      if (int.tryParse(valueCandidate ?? '', radix: radix) == null) {
+      if (valueCandidate.isNotEmpty &&
+          int.tryParse(valueCandidate, radix: radix) == null) {
         return errorText ??
             FormBuilderLocalizations.of(context).numericErrorText;
-        ;
       }
       return null;
     };
@@ -225,7 +231,8 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (double.tryParse(valueCandidate ?? '') == null) {
+      if (valueCandidate.isNotEmpty &&
+          double.tryParse(valueCandidate) == null) {
         return errorText ??
             FormBuilderLocalizations.of(context).numericErrorText;
       }
