@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSwitch extends FormBuilderField {
+class FormBuilderSwitch extends FormBuilderField<bool> {
   /// The primary content of the list tile.
   ///
   /// Typically a [Text] widget.
@@ -84,14 +84,14 @@ class FormBuilderSwitch extends FormBuilderField {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<bool> validator,
     bool initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<bool> onChanged,
+    ValueTransformer<bool> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<bool> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -121,7 +121,7 @@ class FormBuilderSwitch extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<bool> field) {
             final _FormBuilderSwitchState state = field;
 
             return InputDecorator(
@@ -161,7 +161,7 @@ class FormBuilderSwitch extends FormBuilderField {
   _FormBuilderSwitchState createState() => _FormBuilderSwitchState();
 }
 
-class _FormBuilderSwitchState extends FormBuilderFieldState {
+class _FormBuilderSwitchState extends FormBuilderFieldState<bool> {
   @override
   FormBuilderSwitch get widget => super.widget as FormBuilderSwitch;
 }

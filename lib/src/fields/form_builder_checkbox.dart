@@ -75,7 +75,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     ValueChanged<bool> onChanged,
     ValueTransformer<bool> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<bool> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -119,7 +119,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 value: state.value,
                 onChanged: state.readOnly
                     ? null
-                    : (val) {
+                    : (bool val) {
                         state.requestFocus();
                         state.didChange(val);
                       },

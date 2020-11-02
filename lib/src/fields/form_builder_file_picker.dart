@@ -45,14 +45,14 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
     //From Super
     Key key,
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<List<PlatformFile>> validator,
     List<PlatformFile> initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<List<PlatformFile>> onChanged,
+    ValueTransformer<List<PlatformFile>> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<List<PlatformFile>> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -79,7 +79,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<List<PlatformFile>> field) {
             final _FormBuilderFilePickerState state = field;
 
             return InputDecorator(

@@ -52,7 +52,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
   final int minLines;
   final int maxLength;
   final VoidCallback onEditingComplete;
-  final ValueChanged<String> onFieldSubmitted;
+  final ValueChanged<Color> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
   final double cursorWidth;
   final Radius cursorRadius;
@@ -66,11 +66,11 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     Key key,
     @required String name,
     Color initialValue,
-    FormFieldValidator validator,
+    FormFieldValidator<Color> validator,
     bool enabled = true,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    ValueTransformer valueTransformer,
-    ValueChanged onChanged,
+    ValueTransformer<Color> valueTransformer,
+    ValueChanged<Color> onChanged,
     FormFieldSetter<Color> onSaved,
     VoidCallback onReset,
     this.controller,

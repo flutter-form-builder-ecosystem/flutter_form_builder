@@ -34,7 +34,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     ValueChanged<T> onChanged,
     ValueTransformer<T> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<T> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,

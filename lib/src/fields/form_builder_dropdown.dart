@@ -183,14 +183,14 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<T> validator,
     T initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<T> onChanged,
+    ValueTransformer<T> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<T> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -226,8 +226,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
-            final _FormBuilderDropdownState state = field;
+          builder: (FormFieldState<T> field) {
+            final _FormBuilderDropdownState<T> state = field;
             // DropdownButtonFormField
             // TextFormField
 
@@ -267,7 +267,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         onChanged: (state.readOnly || !enabled)
                             ? null
                             : (value) {
-                                _changeValue(field, value);
+                                _changeValue<T>(field, value);
                               },
                         onTap: onTap,
                         focusNode: state.effectiveFocusNode,
@@ -294,7 +294,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           },
         );
 
-  static void _changeValue(_FormBuilderDropdownState state, value) {
+  static void _changeValue<T>(_FormBuilderDropdownState<T> state, value) {
     state.requestFocus();
     state.didChange(value);
   }

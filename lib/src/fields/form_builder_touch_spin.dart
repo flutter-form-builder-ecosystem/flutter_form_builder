@@ -46,7 +46,7 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<double> validator,
     @required double initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
