@@ -9,7 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
-class FormBuilderDateRangePicker extends FormBuilderField {
+class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   //TODO: Add documentation
   final int maxLines;
   final TextInputType keyboardType;
@@ -51,14 +51,14 @@ class FormBuilderDateRangePicker extends FormBuilderField {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<List<DateTime>> validator,
     List<DateTime> initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<List<DateTime>> onChanged,
+    ValueTransformer<List<DateTime>> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<List<DateTime>> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -129,7 +129,7 @@ class FormBuilderDateRangePicker extends FormBuilderField {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<List<DateTime>> field) {
             final FormBuilderDateRangePickerState state = field;
 
             return TextField(
@@ -189,7 +189,8 @@ class FormBuilderDateRangePicker extends FormBuilderField {
   }
 }
 
-class FormBuilderDateRangePickerState extends FormBuilderFieldState {
+class FormBuilderDateRangePickerState
+    extends FormBuilderFieldState<List<DateTime>> {
   @override
   FormBuilderDateRangePicker get widget =>
       super.widget as FormBuilderDateRangePicker;

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-class FormBuilderRangeSlider extends FormBuilderField {
+class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   /// Called when the user starts selecting new values for the slider.
   ///
   /// This callback shouldn't be used to update the slider [values] (use
@@ -107,14 +107,14 @@ class FormBuilderRangeSlider extends FormBuilderField {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<RangeValues> validator,
     RangeValues initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<RangeValues> onChanged,
+    ValueTransformer<RangeValues> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<RangeValues> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -145,7 +145,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
             enabled: enabled,
             onReset: onReset,
             decoration: decoration,
-            builder: (FormFieldState field) {
+            builder: (FormFieldState<RangeValues> field) {
               final _FormBuilderRangeSliderState state = field;
               var _numberFormat = numberFormat ?? NumberFormat.compact();
 
@@ -211,7 +211,7 @@ class FormBuilderRangeSlider extends FormBuilderField {
   _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();
 }
 
-class _FormBuilderRangeSliderState extends FormBuilderFieldState {
+class _FormBuilderRangeSliderState extends FormBuilderFieldState<RangeValues> {
   @override
   FormBuilderRangeSlider get widget => super.widget as FormBuilderRangeSlider;
 }

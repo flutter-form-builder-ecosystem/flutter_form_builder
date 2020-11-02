@@ -173,7 +173,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
 
   /// The color to use when painting the cursor.
   ///
-  /// Defaults to [ThemeData.cursorColor] or [CupertinoTheme.primaryColor]
+  /// Defaults to [TextSelectionThemeData.cursorColor] or [CupertinoTheme.primaryColor]
   /// depending on [ThemeData.platform].
   final Color cursorColor;
 
@@ -293,14 +293,14 @@ class FormBuilderTextField extends FormBuilderField<String> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<String> validator,
     String initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<String> onChanged,
+    ValueTransformer<String> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<String> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -410,7 +410,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
               textDirection: textDirection,
               textCapitalization: textCapitalization,
               autofocus: autofocus,
-              readOnly: readOnly,
+              readOnly: state.readOnly,
               showCursor: showCursor,
               obscureText: obscureText,
               autocorrect: autocorrect,

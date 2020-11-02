@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
-class FormBuilderTouchSpin extends FormBuilderField {
+class FormBuilderTouchSpin extends FormBuilderField<double> {
   /// Value to increment or decrement by
   final double step;
 
@@ -46,14 +46,14 @@ class FormBuilderTouchSpin extends FormBuilderField {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<double> validator,
     @required double initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<double> onChanged,
+    ValueTransformer<double> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<double> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -82,7 +82,7 @@ class FormBuilderTouchSpin extends FormBuilderField {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<double> field) {
             final _FormBuilderTouchSpinState state = field;
             final theme = Theme.of(state.context);
 
@@ -121,7 +121,7 @@ class FormBuilderTouchSpin extends FormBuilderField {
   _FormBuilderTouchSpinState createState() => _FormBuilderTouchSpinState();
 }
 
-class _FormBuilderTouchSpinState extends FormBuilderFieldState {
+class _FormBuilderTouchSpinState extends FormBuilderFieldState<double> {
   @override
   FormBuilderTouchSpin get widget => super.widget as FormBuilderTouchSpin;
 }
