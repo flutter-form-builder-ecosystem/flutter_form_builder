@@ -53,7 +53,7 @@ class FormBuilderValidators {
   }
 
   // TODO(any): implement inclusive in l10n
-  /// [FormFieldValidator] that requires the field's value to be more than
+  /// [FormFieldValidator] that requires the field's value to be greater than
   /// (or equal) to the provided number.
   static FormFieldValidator min(
     BuildContext context,
