@@ -425,7 +425,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
               onEditingComplete: onEditingComplete,
               onSubmitted: onSubmitted,
               inputFormatters: inputFormatters,
-              enabled: !state.readOnly,
+              enabled: enabled,
               cursorWidth: cursorWidth,
               cursorRadius: cursorRadius,
               cursorColor: cursorColor,
