@@ -205,12 +205,14 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value to be a valid integer.
   static FormFieldValidator integer(
     BuildContext context, {
-    String errorText = 'Value must be an integer.',
+    String errorText,
     int radix,
   }) {
     return (valueCandidate) {
       if (int.tryParse(valueCandidate ?? '', radix: radix) == null) {
-        return errorText;
+        return errorText ??
+            FormBuilderLocalizations.of(context).numericErrorText;
+        ;
       }
       return null;
     };
@@ -220,11 +222,12 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value to be a valid double.
   static FormFieldValidator double_(
     BuildContext context, {
-    String errorText = 'Value must be a double.',
+    String errorText,
   }) {
     return (valueCandidate) {
       if (double.tryParse(valueCandidate ?? '') == null) {
-        return errorText;
+        return errorText ??
+            FormBuilderLocalizations.of(context).numericErrorText;
       }
       return null;
     };
