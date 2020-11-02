@@ -206,9 +206,10 @@ class FormBuilderValidators {
   static FormFieldValidator integer(
     BuildContext context, {
     String errorText = 'Value must be an integer.',
+    int radix,
   }) {
     return (valueCandidate) {
-      if (int.tryParse(valueCandidate ?? '') == null) {
+      if (int.tryParse(valueCandidate ?? '', radix: radix) == null) {
         return errorText;
       }
       return null;
