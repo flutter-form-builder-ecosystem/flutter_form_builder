@@ -10,9 +10,10 @@ import 'package:flutter_form_builder/src/utils.dart';
 import 'package:intl/intl.dart';
 
 enum InputType { date, time, both }
+
 enum PickerType { material, cupertino }
 
-class FormBuilderDateTimePicker extends FormBuilderField {
+class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// The date/time picker dialogs to show.
   final InputType inputType;
 
@@ -148,14 +149,14 @@ class FormBuilderDateTimePicker extends FormBuilderField {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<DateTime> validator,
     DateTime initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<DateTime> onChanged,
+    ValueTransformer<DateTime> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<DateTime> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -232,7 +233,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<DateTime> field) {
             final _FormBuilderDateTimePickerState state = field;
 
             return DateTimeField(
@@ -288,7 +289,7 @@ class FormBuilderDateTimePicker extends FormBuilderField {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends FormBuilderFieldState {
+class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
   @override
   FormBuilderDateTimePicker get widget =>
       super.widget as FormBuilderDateTimePicker;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderFilterChip extends FormBuilderField<dynamic> {
+class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
   final double elevation, pressElevation;
   final Color selectedColor;
   final Color disabledColor;
@@ -36,14 +36,14 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
-    List initialValue = const [],
+    FormFieldValidator<List<T>> validator,
+    List<T> initialValue = const [],
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<List<T>> onChanged,
+    ValueTransformer<List<T>> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<List<T>> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -149,10 +149,10 @@ class FormBuilderFilterChip extends FormBuilderField<dynamic> {
         );
 
   @override
-  _FormBuilderFilterChipState createState() => _FormBuilderFilterChipState();
+  _FormBuilderFilterChipState<T> createState() => _FormBuilderFilterChipState();
 }
 
-class _FormBuilderFilterChipState extends FormBuilderFieldState<dynamic> {
+class _FormBuilderFilterChipState<T> extends FormBuilderFieldState<List<T>> {
   @override
-  FormBuilderFilterChip get widget => super.widget as FormBuilderFilterChip;
+  FormBuilderFilterChip<T> get widget => super.widget as FormBuilderFilterChip;
 }

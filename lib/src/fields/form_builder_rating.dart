@@ -36,14 +36,14 @@ class FormBuilderRating extends FormBuilderField<double> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<double> validator,
     double initialValue = 1.0,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<double> onChanged,
+    ValueTransformer<double> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<double> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -69,7 +69,7 @@ class FormBuilderRating extends FormBuilderField<double> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<double> field) {
             final _FormBuilderRateState state = field;
 
             return InputDecorator(

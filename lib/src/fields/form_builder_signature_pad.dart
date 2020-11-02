@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
-class FormBuilderSignaturePad extends FormBuilderField {
+class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
   /// Controls the value of the signature pad.
   ///
   /// If null, this widget will create its own [TextEditingController].
@@ -30,14 +30,14 @@ class FormBuilderSignaturePad extends FormBuilderField {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<Uint8List> validator,
     Uint8List initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<Uint8List> onChanged,
+    ValueTransformer<Uint8List> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<Uint8List> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -60,7 +60,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<Uint8List> field) {
             final _FormBuilderSignaturePadState state = field;
             final theme = Theme.of(state.context);
             final localizations = MaterialLocalizations.of(state.context);
@@ -111,7 +111,7 @@ class FormBuilderSignaturePad extends FormBuilderField {
       _FormBuilderSignaturePadState();
 }
 
-class _FormBuilderSignaturePadState extends FormBuilderFieldState {
+class _FormBuilderSignaturePadState extends FormBuilderFieldState<Uint8List> {
   @override
   FormBuilderSignaturePad get widget => super.widget as FormBuilderSignaturePad;
 

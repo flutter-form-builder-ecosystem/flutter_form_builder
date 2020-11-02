@@ -33,20 +33,20 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
   final EdgeInsetsGeometry padding;
 
   /// The list of options the user can select.
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
 
   FormBuilderSegmentedControl({
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<T> validator,
     T initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<T> onChanged,
+    ValueTransformer<T> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<T> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -69,8 +69,8 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
-            final _FormBuilderSegmentedControlState state = field;
+          builder: (FormFieldState<T> field) {
+            final _FormBuilderSegmentedControlState<T> state = field;
             final theme = Theme.of(state.context);
 
             return InputDecorator(
@@ -91,8 +91,8 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                       ? theme.disabledColor
                       : pressedColor ?? theme.primaryColor,
                   groupValue: state.value,
-                  children: {
-                    for (var option in options)
+                  children: <T, Widget>{
+                    for (final option in options)
                       option.value: Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.0),
                         child: option,

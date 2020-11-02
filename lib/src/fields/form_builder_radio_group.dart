@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
   final Color activeColor;
   final Color focusColor;
   final Color hoverColor;
@@ -27,14 +27,14 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<T> validator,
     T initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<T> onChanged,
+    ValueTransformer<T> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<T> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -69,8 +69,8 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           onReset: onReset,
           focusNode: focusNode,
           decoration: decoration,
-          builder: (FormFieldState field) {
-            final _FormBuilderRadioGroupState state = field;
+          builder: (FormFieldState<T> field) {
+            final _FormBuilderRadioGroupState<T> state = field;
 
             return InputDecorator(
               decoration: decoration.copyWith(
