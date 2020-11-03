@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// The list of items the user can select.
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
 
   // FilterChip Settings
   /// Elevation to be applied on the chip relative to its parent.

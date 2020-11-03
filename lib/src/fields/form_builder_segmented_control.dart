@@ -100,7 +100,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                   },
                   padding: padding,
                   unselectedColor: unselectedColor,
-                  onValueChanged: (T value) {
+                  onValueChanged: (value) {
                     state.requestFocus();
                     if (state.readOnly) {
                       field.reset();

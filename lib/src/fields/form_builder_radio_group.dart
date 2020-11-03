@@ -77,7 +77,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 enabled: !state.readOnly,
                 errorText: decoration?.errorText ?? state.errorText,
               ),
-              child: GroupedRadio(
+              child: GroupedRadio<T>(
                 orientation: orientation,
                 value: state.value,
                 options: options,

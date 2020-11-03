@@ -176,10 +176,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 galleryLabel: galleryLabel,
                                 onImageSelected: (image) {
                                   state.requestFocus();
-                                  field.didChange([
-                                    ...field.value ?? [],
-                                    image,
-                                  ]);
+                                  field.didChange([...field.value, image]);
                                   Navigator.pop(state.context);
                                 },
                                 onImage: (image) {
@@ -205,11 +202,8 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
 
 class _FormBuilderImagePickerState
     extends FormBuilderFieldState<FormBuilderImagePicker, List<dynamic>> {
-  bool get hasMaxImages {
-    if (widget.maxImages == null || value == null) {
-      return false;
-    } else {
-      return value.length >= widget.maxImages;
-    }
-  }
+  bool get hasMaxImages =>
+      widget.maxImages != null &&
+      value != null &&
+      value.length >= widget.maxImages;
 }

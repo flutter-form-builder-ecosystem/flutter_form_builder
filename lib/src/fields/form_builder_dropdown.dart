@@ -294,7 +294,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           },
         );
 
-  static void _changeValue<T>(_FormBuilderDropdownState<T> state, value) {
+  static void _changeValue<T>(_FormBuilderDropdownState<T> state, T value) {
     state.requestFocus();
     state.didChange(value);
   }
