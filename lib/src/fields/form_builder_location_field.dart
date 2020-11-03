@@ -282,6 +282,12 @@ class _FormBuilderLocationFieldState
     effectiveFocusNode.addListener(_handleFocus);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !readOnly) {
       await Future.microtask(

@@ -462,16 +462,17 @@ class _FormBuilderTextFieldState
   @override
   void initState() {
     super.initState();
-    if (widget.controller == null) {
-      _controller = TextEditingController(text: initialValue);
-    } else {
-      widget.controller.addListener(_handleControllerChanged);
-    }
+    _controller =
+        widget.controller ?? TextEditingController(text: initialValue);
+    _controller.addListener(_handleControllerChanged);
   }
 
   @override
   void dispose() {
-    _controller?.dispose();
+    // Dispose the _controller when initState created it
+    if (null == widget.controller) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

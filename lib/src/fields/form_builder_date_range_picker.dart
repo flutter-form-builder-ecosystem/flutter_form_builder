@@ -147,7 +147,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
               keyboardType: keyboardType,
               obscureText: obscureText,
               onEditingComplete: onEditingComplete,
-              controller: state.effectiveController,
+              controller: state._effectiveController,
               autocorrect: autocorrect,
               autofocus: autofocus,
               buildCounter: buildCounter,
@@ -193,14 +193,21 @@ class FormBuilderDateRangePickerState
     extends FormBuilderFieldState<FormBuilderDateRangePicker, List<DateTime>> {
   TextEditingController _effectiveController;
 
-  TextEditingController get effectiveController => _effectiveController;
-
   @override
   void initState() {
     _effectiveController =
         widget.controller ?? TextEditingController(text: _valueToText());
     effectiveFocusNode.addListener(_handleFocus);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Dispose the _effectiveController when initState created it
+    if (null == widget.controller) {
+      _effectiveController.dispose();
+    }
+    super.dispose();
   }
 
   Future<void> _handleFocus() async {
@@ -237,7 +244,7 @@ class FormBuilderDateRangePickerState
       return '';
     }
     if (value.length == 1) {
-      return '${format(value[0])}';
+      return format(value[0]);
     }
     return '${format(value[0])} - ${format(value[1])}';
   }
@@ -265,11 +272,5 @@ class FormBuilderDateRangePickerState
   void reset() {
     super.reset();
     _setTextFieldString();
-  }
-
-  @override
-  void dispose() {
-    _effectiveController?.dispose();
-    super.dispose();
   }
 }

@@ -218,7 +218,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
 
 class _FormBuilderPhoneFieldState
     extends FormBuilderFieldState<FormBuilderPhoneField, String> {
-  TextEditingController _effectiveController = TextEditingController();
+  TextEditingController _effectiveController;
   Country _selectedDialogCountry;
 
   String get fullNumber {
@@ -233,12 +233,19 @@ class _FormBuilderPhoneFieldState
   @override
   void initState() {
     super.initState();
-    if (widget.controller != null) {
-      _effectiveController = widget.controller;
-    }
+    _effectiveController = widget.controller ?? TextEditingController();
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();
+  }
+
+  @override
+  void dispose() {
+    // Dispose the _effectiveController when initState created it
+    if (null == widget.controller) {
+      _effectiveController.dispose();
+    }
+    super.dispose();
   }
 
   Future<void> _parsePhone() async {
