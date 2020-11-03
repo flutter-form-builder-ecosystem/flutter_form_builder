@@ -12,10 +12,6 @@ class FormBuilderFieldOption<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (child != null) {
-      return child;
-    } else {
-      return Text('${value.toString()}');
-    }
+    return child ?? Text(value.toString());
   }
 }

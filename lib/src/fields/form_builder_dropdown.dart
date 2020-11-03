@@ -257,7 +257,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                                         (val) => val.value == field.value,
                                         orElse: () => null)
                                     ?.child ??
-                                Text('${field.value.toString()}'))
+                                Text(field.value.toString()))
                             : disabledHint,
                         elevation: elevation,
                         iconSize: iconSize,
@@ -266,7 +266,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         iconEnabledColor: iconEnabledColor,
                         onChanged: (state.readOnly || !enabled)
                             ? null
-                            : (value) {
+                            : (T value) {
                                 _changeValue<T>(field, value);
                               },
                         onTap: onTap,
@@ -294,16 +294,14 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           },
         );
 
-  static void _changeValue<T>(_FormBuilderDropdownState<T> state, value) {
+  static void _changeValue<T>(_FormBuilderDropdownState<T> state, T value) {
     state.requestFocus();
     state.didChange(value);
   }
 
   @override
-  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState();
+  _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState<T>();
 }
 
-class _FormBuilderDropdownState<T> extends FormBuilderFieldState<T> {
-  @override
-  FormBuilderDropdown<T> get widget => super.widget as FormBuilderDropdown;
-}
+class _FormBuilderDropdownState<T>
+    extends FormBuilderFieldState<FormBuilderDropdown<T>, T> {}

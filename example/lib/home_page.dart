@@ -10,13 +10,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Form Builder'),
+        title: const Text('Flutter Form Builder'),
       ),
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Complete Form'),
-            trailing: Icon(CupertinoIcons.right_chevron),
+            title: const Text('Complete Form'),
+            trailing: const Icon(CupertinoIcons.right_chevron),
             onTap: () {
               return Navigator.of(context).push(
                 MaterialPageRoute(
@@ -31,10 +31,10 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('Signup Form'),
-            trailing: Icon(CupertinoIcons.right_chevron),
+            title: const Text('Signup Form'),
+            trailing: const Icon(CupertinoIcons.right_chevron),
             onTap: () {
               return Navigator.of(context).push(
                 MaterialPageRoute(
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
               );
             },
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

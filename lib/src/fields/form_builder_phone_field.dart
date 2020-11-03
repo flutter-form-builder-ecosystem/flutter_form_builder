@@ -146,11 +146,11 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                     child: Row(
                       children: <Widget>[
                         const Icon(Icons.arrow_drop_down),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         CountryPickerUtils.getDefaultFlagImage(
                           state._selectedDialogCountry,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Text(
                           '+${state._selectedDialogCountry.phoneCode} ',
                           style: Theme.of(state.context)
@@ -216,11 +216,9 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
   _FormBuilderPhoneFieldState createState() => _FormBuilderPhoneFieldState();
 }
 
-class _FormBuilderPhoneFieldState extends FormBuilderFieldState<String> {
-  @override
-  FormBuilderPhoneField get widget => super.widget as FormBuilderPhoneField;
-
-  TextEditingController _effectiveController = TextEditingController();
+class _FormBuilderPhoneFieldState
+    extends FormBuilderFieldState<FormBuilderPhoneField, String> {
+  TextEditingController _effectiveController;
   Country _selectedDialogCountry;
 
   String get fullNumber {
@@ -235,19 +233,26 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState<String> {
   @override
   void initState() {
     super.initState();
-    if (widget.controller != null) {
-      _effectiveController = widget.controller;
-    }
+    _effectiveController = widget.controller ?? TextEditingController();
     _selectedDialogCountry = CountryPickerUtils.getCountryByIsoCode(
         widget.defaultSelectedCountryIsoCode);
     _parsePhone();
+  }
+
+  @override
+  void dispose() {
+    // Dispose the _effectiveController when initState created it
+    if (null == widget.controller) {
+      _effectiveController.dispose();
+    }
+    super.dispose();
   }
 
   Future<void> _parsePhone() async {
     print('initialValue: $initialValue');
     if (initialValue != null && initialValue.isNotEmpty) {
       try {
-        var parseResult = await PhoneNumberUtil().parse(initialValue);
+        final parseResult = await PhoneNumberUtil().parse(initialValue);
         if (parseResult != null) {
           setState(() {
             _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
@@ -307,7 +312,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState<String> {
             primaryColor: widget.cursorColor ?? Theme.of(context).primaryColor,
           ),
           child: CountryPickerDialog(
-            titlePadding: widget.titlePadding ?? EdgeInsets.all(8.0),
+            titlePadding: widget.titlePadding ?? const EdgeInsets.all(8.0),
             searchCursorColor:
                 widget.cursorColor ?? Theme.of(context).primaryColor,
             searchInputDecoration:
@@ -346,7 +351,7 @@ class _FormBuilderPhoneFieldState extends FormBuilderFieldState<String> {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text('${country.name}'),
+        title: Text(country.name),
         trailing: Text('+${country.phoneCode}'),
       ),
     );

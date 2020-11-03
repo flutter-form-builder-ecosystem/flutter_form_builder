@@ -77,7 +77,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                     child: GestureDetector(
                       onVerticalDragUpdate: (_) {},
                       child: Signature(
-                        controller: state.effectiveController,
+                        controller: state._controller,
                         width: width,
                         height: height,
                         backgroundColor: backgroundColor,
@@ -86,10 +86,10 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                   ),
                   Row(
                     children: <Widget>[
-                      Expanded(child: SizedBox()),
+                      Expanded(child: const SizedBox()),
                       TextButton.icon(
                         onPressed: () {
-                          state.effectiveController.clear();
+                          state._controller.clear();
                           field.didChange(null);
                         },
                         label: Text(
@@ -111,30 +111,35 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
       _FormBuilderSignaturePadState();
 }
 
-class _FormBuilderSignaturePadState extends FormBuilderFieldState<Uint8List> {
-  @override
-  FormBuilderSignaturePad get widget => super.widget as FormBuilderSignaturePad;
-
-  SignatureController get effectiveController =>
-      widget.controller ?? _controller;
-
-  final SignatureController _controller = SignatureController();
+class _FormBuilderSignaturePadState
+    extends FormBuilderFieldState<FormBuilderSignaturePad, Uint8List> {
+  SignatureController _controller;
 
   @override
   void initState() {
     super.initState();
-    effectiveController.addListener(() async {
+    _controller = widget.controller ?? SignatureController();
+    _controller.addListener(() async {
       requestFocus();
-      var _value = await effectiveController.toImage() != null
-          ? await effectiveController.toPngBytes()
+      final _value = await _controller.toImage() != null
+          ? await _controller.toPngBytes()
           : null;
       didChange(_value);
     });
   }
 
   @override
+  void dispose() {
+    // Dispose the _controller when initState created it
+    if (null == widget.controller) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   void reset() {
-    effectiveController?.clear();
+    _controller?.clear();
     super.reset();
   }
 

@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// The list of items the user can select.
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
 
   // FilterChip Settings
   /// Elevation to be applied on the chip relative to its parent.
@@ -307,14 +307,14 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                   textDirection: textDirection,
                   verticalDirection: verticalDirection,
                   children: <Widget>[
-                    for (FormBuilderFieldOption option in options)
+                    for (FormBuilderFieldOption<T> option in options)
                       ChoiceChip(
                         label: option.child,
                         selected: field.value == option.value,
                         onSelected: state.readOnly
                             ? null
-                            : (bool selected) {
-                                var choice = selected ? option.value : null;
+                            : (selected) {
+                                final choice = selected ? option.value : null;
                                 state.requestFocus();
                                 state.didChange(choice);
                               },
@@ -338,10 +338,9 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
             });
 
   @override
-  _FormBuilderChoiceChipState<T> createState() => _FormBuilderChoiceChipState();
+  _FormBuilderChoiceChipState<T> createState() =>
+      _FormBuilderChoiceChipState<T>();
 }
 
-class _FormBuilderChoiceChipState<T> extends FormBuilderFieldState<T> {
-  @override
-  FormBuilderChoiceChip<T> get widget => super.widget as FormBuilderChoiceChip;
-}
+class _FormBuilderChoiceChipState<T>
+    extends FormBuilderFieldState<FormBuilderChoiceChip<T>, T> {}

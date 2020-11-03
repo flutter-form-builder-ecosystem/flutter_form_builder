@@ -79,7 +79,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: CupertinoSegmentedControl<T>(
                   borderColor: state.readOnly
                       ? theme.disabledColor
@@ -94,13 +94,13 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                   children: <T, Widget>{
                     for (final option in options)
                       option.value: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: option,
                       ),
                   },
                   padding: padding,
                   unselectedColor: unselectedColor,
-                  onValueChanged: (T value) {
+                  onValueChanged: (value) {
                     state.requestFocus();
                     if (state.readOnly) {
                       field.reset();
@@ -119,8 +119,5 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
       _FormBuilderSegmentedControlState();
 }
 
-class _FormBuilderSegmentedControlState<T> extends FormBuilderFieldState<T> {
-  @override
-  FormBuilderSegmentedControl<T> get widget =>
-      super.widget as FormBuilderSegmentedControl;
-}
+class _FormBuilderSegmentedControlState<T>
+    extends FormBuilderFieldState<FormBuilderSegmentedControl<T>, T> {}

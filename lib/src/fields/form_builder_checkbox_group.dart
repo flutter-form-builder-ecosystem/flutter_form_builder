@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
   final Color activeColor;
   final Color checkColor;
   final Color focusColor;
@@ -80,7 +80,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                 enabled: !state.readOnly,
                 errorText: decoration?.errorText ?? state.errorText,
               ),
-              child: GroupedCheckbox(
+              child: GroupedCheckbox<T>(
                 orientation: orientation,
                 value: state.value,
                 options: options,
@@ -114,11 +114,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
 
   @override
   _FormBuilderCheckboxGroupState<T> createState() =>
-      _FormBuilderCheckboxGroupState();
+      _FormBuilderCheckboxGroupState<T>();
 }
 
-class _FormBuilderCheckboxGroupState<T> extends FormBuilderFieldState<List<T>> {
-  @override
-  FormBuilderCheckboxGroup<T> get widget =>
-      super.widget as FormBuilderCheckboxGroup;
-}
+class _FormBuilderCheckboxGroupState<T>
+    extends FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> {}

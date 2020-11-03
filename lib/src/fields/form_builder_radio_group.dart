@@ -77,7 +77,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 enabled: !state.readOnly,
                 errorText: decoration?.errorText ?? state.errorText,
               ),
-              child: GroupedRadio(
+              child: GroupedRadio<T>(
                 orientation: orientation,
                 value: state.value,
                 options: options,
@@ -108,10 +108,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
         );
 
   @override
-  _FormBuilderRadioGroupState<T> createState() => _FormBuilderRadioGroupState();
+  _FormBuilderRadioGroupState<T> createState() =>
+      _FormBuilderRadioGroupState<T>();
 }
 
-class _FormBuilderRadioGroupState<T> extends FormBuilderFieldState<T> {
-  @override
-  FormBuilderRadioGroup<T> get widget => super.widget as FormBuilderRadioGroup;
-}
+class _FormBuilderRadioGroupState<T>
+    extends FormBuilderFieldState<FormBuilderRadioGroup<T>, T> {}
