@@ -67,7 +67,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     this.galleryIcon = const Icon(Icons.image),
     this.cameraLabel = const Text('Camera'),
     this.galleryLabel = const Text('Gallery'),
-    this.bottomSheetPadding = const EdgeInsets.all(0),
+    this.bottomSheetPadding = EdgeInsets.zero,
     this.placeholderImage,
   })  : assert(maxImages == null || maxImages >= 0),
         super(

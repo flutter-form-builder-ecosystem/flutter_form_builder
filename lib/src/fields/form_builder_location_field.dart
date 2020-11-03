@@ -196,7 +196,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
     this.tiltGesturesEnabled = true,
     this.myLocationEnabled = false,
     this.myLocationButtonEnabled = true,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = EdgeInsets.zero,
     this.indoorViewEnabled = false,
     this.trafficEnabled = false,
     this.buildingsEnabled = true,
