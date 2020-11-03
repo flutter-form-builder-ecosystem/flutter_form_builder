@@ -182,21 +182,21 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.current)
                             Text(
-                              '${_numberFormat.format(min)}',
+                              _numberFormat.format(min),
                               style: minTextStyle ?? textStyle,
                             ),
-                          Spacer(),
+                          const Spacer(),
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.minMax)
                             Text(
                               '${_numberFormat.format(field.value.start)} - ${_numberFormat.format(field.value.end)}',
                               style: textStyle,
                             ),
-                          Spacer(),
+                          const Spacer(),
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.current)
                             Text(
-                              '${_numberFormat.format(max)}',
+                              _numberFormat.format(max),
                               style: maxTextStyle ?? textStyle,
                             ),
                         ],
