@@ -118,12 +118,15 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void save() {
     super.save();
     if (_formBuilderState != null) {
-      if (!_formBuilderState.widget.skipReadOnly ||
-          (_formBuilderState.widget.skipReadOnly && !readOnly)) {
-        _formBuilderState.setInternalFieldValue(
-            widget.name, widget.valueTransformer?.call(value) ?? value);
-      } else {
+      if (readOnly && _formBuilderState.widget.skipReadOnly) {
         _formBuilderState.removeInternalFieldValue(widget.name);
+      } else {
+        _formBuilderState.setInternalFieldValue(
+          widget.name,
+          null != widget.valueTransformer
+              ? widget.valueTransformer(value)
+              : value,
+        );
       }
     }
   }
