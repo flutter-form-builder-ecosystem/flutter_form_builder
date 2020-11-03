@@ -266,7 +266,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         iconEnabledColor: iconEnabledColor,
                         onChanged: (state.readOnly || !enabled)
                             ? null
-                            : (value) {
+                            : (T value) {
                                 _changeValue<T>(field, value);
                               },
                         onTap: onTap,
