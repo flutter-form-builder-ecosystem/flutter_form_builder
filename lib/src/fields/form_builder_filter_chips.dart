@@ -115,7 +115,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                                       !field.value.contains(option.value))))
                           ? null
                           : (selected) {
-                              var currentValue = [...field.value];
+                              final currentValue = [...field.value];
                               if (selected) {
                                 currentValue.add(option.value);
                               } else {

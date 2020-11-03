@@ -147,7 +147,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             decoration: decoration,
             builder: (FormFieldState<RangeValues> field) {
               final _FormBuilderRangeSliderState state = field;
-              var _numberFormat = numberFormat ?? NumberFormat.compact();
+              final _numberFormat = numberFormat ?? NumberFormat.compact();
 
               return InputDecorator(
                 decoration: decoration.copyWith(
@@ -155,7 +155,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                   errorText: decoration?.errorText ?? field.errorText,
                 ),
                 child: Container(
-                  padding: EdgeInsets.only(top: 10.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -172,7 +172,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                         semanticFormatterCallback: semanticFormatterCallback,
                         onChanged: state.readOnly
                             ? null
-                            : (RangeValues values) {
+                            : (values) {
                                 state.requestFocus();
                                 field.didChange(values);
                               },

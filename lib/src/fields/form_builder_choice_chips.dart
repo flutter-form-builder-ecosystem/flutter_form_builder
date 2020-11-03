@@ -307,14 +307,14 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                   textDirection: textDirection,
                   verticalDirection: verticalDirection,
                   children: <Widget>[
-                    for (FormBuilderFieldOption option in options)
+                    for (FormBuilderFieldOption<T> option in options)
                       ChoiceChip(
                         label: option.child,
                         selected: field.value == option.value,
                         onSelected: state.readOnly
                             ? null
-                            : (bool selected) {
-                                var choice = selected ? option.value : null;
+                            : (selected) {
+                                final choice = selected ? option.value : null;
                                 state.requestFocus();
                                 state.didChange(choice);
                               },

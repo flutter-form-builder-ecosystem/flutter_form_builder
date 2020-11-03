@@ -123,7 +123,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                       [...field.value]..remove(item));
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.all(3),
+                                  margin: const EdgeInsets.all(3),
                                   decoration: BoxDecoration(
                                     color: Colors.grey.withOpacity(.7),
                                     shape: BoxShape.circle,
@@ -131,7 +131,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                   alignment: Alignment.center,
                                   height: 22,
                                   width: 22,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.close,
                                     size: 18,
                                     color: Colors.white,
@@ -180,12 +180,12 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                     ...field.value ?? [],
                                     image,
                                   ]);
-                                  Navigator.of(state.context).pop();
+                                  Navigator.pop(state.context);
                                 },
                                 onImage: (image) {
                                   field.didChange([...field.value, image]);
                                   onChanged?.call(field.value);
-                                  Navigator.of(state.context).pop();
+                                  Navigator.pop(state.context);
                                 },
                               );
                             },

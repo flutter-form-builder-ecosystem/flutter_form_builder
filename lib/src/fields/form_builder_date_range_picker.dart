@@ -213,10 +213,10 @@ class FormBuilderDateRangePickerState
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus) {
       _hideKeyboard();
-      var initialFirstDate = value?.isEmpty ?? true
+      final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
-      var initialLastDate = value?.isEmpty ?? true
+      final initialLastDate = value?.isEmpty ?? true
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
       final picked = await date_range_picker.showDatePicker(

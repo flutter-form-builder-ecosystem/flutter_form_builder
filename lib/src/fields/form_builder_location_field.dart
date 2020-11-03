@@ -292,7 +292,7 @@ class _FormBuilderLocationFieldState
     if (effectiveFocusNode.hasFocus && !readOnly) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
-      var newValue = await showDialog<CameraPosition>(
+      final newValue = await showDialog<CameraPosition>(
         context: context,
         builder: (context) => LocationFieldDialog(
           initialCameraPosition: value ?? widget.initialCameraPosition,

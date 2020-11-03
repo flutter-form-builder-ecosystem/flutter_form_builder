@@ -271,7 +271,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
             },
     );
 
-    var label = GestureDetector(
+    final label = GestureDetector(
       child: widget.options[index],
       onTap: isOptionDisabled
           ? null

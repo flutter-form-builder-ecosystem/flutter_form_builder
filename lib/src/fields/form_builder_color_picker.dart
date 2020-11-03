@@ -215,7 +215,7 @@ class _FormBuilderColorPickerFieldState
     if (effectiveFocusNode.hasFocus && !readOnly) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
-      var selected = await showDialog(
+      final selected = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
           final materialLocalizations = MaterialLocalizations.of(context);
@@ -228,21 +228,17 @@ class _FormBuilderColorPickerFieldState
             actions: <Widget>[
               TextButton(
                 child: Text(materialLocalizations.cancelButtonLabel),
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
+                onPressed: () => Navigator.pop(context, false),
               ),
               TextButton(
                 child: Text(materialLocalizations.okButtonLabel),
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
+                onPressed: () => Navigator.pop(context, true),
               ),
             ],
           );
         },
       );
-      if (selected != null && selected == true) {
+      if (true == selected) {
         didChange(_selectedColor);
       }
     }

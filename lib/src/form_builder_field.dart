@@ -46,7 +46,7 @@ abstract class FormBuilderField<T> extends FormField<T> {
 
   //TODO: implement bool autofocus, ValueChanged<bool> onValidated
 
-  FormBuilderField({
+  const FormBuilderField({
     Key key,
     //From Super
     FormFieldSetter<T> onSaved,

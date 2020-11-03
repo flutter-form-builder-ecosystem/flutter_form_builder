@@ -173,14 +173,14 @@ class FormBuilderSlider extends FormBuilderField<double> {
           decoration: decoration,
           builder: (FormFieldState<double> field) {
             final _FormBuilderSliderState state = field;
-            var _numberFormat = numberFormat ?? NumberFormat.compact();
+            final _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
               decoration: decoration.copyWith(
                 enabled: !state.readOnly,
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Container(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

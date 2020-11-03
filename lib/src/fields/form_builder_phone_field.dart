@@ -146,11 +146,11 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                     child: Row(
                       children: <Widget>[
                         const Icon(Icons.arrow_drop_down),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         CountryPickerUtils.getDefaultFlagImage(
                           state._selectedDialogCountry,
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Text(
                           '+${state._selectedDialogCountry.phoneCode} ',
                           style: Theme.of(state.context)
@@ -252,7 +252,7 @@ class _FormBuilderPhoneFieldState
     print('initialValue: $initialValue');
     if (initialValue != null && initialValue.isNotEmpty) {
       try {
-        var parseResult = await PhoneNumberUtil().parse(initialValue);
+        final parseResult = await PhoneNumberUtil().parse(initialValue);
         if (parseResult != null) {
           setState(() {
             _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
@@ -312,7 +312,7 @@ class _FormBuilderPhoneFieldState
             primaryColor: widget.cursorColor ?? Theme.of(context).primaryColor,
           ),
           child: CountryPickerDialog(
-            titlePadding: widget.titlePadding ?? EdgeInsets.all(8.0),
+            titlePadding: widget.titlePadding ?? const EdgeInsets.all(8.0),
             searchCursorColor:
                 widget.cursorColor ?? Theme.of(context).primaryColor,
             searchInputDecoration:
@@ -351,7 +351,7 @@ class _FormBuilderPhoneFieldState
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text('${country.name}'),
+        title: Text(country.name),
         trailing: Text('+${country.phoneCode}'),
       ),
     );

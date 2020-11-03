@@ -257,7 +257,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                                         (val) => val.value == field.value,
                                         orElse: () => null)
                                     ?.child ??
-                                Text('${field.value.toString()}'))
+                                Text(field.value.toString()))
                             : disabledHint,
                         elevation: elevation,
                         iconSize: iconSize,

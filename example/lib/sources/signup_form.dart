@@ -27,7 +27,7 @@ class _SignupFormState extends State<SignupForm> {
                     FormBuilderValidators.required(context),
                   ]),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 FormBuilderTextField(
                   name: 'email',
                   decoration: InputDecoration(labelText: 'Email'),
@@ -36,7 +36,7 @@ class _SignupFormState extends State<SignupForm> {
                     FormBuilderValidators.email(context),
                   ]),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 FormBuilderTextField(
                   name: 'password',
                   decoration: InputDecoration(labelText: 'Password'),
@@ -46,16 +46,17 @@ class _SignupFormState extends State<SignupForm> {
                     FormBuilderValidators.minLength(context, 6),
                   ]),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 FormBuilderTextField(
                   name: 'confirm_password',
                   decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      suffixIcon: (_formKey.currentState != null &&
-                              !_formKey.currentState.fields['confirm_password']
-                                  .isValid)
-                          ? Icon(Icons.error, color: Colors.red)
-                          : Icon(Icons.check, color: Colors.green)),
+                    labelText: 'Confirm Password',
+                    suffixIcon: (_formKey.currentState != null &&
+                            !_formKey.currentState.fields['confirm_password']
+                                .isValid)
+                        ? const Icon(Icons.error, color: Colors.red)
+                        : const Icon(Icons.check, color: Colors.green),
+                  ),
                   obscureText: true,
                   validator: FormBuilderValidators.compose([
                     /*FormBuilderValidators.equal(
@@ -72,7 +73,7 @@ class _SignupFormState extends State<SignupForm> {
                     }
                   ]),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 MaterialButton(
                   color: Theme.of(context).accentColor,
                   child: Text(

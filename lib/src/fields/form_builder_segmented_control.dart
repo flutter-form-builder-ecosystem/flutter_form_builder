@@ -79,7 +79,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                 errorText: decoration?.errorText ?? field.errorText,
               ),
               child: Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.only(top: 10.0),
                 child: CupertinoSegmentedControl<T>(
                   borderColor: state.readOnly
                       ? theme.disabledColor
@@ -94,7 +94,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                   children: <T, Widget>{
                     for (final option in options)
                       option.value: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: option,
                       ),
                   },

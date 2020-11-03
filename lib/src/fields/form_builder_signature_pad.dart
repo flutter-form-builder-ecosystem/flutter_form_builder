@@ -86,7 +86,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                   ),
                   Row(
                     children: <Widget>[
-                      Expanded(child: SizedBox()),
+                      Expanded(child: const SizedBox()),
                       TextButton.icon(
                         onPressed: () {
                           state._controller.clear();
@@ -121,7 +121,7 @@ class _FormBuilderSignaturePadState
     _controller = widget.controller ?? SignatureController();
     _controller.addListener(() async {
       requestFocus();
-      var _value = await _controller.toImage() != null
+      final _value = await _controller.toImage() != null
           ? await _controller.toPngBytes()
           : null;
       didChange(_value);
