@@ -18,7 +18,7 @@ class CompleteFormState extends State<CompleteForm> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
-  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  final _formKey = GlobalKey<FormBuilderState>();
   bool _ageHasError = false;
   bool _genderHasError = false;
 
