@@ -197,7 +197,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
                       semanticFormatterCallback: semanticFormatterCallback,
                       onChanged: state.readOnly
                           ? null
-                          : (double value) {
+                          : (value) {
                               state.requestFocus();
                               field.didChange(value);
                             },
@@ -210,21 +210,21 @@ class FormBuilderSlider extends FormBuilderField<double> {
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
                           Text(
-                            '${_numberFormat.format(min)}',
+                            _numberFormat.format(min),
                             style: minTextStyle ?? textStyle,
                           ),
-                        Spacer(),
+                        const Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.minMax)
                           Text(
-                            '${_numberFormat.format(field.value)}',
+                            _numberFormat.format(field.value),
                             style: textStyle,
                           ),
-                        Spacer(),
+                        const Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
                           Text(
-                            '${_numberFormat.format(max)}',
+                            _numberFormat.format(max),
                             style: maxTextStyle ?? textStyle,
                           ),
                       ],
@@ -240,7 +240,5 @@ class FormBuilderSlider extends FormBuilderField<double> {
   _FormBuilderSliderState createState() => _FormBuilderSliderState();
 }
 
-class _FormBuilderSliderState extends FormBuilderFieldState<double> {
-  @override
-  FormBuilderSlider get widget => super.widget as FormBuilderSlider;
-}
+class _FormBuilderSliderState
+    extends FormBuilderFieldState<FormBuilderSlider, double> {}

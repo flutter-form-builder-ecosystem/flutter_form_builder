@@ -140,7 +140,5 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   _FormBuilderCheckboxState createState() => _FormBuilderCheckboxState();
 }
 
-class _FormBuilderCheckboxState extends FormBuilderFieldState<bool> {
-  @override
-  FormBuilderCheckbox get widget => super.widget as FormBuilderCheckbox;
-}
+class _FormBuilderCheckboxState
+    extends FormBuilderFieldState<FormBuilderCheckbox, bool> {}

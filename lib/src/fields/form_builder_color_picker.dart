@@ -118,7 +118,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<Color> field) {
             final _FormBuilderColorPickerFieldState state = field;
             return TextField(
               style: style,
@@ -181,11 +181,8 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
       _FormBuilderColorPickerFieldState();
 }
 
-class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
-  @override
-  FormBuilderColorPickerField get widget =>
-      super.widget as FormBuilderColorPickerField;
-
+class _FormBuilderColorPickerFieldState
+    extends FormBuilderFieldState<FormBuilderColorPickerField, Color> {
   TextEditingController _effectiveController;
 
   TextEditingController get effectiveController => _effectiveController;

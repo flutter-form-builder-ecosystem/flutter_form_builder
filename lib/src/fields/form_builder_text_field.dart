@@ -384,7 +384,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<String> field) {
             final _FormBuilderTextFieldState state = field;
             /*final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
@@ -452,10 +452,8 @@ class FormBuilderTextField extends FormBuilderField<String> {
   _FormBuilderTextFieldState createState() => _FormBuilderTextFieldState();
 }
 
-class _FormBuilderTextFieldState extends FormBuilderFieldState<String> {
-  @override
-  FormBuilderTextField get widget => super.widget as FormBuilderTextField;
-
+class _FormBuilderTextFieldState
+    extends FormBuilderFieldState<FormBuilderTextField, String> {
   TextEditingController get _effectiveController =>
       widget.controller ?? _controller;
 

@@ -216,10 +216,8 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
   _FormBuilderPhoneFieldState createState() => _FormBuilderPhoneFieldState();
 }
 
-class _FormBuilderPhoneFieldState extends FormBuilderFieldState<String> {
-  @override
-  FormBuilderPhoneField get widget => super.widget as FormBuilderPhoneField;
-
+class _FormBuilderPhoneFieldState
+    extends FormBuilderFieldState<FormBuilderPhoneField, String> {
   TextEditingController _effectiveController = TextEditingController();
   Country _selectedDialogCountry;
 

@@ -89,8 +89,8 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
-            final _FormBuilderFilterChipState state = field;
+          builder: (FormFieldState<List<T>> field) {
+            final _FormBuilderFilterChipState<T> state = field;
             return InputDecorator(
               decoration: decoration.copyWith(
                 errorText: decoration?.errorText ?? field.errorText,
@@ -105,7 +105,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                 textDirection: textDirection,
                 verticalDirection: verticalDirection,
                 children: <Widget>[
-                  for (FormBuilderFieldOption option in options)
+                  for (FormBuilderFieldOption<T> option in options)
                     FilterChip(
                       label: option.child,
                       selected: field.value.contains(option.value),
@@ -114,7 +114,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                                   (field.value.length >= maxChips &&
                                       !field.value.contains(option.value))))
                           ? null
-                          : (bool selected) {
+                          : (selected) {
                               var currentValue = [...field.value];
                               if (selected) {
                                 currentValue.add(option.value);
@@ -148,10 +148,9 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  _FormBuilderFilterChipState<T> createState() => _FormBuilderFilterChipState();
+  _FormBuilderFilterChipState<T> createState() =>
+      _FormBuilderFilterChipState<T>();
 }
 
-class _FormBuilderFilterChipState<T> extends FormBuilderFieldState<List<T>> {
-  @override
-  FormBuilderFilterChip<T> get widget => super.widget as FormBuilderFilterChip;
-}
+class _FormBuilderFilterChipState<T>
+    extends FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>> {}

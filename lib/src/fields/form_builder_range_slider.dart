@@ -211,7 +211,5 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();
 }
 
-class _FormBuilderRangeSliderState extends FormBuilderFieldState<RangeValues> {
-  @override
-  FormBuilderRangeSlider get widget => super.widget as FormBuilderRangeSlider;
-}
+class _FormBuilderRangeSliderState
+    extends FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> {}

@@ -289,11 +289,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
-  @override
-  FormBuilderDateTimePicker get widget =>
-      super.widget as FormBuilderDateTimePicker;
-
+class _FormBuilderDateTimePickerState
+    extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
   TextEditingController get textFieldController => _textFieldController;
   TextEditingController _textFieldController;
 

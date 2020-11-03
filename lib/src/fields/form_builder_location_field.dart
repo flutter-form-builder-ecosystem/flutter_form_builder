@@ -227,7 +227,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<CameraPosition> field) {
             final _FormBuilderLocationFieldState state = field;
 
             return Row(
@@ -266,10 +266,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
 }
 
 class _FormBuilderLocationFieldState
-    extends FormBuilderFieldState<CameraPosition> {
-  @override
-  FormBuilderLocationField get widget =>
-      super.widget as FormBuilderLocationField;
+    extends FormBuilderFieldState<FormBuilderLocationField, CameraPosition> {
   TextEditingController _controller;
 
   TextEditingController get effectiveController =>

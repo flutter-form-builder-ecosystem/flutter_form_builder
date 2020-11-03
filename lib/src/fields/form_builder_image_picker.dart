@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
-class FormBuilderImagePicker extends FormBuilderField {
+class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   //TODO: Add documentation
   final double previewWidth;
   final double previewHeight;
@@ -43,13 +43,13 @@ class FormBuilderImagePicker extends FormBuilderField {
     //From Super
     @required String name,
     FormFieldValidator validator,
-    List initialValue,
+    List<dynamic> initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<List<dynamic>> onChanged,
+    ValueTransformer<List<dynamic>> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<List<dynamic>> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -84,7 +84,7 @@ class FormBuilderImagePicker extends FormBuilderField {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<List<dynamic>> field) {
             final _FormBuilderImagePickerState state = field;
             final theme = Theme.of(state.context);
             final disabledColor = theme.disabledColor;
@@ -203,10 +203,8 @@ class FormBuilderImagePicker extends FormBuilderField {
   _FormBuilderImagePickerState createState() => _FormBuilderImagePickerState();
 }
 
-class _FormBuilderImagePickerState extends FormBuilderFieldState {
-  @override
-  FormBuilderImagePicker get widget => super.widget as FormBuilderImagePicker;
-
+class _FormBuilderImagePickerState
+    extends FormBuilderFieldState<FormBuilderImagePicker, List<dynamic>> {
   bool get hasMaxImages {
     if (widget.maxImages == null || value == null) {
       return false;

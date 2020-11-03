@@ -26,7 +26,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final bool maxLengthEnforced;
   final int maxLength;
   final VoidCallback onEditingComplete;
-  final ValueChanged<String> onFieldSubmitted;
+  final ValueChanged<List<DateTime>> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
   final double cursorWidth;
   final Radius cursorRadius;
@@ -190,11 +190,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
 }
 
 class FormBuilderDateRangePickerState
-    extends FormBuilderFieldState<List<DateTime>> {
-  @override
-  FormBuilderDateRangePicker get widget =>
-      super.widget as FormBuilderDateRangePicker;
-
+    extends FormBuilderFieldState<FormBuilderDateRangePicker, List<DateTime>> {
   TextEditingController _effectiveController;
 
   TextEditingController get effectiveController => _effectiveController;

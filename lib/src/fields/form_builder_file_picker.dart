@@ -117,7 +117,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
 }
 
 class _FormBuilderFilePickerState
-    extends FormBuilderFieldState<List<PlatformFile>> {
+    extends FormBuilderFieldState<FormBuilderFilePicker, List<PlatformFile>> {
   List<PlatformFile> _files;
 
   int get _remainingItemCount =>
@@ -128,9 +128,6 @@ class _FormBuilderFilePickerState
     _files = widget.initialValue ?? [];
     super.initState();
   }
-
-  @override
-  FormBuilderFilePicker get widget => super.widget as FormBuilderFilePicker;
 
   Future<void> pickFiles(FormFieldState field) async {
     FilePickerResult resultList;

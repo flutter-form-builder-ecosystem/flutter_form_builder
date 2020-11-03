@@ -68,8 +68,8 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
-            final _FormBuilderChipsInputState state = field;
+          builder: (FormFieldState<List<T>> field) {
+            final _FormBuilderChipsInputState<T> state = field;
 
             return ChipsInput(
               key: ObjectKey(state.value),
@@ -104,10 +104,9 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  _FormBuilderChipsInputState<T> createState() => _FormBuilderChipsInputState();
+  _FormBuilderChipsInputState<T> createState() =>
+      _FormBuilderChipsInputState<T>();
 }
 
-class _FormBuilderChipsInputState<T> extends FormBuilderFieldState<List<T>> {
-  @override
-  FormBuilderChipsInput<T> get widget => super.widget as FormBuilderChipsInput;
-}
+class _FormBuilderChipsInputState<T>
+    extends FormBuilderFieldState<FormBuilderChipsInput<T>, List<T>> {}

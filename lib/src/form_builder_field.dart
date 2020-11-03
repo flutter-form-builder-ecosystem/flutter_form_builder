@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 enum OptionsOrientation { horizontal, vertical, wrap }
 enum ControlAffinity { leading, trailing }
 
-class FormBuilderField<T> extends FormField<T> {
+abstract class FormBuilderField<T> extends FormField<T> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
   final String name;
@@ -73,12 +73,13 @@ class FormBuilderField<T> extends FormField<T> {
         );
 
   @override
-  FormBuilderFieldState<T> createState() => FormBuilderFieldState();
+  FormFieldState<T> createState();
 }
 
-class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin {
+class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+    extends FormFieldState<T> with AfterInitMixin {
   @override
-  FormBuilderField<T> get widget => super.widget;
+  F get widget => super.widget as F;
 
   FormBuilderState get formState => _formBuilderState;
 

@@ -111,10 +111,8 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
       _FormBuilderSignaturePadState();
 }
 
-class _FormBuilderSignaturePadState extends FormBuilderFieldState<Uint8List> {
-  @override
-  FormBuilderSignaturePad get widget => super.widget as FormBuilderSignaturePad;
-
+class _FormBuilderSignaturePadState
+    extends FormBuilderFieldState<FormBuilderSignaturePad, Uint8List> {
   SignatureController get effectiveController =>
       widget.controller ?? _controller;
 
