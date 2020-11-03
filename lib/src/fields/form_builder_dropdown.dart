@@ -266,9 +266,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         iconEnabledColor: iconEnabledColor,
                         onChanged: (state.readOnly || !enabled)
                             ? null
-                            : (T value) {
-                                _changeValue<T>(field, value);
-                              },
+                            : (T value) => _changeValue<T>(field, value),
                         onTap: onTap,
                         focusNode: state.effectiveFocusNode,
                         autofocus: autofocus,
@@ -280,12 +278,10 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                     ),
                   ),
                   if (allowClear && !readOnly && field.value != null) ...[
-                    VerticalDivider(),
+                    const VerticalDivider(),
                     InkWell(
                       child: clearIcon,
-                      onTap: () {
-                        _changeValue(state, null);
-                      },
+                      onTap: () => _changeValue<T>(state, null),
                     ),
                   ]
                 ],

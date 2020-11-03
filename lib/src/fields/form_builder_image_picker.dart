@@ -101,7 +101,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     if (field.value != null)
-                      ...(field.value.map<Widget>((item) {
+                      ...field.value.map<Widget>((item) {
                         return Stack(
                           alignment: Alignment.topRight,
                           children: <Widget>[
@@ -140,7 +140,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                               ),
                           ],
                         );
-                      }).toList()),
+                      }),
                     if (!state.readOnly && !state.hasMaxImages)
                       GestureDetector(
                         child: placeholderImage != null
