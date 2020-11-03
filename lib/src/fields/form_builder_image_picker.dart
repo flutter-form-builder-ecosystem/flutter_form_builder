@@ -4,7 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
-class FormBuilderImagePicker extends FormBuilderField {
+class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   //TODO: Add documentation
   final double previewWidth;
   final double previewHeight;
@@ -43,13 +43,13 @@ class FormBuilderImagePicker extends FormBuilderField {
     //From Super
     @required String name,
     FormFieldValidator validator,
-    List initialValue,
+    List<dynamic> initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged onChanged,
-    ValueTransformer valueTransformer,
+    ValueChanged<List<dynamic>> onChanged,
+    ValueTransformer<List<dynamic>> valueTransformer,
     bool enabled = true,
-    FormFieldSetter onSaved,
+    FormFieldSetter<List<dynamic>> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -67,7 +67,7 @@ class FormBuilderImagePicker extends FormBuilderField {
     this.galleryIcon = const Icon(Icons.image),
     this.cameraLabel = const Text('Camera'),
     this.galleryLabel = const Text('Gallery'),
-    this.bottomSheetPadding = const EdgeInsets.all(0),
+    this.bottomSheetPadding = EdgeInsets.zero,
     this.placeholderImage,
   })  : assert(maxImages == null || maxImages >= 0),
         super(
@@ -84,7 +84,7 @@ class FormBuilderImagePicker extends FormBuilderField {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<List<dynamic>> field) {
             final _FormBuilderImagePickerState state = field;
             final theme = Theme.of(state.context);
             final disabledColor = theme.disabledColor;
@@ -123,7 +123,7 @@ class FormBuilderImagePicker extends FormBuilderField {
                                       [...field.value]..remove(item));
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.all(3),
+                                  margin: const EdgeInsets.all(3),
                                   decoration: BoxDecoration(
                                     color: Colors.grey.withOpacity(.7),
                                     shape: BoxShape.circle,
@@ -131,7 +131,7 @@ class FormBuilderImagePicker extends FormBuilderField {
                                   alignment: Alignment.center,
                                   height: 22,
                                   width: 22,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.close,
                                     size: 18,
                                     color: Colors.white,
@@ -176,16 +176,13 @@ class FormBuilderImagePicker extends FormBuilderField {
                                 galleryLabel: galleryLabel,
                                 onImageSelected: (image) {
                                   state.requestFocus();
-                                  field.didChange([
-                                    ...field.value ?? [],
-                                    image,
-                                  ]);
-                                  Navigator.of(state.context).pop();
+                                  field.didChange([...field.value, image]);
+                                  Navigator.pop(state.context);
                                 },
                                 onImage: (image) {
                                   field.didChange([...field.value, image]);
                                   onChanged?.call(field.value);
-                                  Navigator.of(state.context).pop();
+                                  Navigator.pop(state.context);
                                 },
                               );
                             },
@@ -203,15 +200,10 @@ class FormBuilderImagePicker extends FormBuilderField {
   _FormBuilderImagePickerState createState() => _FormBuilderImagePickerState();
 }
 
-class _FormBuilderImagePickerState extends FormBuilderFieldState {
-  @override
-  FormBuilderImagePicker get widget => super.widget as FormBuilderImagePicker;
-
-  bool get hasMaxImages {
-    if (widget.maxImages == null || value == null) {
-      return false;
-    } else {
-      return value.length >= widget.maxImages;
-    }
-  }
+class _FormBuilderImagePickerState
+    extends FormBuilderFieldState<FormBuilderImagePicker, List<dynamic>> {
+  bool get hasMaxImages =>
+      widget.maxImages != null &&
+      value != null &&
+      value.length >= widget.maxImages;
 }

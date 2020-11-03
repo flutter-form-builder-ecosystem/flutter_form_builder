@@ -158,8 +158,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
-            final _FormBuilderSearchableDropdownState state = field;
+          builder: (FormFieldState<T> field) {
+            final _FormBuilderSearchableDropdownState<T> state = field;
 
             return InputDecorator(
               decoration: decoration.copyWith(
@@ -211,11 +211,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
 
   @override
   _FormBuilderSearchableDropdownState<T> createState() =>
-      _FormBuilderSearchableDropdownState();
+      _FormBuilderSearchableDropdownState<T>();
 }
 
-class _FormBuilderSearchableDropdownState<T> extends FormBuilderFieldState<T> {
-  @override
-  FormBuilderSearchableDropdown<T> get widget =>
-      super.widget as FormBuilderSearchableDropdown<T>;
-}
+class _FormBuilderSearchableDropdownState<T>
+    extends FormBuilderFieldState<FormBuilderSearchableDropdown<T>, T> {}

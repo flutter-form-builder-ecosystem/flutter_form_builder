@@ -17,11 +17,16 @@ extension on Color {
   }*/
 
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0').toUpperCase()}'
-      '${red.toRadixString(16).padLeft(2, '0').toUpperCase()}'
-      '${green.toRadixString(16).padLeft(2, '0').toUpperCase()}'
-      '${blue.toRadixString(16).padLeft(2, '0').toUpperCase()}';
+  String toHex({bool leadingHashSign = true}) {
+    /// Converts an rgba value (0-255) into a 2-digit Hex code.
+    String _hexValue(int rgbaVal) {
+      assert(rgbaVal == rgbaVal & 0xFF);
+      return rgbaVal.toRadixString(16).padLeft(2, '0').toUpperCase();
+    }
+
+    return '${leadingHashSign ? '#' : ''}'
+        '${_hexValue(alpha)}${_hexValue(red)}${_hexValue(green)}${_hexValue(blue)}';
+  }
 }
 
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
@@ -118,7 +123,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<Color> field) {
             final _FormBuilderColorPickerFieldState state = field;
             return TextField(
               style: style,
@@ -145,7 +150,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               ),
               enabled: !state.readOnly,
               readOnly: state.readOnly,
-              controller: state.effectiveController,
+              controller: state._effectiveController,
               focusNode: state.effectiveFocusNode,
               textAlign: textAlign,
               autofocus: autofocus,
@@ -181,14 +186,9 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
       _FormBuilderColorPickerFieldState();
 }
 
-class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
-  @override
-  FormBuilderColorPickerField get widget =>
-      super.widget as FormBuilderColorPickerField;
-
+class _FormBuilderColorPickerFieldState
+    extends FormBuilderFieldState<FormBuilderColorPickerField, Color> {
   TextEditingController _effectiveController;
-
-  TextEditingController get effectiveController => _effectiveController;
 
   String get valueString => value?.toHex();
 
@@ -202,11 +202,20 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
     effectiveFocusNode.addListener(_handleFocus);
   }
 
+  @override
+  void dispose() {
+    // Dispose the _effectiveController when initState created it
+    if (null == widget.controller) {
+      _effectiveController.dispose();
+    }
+    super.dispose();
+  }
+
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !readOnly) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
-      var selected = await showDialog(
+      final selected = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
           final materialLocalizations = MaterialLocalizations.of(context);
@@ -219,21 +228,17 @@ class _FormBuilderColorPickerFieldState extends FormBuilderFieldState<Color> {
             actions: <Widget>[
               TextButton(
                 child: Text(materialLocalizations.cancelButtonLabel),
-                onPressed: () {
-                  Navigator.of(context).pop(false);
-                },
+                onPressed: () => Navigator.pop(context, false),
               ),
               TextButton(
                 child: Text(materialLocalizations.okButtonLabel),
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                },
+                onPressed: () => Navigator.pop(context, true),
               ),
             ],
           );
         },
       );
-      if (selected != null && selected == true) {
+      if (true == selected) {
         didChange(_selectedColor);
       }
     }

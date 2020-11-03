@@ -26,7 +26,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final bool maxLengthEnforced;
   final int maxLength;
   final VoidCallback onEditingComplete;
-  final ValueChanged<String> onFieldSubmitted;
+  final ValueChanged<List<DateTime>> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
   final double cursorWidth;
   final Radius cursorRadius;
@@ -147,7 +147,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
               keyboardType: keyboardType,
               obscureText: obscureText,
               onEditingComplete: onEditingComplete,
-              controller: state.effectiveController,
+              controller: state._effectiveController,
               autocorrect: autocorrect,
               autofocus: autofocus,
               buildCounter: buildCounter,
@@ -190,14 +190,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
 }
 
 class FormBuilderDateRangePickerState
-    extends FormBuilderFieldState<List<DateTime>> {
-  @override
-  FormBuilderDateRangePicker get widget =>
-      super.widget as FormBuilderDateRangePicker;
-
+    extends FormBuilderFieldState<FormBuilderDateRangePicker, List<DateTime>> {
   TextEditingController _effectiveController;
-
-  TextEditingController get effectiveController => _effectiveController;
 
   @override
   void initState() {
@@ -207,13 +201,22 @@ class FormBuilderDateRangePickerState
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // Dispose the _effectiveController when initState created it
+    if (null == widget.controller) {
+      _effectiveController.dispose();
+    }
+    super.dispose();
+  }
+
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus) {
       _hideKeyboard();
-      var initialFirstDate = value?.isEmpty ?? true
+      final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
-      var initialLastDate = value?.isEmpty ?? true
+      final initialLastDate = value?.isEmpty ?? true
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
       final picked = await date_range_picker.showDatePicker(
@@ -241,7 +244,7 @@ class FormBuilderDateRangePickerState
       return '';
     }
     if (value.length == 1) {
-      return '${format(value[0])}';
+      return format(value[0]);
     }
     return '${format(value[0])} - ${format(value[1])}';
   }
@@ -269,11 +272,5 @@ class FormBuilderDateRangePickerState
   void reset() {
     super.reset();
     _setTextFieldString();
-  }
-
-  @override
-  void dispose() {
-    _effectiveController?.dispose();
-    super.dispose();
   }
 }

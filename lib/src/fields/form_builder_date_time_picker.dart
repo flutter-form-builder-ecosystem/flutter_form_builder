@@ -255,7 +255,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               readOnly: true,
               enabled: state.readOnly ? false : enabled,
               autocorrect: autocorrect,
-              controller: state.textFieldController,
+              controller: state._textFieldController,
               focusNode: state.effectiveFocusNode,
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
@@ -289,12 +289,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
       _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
-  @override
-  FormBuilderDateTimePicker get widget =>
-      super.widget as FormBuilderDateTimePicker;
-
-  TextEditingController get textFieldController => _textFieldController;
+class _FormBuilderDateTimePickerState
+    extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
   TextEditingController _textFieldController;
 
   // DateTime stateCurrentValue;
@@ -314,6 +310,15 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
         initialValue == null ? '' : dateFormat.format(initialValue);
   }
 
+  @override
+  void dispose() {
+    // Dispose the _textFieldController when initState created it
+    if (null == widget.controller) {
+      _textFieldController.dispose();
+    }
+    super.dispose();
+  }
+
   // Hack to avoid manual editing of date - as is in DateTimeField library
   /*Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus) {
@@ -322,7 +327,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
   }*/
 
   DateFormat _getDefaultDateTimeFormat() {
-    var appLocale = widget.locale ?? Localizations.localeOf(context);
+    final appLocale = widget.locale ?? Localizations.localeOf(context);
     switch (widget.inputType) {
       case InputType.time:
         return DateFormat.Hm(appLocale.toString());
@@ -343,7 +348,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
         newValue = await _showDatePicker(context, currentValue) ?? currentValue;
         break;
       case InputType.time:
-        var newTime = await _showTimePicker(context, currentValue);
+        final newTime = await _showTimePicker(context, currentValue);
         newValue =
             newTime != null ? DateTimeField.convert(newTime) : currentValue;
         break;
@@ -358,7 +363,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
         throw 'Unexpected input type ${widget.inputType}';
         break;
     }
-    var finalValue = newValue ?? currentValue;
+    final finalValue = newValue ?? currentValue;
     didChange(finalValue);
     return finalValue;
   }
@@ -484,6 +489,6 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldState<DateTime> {
   @override
   void patchValue(dynamic val) {
     super.patchValue(val);
-    textFieldController.text = val == null ? '' : dateFormat.format(val);
+    _textFieldController.text = val == null ? '' : dateFormat.format(val);
   }
 }

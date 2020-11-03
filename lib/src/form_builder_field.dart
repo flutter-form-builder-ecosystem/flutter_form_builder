@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 enum OptionsOrientation { horizontal, vertical, wrap }
 enum ControlAffinity { leading, trailing }
 
-class FormBuilderField<T> extends FormField<T> {
+abstract class FormBuilderField<T> extends FormField<T> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
   final String name;
@@ -46,7 +46,7 @@ class FormBuilderField<T> extends FormField<T> {
 
   //TODO: implement bool autofocus, ValueChanged<bool> onValidated
 
-  FormBuilderField({
+  const FormBuilderField({
     Key key,
     //From Super
     FormFieldSetter<T> onSaved,
@@ -73,12 +73,13 @@ class FormBuilderField<T> extends FormField<T> {
         );
 
   @override
-  FormBuilderFieldState<T> createState() => FormBuilderFieldState();
+  FormFieldState<T> createState();
 }
 
-class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin {
+class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+    extends FormFieldState<T> with AfterInitMixin {
   @override
-  FormBuilderField<T> get widget => super.widget;
+  F get widget => super.widget as F;
 
   FormBuilderState get formState => _formBuilderState;
 
@@ -117,12 +118,15 @@ class FormBuilderFieldState<T> extends FormFieldState<T> with AfterInitMixin {
   void save() {
     super.save();
     if (_formBuilderState != null) {
-      if (!_formBuilderState.widget.skipReadOnly ||
-          (_formBuilderState.widget.skipReadOnly && !readOnly)) {
-        _formBuilderState.setInternalFieldValue(
-            widget.name, widget.valueTransformer?.call(value) ?? value);
-      } else {
+      if (readOnly && _formBuilderState.widget.skipReadOnly) {
         _formBuilderState.removeInternalFieldValue(widget.name);
+      } else {
+        _formBuilderState.setInternalFieldValue(
+          widget.name,
+          null != widget.valueTransformer
+              ? widget.valueTransformer(value)
+              : value,
+        );
       }
     }
   }

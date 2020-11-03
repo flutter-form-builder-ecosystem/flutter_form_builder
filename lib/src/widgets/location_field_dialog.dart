@@ -102,15 +102,13 @@ class _LocationFieldDialogState extends State<LocationFieldDialog> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.check),
-        onPressed: () {
-          Navigator.of(context).pop(_value);
-        },
+        child: const Icon(Icons.check),
+        onPressed: () => Navigator.pop(context, _value),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          var maxWidth = constraints.biggest.width;
-          var maxHeight = constraints.biggest.height;
+          final maxWidth = constraints.biggest.width;
+          final maxHeight = constraints.biggest.height;
 
           return Stack(
             alignment: Alignment.topCenter,
@@ -169,9 +167,7 @@ class _LocationFieldDialogState extends State<LocationFieldDialog> {
                         Icons.close,
                         color: theme.textTheme.bodyText1.color,
                       ),
-                      onPressed: () {
-                        Navigator.of(context).pop(null);
-                      },
+                      onPressed: () => Navigator.pop(context),
                       mini: true,
                     ),
                   ],

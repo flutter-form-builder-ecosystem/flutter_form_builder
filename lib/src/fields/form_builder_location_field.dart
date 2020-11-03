@@ -196,7 +196,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
     this.tiltGesturesEnabled = true,
     this.myLocationEnabled = false,
     this.myLocationButtonEnabled = true,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = EdgeInsets.zero,
     this.indoorViewEnabled = false,
     this.trafficEnabled = false,
     this.buildingsEnabled = true,
@@ -227,7 +227,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
-          builder: (FormFieldState field) {
+          builder: (FormFieldState<CameraPosition> field) {
             final _FormBuilderLocationFieldState state = field;
 
             return Row(
@@ -266,10 +266,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
 }
 
 class _FormBuilderLocationFieldState
-    extends FormBuilderFieldState<CameraPosition> {
-  @override
-  FormBuilderLocationField get widget =>
-      super.widget as FormBuilderLocationField;
+    extends FormBuilderFieldState<FormBuilderLocationField, CameraPosition> {
   TextEditingController _controller;
 
   TextEditingController get effectiveController =>
@@ -285,11 +282,17 @@ class _FormBuilderLocationFieldState
     effectiveFocusNode.addListener(_handleFocus);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && !readOnly) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
-      var newValue = await showDialog<CameraPosition>(
+      final newValue = await showDialog<CameraPosition>(
         context: context,
         builder: (context) => LocationFieldDialog(
           initialCameraPosition: value ?? widget.initialCameraPosition,

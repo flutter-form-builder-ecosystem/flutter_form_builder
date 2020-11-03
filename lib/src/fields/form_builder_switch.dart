@@ -160,7 +160,5 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   _FormBuilderSwitchState createState() => _FormBuilderSwitchState();
 }
 
-class _FormBuilderSwitchState extends FormBuilderFieldState<bool> {
-  @override
-  FormBuilderSwitch get widget => super.widget as FormBuilderSwitch;
-}
+class _FormBuilderSwitchState
+    extends FormBuilderFieldState<FormBuilderSwitch, bool> {}

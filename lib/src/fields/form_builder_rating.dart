@@ -121,7 +121,5 @@ class FormBuilderRating extends FormBuilderField<double> {
   _FormBuilderRateState createState() => _FormBuilderRateState();
 }
 
-class _FormBuilderRateState extends FormBuilderFieldState<double> {
-  @override
-  FormBuilderRating get widget => super.widget as FormBuilderRating;
-}
+class _FormBuilderRateState
+    extends FormBuilderFieldState<FormBuilderRating, double> {}

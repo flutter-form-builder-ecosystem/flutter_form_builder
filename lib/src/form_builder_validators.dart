@@ -25,10 +25,10 @@ class FormBuilderValidators {
   }) {
     return (valueCandidate) {
       if (valueCandidate == null ||
-          ((valueCandidate is Iterable ||
-                  valueCandidate is String ||
+          ((valueCandidate is String ||
+                  valueCandidate is Iterable ||
                   valueCandidate is Map) &&
-              valueCandidate.length == 0)) {
+              valueCandidate.isEmpty)) {
         return errorText ??
             FormBuilderLocalizations.of(context).requiredErrorText;
       }

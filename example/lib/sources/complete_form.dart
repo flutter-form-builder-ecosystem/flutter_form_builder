@@ -28,7 +28,7 @@ class CompleteFormState extends State<CompleteForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -56,7 +56,7 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: InputDecoration(labelText: 'Location'),
                     onChanged: _onChanged,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderFilterChip(
                     name: 'filter_chip',
                     readOnly: true,
@@ -240,8 +240,8 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: InputDecoration(
                       labelText: 'Age',
                       suffixIcon: _ageHasError
-                          ? Icon(Icons.error, color: Colors.red)
-                          : Icon(Icons.check, color: Colors.green),
+                          ? const Icon(Icons.error, color: Colors.red)
+                          : const Icon(Icons.check, color: Colors.green),
                     ),
                     onChanged: (val) {
                       setState(() {
@@ -265,8 +265,8 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: InputDecoration(
                       labelText: 'Gender',
                       suffix: _genderHasError
-                          ? Icon(Icons.error)
-                          : Icon(Icons.check),
+                          ? const Icon(Icons.error)
+                          : const Icon(Icons.check),
                     ),
                     // initialValue: 'Male',
                     allowClear: true,
@@ -276,7 +276,7 @@ class CompleteFormState extends State<CompleteForm> {
                     items: genderOptions
                         .map((gender) => DropdownMenuItem(
                               value: gender,
-                              child: Text('$gender'),
+                              child: Text(gender),
                             ))
                         .toList(),
                     onChanged: (val) {
@@ -327,7 +327,7 @@ class CompleteFormState extends State<CompleteForm> {
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
                         .map((lang) => FormBuilderFieldOption(
                               value: lang,
-                              child: Text('$lang'),
+                              child: Text(lang),
                             ))
                         .toList(growable: false),
                     controlAffinity: ControlAffinity.trailing,
@@ -343,8 +343,9 @@ class CompleteFormState extends State<CompleteForm> {
                         .map((number) => FormBuilderFieldOption(
                               value: number,
                               child: Text(
-                                '$number',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                number.toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
                             ))
                         .toList(),
@@ -362,8 +363,8 @@ class CompleteFormState extends State<CompleteForm> {
                     initialValue: 10,
                     step: 1,
                     iconSize: 48.0,
-                    addIcon: Icon(Icons.arrow_right),
-                    subtractIcon: Icon(Icons.arrow_left),
+                    addIcon: const Icon(Icons.arrow_right),
+                    subtractIcon: const Icon(Icons.arrow_left),
                   ),
                   FormBuilderRating(
                     decoration:
@@ -378,8 +379,8 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: const InputDecoration(
                         labelText: 'The language of my people'),
                     name: 'languages',
-                    initialValue: ['Dart'],
-                    options: [
+                    initialValue: const ['Dart'],
+                    options: const [
                       FormBuilderFieldOption(value: 'Dart'),
                       FormBuilderFieldOption(value: 'Kotlin'),
                       FormBuilderFieldOption(value: 'Java'),
@@ -387,7 +388,7 @@ class CompleteFormState extends State<CompleteForm> {
                       FormBuilderFieldOption(value: 'Objective-C'),
                     ],
                     onChanged: _onChanged,
-                    separator: VerticalDivider(
+                    separator: const VerticalDivider(
                       width: 10,
                       thickness: 5,
                       color: Colors.red,
@@ -407,7 +408,7 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: const InputDecoration(labelText: 'Pick Photos'),
                     maxImages: 1,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderPhoneField(
                     name: 'phone_number',
                     decoration: const InputDecoration(
@@ -424,13 +425,13 @@ class CompleteFormState extends State<CompleteForm> {
                           errorText: 'This field required'),
                     ]),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   FormBuilderFilePicker(
                     name: 'files',
                     previewImages: false,
                     decoration: InputDecoration(labelText: 'Files filed'),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                 ],
               ),
             ),
@@ -439,7 +440,7 @@ class CompleteFormState extends State<CompleteForm> {
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).accentColor,
-                    child: Text(
+                    child: const Text(
                       'Submit',
                       style: TextStyle(color: Colors.white),
                     ),
@@ -453,12 +454,13 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Expanded(
                   child: OutlineButton(
                     focusNode: FocusNode(),
                     color: Theme.of(context).accentColor,
-                    child: Text('Reset', style: TextStyle(color: Colors.white)),
+                    child: const Text('Reset',
+                        style: TextStyle(color: Colors.white)),
                     onPressed: () {
                       _formKey.currentState.reset();
                     },

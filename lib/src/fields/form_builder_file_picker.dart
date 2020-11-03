@@ -104,7 +104,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 3),
+                  const SizedBox(height: 3),
                   state.defaultFileViewer(state._files, field),
                 ],
               ),
@@ -117,7 +117,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
 }
 
 class _FormBuilderFilePickerState
-    extends FormBuilderFieldState<List<PlatformFile>> {
+    extends FormBuilderFieldState<FormBuilderFilePicker, List<PlatformFile>> {
   List<PlatformFile> _files;
 
   int get _remainingItemCount =>
@@ -128,9 +128,6 @@ class _FormBuilderFilePickerState
     _files = widget.initialValue ?? [];
     super.initState();
   }
-
-  @override
-  FormBuilderFilePicker get widget => super.widget as FormBuilderFilePicker;
 
   Future<void> pickFiles(FormFieldState field) async {
     FilePickerResult resultList;
@@ -177,9 +174,10 @@ class _FormBuilderFilePickerState
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        var count = 3;
-        var spacing = 10;
-        var itemSize = (constraints.biggest.width - (count * spacing)) / count;
+        const count = 3;
+        const spacing = 10;
+        final itemSize =
+            (constraints.biggest.width - (count * spacing)) / count;
         return Wrap(
           // scrollDirection: Axis.horizontal,
           alignment: WrapAlignment.start,
@@ -192,7 +190,7 @@ class _FormBuilderFilePickerState
               return Container(
                 height: itemSize,
                 width: itemSize,
-                margin: EdgeInsets.only(right: 2),
+                margin: const EdgeInsets.only(right: 2),
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: <Widget>[
@@ -216,7 +214,7 @@ class _FormBuilderFilePickerState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 2),
                       child: Text(
-                        '${files[index].name}',
+                        files[index].name,
                         style: theme.textTheme.caption,
                         maxLines: 2,
                         overflow: TextOverflow.clip,
@@ -231,7 +229,7 @@ class _FormBuilderFilePickerState
                         child: InkWell(
                           onTap: () => removeFileAtIndex(index, field),
                           child: Container(
-                            margin: EdgeInsets.all(3),
+                            margin: const EdgeInsets.all(3),
                             decoration: BoxDecoration(
                               color: Colors.grey.withOpacity(.7),
                               shape: BoxShape.circle,
@@ -239,7 +237,7 @@ class _FormBuilderFilePickerState
                             alignment: Alignment.center,
                             height: 22,
                             width: 22,
-                            child: Icon(
+                            child: const Icon(
                               Icons.close,
                               size: 18,
                               color: Colors.white,

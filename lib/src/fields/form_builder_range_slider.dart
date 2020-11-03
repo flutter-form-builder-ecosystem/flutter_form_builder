@@ -147,7 +147,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             decoration: decoration,
             builder: (FormFieldState<RangeValues> field) {
               final _FormBuilderRangeSliderState state = field;
-              var _numberFormat = numberFormat ?? NumberFormat.compact();
+              final _numberFormat = numberFormat ?? NumberFormat.compact();
 
               return InputDecorator(
                 decoration: decoration.copyWith(
@@ -155,7 +155,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                   errorText: decoration?.errorText ?? field.errorText,
                 ),
                 child: Container(
-                  padding: EdgeInsets.only(top: 10.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -172,7 +172,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                         semanticFormatterCallback: semanticFormatterCallback,
                         onChanged: state.readOnly
                             ? null
-                            : (RangeValues values) {
+                            : (values) {
                                 state.requestFocus();
                                 field.didChange(values);
                               },
@@ -182,21 +182,21 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.current)
                             Text(
-                              '${_numberFormat.format(min)}',
+                              _numberFormat.format(min),
                               style: minTextStyle ?? textStyle,
                             ),
-                          Spacer(),
+                          const Spacer(),
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.minMax)
                             Text(
                               '${_numberFormat.format(field.value.start)} - ${_numberFormat.format(field.value.end)}',
                               style: textStyle,
                             ),
-                          Spacer(),
+                          const Spacer(),
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.current)
                             Text(
-                              '${_numberFormat.format(max)}',
+                              _numberFormat.format(max),
                               style: maxTextStyle ?? textStyle,
                             ),
                         ],
@@ -211,7 +211,5 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();
 }
 
-class _FormBuilderRangeSliderState extends FormBuilderFieldState<RangeValues> {
-  @override
-  FormBuilderRangeSlider get widget => super.widget as FormBuilderRangeSlider;
-}
+class _FormBuilderRangeSliderState
+    extends FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> {}
