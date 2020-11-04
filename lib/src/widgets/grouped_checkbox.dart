@@ -277,7 +277,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       tristate: widget.tristate,
       onChanged: isOptionDisabled
           ? null
-          : (bool selected) {
+          : (selected) {
               selected
                   ? selectedListItems.add(optionValue)
                   : selectedListItems.remove(optionValue);

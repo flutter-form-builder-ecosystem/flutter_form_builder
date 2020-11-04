@@ -107,7 +107,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                 children: <Widget>[
                   for (FormBuilderFieldOption<T> option in options)
                     FilterChip(
-                      label: option.child,
+                      label: option,
                       selected: field.value.contains(option.value),
                       onSelected: (state.readOnly ||
                               (maxChips != null &&
