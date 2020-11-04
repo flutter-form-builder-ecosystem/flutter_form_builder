@@ -13,7 +13,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  after_init: ^0.1.2
   community_material_icon: ^5.4.55
   # country_code_picker: ^1.6.2
   country_pickers: ^1.3.0
