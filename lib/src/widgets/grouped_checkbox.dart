@@ -181,6 +181,7 @@ class GroupedCheckbox<T> extends StatefulWidget {
   final ControlAffinity controlAffinity;
 
   GroupedCheckbox({
+    Key key,
     @required this.options,
     @required this.orientation,
     @required this.onChanged,
@@ -202,7 +203,7 @@ class GroupedCheckbox<T> extends StatefulWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
-  });
+  }) : super(key: key);
 
   @override
   _GroupedCheckboxState<T> createState() => _GroupedCheckboxState<T>();
@@ -276,7 +277,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       tristate: widget.tristate,
       onChanged: isOptionDisabled
           ? null
-          : (bool selected) {
+          : (selected) {
               selected
                   ? selectedListItems.add(optionValue)
                   : selectedListItems.remove(optionValue);

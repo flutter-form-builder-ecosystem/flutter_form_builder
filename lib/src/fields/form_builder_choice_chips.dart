@@ -309,7 +309,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                   children: <Widget>[
                     for (FormBuilderFieldOption<T> option in options)
                       ChoiceChip(
-                        label: option.child,
+                        label: option,
                         selected: field.value == option.value,
                         onSelected: state.readOnly
                             ? null

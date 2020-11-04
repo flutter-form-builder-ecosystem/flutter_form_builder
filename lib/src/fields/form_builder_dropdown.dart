@@ -211,7 +211,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.autofocus = false,
     this.dropdownColor,
     this.focusColor,
-    this.itemHeight,
+    this.itemHeight = kMinInteractiveDimension,
     this.selectedItemBuilder,
   }) : /*: assert(allowClear == true || clearIcon != null)*/ super(
           key: key,
@@ -244,7 +244,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                 children: <Widget>[
                   Expanded(
                     child: DropdownButtonHideUnderline(
-                      child: DropdownButton(
+                      child: DropdownButton<T>(
                         isExpanded: isExpanded,
                         hint: hint,
                         items: items,
@@ -266,7 +266,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         iconEnabledColor: iconEnabledColor,
                         onChanged: (state.readOnly || !enabled)
                             ? null
-                            : (T value) => _changeValue<T>(field, value),
+                            : (value) => _changeValue<T>(field, value),
                         onTap: onTap,
                         focusNode: state.effectiveFocusNode,
                         autofocus: autofocus,

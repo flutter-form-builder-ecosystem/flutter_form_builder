@@ -63,6 +63,7 @@ class FormBuilderValidators {
   }) {
     return (valueCandidate) {
       if (valueCandidate != null) {
+        assert(valueCandidate is num || valueCandidate is String);
         final number = valueCandidate is num
             ? valueCandidate
             : num.tryParse(valueCandidate.toString());
@@ -87,6 +88,7 @@ class FormBuilderValidators {
   }) {
     return (valueCandidate) {
       if (valueCandidate != null) {
+        assert(valueCandidate is num || valueCandidate is String);
         final number = valueCandidate is num
             ? valueCandidate
             : num.tryParse(valueCandidate.toString());
@@ -108,7 +110,9 @@ class FormBuilderValidators {
     bool allowEmpty = false,
     String errorText,
   }) {
+    assert(minLength > 0);
     return (valueCandidate) {
+      assert(null == valueCandidate || valueCandidate is String);
       final valueLength = valueCandidate?.length ?? 0;
       if (valueLength < minLength && (!allowEmpty || valueLength > 0)) {
         return errorText ??
@@ -125,10 +129,15 @@ class FormBuilderValidators {
     num maxLength, {
     String errorText,
   }) {
+    assert(maxLength > 0);
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.length > maxLength) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).maxLengthErrorText(maxLength);
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.length > maxLength) {
+          return errorText ??
+              FormBuilderLocalizations.of(context)
+                  .maxLengthErrorText(maxLength);
+        }
       }
       return null;
     };
@@ -140,8 +149,9 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isEmail(valueCandidate.trim())) {
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty && !isEmail(valueCandidate.trim())) {
           return errorText ??
               FormBuilderLocalizations.of(context).emailErrorText;
         }
@@ -162,14 +172,16 @@ class FormBuilderValidators {
     List<String> hostBlacklist = const [],
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isURL(valueCandidate,
-            protocols: protocols,
-            requireTld: requireTld,
-            requireProtocol: requireProtocol,
-            allowUnderscore: allowUnderscore,
-            hostWhitelist: hostWhitelist,
-            hostBlacklist: hostBlacklist)) {
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty &&
+            !isURL(valueCandidate,
+                protocols: protocols,
+                requireTld: requireTld,
+                requireProtocol: requireProtocol,
+                allowUnderscore: allowUnderscore,
+                hostWhitelist: hostWhitelist,
+                hostBlacklist: hostBlacklist)) {
           return errorText ?? FormBuilderLocalizations.of(context).urlErrorText;
         }
       }
@@ -184,8 +196,10 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!RegExp(pattern).hasMatch(valueCandidate)) {
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty &&
+            !RegExp(pattern).hasMatch(valueCandidate)) {
           return errorText ??
               FormBuilderLocalizations.of(context).matchErrorText;
         }
@@ -200,9 +214,12 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate.isNotEmpty && num.tryParse(valueCandidate) == null) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).numericErrorText;
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty && num.tryParse(valueCandidate) == null) {
+          return errorText ??
+              FormBuilderLocalizations.of(context).numericErrorText;
+        }
       }
       return null;
     };
@@ -215,10 +232,13 @@ class FormBuilderValidators {
     int radix,
   }) {
     return (valueCandidate) {
-      if (valueCandidate.isNotEmpty &&
-          int.tryParse(valueCandidate, radix: radix) == null) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).numericErrorText;
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty &&
+            int.tryParse(valueCandidate, radix: radix) == null) {
+          return errorText ??
+              FormBuilderLocalizations.of(context).numericErrorText;
+        }
       }
       return null;
     };
@@ -231,10 +251,13 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate.isNotEmpty &&
-          double.tryParse(valueCandidate) == null) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).numericErrorText;
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty &&
+            double.tryParse(valueCandidate) == null) {
+          return errorText ??
+              FormBuilderLocalizations.of(context).numericErrorText;
+        }
       }
       return null;
     };
@@ -246,8 +269,9 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isCreditCard(valueCandidate)) {
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty && !isCreditCard(valueCandidate)) {
           return errorText ??
               FormBuilderLocalizations.of(context).creditCardErrorText;
         }
@@ -265,8 +289,9 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isIP(valueCandidate, version)) {
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty && !isIP(valueCandidate, version)) {
           return errorText ?? FormBuilderLocalizations.of(context).ipErrorText;
         }
       }
@@ -280,8 +305,9 @@ class FormBuilderValidators {
     String errorText,
   }) {
     return (valueCandidate) {
-      if (valueCandidate != null && valueCandidate.isNotEmpty) {
-        if (!isDate(valueCandidate)) {
+      if (null != valueCandidate) {
+        assert(valueCandidate is String);
+        if (valueCandidate.isNotEmpty && !isDate(valueCandidate)) {
           return errorText ??
               FormBuilderLocalizations.of(context).dateStringErrorText;
         }
