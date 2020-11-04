@@ -1,4 +1,3 @@
-import 'package:after_init/after_init.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -76,20 +75,21 @@ abstract class FormBuilderField<T> extends FormField<T> {
   FormFieldState<T> createState();
 }
 
-class FormBuilderFieldState<F extends FormBuilderField<T>, T>
-    extends FormFieldState<T> with AfterInitMixin {
+abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+    extends FormFieldState<T> {
   @override
-  F get widget => super.widget as F;
+  F get widget => super.widget;
 
   FormBuilderState get formState => _formBuilderState;
 
-  bool get readOnly => _formBuilderState?.readOnly == true || widget.readOnly;
+  bool get readOnly => widget.readOnly || _formBuilderState?.readOnly == true;
 
+  /// Returns the initial value, which may be declared at the field, or by the
+  /// parent [FormBuilder.initialValue]. When declared at both levels, the field
+  /// initialValue prevails.
   T get initialValue =>
       widget.initialValue ??
-      ((_formBuilderState?.initialValue?.containsKey(widget.name) ?? false)
-          ? _formBuilderState.initialValue[widget.name]
-          : null);
+      (_formBuilderState?.initialValue ?? const {})[widget.name];
 
   FormBuilderState _formBuilderState;
 
@@ -103,15 +103,30 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   FocusNode _focusNode;
 
-  FocusNode get effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get effectiveFocusNode => _focusNode;
 
   @override
-  void didInitState() {
+  void initState() {
+    super.initState();
+    // Register this field when there is a parent FormBuilder
     _formBuilderState = FormBuilder.of(context);
     _formBuilderState?.registerField(widget.name, this);
-    effectiveFocusNode.addListener(setTouchedHandler);
+    // Register a touch handler
+    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(_touchedHandler);
+    // Set the initial value
     setValue(initialValue);
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_touchedHandler);
+    // Dispose focus node when created by initState
+    if (null == widget.focusNode) {
+      _focusNode.dispose();
+    }
+    _formBuilderState?.unregisterField(widget.name);
+    super.dispose();
   }
 
   @override
@@ -131,10 +146,9 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
   }
 
-  void setTouchedHandler() {
-    if (effectiveFocusNode.hasFocus && _touched == false) {
+  void _touchedHandler() {
+    if (_focusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
-      print('${widget.name} touched');
     }
   }
 
@@ -158,15 +172,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void requestFocus() {
     FocusScope.of(context).requestFocus(effectiveFocusNode);
-  }
-
-  @override
-  void dispose() {
-    effectiveFocusNode.removeListener(setTouchedHandler);
-    _formBuilderState?.unregisterField(widget.name);
-    // The attachment will automatically be detached in dispose().
-    _focusNode?.dispose();
-    super.dispose();
   }
 
   void patchValue(T value) {
