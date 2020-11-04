@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/utils.dart';
 import 'package:intl/intl.dart';
 
 enum InputType { date, time, both }
@@ -301,13 +301,9 @@ class _FormBuilderDateTimePickerState
   void initState() {
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
-  }
-
-  @override
-  void didInitState() {
-    super.didInitState();
+    final initVal = initialValue;
     _textFieldController.text =
-        initialValue == null ? '' : dateFormat.format(initialValue);
+        initVal == null ? '' : dateFormat.format(initVal);
   }
 
   @override
@@ -328,15 +324,25 @@ class _FormBuilderDateTimePickerState
 
   DateFormat _getDefaultDateTimeFormat() {
     final appLocale = widget.locale ?? Localizations.localeOf(context);
+    final appLocaleCode = appLocale.toString();
     switch (widget.inputType) {
       case InputType.time:
-        return DateFormat.Hm(appLocale.toString());
+        return DateFormat.Hm(appLocaleCode);
       case InputType.date:
-        return DateFormat.yMd(appLocale.toString());
+        return DateFormat.yMd(appLocaleCode);
       case InputType.both:
       default:
-        return DateFormat.yMd(appLocale.toString()).add_Hms();
+        return DateFormat.yMd(appLocaleCode).add_Hms();
     }
+  }
+
+  LocaleType _localeType() {
+    final locale = widget.locale ?? Localizations.localeOf(context);
+    final languageCode = locale.languageCode;
+    return LocaleType.values.firstWhere(
+      (_) => languageCode == describeEnum(_),
+      orElse: () => null,
+    );
   }
 
   Future<DateTime> onShowPicker(
@@ -380,9 +386,7 @@ class _FormBuilderDateTimePickerState
           minTime: widget.firstDate,
           maxTime: widget.lastDate,
           currentTime: currentValue,
-          locale: enumValueFromString(
-              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
-              LocaleType.values),
+          locale: _localeType(),
           theme: widget.theme,
           onCancel: widget.onCancel,
           onConfirm: widget.onConfirm,
@@ -433,10 +437,7 @@ class _FormBuilderDateTimePickerState
             showTitleActions: true,
             currentTime: currentValue,
             showSecondsColumn: false,
-            locale: enumValueFromString(
-                (widget.locale ?? Localizations.localeOf(context))
-                    ?.languageCode,
-                LocaleType.values),
+            locale: _localeType(),
           ).then(
             (result) {
               return TimeOfDay.fromDateTime(result ?? currentValue);
@@ -447,9 +448,7 @@ class _FormBuilderDateTimePickerState
           context,
           showTitleActions: true,
           currentTime: currentValue,
-          locale: enumValueFromString(
-              (widget.locale ?? Localizations.localeOf(context))?.languageCode,
-              LocaleType.values),
+          locale: _localeType(),
         ).then(
           (result) {
             return TimeOfDay.fromDateTime(result ?? currentValue);
@@ -487,7 +486,7 @@ class _FormBuilderDateTimePickerState
   }
 
   @override
-  void patchValue(dynamic val) {
+  void patchValue(DateTime val) {
     super.patchValue(val);
     _textFieldController.text = val == null ? '' : dateFormat.format(val);
   }
