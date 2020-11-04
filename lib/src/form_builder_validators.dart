@@ -244,25 +244,6 @@ class FormBuilderValidators {
     };
   }
 
-  // TODO(any): l10n
-  /// [FormFieldValidator] that requires the field's value to be a valid double.
-  static FormFieldValidator double_(
-    BuildContext context, {
-    String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty &&
-            double.tryParse(valueCandidate) == null) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).numericErrorText;
-        }
-      }
-      return null;
-    };
-  }
-
   /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
   static FormFieldValidator creditCard(
     BuildContext context, {

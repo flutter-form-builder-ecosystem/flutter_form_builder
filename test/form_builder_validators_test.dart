@@ -151,6 +151,38 @@ void main() {
           }));
 
   testWidgets(
+      'FormBuilderValidators.integer',
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator = FormBuilderValidators.integer(context);
+            // Pass
+            expect(validator(null), isNull);
+            expect(validator(''), isNull);
+            expect(validator('0'), isNull);
+            expect(validator('31'), isNull);
+            expect(validator('-1'), isNull);
+            // Fail
+            expect(validator('-1.01'), isNotNull);
+            expect(validator('1.'), isNotNull);
+            expect(validator('A'), isNotNull);
+            expect(validator('XYZ'), isNotNull);
+          }));
+
+  testWidgets(
+      'FormBuilderValidators.match',
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator = FormBuilderValidators.match(context, '^A[0-9]\$');
+            // Pass
+            expect(validator(null), isNull);
+            expect(validator(''), isNull);
+            expect(validator('A1'), isNull);
+            expect(validator('A9'), isNull);
+            // Fail
+            expect(validator('A'), isNotNull);
+            expect(validator('Z9'), isNotNull);
+            expect(validator('A12'), isNotNull);
+          }));
+
+  testWidgets(
       'FormBuilderValidators.url',
       (WidgetTester tester) => testValidations(tester, (context) {
             final validator = FormBuilderValidators.url(context);
