@@ -73,7 +73,6 @@ class FormBuilder extends StatefulWidget {
 }
 
 class FormBuilderState extends State<FormBuilder> {
-  //TODO: Find way to assert no duplicates in field names
   final _formKey = GlobalKey<FormState>();
 
   Map<String, FormBuilderFieldState> _fields;
@@ -114,10 +113,12 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void registerField(String name, FormBuilderFieldState field) {
+    assert(!_fields.containsKey(name));
     _fields[name] = field;
   }
 
   void unregisterField(String name) {
+    assert(_fields.containsKey(name));
     _fields.remove(name);
   }
 
