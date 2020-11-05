@@ -392,14 +392,14 @@ In order to create an input field in the form, along with the label, and any app
 
 | Attribute | Type  | Default | Required | Description |
 |-----------|-------|---------|-------------|----------|
-| `name` | `String` | `null` | `Yes` | This will form the key in the form value Map |
-| `initialValue` | `dynamic` | `null`  | `No` | The initial value of the input field |
-| `readOnly` | `bool` | `false` | `No` | Determines whether the field widget will accept user input. This value will be ignored if the `readOnly` attribute of `FormBuilder` widget is set to `true` |
+| `name` | `String` |  | `Yes` | This will form the key in the form value Map |
+| `initialValue` | `T` | `null`  | `No` | The initial value of the input field |
+| `enabled` | `bool` | `true` | `No` | Determines whether the field widget will accept user input. |
 | `decoration` | `InputDecoration` | `InputDecoration()` | `No` | Defines the border, labels, icons, and styles used to decorate the field. |
-| `validator` | `FormFieldValidator` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
+| `validator` | `FormFieldValidator<T>` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
-| `skipReadOnly` | `bool` | `false` | `No` | Determines whether the field and its value will be included in the final form value `Map` |
+| `saveValue` | `bool` | `true` | `No` | Determines whether the field and its value will be included in the final form value `Map` |
 The rest of the attributes will be determined by the type of Widget being used.
 
 ### Building your own custom field
