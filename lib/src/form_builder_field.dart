@@ -177,4 +177,8 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void patchValue(T value) {
     didChange(value);
   }
+
+  InputDecoration decoration() => widget.decoration.copyWith(
+        errorText: widget.decoration?.errorText ?? errorText,
+      );
 }

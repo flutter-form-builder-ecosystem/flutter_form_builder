@@ -66,10 +66,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
             final localizations = MaterialLocalizations.of(state.context);
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Column(
                 children: <Widget>[
                   Container(

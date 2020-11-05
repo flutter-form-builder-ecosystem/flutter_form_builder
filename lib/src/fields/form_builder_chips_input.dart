@@ -74,11 +74,8 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
             return ChipsInput<T>(
               key: ObjectKey(state.value),
               initialValue: field.value,
-              enabled: !state.readOnly,
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              enabled: enabled,
+              decoration: state.decoration(),
               findSuggestions: findSuggestions,
               onChanged: (data) {
                 field.didChange(data);

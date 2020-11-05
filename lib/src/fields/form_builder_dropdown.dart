@@ -232,13 +232,11 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             // TextFormField
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-                floatingLabelBehavior: hint == null
-                    ? decoration.floatingLabelBehavior
-                    : FloatingLabelBehavior.always,
-              ),
+              decoration: state.decoration().copyWith(
+                    floatingLabelBehavior: hint == null
+                        ? decoration.floatingLabelBehavior
+                        : FloatingLabelBehavior.always,
+                  ),
               isEmpty: state.value == null,
               child: Row(
                 children: <Widget>[

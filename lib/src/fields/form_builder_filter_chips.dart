@@ -92,9 +92,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
           builder: (FormFieldState<List<T>> field) {
             final _FormBuilderFilterChipState<T> state = field;
             return InputDecorator(
-              decoration: decoration.copyWith(
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Wrap(
                 direction: direction,
                 alignment: alignment,
