@@ -244,7 +244,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     @required String name,
     FormFieldValidator<T> validator,
     T initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
     ValueTransformer<T> valueTransformer,
@@ -282,7 +282,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
             validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,
-            readOnly: readOnly,
+            saveValue: saveValue,
             autovalidateMode: autovalidateMode,
             onSaved: onSaved,
             enabled: enabled,
@@ -308,13 +308,13 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                       ChoiceChip(
                         label: option,
                         selected: field.value == option.value,
-                        onSelected: state.readOnly
-                            ? null
-                            : (selected) {
+                        onSelected: enabled
+                            ? (selected) {
                                 final choice = selected ? option.value : null;
                                 state.requestFocus();
                                 state.didChange(choice);
-                              },
+                              }
+                            : null,
                         selectedColor: selectedColor,
                         disabledColor: disabledColor,
                         backgroundColor: backgroundColor,

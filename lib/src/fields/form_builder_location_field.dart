@@ -170,7 +170,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
     @required String name,
     FormFieldValidator validator,
     CameraPosition initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<CameraPosition> onChanged,
     ValueTransformer valueTransformer,
@@ -221,7 +221,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -245,7 +245,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
                     // autofocus: autofocus,
                   ),
                 ),
-                if (allowClear && !state.readOnly && state.value != null)
+                if (allowClear && enabled && state.value != null)
                   InkWell(
                     child: clearIcon,
                     onTap: () {
@@ -287,7 +287,7 @@ class _FormBuilderLocationFieldState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus && !readOnly) {
+    if (effectiveFocusNode.hasFocus && widget.enabled) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
       final newValue = await showDialog<CameraPosition>(

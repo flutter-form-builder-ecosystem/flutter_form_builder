@@ -48,7 +48,7 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
     @required String name,
     FormFieldValidator<double> validator,
     @required double initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<double> onChanged,
     ValueTransformer<double> valueTransformer,
@@ -75,7 +75,7 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -95,12 +95,12 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
                 step: step,
                 value: field.value,
                 iconSize: iconSize,
-                onChanged: state.readOnly
-                    ? null
-                    : (value) {
+                onChanged: enabled
+                    ? (value) {
                         state.requestFocus();
                         state.didChange(value);
-                      },
+                      }
+                    : null,
                 displayFormat: displayFormat,
                 textStyle: textStyle,
                 addIcon: addIcon,
@@ -108,7 +108,7 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
                 iconActiveColor: iconActiveColor ?? theme.primaryColor,
                 iconDisabledColor: iconDisabledColor ?? theme.disabledColor,
                 iconPadding: iconPadding,
-                enabled: !state.readOnly,
+                enabled: enabled,
               ),
             );
           },

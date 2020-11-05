@@ -261,7 +261,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     @required String name,
     FormFieldValidator<T> validator,
     T initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
     ValueTransformer<T> valueTransformer,
@@ -304,7 +304,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -316,13 +316,13 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
             return TypeAheadField<T>(
               textFieldConfiguration: textFieldConfiguration.copyWith(
-                enabled: !state.readOnly,
+                enabled: enabled,
                 controller: state._typeAheadController,
-                style: state.readOnly
-                    ? theme.textTheme.subtitle1.copyWith(
+                style: enabled
+                    ? textFieldConfiguration.style
+                    : theme.textTheme.subtitle1.copyWith(
                         color: theme.disabledColor,
-                      )
-                    : textFieldConfiguration.style,
+                      ),
                 focusNode: state.effectiveFocusNode,
                 decoration: state.decoration(),
               ),

@@ -30,7 +30,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     @required String name,
     FormFieldValidator validator,
     List<T> initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<T>> onChanged,
     ValueTransformer<List<T>> valueTransformer,
@@ -65,7 +65,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -85,9 +85,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                   state.requestFocus();
                   field.didChange(val);
                 },
-                disabled: state.readOnly
-                    ? options.map((e) => e.value).toList()
-                    : disabled,
+                disabled:
+                    enabled ? disabled : options.map((e) => e.value).toList(),
                 activeColor: activeColor,
                 focusColor: focusColor,
                 checkColor: checkColor,

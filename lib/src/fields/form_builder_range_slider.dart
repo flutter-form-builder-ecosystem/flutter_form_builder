@@ -109,7 +109,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     @required String name,
     FormFieldValidator<RangeValues> validator,
     RangeValues initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<RangeValues> onChanged,
     ValueTransformer<RangeValues> valueTransformer,
@@ -139,7 +139,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             validator: validator,
             valueTransformer: valueTransformer,
             onChanged: onChanged,
-            readOnly: readOnly,
+            saveValue: saveValue,
             autovalidateMode: autovalidateMode,
             onSaved: onSaved,
             enabled: enabled,
@@ -167,12 +167,12 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                         onChangeStart: onChangeStart,
                         labels: labels,
                         semanticFormatterCallback: semanticFormatterCallback,
-                        onChanged: state.readOnly
-                            ? null
-                            : (values) {
+                        onChanged: enabled
+                            ? (values) {
                                 state.requestFocus();
                                 field.didChange(values);
-                              },
+                              }
+                            : null,
                       ),
                       Row(
                         children: <Widget>[

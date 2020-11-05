@@ -31,8 +31,9 @@ abstract class FormBuilderField<T> extends FormField<T> {
   /// Called when the field value is changed.
   final ValueChanged<T> onChanged;
 
-  /// Whether the field value can be changed. Defaults to false
-  final bool readOnly;
+  /// Whether the field value will be saved as part of the [FormBuilder] values.
+  /// Defaults to `true`.
+  final bool saveValue;
 
   /// The border, labels, icons, and styles used to decorate the field.
   final InputDecoration decoration;
@@ -57,11 +58,12 @@ abstract class FormBuilderField<T> extends FormField<T> {
     @required this.name,
     this.valueTransformer,
     this.onChanged,
-    this.readOnly = false,
+    this.saveValue = true,
     this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
-  }) : super(
+  })  : assert(null != saveValue),
+        super(
           key: key,
           onSaved: onSaved,
           initialValue: initialValue,
@@ -81,8 +83,6 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   F get widget => super.widget;
 
   FormBuilderState get formState => _formBuilderState;
-
-  bool get readOnly => widget.readOnly || _formBuilderState?.readOnly == true;
 
   /// Returns the initial value, which may be declared at the field, or by the
   /// parent [FormBuilder.initialValue]. When declared at both levels, the field
@@ -133,15 +133,15 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void save() {
     super.save();
     if (_formBuilderState != null) {
-      if (readOnly && _formBuilderState.widget.skipReadOnly) {
-        _formBuilderState.removeInternalFieldValue(widget.name);
-      } else {
+      if (widget.saveValue) {
         _formBuilderState.setInternalFieldValue(
           widget.name,
           null != widget.valueTransformer
               ? widget.valueTransformer(value)
               : value,
         );
+      } else {
+        _formBuilderState.removeInternalFieldValue(widget.name);
       }
     }
   }

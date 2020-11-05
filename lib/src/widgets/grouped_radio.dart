@@ -9,9 +9,8 @@ class GroupedRadio<T> extends StatefulWidget {
   /// Every element must match an item from itemList.
   final T value;
 
-  /// Specifies which boxes should be disabled.
-  /// If this is non-null, no boxes will be disabled.
-  /// The strings passed to this must match the labels.
+  /// Specifies which radio option values should be disabled.
+  /// If this is null, then no radio options will be disabled.
   final List<T> disabled;
 
   /// Specifies the orientation of the elements in itemList.

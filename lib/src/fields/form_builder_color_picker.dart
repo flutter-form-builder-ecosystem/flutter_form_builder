@@ -77,6 +77,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     ValueTransformer<Color> valueTransformer,
     ValueChanged<Color> onChanged,
     FormFieldSetter<Color> onSaved,
+    bool saveValue = true,
     VoidCallback onReset,
     this.controller,
     InputDecoration decoration = const InputDecoration(),
@@ -117,7 +118,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -147,7 +148,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                     ),
                   ),
               enabled: enabled,
-              readOnly: state.readOnly,
+              readOnly: readOnly,
               controller: state._effectiveController,
               focusNode: state.effectiveFocusNode,
               textAlign: textAlign,
@@ -210,7 +211,7 @@ class _FormBuilderColorPickerFieldState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus && !readOnly) {
+    if (effectiveFocusNode.hasFocus && widget.enabled) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
       final selected = await showDialog<bool>(
