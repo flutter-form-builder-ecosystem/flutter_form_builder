@@ -86,7 +86,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     @required String name,
     FormFieldValidator<bool> validator,
     bool initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<bool> onChanged,
     ValueTransformer<bool> valueTransformer,
@@ -115,7 +115,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -132,12 +132,12 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
                 contentPadding: contentPadding,
                 title: title,
                 value: state.value,
-                onChanged: state.readOnly
-                    ? null
-                    : (val) {
+                onChanged: enabled
+                    ? (val) {
                         state.requestFocus();
                         field.didChange(val);
-                      },
+                      }
+                    : null,
                 activeColor: activeColor,
                 activeThumbImage: activeThumbImage,
                 activeTrackColor: activeTrackColor,

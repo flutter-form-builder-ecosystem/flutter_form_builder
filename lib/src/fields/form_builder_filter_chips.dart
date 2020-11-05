@@ -38,7 +38,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     @required String name,
     FormFieldValidator<List<T>> validator,
     List<T> initialValue = const [],
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<T>> onChanged,
     ValueTransformer<List<T>> valueTransformer,
@@ -82,7 +82,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -107,12 +107,11 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                     FilterChip(
                       label: option,
                       selected: field.value.contains(option.value),
-                      onSelected: (state.readOnly ||
-                              (maxChips != null &&
-                                  (field.value.length >= maxChips &&
-                                      !field.value.contains(option.value))))
-                          ? null
-                          : (selected) {
+                      onSelected: enabled &&
+                              (null == maxChips ||
+                                  field.value.length < maxChips ||
+                                  field.value.contains(option.value))
+                          ? (selected) {
                               final currentValue = [...field.value];
                               if (selected) {
                                 currentValue.add(option.value);
@@ -121,7 +120,8 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                               }
                               state.requestFocus();
                               field.didChange(currentValue);
-                            },
+                            }
+                          : null,
                       selectedColor: selectedColor,
                       disabledColor: disabledColor,
                       backgroundColor: backgroundColor,

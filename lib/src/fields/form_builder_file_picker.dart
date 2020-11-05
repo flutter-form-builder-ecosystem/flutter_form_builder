@@ -47,7 +47,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
     @required String name,
     FormFieldValidator<List<PlatformFile>> validator,
     List<PlatformFile> initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<PlatformFile>> onChanged,
     ValueTransformer<List<PlatformFile>> valueTransformer,
@@ -72,7 +72,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -93,11 +93,11 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
                         Text('${state._files.length} / $maxFiles'),
                       InkWell(
                         child: selector,
-                        onTap: (state.readOnly ||
-                                (state._remainingItemCount != null &&
-                                    state._remainingItemCount <= 0))
-                            ? null
-                            : () => state.pickFiles(field),
+                        onTap: enabled &&
+                                (null == state._remainingItemCount ||
+                                    state._remainingItemCount > 0)
+                            ? () => state.pickFiles(field)
+                            : null,
                       ),
                     ],
                   ),
@@ -219,7 +219,7 @@ class _FormBuilderFilePickerState
                       width: double.infinity,
                       color: Colors.white.withOpacity(.8),
                     ),
-                    if (!readOnly)
+                    if (widget.enabled)
                       Positioned(
                         top: 0,
                         right: 0,

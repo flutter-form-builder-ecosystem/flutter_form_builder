@@ -29,10 +29,6 @@ class FormBuilder extends StatefulWidget {
   /// {@macro flutter.widgets.child}
   final Widget child;
 
-  /// Whether the field value can be changed. Defaults to false.
-  /// If true, all form fields will not accept user input.
-  final bool readOnly;
-
   /// Used to enable/disable form fields auto validation and update their error
   /// text.
   ///
@@ -46,23 +42,13 @@ class FormBuilder extends StatefulWidget {
   /// initialValue set.
   final Map<String, dynamic> initialValue;
 
-  /// Whether the form should ignore submitting values from readOnly fields.
-  /// This behavior is common in HTML forms where readonly values are not
-  /// submitted when the form is submitted.
-  ///
-  /// If true, in the final form value, there will be no values for readOnly
-  /// fields
-  final bool skipReadOnly;
-
   const FormBuilder({
     Key key,
     @required this.child,
-    this.readOnly = false,
     this.onChanged,
     this.autovalidateMode,
     this.onWillPop,
     this.initialValue = const {},
-    this.skipReadOnly = false,
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>
@@ -84,8 +70,6 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, dynamic> get initialValue => widget.initialValue;
 
   Map<String, FormBuilderFieldState> get fields => _fields;
-
-  bool get readOnly => widget.readOnly;
 
   @override
   void initState() {

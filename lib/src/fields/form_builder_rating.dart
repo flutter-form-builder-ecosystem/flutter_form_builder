@@ -38,7 +38,7 @@ class FormBuilderRating extends FormBuilderField<double> {
     @required String name,
     FormFieldValidator<double> validator,
     double initialValue = 1.0,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<double> onChanged,
     ValueTransformer<double> valueTransformer,
@@ -63,7 +63,7 @@ class FormBuilderRating extends FormBuilderField<double> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -71,48 +71,43 @@ class FormBuilderRating extends FormBuilderField<double> {
           decoration: decoration,
           builder: (FormFieldState<double> field) {
             final _FormBuilderRateState state = field;
+            final widget = state.widget;
 
             return InputDecorator(
               decoration: state.decoration(),
-              child: _buildRatingBar(state),
+              child: enabled
+                  ? RatingBar(
+                      key: ObjectKey(state.value),
+                      initialRating: state.value?.toDouble(),
+                      maxRating: widget.max.toInt(),
+                      filledIcon: widget.icon,
+                      filledColor: widget.filledColor,
+                      emptyIcon: widget.emptyIcon,
+                      emptyColor: widget.emptyColor,
+                      isHalfAllowed: widget.isHalfAllowed,
+                      halfFilledIcon: widget.halfFilledIcon,
+                      halfFilledColor: widget.halfFilledColor,
+                      size: widget.iconSize,
+                      onRatingChanged: (val) {
+                        state.requestFocus();
+                        state.didChange(val);
+                      },
+                    )
+                  : RatingBar.readOnly(
+                      initialRating: state.value?.toDouble(),
+                      maxRating: widget.max.toInt(),
+                      filledIcon: widget.icon,
+                      filledColor: widget.filledColor,
+                      emptyIcon: widget.emptyIcon,
+                      emptyColor: widget.emptyColor,
+                      isHalfAllowed: widget.isHalfAllowed,
+                      halfFilledIcon: widget.halfFilledIcon,
+                      halfFilledColor: widget.halfFilledColor,
+                      size: widget.iconSize,
+                    ),
             );
           },
         );
-
-  static Widget _buildRatingBar(_FormBuilderRateState field) {
-    if (field.readOnly) {
-      return RatingBar.readOnly(
-        initialRating: field.value?.toDouble(),
-        maxRating: field.widget.max.toInt(),
-        filledIcon: field.widget.icon,
-        filledColor: field.widget.filledColor,
-        emptyIcon: field.widget.emptyIcon,
-        emptyColor: field.widget.emptyColor,
-        isHalfAllowed: field.widget.isHalfAllowed,
-        halfFilledIcon: field.widget.halfFilledIcon,
-        halfFilledColor: field.widget.halfFilledColor,
-        size: field.widget.iconSize,
-      );
-    }
-
-    return RatingBar(
-      key: ObjectKey(field.value),
-      initialRating: field.value?.toDouble(),
-      maxRating: field.widget.max.toInt(),
-      filledIcon: field.widget.icon,
-      filledColor: field.widget.filledColor,
-      emptyIcon: field.widget.emptyIcon,
-      emptyColor: field.widget.emptyColor,
-      isHalfAllowed: field.widget.isHalfAllowed,
-      halfFilledIcon: field.widget.halfFilledIcon,
-      halfFilledColor: field.widget.halfFilledColor,
-      size: field.widget.iconSize,
-      onRatingChanged: (val) {
-        field.requestFocus();
-        field.didChange(val);
-      },
-    );
-  }
 
   @override
   _FormBuilderRateState createState() => _FormBuilderRateState();

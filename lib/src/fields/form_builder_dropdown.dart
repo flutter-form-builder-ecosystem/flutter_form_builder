@@ -185,7 +185,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     @required String name,
     FormFieldValidator<T> validator,
     T initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
     ValueTransformer<T> valueTransformer,
@@ -220,7 +220,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -262,9 +262,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         icon: icon,
                         iconDisabledColor: iconDisabledColor,
                         iconEnabledColor: iconEnabledColor,
-                        onChanged: (state.readOnly || !enabled)
-                            ? null
-                            : (value) => _changeValue<T>(field, value),
+                        onChanged: enabled
+                            ? (value) => _changeValue<T>(field, value)
+                            : null,
                         onTap: onTap,
                         focusNode: state.effectiveFocusNode,
                         autofocus: autofocus,
@@ -275,7 +275,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                       ),
                     ),
                   ),
-                  if (allowClear && !readOnly && field.value != null) ...[
+                  if (allowClear && enabled && field.value != null) ...[
                     const VerticalDivider(),
                     InkWell(
                       child: clearIcon,

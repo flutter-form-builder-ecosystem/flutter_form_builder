@@ -133,7 +133,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
     @required String name,
     FormFieldValidator<double> validator,
     @required double initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<double> onChanged,
     ValueTransformer<double> valueTransformer,
@@ -165,7 +165,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -192,12 +192,12 @@ class FormBuilderSlider extends FormBuilderField<double> {
                       onChangeStart: onChangeStart,
                       label: label,
                       semanticFormatterCallback: semanticFormatterCallback,
-                      onChanged: state.readOnly
-                          ? null
-                          : (value) {
+                      onChanged: enabled
+                          ? (value) {
                               state.requestFocus();
                               field.didChange(value);
-                            },
+                            }
+                          : null,
                       autofocus: autofocus,
                       mouseCursor: mouseCursor,
                       focusNode: state.effectiveFocusNode,

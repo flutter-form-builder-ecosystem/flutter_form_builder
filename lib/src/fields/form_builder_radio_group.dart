@@ -29,7 +29,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     @required String name,
     FormFieldValidator<T> validator,
     T initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
     ValueTransformer<T> valueTransformer,
@@ -62,7 +62,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -82,9 +82,8 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                   state.requestFocus();
                   state.didChange(val);
                 },
-                disabled: state.readOnly
-                    ? options.map((e) => e.value).toList()
-                    : disabled,
+                disabled:
+                    enabled ? disabled : options.map((e) => e.value).toList(),
                 activeColor: activeColor,
                 focusColor: focusColor,
                 materialTapTargetSize: materialTapTargetSize,

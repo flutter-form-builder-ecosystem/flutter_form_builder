@@ -41,7 +41,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
     @required String name,
     FormFieldValidator<T> validator,
     T initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
     ValueTransformer<T> valueTransformer,
@@ -63,7 +63,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -78,15 +78,15 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: CupertinoSegmentedControl<T>(
-                  borderColor: state.readOnly
-                      ? theme.disabledColor
-                      : borderColor ?? theme.primaryColor,
-                  selectedColor: state.readOnly
-                      ? theme.disabledColor
-                      : selectedColor ?? theme.primaryColor,
-                  pressedColor: state.readOnly
-                      ? theme.disabledColor
-                      : pressedColor ?? theme.primaryColor,
+                  borderColor: enabled
+                      ? borderColor ?? theme.primaryColor
+                      : theme.disabledColor,
+                  selectedColor: enabled
+                      ? selectedColor ?? theme.primaryColor
+                      : theme.disabledColor,
+                  pressedColor: enabled
+                      ? pressedColor ?? theme.primaryColor
+                      : theme.disabledColor,
                   groupValue: state.value,
                   children: <T, Widget>{
                     for (final option in options)
@@ -99,10 +99,10 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                   unselectedColor: unselectedColor,
                   onValueChanged: (value) {
                     state.requestFocus();
-                    if (state.readOnly) {
-                      field.reset();
-                    } else {
+                    if (enabled) {
                       field.didChange(value);
+                    } else {
+                      field.reset();
                     }
                   },
                 ),

@@ -58,7 +58,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
     @required String name,
     FormFieldValidator validator,
     String initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<String> onChanged,
     ValueTransformer<String> valueTransformer,
@@ -116,7 +116,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -130,16 +130,16 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
               child: Row(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: state.readOnly
-                        ? null
-                        : () {
+                    onTap: enabled
+                        ? () {
                             state.requestFocus();
                             if (isCupertinoPicker) {
                               state._openCupertinoCountryPicker();
                             } else {
                               state._openCountryPickerDialog();
                             }
-                          },
+                          }
+                        : null,
                     child: Row(
                       children: <Widget>[
                         const Icon(Icons.arrow_drop_down),
@@ -160,7 +160,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                   ),
                   Expanded(
                     child: TextField(
-                      enabled: !state.readOnly,
+                      enabled: enabled,
                       style: style,
                       focusNode: state.effectiveFocusNode,
                       decoration: InputDecoration(
@@ -195,7 +195,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                       textDirection: textDirection,
                       textInputAction: textInputAction,
                       strutStyle: strutStyle,
-                      readOnly: state.readOnly,
+                      //readOnly: state.readOnly, -- Does this need to be exposed?
                       expands: expands,
                       minLines: minLines,
                       showCursor: showCursor,

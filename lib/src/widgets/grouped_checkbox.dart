@@ -9,9 +9,8 @@ class GroupedCheckbox<T> extends StatefulWidget {
   /// Every element must match an item from itemList.
   final List<T> value;
 
-  /// Specifies which boxes should be disabled.
-  /// If this is non-null, no boxes will be disabled.
-  /// The strings passed to this must match the labels.
+  /// Specifies which checkbox option values should be disabled.
+  /// If this is null, then no checkbox options will be disabled.
   final List<T> disabled;
 
   /// Specifies the orientation of the elements in itemList.

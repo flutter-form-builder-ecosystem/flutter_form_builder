@@ -53,7 +53,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
     @required String name,
     FormFieldValidator<List<DateTime>> validator,
     List<DateTime> initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<DateTime>> onChanged,
     ValueTransformer<List<DateTime>> valueTransformer,
@@ -122,7 +122,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -133,11 +133,11 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
             final FormBuilderDateRangePickerState state = field;
 
             return TextField(
-              enabled: !state.readOnly,
+              enabled: enabled,
               style: style,
-              focusNode: state.readOnly
-                  ? AlwaysDisabledFocusNode()
-                  : state.effectiveFocusNode,
+              focusNode: enabled
+                  ? state.effectiveFocusNode
+                  : AlwaysDisabledFocusNode(),
               decoration: state.decoration(),
               // initialValue: "${_initialValue ?? ''}",
               maxLines: maxLines,

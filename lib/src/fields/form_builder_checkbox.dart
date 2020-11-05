@@ -70,7 +70,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     @required String name,
     FormFieldValidator<bool> validator,
     bool initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<bool> onChanged,
     ValueTransformer<bool> valueTransformer,
@@ -96,7 +96,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -114,12 +114,12 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 title: title,
                 subtitle: subtitle,
                 value: state.value,
-                onChanged: state.readOnly
-                    ? null
-                    : (val) {
+                onChanged: enabled
+                    ? (val) {
                         state.requestFocus();
                         state.didChange(val);
-                      },
+                      }
+                    : null,
                 checkColor: checkColor,
                 activeColor: activeColor,
                 secondary: secondary,

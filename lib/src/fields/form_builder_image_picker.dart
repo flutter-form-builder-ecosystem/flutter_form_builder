@@ -44,7 +44,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     @required String name,
     FormFieldValidator validator,
     List<dynamic> initialValue,
-    bool readOnly = false,
+    bool saveValue = true,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<dynamic>> onChanged,
     ValueTransformer<List<dynamic>> valueTransformer,
@@ -77,7 +77,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
           validator: validator,
           valueTransformer: valueTransformer,
           onChanged: onChanged,
-          readOnly: readOnly,
+          saveValue: saveValue,
           autovalidateMode: autovalidateMode,
           onSaved: onSaved,
           enabled: enabled,
@@ -112,7 +112,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                       ? Image.network(item, fit: BoxFit.cover)
                                       : Image.file(item, fit: BoxFit.cover),
                             ),
-                            if (!state.readOnly)
+                            if (enabled)
                               InkWell(
                                 onTap: () {
                                   state.requestFocus();
@@ -138,7 +138,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                           ],
                         );
                       }),
-                    if (!state.readOnly && !state.hasMaxImages)
+                    if (enabled && !state.hasMaxImages)
                       GestureDetector(
                         child: placeholderImage != null
                             ? Image(
@@ -149,13 +149,15 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                             : Container(
                                 width: previewWidth,
                                 height: previewHeight,
-                                child: Icon(Icons.camera_enhance,
-                                    color: state.readOnly
-                                        ? disabledColor
-                                        : iconColor ?? primaryColor),
-                                color: (state.readOnly
-                                        ? disabledColor
-                                        : iconColor ?? primaryColor)
+                                child: Icon(
+                                  Icons.camera_enhance,
+                                  color: enabled
+                                      ? iconColor ?? primaryColor
+                                      : disabledColor,
+                                ),
+                                color: (enabled
+                                        ? iconColor ?? primaryColor
+                                        : disabledColor)
                                     .withAlpha(50)),
                         onTap: () {
                           showModalBottomSheet(
