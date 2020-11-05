@@ -221,7 +221,7 @@ void main() {
   testWidgets(
       'FormBuilderValidators.compose',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.compose([
+            final validator = FormBuilderValidators.compose<String>([
               FormBuilderValidators.required(context),
               FormBuilderValidators.numeric(context),
               FormBuilderValidators.minLength(context, 2),
