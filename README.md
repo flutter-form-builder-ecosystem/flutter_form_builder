@@ -28,11 +28,11 @@ Breaking changes:
 [FormFieldValidator]() object. To compose multiple `FormFieldValidator`s together, use
 `FormBuilderValidators.compose()` which takes a list of `FormFieldValidator` objects.
 * Due to its limited use, `FormBuilderCountryPicker` was removed from the package. Its functionality could be achieved with use of `FormBuilderSearchableDropdown` which is more extensible.
-* `FormBuilderCustomField` functionality is now achievable using `FormBuilderField` class which is the base class from which all fields are built in v4. Follow [these instrictions](#building-your-own-custom-field) to construct your own custom form field using `FormBuilderField`
+* `FormBuilderCustomField` functionality is now achieved using `FormBuilderField` class which is the base class from which all fields are built in v4. Follow [these instructions](#building-your-own-custom-field) to construct your own custom form field using `FormBuilderField`.
 
 ### Example
 ```dart
-final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+final _formKey = GlobalKey<FormBuilderState>();
 ```
 **Note:** Avoid defining the GlobalKey inside your build method because this will create a new GlobalKey on every build cycle bringing about some erratic behavior.
 
