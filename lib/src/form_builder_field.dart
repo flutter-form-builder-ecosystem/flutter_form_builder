@@ -52,7 +52,7 @@ abstract class FormBuilderField<T> extends FormField<T> {
     T initialValue,
     AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
     bool enabled = true,
-    FormFieldValidator validator,
+    FormFieldValidator<T> validator,
     @required FormFieldBuilder<T> builder,
     @required this.name,
     this.valueTransformer,

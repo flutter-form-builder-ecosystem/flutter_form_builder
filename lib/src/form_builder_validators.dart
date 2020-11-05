@@ -6,7 +6,8 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that is composed of other [FormFieldValidator]s.
   /// Each validator is run against the [FormField] value and if any returns a
   /// non-null result validation fails, otherwise, validation passes
-  static FormFieldValidator compose(List<FormFieldValidator> validators) {
+  static FormFieldValidator<T> compose<T>(
+      List<FormFieldValidator<T>> validators) {
     return (valueCandidate) {
       for (var validator in validators) {
         final validatorResult = validator.call(valueCandidate);
@@ -38,19 +39,15 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value be true.
   /// Commonly used for required checkboxes.
-  static FormFieldValidator equal(
+  static FormFieldValidator<T> equal<T>(
     BuildContext context,
-    dynamic value, {
+    T value, {
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (valueCandidate != value) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).equalErrorText(value);
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) => valueCandidate != value
+          ? errorText ??
+              FormBuilderLocalizations.of(context).equalErrorText(value)
+          : null;
 
   // TODO(any): implement inclusive in l10n
   /// [FormFieldValidator] that requires the field's value to be greater than
@@ -104,7 +101,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the length of the field's value to be
   /// greater than or equal to the provided minimum length.
-  static FormFieldValidator minLength(
+  static FormFieldValidator<String> minLength(
     BuildContext context,
     num minLength, {
     bool allowEmpty = false,
@@ -112,56 +109,41 @@ class FormBuilderValidators {
   }) {
     assert(minLength > 0);
     return (valueCandidate) {
-      assert(null == valueCandidate || valueCandidate is String);
       final valueLength = valueCandidate?.length ?? 0;
-      if (valueLength < minLength && (!allowEmpty || valueLength > 0)) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).minLengthErrorText(minLength);
-      }
-      return null;
+      return valueLength < minLength && (!allowEmpty || valueLength > 0)
+          ? errorText ??
+              FormBuilderLocalizations.of(context).minLengthErrorText(minLength)
+          : null;
     };
   }
 
   /// [FormFieldValidator] that requires the length of the field's value to be
   /// less than or equal to the provided maximum length.
-  static FormFieldValidator maxLength(
+  static FormFieldValidator<String> maxLength(
     BuildContext context,
     num maxLength, {
     String errorText,
   }) {
     assert(maxLength > 0);
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.length > maxLength) {
-          return errorText ??
-              FormBuilderLocalizations.of(context)
-                  .maxLengthErrorText(maxLength);
-        }
-      }
-      return null;
-    };
+    return (valueCandidate) => null != valueCandidate &&
+            valueCandidate.length > maxLength
+        ? errorText ??
+            FormBuilderLocalizations.of(context).maxLengthErrorText(maxLength)
+        : null;
   }
 
   /// [FormFieldValidator] that requires the field's value to be a valid email address.
-  static FormFieldValidator email(
+  static FormFieldValidator<String> email(
     BuildContext context, {
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty && !isEmail(valueCandidate.trim())) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).emailErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) =>
+          true == valueCandidate?.isNotEmpty && !isEmail(valueCandidate.trim())
+              ? errorText ?? FormBuilderLocalizations.of(context).emailErrorText
+              : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid url.
-  static FormFieldValidator url(
+  static FormFieldValidator<String> url(
     BuildContext context, {
     String errorText,
     List<String> protocols = const ['http', 'https', 'ftp'],
@@ -170,130 +152,81 @@ class FormBuilderValidators {
     bool allowUnderscore = false,
     List<String> hostWhitelist = const [],
     List<String> hostBlacklist = const [],
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty &&
-            !isURL(valueCandidate,
-                protocols: protocols,
-                requireTld: requireTld,
-                requireProtocol: requireProtocol,
-                allowUnderscore: allowUnderscore,
-                hostWhitelist: hostWhitelist,
-                hostBlacklist: hostBlacklist)) {
-          return errorText ?? FormBuilderLocalizations.of(context).urlErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) => true == valueCandidate?.isNotEmpty &&
+              !isURL(valueCandidate,
+                  protocols: protocols,
+                  requireTld: requireTld,
+                  requireProtocol: requireProtocol,
+                  allowUnderscore: allowUnderscore,
+                  hostWhitelist: hostWhitelist,
+                  hostBlacklist: hostBlacklist)
+          ? errorText ?? FormBuilderLocalizations.of(context).urlErrorText
+          : null;
 
   /// [FormFieldValidator] that requires the field's value to match the provided regex pattern.
-  static FormFieldValidator match(
+  static FormFieldValidator<String> match(
     BuildContext context,
     Pattern pattern, {
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty &&
-            !RegExp(pattern).hasMatch(valueCandidate)) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).matchErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) => true == valueCandidate?.isNotEmpty &&
+              !RegExp(pattern).hasMatch(valueCandidate)
+          ? errorText ?? FormBuilderLocalizations.of(context).matchErrorText
+          : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid number.
-  static FormFieldValidator numeric(
+  static FormFieldValidator<String> numeric(
     BuildContext context, {
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty && num.tryParse(valueCandidate) == null) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).numericErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) => true == valueCandidate?.isNotEmpty &&
+              null == num.tryParse(valueCandidate)
+          ? errorText ?? FormBuilderLocalizations.of(context).numericErrorText
+          : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid integer.
-  static FormFieldValidator integer(
+  static FormFieldValidator<String> integer(
     BuildContext context, {
     String errorText,
     int radix,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty &&
-            int.tryParse(valueCandidate, radix: radix) == null) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).numericErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) => true == valueCandidate?.isNotEmpty &&
+              null == int.tryParse(valueCandidate, radix: radix)
+          ? errorText ?? FormBuilderLocalizations.of(context).numericErrorText
+          : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
-  static FormFieldValidator creditCard(
+  static FormFieldValidator<String> creditCard(
     BuildContext context, {
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty && !isCreditCard(valueCandidate)) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).creditCardErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) =>
+          true == valueCandidate?.isNotEmpty && !isCreditCard(valueCandidate)
+              ? errorText ??
+                  FormBuilderLocalizations.of(context).creditCardErrorText
+              : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid IP address.
-  /// * [version] is a String or an `int`.
-  // ignore: non_constant_identifier_names
-  static FormFieldValidator IP(
+  /// * [version] is a `String` or an `int`.
+  static FormFieldValidator<String> IP(
     BuildContext context, {
     dynamic version,
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty && !isIP(valueCandidate, version)) {
-          return errorText ?? FormBuilderLocalizations.of(context).ipErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) =>
+          true == valueCandidate?.isNotEmpty && !isIP(valueCandidate, version)
+              ? errorText ?? FormBuilderLocalizations.of(context).ipErrorText
+              : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid date string.
-  static FormFieldValidator dateString(
+  static FormFieldValidator<String> dateString(
     BuildContext context, {
     String errorText,
-  }) {
-    return (valueCandidate) {
-      if (null != valueCandidate) {
-        assert(valueCandidate is String);
-        if (valueCandidate.isNotEmpty && !isDate(valueCandidate)) {
-          return errorText ??
-              FormBuilderLocalizations.of(context).dateStringErrorText;
-        }
-      }
-      return null;
-    };
-  }
+  }) =>
+      (valueCandidate) =>
+          true == valueCandidate?.isNotEmpty && !isDate(valueCandidate)
+              ? errorText ??
+                  FormBuilderLocalizations.of(context).dateStringErrorText
+              : null;
 }

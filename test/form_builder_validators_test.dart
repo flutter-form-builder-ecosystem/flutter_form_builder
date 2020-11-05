@@ -45,6 +45,17 @@ void main() {
           }));
 
   testWidgets(
+      'FormBuilderValidators.equal',
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator = FormBuilderValidators.equal(context, true);
+            // Pass
+            expect(validator(true), isNull);
+            // Fail
+            expect(validator(null), isNotNull);
+            expect(validator(false), isNotNull);
+          }));
+
+  testWidgets(
       'FormBuilderValidators.maxLength',
       (WidgetTester tester) => testValidations(tester, (context) {
             final validator = FormBuilderValidators.maxLength(context, 5);
@@ -221,7 +232,7 @@ void main() {
   testWidgets(
       'FormBuilderValidators.compose',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.compose([
+            final validator = FormBuilderValidators.compose<String>([
               FormBuilderValidators.required(context),
               FormBuilderValidators.numeric(context),
               FormBuilderValidators.minLength(context, 2),
