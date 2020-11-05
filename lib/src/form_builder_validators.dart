@@ -39,9 +39,9 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value be true.
   /// Commonly used for required checkboxes.
-  static FormFieldValidator equal(
+  static FormFieldValidator<T> equal<T>(
     BuildContext context,
-    dynamic value, {
+    T value, {
     String errorText,
   }) =>
       (valueCandidate) => valueCandidate != value
