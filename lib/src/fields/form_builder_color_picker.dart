@@ -127,28 +127,26 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
             final _FormBuilderColorPickerFieldState state = field;
             return TextField(
               style: style,
-              decoration: decoration.copyWith(
-                errorText: decoration?.errorText ?? field.errorText,
-                enabled: !state.readOnly,
-                suffixIcon: LayoutBuilder(
-                  key: ObjectKey(state.value),
-                  builder: (context, constraints) {
-                    return Container(
+              decoration: state.decoration().copyWith(
+                    suffixIcon: LayoutBuilder(
                       key: ObjectKey(state.value),
-                      height: constraints.minHeight,
-                      width: constraints.minHeight,
-                      decoration: BoxDecoration(
-                        color: state.value,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              enabled: !state.readOnly,
+                      builder: (context, constraints) {
+                        return Container(
+                          key: ObjectKey(state.value),
+                          height: constraints.minHeight,
+                          width: constraints.minHeight,
+                          decoration: BoxDecoration(
+                            color: state.value,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+              enabled: enabled,
               readOnly: state.readOnly,
               controller: state._effectiveController,
               focusNode: state.effectiveFocusNode,

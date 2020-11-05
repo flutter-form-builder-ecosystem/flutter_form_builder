@@ -74,10 +74,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
             final theme = Theme.of(state.context);
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: CupertinoSegmentedControl<T>(

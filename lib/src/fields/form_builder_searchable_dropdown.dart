@@ -162,9 +162,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
             final _FormBuilderSearchableDropdownState<T> state = field;
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: dropdown_search.DropdownSearch<T>(
                 items: items,
                 maxHeight: 300,

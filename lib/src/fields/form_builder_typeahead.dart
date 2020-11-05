@@ -324,10 +324,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                       )
                     : textFieldConfiguration.style,
                 focusNode: state.effectiveFocusNode,
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: decoration?.errorText ?? field.errorText,
-                ),
+                decoration: state.decoration(),
               ),
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,

@@ -175,10 +175,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
             final _FormBuilderSliderState state = field;
             final _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Container(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Column(

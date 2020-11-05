@@ -91,10 +91,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
             final primaryColor = theme.primaryColor;
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Container(
                 height: previewHeight,
                 child: ListView(

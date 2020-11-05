@@ -83,10 +83,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
             final _FormBuilderFilePickerState state = field;
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Column(
                 children: <Widget>[
                   Row(

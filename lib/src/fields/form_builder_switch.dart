@@ -125,9 +125,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
             final _FormBuilderSwitchState state = field;
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: SwitchListTile(
                 dense: true,
                 isThreeLine: false,

@@ -73,10 +73,7 @@ class FormBuilderRating extends FormBuilderField<double> {
             final _FormBuilderRateState state = field;
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: _buildRatingBar(state),
             );
           },

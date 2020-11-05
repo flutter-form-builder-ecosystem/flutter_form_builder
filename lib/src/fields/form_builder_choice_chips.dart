@@ -293,10 +293,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
               final _FormBuilderChoiceChipState<T> state = field;
 
               return InputDecorator(
-                decoration: decoration.copyWith(
-                  enabled: !state.readOnly,
-                  errorText: decoration?.errorText ?? field.errorText,
-                ),
+                decoration: state.decoration(),
                 child: Wrap(
                   direction: direction,
                   alignment: alignment,

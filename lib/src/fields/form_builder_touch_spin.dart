@@ -87,10 +87,7 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
             final theme = Theme.of(state.context);
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: TouchSpin(
                 key: ObjectKey(state.value),
                 min: min,

@@ -126,10 +126,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
             final _FormBuilderPhoneFieldState state = field;
 
             return InputDecorator(
-              decoration: decoration.copyWith(
-                enabled: !state.readOnly,
-                errorText: decoration?.errorText ?? field.errorText,
-              ),
+              decoration: state.decoration(),
               child: Row(
                 children: <Widget>[
                   GestureDetector(
