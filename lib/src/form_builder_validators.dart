@@ -139,7 +139,7 @@ class FormBuilderValidators {
   }) =>
       (valueCandidate) =>
           true == valueCandidate?.isNotEmpty && !isEmail(valueCandidate.trim())
-              ? errorText ?? FormBuilderLocalizations.of(context).matchErrorText
+              ? errorText ?? FormBuilderLocalizations.of(context).emailErrorText
               : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid url.
