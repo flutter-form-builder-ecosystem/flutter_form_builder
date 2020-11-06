@@ -113,6 +113,25 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
 
 class _FormBuilderFilePickerState
     extends FormBuilderFieldState<FormBuilderFilePicker, List<PlatformFile>> {
+  /// Image File Extensions.
+  ///
+  /// Note that images may be previewed.
+  ///
+  /// This list is inspired by [Image](https://api.flutter.dev/flutter/widgets/Image-class.html)
+  /// and [instantiateImageCodec](https://api.flutter.dev/flutter/dart-ui/instantiateImageCodec.html):
+  /// "The following image formats are supported: JPEG, PNG, GIF,
+  /// Animated GIF, WebP, Animated WebP, BMP, and WBMP."
+  static const imageFileExts = [
+    'gif',
+    'jpg',
+    'jpeg',
+    'png',
+    'webp',
+    'bmp',
+    'dib',
+    'wbmp',
+  ];
+
   List<PlatformFile> _files;
 
   int get _remainingItemCount =>
@@ -124,7 +143,7 @@ class _FormBuilderFilePickerState
     super.initState();
   }
 
-  Future<void> pickFiles(FormFieldState field) async {
+  Future<void> pickFiles(FormFieldState<List<PlatformFile>> field) async {
     FilePickerResult resultList;
 
     try {
@@ -156,7 +175,7 @@ class _FormBuilderFilePickerState
     }
   }
 
-  void removeFileAtIndex(int index, FormFieldState field) {
+  void removeFileAtIndex(int index, FormFieldState<List<PlatformFile>> field) {
     setState(() {
       _files.removeAt(index);
     });
@@ -164,7 +183,8 @@ class _FormBuilderFilePickerState
     widget.onChanged?.call(_files);
   }
 
-  Widget defaultFileViewer(List<PlatformFile> files, FormFieldState field) {
+  Widget defaultFileViewer(
+      List<PlatformFile> files, FormFieldState<List<PlatformFile>> field) {
     final theme = Theme.of(context);
 
     return LayoutBuilder(
@@ -191,7 +211,7 @@ class _FormBuilderFilePickerState
                   children: <Widget>[
                     Container(
                       alignment: Alignment.center,
-                      child: (['jpg', 'jpeg', 'png'].contains(
+                      child: (imageFileExts.contains(
                                   files[index].extension.toLowerCase()) &&
                               widget.previewImages)
                           ? Image.file(File(files[index].path),
@@ -251,25 +271,20 @@ class _FormBuilderFilePickerState
   }
 
   IconData getIconData(String fileExtension) {
-    switch (fileExtension.toLowerCase()) {
-      case 'jpg':
-      case 'jpeg':
-      case 'png':
-      case 'gif':
-        return Icons.image;
-      case 'xls':
-      case 'xlsx':
-        return CommunityMaterialIcons.file_excel;
-      case 'doc':
-      case 'docx':
-        return CommunityMaterialIcons.file_word;
-      case 'pdf':
-        return CommunityMaterialIcons.file_pdf;
-      case 'txt':
-      case 'log':
-        return CommunityMaterialIcons.script_text;
-      default:
-        return Icons.insert_drive_file;
-    }
+    // Check if the file is an image first (because there is a shared variable
+    // with preview logic), and then fallback to non-image file ext lookup.
+    const nonImageFileExtIcons = {
+      'doc': CommunityMaterialIcons.file_word,
+      'docx': CommunityMaterialIcons.file_word,
+      'log': CommunityMaterialIcons.script_text,
+      'pdf': CommunityMaterialIcons.file_pdf,
+      'txt': CommunityMaterialIcons.script_text,
+      'xls': CommunityMaterialIcons.file_excel,
+      'xlsx': CommunityMaterialIcons.file_excel,
+    };
+    final lowerCaseFileExt = fileExtension.toLowerCase();
+    return imageFileExts.contains(lowerCaseFileExt)
+        ? Icons.image
+        : nonImageFileExtIcons[lowerCaseFileExt] ?? Icons.insert_drive_file;
   }
 }
