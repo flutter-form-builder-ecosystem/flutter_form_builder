@@ -125,8 +125,8 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   bool saveAndValidate() {
-    _formKey.currentState.save();
-    return _formKey.currentState.validate();
+    save();
+    return validate();
   }
 
   void reset() {
