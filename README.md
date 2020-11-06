@@ -42,7 +42,6 @@ Column(
     FormBuilder(
       key: _formKey,
       autovalidate: true,
-      // readonly: true,
       child: Column(
         children: <Widget>[
           FormBuilderFilterChip(
@@ -399,7 +398,6 @@ In order to create an input field in the form, along with the label, and any app
 | `validator` | `FormFieldValidator<T>` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
-| `saveValue` | `bool` | `true` | `No` | Determines whether the field and its value will be included in the final form value `Map` |
 The rest of the attributes will be determined by the type of Widget being used.
 
 ### Building your own custom field
