@@ -65,7 +65,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, dynamic> _value;
 
-  Map<String, dynamic> get value => {...widget.initialValue ?? {}, ..._value};
+  Map<String, dynamic> get value => Map.unmodifiable(_value);
 
   Map<String, dynamic> get initialValue => widget.initialValue;
 
