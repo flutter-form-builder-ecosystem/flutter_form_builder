@@ -31,10 +31,6 @@ abstract class FormBuilderField<T> extends FormField<T> {
   /// Called when the field value is changed.
   final ValueChanged<T> onChanged;
 
-  /// Whether the field value will be saved as part of the [FormBuilder] values.
-  /// Defaults to `true`.
-  final bool saveValue;
-
   /// The border, labels, icons, and styles used to decorate the field.
   final InputDecoration decoration;
 
@@ -58,11 +54,10 @@ abstract class FormBuilderField<T> extends FormField<T> {
     @required this.name,
     this.valueTransformer,
     this.onChanged,
-    this.saveValue = true,
     this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
-  })  : assert(null != saveValue),
+  })  : assert(null != enabled),
         super(
           key: key,
           onSaved: onSaved,
@@ -133,7 +128,7 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void save() {
     super.save();
     if (_formBuilderState != null) {
-      if (widget.saveValue) {
+      if (widget.enabled || !_formBuilderState.widget.skipDisabled) {
         _formBuilderState.setInternalFieldValue(
           widget.name,
           null != widget.valueTransformer

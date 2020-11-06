@@ -42,6 +42,15 @@ class FormBuilder extends StatefulWidget {
   /// initialValue set.
   final Map<String, dynamic> initialValue;
 
+  /// Whether the form should ignore submitting values from fields where
+  /// `enabled` is `false`.
+  /// This behavior is common in HTML forms where _readonly_ values are not
+  /// submitted when the form is submitted.
+  ///
+  /// When `true`, the final form value will not contain disabled fields.
+  /// Default is `false`.
+  final bool skipDisabled;
+
   const FormBuilder({
     Key key,
     @required this.child,
@@ -49,6 +58,7 @@ class FormBuilder extends StatefulWidget {
     this.autovalidateMode,
     this.onWillPop,
     this.initialValue = const {},
+    this.skipDisabled = false,
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>

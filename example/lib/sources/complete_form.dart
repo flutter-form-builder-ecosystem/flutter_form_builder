@@ -41,13 +41,14 @@ class CompleteFormState extends State<CompleteForm> {
                 'age': '13',
                 'gender': 'Male'
               },
+              skipDisabled: true,
               child: Column(
                 children: <Widget>[
                   FormBuilderSearchableDropdown(
                     name: 'searchable_dropdown',
                     items: allCountries,
                     onChanged: _onChanged,
-                    saveValue: false,
+                    enabled: false,
                   ),
                   FormBuilderLocationField(
                     name: 'location',
@@ -57,7 +58,7 @@ class CompleteFormState extends State<CompleteForm> {
                   const SizedBox(height: 15),
                   FormBuilderFilterChip(
                     name: 'filter_chip',
-                    saveValue: false,
+                    enabled: false,
                     decoration: const InputDecoration(
                       labelText: 'Select many options',
                     ),
