@@ -345,12 +345,11 @@ class _FormBuilderDateTimePickerState
     DateTime newValue;
     switch (widget.inputType) {
       case InputType.date:
-        newValue = await _showDatePicker(context, currentValue) ?? currentValue;
+        newValue = await _showDatePicker(context, currentValue);
         break;
       case InputType.time:
         final newTime = await _showTimePicker(context, currentValue);
-        newValue =
-            newTime != null ? DateTimeField.convert(newTime) : currentValue;
+        newValue = null != newTime ? DateTimeField.convert(newTime) : null;
         break;
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
@@ -443,7 +442,7 @@ class _FormBuilderDateTimePickerState
         final newDateTime = timePickerResult ?? currentValue;
         return null != newDateTime ? TimeOfDay.fromDateTime(newDateTime) : null;
       }
-      final timePicker = showTimePicker(
+      final timePickerResult = await showTimePicker(
         context: context,
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
@@ -452,7 +451,8 @@ class _FormBuilderDateTimePickerState
             (BuildContext context, Widget child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                  alwaysUse24HourFormat: widget.alwaysUse24HourFormat,
+                ),
                 child: child,
               );
             },
@@ -463,7 +463,6 @@ class _FormBuilderDateTimePickerState
         confirmText: widget.confirmText,
         cancelText: widget.cancelText,
       );
-      final timePickerResult = await timePicker;
       return timePickerResult ??
           (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
     }
