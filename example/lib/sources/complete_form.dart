@@ -21,7 +21,7 @@ class CompleteFormState extends State<CompleteForm> {
   bool _ageHasError = false;
   bool _genderHasError = false;
 
-  final ValueChanged<dynamic> _onChanged = (dynamic val) => print(val);
+  final ValueChanged _onChanged = (val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
