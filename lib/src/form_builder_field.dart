@@ -170,10 +170,6 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     FocusScope.of(context).requestFocus(effectiveFocusNode);
   }
 
-  void patchValue(T value) {
-    didChange(value);
-  }
-
   InputDecoration decoration() => widget.decoration.copyWith(
         errorText: widget.decoration?.errorText ?? errorText,
       );
