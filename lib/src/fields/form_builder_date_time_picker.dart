@@ -236,7 +236,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
             return DateTimeField(
               initialValue: state.initialValue,
-              format: state.dateFormat,
+              format: state._dateFormat,
               validator: validator,
               onShowPicker: state.onShowPicker,
               autovalidate: autovalidateMode != AutovalidateMode.disabled &&
@@ -273,6 +273,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               strutStyle: strutStyle,
               textCapitalization: textCapitalization,
               textInputAction: textInputAction,
+              onChanged: (val) => state.didChange(val),
             );
           },
         );
@@ -288,17 +289,16 @@ class _FormBuilderDateTimePickerState
     extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
   TextEditingController _textFieldController;
 
-  // DateTime stateCurrentValue;
-
-  DateFormat get dateFormat => widget.format ?? _getDefaultDateTimeFormat();
+  DateFormat _dateFormat;
 
   @override
   void initState() {
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
+    _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
     final initVal = initialValue;
     _textFieldController.text =
-        initVal == null ? '' : dateFormat.format(initVal);
+        initVal == null ? '' : _dateFormat.format(initVal);
   }
 
   @override
@@ -318,25 +318,24 @@ class _FormBuilderDateTimePickerState
   }*/
 
   DateFormat _getDefaultDateTimeFormat() {
-    final appLocale = widget.locale ?? Localizations.localeOf(context);
-    final appLocaleCode = appLocale.toString();
+    final languageCode = widget.locale?.languageCode;
     switch (widget.inputType) {
       case InputType.time:
-        return DateFormat.Hm(appLocaleCode);
+        return DateFormat.Hm(languageCode);
       case InputType.date:
-        return DateFormat.yMd(appLocaleCode);
+        return DateFormat.yMd(languageCode);
       case InputType.both:
       default:
-        return DateFormat.yMd(appLocaleCode).add_Hms();
+        return DateFormat.yMd(languageCode).add_Hms();
     }
   }
 
   LocaleType _localeType() {
-    final locale = widget.locale ?? Localizations.localeOf(context);
-    final languageCode = locale.languageCode;
+    final shortLocaleCode = widget.locale?.languageCode ??
+        Intl.shortLocale(Intl.getCurrentLocale());
     return LocaleType.values.firstWhere(
-      (_) => languageCode == describeEnum(_),
-      orElse: () => null,
+      (_) => shortLocaleCode == describeEnum(_),
+      orElse: () => LocaleType.en,
     );
   }
 
@@ -346,12 +345,11 @@ class _FormBuilderDateTimePickerState
     DateTime newValue;
     switch (widget.inputType) {
       case InputType.date:
-        newValue = await _showDatePicker(context, currentValue) ?? currentValue;
+        newValue = await _showDatePicker(context, currentValue);
         break;
       case InputType.time:
         final newTime = await _showTimePicker(context, currentValue);
-        newValue =
-            newTime != null ? DateTimeField.convert(newTime) : currentValue;
+        newValue = null != newTime ? DateTimeField.convert(newTime) : null;
         break;
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
@@ -421,36 +419,30 @@ class _FormBuilderDateTimePickerState
   }
 
   Future<TimeOfDay> _showTimePicker(
-      BuildContext context, DateTime currentValue) {
+      BuildContext context, DateTime currentValue) async {
     if (widget.timePicker != null) {
       return widget.timePicker(context);
     } else {
       if (widget.pickerType == PickerType.cupertino) {
-        if (widget.alwaysUse24HourFormat) {
-          return DatePicker.showTimePicker(
-            context,
-            showTitleActions: true,
-            currentTime: currentValue,
-            showSecondsColumn: false,
-            locale: _localeType(),
-          ).then(
-            (result) {
-              return TimeOfDay.fromDateTime(result ?? currentValue);
-            },
-          );
-        }
-        return DatePicker.showTime12hPicker(
-          context,
-          showTitleActions: true,
-          currentTime: currentValue,
-          locale: _localeType(),
-        ).then(
-          (result) {
-            return TimeOfDay.fromDateTime(result ?? currentValue);
-          },
-        );
+        final timePicker = widget.alwaysUse24HourFormat
+            ? DatePicker.showTimePicker(
+                context,
+                showTitleActions: true,
+                currentTime: currentValue,
+                showSecondsColumn: false,
+                locale: _localeType(),
+              )
+            : DatePicker.showTime12hPicker(
+                context,
+                showTitleActions: true,
+                currentTime: currentValue,
+                locale: _localeType(),
+              );
+        final timePickerResult = await timePicker;
+        final newDateTime = timePickerResult ?? currentValue;
+        return null != newDateTime ? TimeOfDay.fromDateTime(newDateTime) : null;
       }
-      return showTimePicker(
+      final timePickerResult = await showTimePicker(
         context: context,
         initialTime: currentValue != null
             ? TimeOfDay.fromDateTime(currentValue)
@@ -459,7 +451,8 @@ class _FormBuilderDateTimePickerState
             (BuildContext context, Widget child) {
               return MediaQuery(
                 data: MediaQuery.of(context).copyWith(
-                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
+                  alwaysUse24HourFormat: widget.alwaysUse24HourFormat,
+                ),
                 child: child,
               );
             },
@@ -469,20 +462,15 @@ class _FormBuilderDateTimePickerState
         helpText: widget.helpText,
         confirmText: widget.confirmText,
         cancelText: widget.cancelText,
-      ).then(
-        (result) {
-          return result ??
-              (currentValue != null
-                  ? TimeOfDay.fromDateTime(currentValue)
-                  : null);
-        },
       );
+      return timePickerResult ??
+          (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
     }
   }
 
   @override
-  void patchValue(DateTime val) {
-    super.patchValue(val);
-    _textFieldController.text = val == null ? '' : dateFormat.format(val);
+  void didChange(DateTime val) {
+    super.didChange(val);
+    _textFieldController.text = val == null ? '' : _dateFormat.format(val);
   }
 }
