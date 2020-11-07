@@ -190,10 +190,10 @@ class FormBuilderDateRangePickerState
 
   @override
   void initState() {
+    super.initState();
     _effectiveController =
         widget.controller ?? TextEditingController(text: _valueToText());
     effectiveFocusNode.addListener(_handleFocus);
-    super.initState();
   }
 
   @override
