@@ -139,8 +139,8 @@ class _FormBuilderFilePickerState
 
   @override
   void initState() {
-    _files = widget.initialValue ?? [];
     super.initState();
+    _files = widget.initialValue ?? [];
   }
 
   Future<void> pickFiles(FormFieldState<List<PlatformFile>> field) async {
