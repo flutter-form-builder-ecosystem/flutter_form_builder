@@ -159,6 +159,18 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     initialTime: TimeOfDay(hour: 8, minute: 0),
                     pickerType: PickerType.cupertino,
+                    //locale: Locale.fromSubtags(languageCode: 'fr'),
+                  ),
+                  FormBuilderDateTimePicker(
+                    name: 'date_es',
+                    initialValue: DateTime.now(),
+                    inputType: InputType.both,
+                    decoration: const InputDecoration(
+                      labelText: 'Hora de la cita',
+                    ),
+                    initialTime: TimeOfDay(hour: 8, minute: 0),
+                    pickerType: PickerType.cupertino,
+                    locale: Locale.fromSubtags(languageCode: 'es'),
                   ),
                   FormBuilderDateRangePicker(
                     name: 'date_range',
