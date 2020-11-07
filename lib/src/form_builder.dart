@@ -135,7 +135,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   void patchValue(Map<String, dynamic> val) {
     val.forEach((key, dynamic value) {
-      _fields[key]?.patchValue(value);
+      _fields[key]?.didChange(value);
     });
   }
 
