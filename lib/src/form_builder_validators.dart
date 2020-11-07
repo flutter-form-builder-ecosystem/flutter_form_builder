@@ -20,16 +20,15 @@ class FormBuilderValidators {
   }
 
   /// [FormFieldValidator] that requires the field have a non-empty value.
-  static FormFieldValidator required(
+  static FormFieldValidator<T> required<T>(
     BuildContext context, {
     String errorText,
   }) {
-    return (dynamic valueCandidate) {
+    return (T valueCandidate) {
       if (valueCandidate == null ||
-          ((valueCandidate is String ||
-                  valueCandidate is Iterable ||
-                  valueCandidate is Map) &&
-              valueCandidate.isEmpty as bool)) {
+          (valueCandidate is String && valueCandidate.isEmpty) ||
+          (valueCandidate is Iterable && valueCandidate.isEmpty) ||
+          (valueCandidate is Map && valueCandidate.isEmpty)) {
         return errorText ??
             FormBuilderLocalizations.of(context).requiredErrorText;
       }
@@ -52,13 +51,13 @@ class FormBuilderValidators {
   // TODO(any): implement inclusive in l10n
   /// [FormFieldValidator] that requires the field's value to be greater than
   /// (or equal) to the provided number.
-  static FormFieldValidator min(
+  static FormFieldValidator<T> min<T>(
     BuildContext context,
     num min, {
     bool inclusive = true,
     String errorText,
   }) {
-    return (dynamic valueCandidate) {
+    return (T valueCandidate) {
       if (valueCandidate != null) {
         assert(valueCandidate is num || valueCandidate is String);
         final number = valueCandidate is num
@@ -77,13 +76,13 @@ class FormBuilderValidators {
   // TODO(any): implement inclusive in l10n
   /// [FormFieldValidator] that requires the field's value to be less than
   /// (or equal) to the provided number.
-  static FormFieldValidator max(
+  static FormFieldValidator<T> max<T>(
     BuildContext context,
     num max, {
     bool inclusive = true,
     String errorText,
   }) {
-    return (dynamic valueCandidate) {
+    return (T valueCandidate) {
       if (valueCandidate != null) {
         assert(valueCandidate is num || valueCandidate is String);
         final number = valueCandidate is num

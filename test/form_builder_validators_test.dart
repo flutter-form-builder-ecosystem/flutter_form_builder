@@ -31,17 +31,53 @@ void main() {
   testWidgets(
       'FormBuilderValidators.required',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.required(context);
+            final validatorBool = FormBuilderValidators.required<bool>(context);
             // Pass
-            expect(validator(false), isNull);
-            expect(validator(0), isNull);
-            expect(validator('0'), isNull);
-            expect(validator('something long'), isNull);
-            expect(validator(DateTime.now()), isNull);
+            expect(validatorBool(false), isNull);
+            expect(validatorBool(true), isNull);
             // Fail
-            expect(validator(null), isNotNull);
-            expect(validator(''), isNotNull);
-            expect(validator(<dynamic>[]), isNotNull);
+            expect(validatorBool(null), isNotNull);
+
+            final validatorDate =
+                FormBuilderValidators.required<DateTime>(context);
+            // Pass
+            expect(validatorDate(DateTime.now()), isNull);
+            // Fail
+            expect(validatorDate(null), isNotNull);
+
+            final validatorInt = FormBuilderValidators.required<int>(context);
+            // Pass
+            expect(validatorInt(0), isNull);
+            // Fail
+            expect(validatorInt(null), isNotNull);
+
+            final validatorDouble =
+                FormBuilderValidators.required<double>(context);
+            // Pass
+            expect(validatorDouble(0), isNull);
+            expect(validatorDouble(0.1), isNull);
+            expect(validatorDouble(1.234), isNull);
+            expect(validatorDouble(-4.567), isNull);
+            // Fail
+            expect(validatorDouble(null), isNotNull);
+
+            final validatorString =
+                FormBuilderValidators.required<String>(context);
+            // Pass
+            expect(validatorString('0'), isNull);
+            expect(validatorString('something long'), isNull);
+            // Fail
+            expect(validatorString(null), isNotNull);
+            expect(validatorString(''), isNotNull);
+
+            final validatorList =
+                FormBuilderValidators.required<List<int>>(context);
+            // Pass
+            expect(validatorList(const [1]), isNull);
+            expect(validatorList(const [1, 2]), isNull);
+            // Fail
+            expect(validatorList(null), isNotNull);
+            expect(validatorList(const []), isNotNull);
           }));
 
   testWidgets(
@@ -108,41 +144,76 @@ void main() {
   testWidgets(
       'FormBuilderValidators.max',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.max(context, 20);
+            final validatorInt = FormBuilderValidators.max<int>(context, 20);
             // Pass
-            expect(validator(null), isNull);
-            expect(validator(''), isNull);
-            expect(validator(0), isNull);
-            expect(validator(-1), isNull);
-            expect(validator(-1.1), isNull);
-            expect(validator(1.2), isNull);
-            expect(validator('19'), isNull);
-            expect(validator('20'), isNull);
-            expect(validator(20), isNull);
+            expect(validatorInt(null), isNull);
+            expect(validatorInt(0), isNull);
+            expect(validatorInt(-1), isNull);
+            expect(validatorInt(20), isNull);
             // Fail
-            expect(validator(20.01), isNotNull);
-            expect(validator(21), isNotNull);
-            expect(validator('21'), isNotNull);
-            expect(validator(999), isNotNull);
+            expect(validatorInt(21), isNotNull);
+            expect(validatorInt(999), isNotNull);
+
+            final validatorDouble =
+                FormBuilderValidators.max<double>(context, 20);
+            // Pass
+            expect(validatorDouble(null), isNull);
+            expect(validatorDouble(0), isNull);
+            expect(validatorDouble(-1), isNull);
+            expect(validatorDouble(-1.1), isNull);
+            expect(validatorDouble(1.2), isNull);
+            expect(validatorDouble(20), isNull);
+            // Fail
+            expect(validatorDouble(20.01), isNotNull);
+            expect(validatorDouble(21), isNotNull);
+            expect(validatorDouble(999), isNotNull);
+
+            final validatorString =
+                FormBuilderValidators.max<String>(context, 20);
+            // Pass
+            expect(validatorString(null), isNull);
+            expect(validatorString(''), isNull);
+            expect(validatorString('19'), isNull);
+            expect(validatorString('20'), isNull);
+            // Fail
+            expect(validatorString('21'), isNotNull);
           }));
 
   testWidgets(
       'FormBuilderValidators.min',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.min(context, 30);
+            final validatorInt = FormBuilderValidators.min<int>(context, 30);
             // Pass
-            expect(validator(null), isNull);
-            expect(validator(''), isNull);
-            expect(validator(30.01), isNull);
-            expect(validator(31), isNull);
-            expect(validator('31'), isNull);
-            expect(validator(70), isNull);
+            expect(validatorInt(null), isNull);
+            expect(validatorInt(31), isNull);
+            expect(validatorInt(70), isNull);
             // Fail
-            expect(validator(-1), isNotNull);
-            expect(validator(0), isNotNull);
-            expect(validator('10'), isNotNull);
-            expect(validator(10), isNotNull);
-            expect(validator(29), isNotNull);
+            expect(validatorInt(-1), isNotNull);
+            expect(validatorInt(0), isNotNull);
+            expect(validatorInt(10), isNotNull);
+            expect(validatorInt(29), isNotNull);
+
+            final validatorDouble =
+                FormBuilderValidators.min<double>(context, 30);
+            // Pass
+            expect(validatorDouble(null), isNull);
+            expect(validatorDouble(30.01), isNull);
+            expect(validatorDouble(31), isNull);
+            expect(validatorDouble(70), isNull);
+            // Fail
+            expect(validatorDouble(-1), isNotNull);
+            expect(validatorDouble(0), isNotNull);
+            expect(validatorDouble(10), isNotNull);
+            expect(validatorDouble(29), isNotNull);
+
+            final validatorString =
+                FormBuilderValidators.min<String>(context, 30);
+            // Pass
+            expect(validatorString(null), isNull);
+            expect(validatorString(''), isNull);
+            expect(validatorString('31'), isNull);
+            // Fail
+            expect(validatorString('10'), isNotNull);
           }));
 
   testWidgets(
