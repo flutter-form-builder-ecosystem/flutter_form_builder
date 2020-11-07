@@ -320,7 +320,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     name: 'best_language',
                     onChanged: _onChanged,
-                    validator: FormBuilderValidators.compose<String>(
+                    validator: FormBuilderValidators.compose(
                         [FormBuilderValidators.required(context)]),
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
                         .map((lang) => FormBuilderFieldOption(
@@ -416,7 +416,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     onChanged: _onChanged,
                     priorityListByIsoCode: ['KE'],
-                    validator: FormBuilderValidators.compose<String>([
+                    validator: FormBuilderValidators.compose([
                       FormBuilderValidators.numeric(context,
                           errorText: 'Invalid phone number'),
                       FormBuilderValidators.required(context,
