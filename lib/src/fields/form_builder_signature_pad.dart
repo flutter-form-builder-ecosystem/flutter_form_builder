@@ -6,7 +6,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
-class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
+class FormBuilderSignaturePad extends StatefulWidget {
+  final String attribute;
+  final List<FormFieldValidator> validators;
+  final Uint8List initialValue;
+  final bool readOnly;
+  final InputDecoration decoration;
+  final ValueTransformer valueTransformer;
+  final ValueChanged onChanged;
+  final FormFieldSetter onSaved;
+
   @Deprecated('Set points within SignatureController')
   final List<Point> points;
   final double width;
@@ -21,52 +30,42 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
 
   FormBuilderSignaturePad({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    Uint8List initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<Uint8List> onChanged,
-    FormFieldSetter<Uint8List> onSaved,
-    ValueTransformer<Uint8List> valueTransformer,
-    List<FormFieldValidator<Uint8List>> validators = const [],
+    @required this.attribute,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
     this.backgroundColor = Colors.white,
     this.penColor = Colors.black,
     this.penStrokeWidth = 3.0,
     this.clearButtonText = 'Clear',
+    this.initialValue,
     this.points,
     this.width,
     this.height = 200,
+    this.valueTransformer,
+    this.onChanged,
+    this.onSaved,
     this.controller,
-  }) : super(
-          key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          valueTransformer: valueTransformer,
-          validators: validators,
-        );
+  }) : super(key: key);
 
   @override
   _FormBuilderSignaturePadState createState() =>
       _FormBuilderSignaturePadState();
 }
 
-class _FormBuilderSignaturePadState extends FormBuilderFieldState<
-    FormBuilderSignaturePad, Uint8List, Uint8List> {
+class _FormBuilderSignaturePadState extends State<FormBuilderSignaturePad> {
+  bool _readOnly = false;
+  Uint8List _initialValue;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
   SignatureController _effectiveController;
   Uint8List _savedValue;
 
   @override
   void initState() {
-    super.initState();
     _savedValue = widget.initialValue;
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
     _effectiveController = widget.controller ??
         SignatureController(
           // ignore: deprecated_member_use_from_same_package
@@ -78,14 +77,15 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState<
               widget.controller?.penStrokeWidth ?? widget.penStrokeWidth,
         );
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
-      initialValue = widget.initialValue ?? await _getControllerValue();
+      _initialValue = widget.initialValue ?? await _getControllerValue();
     });
     _effectiveController.addListener(() async {
       FocusScope.of(context).requestFocus(FocusNode());
       var value = await _getControllerValue();
-      fieldKey.currentState.didChange(value);
+      _fieldKey.currentState.didChange(value);
       widget.onChanged?.call(value);
     });
+    super.initState();
   }
 
   Future<Uint8List> _getControllerValue() async {
@@ -95,23 +95,42 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState<
   }
 
   @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
+
     return FormField<Uint8List>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) =>
-          (_savedValue != null && val == null) ? null : validate(val),
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue,
+      validator: (val) {
+        if (_savedValue != null && val == null) return null;
+        return FormBuilderValidators.validateValidators(val, widget.validators);
+      },
       onSaved: (val) {
         if (_savedValue != null && val == null) return;
-        save(val);
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else {
+          _formState?.setAttributeValue(widget.attribute, val);
+        }
+        setState(() {
+          _savedValue = transformed ?? val;
+        });
+        widget.onSaved?.call(transformed ?? val);
       },
-      builder: (FormFieldState<Uint8List> field) {
+      builder: (FormFieldState<dynamic> field) {
         final errorColor = Theme.of(context).errorColor;
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: Column(
@@ -120,7 +139,7 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState<
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                 ),
-                child: _savedValue != null || readOnly
+                child: _savedValue != null || _readOnly
                     // Display Signature as read only
                     ? Card(
                         elevation: 0,
@@ -142,7 +161,7 @@ class _FormBuilderSignaturePadState extends FormBuilderFieldState<
                         ),
                       ),
               ),
-              if (!readOnly)
+              if (!_readOnly)
                 Row(
                   children: <Widget>[
                     const Expanded(child: SizedBox()),

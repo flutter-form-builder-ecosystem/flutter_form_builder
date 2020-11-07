@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
+class FormBuilderRangeSlider extends StatefulWidget {
+  final String attribute;
+  final List<FormFieldValidator> validators;
+  final RangeValues initialValue;
+  final bool readOnly;
+  final InputDecoration decoration;
+  final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
   final num max;
   final num min;
   final int divisions;
@@ -12,63 +19,82 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   final ValueChanged<RangeValues> onChangeEnd;
   final RangeLabels labels;
   final SemanticFormatterCallback semanticFormatterCallback;
+  final FormFieldSetter onSaved;
   final DisplayValues displayValues;
 
   FormBuilderRangeSlider({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    RangeValues initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<RangeValues> onChanged,
-    FormFieldSetter<RangeValues> onSaved,
-    ValueTransformer<RangeValues> valueTransformer,
-    List<FormFieldValidator<RangeValues>> validators = const [],
+    @required this.attribute,
     @required this.min,
     @required this.max,
+    @required this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
     this.divisions,
+    this.onChanged,
+    this.valueTransformer,
     this.activeColor,
     this.inactiveColor,
     this.onChangeStart,
     this.onChangeEnd,
     this.labels,
     this.semanticFormatterCallback,
+    this.onSaved,
     this.displayValues = DisplayValues.all,
-  }) : super(
-          key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          valueTransformer: valueTransformer,
-          validators: validators,
-        );
+  }) : super(key: key);
 
   @override
   _FormBuilderRangeSliderState createState() => _FormBuilderRangeSliderState();
 }
 
-class _FormBuilderRangeSliderState extends FormBuilderFieldState<
-    FormBuilderRangeSlider, RangeValues, RangeValues> {
+class _FormBuilderRangeSliderState extends State<FormBuilderRangeSlider> {
+  bool _readOnly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
+  RangeValues _initialValue;
+
+  @override
+  void initState() {
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
+            ? _formState.initialValue[widget.attribute]
+            : null);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FormField<RangeValues>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
+
+    return FormField(
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue,
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else {
+          _formState?.setAttributeValue(widget.attribute, val);
+        }
+        widget.onSaved?.call(transformed ?? val);
+      },
       builder: (FormFieldState<RangeValues> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: Container(
@@ -87,7 +113,7 @@ class _FormBuilderRangeSliderState extends FormBuilderFieldState<
                   onChangeStart: widget.onChangeStart,
                   labels: widget.labels,
                   semanticFormatterCallback: widget.semanticFormatterCallback,
-                  onChanged: readOnly
+                  onChanged: _readOnly
                       ? null
                       : (RangeValues values) {
                           FocusScope.of(context).requestFocus(FocusNode());
@@ -100,11 +126,11 @@ class _FormBuilderRangeSliderState extends FormBuilderFieldState<
                     if (widget.displayValues != DisplayValues.none &&
                         widget.displayValues != DisplayValues.current)
                       Text('${widget.min}'),
-                    const Spacer(),
+                    Spacer(),
                     if (widget.displayValues != DisplayValues.none &&
                         widget.displayValues != DisplayValues.minMax)
                       Text('${field.value.start}   -   ${field.value.end}'),
-                    const Spacer(),
+                    Spacer(),
                     if (widget.displayValues != DisplayValues.none &&
                         widget.displayValues != DisplayValues.current)
                       Text('${widget.max}'),
