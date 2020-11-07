@@ -144,7 +144,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             onReset: onReset,
             decoration: decoration,
             builder: (FormFieldState<RangeValues> field) {
-              final _FormBuilderRangeSliderState state = field;
+              final state = field as _FormBuilderRangeSliderState;
               final _numberFormat = numberFormat ?? NumberFormat.compact();
 
               return InputDecorator(

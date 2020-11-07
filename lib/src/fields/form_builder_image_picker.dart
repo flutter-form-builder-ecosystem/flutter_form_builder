@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -30,7 +33,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   /// supported on the device. Defaults to `CameraDevice.rear`. See [ImagePicker].
   final CameraDevice preferredCameraDevice;
 
-  final Function(Image) onImage;
+  final void Function(Image) onImage;
   final int maxImages;
   final Widget cameraIcon;
   final Widget galleryIcon;
@@ -42,7 +45,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<List<dynamic>> validator,
     List<dynamic> initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<dynamic>> onChanged,
@@ -83,7 +86,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<dynamic>> field) {
-            final _FormBuilderImagePickerState state = field;
+            final state = field as _FormBuilderImagePickerState;
             final theme = Theme.of(state.context);
             final disabledColor = theme.disabledColor;
             final primaryColor = theme.primaryColor;
@@ -96,7 +99,10 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     if (field.value != null)
-                      ...field.value.map<Widget>((item) {
+                      ...field.value.map<Widget>((dynamic item) {
+                        assert(item is File ||
+                            item is String ||
+                            item is Uint8List);
                         return Stack(
                           alignment: Alignment.topRight,
                           children: <Widget>[
@@ -105,17 +111,19 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                               height: previewHeight,
                               margin: previewMargin,
                               child: kIsWeb
-                                  ? Image.memory(item, fit: BoxFit.cover)
+                                  ? Image.memory(item as Uint8List,
+                                      fit: BoxFit.cover)
                                   : item is String
                                       ? Image.network(item, fit: BoxFit.cover)
-                                      : Image.file(item, fit: BoxFit.cover),
+                                      : Image.file(item as File,
+                                          fit: BoxFit.cover),
                             ),
                             if (enabled)
                               InkWell(
                                 onTap: () {
                                   state.requestFocus();
                                   field.didChange(
-                                      [...field.value]..remove(item));
+                                      <dynamic>[...field.value]..remove(item));
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.all(3),
@@ -158,7 +166,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                         : disabledColor)
                                     .withAlpha(50)),
                         onTap: () {
-                          showModalBottomSheet(
+                          showModalBottomSheet<void>(
                             context: state.context,
                             builder: (_) {
                               return ImageSourceBottomSheet(
@@ -173,11 +181,13 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 galleryLabel: galleryLabel,
                                 onImageSelected: (image) {
                                   state.requestFocus();
-                                  field.didChange([...field.value, image]);
+                                  field.didChange(
+                                      <dynamic>[...field.value, image]);
                                   Navigator.pop(state.context);
                                 },
                                 onImage: (image) {
-                                  field.didChange([...field.value, image]);
+                                  field.didChange(
+                                      <dynamic>[...field.value, image]);
                                   onChanged?.call(field.value);
                                   Navigator.pop(state.context);
                                 },

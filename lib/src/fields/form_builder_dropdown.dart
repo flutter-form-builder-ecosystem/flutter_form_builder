@@ -225,7 +225,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<T> field) {
-            final _FormBuilderDropdownState<T> state = field;
+            final state = field as _FormBuilderDropdownState<T>;
             // DropdownButtonFormField
             // TextFormField
 
@@ -261,7 +261,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         iconDisabledColor: iconDisabledColor,
                         iconEnabledColor: iconEnabledColor,
                         onChanged: enabled
-                            ? (value) => _changeValue<T>(field, value)
+                            ? (value) => _changeValue<T>(state, value)
                             : null,
                         onTap: onTap,
                         focusNode: state.effectiveFocusNode,

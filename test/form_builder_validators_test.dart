@@ -41,7 +41,7 @@ void main() {
             // Fail
             expect(validator(null), isNotNull);
             expect(validator(''), isNotNull);
-            expect(validator([]), isNotNull);
+            expect(validator(<dynamic>[]), isNotNull);
           }));
 
   testWidgets(

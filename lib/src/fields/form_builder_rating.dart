@@ -68,7 +68,7 @@ class FormBuilderRating extends FormBuilderField<double> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<double> field) {
-            final _FormBuilderRateState state = field;
+            final state = field as _FormBuilderRateState;
             final widget = state.widget;
 
             return InputDecorator(

@@ -24,12 +24,12 @@ class FormBuilderValidators {
     BuildContext context, {
     String errorText,
   }) {
-    return (valueCandidate) {
+    return (dynamic valueCandidate) {
       if (valueCandidate == null ||
           ((valueCandidate is String ||
                   valueCandidate is Iterable ||
                   valueCandidate is Map) &&
-              valueCandidate.isEmpty)) {
+              valueCandidate.isEmpty as bool)) {
         return errorText ??
             FormBuilderLocalizations.of(context).requiredErrorText;
       }
@@ -58,7 +58,7 @@ class FormBuilderValidators {
     bool inclusive = true,
     String errorText,
   }) {
-    return (valueCandidate) {
+    return (dynamic valueCandidate) {
       if (valueCandidate != null) {
         assert(valueCandidate is num || valueCandidate is String);
         final number = valueCandidate is num
@@ -83,7 +83,7 @@ class FormBuilderValidators {
     bool inclusive = true,
     String errorText,
   }) {
-    return (valueCandidate) {
+    return (dynamic valueCandidate) {
       if (valueCandidate != null) {
         assert(valueCandidate is num || valueCandidate is String);
         final number = valueCandidate is num
@@ -103,7 +103,7 @@ class FormBuilderValidators {
   /// greater than or equal to the provided minimum length.
   static FormFieldValidator<String> minLength(
     BuildContext context,
-    num minLength, {
+    int minLength, {
     bool allowEmpty = false,
     String errorText,
   }) {
@@ -121,7 +121,7 @@ class FormBuilderValidators {
   /// less than or equal to the provided maximum length.
   static FormFieldValidator<String> maxLength(
     BuildContext context,
-    num maxLength, {
+    int maxLength, {
     String errorText,
   }) {
     assert(maxLength > 0);
@@ -167,7 +167,7 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value to match the provided regex pattern.
   static FormFieldValidator<String> match(
     BuildContext context,
-    Pattern pattern, {
+    String pattern, {
     String errorText,
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&

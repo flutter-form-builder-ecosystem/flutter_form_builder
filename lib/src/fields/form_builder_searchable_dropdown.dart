@@ -157,7 +157,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<T> field) {
-            final _FormBuilderSearchableDropdownState<T> state = field;
+            final state = field as _FormBuilderSearchableDropdownState<T>;
 
             return InputDecorator(
               decoration: state.decoration(),

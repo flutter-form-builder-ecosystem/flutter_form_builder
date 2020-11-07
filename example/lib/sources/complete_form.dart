@@ -14,7 +14,6 @@ class CompleteForm extends StatefulWidget {
 }
 
 class CompleteFormState extends State<CompleteForm> {
-  var data;
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
@@ -22,7 +21,7 @@ class CompleteFormState extends State<CompleteForm> {
   bool _ageHasError = false;
   bool _genderHasError = false;
 
-  final ValueChanged _onChanged = (val) => print(val);
+  final ValueChanged<dynamic> _onChanged = (dynamic val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
@@ -102,7 +101,7 @@ class CompleteFormState extends State<CompleteForm> {
                     colorPickerType: ColorPickerType.MaterialPicker,
                     decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
-                  FormBuilderChipsInput(
+                  FormBuilderChipsInput<Contact>(
                     decoration: const InputDecoration(labelText: 'Chips'),
                     name: 'chips_test',
                     onChanged: _onChanged,
@@ -258,7 +257,7 @@ class CompleteFormState extends State<CompleteForm> {
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                   ),
-                  FormBuilderDropdown(
+                  FormBuilderDropdown<String>(
                     // autovalidate: true,
                     name: 'gender',
                     decoration: InputDecoration(
@@ -286,7 +285,7 @@ class CompleteFormState extends State<CompleteForm> {
                       });
                     },
                   ),
-                  FormBuilderTypeAhead(
+                  FormBuilderTypeAhead<String>(
                     decoration: const InputDecoration(
                       labelText: 'Country',
                     ),
@@ -315,13 +314,13 @@ class CompleteFormState extends State<CompleteForm> {
                       }
                     },
                   ),
-                  FormBuilderRadioGroup(
+                  FormBuilderRadioGroup<String>(
                     decoration: const InputDecoration(
                       labelText: 'My chosen language',
                     ),
                     name: 'best_language',
                     onChanged: _onChanged,
-                    validator: FormBuilderValidators.compose(
+                    validator: FormBuilderValidators.compose<String>(
                         [FormBuilderValidators.required(context)]),
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
                         .map((lang) => FormBuilderFieldOption(
@@ -417,7 +416,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     onChanged: _onChanged,
                     priorityListByIsoCode: ['KE'],
-                    validator: FormBuilderValidators.compose([
+                    validator: FormBuilderValidators.compose<String>([
                       FormBuilderValidators.numeric(context,
                           errorText: 'Invalid phone number'),
                       FormBuilderValidators.required(context,

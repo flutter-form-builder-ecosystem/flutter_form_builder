@@ -56,7 +56,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<String> validator,
     String initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<String> onChanged,
@@ -121,7 +121,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<String> field) {
-            final _FormBuilderPhoneFieldState state = field;
+            final state = field as _FormBuilderPhoneFieldState;
 
             return InputDecorator(
               decoration: state.decoration(),
@@ -296,7 +296,7 @@ class _FormBuilderPhoneFieldState
   }
 
   void _openCountryPickerDialog() {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) {
         return Theme(

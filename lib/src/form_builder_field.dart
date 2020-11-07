@@ -75,7 +75,7 @@ abstract class FormBuilderField<T> extends FormField<T> {
 abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     extends FormFieldState<T> {
   @override
-  F get widget => super.widget;
+  F get widget => super.widget as F;
 
   FormBuilderState get formState => _formBuilderState;
 
@@ -84,7 +84,8 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// initialValue prevails.
   T get initialValue =>
       widget.initialValue ??
-      (_formBuilderState?.initialValue ?? const {})[widget.name];
+      (_formBuilderState?.initialValue ??
+          const <String, dynamic>{})[widget.name] as T;
 
   FormBuilderState _formBuilderState;
 

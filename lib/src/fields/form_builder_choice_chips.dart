@@ -288,7 +288,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
             decoration: decoration,
             focusNode: focusNode,
             builder: (FormFieldState<T> field) {
-              final _FormBuilderChoiceChipState<T> state = field;
+              final state = field as _FormBuilderChoiceChipState<T>;
 
               return InputDecorator(
                 decoration: state.decoration(),

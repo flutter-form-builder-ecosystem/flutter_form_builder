@@ -68,7 +68,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           focusNode: focusNode,
           decoration: decoration,
           builder: (FormFieldState<T> field) {
-            final _FormBuilderRadioGroupState<T> state = field;
+            final state = field as _FormBuilderRadioGroupState<T>;
 
             return InputDecorator(
               decoration: state.decoration(),

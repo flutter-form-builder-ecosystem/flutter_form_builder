@@ -168,11 +168,11 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<CameraPosition> validator,
     CameraPosition initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<CameraPosition> onChanged,
-    ValueTransformer valueTransformer,
+    ValueTransformer<CameraPosition> valueTransformer,
     bool enabled = true,
     FormFieldSetter onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
@@ -226,7 +226,7 @@ class FormBuilderLocationField extends FormBuilderField<CameraPosition> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<CameraPosition> field) {
-            final _FormBuilderLocationFieldState state = field;
+            final state = field as _FormBuilderLocationFieldState;
 
             return Row(
               crossAxisAlignment: CrossAxisAlignment.center,

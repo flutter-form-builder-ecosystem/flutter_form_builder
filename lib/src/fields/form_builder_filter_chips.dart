@@ -88,7 +88,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<T>> field) {
-            final _FormBuilderFilterChipState<T> state = field;
+            final state = field as _FormBuilderFilterChipState<T>;
             return InputDecorator(
               decoration: state.decoration(),
               child: Wrap(
