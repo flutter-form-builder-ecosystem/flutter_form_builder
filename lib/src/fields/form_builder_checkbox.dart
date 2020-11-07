@@ -3,7 +3,14 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderCheckbox extends FormBuilderField<bool> {
+class FormBuilderCheckbox extends StatefulWidget {
+  final String attribute;
+  final List<FormFieldValidator> validators;
+  final bool initialValue;
+  final bool readOnly;
+  final InputDecoration decoration;
+  final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
   final bool leadingInput;
 
   final Widget label;
@@ -12,6 +19,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   final Color checkColor;
   final MaterialTapTargetSize materialTapTargetSize;
   final bool tristate;
+  final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
   final Color focusColor;
   final Color hoverColor;
@@ -22,57 +30,64 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
 
   FormBuilderCheckbox({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    bool initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<bool> onChanged,
-    FormFieldSetter<bool> onSaved,
-    ValueTransformer<bool> valueTransformer,
-    List<FormFieldValidator<bool>> validators = const [],
+    @required this.attribute,
     @required this.label,
+    this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
+    this.onChanged,
+    this.valueTransformer,
     this.leadingInput = false,
     this.activeColor,
     this.checkColor,
     this.materialTapTargetSize,
     this.tristate = false,
-    this.contentPadding = EdgeInsets.zero,
+    this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
     this.focusColor,
     this.hoverColor,
     this.focusNode,
     this.autoFocus = false,
     this.mouseCursor,
     this.visualDensity,
-  }) : super(
-          key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          valueTransformer: valueTransformer,
-          validators: validators,
-        );
+  }) : super(key: key);
 
   @override
   _FormBuilderCheckboxState createState() => _FormBuilderCheckboxState();
 }
 
-class _FormBuilderCheckboxState
-    extends FormBuilderFieldState<FormBuilderCheckbox, bool, bool> {
-  Widget _checkbox(FormFieldState<bool> field) {
+class _FormBuilderCheckboxState extends State<FormBuilderCheckbox> {
+  bool _readOnly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
+  bool _initialValue;
+
+  @override
+  void initState() {
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
+            ? _formState.initialValue[widget.attribute]
+            : null);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
+  }
+
+  Widget _checkbox(FormFieldState<dynamic> field) {
     return Checkbox(
       value: (field.value == null && !widget.tristate) ? false : field.value,
       activeColor: widget.activeColor,
       checkColor: widget.checkColor,
       materialTapTargetSize: widget.materialTapTargetSize,
       tristate: widget.tristate,
-      onChanged: readOnly
+      onChanged: _readOnly
           ? null
           : (bool value) {
               FocusScope.of(context).requestFocus(FocusNode());
@@ -88,29 +103,40 @@ class _FormBuilderCheckboxState
     );
   }
 
-  Widget _leading(FormFieldState<bool> field) {
+  Widget _leading(FormFieldState<dynamic> field) {
     if (widget.leadingInput) return _checkbox(field);
     return null;
   }
 
-  Widget _trailing(FormFieldState<bool> field) {
+  Widget _trailing(FormFieldState<dynamic> field) {
     if (!widget.leadingInput) return _checkbox(field);
     return null;
   }
 
   @override
   Widget build(BuildContext context) {
-    return FormField<bool>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<bool> field) {
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
+
+    return FormField(
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue,
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else {
+          _formState?.setAttributeValue(widget.attribute, val);
+        }
+        widget.onSaved?.call(transformed ?? val);
+      },
+      builder: (FormFieldState<dynamic> field) {
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
+            enabled: !_readOnly,
             errorText: field.errorText,
           ),
           child: ListTile(
@@ -120,7 +146,7 @@ class _FormBuilderCheckboxState
             title: widget.label,
             leading: _leading(field),
             trailing: _trailing(field),
-            onTap: readOnly
+            onTap: _readOnly
                 ? null
                 : () {
                     FocusScope.of(context).requestFocus(FocusNode());

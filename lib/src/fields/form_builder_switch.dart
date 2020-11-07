@@ -4,7 +4,15 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-class FormBuilderSwitch extends FormBuilderField<bool> {
+class FormBuilderSwitch extends StatefulWidget {
+  final String attribute;
+  final List<FormFieldValidator> validators;
+  final bool initialValue;
+  final bool readOnly;
+  final InputDecoration decoration;
+  final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
+
   final Widget label;
 
   /// The color to use when this switch is on.
@@ -54,6 +62,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
 
   /// {@macro flutter.cupertino.switch.dragStartBehavior}
   final DragStartBehavior dragStartBehavior;
+  final FormFieldSetter onSaved;
   final EdgeInsets contentPadding;
   final MouseCursor mouseCursor;
   final bool autofocus;
@@ -65,17 +74,14 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
 
   FormBuilderSwitch({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    bool initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<bool> onChanged,
-    FormFieldSetter<bool> onSaved,
-    ValueTransformer<bool> valueTransformer,
-    List<FormFieldValidator<bool>> validators = const [],
+    @required this.attribute,
     @required this.label,
+    this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
+    this.onChanged,
+    this.valueTransformer,
     this.activeColor,
     this.activeTrackColor,
     this.inactiveThumbColor,
@@ -84,7 +90,8 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     this.inactiveThumbImage,
     this.materialTapTargetSize,
     this.dragStartBehavior = DragStartBehavior.start,
-    this.contentPadding = EdgeInsets.zero,
+    this.onSaved,
+    this.contentPadding = const EdgeInsets.all(0.0),
     this.mouseCursor,
     this.autofocus = false,
     this.focusNode,
@@ -92,38 +99,59 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     this.focusColor,
     this.onActiveThumbImageError,
     this.onInactiveThumbImageError,
-  }) : super(
-          key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          valueTransformer: valueTransformer,
-          validators: validators,
-        );
+  }) : super(key: key);
 
   @override
   _FormBuilderSwitchState createState() => _FormBuilderSwitchState();
 }
 
-class _FormBuilderSwitchState
-    extends FormBuilderFieldState<FormBuilderSwitch, bool, bool> {
+class _FormBuilderSwitchState extends State<FormBuilderSwitch> {
+  bool _readOnly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
+  bool _initialValue;
+
+  @override
+  void initState() {
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = widget.initialValue ??
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
+            ? _formState.initialValue[widget.attribute]
+            : null);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return FormField<bool>(
-        key: fieldKey,
-        enabled: widget.enabled,
-        initialValue: initialValue ?? false,
-        validator: (val) => validate(val),
-        onSaved: (val) => save(val),
-        builder: (FormFieldState<bool> field) {
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
+
+    return FormField(
+        key: _fieldKey,
+        enabled: !_readOnly,
+        initialValue: _initialValue ?? false,
+        validator: (val) =>
+            FormBuilderValidators.validateValidators(val, widget.validators),
+        onSaved: (val) {
+          var transformed;
+          if (widget.valueTransformer != null) {
+            transformed = widget.valueTransformer(val);
+            _formState?.setAttributeValue(widget.attribute, transformed);
+          } else {
+            _formState?.setAttributeValue(widget.attribute, val);
+          }
+          widget.onSaved?.call(transformed ?? val);
+        },
+        builder: (FormFieldState<dynamic> field) {
           return InputDecorator(
             decoration: widget.decoration.copyWith(
-              enabled: widget.enabled,
+              enabled: !_readOnly,
               errorText: field.errorText,
             ),
             child: ListTile(
@@ -133,7 +161,7 @@ class _FormBuilderSwitchState
               title: widget.label,
               trailing: Switch(
                 value: field.value,
-                onChanged: readOnly
+                onChanged: _readOnly
                     ? null
                     : (bool value) {
                         FocusScope.of(context).requestFocus(FocusNode());
@@ -156,14 +184,14 @@ class _FormBuilderSwitchState
                 onActiveThumbImageError: widget.onActiveThumbImageError,
                 onInactiveThumbImageError: widget.onInactiveThumbImageError,
               ),
-              onTap: widget.enabled
-                  ? () {
+              onTap: _readOnly
+                  ? null
+                  : () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       final newValue = !(field.value ?? false);
                       field.didChange(newValue);
                       widget.onChanged?.call(newValue);
-                    }
-                  : null,
+                    },
             ),
           );
         });

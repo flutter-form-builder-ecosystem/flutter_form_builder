@@ -6,10 +6,17 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
-// TODO List<File | Uint8List> -- "ImageHolder"?
-class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
+class FormBuilderImagePicker extends StatefulWidget {
+  final String attribute;
+  final List<FormFieldValidator> validators;
+  final List initialValue;
+  final bool readOnly;
   @Deprecated('Set the `labelText` within decoration attribute')
   final String labelText;
+  final InputDecoration decoration;
+  final ValueTransformer valueTransformer;
+  final ValueChanged onChanged;
+  final FormFieldSetter onSaved;
 
   final double imageWidth;
   final double imageHeight;
@@ -43,21 +50,19 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
 
   const FormBuilderImagePicker({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    List<dynamic> initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<List<dynamic>> onChanged,
-    FormFieldSetter<List<dynamic>> onSaved,
-    ValueTransformer<List<dynamic>> valueTransformer,
-    List<FormFieldValidator<List<dynamic>>> validators = const [],
+    @required this.attribute,
+    this.initialValue,
     this.defaultImage,
+    this.validators = const [],
+    this.valueTransformer,
     this.labelText,
+    this.onChanged,
     this.imageWidth = 130,
     this.imageHeight = 130,
     this.imageMargin,
+    this.readOnly = false,
+    this.onSaved,
+    this.decoration = const InputDecoration(),
     this.iconColor,
     this.maxHeight,
     this.maxWidth,
@@ -68,52 +73,72 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
     this.galleryIcon = const Icon(Icons.image),
     this.cameraLabel = const Text('Camera'),
     this.galleryLabel = const Text('Gallery'),
-    this.bottomSheetPadding = EdgeInsets.zero,
-  }) : super(
-          key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          valueTransformer: valueTransformer,
-          validators: validators,
-        );
+    this.bottomSheetPadding = const EdgeInsets.all(0),
+  }) : super(key: key);
 
   @override
   _FormBuilderImagePickerState createState() => _FormBuilderImagePickerState();
 }
 
-class _FormBuilderImagePickerState extends FormBuilderFieldState<
-    FormBuilderImagePicker, List<dynamic>, List<dynamic>> {
+class _FormBuilderImagePickerState extends State<FormBuilderImagePicker> {
+  bool _readOnly = false;
+  List _initialValue;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
+
   bool get _hasMaxImages {
     if (widget.maxImages == null) {
       return false;
     } else {
-      return /*_fieldKey.currentState.value != null &&*/ fieldKey
+      return /*_fieldKey.currentState.value != null &&*/ _fieldKey
               .currentState.value.length >=
           widget.maxImages;
     }
   }
 
   @override
+  void initState() {
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue = List.of(widget.initialValue ??
+        ((_formState?.initialValue?.containsKey(widget.attribute) ?? false)
+            ? _formState.initialValue[widget.attribute]
+            : []));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
+
     return FormField<List>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue ?? const [],
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue,
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
+      onSaved: (val) {
+        var transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else {
+          _formState?.setAttributeValue(widget.attribute, val);
+        }
+        widget.onSaved?.call(transformed ?? val);
+      },
       builder: (field) {
         var theme = Theme.of(context);
 
         return InputDecorator(
           decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
+            enabled: !_readOnly,
             errorText: field.errorText,
             // ignore: deprecated_member_use_from_same_package
             labelText: widget.decoration.labelText ?? widget.labelText,
@@ -148,7 +173,7 @@ class _FormBuilderImagePickerState extends FormBuilderFieldState<
                                         ? Image.file(item, fit: BoxFit.cover)
                                         : item,
                           ),
-                          if (!readOnly)
+                          if (!_readOnly)
                             InkWell(
                               onTap: () {
                                 field.didChange([...field.value]..remove(item));
@@ -173,7 +198,7 @@ class _FormBuilderImagePickerState extends FormBuilderFieldState<
                         ],
                       );
                     }).toList()),
-                    if (!readOnly && !_hasMaxImages)
+                    if (!_readOnly && !_hasMaxImages)
                       GestureDetector(
                         child: widget.defaultImage != null
                             ? Image(
@@ -185,11 +210,11 @@ class _FormBuilderImagePickerState extends FormBuilderFieldState<
                                 width: widget.imageWidth,
                                 height: widget.imageHeight,
                                 child: Icon(Icons.camera_enhance,
-                                    color: readOnly
+                                    color: _readOnly
                                         ? theme.disabledColor
                                         : widget.iconColor ??
                                             theme.primaryColor),
-                                color: (readOnly
+                                color: (_readOnly
                                         ? theme.disabledColor
                                         : widget.iconColor ??
                                             theme.primaryColor)

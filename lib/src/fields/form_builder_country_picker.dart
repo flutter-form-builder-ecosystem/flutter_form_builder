@@ -6,14 +6,23 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/country_picker_util.dart';
 
-class FormBuilderCountryPicker extends FormBuilderField<Country> {
+class FormBuilderCountryPicker extends StatefulWidget {
+  final String attribute;
+  final List<FormFieldValidator> validators;
+  final bool readOnly;
+  final InputDecoration decoration;
+  final ValueChanged onChanged;
+  final ValueTransformer valueTransformer;
+
   final TextStyle style;
+  final FormFieldSetter onSaved;
 
   // For country dialog
   final String searchText;
   final EdgeInsets titlePadding;
   final bool isSearchable;
   final Text dialogTitle;
+  final String initialValue;
   final String defaultSelectedCountryIsoCode;
   final List<String> priorityListByIsoCode;
   final List<String> countryFilterByIsoCode;
@@ -25,18 +34,16 @@ class FormBuilderCountryPicker extends FormBuilderField<Country> {
 
   FormBuilderCountryPicker({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    String initialValue, // ** Not Country
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<Country> onChanged,
-    FormFieldSetter<Country> onSaved,
-    ValueTransformer<Country> valueTransformer,
-    List<FormFieldValidator<Country>> validators = const [],
+    @required this.attribute,
     this.defaultSelectedCountryIsoCode,
+    this.initialValue,
+    this.validators = const [],
+    this.readOnly = false,
+    this.decoration = const InputDecoration(),
     this.style,
+    this.onChanged,
+    this.valueTransformer,
+    this.onSaved,
     this.searchText,
     this.titlePadding,
     this.dialogTitle,
@@ -48,55 +55,62 @@ class FormBuilderCountryPicker extends FormBuilderField<Country> {
     this.cupertinoPickerSheetHeight,
     this.cursorColor,
     this.placeholderText = 'Select country',
-  }) : super(
-          key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          initialValue: CountryPickerUtil.getCountryByCodeOrName(initialValue),
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
-          valueTransformer: valueTransformer,
-          validators: validators,
-        );
+  }) : super(key: key);
 
   @override
   _FormBuilderCountryPickerState createState() =>
       _FormBuilderCountryPickerState();
 }
 
-class _FormBuilderCountryPickerState
-    extends FormBuilderFieldState<FormBuilderCountryPicker, Country, String> {
+class _FormBuilderCountryPickerState extends State<FormBuilderCountryPicker> {
+  bool _readOnly = false;
+  final GlobalKey<FormFieldState> _fieldKey = GlobalKey<FormFieldState>();
+  FormBuilderState _formState;
+  Country _initialValue;
+
   @override
-  Country initialValueTransformer(String storedInitialValue) {
-    return CountryPickerUtil.getCountryByCodeOrName(storedInitialValue) ??
-        CountryPickerUtil.getCountryByIsoCode(
-            widget.defaultSelectedCountryIsoCode);
+  void initState() {
+    _formState = FormBuilder.of(context);
+    _formState?.registerFieldKey(widget.attribute, _fieldKey);
+    _initialValue =
+        CountryPickerUtil.getCountryByCodeOrName(widget.initialValue) ??
+            CountryPickerUtil.getCountryByIsoCode(
+                widget.defaultSelectedCountryIsoCode);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _readOnly = _formState?.readOnly == true || widget.readOnly;
+
     return FormField<Country>(
-      key: fieldKey,
-      autovalidateMode: widget.autovalidateMode,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
+      key: _fieldKey,
+      enabled: !_readOnly,
+      initialValue: _initialValue,
+      validator: (val) =>
+          FormBuilderValidators.validateValidators(val, widget.validators),
+      onSaved: (val) {
+        dynamic transformed;
+        if (widget.valueTransformer != null) {
+          transformed = widget.valueTransformer(val);
+          _formState?.setAttributeValue(widget.attribute, transformed);
+        } else {
+          _formState?.setAttributeValue(widget.attribute, val?.name);
+        }
+        widget.onSaved?.call(transformed ?? val);
+      },
       builder: (FormFieldState<Country> field) {
         return GestureDetector(
-          onTap: widget.enabled
-              ? () {
+          onTap: _readOnly
+              ? null
+              : () {
                   FocusScope.of(context).requestFocus(FocusNode());
                   if (widget.isCupertinoPicker) {
                     _openCupertinoCountryPicker(field);
                   } else {
                     _openCountryPickerDialog(field);
                   }
-                }
-              : null,
+                },
           child: InputDecorator(
             decoration: widget.decoration.copyWith(
               errorText: field.errorText,
@@ -121,7 +135,7 @@ class _FormBuilderCountryPickerState
     );
   }
 
-  void _openCupertinoCountryPicker(FormFieldState<Country> field) =>
+  void _openCupertinoCountryPicker(FormFieldState field) =>
       showCupertinoModalPopup<void>(
         context: context,
         builder: (BuildContext context) {
@@ -144,7 +158,7 @@ class _FormBuilderCountryPickerState
         },
       );
 
-  void _openCountryPickerDialog(FormFieldState<Country> field) => showDialog(
+  void _openCountryPickerDialog(FormFieldState field) => showDialog(
         context: context,
         builder: (context) => Theme(
           data: Theme.of(context).copyWith(
@@ -186,9 +200,15 @@ class _FormBuilderCountryPickerState
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text(country.name),
+        title: Text('${country.name}'),
         visualDensity: VisualDensity.compact,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _formState?.unregisterFieldKey(widget.attribute);
+    super.dispose();
   }
 }
