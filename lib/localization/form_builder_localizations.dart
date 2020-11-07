@@ -38,7 +38,7 @@ class FormBuilderLocalizations {
     );
   }
 
-  String equalErrorText(dynamic value) => Intl.message(
+  String equalErrorText<T>(T value) => Intl.message(
         'This field value must be equal to $value.',
         name: 'equalErrorText',
         args: [value],
