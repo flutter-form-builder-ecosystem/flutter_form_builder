@@ -68,7 +68,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<T> field) {
-            final _FormBuilderSegmentedControlState<T> state = field;
+            final state = field as _FormBuilderSegmentedControlState<T>;
             final theme = Theme.of(state.context);
 
             return InputDecorator(

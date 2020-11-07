@@ -59,7 +59,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<Uint8List> field) {
-            final _FormBuilderSignaturePadState state = field;
+            final state = field as _FormBuilderSignaturePadState;
             final theme = Theme.of(state.context);
             final localizations = MaterialLocalizations.of(state.context);
 

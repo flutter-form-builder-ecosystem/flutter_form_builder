@@ -120,7 +120,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<bool> field) {
-            final _FormBuilderSwitchState state = field;
+            final state = field as _FormBuilderSwitchState;
 
             return InputDecorator(
               decoration: state.decoration(),

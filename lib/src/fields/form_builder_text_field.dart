@@ -384,7 +384,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<String> field) {
-            final _FormBuilderTextFieldState state = field;
+            final state = field as _FormBuilderTextFieldState;
             /*final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
             void onChangedHandler(String value) {

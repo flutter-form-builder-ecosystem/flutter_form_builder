@@ -4,19 +4,19 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
-class FormBuilderTouchSpin extends FormBuilderField<double> {
+class FormBuilderTouchSpin extends FormBuilderField<num> {
   /// Value to increment or decrement by
-  final double step;
+  final num step;
 
   /// The minimum value the user can select.
   ///
   /// Defaults to 0.0. Must be less than or equal to [max].
-  final double min;
+  final num min;
 
   /// The maximum value the user can select.
   ///
   /// Defaults to 1.0. Must be greater than or equal to [min].
-  final double max;
+  final num max;
 
   /// Icon for the decrement button
   final Icon subtractIcon;
@@ -46,13 +46,13 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator<double> validator,
-    @required double initialValue,
+    FormFieldValidator<num> validator,
+    @required num initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<double> onChanged,
-    ValueTransformer<double> valueTransformer,
+    ValueChanged<num> onChanged,
+    ValueTransformer<num> valueTransformer,
     bool enabled = true,
-    FormFieldSetter<double> onSaved,
+    FormFieldSetter<num> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -80,8 +80,8 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<double> field) {
-            final _FormBuilderTouchSpinState state = field;
+          builder: (FormFieldState<num> field) {
+            final state = field as _FormBuilderTouchSpinState;
             final theme = Theme.of(state.context);
 
             return InputDecorator(
@@ -117,4 +117,4 @@ class FormBuilderTouchSpin extends FormBuilderField<double> {
 }
 
 class _FormBuilderTouchSpinState
-    extends FormBuilderFieldState<FormBuilderTouchSpin, double> {}
+    extends FormBuilderFieldState<FormBuilderTouchSpin, num> {}

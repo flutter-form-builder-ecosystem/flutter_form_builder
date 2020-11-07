@@ -32,7 +32,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
   /// If you want to track picking status, for example, because some files may take some time to be
   /// cached (particularly those picked from cloud providers), you may want to set [onFileLoading] handler
   /// that will give you the current status of picking.
-  final Function(FilePickerStatus) onFileLoading;
+  final void Function(FilePickerStatus) onFileLoading;
 
   /// Whether to allow file compression
   final bool allowCompression;
@@ -78,7 +78,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<PlatformFile>> field) {
-            final _FormBuilderFilePickerState state = field;
+            final state = field as _FormBuilderFilePickerState;
 
             return InputDecorator(
               decoration: state.decoration(),

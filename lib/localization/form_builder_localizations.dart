@@ -38,35 +38,35 @@ class FormBuilderLocalizations {
     );
   }
 
-  String equalErrorText(value) => Intl.message(
+  String equalErrorText<T>(T value) => Intl.message(
         'This field value must be equal to $value.',
         name: 'equalErrorText',
         args: [value],
         desc: 'Error Text for equal validator',
       );
 
-  String minErrorText(min) => Intl.message(
+  String minErrorText(num min) => Intl.message(
         'Value must be greater than or equal to $min.',
         name: 'minErrorText',
         args: [min],
         desc: 'Error Text for required field',
       );
 
-  String minLengthErrorText(minLength) => Intl.message(
+  String minLengthErrorText(int minLength) => Intl.message(
         'Value must have a length greater than or equal to $minLength',
         name: 'minLengthErrorText',
         args: [minLength],
         desc: 'Error Text for minLength validator',
       );
 
-  String maxErrorText(max) => Intl.message(
+  String maxErrorText(num max) => Intl.message(
         'Value must be less than or equal to $max',
         name: 'maxErrorText',
         args: [max],
         desc: 'Error Text for max validator',
       );
 
-  String maxLengthErrorText(maxLength) => Intl.message(
+  String maxLengthErrorText(int maxLength) => Intl.message(
         'Value must have a length less than or equal to $maxLength',
         name: 'maxLengthErrorText',
         args: [maxLength],

@@ -170,7 +170,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<double> field) {
-            final _FormBuilderSliderState state = field;
+            final state = field as _FormBuilderSliderState;
             final _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
               decoration: state.decoration(),

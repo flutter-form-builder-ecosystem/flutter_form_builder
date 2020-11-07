@@ -14,7 +14,6 @@ class CompleteForm extends StatefulWidget {
 }
 
 class CompleteFormState extends State<CompleteForm> {
-  var data;
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
@@ -102,7 +101,7 @@ class CompleteFormState extends State<CompleteForm> {
                     colorPickerType: ColorPickerType.MaterialPicker,
                     decoration: const InputDecoration(labelText: 'Pick Color'),
                   ),
-                  FormBuilderChipsInput(
+                  FormBuilderChipsInput<Contact>(
                     decoration: const InputDecoration(labelText: 'Chips'),
                     name: 'chips_test',
                     onChanged: _onChanged,
@@ -258,7 +257,7 @@ class CompleteFormState extends State<CompleteForm> {
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                   ),
-                  FormBuilderDropdown(
+                  FormBuilderDropdown<String>(
                     // autovalidate: true,
                     name: 'gender',
                     decoration: InputDecoration(
@@ -286,7 +285,7 @@ class CompleteFormState extends State<CompleteForm> {
                       });
                     },
                   ),
-                  FormBuilderTypeAhead(
+                  FormBuilderTypeAhead<String>(
                     decoration: const InputDecoration(
                       labelText: 'Country',
                     ),
@@ -315,7 +314,7 @@ class CompleteFormState extends State<CompleteForm> {
                       }
                     },
                   ),
-                  FormBuilderRadioGroup(
+                  FormBuilderRadioGroup<String>(
                     decoration: const InputDecoration(
                       labelText: 'My chosen language',
                     ),

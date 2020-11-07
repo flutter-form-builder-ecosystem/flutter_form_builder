@@ -123,7 +123,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           onReset: onReset,
           decoration: decoration,
           builder: (FormFieldState<Color> field) {
-            final _FormBuilderColorPickerFieldState state = field;
+            final state = field as _FormBuilderColorPickerFieldState;
             return TextField(
               style: style,
               decoration: state.decoration().copyWith(

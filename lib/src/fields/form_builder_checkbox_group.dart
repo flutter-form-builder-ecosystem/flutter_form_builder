@@ -28,7 +28,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator validator,
+    FormFieldValidator<List<T>> validator,
     List<T> initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<T>> onChanged,
@@ -71,7 +71,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<T>> field) {
-            final _FormBuilderCheckboxGroupState<T> state = field;
+            final state = field as _FormBuilderCheckboxGroupState<T>;
 
             return InputDecorator(
               decoration: state.decoration(),

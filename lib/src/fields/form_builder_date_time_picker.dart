@@ -232,7 +232,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<DateTime> field) {
-            final _FormBuilderDateTimePickerState state = field;
+            final state = field as _FormBuilderDateTimePickerState;
 
             return DateTimeField(
               initialValue: state.initialValue,

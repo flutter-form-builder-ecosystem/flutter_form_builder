@@ -128,7 +128,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<DateTime>> field) {
-            final FormBuilderDateRangePickerState state = field;
+            final state = field as FormBuilderDateRangePickerState;
 
             return TextField(
               enabled: enabled,
@@ -258,7 +258,7 @@ class FormBuilderDateRangePickerState
   }
 
   @override
-  void didChange(value) {
+  void didChange(List<DateTime> value) {
     super.didChange(value);
     _setTextFieldString();
   }

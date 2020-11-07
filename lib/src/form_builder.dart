@@ -57,7 +57,7 @@ class FormBuilder extends StatefulWidget {
     this.onChanged,
     this.autovalidateMode,
     this.onWillPop,
-    this.initialValue = const {},
+    this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
   }) : super(key: key);
 
@@ -75,7 +75,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, dynamic> _value;
 
-  Map<String, dynamic> get value => Map.unmodifiable(_value);
+  Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(_value);
 
   Map<String, dynamic> get initialValue => widget.initialValue;
 
@@ -85,7 +85,7 @@ class FormBuilderState extends State<FormBuilder> {
   void initState() {
     super.initState();
     _fields = {};
-    _value = {};
+    _value = <String, dynamic>{};
   }
 
   @override
@@ -96,13 +96,13 @@ class FormBuilderState extends State<FormBuilder> {
 
   void setInternalFieldValue(String name, dynamic value) {
     setState(() {
-      _value = {..._value, name: value};
+      _value = <String, dynamic>{..._value, name: value};
     });
   }
 
   void removeInternalFieldValue(String name) {
     setState(() {
-      _value = {..._value..remove(name)};
+      _value = <String, dynamic>{..._value..remove(name)};
     });
   }
 
@@ -134,7 +134,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void patchValue(Map<String, dynamic> val) {
-    val.forEach((key, value) {
+    val.forEach((key, dynamic value) {
       _fields[key]?.patchValue(value);
     });
   }
