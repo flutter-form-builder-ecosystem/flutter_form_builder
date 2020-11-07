@@ -482,13 +482,6 @@ class _FormBuilderTextFieldState
   }
 
   @override
-  void patchValue(String val) {
-    _effectiveController.text = val;
-    _effectiveController.selection =
-        TextSelection.collapsed(offset: val?.length ?? -1);
-  }
-
-  @override
   void didChange(String value) {
     super.didChange(value);
 
