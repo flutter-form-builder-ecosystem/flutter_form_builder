@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -227,10 +227,14 @@ class CompleteFormState extends State<CompleteForm> {
                           TextSpan(
                             text: 'Terms and Conditions',
                             style: TextStyle(color: Colors.blue),
+                            // Flutter doesn't allow a button inside a button
+                            // https://github.com/flutter/flutter/issues/31437#issuecomment-492411086
+                            /*
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 print('launch url');
                               },
+                            */
                           ),
                         ],
                       ),
