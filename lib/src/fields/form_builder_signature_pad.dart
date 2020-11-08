@@ -70,6 +70,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                   Container(
                     decoration: BoxDecoration(border: border),
                     child: GestureDetector(
+                      onHorizontalDragUpdate: (_) {},
                       onVerticalDragUpdate: (_) {},
                       child: Signature(
                         controller: state._controller,
