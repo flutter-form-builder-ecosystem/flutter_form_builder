@@ -229,6 +229,11 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             // DropdownButtonFormField
             // TextFormField
 
+            void changeValue(T value) {
+              state.requestFocus();
+              state.didChange(value);
+            }
+
             return InputDecorator(
               decoration: state.decoration().copyWith(
                     floatingLabelBehavior: hint == null
@@ -260,9 +265,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         icon: icon,
                         iconDisabledColor: iconDisabledColor,
                         iconEnabledColor: iconEnabledColor,
-                        onChanged: enabled
-                            ? (value) => _changeValue<T>(state, value)
-                            : null,
+                        onChanged:
+                            enabled ? (value) => changeValue(value) : null,
                         onTap: onTap,
                         focusNode: state.effectiveFocusNode,
                         autofocus: autofocus,
@@ -277,7 +281,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                     const VerticalDivider(),
                     InkWell(
                       child: clearIcon,
-                      onTap: () => _changeValue<T>(state, null),
+                      onTap: () => changeValue(null),
                     ),
                   ]
                 ],
@@ -285,11 +289,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             );
           },
         );
-
-  static void _changeValue<T>(_FormBuilderDropdownState<T> state, T value) {
-    state.requestFocus();
-    state.didChange(value);
-  }
 
   @override
   _FormBuilderDropdownState<T> createState() => _FormBuilderDropdownState<T>();
