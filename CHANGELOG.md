@@ -1,3 +1,13 @@
+## [4.0.0-pre.6] - 13-Nov-2020
+* **BREAKING CHANGE**: Attribute `readOnly` replaced by `enabled` - this was done to match Flutter's `FormField` naming convention
+* **BREAKING CHANGE**: To programatically set values use original `didChange()` method instead of `patchValue()`
+* New validator for integer values
+* Add option to remove `readOnly` field values from the final form value using `skipReadOnly` field. Closes #501
+* RadioGroup and CheckboxGroup labels not wrapping in vertical mode. Fixes #474
+* Allow changing `readOnly` and `initialValue` at runtime. Closes #515
+* Expanded the list of supported image file extensions to match Flutter's
+* Fixed bug where email validator was returning match validator `errorText`
+
 ## [4.0.0-pre.5] - 24-Oct-2020
 * Number of Chips to be selected in FilterChip can now be limited by setting `maxChips` attribute. Closes #500
 * After calling patchValue on TextField, take cursor to end of text. Closes #477

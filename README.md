@@ -148,7 +148,7 @@ Column(
             ),
             initialTime: TimeOfDay(hour: 8, minute: 0),
             // initialValue: DateTime.now(),
-            // readonly: true,
+            // enabled: true,
           ),
           FormBuilderDateRangePicker(
             name: 'date_range',
@@ -439,11 +439,11 @@ FormBuilderField(
 ### Programmatically changing field value
 You can either change the value of one field at a time like so:
 ```dart
-_formKey.currentState.fields['color_picker'].patchValue(Colors.black);
+_formKey.currentState.fields['color_picker'].didChange(Colors.black);
 ```
 Or multiple fields value like so:
 ```dart
-_formKey.currentState.patchValue({
+_formKey.currentState.didChange({
   'age': '50',
   'slider': 6.7,
   'filter_chip': ['Test 1'],
@@ -469,6 +469,7 @@ Available built-in validators include:
 * `FormBuilderValidators.date()` - requires the field's value to be a valid date string.
 * `FormBuilderValidators.email()` - requires the field's value to be a valid email address.
 * `FormBuilderValidators.equal()` - requires the field's value be equal to provided object.
+* `FormBuilderValidators.integer()` - requires the field's value to be an integer.
 * `FormBuilderValidators.IP()` - requires the field's value to be a valid IP address.
 * `FormBuilderValidators.match()` - requires the field's value to match the provided regex pattern.
 * `FormBuilderValidators.max()` - requires the field's value to be less than or equal to the provided number.
@@ -528,6 +529,7 @@ Set the error text
 RaisedButton(
   child: Text('Submit'),
   onPressed: () async {
+    setState(() => _emailError = null);
     if(checkIfEmailExists()){
       setState(() => _emailError = 'Email already taken.');
     }

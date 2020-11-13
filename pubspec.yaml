@@ -1,6 +1,6 @@
 name: flutter_form_builder
 description: This package helps in creation of forms in Flutter by removing the boilerplate, reuse validation, react to changes, and collect final user input.
-version: 4.0.0-pre.5
+version: 4.0.0-pre.6
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
@@ -19,18 +19,18 @@ dependencies:
   date_range_picker: ^1.0.6
   datetime_picker_formfield: ^1.0.0
   dropdown_search: ^0.4.6
-  file_picker: ^2.0.11
+  file_picker: ^2.0.13
   flutter_colorpicker: ^0.3.4
   flutter_chips_input: ^1.9.4
   flutter_datetime_picker: ^1.4.0
   flutter_touch_spin: ^1.0.1
   flutter_typeahead: ^1.8.8
-  google_maps_flutter: ^1.0.5
-  image_picker: ^0.6.7+12
+  google_maps_flutter: ^1.0.6
+  image_picker: ^0.6.7+14
   image_picker_for_web: ^0.1.0+2
   intl: ^0.16.1
   permission_handler: ^5.0.1+1
-  phone_number: ^0.8.0
+  phone_number: ^0.8.1
   rating_bar: ^0.2.0
   signature: ^3.2.0
   validators: ^2.0.1
