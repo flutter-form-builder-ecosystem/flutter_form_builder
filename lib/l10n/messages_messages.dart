@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
             "This field requires a valid email address."),
         "equalErrorText": m4,
+        "integerErrorText":
+            MessageLookupByLibrary.simpleMessage("Value must be an integer."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
             "This field requires a valid IP."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(

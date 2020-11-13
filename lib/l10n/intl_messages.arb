@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-10-08T17:47:59.750726",
+  "@@last_modified": "2020-11-13T10:38:27.938366",
   "requiredErrorText": "This field cannot be empty.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",
@@ -67,6 +67,12 @@
   "numericErrorText": "Value must be numeric.",
   "@numericErrorText": {
     "description": "Error Text for numeric validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "Value must be an integer.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
     "type": "text",
     "placeholders": {}
   },

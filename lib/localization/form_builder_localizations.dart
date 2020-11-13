@@ -97,6 +97,12 @@ class FormBuilderLocalizations {
         desc: 'Error Text for numeric validator',
       );
 
+  String get integerErrorText => Intl.message(
+        'Value must be an integer.',
+        name: 'integerErrorText',
+        desc: 'Error Text for integer validator',
+      );
+
   String get creditCardErrorText => Intl.message(
         'This field requires a valid credit card number.',
         name: 'creditCardErrorText',

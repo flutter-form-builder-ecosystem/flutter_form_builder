@@ -192,7 +192,7 @@ class FormBuilderValidators {
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&
               null == int.tryParse(valueCandidate, radix: radix)
-          ? errorText ?? FormBuilderLocalizations.of(context).numericErrorText
+          ? errorText ?? FormBuilderLocalizations.of(context).integerErrorText
           : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
