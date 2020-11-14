@@ -124,7 +124,7 @@ Column(
             initialValue: 1,
             max: 5,
           ),
-          FormBuilderCheckboxList(
+          FormBuilderCheckboxGroup(
             decoration:
             InputDecoration(labelText: "The language of my people"),
             attribute: "languages",
