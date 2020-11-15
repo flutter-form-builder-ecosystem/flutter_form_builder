@@ -121,7 +121,7 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     if (null == widget.focusNode) {
       _focusNode.dispose();
     }
-    _formBuilderState?.unregisterField(widget.name);
+    _formBuilderState?.unregisterField(widget.name, this);
     super.dispose();
   }
 

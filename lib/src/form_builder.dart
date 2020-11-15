@@ -71,9 +71,9 @@ class FormBuilder extends StatefulWidget {
 class FormBuilderState extends State<FormBuilder> {
   final _formKey = GlobalKey<FormState>();
 
-  Map<String, FormBuilderFieldState> _fields;
+  final _fields = <String, FormBuilderFieldState>{};
 
-  Map<String, dynamic> _value;
+  final _value = <String, dynamic>{};
 
   Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(_value);
 
@@ -81,39 +81,52 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, FormBuilderFieldState> get fields => _fields;
 
-  @override
-  void initState() {
-    super.initState();
-    _fields = {};
-    _value = <String, dynamic>{};
-  }
-
-  @override
-  void dispose() {
-    _fields = null;
-    super.dispose();
-  }
-
   void setInternalFieldValue(String name, dynamic value) {
     setState(() {
-      _value = <String, dynamic>{..._value, name: value};
+      _value[name] = value;
     });
   }
 
   void removeInternalFieldValue(String name) {
     setState(() {
-      _value = <String, dynamic>{..._value..remove(name)};
+      _value.remove(name);
     });
   }
 
   void registerField(String name, FormBuilderFieldState field) {
-    assert(!_fields.containsKey(name));
+    // Each field must have a unique name.  Ideally we could simply:
+    //   assert(!_fields.containsKey(name));
+    // However, Flutter will delay dispose of deactivated fields, so if a
+    // field is being replaced, the new instance is registered before the old
+    // one is unregistered.  To accommodate that use case, but also provide
+    // assistance to accidental duplicate names, we check and emit a warning.
+    assert(() {
+      if (_fields.containsKey(name)) {
+        print('Warning! Replacing duplicate Field for $name'
+            ' -- this is OK to ignore as long as the field was intentionally replaced');
+      }
+      return true;
+    }());
     _fields[name] = field;
   }
 
-  void unregisterField(String name) {
+  void unregisterField(String name, FormBuilderFieldState field) {
     assert(_fields.containsKey(name));
-    _fields.remove(name);
+    // Only remove the field when it is the one registered.  It's possible that
+    // the field is replaced (registerField is called twice for a given name)
+    // before unregisterField is called for the name, so just emit a warning
+    // since it may be intentional.
+    if (field == _fields[name]) {
+      _fields.remove(name);
+    } else {
+      assert(() {
+        // This is OK to ignore when you are intentionally replacing a field
+        // with another field using the same name.
+        print('Warning! Ignoring Field unregistration for $name'
+            ' -- this is OK to ignore as long as the field was intentionally replaced');
+        return true;
+      }());
+    }
   }
 
   void save() {
