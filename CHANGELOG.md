@@ -1,3 +1,6 @@
+## [4.0.0-pre.7] - 18-Nov-2020
+* **BREAKING CHANGE**: Removed FormBuilderLocationField. Version 1 of [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) to be used. Closes #491
+
 ## [4.0.0-pre.6] - 13-Nov-2020
 * **BREAKING CHANGE**: Attribute `readOnly` replaced by `enabled` - this was done to match Flutter's `FormField` naming convention
 * **BREAKING CHANGE**: To programatically set values use original `didChange()` method instead of `patchValue()`

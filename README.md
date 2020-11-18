@@ -20,7 +20,7 @@ To use this plugin, add `flutter_form_builder` as a
 Improvements:
 * Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
 * Ability to programmatically induce an error to a field - could be especially useful for server-side validation.
-* New field types including: LocationField, SearchableDropdown and FilePickerField
+* New field types including: SearchableDropdown and FilePickerField
 * Better composition of validators.
 
 Breaking changes:
@@ -444,7 +444,7 @@ _formKey.currentState.fields['color_picker'].didChange(Colors.black);
 ```
 Or multiple fields value like so:
 ```dart
-_formKey.currentState.didChange({
+_formKey.currentState.patchValue({
   'age': '50',
   'slider': 6.7,
   'filter_chip': ['Test 1'],

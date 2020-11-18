@@ -2,7 +2,6 @@ library flutter_form_builder;
 
 // export 'package:country_code_picker/country_code_picker.dart';
 export 'package:flutter_typeahead/flutter_typeahead.dart';
-export 'package:google_maps_flutter/google_maps_flutter.dart';
 export 'package:signature/signature.dart';
 export 'package:dropdown_search/dropdown_search.dart' hide ErrorBuilder;
 
@@ -18,7 +17,6 @@ export './src/fields/form_builder_dropdown.dart';
 export './src/fields/form_builder_file_picker.dart';
 export './src/fields/form_builder_filter_chips.dart';
 export './src/fields/form_builder_image_picker.dart';
-export './src/fields/form_builder_location_field.dart';
 export './src/fields/form_builder_phone_field.dart';
 export './src/fields/form_builder_radio_group.dart';
 export './src/fields/form_builder_range_slider.dart';

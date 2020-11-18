@@ -48,11 +48,6 @@ class CompleteFormState extends State<CompleteForm> {
                     items: allCountries,
                     onChanged: _onChanged,
                   ),
-                  FormBuilderLocationField(
-                    name: 'location',
-                    decoration: InputDecoration(labelText: 'Location'),
-                    onChanged: _onChanged,
-                  ),
                   const SizedBox(height: 15),
                   FormBuilderFilterChip(
                     name: 'filter_chip',
