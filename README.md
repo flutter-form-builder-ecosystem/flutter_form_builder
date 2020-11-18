@@ -1,5 +1,6 @@
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png)](https://buymeacoff.ee/wb5M9y2Sz)
 <a href="https://www.patreon.com/danvick"><img height=35 src="https://images.milled.com/2020-01-19/Gpcdn365K2wKyBNN/7kgewOM81ULv.png"/></a>
+<script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="wb5M9y2Sz" data-description="Support me on Buy me a coffee!" data-message="Thank you for visiting. You can now buy me a coffee!" data-color="#FFDD00" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 # Flutter FormBuilder - flutter_form_builder
 
 This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes,

@@ -116,7 +116,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     FocusNode focusNode,
     @required this.items,
     this.autoValidate = false,
-    this.mode = dropdown_search.Mode.DIALOG,
+    this.mode = dropdown_search.Mode.MENU,
     this.hint,
     this.isFilteredOnline = false,
     this.popupTitle,

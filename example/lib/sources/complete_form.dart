@@ -47,7 +47,6 @@ class CompleteFormState extends State<CompleteForm> {
                     name: 'searchable_dropdown',
                     items: allCountries,
                     onChanged: _onChanged,
-                    enabled: false,
                   ),
                   FormBuilderLocationField(
                     name: 'location',
