@@ -289,7 +289,7 @@ void main() {
   testWidgets(
       'FormBuilderValidators.IP',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.IP(context);
+            final validator = FormBuilderValidators.ip(context);
             // Pass
             expect(validator(null), isNull);
             expect(validator(''), isNull);

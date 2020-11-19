@@ -208,7 +208,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the field's value to be a valid IP address.
   /// * [version] is a `String` or an `int`.
-  static FormFieldValidator<String> IP(
+  static FormFieldValidator<String> ip(
     BuildContext context, {
     dynamic version,
     String errorText,
