@@ -130,7 +130,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
                 contentPadding: contentPadding,
                 title: title,
                 value: state.value,
-                onChanged: enabled
+                onChanged: state.enabled
                     ? (val) {
                         state.requestFocus();
                         field.didChange(val);

@@ -128,7 +128,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
               child: Row(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: enabled
+                    onTap: state.enabled
                         ? () {
                             state.requestFocus();
                             if (isCupertinoPicker) {
@@ -158,7 +158,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                   ),
                   Expanded(
                     child: TextField(
-                      enabled: enabled,
+                      enabled: state.enabled,
                       style: style,
                       focusNode: state.effectiveFocusNode,
                       decoration: InputDecoration(

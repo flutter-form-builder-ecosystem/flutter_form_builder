@@ -314,9 +314,9 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
             return TypeAheadField<T>(
               textFieldConfiguration: textFieldConfiguration.copyWith(
-                enabled: enabled,
+                enabled: state.enabled,
                 controller: state._typeAheadController,
-                style: enabled
+                style: state.enabled
                     ? textFieldConfiguration.style
                     : theme.textTheme.subtitle1.copyWith(
                         color: theme.disabledColor,

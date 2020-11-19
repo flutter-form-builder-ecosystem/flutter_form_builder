@@ -171,7 +171,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 },
                 showSearchBox: showSearchBox,
                 hint: hint,
-                enabled: enabled,
+                enabled: state.enabled,
                 autoFocusSearchBox: autoFocusSearchBox,
                 autoValidateMode: autovalidateMode,
                 clearButton: clearButton,

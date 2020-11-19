@@ -51,6 +51,14 @@ class FormBuilder extends StatefulWidget {
   /// Default is `false`.
   final bool skipDisabled;
 
+  /// Whether the form is able to receive user input.
+  ///
+  /// Defaults to true.
+  ///
+  /// When `false` all the form fields will be disabled - won't accept input -
+  /// and their enabled state will be ignored.
+  final bool enabled;
+
   const FormBuilder({
     Key key,
     @required this.child,
@@ -59,6 +67,7 @@ class FormBuilder extends StatefulWidget {
     this.onWillPop,
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
+    this.enabled = true,
   }) : super(key: key);
 
   static FormBuilderState of(BuildContext context) =>
@@ -70,6 +79,8 @@ class FormBuilder extends StatefulWidget {
 
 class FormBuilderState extends State<FormBuilder> {
   final _formKey = GlobalKey<FormState>();
+
+  bool get enabled => widget.enabled;
 
   final _fields = <String, FormBuilderFieldState>{};
 

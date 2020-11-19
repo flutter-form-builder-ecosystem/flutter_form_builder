@@ -73,7 +73,7 @@ class FormBuilderRating extends FormBuilderField<double> {
 
             return InputDecorator(
               decoration: state.decoration(),
-              child: enabled
+              child: state.enabled
                   ? RatingBar(
                       key: ObjectKey(state.value),
                       initialRating: state.value?.toDouble(),

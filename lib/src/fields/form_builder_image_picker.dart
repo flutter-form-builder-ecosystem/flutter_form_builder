@@ -118,7 +118,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                       : Image.file(item as File,
                                           fit: BoxFit.cover),
                             ),
-                            if (enabled)
+                            if (state.enabled)
                               InkWell(
                                 onTap: () {
                                   state.requestFocus();
@@ -144,7 +144,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                           ],
                         );
                       }),
-                    if (enabled && !state.hasMaxImages)
+                    if (state.enabled && !state.hasMaxImages)
                       GestureDetector(
                         child: placeholderImage != null
                             ? Image(
@@ -157,11 +157,11 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 height: previewHeight,
                                 child: Icon(
                                   Icons.camera_enhance,
-                                  color: enabled
+                                  color: state.enabled
                                       ? iconColor ?? primaryColor
                                       : disabledColor,
                                 ),
-                                color: (enabled
+                                color: (state.enabled
                                         ? iconColor ?? primaryColor
                                         : disabledColor)
                                     .withAlpha(50)),

@@ -80,8 +80,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                   state.requestFocus();
                   state.didChange(val);
                 },
-                disabled:
-                    enabled ? disabled : options.map((e) => e.value).toList(),
+                disabled: state.enabled
+                    ? disabled
+                    : options.map((e) => e.value).toList(),
                 activeColor: activeColor,
                 focusColor: focusColor,
                 materialTapTargetSize: materialTapTargetSize,

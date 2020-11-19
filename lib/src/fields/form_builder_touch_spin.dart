@@ -93,7 +93,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
                 step: step,
                 value: field.value,
                 iconSize: iconSize,
-                onChanged: enabled
+                onChanged: state.enabled
                     ? (value) {
                         state.requestFocus();
                         state.didChange(value);
@@ -106,7 +106,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
                 iconActiveColor: iconActiveColor ?? theme.primaryColor,
                 iconDisabledColor: iconDisabledColor ?? theme.disabledColor,
                 iconPadding: iconPadding,
-                enabled: enabled,
+                enabled: state.enabled,
               ),
             );
           },

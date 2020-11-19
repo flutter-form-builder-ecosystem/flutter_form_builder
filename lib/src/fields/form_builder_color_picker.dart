@@ -145,7 +145,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
                       },
                     ),
                   ),
-              enabled: enabled,
+              enabled: state.enabled,
               readOnly: readOnly,
               controller: state._effectiveController,
               focusNode: state.effectiveFocusNode,
@@ -209,7 +209,7 @@ class _FormBuilderColorPickerFieldState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus && widget.enabled) {
+    if (effectiveFocusNode.hasFocus && enabled) {
       await Future.microtask(
           () => FocusScope.of(context).requestFocus(FocusNode()));
       final selected = await showDialog<bool>(

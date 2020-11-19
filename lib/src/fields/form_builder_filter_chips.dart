@@ -105,7 +105,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                     FilterChip(
                       label: option,
                       selected: field.value.contains(option.value),
-                      onSelected: enabled &&
+                      onSelected: state.enabled &&
                               (null == maxChips ||
                                   field.value.length < maxChips ||
                                   field.value.contains(option.value))

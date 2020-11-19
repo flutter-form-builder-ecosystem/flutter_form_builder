@@ -62,6 +62,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
             final state = field as _FormBuilderSignaturePadState;
             final theme = Theme.of(state.context);
             final localizations = MaterialLocalizations.of(state.context);
+            final cancelButtonColor = state.enabled ? theme.errorColor : theme.disabledColor;
 
             return InputDecorator(
               decoration: state.decoration(),
@@ -84,15 +85,15 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                     children: <Widget>[
                       Expanded(child: const SizedBox()),
                       TextButton.icon(
-                        onPressed: () {
+                        onPressed: state.enabled ? () {
                           state._controller.clear();
                           field.didChange(null);
-                        },
+                        } : null,
                         label: Text(
                           clearButtonText ?? localizations.cancelButtonLabel,
-                          style: TextStyle(color: theme.errorColor),
+                          style: TextStyle(color: cancelButtonColor),
                         ),
-                        icon: Icon(Icons.clear, color: theme.errorColor),
+                        icon: Icon(Icons.clear, color: cancelButtonColor),
                       ),
                     ],
                   ),

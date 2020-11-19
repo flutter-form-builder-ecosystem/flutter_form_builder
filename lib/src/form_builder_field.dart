@@ -97,6 +97,8 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool _touched = false;
 
+  bool get enabled =>  _formBuilderState?.enabled == false ? false : widget.enabled;
+
   FocusNode _focusNode;
 
   FocusNode get effectiveFocusNode => _focusNode;
@@ -129,7 +131,7 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void save() {
     super.save();
     if (_formBuilderState != null) {
-      if (widget.enabled || !_formBuilderState.widget.skipDisabled) {
+      if (enabled || !_formBuilderState.widget.skipDisabled) {
         _formBuilderState.setInternalFieldValue(
           widget.name,
           null != widget.valueTransformer

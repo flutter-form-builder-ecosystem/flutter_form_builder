@@ -91,7 +91,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
                         Text('${state._files.length} / $maxFiles'),
                       InkWell(
                         child: selector,
-                        onTap: enabled &&
+                        onTap: state.enabled &&
                                 (null == state._remainingItemCount ||
                                     state._remainingItemCount > 0)
                             ? () => state.pickFiles(field)
@@ -237,7 +237,7 @@ class _FormBuilderFilePickerState
                       width: double.infinity,
                       color: Colors.white.withOpacity(.8),
                     ),
-                    if (widget.enabled)
+                    if (enabled)
                       Positioned(
                         top: 0,
                         right: 0,

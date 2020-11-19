@@ -76,13 +76,13 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: CupertinoSegmentedControl<T>(
-                  borderColor: enabled
+                  borderColor: state.enabled
                       ? borderColor ?? theme.primaryColor
                       : theme.disabledColor,
-                  selectedColor: enabled
+                  selectedColor: state.enabled
                       ? selectedColor ?? theme.primaryColor
                       : theme.disabledColor,
-                  pressedColor: enabled
+                  pressedColor: state.enabled
                       ? pressedColor ?? theme.primaryColor
                       : theme.disabledColor,
                   groupValue: state.value,
@@ -97,7 +97,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
                   unselectedColor: unselectedColor,
                   onValueChanged: (value) {
                     state.requestFocus();
-                    if (enabled) {
+                    if (state.enabled) {
                       field.didChange(value);
                     } else {
                       field.reset();

@@ -165,7 +165,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                         onChangeStart: onChangeStart,
                         labels: labels,
                         semanticFormatterCallback: semanticFormatterCallback,
-                        onChanged: enabled
+                        onChanged: state.enabled
                             ? (values) {
                                 state.requestFocus();
                                 field.didChange(values);

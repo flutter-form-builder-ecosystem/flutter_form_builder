@@ -72,7 +72,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
             return ChipsInput<T>(
               key: ObjectKey(state.value),
               initialValue: field.value,
-              enabled: enabled,
+              enabled: state.enabled,
               decoration: state.decoration(),
               findSuggestions: findSuggestions,
               onChanged: (data) {

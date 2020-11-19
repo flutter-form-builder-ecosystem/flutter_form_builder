@@ -131,9 +131,9 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
             final state = field as FormBuilderDateRangePickerState;
 
             return TextField(
-              enabled: enabled,
+              enabled: state.enabled,
               style: style,
-              focusNode: enabled
+              focusNode: state.enabled
                   ? state.effectiveFocusNode
                   : AlwaysDisabledFocusNode(),
               decoration: state.decoration(),

@@ -84,7 +84,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                   field.didChange(val);
                 },
                 disabled:
-                    enabled ? disabled : options.map((e) => e.value).toList(),
+                    state.enabled ? disabled : options.map((e) => e.value).toList(),
                 activeColor: activeColor,
                 focusColor: focusColor,
                 checkColor: checkColor,
