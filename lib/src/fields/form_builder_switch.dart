@@ -119,6 +119,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState<bool> field) {
             final state = field as _FormBuilderSwitchState;
 

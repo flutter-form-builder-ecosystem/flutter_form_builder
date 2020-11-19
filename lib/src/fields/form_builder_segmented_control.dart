@@ -67,6 +67,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState<T> field) {
             final state = field as _FormBuilderSegmentedControlState<T>;
             final theme = Theme.of(state.context);

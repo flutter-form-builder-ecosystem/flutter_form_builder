@@ -198,6 +198,7 @@ class FormBuilderDateRangePickerState
 
   @override
   void dispose() {
+    effectiveFocusNode.removeListener(_handleFocus);
     // Dispose the _effectiveController when initState created it
     if (null == widget.controller) {
       _effectiveController.dispose();
