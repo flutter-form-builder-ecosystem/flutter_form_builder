@@ -41,10 +41,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>MAPS_FIELD_API_KEY</key>
-    <string>$(MAPS_FIELD_API_KEY)</string>
-    <key>io.flutter.embedded_views_preview</key>
-    <string>YES</string>
-
 </dict>
 </plist>
