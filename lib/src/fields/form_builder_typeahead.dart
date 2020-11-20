@@ -294,7 +294,6 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     this.keepSuggestionsOnSuggestionSelected = false,
     this.onSuggestionSelected,
     this.controller,
-    // this.onSaved,
   })  : assert(T == String || selectionToTextTransformer != null),
         super(
           key: key,
@@ -308,6 +307,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState<T> field) {
             final state = field as _FormBuilderTypeAheadState<T>;
             final theme = Theme.of(state.context);

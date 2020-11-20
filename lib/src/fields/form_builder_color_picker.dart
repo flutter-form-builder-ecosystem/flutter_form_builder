@@ -101,7 +101,6 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     this.maxLength,
     this.onEditingComplete,
     this.onFieldSubmitted,
-    // FormFieldValidator<String> validator,
     this.inputFormatters,
     this.cursorWidth = 2.0,
     this.cursorRadius,
@@ -122,6 +121,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           enabled: enabled,
           onReset: onReset,
           decoration: decoration,
+          focusNode: focusNode,
           builder: (FormFieldState<Color> field) {
             final state = field as _FormBuilderColorPickerFieldState;
             return TextField(
@@ -201,6 +201,7 @@ class _FormBuilderColorPickerFieldState
 
   @override
   void dispose() {
+    effectiveFocusNode.removeListener(_handleFocus);
     // Dispose the _effectiveController when initState created it
     if (null == widget.controller) {
       _effectiveController.dispose();

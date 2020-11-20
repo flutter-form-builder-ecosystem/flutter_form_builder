@@ -143,6 +143,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             enabled: enabled,
             onReset: onReset,
             decoration: decoration,
+            focusNode: focusNode,
             builder: (FormFieldState<RangeValues> field) {
               final state = field as _FormBuilderRangeSliderState;
               final _numberFormat = numberFormat ?? NumberFormat.compact();
