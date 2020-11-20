@@ -97,7 +97,7 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool _touched = false;
 
-  bool get enabled =>  _formBuilderState?.enabled == false ? false : widget.enabled;
+  bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
   FocusNode _focusNode;
 
@@ -173,6 +173,6 @@ abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   InputDecoration decoration() => widget.decoration.copyWith(
-        errorText: widget.decoration?.errorText ?? errorText,
+        errorText: widget.decoration.errorText ?? errorText,
       );
 }
