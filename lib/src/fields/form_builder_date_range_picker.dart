@@ -206,8 +206,8 @@ class FormBuilderDateRangePickerState
   }
 
   Future<void> _handleFocus() async {
-    effectiveFocusNode?.unfocus();
     if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
       final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
