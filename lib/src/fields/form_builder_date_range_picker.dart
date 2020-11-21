@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
+/// Field for selecting a range of dates
 class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   //TODO: Add documentation
   final int maxLines;
@@ -47,6 +47,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
 
+  /// Creates field for selecting a range of dates
   FormBuilderDateRangePicker({
     Key key,
     //From Super

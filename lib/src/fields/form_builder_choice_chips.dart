@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// A list of `Chip`s that acts like radio buttons
 class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// The list of items the user can select.
   final List<FormBuilderFieldOption<T>> options;
@@ -238,6 +239,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// [verticalDirection] must not be null.
   final VerticalDirection verticalDirection;
 
+  /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
     Key key,
     //From Super

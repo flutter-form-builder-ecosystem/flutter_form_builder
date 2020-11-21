@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// Field for selection of a value from the `CupertinoSegmentedControl`
 class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
   /// The color used to fill the backgrounds of unselected widgets and as the
   /// text color of the selected widget.
@@ -35,6 +36,7 @@ class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
   /// The list of options the user can select.
   final List<FormBuilderFieldOption<T>> options;
 
+  /// Creates field for selection of a value from the `CupertinoSegmentedControl`
   FormBuilderSegmentedControl({
     Key key,
     //From Super

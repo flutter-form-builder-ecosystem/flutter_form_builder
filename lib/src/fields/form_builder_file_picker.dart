@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+/// Field for image(s) from user device storage
 class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
   /// Maximum number of files needed for this field
   final int maxFiles;
@@ -45,6 +46,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
   /// which can be useful for uploading and processing large files.
   final bool withReadStream;
 
+  /// Creates field for image(s) from user device storage
   FormBuilderFilePicker({
     //From Super
     Key key,

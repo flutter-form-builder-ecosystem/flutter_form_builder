@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 enum DisplayValues { all, current, minMax, none }
 
+/// Field for selection of a numerical value on a slider
 class FormBuilderSlider extends FormBuilderField<double> {
   /// Called when the user starts selecting a new value for the slider.
   ///
@@ -127,6 +128,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   final TextStyle textStyle;
   final TextStyle maxTextStyle;
 
+  /// Creates field for selection of a numerical value on a slider
   FormBuilderSlider({
     Key key,
     //From Super

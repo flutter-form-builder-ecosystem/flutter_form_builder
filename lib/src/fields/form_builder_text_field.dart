@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// A Material Design text field input.
 class FormBuilderTextField extends FormBuilderField<String> {
   /// Controls the text being edited.
   ///
@@ -289,6 +290,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// {@macro flutter.services.autofill.autofillHints}
   final Iterable<String> autofillHints;
 
+  /// Creates a Material Design text field input.
   FormBuilderTextField({
     Key key,
     //From Super

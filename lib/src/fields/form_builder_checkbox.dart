@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// Single Checkbox field
 class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// The primary content of the CheckboxListTile.
   ///
@@ -64,6 +65,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
+  /// Creates a single Checkbox field
   FormBuilderCheckbox({
     //From Super
     Key key,

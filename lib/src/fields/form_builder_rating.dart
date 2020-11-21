@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:rating_bar/rating_bar.dart';
 
+/// Field for selection of a numerical value as a rating
 class FormBuilderRating extends FormBuilderField<double> {
   /// Icon to be used to denote the value of the widget
   final IconData icon;
@@ -32,6 +33,7 @@ class FormBuilderRating extends FormBuilderField<double> {
   /// Fill color of the icon to be used when the value is half
   final Color halfFilledColor;
 
+  /// Creates field for selection of a numerical value as a rating
   FormBuilderRating({
     Key key,
     //From Super

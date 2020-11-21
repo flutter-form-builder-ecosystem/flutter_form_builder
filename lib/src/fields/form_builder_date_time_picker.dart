@@ -13,6 +13,7 @@ enum InputType { date, time, both }
 
 enum PickerType { material, cupertino }
 
+/// Field for `Date`, `Time` and `DateTime` input
 class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// The date/time picker dialogs to show.
   final InputType inputType;
@@ -145,6 +146,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final DatePickerTheme theme;
   final TimePickerEntryMode timePickerInitialEntryMode;
 
+  /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
     Key key,
     //From Super

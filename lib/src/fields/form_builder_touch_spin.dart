@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
+/// Field for selection of a number by tapping on an add or subtract icon
 class FormBuilderTouchSpin extends FormBuilderField<num> {
   /// Value to increment or decrement by
   final num step;
@@ -42,6 +43,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
   /// Color of icon while the widget is in active state
   final Color iconDisabledColor;
 
+  /// Creates field for selection of a number by tapping on an add or subtract icon
   FormBuilderTouchSpin({
     Key key,
     //From Super

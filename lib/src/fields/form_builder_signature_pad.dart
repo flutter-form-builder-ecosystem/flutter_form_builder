@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
+/// Field with drawing pad on which user can doodle
 class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
   /// Controls the value of the signature pad.
   ///
@@ -26,6 +27,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
   /// Styles the canvas border
   final Border border;
 
+  /// Creates field with drawing pad on which user can doodle
   FormBuilderSignaturePad({
     Key key,
     //From Super

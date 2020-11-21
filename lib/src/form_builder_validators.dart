@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:validators/validators.dart';
 
+/// For creation of [FormFieldValidator]s.
 class FormBuilderValidators {
   /// [FormFieldValidator] that is composed of other [FormFieldValidator]s.
   /// Each validator is run against the [FormField] value and if any returns a

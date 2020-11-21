@@ -7,6 +7,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/image_source_sheet.dart';
 import 'package:image_picker/image_picker.dart';
 
+/// Field for picking image(s) from Gallery or Camera.
 class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   //TODO: Add documentation
   final double previewWidth;
@@ -41,6 +42,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
   final Widget galleryLabel;
   final EdgeInsets bottomSheetPadding;
 
+  /// Creates field for picking image(s) from Gallery or Camera.
   FormBuilderImagePicker({
     Key key,
     //From Super

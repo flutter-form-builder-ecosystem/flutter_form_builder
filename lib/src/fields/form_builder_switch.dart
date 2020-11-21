@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// On/Off switch field
 class FormBuilderSwitch extends FormBuilderField<bool> {
   /// The primary content of the list tile.
   ///
@@ -80,6 +81,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
+  /// Creates On/Off switch field
   FormBuilderSwitch({
     Key key,
     //From Super

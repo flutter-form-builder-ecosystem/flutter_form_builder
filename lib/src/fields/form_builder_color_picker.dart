@@ -31,6 +31,7 @@ extension on Color {
 
 enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
 
+/// Creates a field for `Color` input selection
 class FormBuilderColorPickerField extends FormBuilderField<Color> {
   //TODO: Add documentation
   final TextEditingController controller;

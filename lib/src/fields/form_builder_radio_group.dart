@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
+/// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
   final List<FormBuilderFieldOption<T>> options;
   final Color activeColor;
@@ -20,9 +21,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
   final VerticalDirection wrapVerticalDirection;
   final Widget separator;
   final ControlAffinity controlAffinity;
-
   final OptionsOrientation orientation;
 
+  /// Creates field to select one value from a list of Radio Widgets
   FormBuilderRadioGroup({
     Key key,
     //From Super

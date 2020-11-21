@@ -8,6 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:phone_number/phone_number.dart';
 
 //TODO: Switch country_pickers for country_code_picker
+/// Field for international phone number input.
 class FormBuilderPhoneField extends FormBuilderField<String> {
   //TODO: Add documentation
   final int maxLines;
@@ -52,6 +53,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
   final double cupertinoPickerSheetHeight;
   final TextAlignVertical textAlignVertical;
 
+  /// Creates field for international phone number input.
   FormBuilderPhoneField({
     Key key,
     //From Super

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
+/// Field to select a range of values on a Slider
 class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   /// Called when the user starts selecting new values for the slider.
   ///
@@ -103,6 +104,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   final TextStyle maxTextStyle;
   final NumberFormat numberFormat;
 
+  /// Creates field to select a range of values on a Slider
   FormBuilderRangeSlider({
     Key key,
     //From Super

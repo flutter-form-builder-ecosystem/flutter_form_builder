@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// Field for selecting value(s) from a searchable list
 class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   /// final List<DropdownMenuItem<T>> items;
 
@@ -100,6 +101,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   ///set a custom color for the popup barrier
   final Color popupBarrierColor;
 
+  /// Creates field for selecting value(s) from a searchable list
   FormBuilderSearchableDropdown({
     Key key,
     //From Super

@@ -5,6 +5,10 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 enum OptionsOrientation { horizontal, vertical, wrap }
 enum ControlAffinity { leading, trailing }
 
+/// A single form field.
+///
+/// This widget maintains the current state of the form field, so that updates
+/// and validation errors are visually reflected in the UI.
 abstract class FormBuilderField<T> extends FormField<T> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
@@ -42,6 +46,7 @@ abstract class FormBuilderField<T> extends FormField<T> {
 
   //TODO: implement bool autofocus, ValueChanged<bool> onValidated
 
+  /// Creates a single form field.
   const FormBuilderField({
     Key key,
     //From Super
