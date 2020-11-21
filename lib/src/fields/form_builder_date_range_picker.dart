@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
 class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
@@ -205,8 +204,8 @@ class FormBuilderDateRangePickerState
   }
 
   Future<void> _handleFocus() async {
-    effectiveFocusNode?.unfocus();
     if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
       final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
