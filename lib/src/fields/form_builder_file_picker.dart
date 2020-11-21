@@ -41,6 +41,10 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
   /// which can be useful if you are picking it for server upload or similar.
   final bool withData;
 
+  /// If [withReadStream] is set, picked files will have its byte data available as a [Stream<List<int>>]
+  /// which can be useful for uploading and processing large files.
+  final bool withReadStream;
+
   FormBuilderFilePicker({
     //From Super
     Key key,
@@ -57,6 +61,7 @@ class FormBuilderFilePicker extends FormBuilderField<List<PlatformFile>> {
     FocusNode focusNode,
     this.maxFiles,
     this.withData = false,
+    this.withReadStream = false,
     this.allowMultiple = true,
     this.previewImages = true,
     this.selector = const Icon(Icons.add_circle),
@@ -155,6 +160,7 @@ class _FormBuilderFilePickerState
           onFileLoading: widget.onFileLoading,
           allowMultiple: widget.allowMultiple,
           withData: widget.withData,
+          withReadStream: widget.withReadStream,
         );
       } else {
         throw Exception('Storage Permission not granted');
