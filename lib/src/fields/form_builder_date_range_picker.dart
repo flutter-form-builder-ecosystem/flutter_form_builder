@@ -133,9 +133,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
             return TextField(
               enabled: state.enabled,
               style: style,
-              focusNode: state.enabled
-                  ? state.effectiveFocusNode
-                  : AlwaysDisabledFocusNode(),
+              focusNode: state.effectiveFocusNode,
               decoration: state.decoration(),
               // initialValue: "${_initialValue ?? ''}",
               maxLines: maxLines,
@@ -207,8 +205,8 @@ class FormBuilderDateRangePickerState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus) {
-      _hideKeyboard();
+    effectiveFocusNode?.unfocus();
+    if (effectiveFocusNode.hasFocus && enabled) {
       final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
@@ -243,10 +241,6 @@ class FormBuilderDateRangePickerState
       return format(value[0]);
     }
     return '${format(value[0])} - ${format(value[1])}';
-  }
-
-  void _hideKeyboard() {
-    Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
   }
 
   String format(DateTime date) => FormBuilderDateRangePicker.tryFormat(

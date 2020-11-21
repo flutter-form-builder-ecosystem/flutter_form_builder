@@ -211,8 +211,7 @@ class _FormBuilderColorPickerFieldState
 
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && enabled) {
-      await Future.microtask(
-          () => FocusScope.of(context).requestFocus(FocusNode()));
+      effectiveFocusNode?.unfocus();
       final selected = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
