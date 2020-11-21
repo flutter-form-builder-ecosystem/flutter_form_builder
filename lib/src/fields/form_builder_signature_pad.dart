@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
@@ -77,16 +78,20 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                     width: width,
                     decoration: BoxDecoration(
                       border: border,
-                      image: state.enabled ? null : DecorationImage(
-                        image: MemoryImage(state.value),
-                      ),
+                      image: (state.enabled &&
+                              (null != initialValue &&
+                                  initialValue != state.value))
+                          ? null
+                          : DecorationImage(
+                              image: MemoryImage(state.value),
+                            ),
                     ),
                     child: state.enabled
                         ? GestureDetector(
                             onHorizontalDragUpdate: (_) {},
                             onVerticalDragUpdate: (_) {},
                             child: Signature(
-                              controller: state._controller,
+                              controller: state.effectiveController,
                               width: width,
                               height: height,
                               backgroundColor: backgroundColor,
@@ -100,7 +105,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                       TextButton.icon(
                         onPressed: state.enabled
                             ? () {
-                                state._controller.clear();
+                                state.effectiveController.clear();
                                 field.didChange(null);
                               }
                             : null,
@@ -127,31 +132,41 @@ class _FormBuilderSignaturePadState
     extends FormBuilderFieldState<FormBuilderSignaturePad, Uint8List> {
   SignatureController _controller;
 
+  SignatureController get effectiveController => _controller;
+
   @override
   void initState() {
     super.initState();
     _controller = widget.controller ?? SignatureController();
-    _controller.addListener(() async {
+    effectiveController.addListener(() async {
       requestFocus();
-      final _value = await _controller.toImage() != null
-          ? await _controller.toPngBytes()
-          : null;
+      final _value = await _getControllerValue();
       didChange(_value);
     });
+    SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
+      // Get initialValue or if points are set, use the  points
+      didChange(initialValue ?? await _getControllerValue());
+    });
+  }
+
+  Future<Uint8List> _getControllerValue() async {
+    return await effectiveController.toImage() != null
+        ? await effectiveController.toPngBytes()
+        : null;
+  }
+
+  @override
+  void reset() {
+    effectiveController?.clear();
+    super.reset();
   }
 
   @override
   void dispose() {
     // Dispose the _controller when initState created it
     if (null == widget.controller) {
-      _controller.dispose();
+      effectiveController?.dispose();
     }
     super.dispose();
-  }
-
-  @override
-  void reset() {
-    _controller?.clear();
-    super.reset();
   }
 }
