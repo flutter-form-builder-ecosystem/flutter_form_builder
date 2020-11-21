@@ -1,3 +1,7 @@
+## [4.0.0-pre.8] - 21-Nov-2020
+* Added enabled attribute to FormBuilder to allow disabling the whole form
+* Passed FocusNode through to super class. Also removed listeners when added.
+
 ## [4.0.0-pre.7] - 18-Nov-2020
 * **BREAKING CHANGE**: Removed FormBuilderLocationField. Version 1 of [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) to be used. Closes #491
 
