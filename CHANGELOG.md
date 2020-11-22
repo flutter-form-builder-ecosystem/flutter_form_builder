@@ -1,3 +1,10 @@
+## [4.0.0-pre.9] - 22-Nov-2020
+* Upgraded to latest `file_picker` -  adds `withReadStream` option for processing large files
+* Fixed issue where `initialValue` working on SignaturePad
+* Fixed issue where SignaturePad still accepts imput when `enabled` is set to `false`
+* Attempted fixes to `FocusNode` leaks
+* Inline documentation and README improvements
+
 ## [4.0.0-pre.8] - 21-Nov-2020
 * Added enabled attribute to FormBuilder to allow disabling the whole form
 * Passed FocusNode through to super class. Also removed listeners when added.
