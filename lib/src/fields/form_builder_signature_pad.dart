@@ -138,7 +138,7 @@ class _FormBuilderSignaturePadState
   void initState() {
     super.initState();
     _controller = widget.controller ?? SignatureController();
-    effectiveController.addListener(() async {
+    _controller.addListener(() async {
       requestFocus();
       final _value = await _getControllerValue();
       didChange(_value);
@@ -150,14 +150,15 @@ class _FormBuilderSignaturePadState
   }
 
   Future<Uint8List> _getControllerValue() async {
-    return await effectiveController.toImage() != null
-        ? await effectiveController.toPngBytes()
+    return await _controller.toImage() != null
+        ? await _controller.toPngBytes()
         : null;
   }
 
   @override
   void reset() {
-    effectiveController?.clear();
+    assert(null != _controller);
+    _controller.clear();
     super.reset();
   }
 
@@ -165,7 +166,7 @@ class _FormBuilderSignaturePadState
   void dispose() {
     // Dispose the _controller when initState created it
     if (null == widget.controller) {
-      effectiveController?.dispose();
+      _controller.dispose();
     }
     super.dispose();
   }
