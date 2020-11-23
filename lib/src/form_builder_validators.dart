@@ -49,7 +49,6 @@ class FormBuilderValidators {
               FormBuilderLocalizations.of(context).equalErrorText(value)
           : null;
 
-  // TODO(any): implement inclusive in l10n
   /// [FormFieldValidator] that requires the field's value to be greater than
   /// (or equal) to the provided number.
   static FormFieldValidator<T> min<T>(
@@ -74,7 +73,6 @@ class FormBuilderValidators {
     };
   }
 
-  // TODO(any): implement inclusive in l10n
   /// [FormFieldValidator] that requires the field's value to be less than
   /// (or equal) to the provided number.
   static FormFieldValidator<T> max<T>(

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
@@ -33,6 +32,7 @@ class CompleteFormState extends State<CompleteForm> {
           children: <Widget>[
             FormBuilder(
               key: _formKey,
+              // enabled: false,
               autovalidateMode: AutovalidateMode.disabled,
               initialValue: {
                 'movie_rating': 5,

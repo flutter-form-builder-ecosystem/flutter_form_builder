@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class SignupForm extends StatefulWidget {
@@ -17,7 +18,7 @@ class _SignupFormState extends State<SignupForm> {
           padding: const EdgeInsets.all(8.0),
           child: FormBuilder(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
                 FormBuilderTextField(
@@ -49,6 +50,7 @@ class _SignupFormState extends State<SignupForm> {
                 const SizedBox(height: 10),
                 FormBuilderTextField(
                   name: 'confirm_password',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
                     suffixIcon: (_formKey.currentState != null &&

@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class GroupedCheckbox<T> extends StatefulWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
-  final List<FormBuilderFieldOption> options;
+  final List<FormBuilderFieldOption<T>> options;
 
   /// A list of string which specifies automatically checked checkboxes.
   /// Every element must match an item from itemList.
@@ -205,7 +205,7 @@ class GroupedCheckbox<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _GroupedCheckboxState createState() => _GroupedCheckboxState();
+  _GroupedCheckboxState<T> createState() => _GroupedCheckboxState<T>();
 }
 
 class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {

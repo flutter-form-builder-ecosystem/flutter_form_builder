@@ -1,3 +1,36 @@
+## [4.0.0] - 23-Nov-2020
+**IMPROVEMENTS**:
+* New fields: `FormBuilderFilePicker`, `FormBuilderSearchableDropdown`, `FormBuilderCheckboxGroup`
+* Localization of validation error texts
+* Added external validation. Setting `InputDecoration.errorText` which invalidates the field.
+* New validators: `FormBuilderValidators.integer`, `FormBuilderValidators.equal`
+* Improved programmatically changing field values.
+* Add to `FormBuilderField.onReset` callback - to enable reaction to resetting by changing the UI to reflect reset
+* Add option to remove disabled field values from the final form value using `skipReadOnly` field.
+* Number of Chips to be selected in FilterChip can now be limited by setting `maxChips` attribute. Closes #500
+* Use localized text for OK and CANCEL button labels for ColorPicker dialog
+* For default DateTimePicker format, use localized DateTime formats
+* Added option for user to set own `border` for `FormBuilderSignaturePad`
+* Improvements to example: break down to several pages; also show code in example app
+
+**FIXES**:
+* RadioGroup and CheckboxGroup labels not wrapping in vertical mode. Fixes #474
+* Allow changing `enabled` and `initialValue` at runtime. Closes #515
+* Hide floating label if field is empty
+* Fixed bug in DateRangePicker where user can just pick one date
+* ColorPicker, DateRangePicker, DateTimePicker - set TextField readOnly to true. Prevents keyboard popup
+* Fixed label overflows in RadioGroup & CheckboxGroup fields
+* Renamed `updateFormAttributeValue` to `setInternalAttributeValue` to avoid confusion
+
+**BREAKING CHANGES**:
+* Renamed `attribute` option in all fields to `name`
+* Done away with `validators` attribute, use normal `validator`. Use `FormBuilderValidators.compose()` to compose multiple `FormFieldValidator`s into one
+* Attribute `readOnly` replaced by `enabled` - this was done to match Flutter's `FormField` naming convention
+* Renamed `FormBuilderRate` to `FormBuilderRating`
+* Renamed `FormBuilderValidators.IP()` to `FormBuilderValidators.ip()`
+* Removed CountryPicker field because of limited use. Replaced with SearchableDropdown with similar functionality but not only limited to countries.
+* Use signature: ^3.0.0 package instead of self-maintained - comes with breaking changes.
+
 ## [4.0.0-pre.9] - 22-Nov-2020
 * Upgraded to latest `file_picker` -  adds `withReadStream` option for processing large files
 * Fixed issue where `initialValue` working on SignaturePad
