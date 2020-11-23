@@ -3,121 +3,119 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// Field for selection of a value from the `CupertinoSegmentedControl`
 class FormBuilderSegmentedControl<T> extends FormBuilderField<T> {
-  final List<FormBuilderFieldOption<T>> options;
-
-  final Color borderColor;
-  final Color selectedColor;
-  final Color pressedColor;
-
-  @Deprecated(
-      "Use `FormBuilderFieldOption`'s `child` property to style your option")
-  final TextStyle textStyle;
-
-  final EdgeInsetsGeometry padding;
-
+  /// The color used to fill the backgrounds of unselected widgets and as the
+  /// text color of the selected widget.
+  ///
+  /// Defaults to [CupertinoTheme]'s `primaryContrastingColor` if null.
   final Color unselectedColor;
 
+  /// The color used to fill the background of the selected widget and as the text
+  /// color of unselected widgets.
+  ///
+  /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+  final Color selectedColor;
+
+  /// The color used as the border around each widget.
+  ///
+  /// Defaults to [CupertinoTheme]'s `primaryColor` if null.
+  final Color borderColor;
+
+  /// The color used to fill the background of the widget the user is
+  /// temporarily interacting with through a long press or drag.
+  ///
+  /// Defaults to the selectedColor at 20% opacity if null.
+  final Color pressedColor;
+
+  /// The CupertinoSegmentedControl will be placed inside this padding
+  ///
+  /// Defaults to EdgeInsets.symmetric(horizontal: 16.0)
+  final EdgeInsetsGeometry padding;
+
+  /// The list of options the user can select.
+  final List<FormBuilderFieldOption<T>> options;
+
+  /// Creates field for selection of a value from the `CupertinoSegmentedControl`
   FormBuilderSegmentedControl({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
+    //From Super
+    @required String name,
+    FormFieldValidator<T> validator,
     T initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
-    FormFieldSetter<T> onSaved,
     ValueTransformer<T> valueTransformer,
-    List<FormFieldValidator<T>> validators = const [],
+    bool enabled = true,
+    FormFieldSetter<T> onSaved,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    VoidCallback onReset,
+    FocusNode focusNode,
     @required this.options,
     this.borderColor,
     this.selectedColor,
     this.pressedColor,
-    this.textStyle,
     this.padding,
     this.unselectedColor,
   }) : super(
           key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
           initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
+          name: name,
+          validator: validator,
           valueTransformer: valueTransformer,
-          validators: validators,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState<T> field) {
+            final state = field as _FormBuilderSegmentedControlState<T>;
+            final theme = Theme.of(state.context);
+
+            return InputDecorator(
+              decoration: state.decoration(),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: CupertinoSegmentedControl<T>(
+                  borderColor: state.enabled
+                      ? borderColor ?? theme.primaryColor
+                      : theme.disabledColor,
+                  selectedColor: state.enabled
+                      ? selectedColor ?? theme.primaryColor
+                      : theme.disabledColor,
+                  pressedColor: state.enabled
+                      ? pressedColor ?? theme.primaryColor
+                      : theme.disabledColor,
+                  groupValue: state.value,
+                  children: <T, Widget>{
+                    for (final option in options)
+                      option.value: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: option,
+                      ),
+                  },
+                  padding: padding,
+                  unselectedColor: unselectedColor,
+                  onValueChanged: (value) {
+                    state.requestFocus();
+                    if (state.enabled) {
+                      field.didChange(value);
+                    } else {
+                      field.reset();
+                    }
+                  },
+                ),
+              ),
+            );
+          },
         );
 
   @override
   _FormBuilderSegmentedControlState<T> createState() =>
-      _FormBuilderSegmentedControlState<T>();
+      _FormBuilderSegmentedControlState();
 }
 
 class _FormBuilderSegmentedControlState<T>
-    extends FormBuilderFieldState<FormBuilderSegmentedControl<T>, T, T> {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return FormField<T>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<T> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
-            errorText: field.errorText,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: CupertinoSegmentedControl<T>(
-              borderColor: readOnly
-                  ? theme.disabledColor
-                  : widget.borderColor ?? theme.primaryColor,
-              selectedColor: readOnly
-                  ? theme.disabledColor
-                  : widget.selectedColor ?? theme.primaryColor,
-              pressedColor: readOnly
-                  ? theme.disabledColor
-                  : widget.pressedColor ?? theme.primaryColor,
-              groupValue: field.value,
-              children: {
-                for (var option in widget.options)
-                  option.value: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    // ignore: deprecated_member_use_from_same_package
-                    child: widget.textStyle != null
-                        ? Text(
-                            // ignore: deprecated_member_use_from_same_package
-                            '${option.label ?? option.value}',
-                            // ignore: deprecated_member_use_from_same_package
-                            style: widget.textStyle,
-                          )
-                        : option,
-                  ),
-              },
-              padding: widget.padding,
-              unselectedColor: widget.unselectedColor,
-              onValueChanged: (T value) {
-                FocusScope.of(context).requestFocus(FocusNode());
-                if (readOnly) {
-                  field.reset();
-                } else {
-                  field.didChange(value);
-                  widget.onChanged?.call(value);
-                }
-              },
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
+    extends FormBuilderFieldState<FormBuilderSegmentedControl<T>, T> {}

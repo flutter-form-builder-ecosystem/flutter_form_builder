@@ -1,3 +1,163 @@
+## [4.0.0] - 23-Nov-2020
+**IMPROVEMENTS**:
+* New fields: `FormBuilderFilePicker`, `FormBuilderSearchableDropdown`, `FormBuilderCheckboxGroup`
+* Localization of validation error texts
+* Added external validation. Setting `InputDecoration.errorText` which invalidates the field.
+* New validators: `FormBuilderValidators.integer`, `FormBuilderValidators.equal`
+* Improved programmatically changing field values.
+* Add to `FormBuilderField.onReset` callback - to enable reaction to resetting by changing the UI to reflect reset
+* Add option to remove disabled field values from the final form value using `skipReadOnly` field.
+* Number of Chips to be selected in FilterChip can now be limited by setting `maxChips` attribute. Closes #500
+* Use localized text for OK and CANCEL button labels for ColorPicker dialog
+* For default DateTimePicker format, use localized DateTime formats
+* Added option for user to set own `border` for `FormBuilderSignaturePad`
+* Improvements to example: break down to several pages; also show code in example app
+
+**FIXES**:
+* RadioGroup and CheckboxGroup labels not wrapping in vertical mode. Fixes #474
+* Allow changing `enabled` and `initialValue` at runtime. Closes #515
+* Hide floating label if field is empty
+* Fixed bug in DateRangePicker where user can just pick one date
+* ColorPicker, DateRangePicker, DateTimePicker - set TextField readOnly to true. Prevents keyboard popup
+* Fixed label overflows in RadioGroup & CheckboxGroup fields
+* Renamed `updateFormAttributeValue` to `setInternalAttributeValue` to avoid confusion
+
+**BREAKING CHANGES**:
+* Renamed `attribute` option in all fields to `name`
+* Done away with `validators` attribute, use normal `validator`. Use `FormBuilderValidators.compose()` to compose multiple `FormFieldValidator`s into one
+* Attribute `readOnly` replaced by `enabled` - this was done to match Flutter's `FormField` naming convention
+* Renamed `FormBuilderRate` to `FormBuilderRating`
+* Renamed `FormBuilderValidators.IP()` to `FormBuilderValidators.ip()`
+* Removed CountryPicker field because of limited use. Replaced with SearchableDropdown with similar functionality but not only limited to countries.
+* Use signature: ^3.0.0 package instead of self-maintained - comes with breaking changes.
+
+## [4.0.0-pre.9] - 22-Nov-2020
+* Upgraded to latest `file_picker` -  adds `withReadStream` option for processing large files
+* Fixed issue where `initialValue` working on SignaturePad
+* Fixed issue where SignaturePad still accepts imput when `enabled` is set to `false`
+* Attempted fixes to `FocusNode` leaks
+* Inline documentation and README improvements
+
+## [4.0.0-pre.8] - 21-Nov-2020
+* Added enabled attribute to FormBuilder to allow disabling the whole form
+* Passed FocusNode through to super class. Also removed listeners when added.
+
+## [4.0.0-pre.7] - 18-Nov-2020
+* **BREAKING CHANGE**: Removed FormBuilderLocationField. Version 1 of [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) to be used. Closes #491
+
+## [4.0.0-pre.6] - 13-Nov-2020
+* **BREAKING CHANGE**: Attribute `readOnly` replaced by `enabled` - this was done to match Flutter's `FormField` naming convention
+* **BREAKING CHANGE**: To programatically set values use original `didChange()` method instead of `patchValue()`
+* New validator for integer values
+* Add option to remove `readOnly` field values from the final form value using `skipReadOnly` field. Closes #501
+* RadioGroup and CheckboxGroup labels not wrapping in vertical mode. Fixes #474
+* Allow changing `readOnly` and `initialValue` at runtime. Closes #515
+* Expanded the list of supported image file extensions to match Flutter's
+* Fixed bug where email validator was returning match validator `errorText`
+
+## [4.0.0-pre.5] - 24-Oct-2020
+* Number of Chips to be selected in FilterChip can now be limited by setting `maxChips` attribute. Closes #500
+* After calling patchValue on TextField, take cursor to end of text. Closes #477
+* Fix compile error in SearchableDropdown caused by breacking change in `dropdown_search` package. Closes #507
+* Fixed bug: calling patchValue on DateTimePIcker doesn't update TextField. Closes #505
+* Fixed regression in DateTimePicker where field didn't work. Closes #496
+* Documentation improvements
+
+## [4.0.0-pre.4] - 06-Oct-2020
+* Added new field: FilePicker
+* Included v3 to v4 migration guide to README
+* Ensure options disabled for RadioGroup & CheckboxGroup if readOnly
+* Prevent events from happening while picking image (#460)
+* Use localized text for ok and cancel button labels for ColorPicker dialog
+* Minor improvements and documentation added for LocationField
+
+## [4.0.0-pre.3] - 02-Oct-2020
+* Changed Version naming for release candidates from `-RC.*` to `-pre.*`
+
+## [4.0.0-RC.2] - 02-Oct-2020
+* More documentation improvements
+
+## [4.0.0-RC.1] - 02-Oct-2020
+* Added compatibility for Flutter v1.22
+* Documentation improvements
+* hide floating label if field is empty
+* Add default placeholder image for ImagePicker
+* For default DateTimePicker format, use localized DateTime formats
+* Fixed bug in DateRangePicker where user can just pick one date
+* Fix bug in dropdown where setting enabled to false doesn't affect input. Closes #450
+* Bumped flutter_chips_input from v1.9.3 to v1.9.4
+* **BREAKING CHANGE**: Removed CountryPicker field because of limited use. Replaced with SearchableDropdown with similar functionality but not only limited to countries.
+
+## [4.0.0-beta.5] - 05-Sep-2020
+* Finished implementation of `FormBuilderSearchableDropdown`.
+* Deprecated `FormBuilderCountryPicker` - redundant due to `FormBuilderSearchableDropdown` inclusion.
+
+## [4.0.0-beta.4] - 04-Sep-2020
+* Fix for label overflows in Radio & Checkbox Groups
+* Fixed bug in `FormBuilderDateRangePicker` where if dialog dismissed, current value is cleared
+* Fix bug where changes from user defined `TextEditingController` in `FormBuilderTextField` not detected. Closes #448
+* Improvements to documentation
+
+## [4.0.0-beta.3] - 31-Aug-2020
+* Fixed bug where validate() always returns true. Closes #440
+
+## [4.0.0-beta.2] - 22-Aug-2020
+* Added new field FormBuilderLocationField
+* Use latest flutter_datetime_picker. Fixes `"Error: Type 'DiagnosticableMixin' not found"`. Closes #406
+* Fixed bug where initialValue not set in DateTimePicker. Closes #425
+* Fixed issue where equal validator yields required errorText
+* Fixes to focus and focusNodes, check if field is touched.
+
+## [4.0.0-beta.1] - 09-Aug-2020
+* Flutter v1.20 improvements
+* Fix bug in `FormBuilderValidators.numeric` if valueCandidate is `null`
+* Renamed `pattern` validator to `match`.
+* Rename `requireTrue` validator to `equal` to allow equality check with other types. Closes #397
+* Fix bug in parsing phone number from `FormBuilderPhoneField.initialValue`
+
+## [4.0.0-alpha.9] - 05-Aug-2020
+* Improved programmatically changing field values. Multiple fields can be updated once
+* Fix conversion to double error in `FormBuilderRating`
+* Removed redundant `FormBuilderRadioList` and `FormBuilderCheckboxList` fields
+* Other minor fixes from v3 commits
+
+## [4.0.0-alpha.8] - 23-Jul-2020
+* Fixed erratic keyboard behavior on `FormBuilderTextField`
+* Added documentation for `FormBuilder` & `FormBuilderField` attributes
+* Fixed issue where `FormBuilderRadioGroup` not submitting value
+
+## [4.0.0-alpha.7] - 22-Jul-2020
+* Added new field - `FormBuilderCheckboxGroup`. Closes #188,
+* New `FormBuilderRadioGroup` implementation similar to `FormBuilderCheckboxGroup`. Fixes issue where `FormBuilderFieldOption.child` is ignored Closes #335
+* Set FocusTraversalGroup policy
+* Fixed bug where TextField where `initialValue` from `FormBuilder` is ignored. Closes #370
+
+## [4.0.0-alpha.6] - 20-Jul-2020
+* Added focusNode to all fields.
+* Attempted tab/next support - work in progress
+* Request Focus to Field when change is attempted.
+* Include guide to programmatically inducing errors to README. Closes #123
+* Fixed bug in Localization where `Locale.countrycCode` is `null`. Closes #369
+* Added more options to DatePicker for showDatePicker() Flutter function
+* Rename `updateFormAttributeValue` to `setInternalAttributeValue` to avoid confusion
+
+## [4.0.0-alpha.5] - 08-Jul-2020
+* Improvements to dirty check for FormBuilderField - fixes autovalidate only when dirty
+
+## [4.0.0-alpha.4] - 04-Jul-2020
+* Added static getter for FormBuilderLocalizations delegate
+* Fix issue where setting app localization is required for built-in validation to work
+
+## [4.0.0-alpha.3] - 01-Jul-2020
+* Localize validation error texts
+* Dropped `country_picker` package for `country_code_pickers` in PhoneField which supports localized countries
+* Allow setting of `InputDecoration.errorText` which invalidates the field. Allows external validation like server validation
+* ColorPicker show Hexadecimal code in TextField instead of `Color.toString()`
+* Do away with validators attribute, use normal validator instead of list of validators
+* Added `FormBuilderValidators.compose()` which composes multiple `FormFieldValidator`s into one
+* ColorPicker, DateRangePicker, DateTimePicker - set TextField readOnly to true. Prevents keyboard popup
+* Improvements to example: break down to several pages; also show code in example app
+
 ## [3.14.1] - 24-Oct-2020
 * Remove phone number validation internally. Closes #499
 * Include padding option for ChoiceChips. Closes #504
@@ -97,7 +257,7 @@
 * Re-implement number formatting on Slider field
 * Fix bug in ChoiceChip & FilterChip where using FieldOption label instead of child breaks. Closes #348
 * Added `labelPadding` and `labelStyle` to ChoiceChip field
-* Fix SignaturePad initialValue. 
+* Fix SignaturePad initialValue.
 
 ## [3.11.3] - 21-Jun-2020
 * Reverted changes to PhoneField causing focus issues
@@ -137,8 +297,27 @@
 * Added `decoration` attribute to ImagePicker, deprecated `labelText`
 * Remove deprecation for `initialTime` & `initialDate` in DateTimePicker
 
+## Unreleased
+* Add `contentPadding` to all `ListTile`-based fields
+
+## [4.0.0-alpha.2] - 06-May-2020
+* All form reset issues are fixed - I hope ;-). `UniqueKey()` used where  necessary
+* `FormBuilderField` to be used base to create custom fields. Removed unused `FormBuilderCustomField`
+* Add to `FormBuilderField.onReset` callback - to enable user to react to resetting by changing the UI to reflect reset
+* Fixed bug where setting form-wide `readOnly` to true doesn't affect fields
+* On field reset, use calculated `initialValue` instead of widget provided since it may have been set by the `FormBuilder`
+* Use signature: ^3.0.0 package instead of self-maintained - comes with breaking changes.
+* Added option for user to set own `border` for `FormBuilderSignaturePad`
+* Remove deprecation for `initialDate` and `initialTime` for `DateTimePicker` - user may prefer to set own
+
+## [4.0.0-alpha.1] - 04-May-2020
+* Complete rewrite of package implementation
+* Removed a few deprecations
+* Renamed `FormBuilderRate` to `FormBuilderRating`
+
 ## [3.9.0] - 03-May-2020
 * New field type `FormBuilderImagePicker` courtesy of [Gustavo Vítor](https://github.com/gustavovitor)
+* Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/form_builder_map_field) to [rating_bar](https://pub.dev/packages/rating_bar) with more configuration options
 * Switched rating package from [sy_flutter_widgets](https://pub.dev/packages/sy_flutter_widgets) to [rating_bar](https://pub.dev/packages/rating_bar) with more configuration options
 * Added option to `showCheckmark` for FormBuilderFilterChip, along with other options. Closes #260
 * Added option to `allowEmpty` in `minLength` and `maxLength` validations. Closes #259

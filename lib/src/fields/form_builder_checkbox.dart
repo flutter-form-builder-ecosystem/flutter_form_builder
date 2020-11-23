@@ -3,60 +3,134 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// Single Checkbox field
 class FormBuilderCheckbox extends FormBuilderField<bool> {
-  final bool leadingInput;
+  /// The primary content of the CheckboxListTile.
+  ///
+  /// Typically a [Text] widget.
+  final Widget title;
 
-  final Widget label;
+  /// Additional content displayed below the title.
+  ///
+  /// Typically a [Text] widget.
+  final Widget subtitle;
 
+  /// A widget to display on the opposite side of the tile from the checkbox.
+  ///
+  /// Typically an [Icon] widget.
+  final Widget secondary;
+
+  /// The color to use when this checkbox is checked.
+  ///
+  /// Defaults to accent color of the current [Theme].
   final Color activeColor;
-  final Color checkColor;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final bool tristate;
-  final EdgeInsets contentPadding;
-  final Color focusColor;
-  final Color hoverColor;
-  final FocusNode focusNode;
-  final bool autoFocus;
-  final MouseCursor mouseCursor;
-  final VisualDensity visualDensity;
 
+  /// The color to use for the check icon when this checkbox is checked.
+  ///
+  /// Defaults to Color(0xFFFFFFFF).
+  final Color checkColor;
+
+  /// Where to place the control relative to its label.
+  final ListTileControlAffinity controlAffinity;
+
+  /// Defines insets surrounding the tile's contents.
+  ///
+  /// This value will surround the [Checkbox], [title], [subtitle], and [secondary]
+  /// widgets in [CheckboxListTile].
+  ///
+  /// When the value is null, the `contentPadding` is `EdgeInsets.symmetric(horizontal: 16.0)`.
+  final EdgeInsets contentPadding;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
+  /// If true the checkbox's [value] can be true, false, or null.
+  ///
+  /// Checkbox displays a dash when its value is null.
+  ///
+  /// When a tri-state checkbox ([tristate] is true) is tapped, its [onChanged]
+  /// callback will be applied to true if the current value is false, to null if
+  /// value is true, and to false if value is null (i.e. it cycles through false
+  /// => true => null => false when tapped).
+  ///
+  /// If tristate is false (the default), [value] must not be null.
+  final bool tristate;
+
+  /// Whether to render icons and text in the [activeColor].
+  ///
+  /// No effort is made to automatically coordinate the [selected] state and the
+  /// [value] state. To have the list tile appear selected when the checkbox is
+  /// checked, pass the same value to both.
+  ///
+  /// Normally, this property is left to its default value, false.
+  final bool selected;
+
+  /// Creates a single Checkbox field
   FormBuilderCheckbox({
+    //From Super
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
+    @required String name,
+    FormFieldValidator<bool> validator,
     bool initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<bool> onChanged,
-    FormFieldSetter<bool> onSaved,
     ValueTransformer<bool> valueTransformer,
-    List<FormFieldValidator<bool>> validators = const [],
-    @required this.label,
-    this.leadingInput = false,
+    bool enabled = true,
+    FormFieldSetter<bool> onSaved,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    VoidCallback onReset,
+    FocusNode focusNode,
+    @required this.title,
     this.activeColor,
     this.checkColor,
-    this.materialTapTargetSize,
-    this.tristate = false,
+    this.subtitle,
+    this.secondary,
+    this.controlAffinity = ListTileControlAffinity.leading,
     this.contentPadding = EdgeInsets.zero,
-    this.focusColor,
-    this.hoverColor,
-    this.focusNode,
-    this.autoFocus = false,
-    this.mouseCursor,
-    this.visualDensity,
+    this.autofocus = false,
+    this.tristate = false,
+    this.selected = false,
   }) : super(
           key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
           initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
+          name: name,
+          validator: validator,
           valueTransformer: valueTransformer,
-          validators: validators,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState<bool> field) {
+            final state = field as _FormBuilderCheckboxState;
+
+            return InputDecorator(
+              decoration: state.decoration(),
+              child: CheckboxListTile(
+                dense: true,
+                isThreeLine: false,
+                title: title,
+                subtitle: subtitle,
+                value: state.value,
+                onChanged: state.enabled
+                    ? (val) {
+                        state.requestFocus();
+                        state.didChange(val);
+                      }
+                    : null,
+                checkColor: checkColor,
+                activeColor: activeColor,
+                secondary: secondary,
+                controlAffinity: controlAffinity,
+                autofocus: autofocus,
+                tristate: tristate,
+                contentPadding: contentPadding,
+                selected: selected,
+              ),
+            );
+          },
         );
 
   @override
@@ -64,73 +138,4 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
 }
 
 class _FormBuilderCheckboxState
-    extends FormBuilderFieldState<FormBuilderCheckbox, bool, bool> {
-  Widget _checkbox(FormFieldState<bool> field) {
-    return Checkbox(
-      value: (field.value == null && !widget.tristate) ? false : field.value,
-      activeColor: widget.activeColor,
-      checkColor: widget.checkColor,
-      materialTapTargetSize: widget.materialTapTargetSize,
-      tristate: widget.tristate,
-      onChanged: readOnly
-          ? null
-          : (bool value) {
-              FocusScope.of(context).requestFocus(FocusNode());
-              field.didChange(value);
-              widget.onChanged?.call(value);
-            },
-      focusColor: widget.focusColor,
-      hoverColor: widget.hoverColor,
-      focusNode: widget.focusNode,
-      autofocus: widget.autoFocus,
-      mouseCursor: widget.mouseCursor,
-      visualDensity: widget.visualDensity,
-    );
-  }
-
-  Widget _leading(FormFieldState<bool> field) {
-    if (widget.leadingInput) return _checkbox(field);
-    return null;
-  }
-
-  Widget _trailing(FormFieldState<bool> field) {
-    if (!widget.leadingInput) return _checkbox(field);
-    return null;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FormField<bool>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<bool> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
-            errorText: field.errorText,
-          ),
-          child: ListTile(
-            dense: true,
-            isThreeLine: false,
-            contentPadding: widget.contentPadding,
-            title: widget.label,
-            leading: _leading(field),
-            trailing: _trailing(field),
-            onTap: readOnly
-                ? null
-                : () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    final newValue = !(field.value ?? false);
-                    field.didChange(newValue);
-                    widget.onChanged?.call(newValue);
-                  },
-          ),
-        );
-      },
-    );
-  }
-}
+    extends FormBuilderFieldState<FormBuilderCheckbox, bool> {}

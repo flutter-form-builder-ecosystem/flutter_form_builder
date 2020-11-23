@@ -11,55 +11,61 @@ FormBuilder(
   // readonly: true,
   child: Column(
     children: <Widget>[
-      FormBuilderCustomField(
-        attribute: "name",
-        validators: [
-          FormBuilderValidators.required(),
-        ],
-        formField: FormField(
-          // key: _fieldKey,
-          enabled: true,
-          builder: (FormFieldState<dynamic> field) {
-            return InputDecorator(
-              decoration: InputDecoration(
-                labelText: "Select option",
-                contentPadding:
-                    EdgeInsets.only(top: 10.0, bottom: 0.0),
-                border: InputBorder.none,
-                errorText: field.errorText,
-              ),
-              child: DropdownButton(
-                isExpanded: true,
-                items: ["One", "Two"].map((option) {
-                  return DropdownMenuItem(
-                    child: Text("$option"),
-                    value: option,
-                  );
-                }).toList(),
-                value: field.value,
-                onChanged: (value) {
-                  field.didChange(value);
-                },
-              ),
-            );
-          },
+      FormBuilderFilterChip(
+        name: 'filter_chip',
+        decoration: InputDecoration(
+          labelText: 'Select many options',
         ),
+        options: [
+          FormBuilderFieldOption(
+              value: 'Test', child: Text('Test')),
+          FormBuilderFieldOption(
+              value: 'Test 1', child: Text('Test 1')),
+          FormBuilderFieldOption(
+              value: 'Test 2', child: Text('Test 2')),
+          FormBuilderFieldOption(
+              value: 'Test 3', child: Text('Test 3')),
+          FormBuilderFieldOption(
+              value: 'Test 4', child: Text('Test 4')),
+        ],
+      ),
+      FormBuilderChoiceChip(
+        name: 'choice_chip',
+        decoration: InputDecoration(
+          labelText: 'Select an option',
+        ),
+        options: [
+          FormBuilderFieldOption(
+              value: 'Test', child: Text('Test')),
+          FormBuilderFieldOption(
+              value: 'Test 1', child: Text('Test 1')),
+          FormBuilderFieldOption(
+              value: 'Test 2', child: Text('Test 2')),
+          FormBuilderFieldOption(
+              value: 'Test 3', child: Text('Test 3')),
+          FormBuilderFieldOption(
+              value: 'Test 4', child: Text('Test 4')),
+        ],
+      ),
+      FormBuilderColorPickerField(
+        name: 'color_picker',
+        // initialValue: Colors.yellow,
+        colorPickerType: ColorPickerType.MaterialPicker,
+        decoration: InputDecoration(labelText: 'Pick Color'),
       ),
       FormBuilderChipsInput(
-        decoration: InputDecoration(labelText: "Chips"),
-        attribute: 'chips_test',
-        // readonly: true,
+        decoration: InputDecoration(labelText: 'Chips'),
+        name: 'chips_test',
         onChanged: _onChanged,
-        // valueTransformer: (val) => val.length > 0 ? val[0] : null,
         initialValue: [
           Contact('Andrew', 'stock@man.com',
               'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
         ],
         maxChips: 5,
         findSuggestions: (String query) {
-          if (query.length != 0) {
+          if (query.isNotEmpty) {
             var lowercaseQuery = query.toLowerCase();
-            return mockResults.where((profile) {
+            return contacts.where((profile) {
               return profile.name
                       .toLowerCase()
                       .contains(query.toLowerCase()) ||
@@ -85,8 +91,7 @@ FormBuilder(
               backgroundImage: NetworkImage(profile.imageUrl),
             ),
             onDeleted: () => state.deleteChip(profile),
-            materialTapTargetSize:
-                MaterialTapTargetSize.shrinkWrap,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
           );
         },
         suggestionBuilder: (context, state, profile) {
@@ -102,80 +107,124 @@ FormBuilder(
         },
       ),
       FormBuilderDateTimePicker(
-        attribute: "date",
+        name: 'date',
+        // onChanged: _onChanged,
+        inputType: InputType.time,
+        decoration: InputDecoration(
+          labelText: 'Appointment Time',
+        ),
+        initialTime: TimeOfDay(hour: 8, minute: 0),
+        // initialValue: DateTime.now(),
+        // readonly: true,
+      ),
+      FormBuilderDateRangePicker(
+        name: 'date_range',
+        firstDate: DateTime(1970),
+        lastDate: DateTime(2030),
+        format: DateFormat('yyyy-MM-dd'),
         onChanged: _onChanged,
-        inputType: InputType.date,
-        format: DateFormat("yyyy-MM-dd"),
-        decoration:
-            InputDecoration(labelText: "Appointment Time"),
-        readonly: true,
+        decoration: InputDecoration(
+          labelText: 'Date Range',
+          helperText: 'Helper text',
+          hintText: 'Hint text',
+        ),
       ),
       FormBuilderSlider(
-        attribute: "slider",
-        validators: [FormBuilderValidators.min(6)],
+        name: 'slider',
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.min(context, 6),
+        ]),
         onChanged: _onChanged,
         min: 0.0,
         max: 10.0,
-        initialValue: 1.0,
+        initialValue: 7.0,
         divisions: 20,
-        decoration:
-            InputDecoration(labelText: "Number of things"),
+        activeColor: Colors.red,
+        inactiveColor: Colors.pink[100],
+        decoration: InputDecoration(
+          labelText: 'Number of things',
+        ),
       ),
       FormBuilderCheckbox(
-        attribute: 'accept_terms',
+        name: 'accept_terms',
         initialValue: false,
         onChanged: _onChanged,
-        leadingInput: true,
-        label: Text(
-            "I have read and agree to the terms and conditions"),
-        validators: [
-          FormBuilderValidators.requiredTrue(
-            errorText:
-                "You must accept terms and conditions to continue",
+        title: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: 'I have read and agree to the ',
+                style: TextStyle(color: Colors.black),
+              ),
+              TextSpan(
+                text: 'Terms and Conditions',
+                style: TextStyle(color: Colors.blue),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    print('launch url');
+                  },
+              ),
+            ],
           ),
-        ],
+        ),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.requireTrue(
+            context,
+            errorText:
+                'You must accept terms and conditions to continue',
+          ),
+        ]),
+      ),
+      FormBuilderTextField(
+        name: 'age',
+        decoration: InputDecoration(
+          labelText:
+              'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+        ),
+        onChanged: _onChanged,
+        // valueTransformer: (text) => num.tryParse(text),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(context),
+          FormBuilderValidators.numeric(context),
+          FormBuilderValidators.max(context, 70),
+        ]),
+        keyboardType: TextInputType.number,
       ),
       FormBuilderDropdown(
-        attribute: "gender",
-        decoration: InputDecoration(labelText: "Gender"),
+        name: 'gender',
+        decoration: InputDecoration(
+          labelText: 'Gender',
+        ),
         // initialValue: 'Male',
-        onChanged: _onChanged,
+        allowClear: true,
         hint: Text('Select Gender'),
-        validators: [FormBuilderValidators.required()],
-        items: ['Male', 'Female', 'Other']
+        validator: FormBuilderValidators.compose(
+            [FormBuilderValidators.required(context)]),
+        items: genderOptions
             .map((gender) => DropdownMenuItem(
                   value: gender,
                   child: Text('$gender'),
                 ))
             .toList(),
       ),
-      FormBuilderTextField(
-        attribute: "age",
-        decoration: InputDecoration(labelText: "Age"),
-        onChanged: _onChanged,
-        valueTransformer: (text) => num.tryParse(text),
-        validators: [
-          FormBuilderValidators.numeric(),
-          FormBuilderValidators.max(70),
-        ],
-      ),
       FormBuilderTypeAhead(
-        // initialValue: "Canada",
-        decoration: InputDecoration(labelText: "Country"),
-        attribute: 'country',
+        decoration: InputDecoration(
+          labelText: 'Country',
+        ),
+        name: 'country',
         onChanged: _onChanged,
         itemBuilder: (context, country) {
           return ListTile(
             title: Text(country),
           );
         },
+        controller: TextEditingController(text: ''),
+        initialValue: 'Uganda',
         suggestionsCallback: (query) {
-          if (query.length != 0) {
+          if (query.isNotEmpty) {
             var lowercaseQuery = query.toLowerCase();
             return allCountries.where((country) {
-              return country
-                  .toLowerCase()
-                  .contains(lowercaseQuery);
+              return country.toLowerCase().contains(lowercaseQuery);
             }).toList(growable: false)
               ..sort((a, b) => a
                   .toLowerCase()
@@ -187,82 +236,35 @@ FormBuilder(
           }
         },
       ),
-      FormBuilderRadio(
+      FormBuilderRadioList(
         decoration:
             InputDecoration(labelText: 'My chosen language'),
-        attribute: "best_language",
-        leadingInput: true,
+        name: 'best_language',
         onChanged: _onChanged,
-        validators: [FormBuilderValidators.required()],
-        options: [
-          "Dart",
-          "Kotlin",
-          "Java",
-          "Swift",
-          "Objective-C"
-        ]
-            .map((lang) => FormBuilderFieldOption(value: lang))
+        validator: FormBuilderValidators.compose(
+            [FormBuilderValidators.required(context)]),
+        options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
+            .map((lang) => FormBuilderFieldOption(
+                  value: lang,
+                  child: Text('$lang'),
+                ))
             .toList(growable: false),
       ),
-      FormBuilderSegmentedControl(
-        decoration:
-            InputDecoration(labelText: "Movie Rating (Archer)"),
-        attribute: "movie_rating",
-        options: List.generate(5, (i) => i + 1)
-            .map(
-                (number) => FormBuilderFieldOption(value: number))
-            .toList(),
-        onChanged: _onChanged,
-      ),
-      FormBuilderSwitch(
-        label: Text('I Accept the tems and conditions'),
-        attribute: "accept_terms_switch",
-        initialValue: true,
-        onChanged: _onChanged,
-      ),
-      FormBuilderStepper(
-        decoration: InputDecoration(labelText: "Stepper"),
-        attribute: "stepper",
+      FormBuilderTouchSpin(
+        decoration: InputDecoration(labelText: 'Stepper'),
+        name: 'stepper',
         initialValue: 10,
         step: 1,
-        validators: [
-          (val) {
-            if (!_fbKey.currentState.fields["accept_terms_switch"]
-                    .currentState.value &&
-                val >= 10) {
-              return "You can only put more than 10 if you've accepted terms";
-            }
-          }
-        ],
+        iconSize: 48.0,
+        addIcon: Icon(Icons.arrow_right),
+        subtractIcon: Icon(Icons.arrow_left),
       ),
-      FormBuilderRate(
-        decoration: InputDecoration(labelText: "Rate this form"),
-        attribute: "rate",
+      FormBuilderRating(
+        decoration: InputDecoration(labelText: 'Rate this form'),
+        name: 'rate',
         iconSize: 32.0,
-        initialValue: 1,
-        max: 5,
-        onChanged: _onChanged,
-      ),
-      FormBuilderCheckboxList(
-        decoration: InputDecoration(
-            labelText: "The language of my people"),
-        attribute: "languages",
-        initialValue: ["Dart"],
-        leadingInput: true,
-        options: [
-          FormBuilderFieldOption(value: "Dart"),
-          FormBuilderFieldOption(value: "Kotlin"),
-          FormBuilderFieldOption(value: "Java"),
-          FormBuilderFieldOption(value: "Swift"),
-          FormBuilderFieldOption(value: "Objective-C"),
-        ],
-        onChanged: _onChanged,
-      ),
-      FormBuilderSignaturePad(
-        decoration: InputDecoration(labelText: "Signature"),
-        attribute: "signature",
-        // height: 250,
-        clearButtonText: "Start Over",
+        initialValue: 1.0,
+        max: 5.0,
         onChanged: _onChanged,
       ),
     ],

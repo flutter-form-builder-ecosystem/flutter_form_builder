@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
+/// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
   final List<FormBuilderFieldOption<T>> options;
-  final MaterialTapTargetSize materialTapTargetSize;
   final Color activeColor;
   final Color focusColor;
   final Color hoverColor;
-  final List disabled;
+  final List<T> disabled;
+  final MaterialTapTargetSize materialTapTargetSize;
   final Axis wrapDirection;
   final WrapAlignment wrapAlignment;
-
   final double wrapSpacing;
-
   final WrapAlignment wrapRunAlignment;
-
   final double wrapRunSpacing;
-
   final WrapCrossAlignment wrapCrossAxisAlignment;
-
-  final VerticalDirection wrapVerticalDirection;
   final TextDirection wrapTextDirection;
+  final VerticalDirection wrapVerticalDirection;
   final Widget separator;
-  final ControlAffinity controlAffinity; // = ControlAffinity.leading;
-  final GroupedRadioOrientation orientation; // = GroupedRadioOrientation.wrap;
+  final ControlAffinity controlAffinity;
+  final OptionsOrientation orientation;
 
+  /// Creates field to select one value from a list of Radio Widgets
   FormBuilderRadioGroup({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
+    //From Super
+    @required String name,
+    FormFieldValidator<T> validator,
     T initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T> onChanged,
-    FormFieldSetter<T> onSaved,
     ValueTransformer<T> valueTransformer,
-    List<FormFieldValidator<T>> validators = const [],
+    bool enabled = true,
+    FormFieldSetter<T> onSaved,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    VoidCallback onReset,
+    FocusNode focusNode,
     @required this.options,
+    this.activeColor,
+    this.focusColor,
+    this.hoverColor,
+    this.disabled,
     this.materialTapTargetSize,
     this.wrapDirection = Axis.horizontal,
     this.wrapAlignment = WrapAlignment.start,
@@ -48,27 +50,57 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     this.wrapRunAlignment = WrapAlignment.start,
     this.wrapRunSpacing = 0.0,
     this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
-    this.wrapVerticalDirection = VerticalDirection.down,
-    this.controlAffinity = ControlAffinity.leading,
-    this.orientation = GroupedRadioOrientation.wrap,
-    this.activeColor,
-    this.focusColor,
-    this.hoverColor,
-    this.disabled,
     this.wrapTextDirection,
+    this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
+    this.controlAffinity = ControlAffinity.leading,
+    this.orientation = OptionsOrientation.wrap,
   }) : super(
           key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
           initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
+          name: name,
+          validator: validator,
           valueTransformer: valueTransformer,
-          validators: validators,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          focusNode: focusNode,
+          decoration: decoration,
+          builder: (FormFieldState<T> field) {
+            final state = field as _FormBuilderRadioGroupState<T>;
+
+            return InputDecorator(
+              decoration: state.decoration(),
+              child: GroupedRadio<T>(
+                orientation: orientation,
+                value: state.value,
+                options: options,
+                onChanged: (val) {
+                  state.requestFocus();
+                  state.didChange(val);
+                },
+                disabled: state.enabled
+                    ? disabled
+                    : options.map((e) => e.value).toList(),
+                activeColor: activeColor,
+                focusColor: focusColor,
+                materialTapTargetSize: materialTapTargetSize,
+                hoverColor: hoverColor,
+                wrapAlignment: wrapAlignment,
+                wrapCrossAxisAlignment: wrapCrossAxisAlignment,
+                wrapDirection: wrapDirection,
+                wrapRunAlignment: wrapRunAlignment,
+                wrapRunSpacing: wrapRunSpacing,
+                wrapSpacing: wrapSpacing,
+                wrapTextDirection: wrapTextDirection,
+                wrapVerticalDirection: wrapVerticalDirection,
+                separator: separator,
+                controlAffinity: controlAffinity,
+              ),
+            );
+          },
         );
 
   @override
@@ -77,50 +109,4 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
 }
 
 class _FormBuilderRadioGroupState<T>
-    extends FormBuilderFieldState<FormBuilderRadioGroup<T>, T, T> {
-  @override
-  Widget build(BuildContext context) {
-    return FormField<T>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<T> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
-            errorText: field.errorText,
-          ),
-          child: GroupedRadio<T>(
-            orientation: widget.orientation,
-            value: field.value,
-            options: widget.options,
-            onChanged: (val) {
-              field.didChange(val);
-              widget.onChanged?.call(val);
-            },
-            activeColor: widget.activeColor,
-            focusColor: widget.focusColor,
-            materialTapTargetSize: widget.materialTapTargetSize,
-            disabled: !readOnly
-                ? widget.disabled
-                : widget.options.map((e) => e.value).toList(),
-            hoverColor: widget.hoverColor,
-            wrapAlignment: widget.wrapAlignment,
-            wrapCrossAxisAlignment: widget.wrapCrossAxisAlignment,
-            wrapDirection: widget.wrapDirection,
-            wrapRunAlignment: widget.wrapRunAlignment,
-            wrapRunSpacing: widget.wrapRunSpacing,
-            wrapSpacing: widget.wrapSpacing,
-            wrapTextDirection: widget.wrapTextDirection,
-            wrapVerticalDirection: widget.wrapVerticalDirection,
-            separator: widget.separator,
-            controlAffinity: widget.controlAffinity,
-          ),
-        );
-      },
-    );
-  }
-}
+    extends FormBuilderFieldState<FormBuilderRadioGroup<T>, T> {}

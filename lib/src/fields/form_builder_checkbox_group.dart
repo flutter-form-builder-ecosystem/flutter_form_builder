@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
+/// A list of Checkboxes for selecting multiple options
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final List<FormBuilderFieldOption<T>> options;
   final Color activeColor;
@@ -13,36 +14,32 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final MaterialTapTargetSize materialTapTargetSize;
   final bool tristate;
   final Axis wrapDirection;
-
   final WrapAlignment wrapAlignment;
-
   final double wrapSpacing;
-
   final WrapAlignment wrapRunAlignment;
-
   final double wrapRunSpacing;
-
   final WrapCrossAlignment wrapCrossAxisAlignment;
-
   final TextDirection wrapTextDirection;
   final VerticalDirection wrapVerticalDirection;
   final Widget separator;
   final ControlAffinity controlAffinity;
+  final OptionsOrientation orientation;
 
-  final GroupedCheckboxOrientation orientation;
-
+  /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
+    //From Super
+    @required String name,
+    FormFieldValidator<List<T>> validator,
     List<T> initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<T>> onChanged,
-    FormFieldSetter<List<T>> onSaved,
     ValueTransformer<List<T>> valueTransformer,
-    List<FormFieldValidator<List<T>>> validators = const [],
+    bool enabled = true,
+    FormFieldSetter<List<T>> onSaved,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    VoidCallback onReset,
+    FocusNode focusNode,
     @required this.options,
     this.activeColor,
     this.checkColor,
@@ -61,19 +58,55 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
-    this.orientation = GroupedCheckboxOrientation.wrap,
+    this.orientation = OptionsOrientation.wrap,
   }) : super(
           key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
           initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
+          name: name,
+          validator: validator,
           valueTransformer: valueTransformer,
-          validators: validators,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState<List<T>> field) {
+            final state = field as _FormBuilderCheckboxGroupState<T>;
+
+            return InputDecorator(
+              decoration: state.decoration(),
+              child: GroupedCheckbox<T>(
+                orientation: orientation,
+                value: state.value,
+                options: options,
+                onChanged: (val) {
+                  state.requestFocus();
+                  field.didChange(val);
+                },
+                disabled: state.enabled
+                    ? disabled
+                    : options.map((e) => e.value).toList(),
+                activeColor: activeColor,
+                focusColor: focusColor,
+                checkColor: checkColor,
+                materialTapTargetSize: materialTapTargetSize,
+                hoverColor: hoverColor,
+                tristate: tristate,
+                wrapAlignment: wrapAlignment,
+                wrapCrossAxisAlignment: wrapCrossAxisAlignment,
+                wrapDirection: wrapDirection,
+                wrapRunAlignment: wrapRunAlignment,
+                wrapRunSpacing: wrapRunSpacing,
+                wrapSpacing: wrapSpacing,
+                wrapTextDirection: wrapTextDirection,
+                wrapVerticalDirection: wrapVerticalDirection,
+                separator: separator,
+                controlAffinity: controlAffinity,
+              ),
+            );
+          },
         );
 
   @override
@@ -81,54 +114,5 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
       _FormBuilderCheckboxGroupState<T>();
 }
 
-class _FormBuilderCheckboxGroupState<T> extends FormBuilderFieldState<
-    FormBuilderCheckboxGroup<T>, List<T>, List<T>> {
-  @override
-  Widget build(BuildContext context) {
-    return FormField<List<T>>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<List<T>> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
-            errorText: field.errorText,
-          ),
-          child: GroupedCheckbox<T>(
-            orientation: widget.orientation,
-            value: field.value,
-            options: widget.options,
-            onChanged: (val) {
-              field.didChange(val);
-              widget.onChanged?.call(val);
-            },
-            activeColor: widget.activeColor,
-            focusColor: widget.focusColor,
-            checkColor: widget.checkColor,
-            materialTapTargetSize: widget.materialTapTargetSize,
-            // TODO Confirm if this should be readOnly or !enabled
-            disabled: readOnly
-                ? widget.options.map((e) => e.value).toList()
-                : widget.disabled,
-            hoverColor: widget.hoverColor,
-            tristate: widget.tristate,
-            wrapAlignment: widget.wrapAlignment,
-            wrapCrossAxisAlignment: widget.wrapCrossAxisAlignment,
-            wrapDirection: widget.wrapDirection,
-            wrapRunAlignment: widget.wrapRunAlignment,
-            wrapRunSpacing: widget.wrapRunSpacing,
-            wrapSpacing: widget.wrapSpacing,
-            wrapTextDirection: widget.wrapTextDirection,
-            wrapVerticalDirection: widget.wrapVerticalDirection,
-            separator: widget.separator,
-            controlAffinity: widget.controlAffinity,
-          ),
-        );
-      },
-    );
-  }
-}
+class _FormBuilderCheckboxGroupState<T>
+    extends FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> {}

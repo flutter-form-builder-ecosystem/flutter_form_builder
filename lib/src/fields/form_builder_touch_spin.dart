@@ -4,39 +4,63 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
+/// Field for selection of a number by tapping on an add or subtract icon
 class FormBuilderTouchSpin extends FormBuilderField<num> {
+  /// Value to increment or decrement by
   final num step;
-  final num min;
-  final num max;
-  final Icon subtractIcon;
-  final Icon addIcon;
-  final num iconSize;
 
+  /// The minimum value the user can select.
+  ///
+  /// Defaults to 0.0. Must be less than or equal to [max].
+  final num min;
+
+  /// The maximum value the user can select.
+  ///
+  /// Defaults to 1.0. Must be greater than or equal to [min].
+  final num max;
+
+  /// Icon for the decrement button
+  final Icon subtractIcon;
+
+  /// Icon for the decrement button
+  final Icon addIcon;
+
+  /// Icon sizes for the decrement and increment buttons
+  final double iconSize;
+
+  /// NumberFormat to be used when displaying values
   final NumberFormat displayFormat;
 
+  /// Spacing around the decrement and increment icons
   final EdgeInsets iconPadding;
 
+  /// Text styling for the current value of the control
   final TextStyle textStyle;
 
+  /// Color of icon while the widget is in active state
   final Color iconActiveColor;
 
+  /// Color of icon while the widget is in active state
   final Color iconDisabledColor;
 
+  /// Creates field for selection of a number by tapping on an add or subtract icon
   FormBuilderTouchSpin({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
-    num initialValue,
+    //From Super
+    @required String name,
+    FormFieldValidator<num> validator,
+    @required num initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<num> onChanged,
-    FormFieldSetter<num> onSaved,
     ValueTransformer<num> valueTransformer,
-    List<FormFieldValidator<num>> validators = const [],
-    this.step,
-    this.min = 1,
-    this.max = 9999,
+    bool enabled = true,
+    FormFieldSetter<num> onSaved,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    VoidCallback onReset,
+    FocusNode focusNode,
+    this.step = 1.0,
+    this.min = 1.0,
+    this.max = 9999999.0,
     this.iconSize = 24.0,
     this.displayFormat,
     this.subtractIcon = const Icon(Icons.remove),
@@ -47,16 +71,47 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
     this.iconDisabledColor,
   }) : super(
           key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
           initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
+          name: name,
+          validator: validator,
           valueTransformer: valueTransformer,
-          validators: validators,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState<num> field) {
+            final state = field as _FormBuilderTouchSpinState;
+            final theme = Theme.of(state.context);
+
+            return InputDecorator(
+              decoration: state.decoration(),
+              child: TouchSpin(
+                key: ObjectKey(state.value),
+                min: min,
+                max: max,
+                step: step,
+                value: field.value,
+                iconSize: iconSize,
+                onChanged: state.enabled
+                    ? (value) {
+                        state.requestFocus();
+                        state.didChange(value);
+                      }
+                    : null,
+                displayFormat: displayFormat,
+                textStyle: textStyle,
+                addIcon: addIcon,
+                subtractIcon: subtractIcon,
+                iconActiveColor: iconActiveColor ?? theme.primaryColor,
+                iconDisabledColor: iconDisabledColor ?? theme.disabledColor,
+                iconPadding: iconPadding,
+                enabled: state.enabled,
+              ),
+            );
+          },
         );
 
   @override
@@ -64,49 +119,4 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
 }
 
 class _FormBuilderTouchSpinState
-    extends FormBuilderFieldState<FormBuilderTouchSpin, num, num> {
-  @override
-  Widget build(BuildContext context) {
-    return FormField<num>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<num> field) {
-        return InputDecorator(
-          decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
-            errorText: field.errorText,
-          ),
-          child: TouchSpin(
-            key: ObjectKey(field.value),
-            min: widget.min,
-            max: widget.max,
-            step: widget.step,
-            value: field.value,
-            iconSize: widget.iconSize,
-            onChanged: readOnly
-                ? null
-                : (value) {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                    field.didChange(value);
-                    widget.onChanged?.call(value);
-                  },
-            displayFormat: widget.displayFormat,
-            textStyle: widget.textStyle,
-            addIcon: widget.addIcon,
-            subtractIcon: widget.subtractIcon,
-            iconActiveColor:
-                widget.iconActiveColor ?? Theme.of(context).primaryColor,
-            iconDisabledColor:
-                widget.iconDisabledColor ?? Theme.of(context).disabledColor,
-            iconPadding: widget.iconPadding,
-            enabled: widget.enabled,
-          ),
-        );
-      },
-    );
-  }
-}
+    extends FormBuilderFieldState<FormBuilderTouchSpin, num> {}

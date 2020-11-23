@@ -6,16 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/always_disabled_focus_node.dart';
 import 'package:intl/intl.dart' as intl;
 
+/// Field for selecting a range of dates
 class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
+  //TODO: Add documentation
   final int maxLines;
   final TextInputType keyboardType;
   final bool obscureText;
   final TextStyle style;
   final TextEditingController controller;
-  final FocusNode focusNode;
   final TextCapitalization textCapitalization;
   final TextInputAction textInputAction;
   final StrutStyle strutStyle;
@@ -26,7 +26,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final bool maxLengthEnforced;
   final int maxLength;
   final VoidCallback onEditingComplete;
-  final ValueChanged<String> onFieldSubmitted;
+  final ValueChanged<List<DateTime>> onFieldSubmitted;
   final List<TextInputFormatter> inputFormatters;
   final double cursorWidth;
   final Radius cursorRadius;
@@ -47,21 +47,24 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
 
+  /// Creates field for selecting a range of dates
   FormBuilderDateRangePicker({
     Key key,
-    @required String attribute,
-    bool readOnly = false,
-    AutovalidateMode autovalidateMode,
-    bool enabled = true,
+    //From Super
+    @required String name,
+    FormFieldValidator<List<DateTime>> validator,
     List<DateTime> initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<DateTime>> onChanged,
-    FormFieldSetter<List<DateTime>> onSaved,
     ValueTransformer<List<DateTime>> valueTransformer,
-    List<FormFieldValidator<List<DateTime>>> validators = const [],
+    bool enabled = true,
+    FormFieldSetter<List<DateTime>> onSaved,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    VoidCallback onReset,
+    FocusNode focusNode,
     @required this.firstDate,
     @required this.lastDate,
-    @required this.format,
+    this.format,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -75,7 +78,6 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
     this.keyboardType,
     this.style,
     this.controller,
-    this.focusNode,
     this.textInputAction,
     this.strutStyle,
     this.textDirection,
@@ -95,7 +97,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
     this.initialDatePickerMode = date_range_picker.DatePickerMode.day,
     this.locale,
     this.selectableDayPredicate,
-  })  : assert(
+  }) : /*TODO: Fix assertion
+        assert(
             initialValue == null ||
                 lastDate == null ||
                 initialValue[1] == null ||
@@ -111,19 +114,57 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
             lastDate == null ||
                 firstDate == null ||
                 lastDate.isAfter(firstDate),
-            'lastDate must be on or after firstDate'),
+            'lastDate must be on or after firstDate'),*/
         super(
           key: key,
-          attribute: attribute,
-          readOnly: readOnly,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
           initialValue: initialValue,
-          decoration: decoration,
-          onChanged: onChanged,
-          onSaved: onSaved,
+          name: name,
+          validator: validator,
           valueTransformer: valueTransformer,
-          validators: validators,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState<List<DateTime>> field) {
+            final state = field as FormBuilderDateRangePickerState;
+
+            return TextField(
+              enabled: state.enabled,
+              style: style,
+              focusNode: state.effectiveFocusNode,
+              decoration: state.decoration(),
+              // initialValue: "${_initialValue ?? ''}",
+              maxLines: maxLines,
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              onEditingComplete: onEditingComplete,
+              controller: state._effectiveController,
+              autocorrect: autocorrect,
+              autofocus: autofocus,
+              buildCounter: buildCounter,
+              cursorColor: cursorColor,
+              cursorRadius: cursorRadius,
+              cursorWidth: cursorWidth,
+              enableInteractiveSelection: enableInteractiveSelection,
+              maxLength: maxLength,
+              inputFormatters: inputFormatters,
+              keyboardAppearance: keyboardAppearance,
+              maxLengthEnforced: maxLengthEnforced,
+              scrollPadding: scrollPadding,
+              textAlign: textAlign,
+              textCapitalization: textCapitalization,
+              textDirection: textDirection,
+              textInputAction: textInputAction,
+              strutStyle: strutStyle,
+              readOnly: true,
+              expands: expands,
+              minLines: minLines,
+              showCursor: showCursor,
+            );
+          },
         );
 
   @override
@@ -142,84 +183,35 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   }
 }
 
-class FormBuilderDateRangePickerState extends FormBuilderFieldState<
-    FormBuilderDateRangePicker, List<DateTime>, List<DateTime>> {
-  TextEditingController _controller;
-  List<DateTime> _currentValue;
-  FocusNode _focusNode;
-
-  List<DateTime> get value => _currentValue ?? [];
-
-  FocusNode get _effectiveFocusNode => widget.focusNode ?? _focusNode;
-
-  TextEditingController get _effectiveController =>
-      widget.controller ?? _controller;
+class FormBuilderDateRangePickerState
+    extends FormBuilderFieldState<FormBuilderDateRangePicker, List<DateTime>> {
+  TextEditingController _effectiveController;
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController(text: _valueToText());
-    _focusNode = FocusNode();
-    _effectiveFocusNode?.addListener(_handleFocus);
+    _effectiveController =
+        widget.controller ?? TextEditingController(text: _valueToText());
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FormField<List<DateTime>>(
-      key: fieldKey,
-      enabled: widget.enabled,
-      initialValue: initialValue,
-      autovalidateMode: widget.autovalidateMode,
-      validator: (val) => validate(val),
-      onSaved: (val) => save(val),
-      builder: (FormFieldState<List<DateTime>> field) {
-        return TextField(
-          enabled: widget.enabled,
-          style: widget.style,
-          focusNode: readOnly ? AlwaysDisabledFocusNode() : _effectiveFocusNode,
-          decoration: widget.decoration.copyWith(
-            enabled: widget.enabled,
-            errorText: field.errorText,
-          ),
-          // initialValue: "${_initialValue ?? ''}",
-          maxLines: widget.maxLines,
-          keyboardType: widget.keyboardType,
-          obscureText: widget.obscureText,
-          onEditingComplete: widget.onEditingComplete,
-          controller: _effectiveController,
-          autocorrect: widget.autocorrect,
-          autofocus: widget.autofocus,
-          buildCounter: widget.buildCounter,
-          cursorColor: widget.cursorColor,
-          cursorRadius: widget.cursorRadius,
-          cursorWidth: widget.cursorWidth,
-          enableInteractiveSelection: widget.enableInteractiveSelection,
-          maxLength: widget.maxLength,
-          inputFormatters: widget.inputFormatters,
-          keyboardAppearance: widget.keyboardAppearance,
-          maxLengthEnforced: widget.maxLengthEnforced,
-          scrollPadding: widget.scrollPadding,
-          textAlign: widget.textAlign,
-          textCapitalization: widget.textCapitalization,
-          textDirection: widget.textDirection,
-          textInputAction: widget.textInputAction,
-          strutStyle: widget.strutStyle,
-          readOnly: true,
-          expands: widget.expands,
-          minLines: widget.minLines,
-          showCursor: widget.showCursor,
-        );
-      },
-    );
+  void dispose() {
+    effectiveFocusNode.removeListener(_handleFocus);
+    // Dispose the _effectiveController when initState created it
+    if (null == widget.controller) {
+      _effectiveController.dispose();
+    }
+    super.dispose();
   }
 
   Future<void> _handleFocus() async {
-    if (_effectiveFocusNode.hasFocus) {
-      _hideKeyboard();
-      var initialFirstDate = value.isEmpty
+    if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
+      final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
-      var initialLastDate = value.isEmpty
+      final initialLastDate = value?.isEmpty ?? true
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);
       final picked = await date_range_picker.showDatePicker(
@@ -237,40 +229,39 @@ class FormBuilderDateRangePickerState extends FormBuilderFieldState<
         if (picked.length == 1) {
           picked.add(picked[0]);
         }
-        fieldKey.currentState.didChange(picked);
-        widget.onChanged?.call(picked);
-        _setCurrentValue(picked);
-        _effectiveController.text = _valueToText();
+        didChange(picked);
       }
     }
   }
 
   String _valueToText() {
-    if (value.isEmpty) {
+    if (value == null || value.isEmpty) {
       return '';
-    } else if (value.length == 1) {
+    }
+    if (value.length == 1) {
       return format(value[0]);
     }
     return '${format(value[0])} - ${format(value[1])}';
   }
 
-  void _setCurrentValue(val) {
+  String format(DateTime date) => FormBuilderDateRangePicker.tryFormat(
+      date, widget.format ?? intl.DateFormat.yMd());
+
+  void _setTextFieldString() {
     setState(() {
-      _currentValue = val ?? [];
+      _effectiveController.text = _valueToText();
     });
   }
 
-  void _hideKeyboard() {
-    Future.microtask(() => FocusScope.of(context).requestFocus(FocusNode()));
+  @override
+  void didChange(List<DateTime> value) {
+    super.didChange(value);
+    _setTextFieldString();
   }
 
-  String format(DateTime date) =>
-      FormBuilderDateRangePicker.tryFormat(date, widget.format);
-
   @override
-  void dispose() {
-    _focusNode?.dispose();
-    _controller?.dispose();
-    super.dispose();
+  void reset() {
+    super.reset();
+    _setTextFieldString();
   }
 }

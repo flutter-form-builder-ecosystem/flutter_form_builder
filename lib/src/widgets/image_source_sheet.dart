@@ -26,13 +26,13 @@ class ImageSourceBottomSheet extends StatefulWidget {
   /// Callback when an image is selected.
   ///
   /// **Note**: This will work on web platform whereas [onImageSelected] will not.
-  final Function(Uint8List) onImage;
+  final void Function(Uint8List) onImage;
 
   /// Callback when an image is selected.
   ///
   /// **Warning**: This will _NOT_ work on web platform because [File] is not
   /// available.
-  final Function(File) onImageSelected;
+  final void Function(File) onImageSelected;
 
   final Widget cameraIcon;
   final Widget galleryIcon;
@@ -109,7 +109,7 @@ class _ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
               leading: widget.galleryIcon,
               title: widget.galleryLabel,
               onTap: () => _onPickImage(ImageSource.gallery),
-            )
+            ),
           ],
         ),
       ),

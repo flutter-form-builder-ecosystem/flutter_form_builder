@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'grouped_checkbox.dart';
-
 class GroupedRadio<T> extends StatefulWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
   final List<FormBuilderFieldOption<T>> options;
@@ -11,13 +9,12 @@ class GroupedRadio<T> extends StatefulWidget {
   /// Every element must match an item from itemList.
   final T value;
 
-  /// Specifies which boxes should be disabled.
-  /// If this is non-null, no boxes will be disabled.
-  /// The strings passed to this must match the labels.
+  /// Specifies which radio option values should be disabled.
+  /// If this is null, then no radio options will be disabled.
   final List<T> disabled;
 
   /// Specifies the orientation of the elements in itemList.
-  final GroupedRadioOrientation orientation;
+  final OptionsOrientation orientation;
 
   /// Called when the value of the checkbox group changes.
   final ValueChanged<T> onChanged;
@@ -176,10 +173,10 @@ class GroupedRadio<T> extends StatefulWidget {
 
   GroupedRadio({
     @required this.options,
+    @required this.orientation,
     @required this.onChanged,
-    this.orientation = GroupedRadioOrientation.wrap,
     this.value,
-    this.disabled = const [],
+    this.disabled,
     this.activeColor,
     this.focusColor,
     this.hoverColor,
@@ -206,36 +203,34 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   @override
   void initState() {
     super.initState();
-    if (widget.value != null) {
-      selectedValue = widget.value;
-    }
+
+    selectedValue = widget.value;
   }
 
   @override
   Widget build(BuildContext context) {
-    var finalWidget = generateItems();
-    return finalWidget;
-  }
-
-  Widget generateItems() {
-    var content = <Widget>[];
-    Widget finalWidget;
-    var widgetList = <Widget>[];
+    final widgetList = <Widget>[];
     for (var i = 0; i < widget.options.length; i++) {
       widgetList.add(item(i));
     }
-    if (widget.orientation == GroupedRadioOrientation.vertical) {
-      for (final item in widgetList) {
-        content.add(Row(children: <Widget>[item]));
-      }
+    Widget finalWidget;
+    if (widget.orientation == OptionsOrientation.vertical) {
       finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.vertical, child: Column(children: content));
-    } else if (widget.orientation == GroupedRadioOrientation.horizontal) {
-      for (final item in widgetList) {
-        content.add(Column(children: <Widget>[item]));
-      }
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: widgetList,
+        ),
+      );
+    } else if (widget.orientation == OptionsOrientation.horizontal) {
       finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.horizontal, child: Row(children: content));
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: widgetList.map((item) {
+            return Column(children: <Widget>[item]);
+          }).toList(),
+        ),
+      );
     } else {
       finalWidget = SingleChildScrollView(
         child: Wrap(
@@ -255,54 +250,47 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
   }
 
   Widget item(int index) {
-    var control = Radio<T>(
+    final option = widget.options[index];
+    final optionValue = option.value;
+    final isOptionDisabled = true == widget.disabled?.contains(optionValue);
+    final control = Radio<T>(
       groupValue: selectedValue,
       activeColor: widget.activeColor,
       focusColor: widget.focusColor,
       hoverColor: widget.hoverColor,
       materialTapTargetSize: widget.materialTapTargetSize,
-      value: widget.options[index].value,
-      onChanged: (widget.disabled != null &&
-              widget.disabled.contains(widget.options.elementAt(index).value))
+      value: optionValue,
+      onChanged: isOptionDisabled
           ? null
           : (T selected) {
               setState(() {
                 selectedValue = selected;
-                widget.onChanged?.call(selectedValue);
               });
+              widget.onChanged(selectedValue);
             },
     );
 
-    var label = GestureDetector(
+    final label = GestureDetector(
       child: widget.options[index],
-      onTap: (widget.disabled != null &&
-              widget.disabled.contains(widget.options.elementAt(index).value))
+      onTap: isOptionDisabled
           ? null
           : () {
               setState(() {
-                selectedValue = widget.options[index].value;
-                widget.onChanged?.call(selectedValue);
+                selectedValue = optionValue;
               });
+              widget.onChanged(selectedValue);
             },
     );
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        if (widget.controlAffinity == ControlAffinity.leading) ...[
-          control,
-          Flexible(child: label),
-        ],
-        if (widget.controlAffinity == ControlAffinity.trailing) ...[
-          Flexible(child: label),
-          control
-        ],
-        if (widget.separator != null &&
-            widget.options[index] != widget.options.last)
+        if (widget.controlAffinity == ControlAffinity.leading) control,
+        Flexible(child: label),
+        if (widget.controlAffinity == ControlAffinity.trailing) control,
+        if (widget.separator != null && index != widget.options.length - 1)
           widget.separator,
       ],
     );
   }
 }
-
-enum GroupedRadioOrientation { horizontal, vertical, wrap }
