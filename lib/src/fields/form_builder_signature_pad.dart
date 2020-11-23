@@ -78,13 +78,12 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                     width: width,
                     decoration: BoxDecoration(
                       border: border,
-                      image: (state.enabled &&
-                              (null != initialValue &&
-                                  initialValue != state.value))
-                          ? null
-                          : DecorationImage(
-                              image: MemoryImage(state.value),
-                            ),
+                      image:
+                          (null != initialValue && initialValue == state.value)
+                              ? DecorationImage(
+                                  image: MemoryImage(state.value),
+                                )
+                              : null,
                     ),
                     child: state.enabled
                         ? GestureDetector(
