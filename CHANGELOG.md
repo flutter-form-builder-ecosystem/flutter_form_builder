@@ -1,3 +1,7 @@
+## [4.0.1] - 24-Nov-2020
+* Fixed bug where `FormBuilderField` couldn't be used to create custom fields
+* Corrected documentation for equal validator
+
 ## [4.0.0] - 23-Nov-2020
 **IMPROVEMENTS**:
 * New fields: `FormBuilderFilePicker`, `FormBuilderSearchableDropdown`, `FormBuilderCheckboxGroup`
