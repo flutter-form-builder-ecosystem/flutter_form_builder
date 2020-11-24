@@ -9,7 +9,7 @@ enum ControlAffinity { leading, trailing }
 ///
 /// This widget maintains the current state of the form field, so that updates
 /// and validation errors are visually reflected in the UI.
-abstract class FormBuilderField<T> extends FormField<T> {
+class FormBuilderField<T> extends FormField<T> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
   final String name;
@@ -73,11 +73,14 @@ abstract class FormBuilderField<T> extends FormField<T> {
           validator: validator,
         );
 
+  /*@override
+  FormBuilderFieldState<T> createState();*/
   @override
-  FormFieldState<T> createState();
+  FormBuilderFieldState<FormBuilderField<T>, T> createState() =>
+      FormBuilderFieldState<FormBuilderField<T>, T>();
 }
 
-abstract class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     extends FormFieldState<T> {
   @override
   F get widget => super.widget as F;
