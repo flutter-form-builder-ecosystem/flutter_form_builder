@@ -84,18 +84,18 @@ class _SignupFormState extends State<SignupForm> {
                   ]),
                   // initialValue: true,
                   decoration: InputDecoration(labelText: 'Accept Terms?'),
-                  builder: (FormFieldState _field) {
+                  builder: (FormFieldState<bool> field) {
                     return InputDecorator(
                       decoration: InputDecoration(
-                        errorText: _field.errorText,
+                        errorText: field.errorText,
                       ),
                       child: SwitchListTile(
                         title: Text(
                             'I have read and accept the terms of service.'),
                         onChanged: (bool value) {
-                          _field.didChange(value);
+                          field.didChange(value);
                         },
-                        value: _field.value ?? false,
+                        value: field.value ?? false,
                       ),
                     );
                   },
