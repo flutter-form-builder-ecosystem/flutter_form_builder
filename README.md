@@ -5,11 +5,15 @@
 This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes,
 and collect final user input.
 
-[![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/CI?style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions?query=workflow%3ACI)
-[![Codecov](https://img.shields.io/codecov/c/github/danvick/flutter_form_builder?style=for-the-badge)](https://codecov.io/gh/danvick/flutter_form_builder/)
-[![GitHub](https://img.shields.io/github/license/danvick/flutter_form_builder?style=for-the-badge)](LICENSE)
+[![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?logo=flutter&style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/CI?logo=github&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions?query=workflow%3ACI)
+[![Codecov](https://img.shields.io/codecov/c/github/danvick/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/danvick/flutter_form_builder/)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/danvick/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/danvick/flutter_form_builder)
+
+[![GitHub](https://img.shields.io/github/license/danvick/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/blob/master/LICENSE)
 [![OSS Lifecycle](https://img.shields.io/osslifecycle/danvick/flutter_form_builder?style=for-the-badge)](#support)
+[![Gitter](https://img.shields.io/gitter/room/danvick/flutter_form_builder?logo=gitter&style=for-the-badge)](https://gitter.im/flutter_form_builder/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<!-- [![Awesome Flutter](https://img.shields.io/badge/Awesome-Flutter-FC60A8?logo=awesome-lists&style=for-the-badge)](https://github.com/Solido/awesome-flutter#widgets) -->
 
 ## Simple Usage
 To use this plugin, add `flutter_form_builder` as a
@@ -470,7 +474,7 @@ Available built-in validators include:
 * `FormBuilderValidators.email()` - requires the field's value to be a valid email address.
 * `FormBuilderValidators.equal()` - requires the field's value be equal to provided object.
 * `FormBuilderValidators.integer()` - requires the field's value to be an integer.
-* `FormBuilderValidators.IP()` - requires the field's value to be a valid IP address.
+* `FormBuilderValidators.ip()` - requires the field's value to be a valid IP address.
 * `FormBuilderValidators.match()` - requires the field's value to match the provided regex pattern.
 * `FormBuilderValidators.max()` - requires the field's value to be less than or equal to the provided number.
 * `FormBuilderValidators.maxLength()` - requires the length of the field's value to be less than or equal to the provided maximum length.
