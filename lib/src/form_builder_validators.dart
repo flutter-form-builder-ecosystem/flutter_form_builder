@@ -37,8 +37,8 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the field's value be true.
-  /// Commonly used for required checkboxes.
+  /// [FormFieldValidator] that requires the field's value be equal to the
+  /// provided value.
   static FormFieldValidator<T> equal<T>(
     BuildContext context,
     T value, {
