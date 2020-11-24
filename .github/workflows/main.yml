@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master, version_4 ]
+    branches: [master]
   pull_request:
-    branches: [ master, version_4 ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,7 +32,7 @@ jobs:
           flutter pub get
           flutter test --coverage
 
-      - name: Upload coverage to Codecov 
-        uses: codecov/codecov-action@v1 
-        with: 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
           file: coverage/lcov.info
