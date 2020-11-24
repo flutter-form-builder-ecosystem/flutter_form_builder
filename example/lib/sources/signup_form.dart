@@ -76,6 +76,31 @@ class _SignupFormState extends State<SignupForm> {
                   ]),
                 ),
                 const SizedBox(height: 10),
+                FormBuilderField<bool>(
+                  name: 'test',
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.equal(context, true),
+                  ]),
+                  // initialValue: true,
+                  decoration: InputDecoration(labelText: 'Accept Terms?'),
+                  builder: (FormFieldState _field) {
+                    return InputDecorator(
+                      decoration: InputDecoration(
+                        errorText: _field.errorText,
+                      ),
+                      child: SwitchListTile(
+                        title: Text(
+                            'I have read and accept the terms of service.'),
+                        onChanged: (bool value) {
+                          _field.didChange(value);
+                        },
+                        value: _field.value ?? false,
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 10),
                 MaterialButton(
                   color: Theme.of(context).accentColor,
                   child: Text(
@@ -88,6 +113,7 @@ class _SignupFormState extends State<SignupForm> {
                     } else {
                       print('Invalid');
                     }
+                    print(_formKey.currentState.value);
                   },
                 )
               ],
