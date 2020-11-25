@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         inputDecorationTheme: InputDecorationTheme(
-          labelStyle: TextStyle(color: Colors.purple),
+          labelStyle: TextStyle(color: Colors.blueAccent),
         ),
       ),
       localizationsDelegates: [
@@ -23,7 +23,11 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [Locale('en', ''), Locale('es', '')],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('es', ''),
+        Locale('fr', ''),
+      ],
       home: HomePage(),
     );
   }
