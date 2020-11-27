@@ -603,7 +603,18 @@ function defined in `lib/localization/form_builder_localizations.dart`. This fil
 
   ```flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb```
 
-5. Submit your PR and be of help to millions of people all over the world!
+5. Include your new language to `FormBuilderLocalization`'s supported languages. Go to `lib/localization/form_builder_localizations.dart` and include the language like so:
+
+<pre>
+<code>
+@override
+  bool isSupported(Locale locale) {
+    return ['en', 'es', <strong>'fr'</strong>].contains(locale.languageCode);
+  }
+</code>
+</pre>
+
+6. Submit your PR and be of help to millions of people all over the world!
 
 ### Coffee :-)
 If this package was helpful to you in delivering your project or you just wanna to support this
