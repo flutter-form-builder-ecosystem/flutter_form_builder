@@ -325,8 +325,8 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                       ),
                 focusNode: state.effectiveFocusNode,
                 decoration: state.decoration(),
-              ) as TextFieldConfiguration<
-                  dynamic>, // HACK to satisfy strictness
+              ) as TextFieldConfiguration<dynamic>,
+              // HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               transitionBuilder: (context, suggestionsBox, controller) =>
@@ -339,9 +339,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                   state._typeAheadController.text =
                       suggestion != null ? suggestion.toString() : '';
                 }
-                if (onSuggestionSelected != null) {
-                  onSuggestionSelected(suggestion);
-                }
+                onSuggestionSelected?.call(suggestion);
               },
               getImmediateSuggestions: getImmediateSuggestions,
               errorBuilder: errorBuilder,
@@ -380,6 +378,29 @@ class _FormBuilderTypeAheadState<T>
     super.initState();
     _typeAheadController = widget.controller ??
         TextEditingController(text: widget.initialValue?.toString());
+    _typeAheadController.addListener(_handleControllerChanged);
+  }
+
+  void _handleControllerChanged() {
+    // Suppress changes that originated from within this class.
+    //
+    // In the case where a controller has been passed in to this widget, we
+    // register this change listener. In these cases, we'll also receive change
+    // notifications for changes originating from within this class -- for
+    // example, the reset() method. In such cases, the FormField value will
+    // already have been set.
+    if (_typeAheadController.text != value) {
+      didChange(_typeAheadController.text as T);
+    }
+  }
+
+  @override
+  void didChange(T value) {
+    super.didChange(value);
+
+    if (_typeAheadController.text != value) {
+      _typeAheadController.text = value.toString();
+    }
   }
 
   @override
@@ -394,6 +415,6 @@ class _FormBuilderTypeAheadState<T>
   @override
   void reset() {
     super.reset();
-    _typeAheadController.text = widget.initialValue?.toString();
+    _typeAheadController.text = initialValue?.toString();
   }
 }
