@@ -1,3 +1,7 @@
+## [4.0.2] - 27-Nov-2020
+* Fixed issue in Typeahead field where didChange not call and onChanged fired. Closes #595
+* Fixed issue where french not included in list of supported languages & translations not working. Closes #561
+
 ## [4.0.1] - 24-Nov-2020
 * Fixed bug where `FormBuilderField` couldn't be used to create custom fields
 * Corrected documentation for equal validator
