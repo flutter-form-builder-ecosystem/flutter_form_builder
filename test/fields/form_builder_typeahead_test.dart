@@ -36,7 +36,7 @@ void main() {
         }
       },
     );
-    final widgetFinder = find.byWidget(testWidget);
+    // final widgetFinder = find.byWidget(testWidget);
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
     expect(formSave(), isTrue);
