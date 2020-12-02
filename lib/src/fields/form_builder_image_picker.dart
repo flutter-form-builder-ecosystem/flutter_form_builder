@@ -184,12 +184,12 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 onImageSelected: (image) {
                                   state.requestFocus();
                                   field.didChange(
-                                      <dynamic>[...field.value, image]);
+                                      <dynamic>[...?field.value, image]);
                                   Navigator.pop(state.context);
                                 },
                                 onImage: (image) {
                                   field.didChange(
-                                      <dynamic>[...field.value, image]);
+                                      <dynamic>[...?field.value, image]);
                                   onChanged?.call(field.value);
                                   Navigator.pop(state.context);
                                 },
