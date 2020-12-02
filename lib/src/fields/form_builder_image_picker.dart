@@ -125,7 +125,7 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 onTap: () {
                                   state.requestFocus();
                                   field.didChange(
-                                      <dynamic>[...field.value]..remove(item));
+                                      <dynamic>[...?field.value]..remove(item));
                                 },
                                 child: Container(
                                   margin: const EdgeInsets.all(3),
@@ -184,12 +184,12 @@ class FormBuilderImagePicker extends FormBuilderField<List<dynamic>> {
                                 onImageSelected: (image) {
                                   state.requestFocus();
                                   field.didChange(
-                                      <dynamic>[...field.value, image]);
+                                      <dynamic>[...?field.value, image]);
                                   Navigator.pop(state.context);
                                 },
                                 onImage: (image) {
                                   field.didChange(
-                                      <dynamic>[...field.value, image]);
+                                      <dynamic>[...?field.value, image]);
                                   onChanged?.call(field.value);
                                   Navigator.pop(state.context);
                                 },
