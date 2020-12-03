@@ -4,7 +4,7 @@ version: 4.0.2
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
   flutter: ">=1.22.0"
 
 dependencies:
