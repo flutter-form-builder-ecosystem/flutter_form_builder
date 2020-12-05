@@ -40,6 +40,13 @@ jobs:
           flutter format --dry-run --set-exit-if-changed .
           flutter analyze --no-pub
           flutter test --no-pub --coverage
+
+      - name: Build Example
+        run: |
+          pushd example
+          flutter build appbundle --no-pub --debug
+          flutter build ios --no-pub --debug --no-codesign
+
       - name: Upload coverage to Codecov
         if: ${{ matrix.channel == 'stable' }}
         uses: codecov/codecov-action@v1
