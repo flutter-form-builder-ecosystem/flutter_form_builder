@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 /// while typing
 class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
-  final ChipsInputSuggestions findSuggestions;
+  final ChipsInputSuggestions<T> findSuggestions;
 
   // final ValueChanged<List<T>> onChanged;
   final ChipsBuilder<T> chipBuilder;
