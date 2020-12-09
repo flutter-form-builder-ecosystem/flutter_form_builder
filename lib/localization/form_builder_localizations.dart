@@ -45,6 +45,13 @@ class FormBuilderLocalizations {
         desc: 'Error Text for equal validator',
       );
 
+  String notEqualErrorText<T>(T value) => Intl.message(
+        'This field value must not be equal to $value.',
+        name: 'notEqualErrorText',
+        args: [value],
+        desc: 'Error Text for not-equal validator',
+      );
+
   String minErrorText(num min) => Intl.message(
         'Value must be greater than or equal to $min.',
         name: 'minErrorText',
