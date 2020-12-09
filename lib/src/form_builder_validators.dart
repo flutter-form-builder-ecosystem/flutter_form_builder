@@ -57,7 +57,8 @@ class FormBuilderValidators {
     String errorText,
   }) =>
       (valueCandidate) => valueCandidate == value
-          ? errorText ?? FormBuilderLocalizations.of(context).notEqualErrorText(value)
+          ? errorText ??
+              FormBuilderLocalizations.of(context).notEqualErrorText(value)
           : null;
 
   /// [FormFieldValidator] that requires the field's value to be greater than
