@@ -20,7 +20,7 @@ dependencies:
   dropdown_search: ^0.4.8
   file_picker: ^2.1.0
   flutter_colorpicker: ^0.3.4
-  flutter_chips_input: ^1.9.4
+  flutter_chips_input: ^1.9.5
   flutter_datetime_picker: ^1.4.0
   flutter_touch_spin: ^1.0.1
   flutter_typeahead: ^1.9.1
