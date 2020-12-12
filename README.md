@@ -196,21 +196,16 @@ Widget build(BuildContext context) {
                     TextSpan(
                       text: 'Terms and Conditions',
                       style: TextStyle(color: Colors.blue),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          print('launch url');
-                        },
                     ),
                   ],
                 ),
               ),
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.requireTrue(
-                  context,
-                  errorText:
-                      'You must accept terms and conditions to continue',
-                ),
-              ]),
+              validator: FormBuilderValidators.equal(
+                context,
+                true,
+                errorText:
+                    'You must accept terms and conditions to continue',
+              ),
             ),
             FormBuilderTextField(
               name: 'age',
