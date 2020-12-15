@@ -49,6 +49,18 @@ class FormBuilderValidators {
               FormBuilderLocalizations.of(context).equalErrorText(value)
           : null;
 
+  /// [FormFieldValidator] that requires the field's value be not equal to
+  /// the provided value.
+  static FormFieldValidator<T> notEqual<T>(
+    BuildContext context,
+    T value, {
+    String errorText,
+  }) =>
+      (valueCandidate) => valueCandidate == value
+          ? errorText ??
+              FormBuilderLocalizations.of(context).notEqualErrorText(value)
+          : null;
+
   /// [FormFieldValidator] that requires the field's value to be greater than
   /// (or equal) to the provided number.
   static FormFieldValidator<T> min<T>(

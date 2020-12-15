@@ -92,6 +92,17 @@ void main() {
           }));
 
   testWidgets(
+      'FormBuilderValidators.notEqual',
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator = FormBuilderValidators.notEqual(context, true);
+            // Pass
+            expect(validator(false), isNull);
+            expect(validator(null), isNull);
+            // Fail
+            expect(validator(true), isNotNull);
+          }));
+
+  testWidgets(
       'FormBuilderValidators.maxLength',
       (WidgetTester tester) => testValidations(tester, (context) {
             final validator = FormBuilderValidators.maxLength(context, 5);

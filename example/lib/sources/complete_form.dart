@@ -233,14 +233,12 @@ class CompleteFormState extends State<CompleteForm> {
                         ],
                       ),
                     ),
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.equal(
-                        context,
-                        true,
-                        errorText:
-                            'You must accept terms and conditions to continue',
-                      ),
-                    ]),
+                    validator: FormBuilderValidators.equal(
+                      context,
+                      true,
+                      errorText:
+                          'You must accept terms and conditions to continue',
+                    ),
                   ),
                   FormBuilderTextField(
                     autovalidateMode: AutovalidateMode.always,
