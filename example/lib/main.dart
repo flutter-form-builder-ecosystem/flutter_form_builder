@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
         Locale('en', ''),
         Locale('es', ''),
         Locale('fr', ''),
-		Locale('ja', ''),
+		    Locale('ja', ''),
+        Locale('pt', ''),
       ],
       home: HomePage(),
     );
