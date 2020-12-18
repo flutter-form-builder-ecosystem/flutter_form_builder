@@ -196,8 +196,7 @@ class CompleteFormState extends State<CompleteForm> {
                   ),
                   FormBuilderRangeSlider(
                     name: 'range_slider',
-                    validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.min(context, 6)]),
+                    // validator: FormBuilderValidators.compose([FormBuilderValidators.min(context, 6)]),
                     onChanged: _onChanged,
                     min: 0.0,
                     max: 100.0,
@@ -425,10 +424,8 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                     priorityListByIsoCode: ['KE'],
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.numeric(context,
-                          errorText: 'Invalid phone number'),
-                      FormBuilderValidators.required(context,
-                          errorText: 'This field required'),
+                      FormBuilderValidators.numeric(context),
+                      FormBuilderValidators.required(context),
                     ]),
                   ),
                   const SizedBox(height: 15),
