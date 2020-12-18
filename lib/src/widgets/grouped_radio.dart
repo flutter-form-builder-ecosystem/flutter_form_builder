@@ -198,15 +198,6 @@ class GroupedRadio<T> extends StatefulWidget {
 }
 
 class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
-  T selectedValue;
-
-  @override
-  void initState() {
-    super.initState();
-
-    selectedValue = widget.value;
-  }
-
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
@@ -254,7 +245,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
     final optionValue = option.value;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
     final control = Radio<T>(
-      groupValue: selectedValue,
+      groupValue: widget.value,
       activeColor: widget.activeColor,
       focusColor: widget.focusColor,
       hoverColor: widget.hoverColor,
@@ -263,10 +254,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
       onChanged: isOptionDisabled
           ? null
           : (T selected) {
-              setState(() {
-                selectedValue = selected;
-              });
-              widget.onChanged(selectedValue);
+              widget.onChanged(selected);
             },
     );
 
@@ -275,10 +263,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
       onTap: isOptionDisabled
           ? null
           : () {
-              setState(() {
-                selectedValue = optionValue;
-              });
-              widget.onChanged(selectedValue);
+              widget.onChanged(optionValue);
             },
     );
 

@@ -463,10 +463,11 @@ class CompleteFormState extends State<CompleteForm> {
                 const SizedBox(width: 20),
                 Expanded(
                   child: OutlineButton(
-                    focusNode: FocusNode(),
                     color: Theme.of(context).accentColor,
-                    child: const Text('Reset',
-                        style: TextStyle(color: Colors.white)),
+                    child: Text(
+                      'Reset',
+                      style: TextStyle(color: Theme.of(context).accentColor),
+                    ),
                     onPressed: () {
                       _formKey.currentState.reset();
                     },
