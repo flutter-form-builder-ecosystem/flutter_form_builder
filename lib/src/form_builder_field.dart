@@ -180,6 +180,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     FocusScope.of(context).requestFocus(effectiveFocusNode);
   }
 
+  //  FIXME: This  could be a getter instead of a classic function
   InputDecoration decoration() => widget.decoration.copyWith(
         errorText: widget.decoration.errorText ?? errorText,
       );

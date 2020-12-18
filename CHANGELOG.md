@@ -1,3 +1,14 @@
+## [4.1.0] - 18-Dec-2020
+* Added support for Portuguese (pt)
+* Added support for Japanese (ja)
+* Added `FormBuilderValidators.notEqual` validator
+* Fix bug in `RadioGroup` where reset and didChange doesnt affect UI. Fixes #646, Fixes #647
+* Image picker fix: Added null-safe spread operator for `field.value`. Fixes #607
+* Fixed focus issue  in `ChipsInput`
+* Fixed bug `SearchableDropdown` where setting value programmatically does not update UI. Fixes #627
+* Upgraded flutter_typeahead to 1.9.1.
+
+
 ## [4.0.2] - 27-Nov-2020
 * Fixed issue in Typeahead field where didChange not call and onChanged fired. Closes #595
 * Fixed issue where french not included in list of supported languages & translations not working. Closes #561
