@@ -408,12 +408,6 @@ class CompleteFormState extends State<CompleteForm> {
                     border: Border.all(color: Colors.green),
                     onChanged: _onChanged,
                   ),
-                  FormBuilderImagePicker(
-                    name: 'photos',
-                    decoration: const InputDecoration(labelText: 'Pick Photos'),
-                    maxImages: 1,
-                  ),
-                  const SizedBox(height: 15),
                 ],
               ),
             ),

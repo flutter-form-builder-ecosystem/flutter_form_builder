@@ -21,8 +21,6 @@ dependencies:
   flutter_datetime_picker: ^1.4.0
   flutter_touch_spin: ^1.0.1
   flutter_typeahead: ^1.9.1
-  image_picker: ^0.6.7+17
-  image_picker_for_web: ^0.1.0+2
   intl: ^0.16.1
   rating_bar: ^0.2.0
   signature: ^3.2.0
