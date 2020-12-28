@@ -414,21 +414,6 @@ class CompleteFormState extends State<CompleteForm> {
                     maxImages: 1,
                   ),
                   const SizedBox(height: 15),
-                  FormBuilderPhoneField(
-                    name: 'phone_number',
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Phone Number',
-                      hintText: 'Hint',
-                    ),
-                    onChanged: _onChanged,
-                    priorityListByIsoCode: ['KE'],
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.numeric(context),
-                      FormBuilderValidators.required(context),
-                    ]),
-                  ),
-                  const SizedBox(height: 15),
                 ],
               ),
             ),

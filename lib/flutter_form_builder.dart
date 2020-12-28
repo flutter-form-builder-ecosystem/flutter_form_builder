@@ -16,7 +16,6 @@ export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
 export './src/fields/form_builder_filter_chips.dart';
 export './src/fields/form_builder_image_picker.dart';
-export './src/fields/form_builder_phone_field.dart';
 export './src/fields/form_builder_radio_group.dart';
 export './src/fields/form_builder_range_slider.dart';
 export './src/fields/form_builder_rating.dart';
