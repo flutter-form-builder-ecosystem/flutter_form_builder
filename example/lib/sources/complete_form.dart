@@ -429,12 +429,6 @@ class CompleteFormState extends State<CompleteForm> {
                     ]),
                   ),
                   const SizedBox(height: 15),
-                  FormBuilderFilePicker(
-                    name: 'files',
-                    previewImages: false,
-                    decoration: InputDecoration(labelText: 'Files filed'),
-                  ),
-                  const SizedBox(height: 15),
                 ],
               ),
             ),
