@@ -389,12 +389,6 @@ class FormBuilderTextField extends FormBuilderField<String> {
             final state = field as _FormBuilderTextFieldState;
             /*final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
-            void onChangedHandler(String value) {
-              /*if (onChanged != null) {
-                onChanged(value);
-              }*/
-              state.didChange(value);
-            }
 
             return TextField(
               controller: state._effectiveController,
@@ -419,7 +413,6 @@ class FormBuilderTextField extends FormBuilderField<String> {
               minLines: minLines,
               expands: expands,
               maxLength: maxLength,
-              onChanged: onChangedHandler,
               onTap: onTap,
               onEditingComplete: onEditingComplete,
               onSubmitted: onSubmitted,
