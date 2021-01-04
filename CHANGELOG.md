@@ -1,3 +1,11 @@
+## [4.2.0] - 29-Dec-2020
+* Added support for Slovak (sk) - @AdamA
+
+**BREAKING CHANGES**:
+* Removed file picker field from package - moved to [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) package.
+* Removed image picker field from package - moved to [form_builder_image_picker](https://pub.dev/packages/form_builder_image_picker) package.
+* Removed phone field field from package - moved to [form_builder_phone_field](https://pub.dev/packages/form_builder_phone_field) package.
+
 ## [4.1.0] - 18-Dec-2020
 * Added support for Portuguese (pt)
 * Added support for Japanese (ja)

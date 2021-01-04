@@ -408,33 +408,6 @@ class CompleteFormState extends State<CompleteForm> {
                     border: Border.all(color: Colors.green),
                     onChanged: _onChanged,
                   ),
-                  FormBuilderImagePicker(
-                    name: 'photos',
-                    decoration: const InputDecoration(labelText: 'Pick Photos'),
-                    maxImages: 1,
-                  ),
-                  const SizedBox(height: 15),
-                  FormBuilderPhoneField(
-                    name: 'phone_number',
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Phone Number',
-                      hintText: 'Hint',
-                    ),
-                    onChanged: _onChanged,
-                    priorityListByIsoCode: ['KE'],
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.numeric(context),
-                      FormBuilderValidators.required(context),
-                    ]),
-                  ),
-                  const SizedBox(height: 15),
-                  FormBuilderFilePicker(
-                    name: 'files',
-                    previewImages: false,
-                    decoration: InputDecoration(labelText: 'Files filed'),
-                  ),
-                  const SizedBox(height: 15),
                 ],
               ),
             ),
