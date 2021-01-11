@@ -96,12 +96,6 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, FormBuilderFieldState> get fields => _fields;
 
-  /*
-    bool get hasError => _fields.values.map((e) => e.hasError).firstWhere((element) => element == false, orElse: () => true);
-
-    bool get isValid => _fields.values.map((e) => e.isValid).firstWhere((element) => element == false, orElse: () => true);
-  */
-
   void setInternalFieldValue(String name, dynamic value) {
     setState(() {
       _value[name] = value;
