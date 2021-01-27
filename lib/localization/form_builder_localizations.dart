@@ -135,7 +135,8 @@ class _FormBuilderLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    return ['en', 'es', 'fr', 'ja', 'pt', 'sk'].contains(locale.languageCode);
+    return ['de', 'en', 'es', 'fr', 'ja', 'pt', 'sk']
+        .contains(locale.languageCode);
   }
 
   @override

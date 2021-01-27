@@ -19,37 +19,27 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt';
 
-  static m0(max) => "O valor deve ser menor ou igual a ${max}";
+  static m1(max) => "O valor deve ser menor ou igual a ${max}";
 
-  static m1(maxLength) =>
-      "O valor deve ter um comprimento menor ou igual a ${maxLength}";
+  static m2(maxLength) => "O valor deve ter um comprimento menor ou igual a ${maxLength}";
 
-  static m2(min) => "O valor deve ser maior ou igual a ${min}.";
+  static m3(min) => "O valor deve ser maior ou igual a ${min}.";
 
-  static m3(minLength) =>
-      "O valor deve ter um comprimento maior ou igual a ${minLength}";
+  static m4(minLength) => "O valor deve ter um comprimento maior ou igual a ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
-        "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um número de cartão de crédito válido."),
-        "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer uma string de data válida."),
-        "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de e-mail válido."),
-        "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um IP válido."),
-        "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "O valor não corresponde ao padrão."),
-        "maxErrorText": m0,
-        "maxLengthErrorText": m1,
-        "minErrorText": m2,
-        "minLengthErrorText": m3,
-        "numericErrorText":
-            MessageLookupByLibrary.simpleMessage("O valor deve ser numérico."),
-        "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo não pode ficar vazio."),
-        "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de URL válido.")
-      };
+  static _notInlinedMessages(_) => <String, Function> {
+    "creditCardErrorText" : MessageLookupByLibrary.simpleMessage("Este campo requer um número de cartão de crédito válido."),
+    "dateStringErrorText" : MessageLookupByLibrary.simpleMessage("Este campo requer uma string de data válida."),
+    "emailErrorText" : MessageLookupByLibrary.simpleMessage("Este campo requer um endereço de e-mail válido."),
+    "ipErrorText" : MessageLookupByLibrary.simpleMessage("Este campo requer um IP válido."),
+    "matchErrorText" : MessageLookupByLibrary.simpleMessage("O valor não corresponde ao padrão."),
+    "maxErrorText" : m1,
+    "maxLengthErrorText" : m2,
+    "minErrorText" : m3,
+    "minLengthErrorText" : m4,
+    "numericErrorText" : MessageLookupByLibrary.simpleMessage("O valor deve ser numérico."),
+    "requiredErrorText" : MessageLookupByLibrary.simpleMessage("Este campo não pode ficar vazio."),
+    "urlErrorText" : MessageLookupByLibrary.simpleMessage("Este campo requer um endereço de URL válido.")
+  };
 }
