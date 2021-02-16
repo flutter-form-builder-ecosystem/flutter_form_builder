@@ -16,9 +16,9 @@ dependencies:
   date_range_picker: ^1.0.6
   datetime_picker_formfield: ^1.0.0
   dropdown_search: ^0.4.8
-  flutter_colorpicker: ^0.3.4
+  flutter_colorpicker: ^0.3.5
   flutter_chips_input: ^1.9.5
-  flutter_datetime_picker: ^1.4.0
+  flutter_datetime_picker: ^1.5.0
   flutter_touch_spin: ^1.0.1
   flutter_typeahead: ^1.9.1
   intl: ^0.16.1
