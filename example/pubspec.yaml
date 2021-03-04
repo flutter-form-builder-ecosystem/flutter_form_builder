@@ -17,6 +17,7 @@ dependencies:
 
 dependency_overrides:
   modal_bottom_sheet: ^0.2.1+1-dev
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
