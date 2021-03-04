@@ -26,12 +26,15 @@ dependencies:
   flutter_typeahead: "<=1.9.1"
   image_picker: ^0.6.7+17
   image_picker_for_web: ^0.1.0+2
-  intl: ^0.16.1
+  intl: ^0.17.0
   permission_handler: ^5.0.1+1
   phone_number: ^0.8.1
   rating_bar: ^0.2.0
   signature: ^3.2.0
   validators: ^2.0.1
+
+dependency_overrides:
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
