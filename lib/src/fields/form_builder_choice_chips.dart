@@ -55,7 +55,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// The [ShapeBorder] to draw around the chip.
   ///
   /// Defaults to the shape in the ambient [ChipThemeData].
-  final ShapeBorder shape;
+  final OutlinedBorder shape;
 
   /// Configures the minimum size of the tap target.
   ///

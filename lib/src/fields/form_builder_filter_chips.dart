@@ -12,7 +12,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final Color backgroundColor;
   final Color selectedShadowColor;
   final Color shadowColor;
-  final ShapeBorder shape;
+  final OutlinedBorder shape;
   final MaterialTapTargetSize materialTapTargetSize;
 
   // Wrap Settings
