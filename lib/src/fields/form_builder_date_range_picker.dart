@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:date_range_picker/date_range_picker.dart' as date_range_picker;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart' as intl;
 
 /// Field for selecting a range of dates
-class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
+class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   //TODO: Add documentation
   final int maxLines;
   final TextInputType keyboardType;
@@ -38,27 +37,40 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final bool expands;
   final int minLines;
   final bool showCursor;
-  final DateTime initialFirstDate;
-  final DateTime initialLastDate;
   final DateTime firstDate;
   final DateTime lastDate;
-  final date_range_picker.DatePickerMode initialDatePickerMode;
   final Locale locale;
-  final date_range_picker.SelectableDayPredicate selectableDayPredicate;
   final intl.DateFormat format;
+  final String cancelText; // widget.cancelText,
+  final String confirmText; // widget.confirmText,
+  final DateTime currentDate; // widget.currentDate,
+  final String errorFormatText; // widget.erroerrorFormatText,
+  final Widget Function(BuildContext, Widget) pickerBuilder; // widget.builder,
+  final String errorInvalidRangeText; // widget.errorInvalidRangeText,
+  final String errorInvalidText; // widget.errorInvalidText,
+  final String fieldEndHintText; // widget.fieldEndHintText,
+  final String fieldEndLabelText; // widget.fieldEndLabelText,
+  final String fieldStartHintText; // widget.fieldStartHintText,
+  final String fieldStartLabelText; // widget.fieldStartLabelText,
+  final String helpText; // widget.helpText,
+  // final DateTimeRange initialDateRange; // widget.initialDateRange,
+  final DatePickerEntryMode initialEntryMode; // widget.initialEntryMode,
+  final RouteSettings routeSettings; // widget.routeSettings,
+  final String saveText; // widget.saveText,
+  final bool useRootNavigator; // widget.useRootNavigator,
 
   /// Creates field for selecting a range of dates
   FormBuilderDateRangePicker({
     Key key,
     //From Super
     @required String name,
-    FormFieldValidator<List<DateTime>> validator,
-    List<DateTime> initialValue,
+    FormFieldValidator<DateTimeRange> validator,
+    DateTimeRange initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<List<DateTime>> onChanged,
-    ValueTransformer<List<DateTime>> valueTransformer,
+    ValueChanged<DateTimeRange> onChanged,
+    ValueTransformer<DateTimeRange> valueTransformer,
     bool enabled = true,
-    FormFieldSetter<List<DateTime>> onSaved,
+    FormFieldSetter<DateTimeRange> onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback onReset,
     FocusNode focusNode,
@@ -92,30 +104,25 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
     this.expands = false,
     this.minLines,
     this.showCursor,
-    this.initialFirstDate,
-    this.initialLastDate,
-    this.initialDatePickerMode = date_range_picker.DatePickerMode.day,
     this.locale,
-    this.selectableDayPredicate,
-  }) : /*TODO: Fix assertion
-        assert(
-            initialValue == null ||
-                lastDate == null ||
-                initialValue[1] == null ||
-                initialValue[1].isBefore(lastDate),
-            'The last date of initialValue must be on or before lastDate'),
-        assert(
-            initialValue == null ||
-                firstDate == null ||
-                initialValue[0] == null ||
-                initialValue[0].isAfter(firstDate),
-            'The first date of initialValue must be on or after firstDate'),
-        assert(
-            lastDate == null ||
-                firstDate == null ||
-                lastDate.isAfter(firstDate),
-            'lastDate must be on or after firstDate'),*/
-        super(
+    this.cancelText,
+    this.confirmText,
+    this.currentDate,
+    this.errorFormatText,
+    this.pickerBuilder,
+    this.errorInvalidRangeText,
+    this.errorInvalidText,
+    this.fieldEndHintText,
+    this.fieldEndLabelText,
+    this.fieldStartHintText,
+    this.fieldStartLabelText,
+    this.helpText,
+    // this.initialDateRange,
+    this.initialEntryMode  = DatePickerEntryMode.calendar,
+    this.routeSettings,
+    this.saveText,
+    this.useRootNavigator = true,
+  }) : super(
           key: key,
           initialValue: initialValue,
           name: name,
@@ -128,7 +135,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<List<DateTime>> field) {
+          builder: (FormFieldState<DateTimeRange> field) {
             final state = field as FormBuilderDateRangePickerState;
 
             return TextField(
@@ -184,7 +191,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
 }
 
 class FormBuilderDateRangePickerState
-    extends FormBuilderFieldState<FormBuilderDateRangePicker, List<DateTime>> {
+    extends FormBuilderFieldState<FormBuilderDateRangePicker, DateTimeRange> {
   TextEditingController _effectiveController;
 
   @override
@@ -208,40 +215,48 @@ class FormBuilderDateRangePickerState
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && enabled) {
       effectiveFocusNode.unfocus();
-      final initialFirstDate = value?.isEmpty ?? true
+      /*final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
       final initialLastDate = value?.isEmpty ?? true
           ? (widget.initialLastDate ?? initialFirstDate)
-          : (value.length < 2 ? initialFirstDate : value[1]);
-      final picked = await date_range_picker.showDatePicker(
+          : (value.length < 2 ? initialFirstDate : value[1]);*/
+      final picked = await showDateRangePicker(
         context: context,
-        initialFirstDate: initialFirstDate,
-        initialLastDate: initialLastDate,
         firstDate: widget.firstDate,
         lastDate: widget.lastDate,
-        initialDatePickerMode: widget.initialDatePickerMode,
         locale: widget.locale,
         textDirection: widget.textDirection,
-        selectableDayPredicate: widget.selectableDayPredicate,
+        cancelText: widget.cancelText,
+        confirmText: widget.confirmText,
+        currentDate: widget.currentDate,
+        errorFormatText: widget.errorFormatText,
+        builder: widget.pickerBuilder,
+        errorInvalidRangeText: widget.errorInvalidRangeText,
+        errorInvalidText: widget.errorInvalidText,
+        fieldEndHintText: widget.fieldEndHintText,
+        fieldEndLabelText: widget.fieldEndLabelText,
+        fieldStartHintText: widget.fieldStartHintText,
+        fieldStartLabelText: widget.fieldStartLabelText,
+        helpText: widget.helpText,
+        initialDateRange: value,
+        initialEntryMode: widget.initialEntryMode,
+        routeSettings: widget.routeSettings,
+        saveText: widget.saveText,
+        useRootNavigator: widget.useRootNavigator,
       );
       if (picked != null) {
-        if (picked.length == 1) {
-          picked.add(picked[0]);
-        }
         didChange(picked);
       }
     }
   }
 
   String _valueToText() {
-    if (value == null || value.isEmpty) {
+    if (value == null) {
       return '';
     }
-    if (value.length == 1) {
-      return format(value[0]);
-    }
-    return '${format(value[0])} - ${format(value[1])}';
+
+    return '${format(value.start)} - ${format(value.end)}';
   }
 
   String format(DateTime date) => FormBuilderDateRangePicker.tryFormat(
@@ -254,7 +269,7 @@ class FormBuilderDateRangePickerState
   }
 
   @override
-  void didChange(List<DateTime> value) {
+  void didChange(DateTimeRange value) {
     super.didChange(value);
     _setTextFieldString();
   }
