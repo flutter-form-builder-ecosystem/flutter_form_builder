@@ -181,7 +181,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
   /// The configuration of the [TextField](https://docs.flutter.io/flutter/material/TextField-class.html)
   /// that the TypeAhead widget displays
-  final TextFieldConfiguration<T> textFieldConfiguration;
+  final TextFieldConfiguration textFieldConfiguration;
 
   /// How far below the text field should the suggestions box be
   ///
@@ -325,7 +325,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                       ),
                 focusNode: state.effectiveFocusNode,
                 decoration: state.decoration(),
-              ) as TextFieldConfiguration<dynamic>,
+              ) as TextFieldConfiguration,
               // HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
