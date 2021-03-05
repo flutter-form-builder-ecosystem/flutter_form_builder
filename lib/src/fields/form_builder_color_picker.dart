@@ -49,7 +49,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
 
   final bool obscureText;
   final bool autocorrect;
-  final bool maxLengthEnforced;
+  final MaxLengthEnforcement maxLengthEnforcement;
 
   final int maxLines;
   final bool expands;
@@ -94,7 +94,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     this.autofocus = false,
     this.obscureText = false,
     this.autocorrect = true,
-    this.maxLengthEnforced = true,
+    this.maxLengthEnforcement,
     this.maxLines = 1,
     this.expands = false,
     this.showCursor,
@@ -166,7 +166,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               inputFormatters: inputFormatters,
               keyboardAppearance: keyboardAppearance,
               maxLength: maxLength,
-              maxLengthEnforced: maxLengthEnforced,
+              maxLengthEnforcement: maxLengthEnforcement,
               maxLines: maxLines,
               minLines: minLines,
               onEditingComplete: onEditingComplete,

@@ -23,7 +23,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
   final TextAlign textAlign;
   final bool autofocus;
   final bool autocorrect;
-  final bool maxLengthEnforced;
+  final MaxLengthEnforcement maxLengthEnforcement;
   final int maxLength;
   final VoidCallback onEditingComplete;
   final ValueChanged<List<DateTime>> onFieldSubmitted;
@@ -70,7 +70,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableInteractiveSelection = true,
-    this.maxLengthEnforced = true,
+    this.maxLengthEnforcement,
     this.textAlign = TextAlign.start,
     this.autofocus = false,
     this.autocorrect = true,
@@ -152,7 +152,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<List<DateTime>> {
               maxLength: maxLength,
               inputFormatters: inputFormatters,
               keyboardAppearance: keyboardAppearance,
-              maxLengthEnforced: maxLengthEnforced,
+              maxLengthEnforcement: maxLengthEnforcement,
               scrollPadding: scrollPadding,
               textAlign: textAlign,
               textCapitalization: textCapitalization,

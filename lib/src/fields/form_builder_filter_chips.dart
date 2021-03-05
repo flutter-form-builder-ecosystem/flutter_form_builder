@@ -127,7 +127,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                       backgroundColor: backgroundColor,
                       shadowColor: shadowColor,
                       selectedShadowColor: selectedShadowColor,
-                      shape: shape,
+                      // shape: shape,  //TODO: remove - latter flutter versions
                       elevation: elevation,
                       pressElevation: pressElevation,
                       materialTapTargetSize: materialTapTargetSize,

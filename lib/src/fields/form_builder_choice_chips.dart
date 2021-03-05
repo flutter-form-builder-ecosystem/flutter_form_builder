@@ -320,7 +320,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                         backgroundColor: backgroundColor,
                         shadowColor: shadowColor,
                         selectedShadowColor: selectedShadowColor,
-                        shape: shape,
+                        // shape: shape,
                         elevation: elevation,
                         pressElevation: pressElevation,
                         materialTapTargetSize: materialTapTargetSize,

@@ -99,7 +99,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// to [TextField.noMaxLength] then only the current character count is displayed.
   ///
   /// After [maxLength] characters have been input, additional input
-  /// is ignored, unless [maxLengthEnforced] is set to false. The text field
+  /// is ignored, unless [maxLengthEnforcement] is set to false. The text field
   /// enforces the length with a [LengthLimitingTextInputFormatter], which is
   /// evaluated after the supplied [inputFormatters], if any.
   ///
@@ -111,7 +111,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// Whitespace characters (e.g. newline, space, tab) are included in the
   /// character count.
   ///
-  /// If [maxLengthEnforced] is set to false, then more than [maxLength]
+  /// If [maxLengthEnforcement] is set to false, then more than [maxLength]
   /// characters may be entered, but the error counter and divider will
   /// switch to the [decoration.errorStyle] when the limit is exceeded.
   ///
@@ -142,14 +142,8 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///  * [LengthLimitingTextInputFormatter] for more information on how it
   ///    counts characters, and how it may differ from the intuitive meaning.
   final int maxLength;
-
-  /// If true, prevents the field from allowing more than [maxLength]
-  /// characters.
-  ///
-  /// If [maxLength] is set, [maxLengthEnforced] indicates whether or not to
-  /// enforce the limit, or merely provide a character counter and warning when
-  /// [maxLength] is exceeded.
-  final bool maxLengthEnforced;
+  
+  final MaxLengthEnforcement maxLengthEnforcement;
 
   /// {@macro flutter.widgets.editableText.onEditingComplete}
   final VoidCallback onEditingComplete;
@@ -311,7 +305,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableInteractiveSelection = true,
-    this.maxLengthEnforced = true,
+    this.maxLengthEnforcement = MaxLengthEnforcement.enforced,
     this.textAlign = TextAlign.start,
     this.autofocus = false,
     this.autocorrect = true,
@@ -355,7 +349,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
         assert(autocorrect != null),
         assert(enableSuggestions != null),
         assert(autovalidateMode != null),
-        assert(maxLengthEnforced != null),
+        assert(maxLengthEnforcement != null),
         assert(scrollPadding != null),
         assert(maxLines == null || maxLines > 0),
         assert(minLines == null || minLines > 0),
@@ -414,7 +408,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
               obscureText: obscureText,
               autocorrect: autocorrect,
               enableSuggestions: enableSuggestions,
-              maxLengthEnforced: maxLengthEnforced,
+              maxLengthEnforcement: maxLengthEnforcement,
               maxLines: maxLines,
               minLines: minLines,
               expands: expands,

@@ -432,8 +432,8 @@ class CompleteFormState extends State<CompleteForm> {
                 ),
                 const SizedBox(width: 20),
                 Expanded(
-                  child: OutlineButton(
-                    color: Theme.of(context).accentColor,
+                  child: OutlinedButton(
+                    // color: Theme.of(context).accentColor,
                     child: Text(
                       'Reset',
                       style: TextStyle(color: Theme.of(context).accentColor),

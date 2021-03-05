@@ -84,7 +84,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final bool autofocus;
   final bool obscureText;
   final bool autocorrect;
-  final bool maxLengthEnforced;
+  final MaxLengthEnforcement maxLengthEnforcement;
   final int maxLines;
   final int maxLength;
   final List<TextInputFormatter> inputFormatters;
@@ -174,7 +174,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.obscureText = false,
     this.autocorrect = true,
     this.maxLines = 1,
-    this.maxLengthEnforced = true,
+    this.maxLengthEnforcement,
     this.expands = false,
     this.format,
     this.firstDate,
@@ -241,8 +241,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               format: state._dateFormat,
               validator: validator,
               onShowPicker: state.onShowPicker,
-              autovalidate: autovalidateMode != AutovalidateMode.disabled &&
-                  autovalidateMode != null,
+              autovalidateMode: autovalidateMode,
               resetIcon: resetIcon,
               textDirection: textDirection,
               textAlign: textAlign,
@@ -256,7 +255,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               focusNode: state.effectiveFocusNode,
               inputFormatters: inputFormatters,
               keyboardType: keyboardType,
-              maxLengthEnforced: maxLengthEnforced,
               maxLines: maxLines,
               obscureText: obscureText,
               showCursor: showCursor,
@@ -276,6 +274,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               textCapitalization: textCapitalization,
               textInputAction: textInputAction,
               onChanged: (val) => state.didChange(val),
+              maxLengthEnforcement: maxLengthEnforcement,
             );
           },
         );
