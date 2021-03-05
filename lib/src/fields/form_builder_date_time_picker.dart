@@ -377,8 +377,8 @@ class _FormBuilderDateTimePickerState
         return DatePicker.showDatePicker(
           context,
           showTitleActions: true,
-          minTime: widget.firstDate,
-          maxTime: widget.lastDate,
+          minTime: widget.firstDate ?? DateTime(1900),
+          maxTime: widget.lastDate ?? DateTime(2100),
           currentTime: currentValue,
           locale: _localeType(),
           theme: widget.theme,
