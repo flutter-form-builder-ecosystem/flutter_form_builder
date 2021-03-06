@@ -21,35 +21,25 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m0(max) => "La valeur doit être inférieure ou égale à ${max}";
 
-  static m1(maxLength) =>
-      "La valeur doit avoir une longueur inférieure ou égale à ${maxLength}";
+  static m1(maxLength) => "La valeur doit avoir une longueur inférieure ou égale à ${maxLength}";
 
   static m2(min) => "La valeur doit être supérieure ou égale à ${min}.";
 
-  static m3(minLength) =>
-      "La valeur doit avoir une longueur supérieure ou égale à ${minLength}";
+  static m3(minLength) => "La valeur doit avoir une longueur supérieure ou égale à ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
-        "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite un numéro de carte de crédit valide."),
-        "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une chaîne de date valide."),
-        "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse e-mail valide."),
-        "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse IP valide."),
-        "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur ne correspond pas au modèle."),
-        "maxErrorText": m0,
-        "maxLengthErrorText": m1,
-        "minErrorText": m2,
-        "minLengthErrorText": m3,
-        "numericErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur doit être numérique."),
-        "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ ne peut pas être vide."),
-        "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse URL valide.")
-      };
+  static _notInlinedMessages(_) => <String, Function> {
+    "creditCardErrorText" : MessageLookupByLibrary.simpleMessage("Ce champ nécessite un numéro de carte de crédit valide."),
+    "dateStringErrorText" : MessageLookupByLibrary.simpleMessage("Ce champ nécessite une chaîne de date valide."),
+    "emailErrorText" : MessageLookupByLibrary.simpleMessage("Ce champ nécessite une adresse e-mail valide."),
+    "ipErrorText" : MessageLookupByLibrary.simpleMessage("Ce champ nécessite une adresse IP valide."),
+    "matchErrorText" : MessageLookupByLibrary.simpleMessage("La valeur ne correspond pas au modèle."),
+    "maxErrorText" : m0,
+    "maxLengthErrorText" : m1,
+    "minErrorText" : m2,
+    "minLengthErrorText" : m3,
+    "numericErrorText" : MessageLookupByLibrary.simpleMessage("La valeur doit être numérique."),
+    "requiredErrorText" : MessageLookupByLibrary.simpleMessage("Ce champ ne peut pas être vide."),
+    "urlErrorText" : MessageLookupByLibrary.simpleMessage("Ce champ nécessite une adresse URL valide.")
+  };
 }
