@@ -21,7 +21,7 @@ dependencies:
   flutter_datetime_picker: ^1.4.0
   flutter_touch_spin: ^1.0.1
   flutter_typeahead: ^1.9.1
-  intl: ^0.16.1
+  intl: ^0.17.0
   rating_bar: ^0.2.0
   signature: ^3.2.0
   validators: ^2.0.1
