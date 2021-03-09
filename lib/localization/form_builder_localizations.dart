@@ -41,14 +41,14 @@ class FormBuilderLocalizations {
   String equalErrorText<T>(T value) => Intl.message(
         'This field value must be equal to $value.',
         name: 'equalErrorText',
-        args: [value],
+        args: [value!],
         desc: 'Error Text for equal validator',
       );
 
   String notEqualErrorText<T>(T value) => Intl.message(
         'This field value must not be equal to $value.',
         name: 'notEqualErrorText',
-        args: [value],
+        args: [value!],
         desc: 'Error Text for not-equal validator',
       );
 

@@ -6,14 +6,14 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
   final List<FormBuilderFieldOption<T>> options;
-  final double elevation, pressElevation;
-  final Color selectedColor;
-  final Color disabledColor;
-  final Color backgroundColor;
-  final Color selectedShadowColor;
-  final Color shadowColor;
-  final OutlinedBorder shape;
-  final MaterialTapTargetSize materialTapTargetSize;
+  final double? elevation, pressElevation;
+  final Color? selectedColor;
+  final Color? disabledColor;
+  final Color? backgroundColor;
+  final Color? selectedShadowColor;
+  final Color? shadowColor;
+  final OutlinedBorder? shape;
+  final MaterialTapTargetSize? materialTapTargetSize;
 
   // Wrap Settings
   final Axis direction;
@@ -21,34 +21,34 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final WrapCrossAlignment crossAxisAlignment;
   final WrapAlignment runAlignment;
   final double runSpacing, spacing;
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
   final VerticalDirection verticalDirection;
-  final EdgeInsets padding;
-  final Color checkmarkColor;
+  final EdgeInsets? padding;
+  final Color? checkmarkColor;
   final Clip clipBehavior;
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
   final bool showCheckmark;
-  final EdgeInsets labelPadding;
+  final EdgeInsets? labelPadding;
 
   // final VisualDensity visualDensity;
-  final int maxChips;
+  final int? maxChips;
 
   /// Creates field with chips that acts like a list checkboxes.
   FormBuilderFilterChip({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<List<T>> validator,
+    required String name,
+    FormFieldValidator<List<T>>? validator,
     List<T> initialValue = const [],
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<List<T>> onChanged,
-    ValueTransformer<List<T>> valueTransformer,
+    ValueChanged<List<T>>? onChanged,
+    ValueTransformer<List<T>>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<List<T>> onSaved,
+    FormFieldSetter<List<T>>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.options,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.options,
     this.selectedColor,
     this.disabledColor,
     this.backgroundColor,
@@ -89,7 +89,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
         onReset: onReset,
         decoration: decoration,
         focusNode: focusNode,
-        builder: (FormFieldState<List<T>> field) {
+        builder: (FormFieldState<List<T>?> field) {
           final state = field as _FormBuilderFilterChipState<T>;
           return InputDecorator(
             decoration: state.decoration(),
@@ -106,13 +106,13 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                 for (FormBuilderFieldOption<T> option in options)
                   FilterChip(
                     label: option,
-                    selected: field.value.contains(option.value),
+                    selected: field.value!.contains(option.value),
                     onSelected: state.enabled &&
                         (null == maxChips ||
-                            field.value.length < maxChips ||
-                            field.value.contains(option.value))
+                            field.value!.length < maxChips ||
+                            field.value!.contains(option.value))
                         ? (selected) {
-                      final currentValue = [...field.value];
+                      final currentValue = [...field.value!];
                       if (selected) {
                         currentValue.add(option.value);
                       } else {

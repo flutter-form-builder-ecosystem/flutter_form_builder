@@ -6,12 +6,12 @@ import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 /// A list of Checkboxes for selecting multiple options
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final List<FormBuilderFieldOption<T>> options;
-  final Color activeColor;
-  final Color checkColor;
-  final Color focusColor;
-  final Color hoverColor;
-  final List<T> disabled;
-  final MaterialTapTargetSize materialTapTargetSize;
+  final Color? activeColor;
+  final Color? checkColor;
+  final Color? focusColor;
+  final Color? hoverColor;
+  final List<T>? disabled;
+  final MaterialTapTargetSize? materialTapTargetSize;
   final bool tristate;
   final Axis wrapDirection;
   final WrapAlignment wrapAlignment;
@@ -19,28 +19,28 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final WrapAlignment wrapRunAlignment;
   final double wrapRunSpacing;
   final WrapCrossAlignment wrapCrossAxisAlignment;
-  final TextDirection wrapTextDirection;
+  final TextDirection? wrapTextDirection;
   final VerticalDirection wrapVerticalDirection;
-  final Widget separator;
+  final Widget? separator;
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
 
   /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<List<T>> validator,
-    List<T> initialValue,
+    required String name,
+    FormFieldValidator<List<T>>? validator,
+    List<T>? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<List<T>> onChanged,
-    ValueTransformer<List<T>> valueTransformer,
+    ValueChanged<List<T>>? onChanged,
+    ValueTransformer<List<T>>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<List<T>> onSaved,
+    FormFieldSetter<List<T>>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.options,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.options,
     this.activeColor,
     this.checkColor,
     this.focusColor,
@@ -72,7 +72,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<List<T>> field) {
+          builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderCheckboxGroupState<T>;
 
             return InputDecorator(
