@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:validators/validators.dart';
+
+import 'utils/validators.dart';
 
 /// For creation of [FormFieldValidator]s.
 class FormBuilderValidators {
@@ -221,7 +222,7 @@ class FormBuilderValidators {
   /// * [version] is a `String` or an `int`.
   static FormFieldValidator<String> ip(
     BuildContext context, {
-    dynamic version,
+    int? version,
     String? errorText,
   }) =>
       (valueCandidate) =>

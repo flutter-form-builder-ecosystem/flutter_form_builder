@@ -13,15 +13,8 @@ dependencies:
     sdk: flutter
 
   intl: ^0.17.0
-  validators: # ^2.0.1
-    git: https://github.com/beerstorm-net/validators.git
-  collection: ^1.15.0-nullsafety.4
-#dependency_overrides:
-#  intl: ^0.17.0
-#  json_annotation: ^4.0.0
-#  basic_utils: 3.0.0-nullsafety.0
-#  validators: # ^2.0.1
-#    git: https://github.com/beerstorm-net/validators.git
+  collection: ^1.15.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
