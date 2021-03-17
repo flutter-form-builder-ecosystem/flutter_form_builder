@@ -119,14 +119,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     _formBuilderState?.registerField(widget.name, this);
     // Register a touch handler
     _focusNode = widget.focusNode ?? FocusNode();
-    _focusNode.addListener(_touchedHandler);
+    // _focusNode.addListener(_touchedHandler);
     // Set the initial value
     setValue(initialValue);
   }
 
   @override
   void dispose() {
-    _focusNode.removeListener(_touchedHandler);
+    // _focusNode.removeListener(_touchedHandler);
     // Dispose focus node when created by initState
     if (null == widget.focusNode) {
       _focusNode.dispose();
@@ -152,11 +152,11 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
   }
 
-  void _touchedHandler() {
-    if (_focusNode.hasFocus && _touched == false) {
-      setState(() => _touched = true);
-    }
-  }
+ // void _touchedHandler() {
+ //   if (_focusNode.hasFocus && _touched == false) {
+ //     setState(() => _touched = true);
+ //   }
+ // }
 
   @override
   void didChange(T val) {
@@ -177,7 +177,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   void requestFocus() {
-    FocusScope.of(context).requestFocus(effectiveFocusNode);
+    // FocusScope.of(context).requestFocus(effectiveFocusNode);
   }
 
   //  FIXME: This  could be a getter instead of a classic function
