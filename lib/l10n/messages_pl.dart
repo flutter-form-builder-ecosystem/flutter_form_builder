@@ -38,7 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "DateStringErrorText": MessageLookupByLibrary.simpleMessage(
         "To pole wymaga poprawnego ciągu znaków daty."),
     "emailErrorText": MessageLookupByLibrary.simpleMessage(
-        "To pole wymaga podania poprawnego adresu e-mail.")
+        "To pole wymaga podania poprawnego adresu e-mail."),
     "ipErrorText": MessageLookupByLibrary.simpleMessage(
         "To pole wymaga ważnego IP."),
     "matchErrorText": MessageLookupByLibrary.simpleMessage(
