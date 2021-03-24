@@ -18,7 +18,7 @@ dependencies:
   flutter_colorpicker: ^0.4.0
   flutter_chips_input: ^1.9.5
   flutter_datetime_picker: ^1.5.0
-  flutter_touch_spin: ^2.0.0-nullsafety.0
+  flutter_touch_spin: ^2.0.0-nullsafety.1
   flutter_typeahead: ^3.1.0
   intl: ^0.17.0
   rating_bar: ^0.2.0
