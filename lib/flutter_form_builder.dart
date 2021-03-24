@@ -4,6 +4,8 @@ export './localization/form_builder_localizations.dart';
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_group.dart';
 export './src/fields/form_builder_choice_chips.dart';
+export './src/fields/form_builder_date_range_picker.dart';
+export './src/fields/form_builder_date_time_picker.dart';
 export './src/fields/form_builder_dropdown.dart';
 export './src/fields/form_builder_filter_chips.dart';
 export './src/fields/form_builder_radio_group.dart';
