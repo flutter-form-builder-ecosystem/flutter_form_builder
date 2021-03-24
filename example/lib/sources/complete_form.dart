@@ -117,7 +117,7 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: (val) {
                       setState(() {
                         _ageHasError =
-                            !_formKey.currentState.fields['age'].validate();
+                            !(_formKey.currentState?.fields['age']?.validate() ?? false);
                       });
                     },
                     // valueTransformer: (text) => num.tryParse(text),
@@ -154,7 +154,7 @@ class CompleteFormState extends State<CompleteForm> {
                       print(val);
                       setState(() {
                         _genderHasError =
-                            !_formKey.currentState.fields['gender'].validate();
+                            !(_formKey.currentState?.fields['gender']?.validate() ?? false);
                       });
                     },
                   ),
@@ -231,10 +231,10 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      if (_formKey.currentState.saveAndValidate()) {
-                        print(_formKey.currentState.value);
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        print(_formKey.currentState?.value);
                       } else {
-                        print(_formKey.currentState.value);
+                        print(_formKey.currentState?.value);
                         print('validation failed');
                       }
                     },
@@ -249,7 +249,7 @@ class CompleteFormState extends State<CompleteForm> {
                       style: TextStyle(color: Theme.of(context).accentColor),
                     ),
                     onPressed: () {
-                      _formKey.currentState.reset();
+                      _formKey.currentState?.reset();
                     },
                   ),
                 ),
