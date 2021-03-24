@@ -1,3 +1,9 @@
+## [6.0.0-nullsafety.0] - 24-Mar-2021
+* Started working on null-safety
+
+**BREAKING CHANGES**:
+* Removed fields that depend on external dependencies incuding: `FormBuilderChipsInput`, `FormBuilderColorPicker`, `FormBuilderRating`, `FormBuilderSearchableDropdown`, `FormBuilderSignaturePad`, `FormBuilderTouchSpin`, `FormBuilderTypeAhead`
+
 ## [4.2.0] - 29-Dec-2020
 * Added support for Slovak (sk) - @AdamA
 

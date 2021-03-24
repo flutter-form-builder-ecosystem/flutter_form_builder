@@ -363,25 +363,18 @@ Just add the `FormBuilderLocalizations.delegate` in the list of your app's `    
 ## Input widgets
 The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
-* `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
-* `FormBuilderChipsInput` - Takes a list of `Chip`s as input and suggests more options on typing
+* `FormBuilderCheckboxGroup` - List of Checkboxes for multiple selection
 * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
-* `FormBuilderColorPicker` - For `Color` input selection
 * `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
 * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
-* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
-* `FormBuilderRating` - For selection of a numerical value as a rating
-* `FormBuilderSearchableDropdown` - Field for selecting value(s) from a searchable list
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
-* `FormBuilderSignaturePad` - Field with drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
 * `FormBuilderSwitch` - On/Off switch field
 * `FormBuilderTextField` - A Material Design text field input.
-* `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
-* `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 

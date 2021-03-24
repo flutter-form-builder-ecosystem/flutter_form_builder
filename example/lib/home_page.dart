@@ -44,7 +44,6 @@ class HomePage extends StatelessWidget {
                       child: SignupForm(),
                       sourceFilePath: 'lib/sources/signup_form.dart',
                     );
-                    return SignupForm();
                   },
                 ),
               );
