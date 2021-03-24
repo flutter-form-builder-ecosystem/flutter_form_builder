@@ -4,7 +4,7 @@ export 'package:flutter_typeahead/flutter_typeahead.dart';
 export 'package:signature/signature.dart';
 export 'package:dropdown_search/dropdown_search.dart' hide ErrorBuilder;
 
-export './localization/form_builder_localizations.dart';
+export './localization/l10n.dart';
 export './src/fields/form_builder_checkbox.dart';
 export './src/fields/form_builder_checkbox_group.dart';
 export './src/fields/form_builder_chips_input.dart';

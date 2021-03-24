@@ -41,19 +41,19 @@ class FormBuilderValidators {
   /// provided value.
   static FormFieldValidator<T> equal<T>(
     BuildContext context,
-    T value, {
+    Object value, {
     String errorText,
   }) =>
       (valueCandidate) => valueCandidate != value
-          ? errorText ??
-              FormBuilderLocalizations.of(context).equalErrorText(value)
+          ? FormBuilderLocalizations.of(context).equalErrorText(value) ??
+              errorText
           : null;
 
   /// [FormFieldValidator] that requires the field's value be not equal to
   /// the provided value.
   static FormFieldValidator<T> notEqual<T>(
     BuildContext context,
-    T value, {
+    Object value, {
     String errorText,
   }) =>
       (valueCandidate) => valueCandidate == value
