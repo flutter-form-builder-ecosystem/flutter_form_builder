@@ -80,76 +80,75 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     this.labelPadding,
     this.maxChips,
     // this.visualDensity,
-  })  : assert((maxChips == null || initialValue == null) ||
-      (initialValue.length <= maxChips)),
+  })  : assert((maxChips == null) || (initialValue.length <= maxChips)),
         super(
-        key: key,
-        initialValue: initialValue,
-        name: name,
-        validator: validator,
-        valueTransformer: valueTransformer,
-        onChanged: onChanged,
-        autovalidateMode: autovalidateMode,
-        onSaved: onSaved,
-        enabled: enabled,
-        onReset: onReset,
-        decoration: decoration,
-        focusNode: focusNode,
-        builder: (FormFieldState<List<T>?> field) {
-          final state = field as _FormBuilderFilterChipState<T>;
-          return InputDecorator(
-            decoration: state.decoration(),
-            child: Wrap(
-              direction: direction,
-              alignment: alignment,
-              crossAxisAlignment: crossAxisAlignment,
-              runAlignment: runAlignment,
-              runSpacing: runSpacing,
-              spacing: spacing,
-              textDirection: textDirection,
-              verticalDirection: verticalDirection,
-              children: <Widget>[
-                for (FormBuilderFieldOption<T> option in options)
-                  FilterChip(
-                    label: option,
-                    selected: field.value!.contains(option.value),
-                    onSelected: state.enabled &&
-                        (null == maxChips ||
-                            field.value!.length < maxChips ||
-                            field.value!.contains(option.value))
-                        ? (selected) {
-                      final currentValue = [...field.value!];
-                      if (selected) {
-                        currentValue.add(option.value);
-                      } else {
-                        currentValue.remove(option.value);
-                      }
-                      state.requestFocus();
-                      field.didChange(currentValue);
-                    }
-                        : null,
-                    selectedColor: selectedColor,
-                    disabledColor: disabledColor,
-                    backgroundColor: backgroundColor,
-                    shadowColor: shadowColor,
-                    selectedShadowColor: selectedShadowColor,
-                    shape: shape,
-                    elevation: elevation,
-                    pressElevation: pressElevation,
-                    materialTapTargetSize: materialTapTargetSize,
-                    padding: padding,
-                    checkmarkColor: checkmarkColor,
-                    clipBehavior: clipBehavior,
-                    labelStyle: labelStyle,
-                    showCheckmark: showCheckmark,
-                    labelPadding: labelPadding,
-                    // visualDensity: visualDensity,
-                  ),
-              ],
-            ),
-          );
-        },
-      );
+          key: key,
+          initialValue: initialValue,
+          name: name,
+          validator: validator,
+          valueTransformer: valueTransformer,
+          onChanged: onChanged,
+          autovalidateMode: autovalidateMode,
+          onSaved: onSaved,
+          enabled: enabled,
+          onReset: onReset,
+          decoration: decoration,
+          focusNode: focusNode,
+          builder: (FormFieldState<List<T>?> field) {
+            final state = field as _FormBuilderFilterChipState<T>;
+            return InputDecorator(
+              decoration: state.decoration(),
+              child: Wrap(
+                direction: direction,
+                alignment: alignment,
+                crossAxisAlignment: crossAxisAlignment,
+                runAlignment: runAlignment,
+                runSpacing: runSpacing,
+                spacing: spacing,
+                textDirection: textDirection,
+                verticalDirection: verticalDirection,
+                children: <Widget>[
+                  for (FormBuilderFieldOption<T> option in options)
+                    FilterChip(
+                      label: option,
+                      selected: field.value!.contains(option.value),
+                      onSelected: state.enabled &&
+                              (null == maxChips ||
+                                  field.value!.length < maxChips ||
+                                  field.value!.contains(option.value))
+                          ? (selected) {
+                              final currentValue = [...field.value!];
+                              if (selected) {
+                                currentValue.add(option.value);
+                              } else {
+                                currentValue.remove(option.value);
+                              }
+                              state.requestFocus();
+                              field.didChange(currentValue);
+                            }
+                          : null,
+                      selectedColor: selectedColor,
+                      disabledColor: disabledColor,
+                      backgroundColor: backgroundColor,
+                      shadowColor: shadowColor,
+                      selectedShadowColor: selectedShadowColor,
+                      shape: shape,
+                      elevation: elevation,
+                      pressElevation: pressElevation,
+                      materialTapTargetSize: materialTapTargetSize,
+                      padding: padding,
+                      checkmarkColor: checkmarkColor,
+                      clipBehavior: clipBehavior,
+                      labelStyle: labelStyle,
+                      showCheckmark: showCheckmark,
+                      labelPadding: labelPadding,
+                      // visualDensity: visualDensity,
+                    ),
+                ],
+              ),
+            );
+          },
+        );
 
   @override
   _FormBuilderFilterChipState<T> createState() =>

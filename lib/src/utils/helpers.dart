@@ -11,6 +11,7 @@ T? shift<T>(List<T> l) {
 
 Map merge(Map? obj, Map? defaults) {
   obj ??= <dynamic, dynamic>{};
-  defaults?.forEach((dynamic key, dynamic val) => obj!.putIfAbsent(key, () => val));
+  defaults
+      ?.forEach((dynamic key, dynamic val) => obj!.putIfAbsent(key, () => val));
   return obj;
 }

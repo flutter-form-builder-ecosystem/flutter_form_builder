@@ -62,8 +62,7 @@ class FormBuilderField<T> extends FormField<T?> {
     this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
-  })  : assert(null != enabled),
-        super(
+  }) : super(
           key: key,
           onSaved: onSaved,
           initialValue: initialValue,

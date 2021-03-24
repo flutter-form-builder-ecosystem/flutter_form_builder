@@ -225,7 +225,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     } else {
       finalWidget = SingleChildScrollView(
         child: Wrap(
-          children: widgetList,
           spacing: widget.wrapSpacing,
           runSpacing: widget.wrapRunSpacing,
           textDirection: widget.wrapTextDirection,
@@ -234,6 +233,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
           alignment: widget.wrapAlignment,
           direction: Axis.horizontal,
           runAlignment: widget.wrapRunAlignment,
+          children: widgetList,
         ),
       );
     }
@@ -241,7 +241,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
   }
 
   Widget item(int index) {
-    final FormBuilderFieldOption<T?> option = widget.options[index];
+    final option = widget.options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
     final control = Radio<T?>(
@@ -259,12 +259,12 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     );
 
     final label = GestureDetector(
-      child: widget.options[index],
       onTap: isOptionDisabled
           ? null
           : () {
               widget.onChanged(optionValue);
             },
+      child: widget.options[index],
     );
 
     return Row(

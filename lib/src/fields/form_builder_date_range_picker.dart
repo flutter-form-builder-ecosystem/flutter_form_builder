@@ -29,7 +29,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   final List<TextInputFormatter>? inputFormatters;
   final double cursorWidth;
   final Radius? cursorRadius;
-  final Color ?cursorColor;
+  final Color? cursorColor;
   final Brightness? keyboardAppearance;
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
@@ -45,7 +45,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   final String? confirmText; // widget.confirmText,
   final DateTime? currentDate; // widget.currentDate,
   final String? errorFormatText; // widget.erroerrorFormatText,
-  final Widget Function(BuildContext, Widget?)? pickerBuilder; // widget.builder,
+  final Widget Function(BuildContext, Widget?)?
+      pickerBuilder; // widget.builder,
   final String? errorInvalidRangeText; // widget.errorInvalidRangeText,
   final String? errorInvalidText; // widget.errorInvalidText,
   final String? fieldEndHintText; // widget.fieldEndHintText,
@@ -118,7 +119,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     this.fieldStartLabelText,
     this.helpText,
     // this.initialDateRange,
-    this.initialEntryMode  = DatePickerEntryMode.calendar,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
     this.routeSettings,
     this.saveText,
     this.useRootNavigator = true,
@@ -179,12 +180,10 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
       FormBuilderDateRangePickerState();
 
   static String tryFormat(DateTime date, intl.DateFormat format) {
-    if (date != null) {
-      try {
-        return format.format(date);
-      } catch (e) {
-        // print('Error formatting date: $e');
-      }
+    try {
+      return format.format(date);
+    } catch (e) {
+      // print('Error formatting date: $e');
     }
     return '';
   }

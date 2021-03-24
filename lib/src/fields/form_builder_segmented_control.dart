@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selection of a value from the `CupertinoSegmentedControl`
-class FormBuilderSegmentedControl<T extends Object> extends FormBuilderField<T> {
+class FormBuilderSegmentedControl<T extends Object>
+    extends FormBuilderField<T> {
   /// The color used to fill the backgrounds of unselected widgets and as the
   /// text color of the selected widget.
   ///

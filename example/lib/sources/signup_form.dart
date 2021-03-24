@@ -55,7 +55,8 @@ class _SignupFormState extends State<SignupForm> {
                     labelText: 'Confirm Password',
                     suffixIcon: (_formKey.currentState != null &&
                             !(_formKey.currentState?.fields['confirm_password']
-                                ?.isValid ?? false))
+                                    ?.isValid ??
+                                false))
                         ? const Icon(Icons.error, color: Colors.red)
                         : const Icon(Icons.check, color: Colors.green),
                   ),
@@ -103,10 +104,6 @@ class _SignupFormState extends State<SignupForm> {
                 const SizedBox(height: 10),
                 MaterialButton(
                   color: Theme.of(context).accentColor,
-                  child: Text(
-                    'Signup',
-                    style: TextStyle(color: Colors.white),
-                  ),
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() ?? false) {
                       print('Valid');
@@ -115,6 +112,7 @@ class _SignupFormState extends State<SignupForm> {
                     }
                     print(_formKey.currentState?.value);
                   },
+                  child: Text('Signup', style: TextStyle(color: Colors.white)),
                 )
               ],
             ),

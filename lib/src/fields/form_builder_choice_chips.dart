@@ -277,62 +277,62 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     this.padding,
     this.visualDensity,
   }) : super(
-      key: key,
-      initialValue: initialValue,
-      name: name,
-      validator: validator,
-      valueTransformer: valueTransformer,
-      onChanged: onChanged,
-      autovalidateMode: autovalidateMode,
-      onSaved: onSaved,
-      enabled: enabled,
-      onReset: onReset,
-      decoration: decoration,
-      focusNode: focusNode,
-      builder: (FormFieldState<T?> field) {
-        final state = field as _FormBuilderChoiceChipState<T>;
+            key: key,
+            initialValue: initialValue,
+            name: name,
+            validator: validator,
+            valueTransformer: valueTransformer,
+            onChanged: onChanged,
+            autovalidateMode: autovalidateMode,
+            onSaved: onSaved,
+            enabled: enabled,
+            onReset: onReset,
+            decoration: decoration,
+            focusNode: focusNode,
+            builder: (FormFieldState<T?> field) {
+              final state = field as _FormBuilderChoiceChipState<T>;
 
-        return InputDecorator(
-          decoration: state.decoration(),
-          child: Wrap(
-            direction: direction,
-            alignment: alignment,
-            crossAxisAlignment: crossAxisAlignment,
-            runAlignment: runAlignment,
-            runSpacing: runSpacing,
-            spacing: spacing,
-            textDirection: textDirection,
-            verticalDirection: verticalDirection,
-            children: <Widget>[
-              for (FormBuilderFieldOption<T> option in options)
-                ChoiceChip(
-                  label: option,
-                  selected: field.value == option.value,
-                  onSelected: state.enabled
-                      ? (selected) {
-                    final choice = selected ? option.value : null;
-                    state.requestFocus();
-                    state.didChange(choice);
-                  }
-                      : null,
-                  selectedColor: selectedColor,
-                  disabledColor: disabledColor,
-                  backgroundColor: backgroundColor,
-                  shadowColor: shadowColor,
-                  selectedShadowColor: selectedShadowColor,
-                  shape: shape,
-                  elevation: elevation,
-                  pressElevation: pressElevation,
-                  materialTapTargetSize: materialTapTargetSize,
-                  labelStyle: labelStyle,
-                  labelPadding: labelPadding,
-                  padding: padding,
-                  visualDensity: visualDensity,
+              return InputDecorator(
+                decoration: state.decoration(),
+                child: Wrap(
+                  direction: direction,
+                  alignment: alignment,
+                  crossAxisAlignment: crossAxisAlignment,
+                  runAlignment: runAlignment,
+                  runSpacing: runSpacing,
+                  spacing: spacing,
+                  textDirection: textDirection,
+                  verticalDirection: verticalDirection,
+                  children: <Widget>[
+                    for (FormBuilderFieldOption<T> option in options)
+                      ChoiceChip(
+                        label: option,
+                        selected: field.value == option.value,
+                        onSelected: state.enabled
+                            ? (selected) {
+                                final choice = selected ? option.value : null;
+                                state.requestFocus();
+                                state.didChange(choice);
+                              }
+                            : null,
+                        selectedColor: selectedColor,
+                        disabledColor: disabledColor,
+                        backgroundColor: backgroundColor,
+                        shadowColor: shadowColor,
+                        selectedShadowColor: selectedShadowColor,
+                        shape: shape,
+                        elevation: elevation,
+                        pressElevation: pressElevation,
+                        materialTapTargetSize: materialTapTargetSize,
+                        labelStyle: labelStyle,
+                        labelPadding: labelPadding,
+                        padding: padding,
+                        visualDensity: visualDensity,
+                      ),
+                  ],
                 ),
-            ],
-          ),
-        );
-      });
+              );
+            });
 
   @override
   _FormBuilderChoiceChipState<T> createState() =>

@@ -1,3 +1,7 @@
+## [6.0.0-nullsafety.1] - 24-Mar-2021
+* Static analysis improvements
+* Documentation improvements
+
 ## [6.0.0-nullsafety.0] - 24-Mar-2021
 * Started working on null-safety
 
