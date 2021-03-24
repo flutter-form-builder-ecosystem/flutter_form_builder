@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         Locale('ja', ''),
         Locale('pt', ''),
         Locale('sk', ''),
+        Locale('pl', ''),
       ],
       home: HomePage(),
     );

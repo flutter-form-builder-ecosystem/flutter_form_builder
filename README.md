@@ -19,6 +19,10 @@ and collect final user input.
 To use this plugin, add `flutter_form_builder` as a
 [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
+## New Video Tutorial
+[![Youtube Video Tutorial](https://i.imgur.com/gBJu2Tql.png)](https://www.youtube.com/watch?v=eGwq3_0K_Sg)<br/>
+[Check out the video tutorial from SyntacOps on Youtube](https://www.youtube.com/watch?v=eGwq3_0K_Sg)
+
 ### Example
 ```dart
 final _formKey = GlobalKey<FormBuilderState>();
