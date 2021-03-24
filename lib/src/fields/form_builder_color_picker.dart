@@ -225,12 +225,12 @@ class _FormBuilderColorPickerFieldState
             ),
             actions: <Widget>[
               TextButton(
-                child: Text(materialLocalizations.cancelButtonLabel),
                 onPressed: () => Navigator.pop(context, false),
+                child: Text(materialLocalizations.cancelButtonLabel),
               ),
               TextButton(
-                child: Text(materialLocalizations.okButtonLabel),
                 onPressed: () => Navigator.pop(context, true),
+                child: Text(materialLocalizations.okButtonLabel),
               ),
             ],
           );

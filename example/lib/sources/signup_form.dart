@@ -103,10 +103,6 @@ class _SignupFormState extends State<SignupForm> {
                 const SizedBox(height: 10),
                 MaterialButton(
                   color: Theme.of(context).accentColor,
-                  child: Text(
-                    'Signup',
-                    style: TextStyle(color: Colors.white),
-                  ),
                   onPressed: () {
                     if (_formKey.currentState.saveAndValidate()) {
                       print('Valid');
@@ -115,6 +111,10 @@ class _SignupFormState extends State<SignupForm> {
                     }
                     print(_formKey.currentState.value);
                   },
+                  child: Text(
+                    'Signup',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 )
               ],
             ),

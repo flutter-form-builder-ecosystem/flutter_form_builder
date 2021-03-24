@@ -19,25 +19,14 @@ and collect final user input.
 To use this plugin, add `flutter_form_builder` as a
 [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
+### Flutter Version Guide
+* Flutter 1.20 => `v4.*`
+* Flutter 2.* with no `null-safety` => `v5.*`
+* Flutter 2.* `null-safety` => `v6.*` - some dependencies (and therefore fields)* were removed to achieve null safety
+
 ## New Video Tutorial
 [![Youtube Video Tutorial](https://i.imgur.com/gBJu2Tql.png)](https://www.youtube.com/watch?v=eGwq3_0K_Sg)<br/>
 [Check out the video tutorial from SyntacOps on Youtube](https://www.youtube.com/watch?v=eGwq3_0K_Sg)
-
-### Migrating from v3 to v4
-Improvements:
-* Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
-* Ability to programmatically induce an error to a field - could be especially useful for server-side validation.
-* New field types including: SearchableDropdown and FilePickerField
-* Better composition of validators.
-
-Breaking changes:
-* Rename `attribute` option in all fields to `name`.
-* `validators` attribute has been renamed to `validator` which takes Flutter's
-[FormFieldValidator]() object. To compose multiple `FormFieldValidator`s together, use
-`FormBuilderValidators.compose()` which takes a list of `FormFieldValidator` objects.
-* `FormBuilderValidators.requiredTrue` functionality has been replaced with `FormBuilderValidators.equal` which can be used to check equality of any `Object` or value
-* Due to its limited use, `FormBuilderCountryPicker` was removed from the package. Its functionality could be achieved with use of `FormBuilderSearchableDropdown` which is more extensible.
-* `FormBuilderCustomField` functionality is now achieved using `FormBuilderField` class which is the base class from which all fields are built in v4. Follow [these instructions](#building-your-own-custom-field) to construct your own custom form field using `FormBuilderField`.
 
 ### Example
 ```dart

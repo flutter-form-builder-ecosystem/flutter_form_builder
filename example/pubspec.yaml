@@ -12,16 +12,11 @@ dependencies:
     sdk: flutter
   flutter_form_builder:
     path: ../
-  widget_with_codeview: ^1.0.5
+  # widget_with_codeview: ^1.0.5
   cupertino_icons: any
 
 dependency_overrides:
-  # modal_bottom_sheet: ^0.2.1+1-dev
   intl: ^0.17.0
-  flutter_typeahead: ^3.0.0-nullsafety.0
-  # flutter_datetime_picker:
-    # git:
-      # url: https://github.com/espresso3389/flutter_datetime_picker
 
 dev_dependencies:
   flutter_test:

@@ -259,7 +259,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   final bool hideKeyboard;
 
   /// Creates text field that auto-completes user input from a list of items
-  FormBuilderTypeAhead( {
+  FormBuilderTypeAhead({
     Key key,
     //From Super
     @required String name,

@@ -247,7 +247,6 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
     } else {
       finalWidget = SingleChildScrollView(
         child: Wrap(
-          children: widgetList,
           spacing: widget.wrapSpacing,
           runSpacing: widget.wrapRunSpacing,
           textDirection: widget.wrapTextDirection,
@@ -256,6 +255,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
           alignment: widget.wrapAlignment,
           direction: Axis.horizontal,
           runAlignment: widget.wrapRunAlignment,
+          children: widgetList,
         ),
       );
     }
@@ -286,7 +286,6 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
             },
     );
     final label = GestureDetector(
-      child: option,
       onTap: isOptionDisabled
           ? null
           : () {
@@ -297,6 +296,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
                 widget.onChanged(selectedListItems);
               });
             },
+      child: option,
     );
 
     return Row(

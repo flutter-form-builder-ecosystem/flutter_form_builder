@@ -225,7 +225,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
     } else {
       finalWidget = SingleChildScrollView(
         child: Wrap(
-          children: widgetList,
           spacing: widget.wrapSpacing,
           runSpacing: widget.wrapRunSpacing,
           textDirection: widget.wrapTextDirection,
@@ -234,6 +233,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
           alignment: widget.wrapAlignment,
           direction: Axis.horizontal,
           runAlignment: widget.wrapRunAlignment,
+          children: widgetList,
         ),
       );
     }
@@ -259,12 +259,12 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
     );
 
     final label = GestureDetector(
-      child: widget.options[index],
       onTap: isOptionDisabled
           ? null
           : () {
               widget.onChanged(optionValue);
             },
+      child: widget.options[index],
     );
 
     return Row(

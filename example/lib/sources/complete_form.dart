@@ -416,10 +416,6 @@ class CompleteFormState extends State<CompleteForm> {
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).accentColor,
-                    child: const Text(
-                      'Submit',
-                      style: TextStyle(color: Colors.white),
-                    ),
                     onPressed: () {
                       if (_formKey.currentState.saveAndValidate()) {
                         print(_formKey.currentState.value);
@@ -428,19 +424,23 @@ class CompleteFormState extends State<CompleteForm> {
                         print('validation failed');
                       }
                     },
+                    child: const Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 20),
                 Expanded(
                   child: OutlinedButton(
+                    onPressed: () {
+                      _formKey.currentState.reset();
+                    },
                     // color: Theme.of(context).accentColor,
                     child: Text(
                       'Reset',
                       style: TextStyle(color: Theme.of(context).accentColor),
                     ),
-                    onPressed: () {
-                      _formKey.currentState.reset();
-                    },
                   ),
                 ),
               ],

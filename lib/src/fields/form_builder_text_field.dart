@@ -142,7 +142,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///  * [LengthLimitingTextInputFormatter] for more information on how it
   ///    counts characters, and how it may differ from the intuitive meaning.
   final int maxLength;
-  
+
   final MaxLengthEnforcement maxLengthEnforcement;
 
   /// {@macro flutter.widgets.editableText.onEditingComplete}

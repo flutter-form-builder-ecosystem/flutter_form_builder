@@ -1,3 +1,6 @@
+## [5.0.0] - 24-Mar-2020
+* Flutter 2.* support
+
 ## [4.2.0] - 29-Dec-2020
 * Added support for Slovak (sk) - @cek-cek
 

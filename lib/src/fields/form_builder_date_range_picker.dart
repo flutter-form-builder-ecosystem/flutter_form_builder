@@ -118,7 +118,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     this.fieldStartLabelText,
     this.helpText,
     // this.initialDateRange,
-    this.initialEntryMode  = DatePickerEntryMode.calendar,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
     this.routeSettings,
     this.saveText,
     this.useRootNavigator = true,
