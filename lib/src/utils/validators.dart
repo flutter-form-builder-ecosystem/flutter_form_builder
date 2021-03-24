@@ -38,7 +38,7 @@ bool isURL(String? str,
   }
   int port;
   String? protocol, auth, user;
-  String host, hostname, port_str, path, query, hash;
+  String host, hostname, portStr, path, query, hash;
 
   // check protocol
   var split = str.split('://');
@@ -96,13 +96,13 @@ bool isURL(String? str,
   split = hostname.split(':');
   host = shift(split)!;
   if (split.isNotEmpty) {
-    port_str = split.join(':');
+    portStr = split.join(':');
     try {
-      port = int.parse(port_str, radix: 10);
+      port = int.parse(portStr, radix: 10);
     } catch (e) {
       return false;
     }
-    if (!RegExp(r'^[0-9]+$').hasMatch(port_str) || port <= 0 || port > 65535) {
+    if (!RegExp(r'^[0-9]+$').hasMatch(portStr) || port <= 0 || port > 65535) {
       return false;
     }
   }
