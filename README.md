@@ -19,22 +19,6 @@ and collect final user input.
 To use this plugin, add `flutter_form_builder` as a
 [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
-### Migrating from v3 to v4
-Improvements:
-* Internationalized default error texts for inbuilt validators - Help wanted to do even more in translating to more languages.
-* Ability to programmatically induce an error to a field - could be especially useful for server-side validation.
-* New field types including: SearchableDropdown and FilePickerField
-* Better composition of validators.
-
-Breaking changes:
-* Rename `attribute` option in all fields to `name`.
-* `validators` attribute has been renamed to `validator` which takes Flutter's
-[FormFieldValidator]() object. To compose multiple `FormFieldValidator`s together, use
-`FormBuilderValidators.compose()` which takes a list of `FormFieldValidator` objects.
-* `FormBuilderValidators.requiredTrue` functionality has been replaced with `FormBuilderValidators.equal` which can be used to check equality of any `Object` or value
-* Due to its limited use, `FormBuilderCountryPicker` was removed from the package. Its functionality could be achieved with use of `FormBuilderSearchableDropdown` which is more extensible.
-* `FormBuilderCustomField` functionality is now achieved using `FormBuilderField` class which is the base class from which all fields are built in v4. Follow [these instructions](#building-your-own-custom-field) to construct your own custom form field using `FormBuilderField`.
-
 ### Example
 ```dart
 final _formKey = GlobalKey<FormBuilderState>();
@@ -83,65 +67,6 @@ Widget build(BuildContext context) {
                 FormBuilderFieldOption(
                     value: 'Test 4', child: Text('Test 4')),
               ],
-            ),
-            FormBuilderColorPickerField(
-              name: 'color_picker',
-              // initialValue: Colors.yellow,
-              colorPickerType: ColorPickerType.MaterialPicker,
-              decoration: InputDecoration(labelText: 'Pick Color'),
-            ),
-            FormBuilderChipsInput(
-              decoration: InputDecoration(labelText: 'Chips'),
-              name: 'chips_test',
-              onChanged: _onChanged,
-              initialValue: [
-                Contact('Andrew', 'stock@man.com',
-                    'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-              ],
-              maxChips: 5,
-              findSuggestions: (String query) {
-                if (query.isNotEmpty) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return contacts.where((profile) {
-                    return profile.name
-                            .toLowerCase()
-                            .contains(query.toLowerCase()) ||
-                        profile.email
-                            .toLowerCase()
-                            .contains(query.toLowerCase());
-                  }).toList(growable: false)
-                    ..sort((a, b) => a.name
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(b.name
-                            .toLowerCase()
-                            .indexOf(lowercaseQuery)));
-                } else {
-                  return const <Contact>[];
-                }
-              },
-              chipBuilder: (context, state, profile) {
-                return InputChip(
-                  key: ObjectKey(profile),
-                  label: Text(profile.name),
-                  avatar: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
-                  ),
-                  onDeleted: () => state.deleteChip(profile),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                );
-              },
-              suggestionBuilder: (context, state, profile) {
-                return ListTile(
-                  key: ObjectKey(profile),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
-                  ),
-                  title: Text(profile.name),
-                  subtitle: Text(profile.email),
-                  onTap: () => state.selectSuggestion(profile),
-                );
-              },
             ),
             FormBuilderDateTimePicker(
               name: 'date',
@@ -238,66 +163,6 @@ Widget build(BuildContext context) {
                         child: Text('$gender'),
                       ))
                   .toList(),
-            ),
-            FormBuilderTypeAhead(
-              decoration: InputDecoration(
-                labelText: 'Country',
-              ),
-              name: 'country',
-              onChanged: _onChanged,
-              itemBuilder: (context, country) {
-                return ListTile(
-                  title: Text(country),
-                );
-              },
-              controller: TextEditingController(text: ''),
-              initialValue: 'Uganda',
-              suggestionsCallback: (query) {
-                if (query.isNotEmpty) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return allCountries.where((country) {
-                    return country.toLowerCase().contains(lowercaseQuery);
-                  }).toList(growable: false)
-                    ..sort((a, b) => a
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(
-                            b.toLowerCase().indexOf(lowercaseQuery)));
-                } else {
-                  return allCountries;
-                }
-              },
-            ),
-            FormBuilderRadioList(
-              decoration:
-                  InputDecoration(labelText: 'My chosen language'),
-              name: 'best_language',
-              onChanged: _onChanged,
-              validator: FormBuilderValidators.compose(
-                  [FormBuilderValidators.required(context)]),
-              options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                  .map((lang) => FormBuilderFieldOption(
-                        value: lang,
-                        child: Text('$lang'),
-                      ))
-                  .toList(growable: false),
-            ),
-            FormBuilderTouchSpin(
-              decoration: InputDecoration(labelText: 'Stepper'),
-              name: 'stepper',
-              initialValue: 10,
-              step: 1,
-              iconSize: 48.0,
-              addIcon: Icon(Icons.arrow_right),
-              subtractIcon: Icon(Icons.arrow_left),
-            ),
-            FormBuilderRating(
-              decoration: InputDecoration(labelText: 'Rate this form'),
-              name: 'rate',
-              iconSize: 32.0,
-              initialValue: 1.0,
-              max: 5.0,
-              onChanged: _onChanged,
             ),
           ],
         ),
