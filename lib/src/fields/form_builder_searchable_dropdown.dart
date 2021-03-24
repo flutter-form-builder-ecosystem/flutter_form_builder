@@ -101,6 +101,19 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   ///set a custom color for the popup barrier
   final Color popupBarrierColor;
 
+  final String label;
+  final Widget Function(BuildContext) clearButtonBuilder;
+  final Widget Function(BuildContext) dropdownButtonBuilder;
+  final Widget Function(BuildContext, T) favoriteItemBuilder;
+  final List<T> Function(List<T>) favoriteItems;
+  final Future<bool> Function(T, T) onBeforeChange;
+  final MainAxisAlignment favoriteItemsAlignment;
+  final void Function() onPopupDismissed;
+  final TextEditingController searchBoxController;
+  final Duration searchDelay;
+  final bool showAsSuffixIcons;
+  final bool showFavoriteItems;
+
   /// Creates field for selecting value(s) from a searchable list
   FormBuilderSearchableDropdown({
     Key key,
@@ -146,6 +159,18 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.popupShape,
     this.popupItemDisabled,
     this.popupBarrierColor,
+    this.label,
+    this.clearButtonBuilder,
+    this.dropdownButtonBuilder,
+    this.favoriteItemBuilder,
+    this.favoriteItems,
+    this.onBeforeChange,
+    this.favoriteItemsAlignment = MainAxisAlignment.start,
+    this.onPopupDismissed,
+    this.searchBoxController,
+    this.searchDelay,
+    this.showAsSuffixIcons = false,
+    this.showFavoriteItems = false,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -206,6 +231,18 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 selectedItem: state.value,
                 showClearButton: showClearButton,
                 showSelectedItem: showSelectedItem,
+                label: label,
+                clearButtonBuilder: clearButtonBuilder,
+                dropdownButtonBuilder: dropdownButtonBuilder,
+                favoriteItemBuilder: favoriteItemBuilder,
+                favoriteItems: favoriteItems,
+                onBeforeChange: onBeforeChange,
+                favoriteItemsAlignment: favoriteItemsAlignment,
+                onPopupDismissed: onPopupDismissed,
+                searchBoxController: searchBoxController,
+                searchDelay: searchDelay,
+                showAsSuffixIcons: showAsSuffixIcons,
+                showFavoriteItems: showFavoriteItems,
               ),
             );
           },
