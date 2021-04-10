@@ -284,8 +284,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                   if (allowClear && state.enabled && field.value != null) ...[
                     const VerticalDivider(),
                     InkWell(
-                      child: clearIcon,
                       onTap: () => changeValue(null),
+                      child: clearIcon,
                     ),
                   ]
                 ],

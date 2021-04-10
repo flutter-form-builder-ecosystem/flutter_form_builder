@@ -19,15 +19,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ja';
 
-  static m0(value) => "${value}に一致していません。";
+  static m4(value) => "${value}に一致していません。";
 
-  static m1(max) => "${max}以下にしてください。";
+  static m0(max) => "${max}以下にしてください。";
 
-  static m2(maxLength) => "${maxLength}文字以下で入力してください。";
+  static m1(maxLength) => "${maxLength}文字以下で入力してください。";
 
-  static m3(min) => "${min}以上にしてください。";
+  static m2(min) => "${min}以上にしてください。";
 
-  static m4(minLength) => "${minLength}文字以上で入力してください。";
+  static m3(minLength) => "${minLength}文字以上で入力してください。";
 
   static m5(value) => "${value}と違うものにしてください。";
 
@@ -39,17 +39,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("正しい日付を入力してください。"),
         "emailErrorText":
             MessageLookupByLibrary.simpleMessage("有効なメールアドレスを入力してください。"),
-        "equalErrorText": m0,
+        "equalErrorText": m4,
         "integerErrorText":
             MessageLookupByLibrary.simpleMessage("整数で入力してください。"),
         "ipErrorText":
             MessageLookupByLibrary.simpleMessage("有効なIPアドレスを入力してください。"),
         "matchErrorText":
             MessageLookupByLibrary.simpleMessage("有効な正規表現を指定してください。"),
-        "maxErrorText": m1,
-        "maxLengthErrorText": m2,
-        "minErrorText": m3,
-        "minLengthErrorText": m4,
+        "maxErrorText": m0,
+        "maxLengthErrorText": m1,
+        "minErrorText": m2,
+        "minLengthErrorText": m3,
         "notEqualErrorText": m5,
         "numericErrorText":
             MessageLookupByLibrary.simpleMessage("半角数字で入力してください。"),

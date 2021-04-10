@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a fr locale. All the
+// This is a library that provides messages for a it locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -17,39 +17,46 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'fr';
+  String get localeName => 'it';
 
-  static m1(max) => "La valeur doit être inférieure ou égale à ${max}";
+  static m4(value) =>
+      "Il valore di questo campo deve essere uguale a ${value}.";
 
-  static m2(maxLength) =>
-      "La valeur doit avoir une longueur inférieure ou égale à ${maxLength}";
+  static m0(max) => "Il valore inserito deve essere minore o uguale a ${max}";
 
-  static m3(min) => "La valeur doit être supérieure ou égale à ${min}.";
+  static m1(maxLength) =>
+      "Il valore inserito deve avere una lunghezza minore o uguale a ${maxLength}";
 
-  static m4(minLength) =>
-      "La valeur doit avoir une longueur supérieure ou égale à ${minLength}";
+  static m2(min) =>
+      "Il valore inserito deve essere maggiore o uguale a ${min}.";
+
+  static m3(minLength) =>
+      "Il valore inserito deve avere una lunghezza maggiore o uguale a ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite un numéro de carte de crédit valide."),
+            "Questo campo richiede un numero di carta di credito valido."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une chaîne de date valide."),
+            "Questo campo richiede una data valida."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse e-mail valide."),
+            "Questo campo richiede un indirizzo email valido."),
+        "equalErrorText": m4,
+        "integerErrorText": MessageLookupByLibrary.simpleMessage(
+            "Il valore deve essere un integer."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse IP valide."),
+            "Questo campo richiede un indirizzo IP valido."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur ne correspond pas au modèle."),
-        "maxErrorText": m1,
-        "maxLengthErrorText": m2,
-        "minErrorText": m3,
-        "minLengthErrorText": m4,
+            "Il valore non corrisponde al formato richiesto."),
+        "maxErrorText": m0,
+        "maxLengthErrorText": m1,
+        "minErrorText": m2,
+        "minLengthErrorText": m3,
         "numericErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur doit être numérique."),
+            "Il valore deve essere numerico."),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ ne peut pas être vide."),
+            "Questo campo non può essere vuoto."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse URL valide.")
+            "Questo campo richiede una URL valida.")
       };
 }

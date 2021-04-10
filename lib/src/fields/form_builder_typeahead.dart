@@ -181,7 +181,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
   /// The configuration of the [TextField](https://docs.flutter.io/flutter/material/TextField-class.html)
   /// that the TypeAhead widget displays
-  final TextFieldConfiguration<T> textFieldConfiguration;
+  final TextFieldConfiguration textFieldConfiguration;
 
   /// How far below the text field should the suggestions box be
   ///
@@ -256,6 +256,8 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   /// If null, this widget will create its own [TextEditingController].
   final TextEditingController controller;
 
+  final bool hideKeyboard;
+
   /// Creates text field that auto-completes user input from a list of items
   FormBuilderTypeAhead({
     Key key,
@@ -296,6 +298,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     this.keepSuggestionsOnSuggestionSelected = false,
     this.onSuggestionSelected,
     this.controller,
+    this.hideKeyboard = false,
   })  : assert(T == String || selectionToTextTransformer != null),
         super(
           key: key,
@@ -325,7 +328,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                       ),
                 focusNode: state.effectiveFocusNode,
                 decoration: state.decoration(),
-              ) as TextFieldConfiguration<dynamic>,
+              ) as TextFieldConfiguration,
               // HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
@@ -360,6 +363,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
               suggestionsBoxController: suggestionsBoxController,
               keepSuggestionsOnSuggestionSelected:
                   keepSuggestionsOnSuggestionSelected,
+              hideKeyboard: hideKeyboard,
             );
           },
         );

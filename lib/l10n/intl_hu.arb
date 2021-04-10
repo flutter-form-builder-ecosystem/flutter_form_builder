@@ -1,12 +1,12 @@
 {
   "@@last_modified": "2020-06-19T21:53:39.706877",
-  "requiredErrorText": "This field cannot be empty.",
+  "requiredErrorText": "Ennek a mezőnek értéket kell adni.",
   "@requiredErrorText": {
     "description": "Error Text for required field",
     "type": "text",
     "placeholders": {}
   },
-  "minErrorText": "Value must be greater than or equal to {min}.",
+  "minErrorText": "Az érték legyen legalább {min}.",
   "@minErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -14,7 +14,7 @@
       "min": {}
     }
   },
-  "minLengthErrorText": "Value must have a length greater than or equal to {minLength}",
+  "minLengthErrorText": "Az értéknel legalább {minLength} karakter hosszúnak kell lennie",
   "@minLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -22,7 +22,7 @@
       "minLength": {}
     }
   },
-  "maxErrorText": "Value must be less than or equal to {max}",
+  "maxErrorText": "Az érték legyen legfeljebb {max}",
   "@maxErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -38,65 +38,43 @@
       "maxLength": {}
     }
   },
-  "emailErrorText": "This field requires a valid email address.",
+  "emailErrorText": "A megadott érték nem egy érvényes email cím.",
   "@emailErrorText": {
     "description": "Error Text for email field",
     "type": "text",
     "placeholders": {}
   },
-  "integerErrorText": "This field requires a valid integer.",
-  "@integerErrorText": {
-    "description": "Error Text for integer validator",
-    "type": "text",
-    "placeholders": {}
-  },
-  "equalErrorText": "This field value must be equal to {value}.",
-  "@equalErrorText": {
-    "description": "Error Text for equal validator",
-    "type": "text",
-    "placeholders": {
-      "value": {}
-    }
-  },
-  "notEqualErrorText": "This field value must not be equal to {value}.",
-  "@notEqualErrorText": {
-    "description": "Error Text for not-equal validator",
-    "type": "text",
-    "placeholders": {
-      "value": {}
-    }
-  },
-  "urlErrorText": "This field requires a valid URL address.",
+  "urlErrorText": "A megadott érték nem egy érvényes URL cím.",
   "@urlErrorText": {
     "description": "Error Text for URL field",
     "type": "text",
     "placeholders": {}
   },
-  "matchErrorText": "Value does not match pattern.",
+  "matchErrorText": "A megadott érték nem egyezik a szükséges formátummal.",
   "@matchErrorText": {
     "description": "Error Text for pattern field",
     "type": "text",
     "placeholders": {}
   },
-  "numericErrorText": "Value must be numeric.",
+  "numericErrorText": "Ebbe a mezőbe csak számot lehet írni.",
   "@numericErrorText": {
     "description": "Error Text for numeric field",
     "type": "text",
     "placeholders": {}
   },
-  "creditCardErrorText": "This field requires a valid credit card number.",
+  "creditCardErrorText": "A megadott érték nem egy érvényes bankkártya szám.",
   "@creditCardErrorText": {
     "description": "Error Text for credit card field",
     "type": "text",
     "placeholders": {}
   },
-  "ipErrorText": "This field requires a valid IP.",
+  "ipErrorText": "A megadott érték nem egy érvényes IP cím.",
   "@ipErrorText": {
     "description": "Error Text for IP address field",
     "type": "text",
     "placeholders": {}
   },
-  "dateStringErrorText": "This field requires a valid date string.",
+  "dateStringErrorText": "Ennek a mezőnek dátumnak kell lennie.",
   "@dateStringErrorText": {
     "description": "Error Text for date string field",
     "type": "text",

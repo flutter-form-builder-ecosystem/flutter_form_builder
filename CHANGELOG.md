@@ -1,3 +1,14 @@
+## [5.0.0] - 24-Mar-2020
+* Flutter 2.* support
+
+## [4.2.0] - 29-Dec-2020
+* Added support for Slovak (sk) - @cek-cek
+
+**BREAKING CHANGES**:
+* Removed file picker field from package - moved to [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) package.
+* Removed image picker field from package - moved to [form_builder_image_picker](https://pub.dev/packages/form_builder_image_picker) package.
+* Removed phone field field from package - moved to [form_builder_phone_field](https://pub.dev/packages/form_builder_phone_field) package.
+
 ## [4.1.0] - 18-Dec-2020
 * Added support for Portuguese (pt)
 * Added support for Japanese (ja)
@@ -7,7 +18,6 @@
 * Fixed focus issue  in `ChipsInput`
 * Fixed bug `SearchableDropdown` where setting value programmatically does not update UI. Fixes #627
 * Upgraded flutter_typeahead to 1.9.1.
-
 
 ## [4.0.2] - 27-Nov-2020
 * Fixed issue in Typeahead field where didChange not call and onChanged fired. Closes #595

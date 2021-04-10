@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a pt locale. All the
+// This is a library that provides messages for a de locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -17,39 +17,44 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'pt';
+  String get localeName => 'de';
 
-  static m1(max) => "O valor deve ser menor ou igual a ${max}";
+  static m0(value) => "Dieser Feldwert muss ${value} gleich sein.";
+
+  static m1(max) => "Der Wert muss kleiner als oder gleich ${max} sein.";
 
   static m2(maxLength) =>
-      "O valor deve ter um comprimento menor ou igual a ${maxLength}";
+      "Der Wert muss eine Länge kleiner als oder gleich ${maxLength} haben.";
 
-  static m3(min) => "O valor deve ser maior ou igual a ${min}.";
+  static m3(min) => "Der Wert muss größer als oder gleich ${min} sein.";
 
   static m4(minLength) =>
-      "O valor deve ter um comprimento maior ou igual a ${minLength}";
+      "Der Wert muss eine Länge größer als oder gleich ${minLength} haben.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um número de cartão de crédito válido."),
+            "Für dieses Feld ist eine gültige Kreditkartennummer erforderlich."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer uma string de data válida."),
+            "Dieses Feld erfordert ein gültiges Datum."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de e-mail válido."),
+            "Für dieses Feld ist eine gültige E-Mail-Adresse erforderlich."),
+        "equalErrorText": m0,
+        "integerErrorText": MessageLookupByLibrary.simpleMessage(
+            "Der Wert muss eine integer sein."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um IP válido."),
+            "Dieses Feld erfordert eine gültige IP-Adresse."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "O valor não corresponde ao padrão."),
+            "Der Wert stimmt nicht mit dem Muster überein."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
-        "numericErrorText":
-            MessageLookupByLibrary.simpleMessage("O valor deve ser numérico."),
+        "numericErrorText": MessageLookupByLibrary.simpleMessage(
+            "Der Wert muss numerisch sein."),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo não pode ficar vazio."),
+            "Dieses Feld kann nicht leer sein."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de URL válido.")
+            "Für dieses Feld ist eine gültige URL-Adresse erforderlich.")
       };
 }

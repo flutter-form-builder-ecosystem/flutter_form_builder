@@ -19,14 +19,14 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static m0(max) => "El valor debe ser menor o igual que ${max}.";
+  static m1(max) => "El valor debe ser menor o igual que ${max}.";
 
-  static m1(maxLength) =>
+  static m2(maxLength) =>
       "El valor debe tener una longitud menor o igual a ${maxLength}";
 
-  static m2(min) => "El valor debe ser mayor o igual que ${min}.";
+  static m3(min) => "El valor debe ser mayor o igual que ${min}.";
 
-  static m3(minLength) =>
+  static m4(minLength) =>
       "El valor debe tener una longitud mayor o igual a ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -41,10 +41,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Este campo requiere una IP válida."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
             "El valor no coincide con el patrón requerido."),
-        "maxErrorText": m0,
-        "maxLengthErrorText": m1,
-        "minErrorText": m2,
-        "minLengthErrorText": m3,
+        "maxErrorText": m1,
+        "maxLengthErrorText": m2,
+        "minErrorText": m3,
+        "minLengthErrorText": m4,
         "numericErrorText":
             MessageLookupByLibrary.simpleMessage("El valor debe ser numérico."),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(

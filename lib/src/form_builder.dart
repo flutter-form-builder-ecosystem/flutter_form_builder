@@ -177,13 +177,13 @@ class FormBuilderState extends State<FormBuilder> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      autovalidateMode: widget.autovalidateMode,
+      onWillPop: widget.onWillPop,
+      onChanged: widget.onChanged,
       child: FocusTraversalGroup(
         policy: WidgetOrderTraversalPolicy(),
         child: widget.child,
       ),
-      autovalidateMode: widget.autovalidateMode,
-      onWillPop: widget.onWillPop,
-      onChanged: widget.onChanged,
     );
   }
 }
