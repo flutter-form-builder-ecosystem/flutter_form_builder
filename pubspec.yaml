@@ -23,7 +23,7 @@ dependencies:
   intl: ^0.17.0
   rating_bar: ^0.2.0
   signature: ^3.2.1
-  validators: ^2.0.1
+  validators: ^3.0.0
 
 dependency_overrides:
   intl: ^0.17.0
