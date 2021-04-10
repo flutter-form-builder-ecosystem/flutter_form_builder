@@ -34,7 +34,7 @@ dev_dependencies:
 
   # flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localization/form_builder_localizations.dart
   # flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb
-  intl_translation: ^0.17.10+1
+  #intl_translation: ^0.17.10+1
   pedantic: ^1.11.0
 
 flutter:
