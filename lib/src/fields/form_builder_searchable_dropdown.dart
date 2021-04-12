@@ -23,7 +23,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final bool showClearButton;
 
   ///offline items list
-  final List<T> items;
+  final List<T>? items;
 
   ///selected item
   final T? selectedItem;
@@ -134,7 +134,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.showSearchBox = true,
     this.isFilteredOnline = false,
     this.showClearButton = false,
-    required this.items,
+    this.items,
     this.selectedItem,
     this.onFind,
     this.dropdownBuilder,
