@@ -177,7 +177,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   void requestFocus() {
-    FocusScope.of(context).requestFocus(effectiveFocusNode);
+    FocusScope.of(context).unfocus();
   }
 
   //  FIXME: This  could be a getter instead of a classic function
