@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             title: const Text('Complete Form'),
             trailing: const Icon(CupertinoIcons.right_chevron),
             onTap: () {
-              return Navigator.of(context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return CodePage(
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
             title: const Text('Signup Form'),
             trailing: const Icon(CupertinoIcons.right_chevron),
             onTap: () {
-              return Navigator.of(context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return CodePage(

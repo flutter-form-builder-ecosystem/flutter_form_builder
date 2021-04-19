@@ -13,16 +13,16 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
 
   /// The type of action button to use for the keyboard.
   ///
   /// Defaults to [TextInputAction.newline] if [keyboardType] is
   /// [TextInputType.multiline] and [TextInputAction.done] otherwise.
-  final TextInputAction textInputAction;
+  final TextInputAction? textInputAction;
 
   /// {@macro flutter.widgets.editableText.textCapitalization}
   final TextCapitalization textCapitalization;
@@ -32,19 +32,19 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// This text style is also used as the base style for the [decoration].
   ///
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
-  final TextStyle style;
+  final TextStyle? style;
 
   /// {@macro flutter.widgets.editableText.strutStyle}
-  final StrutStyle strutStyle;
+  final StrutStyle? strutStyle;
 
   /// {@macro flutter.widgets.editableText.textAlign}
   final TextAlign textAlign;
 
   /// {@macro flutter.widgets.inputDecorator.textAlignVertical}
-  final TextAlignVertical textAlignVertical;
+  final TextAlignVertical? textAlignVertical;
 
   /// {@macro flutter.widgets.editableText.textDirection}
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// {@macro flutter.widgets.editableText.autofocus}
   final bool autofocus;
@@ -59,10 +59,10 @@ class FormBuilderTextField extends FormBuilderField<String> {
   final bool autocorrect;
 
   /// {@macro flutter.services.textInput.smartDashesType}
-  final SmartDashesType smartDashesType;
+  final SmartDashesType? smartDashesType;
 
   /// {@macro flutter.services.textInput.smartQuotesType}
-  final SmartQuotesType smartQuotesType;
+  final SmartQuotesType? smartQuotesType;
 
   /// {@macro flutter.services.textInput.enableSuggestions}
   final bool enableSuggestions;
@@ -71,7 +71,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   final int maxLines;
 
   /// {@macro flutter.widgets.editableText.minLines}
-  final int minLines;
+  final int? minLines;
 
   /// {@macro flutter.widgets.editableText.expands}
   final bool expands;
@@ -81,10 +81,10 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// If not set, select all and paste will default to be enabled. Copy and cut
   /// will be disabled if [obscureText] is true. If [readOnly] is true,
   /// paste and cut will be disabled regardless.
-  final ToolbarOptions toolbarOptions;
+  final ToolbarOptions? toolbarOptions;
 
   /// {@macro flutter.widgets.editableText.showCursor}
-  final bool showCursor;
+  final bool? showCursor;
 
   /// If [maxLength] is set to this value, only the "current input length"
   /// part of the character counter is shown.
@@ -141,12 +141,12 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///
   ///  * [LengthLimitingTextInputFormatter] for more information on how it
   ///    counts characters, and how it may differ from the intuitive meaning.
-  final int maxLength;
+  final int? maxLength;
 
-  final MaxLengthEnforcement maxLengthEnforcement;
+  final MaxLengthEnforcement? maxLengthEnforcement;
 
   /// {@macro flutter.widgets.editableText.onEditingComplete}
-  final VoidCallback onEditingComplete;
+  final VoidCallback? onEditingComplete;
 
   /// {@macro flutter.widgets.editableText.onSubmitted}
   ///
@@ -155,22 +155,22 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///  * [EditableText.onSubmitted] for an example of how to handle moving to
   ///    the next/previous field when using [TextInputAction.next] and
   ///    [TextInputAction.previous] for [textInputAction].
-  final ValueChanged<String> onSubmitted;
+  final ValueChanged<String>? onSubmitted;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
-  final List<TextInputFormatter> inputFormatters;
+  final List<TextInputFormatter>? inputFormatters;
 
   /// {@macro flutter.widgets.editableText.cursorWidth}
   final double cursorWidth;
 
   /// {@macro flutter.widgets.editableText.cursorRadius}
-  final Radius cursorRadius;
+  final Radius? cursorRadius;
 
   /// The color to use when painting the cursor.
   ///
   /// Defaults to [TextSelectionThemeData.cursorColor] or [CupertinoTheme.primaryColor]
   /// depending on [ThemeData.platform].
-  final Color cursorColor;
+  final Color? cursorColor;
 
   /// Controls how tall the selection highlight boxes are computed to be.
   ///
@@ -187,7 +187,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// This setting is only honored on iOS devices.
   ///
   /// If unset, defaults to the brightness of [ThemeData.primaryColorBrightness].
-  final Brightness keyboardAppearance;
+  final Brightness? keyboardAppearance;
 
   /// {@macro flutter.widgets.editableText.scrollPadding}
   final EdgeInsets scrollPadding;
@@ -221,7 +221,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// To listen to arbitrary pointer events without competing with the
   /// text field's internal gesture detector, use a [Listener].
   /// {@endtemplate}
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
 
   /// The cursor for a mouse pointer when it enters or is hovering over the
   /// widget.
@@ -240,7 +240,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// appearance of the mouse pointer. All other properties related to "cursor"
   /// stand for the text cursor, which is usually a blinking vertical line at
   /// the editing position.
-  final MouseCursor mouseCursor;
+  final MouseCursor? mouseCursor;
 
   /// Callback that generates a custom [InputDecorator.counter] widget.
   ///
@@ -272,40 +272,40 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///
   /// If buildCounter returns null, then no counter and no Semantics widget will
   /// be created at all.
-  final InputCounterWidgetBuilder buildCounter;
+  final InputCounterWidgetBuilder? buildCounter;
 
   /// {@macro flutter.widgets.editableText.scrollPhysics}
-  final ScrollPhysics scrollPhysics;
+  final ScrollPhysics? scrollPhysics;
 
   /// {@macro flutter.widgets.editableText.scrollController}
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
 
   /// {@macro flutter.widgets.editableText.autofillHints}
   /// {@macro flutter.services.autofill.autofillHints}
-  final Iterable<String> autofillHints;
+  final Iterable<String>? autofillHints;
 
   /// Creates a Material Design text field input.
   FormBuilderTextField({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<String> validator,
-    String initialValue,
+    required String name,
+    FormFieldValidator<String>? validator,
+    String? initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<String> onChanged,
-    ValueTransformer<String> valueTransformer,
+    ValueChanged<String>? onChanged,
+    ValueTransformer<String>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<String> onSaved,
+    FormFieldSetter<String>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableInteractiveSelection = true,
-    this.maxLengthEnforcement = MaxLengthEnforcement.enforced,
+    this.maxLengthEnforcement,
     this.textAlign = TextAlign.start,
     this.autofocus = false,
     this.autocorrect = true,
@@ -342,30 +342,18 @@ class FormBuilderTextField extends FormBuilderField<String> {
     this.obscuringCharacter = '•',
     this.mouseCursor,
   })  : assert(initialValue == null || controller == null),
-        assert(textAlign != null),
-        assert(autofocus != null),
-        assert(readOnly != null),
-        assert(obscureText != null),
-        assert(autocorrect != null),
-        assert(enableSuggestions != null),
-        assert(autovalidateMode != null),
-        assert(maxLengthEnforcement != null),
-        assert(scrollPadding != null),
-        assert(maxLines == null || maxLines > 0),
         assert(minLines == null || minLines > 0),
         assert(
-          (maxLines == null) || (minLines == null) || (maxLines >= minLines),
+          (minLines == null) || (maxLines >= minLines),
           'minLines can\'t be greater than maxLines',
         ),
-        assert(expands != null),
         assert(
-          !expands || (maxLines == null && minLines == null),
+          !expands || (minLines == null),
           'minLines and maxLines must be null when expands is true.',
         ),
         assert(!obscureText || maxLines == 1,
             'Obscured fields cannot be multiline.'),
         assert(maxLength == null || maxLength > 0),
-        assert(enableInteractiveSelection != null),
         super(
           key: key,
           initialValue: controller != null ? controller.text : initialValue,
@@ -379,7 +367,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<String> field) {
+          builder: (FormFieldState<String?> field) {
             final state = field as _FormBuilderTextFieldState;
             /*final effectiveDecoration = (decoration ?? const InputDecoration())
                 .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
@@ -440,24 +428,24 @@ class FormBuilderTextField extends FormBuilderField<String> {
 
 class _FormBuilderTextFieldState
     extends FormBuilderFieldState<FormBuilderTextField, String> {
-  TextEditingController get _effectiveController =>
+  TextEditingController? get _effectiveController =>
       widget.controller ?? _controller;
 
-  TextEditingController _controller;
+  TextEditingController? _controller;
 
   @override
   void initState() {
     super.initState();
     _controller =
         widget.controller ?? TextEditingController(text: initialValue);
-    _controller.addListener(_handleControllerChanged);
+    _controller!.addListener(_handleControllerChanged);
   }
 
   @override
   void dispose() {
     // Dispose the _controller when initState created it
     if (null == widget.controller) {
-      _controller.dispose();
+      _controller!.dispose();
     }
     super.dispose();
   }
@@ -466,16 +454,16 @@ class _FormBuilderTextFieldState
   void reset() {
     super.reset();
     setState(() {
-      _effectiveController.text = initialValue ?? '';
+      _effectiveController!.text = initialValue ?? '';
     });
   }
 
   @override
-  void didChange(String value) {
+  void didChange(String? value) {
     super.didChange(value);
 
-    if (_effectiveController.text != value) {
-      _effectiveController.text = value;
+    if (_effectiveController!.text != value) {
+      _effectiveController!.text = value!;
     }
   }
 
@@ -487,8 +475,8 @@ class _FormBuilderTextFieldState
     // notifications for changes originating from within this class -- for
     // example, the reset() method. In such cases, the FormField value will
     // already have been set.
-    if (_effectiveController.text != value) {
-      didChange(_effectiveController.text);
+    if (_effectiveController!.text != value) {
+      didChange(_effectiveController!.text);
     }
   }
 }

@@ -9,7 +9,7 @@ enum ControlAffinity { leading, trailing }
 ///
 /// This widget maintains the current state of the form field, so that updates
 /// and validation errors are visually reflected in the UI.
-class FormBuilderField<T> extends FormField<T> {
+class FormBuilderField<T> extends FormField<T?> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
   final String name;
@@ -30,40 +30,39 @@ class FormBuilderField<T> extends FormField<T> {
   ///     keyboardType: TextInputType.number,
   ///  ),
   /// ```
-  final ValueTransformer<T> valueTransformer;
+  final ValueTransformer<T>? valueTransformer;
 
   /// Called when the field value is changed.
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T>? onChanged;
 
   /// The border, labels, icons, and styles used to decorate the field.
   final InputDecoration decoration;
 
   /// Called when the field value is reset.
-  final VoidCallback onReset;
+  final VoidCallback? onReset;
 
   /// {@macro flutter.widgets.Focus.focusNode}
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   //TODO: implement bool autofocus, ValueChanged<bool> onValidated
 
   /// Creates a single form field.
   const FormBuilderField({
-    Key key,
+    Key? key,
     //From Super
-    FormFieldSetter<T> onSaved,
-    T initialValue,
+    FormFieldSetter<T>? onSaved,
+    T? initialValue,
     AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
     bool enabled = true,
-    FormFieldValidator<T> validator,
-    @required FormFieldBuilder<T> builder,
-    @required this.name,
+    FormFieldValidator<T>? validator,
+    required FormFieldBuilder<T?> builder,
+    required this.name,
     this.valueTransformer,
     this.onChanged,
     this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
-  })  : assert(null != enabled),
-        super(
+  }) : super(
           key: key,
           onSaved: onSaved,
           initialValue: initialValue,
@@ -84,34 +83,38 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     extends FormFieldState<T> {
   String _customError;
 
+class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
+    extends FormFieldState<T?> {
   @override
   F get widget => super.widget as F;
 
-  FormBuilderState get formState => _formBuilderState;
+  FormBuilderState? get formState => _formBuilderState;
 
   /// Returns the initial value, which may be declared at the field, or by the
   /// parent [FormBuilder.initialValue]. When declared at both levels, the field
   /// initialValue prevails.
-  T get initialValue =>
+  T? get initialValue =>
       widget.initialValue ??
       (_formBuilderState?.initialValue ??
-          const <String, dynamic>{})[widget.name] as T;
+          const <String, dynamic>{})[widget.name] as T?;
 
-  FormBuilderState _formBuilderState;
+  FormBuilderState? _formBuilderState;
 
   @override
   bool get hasError => super.hasError;
+  bool get hasError => super.hasError || widget.decoration.errorText != null;
 
   @override
   bool get isValid => super.isValid;
+  bool get isValid => super.isValid && widget.decoration.errorText == null;
 
   bool _touched = false;
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
-  FocusNode _focusNode;
+  FocusNode? _focusNode;
 
-  FocusNode get effectiveFocusNode => _focusNode;
+  FocusNode? get effectiveFocusNode => _focusNode;
 
   @override
   void initState() {
@@ -121,17 +124,17 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     _formBuilderState?.registerField(widget.name, this);
     // Register a touch handler
     _focusNode = widget.focusNode ?? FocusNode();
-    _focusNode.addListener(_touchedHandler);
+    _focusNode!.addListener(_touchedHandler);
     // Set the initial value
     setValue(initialValue);
   }
 
   @override
   void dispose() {
-    _focusNode.removeListener(_touchedHandler);
+    _focusNode!.removeListener(_touchedHandler);
     // Dispose focus node when created by initState
     if (null == widget.focusNode) {
-      _focusNode.dispose();
+      _focusNode!.dispose();
     }
     _formBuilderState?.unregisterField(widget.name, this);
     super.dispose();
@@ -141,27 +144,27 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void save() {
     super.save();
     if (_formBuilderState != null) {
-      if (enabled || !_formBuilderState.widget.skipDisabled) {
-        _formBuilderState.setInternalFieldValue(
+      if (enabled || !_formBuilderState!.widget.skipDisabled) {
+        _formBuilderState!.setInternalFieldValue(
           widget.name,
           null != widget.valueTransformer
-              ? widget.valueTransformer(value)
+              ? widget.valueTransformer!(value)
               : value,
         );
       } else {
-        _formBuilderState.removeInternalFieldValue(widget.name);
+        _formBuilderState!.removeInternalFieldValue(widget.name);
       }
     }
   }
 
   void _touchedHandler() {
-    if (_focusNode.hasFocus && _touched == false) {
+    if (_focusNode!.hasFocus && _touched == false) {
       setState(() => _touched = true);
     }
   }
 
   @override
-  void didChange(T val) {
+  void didChange(T? val) {
     super.didChange(val);
     widget.onChanged?.call(value);
   }
@@ -179,6 +182,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
       _customError = null;
     });
     return super.validate(); // && widget.decoration?.errorText == null;
+    return super.validate() && widget.decoration.errorText == null;
   }
 
   void requestFocus() {

@@ -77,65 +77,6 @@ Widget build(BuildContext context) {
                     value: 'Test 4', child: Text('Test 4')),
               ],
             ),
-            FormBuilderColorPickerField(
-              name: 'color_picker',
-              // initialValue: Colors.yellow,
-              colorPickerType: ColorPickerType.MaterialPicker,
-              decoration: InputDecoration(labelText: 'Pick Color'),
-            ),
-            FormBuilderChipsInput(
-              decoration: InputDecoration(labelText: 'Chips'),
-              name: 'chips_test',
-              onChanged: _onChanged,
-              initialValue: [
-                Contact('Andrew', 'stock@man.com',
-                    'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
-              ],
-              maxChips: 5,
-              findSuggestions: (String query) {
-                if (query.isNotEmpty) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return contacts.where((profile) {
-                    return profile.name
-                            .toLowerCase()
-                            .contains(query.toLowerCase()) ||
-                        profile.email
-                            .toLowerCase()
-                            .contains(query.toLowerCase());
-                  }).toList(growable: false)
-                    ..sort((a, b) => a.name
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(b.name
-                            .toLowerCase()
-                            .indexOf(lowercaseQuery)));
-                } else {
-                  return const <Contact>[];
-                }
-              },
-              chipBuilder: (context, state, profile) {
-                return InputChip(
-                  key: ObjectKey(profile),
-                  label: Text(profile.name),
-                  avatar: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
-                  ),
-                  onDeleted: () => state.deleteChip(profile),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                );
-              },
-              suggestionBuilder: (context, state, profile) {
-                return ListTile(
-                  key: ObjectKey(profile),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(profile.imageUrl),
-                  ),
-                  title: Text(profile.name),
-                  subtitle: Text(profile.email),
-                  onTap: () => state.selectSuggestion(profile),
-                );
-              },
-            ),
             FormBuilderDateTimePicker(
               name: 'date',
               // onChanged: _onChanged,
@@ -232,66 +173,6 @@ Widget build(BuildContext context) {
                       ))
                   .toList(),
             ),
-            FormBuilderTypeAhead(
-              decoration: InputDecoration(
-                labelText: 'Country',
-              ),
-              name: 'country',
-              onChanged: _onChanged,
-              itemBuilder: (context, country) {
-                return ListTile(
-                  title: Text(country),
-                );
-              },
-              controller: TextEditingController(text: ''),
-              initialValue: 'Uganda',
-              suggestionsCallback: (query) {
-                if (query.isNotEmpty) {
-                  var lowercaseQuery = query.toLowerCase();
-                  return allCountries.where((country) {
-                    return country.toLowerCase().contains(lowercaseQuery);
-                  }).toList(growable: false)
-                    ..sort((a, b) => a
-                        .toLowerCase()
-                        .indexOf(lowercaseQuery)
-                        .compareTo(
-                            b.toLowerCase().indexOf(lowercaseQuery)));
-                } else {
-                  return allCountries;
-                }
-              },
-            ),
-            FormBuilderRadioList(
-              decoration:
-                  InputDecoration(labelText: 'My chosen language'),
-              name: 'best_language',
-              onChanged: _onChanged,
-              validator: FormBuilderValidators.compose(
-                  [FormBuilderValidators.required(context)]),
-              options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                  .map((lang) => FormBuilderFieldOption(
-                        value: lang,
-                        child: Text('$lang'),
-                      ))
-                  .toList(growable: false),
-            ),
-            FormBuilderTouchSpin(
-              decoration: InputDecoration(labelText: 'Stepper'),
-              name: 'stepper',
-              initialValue: 10,
-              step: 1,
-              iconSize: 48.0,
-              addIcon: Icon(Icons.arrow_right),
-              subtractIcon: Icon(Icons.arrow_left),
-            ),
-            FormBuilderRating(
-              decoration: InputDecoration(labelText: 'Rate this form'),
-              name: 'rate',
-              iconSize: 32.0,
-              initialValue: 1.0,
-              max: 5.0,
-              onChanged: _onChanged,
-            ),
           ],
         ),
       ),
@@ -356,25 +237,18 @@ Just add the `FormBuilderLocalizations.delegate` in the list of your app's `    
 ## Input widgets
 The currently supported fields include:
 * `FormBuilderCheckbox` - Single Checkbox field
-* `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
-* `FormBuilderChipsInput` - Takes a list of `Chip`s as input and suggests more options on typing
+* `FormBuilderCheckboxGroup` - List of Checkboxes for multiple selection
 * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
-* `FormBuilderColorPicker` - For `Color` input selection
 * `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
 * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
-* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets 
+* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
-* `FormBuilderRating` - For selection of a numerical value as a rating
-* `FormBuilderSearchableDropdown` - Field for selecting value(s) from a searchable list
 * `FormBuilderSegmentedControl` - For selection of a value from the `CupertinoSegmentedControl` as an input
-* `FormBuilderSignaturePad` - Field with drawing pad on which user can doodle
 * `FormBuilderSlider` - For selection of a numerical value on a slider
 * `FormBuilderSwitch` - On/Off switch field
 * `FormBuilderTextField` - A Material Design text field input.
-* `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
-* `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 

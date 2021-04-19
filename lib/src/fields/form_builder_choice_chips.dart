@@ -13,7 +13,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// This controls the size of the shadow below the chip.
   ///
   /// Defaults to 0. The value is always non-negative.
-  final double elevation;
+  final double? elevation;
 
   /// Elevation to be applied on the chip relative to its parent during the
   /// press motion.
@@ -21,11 +21,11 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// This controls the size of the shadow below the chip.
   ///
   /// Defaults to 8. The value is always non-negative.
-  final double pressElevation;
+  final double? pressElevation;
 
   /// Color to be used for the chip's background, indicating that it is
   /// selected.
-  final Color selectedColor;
+  final Color? selectedColor;
 
   /// Color to be used for the chip's background indicating that it is disabled.
   ///
@@ -34,28 +34,28 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// and [DeletableChipAttributes.onDelete] are null.
   ///
   /// It defaults to [Colors.black38].
-  final Color disabledColor;
+  final Color? disabledColor;
 
   /// Color to be used for the unselected, enabled chip's background.
   ///
   /// The default is light grey.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Color of the chip's shadow when the elevation is greater than 0 and the
   /// chip is selected.
   ///
   /// The default is [Colors.black].
-  final Color selectedShadowColor;
+  final Color? selectedShadowColor;
 
   /// Color of the chip's shadow when the elevation is greater than 0.
   ///
   /// The default is [Colors.black].
-  final Color shadowColor;
+  final Color? shadowColor;
 
   /// The [ShapeBorder] to draw around the chip.
   ///
   /// Defaults to the shape in the ambient [ChipThemeData].
-  final ShapeBorder shape;
+  final OutlinedBorder? shape;
 
   /// Configures the minimum size of the tap target.
   ///
@@ -64,13 +64,13 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// See also:
   ///
   ///  * [MaterialTapTargetSize], for a description of how this affects tap targets.
-  final MaterialTapTargetSize materialTapTargetSize;
+  final MaterialTapTargetSize? materialTapTargetSize;
 
   /// The padding around the [label] widget.
   ///
   /// By default, this is 4 logical pixels at the beginning and the end of the
   /// label, and zero on top and bottom.
-  final EdgeInsets labelPadding;
+  final EdgeInsets? labelPadding;
 
   /// The style to be applied to the chip's label.
   ///
@@ -87,12 +87,12 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   ///  * [MaterialState.hovered].
   ///  * [MaterialState.focused].
   ///  * [MaterialState.pressed].
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
 
   /// The padding between the contents of the chip and the outside [shape].
   ///
   /// Defaults to 4 logical pixels on all sides.
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   /// Defines how compact the chip's layout will be.
   ///
@@ -104,7 +104,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   ///
   ///  * [ThemeData.visualDensity], which specifies the [density] for all widgets
   ///    within a [Theme].
-  final VisualDensity visualDensity;
+  final VisualDensity? visualDensity;
 
   // Wrap Settings
   /// The direction to use as the main axis when wrapping chips.
@@ -213,7 +213,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// [crossAxisAlignment] is either [WrapCrossAlignment.start] or
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [textDirection] (or the ambient [Directionality]) must not be null.
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Determines the order to lay children out vertically and how to interpret
   /// `start` and `end` in the vertical direction.
@@ -241,20 +241,20 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
 
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<T> validator,
-    T initialValue,
+    required String name,
+    FormFieldValidator<T>? validator,
+    T? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T> onChanged,
-    ValueTransformer<T> valueTransformer,
+    ValueChanged<T>? onChanged,
+    ValueTransformer<T>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<T> onSaved,
+    FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.options,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.options,
     this.selectedColor,
     this.disabledColor,
     this.backgroundColor,
@@ -289,7 +289,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
             onReset: onReset,
             decoration: decoration,
             focusNode: focusNode,
-            builder: (FormFieldState<T> field) {
+            builder: (FormFieldState<T?> field) {
               final state = field as _FormBuilderChoiceChipState<T>;
 
               return InputDecorator(

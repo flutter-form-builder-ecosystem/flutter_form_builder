@@ -7,10 +7,10 @@ class CodePage extends StatefulWidget {
   final String sourceFilePath;
 
   const CodePage({
-    Key key,
-    @required this.title,
-    @required this.child,
-    @required this.sourceFilePath,
+    Key? key,
+    required this.title,
+    required this.child,
+    required this.sourceFilePath,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,10 @@ class _CodePageState extends State<CodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title), elevation: 0),
+      appBar: AppBar(
+        title: Text(widget.title),
+        elevation: 0,
+      ),
       /*body: WidgetWithCodeView(
         child: widget.child,
         sourceFilePath: widget.sourceFilePath,
@@ -33,3 +36,4 @@ class _CodePageState extends State<CodePage> {
     );
   }
 }
+

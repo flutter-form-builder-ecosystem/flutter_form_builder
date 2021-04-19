@@ -1,3 +1,4 @@
+/*
 import 'dart:async';
 import 'dart:ui' as ui;
 
@@ -148,19 +149,19 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<DateTime> validator,
-    DateTime initialValue,
+    required String name,
+    FormFieldValidator<DateTime>? validator,
+    DateTime? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTime> onChanged,
-    ValueTransformer<DateTime> valueTransformer,
+    ValueChanged<DateTime>? onChanged,
+    ValueTransformer<DateTime>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<DateTime> onSaved,
+    FormFieldSetter<DateTime>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
     this.inputType = InputType.both,
     this.pickerType = PickerType.material,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -233,7 +234,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<DateTime> field) {
+          builder: (FormFieldState<DateTime?> field) {
             final state = field as _FormBuilderDateTimePickerState;
 
             return DateTimeField(
@@ -312,11 +313,13 @@ class _FormBuilderDateTimePickerState
   }
 
   // Hack to avoid manual editing of date - as is in DateTimeField library
-  /*Future<void> _handleFocus() async {
+  */
+/*Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus) {
       _textFieldController.clear();
     }
-  }*/
+  }*/ /*
+
 
   DateFormat _getDefaultDateTimeFormat() {
     final languageCode = widget.locale?.languageCode;
@@ -475,3 +478,4 @@ class _FormBuilderDateTimePickerState
     _textFieldController.text = val == null ? '' : _dateFormat.format(val);
   }
 }
+*/

@@ -1,5 +1,12 @@
-## [5.0.0] - 24-Mar-2020
-* Flutter 2.* support
+## [6.0.0-nullsafety.1] - 24-Mar-2021
+* Static analysis improvements
+* Documentation improvements
+
+## [6.0.0-nullsafety.0] - 24-Mar-2021
+* Started working on null-safety
+
+**BREAKING CHANGES**:
+* Removed fields that depend on external dependencies incuding: `FormBuilderChipsInput`, `FormBuilderColorPicker`, `FormBuilderRating`, `FormBuilderSearchableDropdown`, `FormBuilderSignaturePad`, `FormBuilderTouchSpin`, `FormBuilderTypeAhead`
 
 ## [4.2.0] - 29-Dec-2020
 * Added support for Slovak (sk) - @cek-cek

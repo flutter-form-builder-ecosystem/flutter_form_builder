@@ -7,11 +7,11 @@ class GroupedCheckbox<T> extends StatefulWidget {
 
   /// A list of string which specifies automatically checked checkboxes.
   /// Every element must match an item from itemList.
-  final List<T> value;
+  final List<T>? value;
 
   /// Specifies which checkbox option values should be disabled.
   /// If this is null, then no checkbox options will be disabled.
-  final List<T> disabled;
+  final List<T>? disabled;
 
   /// Specifies the orientation of the elements in itemList.
   final OptionsOrientation orientation;
@@ -22,24 +22,24 @@ class GroupedCheckbox<T> extends StatefulWidget {
   /// The color to use when this checkbox is checked.
   ///
   /// Defaults to [ThemeData.toggleableActiveColor].
-  final Color activeColor;
+  final Color? activeColor;
 
   /// The color to use for the check icon when this checkbox is checked.
   ///
   /// Defaults to Color(0xFFFFFFFF)
-  final Color checkColor;
+  final Color? checkColor;
 
   /// If true the checkbox's value can be true, false, or null.
   final bool tristate;
 
   /// Configures the minimum size of the tap target.
-  final MaterialTapTargetSize materialTapTargetSize;
+  final MaterialTapTargetSize? materialTapTargetSize;
 
   /// The color for the checkbox's Material when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// The color for the checkbox's Material when a pointer is hovering over it.
-  final Color hoverColor;
+  final Color? hoverColor;
 
   //.......................WRAP ORIENTATION.....................................
 
@@ -149,7 +149,7 @@ class GroupedCheckbox<T> extends StatefulWidget {
   /// [wrapCrossAxisAlignment] is either [WrapCrossAlignment.start] or
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [wrapTextDirection] (or the ambient [Directionality]) must not be null.
-  final TextDirection wrapTextDirection;
+  final TextDirection? wrapTextDirection;
 
   /// Determines the order to lay children out vertically and how to interpret
   /// `start` and `end` in the vertical direction.
@@ -175,15 +175,15 @@ class GroupedCheckbox<T> extends StatefulWidget {
   /// [wrapVerticalDirection] must not be null.
   final VerticalDirection wrapVerticalDirection;
 
-  final Widget separator;
+  final Widget? separator;
 
   final ControlAffinity controlAffinity;
 
   GroupedCheckbox({
-    Key key,
-    @required this.options,
-    @required this.orientation,
-    @required this.onChanged,
+    Key? key,
+    required this.options,
+    required this.orientation,
+    required this.onChanged,
     this.value,
     this.disabled,
     this.activeColor,
@@ -216,7 +216,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
     super.initState();
 
     if (widget.value != null) {
-      selectedListItems.addAll(widget.value);
+      selectedListItems.addAll(widget.value!);
     }
   }
 
@@ -277,7 +277,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
       onChanged: isOptionDisabled
           ? null
           : (selected) {
-              selected
+              selected!
                   ? selectedListItems.add(optionValue)
                   : selectedListItems.remove(optionValue);
               setState(() {
@@ -306,7 +306,7 @@ class _GroupedCheckboxState<T> extends State<GroupedCheckbox<T>> {
         Flexible(flex: 1, child: label),
         if (widget.controlAffinity == ControlAffinity.trailing) control,
         if (widget.separator != null && index != widget.options.length - 1)
-          widget.separator,
+          widget.separator!,
       ],
     );
   }
