@@ -149,8 +149,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   bool validate() {
-    return _formKey.currentState!.validate();
-    final validation = _formKey.currentState.validate();
+    final validation = _formKey.currentState!.validate();
     if (!validation) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
