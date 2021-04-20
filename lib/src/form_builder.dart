@@ -9,7 +9,7 @@ class FormBuilder extends StatefulWidget {
   ///
   /// In addition to this callback being invoked, all the form fields themselves
   /// will rebuild.
-  final VoidCallback onChanged;
+  final VoidCallback? onChanged;
 
   /// Enables the form to veto attempts by the user to dismiss the [ModalRoute]
   /// that contains the form.
@@ -21,7 +21,7 @@ class FormBuilder extends StatefulWidget {
   ///
   ///  * [WillPopScope], another widget that provides a way to intercept the
   ///    back button.
-  final WillPopCallback onWillPop;
+  final WillPopCallback? onWillPop;
 
   /// The widget below this widget in the tree.
   ///
@@ -34,7 +34,7 @@ class FormBuilder extends StatefulWidget {
   /// text.
   ///
   /// {@macro flutter.widgets.form.autovalidateMode}
-  final AutovalidateMode autovalidateMode;
+  final AutovalidateMode? autovalidateMode;
 
   /// An optional Map of field initialValues. Keys correspond to the field's
   /// name and value to the initialValue of the field.
@@ -64,8 +64,8 @@ class FormBuilder extends StatefulWidget {
   ///
   /// The [child] argument must not be null.
   const FormBuilder({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.onChanged,
     this.autovalidateMode,
     this.onWillPop,
@@ -74,7 +74,7 @@ class FormBuilder extends StatefulWidget {
     this.enabled = true,
   }) : super(key: key);
 
-  static FormBuilderState of(BuildContext context) =>
+  static FormBuilderState? of(BuildContext context) =>
       context.findAncestorStateOfType<FormBuilderState>();
 
   @override
@@ -151,11 +151,11 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void save() {
-    _formKey.currentState.save();
+    _formKey.currentState!.save();
   }
 
   bool validate() {
-    return _formKey.currentState.validate();
+    return _formKey.currentState!.validate();
   }
 
   bool saveAndValidate() {
@@ -164,7 +164,7 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void reset() {
-    _formKey.currentState.reset();
+    _formKey.currentState!.reset();
   }
 
   void patchValue(Map<String, dynamic> val) {

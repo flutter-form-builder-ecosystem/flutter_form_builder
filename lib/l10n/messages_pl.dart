@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static m5(value) => "Wartość tego pola nie może być ${value}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
             "To pole wymaga podania ważnego numeru karty kredytowej."),

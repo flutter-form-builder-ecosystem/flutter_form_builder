@@ -1,11 +1,10 @@
 name: flutter_form_builder
 description: This package helps in creation of forms in Flutter by removing the boilerplate code, reusing validation, react to changes, and collect final user input.
-version: 5.0.0
+version: 6.0.0
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
-  sdk: ">=2.10.0 <3.0.0"
-  flutter: ">=1.22.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -13,28 +12,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  datetime_picker_formfield: ^2.0.0
-  dropdown_search: ^0.5.0
-  flutter_colorpicker: ^0.4.0
-  flutter_chips_input: ^1.9.5
-  flutter_datetime_picker: ^1.5.0
-  flutter_touch_spin: ^2.0.0-nullsafety.1
-  flutter_typeahead: ^3.1.0
   intl: ^0.17.0
-  rating_bar: ^0.2.0
-  signature: ^3.2.1
-  validators: ^2.0.1
-
-# dependency_overrides:
-  # intl: ^0.17.0
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localization/form_builder_localizations.dart
-  # flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb
-  intl_translation: ^0.17.10+1
   pedantic: ^1.11.0
 
 flutter:

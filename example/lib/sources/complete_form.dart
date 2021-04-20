@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-import '../data.dart';
-
 class CompleteForm extends StatefulWidget {
   @override
   CompleteFormState createState() {
@@ -43,128 +41,22 @@ class CompleteFormState extends State<CompleteForm> {
               skipDisabled: true,
               child: Column(
                 children: <Widget>[
-                  FormBuilderSearchableDropdown(
-                    name: 'searchable_dropdown',
-                    items: allCountries,
-                    onChanged: _onChanged,
-                  ),
                   const SizedBox(height: 15),
-                  FormBuilderFilterChip(
-                    name: 'filter_chip',
-                    enabled: false,
-                    decoration: const InputDecoration(
-                      labelText: 'Select many options',
-                    ),
-                    initialValue: ['Test', 'Test 1', 'Test 2'],
-                    maxChips: 3,
-                    options: [
-                      FormBuilderFieldOption(
-                          value: 'Test', child: Text('Test')),
-                      FormBuilderFieldOption(
-                          value: 'Test 1', child: Text('Test 1')),
-                      FormBuilderFieldOption(
-                          value: 'Test 2', child: Text('Test 2')),
-                      FormBuilderFieldOption(
-                          value: 'Test 3', child: Text('Test 3')),
-                      FormBuilderFieldOption(
-                          value: 'Test 4', child: Text('Test 4')),
-                    ],
-                  ),
-                  FormBuilderChoiceChip(
-                    name: 'choice_chip',
-                    decoration: const InputDecoration(
-                      labelText: 'Select an option',
-                    ),
-                    options: [
-                      FormBuilderFieldOption(
-                          value: 'Test', child: Text('Test')),
-                      FormBuilderFieldOption(
-                          value: 'Test 1', child: Text('Test 1')),
-                      FormBuilderFieldOption(
-                          value: 'Test 2', child: Text('Test 2')),
-                      FormBuilderFieldOption(
-                          value: 'Test 3', child: Text('Test 3')),
-                      FormBuilderFieldOption(
-                          value: 'Test 4', child: Text('Test 4')),
-                    ],
-                  ),
-                  FormBuilderColorPickerField(
-                    name: 'color_picker',
-                    initialValue: Colors.yellow,
-                    // readOnly: true,
-                    colorPickerType: ColorPickerType.MaterialPicker,
-                    decoration: const InputDecoration(labelText: 'Pick Color'),
-                  ),
-                  FormBuilderChipsInput<Contact>(
-                    decoration: const InputDecoration(labelText: 'Chips'),
-                    name: 'chips_test',
-                    onChanged: _onChanged,
-                    maxChips: 5,
-                    findSuggestions: (String query) {
-                      if (query.isNotEmpty) {
-                        var lowercaseQuery = query.toLowerCase();
-                        return contacts.where((profile) {
-                          return profile.name
-                                  .toLowerCase()
-                                  .contains(query.toLowerCase()) ||
-                              profile.email
-                                  .toLowerCase()
-                                  .contains(query.toLowerCase());
-                        }).toList(growable: false)
-                          ..sort((a, b) => a.name
-                              .toLowerCase()
-                              .indexOf(lowercaseQuery)
-                              .compareTo(b.name
-                                  .toLowerCase()
-                                  .indexOf(lowercaseQuery)));
-                      } else {
-                        return const <Contact>[];
-                      }
-                    },
-                    chipBuilder: (context, state, profile) {
-                      return InputChip(
-                        key: ObjectKey(profile),
-                        label: Text(profile.name),
-                        avatar: CircleAvatar(
-                          backgroundImage: NetworkImage(profile.imageUrl),
-                        ),
-                        onDeleted: () => state.deleteChip(profile),
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      );
-                    },
-                    suggestionBuilder: (context, state, profile) {
-                      return ListTile(
-                        key: ObjectKey(profile),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(profile.imageUrl),
-                        ),
-                        title: Text(profile.name),
-                        subtitle: Text(profile.email),
-                        onTap: () => state.selectSuggestion(profile),
-                      );
-                    },
-                  ),
                   FormBuilderDateTimePicker(
                     name: 'date',
                     initialValue: DateTime.now(),
-                    inputType: InputType.both,
-                    decoration: const InputDecoration(
+                    inputType: InputType.time,
+                    decoration: InputDecoration(
                       labelText: 'Appointment Time',
+                      suffixIcon: IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () {
+                            _formKey.currentState!.fields['date']
+                                ?.didChange(null);
+                          }),
                     ),
                     initialTime: TimeOfDay(hour: 8, minute: 0),
-                    pickerType: PickerType.cupertino,
-                    //locale: Locale.fromSubtags(languageCode: 'fr'),
-                  ),
-                  FormBuilderDateTimePicker(
-                    name: 'date_es',
-                    initialValue: DateTime.now(),
-                    inputType: InputType.both,
-                    decoration: const InputDecoration(
-                      labelText: 'Hora de la cita',
-                    ),
-                    initialTime: TimeOfDay(hour: 8, minute: 0),
-                    pickerType: PickerType.cupertino,
-                    locale: Locale.fromSubtags(languageCode: 'es'),
+                    locale: Locale.fromSubtags(languageCode: 'fr'),
                   ),
                   FormBuilderDateRangePicker(
                     name: 'date_range',
@@ -172,10 +64,16 @@ class CompleteFormState extends State<CompleteForm> {
                     lastDate: DateTime(2030),
                     format: DateFormat('yyyy-MM-dd'),
                     onChanged: _onChanged,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Date Range',
                       helperText: 'Helper text',
                       hintText: 'Hint text',
+                      suffixIcon: IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () {
+                            _formKey.currentState!.fields['date_range']
+                                ?.didChange(null);
+                          }),
                     ),
                   ),
                   FormBuilderSlider(
@@ -250,8 +148,9 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     onChanged: (val) {
                       setState(() {
-                        _ageHasError =
-                            !_formKey.currentState.fields['age'].validate();
+                        _ageHasError = !(_formKey.currentState?.fields['age']
+                                ?.validate() ??
+                            false);
                       });
                     },
                     // valueTransformer: (text) => num.tryParse(text),
@@ -287,38 +186,11 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: (val) {
                       print(val);
                       setState(() {
-                        _genderHasError =
-                            !_formKey.currentState.fields['gender'].validate();
+                        _genderHasError = !(_formKey
+                                .currentState?.fields['gender']
+                                ?.validate() ??
+                            false);
                       });
-                    },
-                  ),
-                  FormBuilderTypeAhead<String>(
-                    decoration: const InputDecoration(
-                      labelText: 'Country',
-                    ),
-                    name: 'country',
-                    onChanged: _onChanged,
-                    itemBuilder: (context, country) {
-                      return ListTile(
-                        title: Text(country),
-                      );
-                    },
-                    controller: TextEditingController(text: ''),
-                    initialValue: 'Uganda',
-                    suggestionsCallback: (query) {
-                      if (query.isNotEmpty) {
-                        var lowercaseQuery = query.toLowerCase();
-                        return allCountries.where((country) {
-                          return country.toLowerCase().contains(lowercaseQuery);
-                        }).toList(growable: false)
-                          ..sort((a, b) => a
-                              .toLowerCase()
-                              .indexOf(lowercaseQuery)
-                              .compareTo(
-                                  b.toLowerCase().indexOf(lowercaseQuery)));
-                      } else {
-                        return allCountries;
-                      }
                     },
                   ),
                   FormBuilderRadioGroup<String>(
@@ -362,24 +234,6 @@ class CompleteFormState extends State<CompleteForm> {
                     initialValue: true,
                     onChanged: _onChanged,
                   ),
-                  FormBuilderTouchSpin(
-                    decoration: const InputDecoration(labelText: 'TouchSpin'),
-                    name: 'touch_spin',
-                    initialValue: 10,
-                    step: 1,
-                    iconSize: 48.0,
-                    addIcon: const Icon(Icons.arrow_right),
-                    subtractIcon: const Icon(Icons.arrow_left),
-                  ),
-                  FormBuilderRating(
-                    decoration:
-                        const InputDecoration(labelText: 'Rate this form'),
-                    name: 'rate',
-                    iconSize: 32.0,
-                    initialValue: 1.0,
-                    max: 5.0,
-                    onChanged: _onChanged,
-                  ),
                   FormBuilderCheckboxGroup(
                     decoration: const InputDecoration(
                         labelText: 'The language of my people'),
@@ -399,15 +253,6 @@ class CompleteFormState extends State<CompleteForm> {
                       color: Colors.red,
                     ),
                   ),
-                  FormBuilderSignaturePad(
-                    decoration: const InputDecoration(
-                      labelText: 'Signature',
-                      border: OutlineInputBorder(),
-                    ),
-                    name: 'signature',
-                    border: Border.all(color: Colors.green),
-                    onChanged: _onChanged,
-                  ),
                 ],
               ),
             ),
@@ -417,10 +262,10 @@ class CompleteFormState extends State<CompleteForm> {
                   child: MaterialButton(
                     color: Theme.of(context).accentColor,
                     onPressed: () {
-                      if (_formKey.currentState.saveAndValidate()) {
-                        print(_formKey.currentState.value);
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        print(_formKey.currentState?.value);
                       } else {
-                        print(_formKey.currentState.value);
+                        print(_formKey.currentState?.value);
                         print('validation failed');
                       }
                     },
@@ -434,7 +279,7 @@ class CompleteFormState extends State<CompleteForm> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      _formKey.currentState.reset();
+                      _formKey.currentState?.reset();
                     },
                     // color: Theme.of(context).accentColor,
                     child: Text(

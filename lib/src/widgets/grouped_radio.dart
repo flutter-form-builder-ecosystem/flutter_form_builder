@@ -7,11 +7,11 @@ class GroupedRadio<T> extends StatefulWidget {
 
   /// A list of string which specifies automatically checked checkboxes.
   /// Every element must match an item from itemList.
-  final T value;
+  final T? value;
 
   /// Specifies which radio option values should be disabled.
   /// If this is null, then no radio options will be disabled.
-  final List<T> disabled;
+  final List<T>? disabled;
 
   /// Specifies the orientation of the elements in itemList.
   final OptionsOrientation orientation;
@@ -22,16 +22,16 @@ class GroupedRadio<T> extends StatefulWidget {
   /// The color to use when this checkbox is checked.
   ///
   /// Defaults to [ThemeData.toggleableActiveColor].
-  final Color activeColor;
+  final Color? activeColor;
 
   /// Configures the minimum size of the tap target.
-  final MaterialTapTargetSize materialTapTargetSize;
+  final MaterialTapTargetSize? materialTapTargetSize;
 
   /// The color for the checkbox's Material when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// The color for the checkbox's Material when a pointer is hovering over it.
-  final Color hoverColor;
+  final Color? hoverColor;
 
   //.......................WRAP ORIENTATION.....................................
 
@@ -141,7 +141,7 @@ class GroupedRadio<T> extends StatefulWidget {
   /// [wrapCrossAxisAlignment] is either [WrapCrossAlignment.start] or
   /// [WrapCrossAlignment.end], or there's more than one child, then the
   /// [wrapTextDirection] (or the ambient [Directionality]) must not be null.
-  final TextDirection wrapTextDirection;
+  final TextDirection? wrapTextDirection;
 
   /// Determines the order to lay children out vertically and how to interpret
   /// `start` and `end` in the vertical direction.
@@ -167,14 +167,14 @@ class GroupedRadio<T> extends StatefulWidget {
   /// [wrapVerticalDirection] must not be null.
   final VerticalDirection wrapVerticalDirection;
 
-  final Widget separator;
+  final Widget? separator;
 
   final ControlAffinity controlAffinity;
 
   GroupedRadio({
-    @required this.options,
-    @required this.orientation,
-    @required this.onChanged,
+    required this.options,
+    required this.orientation,
+    required this.onChanged,
     this.value,
     this.disabled,
     this.activeColor,
@@ -197,7 +197,7 @@ class GroupedRadio<T> extends StatefulWidget {
   _GroupedRadioState<T> createState() => _GroupedRadioState<T>();
 }
 
-class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
+class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
@@ -244,7 +244,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
     final option = widget.options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
-    final control = Radio<T>(
+    final control = Radio<T?>(
       groupValue: widget.value,
       activeColor: widget.activeColor,
       focusColor: widget.focusColor,
@@ -253,7 +253,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
       value: optionValue,
       onChanged: isOptionDisabled
           ? null
-          : (T selected) {
+          : (T? selected) {
               widget.onChanged(selected);
             },
     );
@@ -269,12 +269,12 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T>> {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
+      children: [
         if (widget.controlAffinity == ControlAffinity.leading) control,
         Flexible(child: label),
         if (widget.controlAffinity == ControlAffinity.trailing) control,
         if (widget.separator != null && index != widget.options.length - 1)
-          widget.separator,
+          widget.separator!,
       ],
     );
   }

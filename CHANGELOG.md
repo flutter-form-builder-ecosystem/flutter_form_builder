@@ -1,3 +1,17 @@
+## [6.0.0] - 20-Apr-2021
+* Re-introduced DateTimePicker field without external dependencies
+* Minor fixes
+
+## [6.0.0-nullsafety.1] - 24-Mar-2021
+* Static analysis improvements
+* Documentation improvements
+
+## [6.0.0-nullsafety.0] - 24-Mar-2021
+* Started working on null-safety
+
+**BREAKING CHANGES**:
+* Removed fields that depend on external dependencies incuding: `FormBuilderChipsInput`, `FormBuilderColorPicker`, `FormBuilderRating`, `FormBuilderSearchableDropdown`, `FormBuilderSignaturePad`, `FormBuilderTouchSpin`, `FormBuilderTypeAhead`
+
 ## [5.0.0] - 24-Mar-2020
 * Flutter 2.* support
 
