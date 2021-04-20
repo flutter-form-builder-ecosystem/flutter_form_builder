@@ -1,18 +1,15 @@
-/*
 import 'dart:async';
 import 'dart:ui' as ui;
 
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
 enum InputType { date, time, both }
 
-enum PickerType { material, cupertino }
+// enum PickerType { material, cupertino }
 
 /// Field for `Date`, `Time` and `DateTime` input
 class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
@@ -26,20 +23,20 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// For representing the date as a string e.g.
   /// `DateFormat("EEEE, MMMM d, yyyy 'at' h:mma")`
   /// (Sunday, June 3, 2018 at 9:24pm)
-  final DateFormat format;
+  final DateFormat? format;
 
   /// The date the calendar opens to when displayed. Defaults to the current date.
   ///
   /// To preset the widget's value, use [initialValue] instead.
-  final DateTime initialDate;
+  final DateTime? initialDate;
 
   /// The earliest choosable date. Defaults to 1900.
-  final DateTime firstDate;
+  final DateTime? firstDate;
 
   /// The latest choosable date. Defaults to 2100.
-  final DateTime lastDate;
+  final DateTime? lastDate;
 
-  final DateTime currentDate;
+  final DateTime? currentDate;
 
   /// The initial time prefilled in the picker dialog when it is shown. Defaults
   /// to noon. Explicitly set this to `null` to use the current time.
@@ -62,23 +59,20 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   ///
   /// See [GlobalMaterialLocalizations](https://docs.flutter.io/flutter/flutter_localizations/GlobalMaterialLocalizations-class.html)
   /// for acceptable values.
-  final Locale locale;
+  final Locale? locale;
 
   /// Corresponds to the [showDatePicker()] parameter.
-  final bool Function(DateTime) selectableDayPredicate;
-
-  /// Corresponds to the [showDatePicker()] parameter.
-  final ui.TextDirection textDirection;
+  final ui.TextDirection? textDirection;
 
   /// Corresponds to the [showDatePicker()] parameter.
   final bool useRootNavigator;
 
   /// Called when an enclosing form is submitted. The value passed will be
   /// `null` if [format] fails to parse the text.
-  final ValueChanged<DateTime> onFieldSubmitted;
-  final TextEditingController controller;
+  final ValueChanged<DateTime>? onFieldSubmitted;
+  final TextEditingController? controller;
   final TextInputType keyboardType;
-  final TextStyle style;
+  final TextStyle? style;
   final TextAlign textAlign;
 
   /// Preset the widget's value.
@@ -86,22 +80,10 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final bool obscureText;
   final bool autocorrect;
   final MaxLengthEnforcement maxLengthEnforcement;
-  final int maxLines;
-  final int maxLength;
-  final List<TextInputFormatter> inputFormatters;
-  final TransitionBuilder transitionBuilder;
-
-  /// Called when the time chooser dialog should be shown. In the future the
-  /// preferred way of using this widget will be to utilize the [datePicker] and
-  /// [timePicker] callback functions instead of adding their parameter list to
-  /// this widget.
-  final Future<TimeOfDay> Function(BuildContext context) timePicker;
-
-  /// Called when the date chooser dialog should be shown. In the future the
-  /// preferred way of using this widget will be to utilize the [datePicker] and
-  /// [timePicker] callback functions instead of adding their parameter list to
-  /// this widget.
-  final Future<DateTime> Function(BuildContext context) datePicker;
+  final int? maxLines;
+  final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
+  final TransitionBuilder? transitionBuilder;
 
   /// Called whenever the state's value changes, e.g. after picker value(s)
   /// have been selected or when the field loses focus. To listen for all text
@@ -110,20 +92,20 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   final bool showCursor;
 
-  final int minLines;
+  final int? minLines;
 
   final bool expands;
 
-  final TextInputAction textInputAction;
+  final TextInputAction? textInputAction;
 
-  final VoidCallback onEditingComplete;
+  final VoidCallback? onEditingComplete;
 
-  final InputCounterWidgetBuilder buildCounter;
+  final InputCounterWidgetBuilder? buildCounter;
 
   // final VoidCallback onEditingComplete,
-  final Radius cursorRadius;
-  final Color cursorColor;
-  final Brightness keyboardAppearance;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final Brightness? keyboardAppearance;
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
 
@@ -131,21 +113,19 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final TextCapitalization textCapitalization;
   final bool alwaysUse24HourFormat;
 
-  final String cancelText;
-  final String confirmText;
-  final String errorFormatText;
-  final String errorInvalidText;
-  final String fieldHintText;
-  final String fieldLabelText;
-  final String helpText;
+  final String? cancelText;
+  final String? confirmText;
+  final String? errorFormatText;
+  final String? errorInvalidText;
+  final String? fieldHintText;
+  final String? fieldLabelText;
+  final String? helpText;
   final DatePickerEntryMode initialEntryMode;
-  final RouteSettings routeSettings;
+  final RouteSettings? routeSettings;
 
-  final PickerType pickerType;
-  final DateChangedCallback onConfirm;
-  final DateCancelledCallback onCancel;
-  final DatePickerTheme theme;
   final TimePickerEntryMode timePickerInitialEntryMode;
+  final StrutStyle? strutStyle;
+  final SelectableDayPredicate? selectableDayPredicate;
 
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
@@ -163,7 +143,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     VoidCallback? onReset,
     FocusNode? focusNode,
     this.inputType = InputType.both,
-    this.pickerType = PickerType.material,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
     this.enableInteractiveSelection = true,
@@ -175,27 +154,28 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.obscureText = false,
     this.autocorrect = true,
     this.maxLines = 1,
-    this.maxLengthEnforcement,
     this.expands = false,
+    this.initialDatePickerMode = DatePickerMode.day,
+    this.transitionBuilder,
+    this.textCapitalization = TextCapitalization.none,
+    this.useRootNavigator = true,
+    this.alwaysUse24HourFormat = false,
+    this.initialEntryMode = DatePickerEntryMode.calendar,
+    this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
     this.format,
+    this.initialDate,
     this.firstDate,
     this.lastDate,
-    // this.onChanged,
-    this.initialDate,
-    // this.onSaved,
-    this.onFieldSubmitted,
-    this.initialDatePickerMode = DatePickerMode.day,
+    this.currentDate,
     this.locale,
-    this.selectableDayPredicate,
+    this.maxLength,
     this.textDirection,
+    this.onFieldSubmitted,
     this.controller,
     this.style,
-    this.maxLength,
+    this.maxLengthEnforcement = MaxLengthEnforcement.none,
     this.inputFormatters,
-    this.transitionBuilder,
-    this.timePicker,
-    this.datePicker,
-    this.showCursor,
+    this.showCursor = false,
     this.minLines,
     this.textInputAction,
     this.onEditingComplete,
@@ -203,10 +183,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.cursorRadius,
     this.cursorColor,
     this.keyboardAppearance,
-    this.textCapitalization = TextCapitalization.none,
-    this.strutStyle,
-    this.useRootNavigator = true,
-    this.alwaysUse24HourFormat = false,
     this.cancelText,
     this.confirmText,
     this.errorFormatText,
@@ -214,13 +190,9 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.fieldHintText,
     this.fieldLabelText,
     this.helpText,
-    this.initialEntryMode = DatePickerEntryMode.calendar,
     this.routeSettings,
-    this.currentDate,
-    this.onConfirm,
-    this.onCancel,
-    this.theme,
-    this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
+    this.strutStyle,
+    this.selectableDayPredicate,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -237,13 +209,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
           builder: (FormFieldState<DateTime?> field) {
             final state = field as _FormBuilderDateTimePickerState;
 
-            return DateTimeField(
-              initialValue: state.initialValue,
-              format: state._dateFormat,
-              validator: validator,
-              onShowPicker: state.onShowPicker,
-              autovalidateMode: autovalidateMode,
-              resetIcon: resetIcon,
+            return TextField(
               textDirection: textDirection,
               textAlign: textAlign,
               maxLength: maxLength,
@@ -269,18 +235,14 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               cursorWidth: cursorWidth,
               enableInteractiveSelection: enableInteractiveSelection,
               keyboardAppearance: keyboardAppearance,
-              onFieldSubmitted: onFieldSubmitted,
               scrollPadding: scrollPadding,
               strutStyle: strutStyle,
               textCapitalization: textCapitalization,
               textInputAction: textInputAction,
-              onChanged: (val) => state.didChange(val),
               maxLengthEnforcement: maxLengthEnforcement,
             );
           },
         );
-
-  final StrutStyle strutStyle;
 
   @override
   _FormBuilderDateTimePickerState createState() =>
@@ -289,9 +251,9 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
 class _FormBuilderDateTimePickerState
     extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
-  TextEditingController _textFieldController;
+  late TextEditingController _textFieldController;
 
-  DateFormat _dateFormat;
+  late DateFormat _dateFormat;
 
   @override
   void initState() {
@@ -301,6 +263,7 @@ class _FormBuilderDateTimePickerState
     final initVal = initialValue;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
+    effectiveFocusNode!.addListener(_handleFocus);
   }
 
   @override
@@ -312,14 +275,12 @@ class _FormBuilderDateTimePickerState
     super.dispose();
   }
 
-  // Hack to avoid manual editing of date - as is in DateTimeField library
-  */
-/*Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus) {
-      _textFieldController.clear();
+  Future<void> _handleFocus() async {
+    if (effectiveFocusNode!.hasFocus && enabled) {
+      effectiveFocusNode!.unfocus();
+      await onShowPicker(context, value);
     }
-  }*/ /*
-
+  }
 
   DateFormat _getDefaultDateTimeFormat() {
     final languageCode = widget.locale?.languageCode;
@@ -334,148 +295,88 @@ class _FormBuilderDateTimePickerState
     }
   }
 
-  LocaleType _localeType() {
-    final shortLocaleCode = widget.locale?.languageCode ??
-        Intl.shortLocale(Intl.getCurrentLocale());
-    return LocaleType.values.firstWhere(
-      (_) => shortLocaleCode == describeEnum(_),
-      orElse: () => LocaleType.en,
-    );
-  }
-
-  Future<DateTime> onShowPicker(
-      BuildContext context, DateTime currentValue) async {
+  Future<DateTime?> onShowPicker(
+      BuildContext context, DateTime? currentValue) async {
     currentValue = value;
-    DateTime newValue;
+    DateTime? newValue;
     switch (widget.inputType) {
       case InputType.date:
         newValue = await _showDatePicker(context, currentValue);
         break;
       case InputType.time:
         final newTime = await _showTimePicker(context, currentValue);
-        newValue = null != newTime ? DateTimeField.convert(newTime) : null;
+        newValue = null != newTime ? convert(newTime) : null;
         break;
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
           final time = await _showTimePicker(context, currentValue);
-          newValue = DateTimeField.combine(date, time);
+          newValue = combine(date, time);
         }
         break;
       default:
         throw 'Unexpected input type ${widget.inputType}';
-        break;
     }
     final finalValue = newValue ?? currentValue;
     didChange(finalValue);
     return finalValue;
   }
 
-  Future<DateTime> _showDatePicker(
-      BuildContext context, DateTime currentValue) {
-    if (widget.datePicker != null) {
-      return widget.datePicker(context);
-    } else {
-      if (widget.pickerType == PickerType.cupertino) {
-        return DatePicker.showDatePicker(
-          context,
-          showTitleActions: true,
-          minTime: widget.firstDate ?? DateTime(1900),
-          maxTime: widget.lastDate ?? DateTime(2100),
-          currentTime: currentValue,
-          locale: _localeType(),
-          theme: widget.theme,
-          onCancel: widget.onCancel,
-          onConfirm: widget.onConfirm,
-        );
-      }
-      return showDatePicker(
-        context: context,
-        selectableDayPredicate: widget.selectableDayPredicate,
-        initialDatePickerMode:
-            widget.initialDatePickerMode ?? DatePickerMode.day,
-        initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
-        firstDate: widget.firstDate ?? DateTime(1900),
-        lastDate: widget.lastDate ?? DateTime(2100),
-        locale: widget.locale,
-        textDirection: widget.textDirection,
-        useRootNavigator: widget.useRootNavigator,
-        builder: widget.transitionBuilder ??
-            (BuildContext context, Widget child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                    alwaysUse24HourFormat: widget.alwaysUse24HourFormat),
-                child: child,
-              );
-            },
-        cancelText: widget.cancelText,
-        confirmText: widget.confirmText,
-        errorFormatText: widget.errorFormatText,
-        errorInvalidText: widget.errorInvalidText,
-        fieldHintText: widget.fieldHintText,
-        fieldLabelText: widget.fieldLabelText,
-        helpText: widget.helpText,
-        initialEntryMode: widget.initialEntryMode,
-        routeSettings: widget.routeSettings,
-        currentDate: widget.currentDate,
-      );
-    }
+  Future<DateTime?> _showDatePicker(
+      BuildContext context, DateTime? currentValue) {
+    return showDatePicker(
+      context: context,
+      selectableDayPredicate: widget.selectableDayPredicate,
+      initialDatePickerMode: widget.initialDatePickerMode,
+      initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
+      firstDate: widget.firstDate ?? DateTime(1900),
+      lastDate: widget.lastDate ?? DateTime(2100),
+      locale: widget.locale,
+      textDirection: widget.textDirection,
+      useRootNavigator: widget.useRootNavigator,
+      builder: widget.transitionBuilder,
+      cancelText: widget.cancelText,
+      confirmText: widget.confirmText,
+      errorFormatText: widget.errorFormatText,
+      errorInvalidText: widget.errorInvalidText,
+      fieldHintText: widget.fieldHintText,
+      fieldLabelText: widget.fieldLabelText,
+      helpText: widget.helpText,
+      initialEntryMode: widget.initialEntryMode,
+      routeSettings: widget.routeSettings,
+      currentDate: widget.currentDate,
+    );
   }
 
-  Future<TimeOfDay> _showTimePicker(
-      BuildContext context, DateTime currentValue) async {
-    if (widget.timePicker != null) {
-      return widget.timePicker(context);
-    } else {
-      if (widget.pickerType == PickerType.cupertino) {
-        final timePicker = widget.alwaysUse24HourFormat
-            ? DatePicker.showTimePicker(
-                context,
-                showTitleActions: true,
-                currentTime: currentValue,
-                showSecondsColumn: false,
-                locale: _localeType(),
-              )
-            : DatePicker.showTime12hPicker(
-                context,
-                showTitleActions: true,
-                currentTime: currentValue,
-                locale: _localeType(),
-              );
-        final timePickerResult = await timePicker;
-        final newDateTime = timePickerResult ?? currentValue;
-        return null != newDateTime ? TimeOfDay.fromDateTime(newDateTime) : null;
-      }
-      final timePickerResult = await showTimePicker(
-        context: context,
-        initialTime: currentValue != null
-            ? TimeOfDay.fromDateTime(currentValue)
-            : widget.initialTime ?? TimeOfDay.fromDateTime(DateTime.now()),
-        builder: widget.transitionBuilder ??
-            (BuildContext context, Widget child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                  alwaysUse24HourFormat: widget.alwaysUse24HourFormat,
-                ),
-                child: child,
-              );
-            },
-        useRootNavigator: widget.useRootNavigator,
-        routeSettings: widget.routeSettings,
-        initialEntryMode: widget.timePickerInitialEntryMode,
-        helpText: widget.helpText,
-        confirmText: widget.confirmText,
-        cancelText: widget.cancelText,
-      );
-      return timePickerResult ??
-          (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
-    }
+  Future<TimeOfDay?> _showTimePicker(
+      BuildContext context, DateTime? currentValue) async {
+    final timePickerResult = await showTimePicker(
+      context: context,
+      initialTime: currentValue != null
+          ? TimeOfDay.fromDateTime(currentValue)
+          : widget.initialTime,
+      builder: widget.transitionBuilder,
+      useRootNavigator: widget.useRootNavigator,
+      routeSettings: widget.routeSettings,
+      initialEntryMode: widget.timePickerInitialEntryMode,
+      helpText: widget.helpText,
+      confirmText: widget.confirmText,
+      cancelText: widget.cancelText,
+    );
+    return timePickerResult ??
+        (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
   }
+
+  /// Sets the hour and minute of a [DateTime] from a [TimeOfDay].
+  DateTime combine(DateTime date, TimeOfDay? time) => DateTime(
+      date.year, date.month, date.day, time?.hour ?? 0, time?.minute ?? 0);
+
+  DateTime? convert(TimeOfDay? time) =>
+      time == null ? null : DateTime(1, 1, 1, time.hour, time.minute);
 
   @override
-  void didChange(DateTime val) {
+  void didChange(DateTime? val) {
     super.didChange(val);
-    _textFieldController.text = val == null ? '' : _dateFormat.format(val);
+    _textFieldController.text = (val == null) ? '' : _dateFormat.format(val);
   }
 }
-*/

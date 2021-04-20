@@ -262,9 +262,7 @@ class FormBuilderDateRangePickerState
       date, widget.format ?? intl.DateFormat.yMd());
 
   void _setTextFieldString() {
-    setState(() {
-      _effectiveController.text = _valueToText();
-    });
+    setState(() => _effectiveController.text = _valueToText());
   }
 
   @override
