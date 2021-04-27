@@ -189,7 +189,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     FormFieldValidator<T>? validator,
     T? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T>? onChanged,
+    ValueChanged<T?>? onChanged,
     ValueTransformer<T>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<T>? onSaved,

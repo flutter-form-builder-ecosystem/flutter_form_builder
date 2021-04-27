@@ -293,7 +293,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     String? initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<String>? onChanged,
+    ValueChanged<String?>? onChanged,
     ValueTransformer<String>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<String>? onSaved,

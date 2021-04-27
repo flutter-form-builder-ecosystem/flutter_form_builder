@@ -135,7 +135,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     FormFieldValidator<DateTime>? validator,
     DateTime? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTime>? onChanged,
+    ValueChanged<DateTime?>? onChanged,
     ValueTransformer<DateTime>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTime>? onSaved,
