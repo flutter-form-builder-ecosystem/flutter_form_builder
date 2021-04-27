@@ -68,7 +68,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   final bool enableSuggestions;
 
   /// {@macro flutter.widgets.editableText.maxLines}
-  final int maxLines;
+  final int? maxLines;
 
   /// {@macro flutter.widgets.editableText.minLines}
   final int? minLines;
@@ -344,7 +344,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
         assert(
-          (minLines == null) || (maxLines >= minLines),
+          (minLines == null) || (maxLines! >= minLines),
           'minLines can\'t be greater than maxLines',
         ),
         assert(
