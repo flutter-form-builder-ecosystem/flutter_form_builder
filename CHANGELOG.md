@@ -1,3 +1,7 @@
+## [6.0.0] - 20-Apr-2021
+* Re-introduced DateTimePicker field without external dependencies
+* Minor fixes
+
 ## [6.0.0-nullsafety.1] - 24-Mar-2021
 * Static analysis improvements
 * Documentation improvements

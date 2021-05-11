@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 class CompleteForm extends StatefulWidget {
   @override
@@ -41,6 +42,40 @@ class CompleteFormState extends State<CompleteForm> {
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 15),
+                  FormBuilderDateTimePicker(
+                    name: 'date',
+                    initialValue: DateTime.now(),
+                    inputType: InputType.time,
+                    decoration: InputDecoration(
+                      labelText: 'Appointment Time',
+                      suffixIcon: IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () {
+                            _formKey.currentState!.fields['date']
+                                ?.didChange(null);
+                          }),
+                    ),
+                    initialTime: TimeOfDay(hour: 8, minute: 0),
+                    locale: Locale.fromSubtags(languageCode: 'fr'),
+                  ),
+                  FormBuilderDateRangePicker(
+                    name: 'date_range',
+                    firstDate: DateTime(1970),
+                    lastDate: DateTime(2030),
+                    format: DateFormat('yyyy-MM-dd'),
+                    onChanged: _onChanged,
+                    decoration: InputDecoration(
+                      labelText: 'Date Range',
+                      helperText: 'Helper text',
+                      hintText: 'Hint text',
+                      suffixIcon: IconButton(
+                          icon: Icon(Icons.close),
+                          onPressed: () {
+                            _formKey.currentState!.fields['date_range']
+                                ?.didChange(null);
+                          }),
+                    ),
+                  ),
                   FormBuilderSlider(
                     name: 'slider',
                     validator: FormBuilderValidators.compose([
