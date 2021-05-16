@@ -1,4 +1,4 @@
-library form_builder_core;
+library flutter_form_builder;
 
 export 'src/form_builder.dart';
 export 'src/form_builder_field.dart';

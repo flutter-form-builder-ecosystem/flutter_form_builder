@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:form_builder_core/form_builder_core.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class GroupedCheckbox<T> extends StatefulWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.

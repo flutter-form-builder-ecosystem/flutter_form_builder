@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_builder_core/form_builder_core.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:rating_bar/rating_bar.dart';
 
 /// Field for selection of a numerical value as a rating

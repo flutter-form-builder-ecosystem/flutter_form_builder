@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chips_input/flutter_chips_input.dart';
-import 'package:form_builder_core/form_builder_core.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A field that takes a list of `Chip`s as input and suggests more options
 /// while typing

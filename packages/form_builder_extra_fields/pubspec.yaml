@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  form_builder_core: 7.0.0-alpha.0
+  flutter_form_builder: ^7.0.0-alpha.0
   flutter_chips_input: ^1.9.5
   flutter_colorpicker: 0.4.0
   rating_bar: ^0.2.0

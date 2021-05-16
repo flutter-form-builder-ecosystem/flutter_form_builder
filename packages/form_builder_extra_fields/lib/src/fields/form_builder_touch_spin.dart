@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_builder_core/form_builder_core.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_touch_spin/flutter_touch_spin.dart';
 import 'package:intl/intl.dart';
 
@@ -29,7 +29,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
   final double iconSize;
 
   /// NumberFormat to be used when displaying values
-  final NumberFormat? displayFormat;
+  final NumberFormat ?displayFormat;
 
   /// Spacing around the decrement and increment icons
   final EdgeInsets iconPadding;
@@ -38,10 +38,10 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
   final TextStyle textStyle;
 
   /// Color of icon while the widget is in active state
-  final Color? iconActiveColor;
+  final Color ?iconActiveColor;
 
   /// Color of icon while the widget is in active state
-  final Color? iconDisabledColor;
+  final Color ?iconDisabledColor;
 
   /// Creates field for selection of a number by tapping on an add or subtract icon
   FormBuilderTouchSpin({

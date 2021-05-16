@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_builder_core/form_builder_core.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
 
 /// Field with drawing pad on which user can doodle
@@ -14,7 +14,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
   final SignatureController? controller;
 
   /// Width of the canvas
-  final double? width;
+  final double ?width;
 
   /// Height of the canvas
   final double height;
@@ -23,10 +23,10 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
   final Color backgroundColor;
 
   /// Text to be displayed on the clear button which clears user input from the canvas
-  final String? clearButtonText;
+  final String ?clearButtonText;
 
   /// Styles the canvas border
-  final Border? border;
+  final Border ?border;
 
   /// Creates field with drawing pad on which user can doodle
   FormBuilderSignaturePad({
