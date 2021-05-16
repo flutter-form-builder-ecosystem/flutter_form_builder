@@ -268,6 +268,7 @@ class _FormBuilderDateTimePickerState
 
   @override
   void dispose() {
+    effectiveFocusNode!.removeListener(_handleFocus);
     // Dispose the _textFieldController when initState created it
     if (null == widget.controller) {
       _textFieldController.dispose();
