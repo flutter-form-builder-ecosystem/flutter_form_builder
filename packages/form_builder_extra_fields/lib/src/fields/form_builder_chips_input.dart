@@ -32,7 +32,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     //From Super
     required String name,
     FormFieldValidator<List<T>>? validator,
-    List<T>? initialValue,
+    List<T> initialValue = const [],
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<T>>? onChanged,
     ValueTransformer<List<T>>? valueTransformer,
