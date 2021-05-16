@@ -1,3 +1,6 @@
+## [7.0.0-alpha.1] - 16-May-2021
+* Fix package naming in alpha.0
+
 ## [7.0.0-alpha.0] - 16-May-2021
 * Split up packages - removed fields and validation from core
 
