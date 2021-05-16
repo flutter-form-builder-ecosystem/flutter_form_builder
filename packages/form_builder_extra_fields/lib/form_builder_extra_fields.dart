@@ -1,7 +1,9 @@
 library form_builder_extra_fields;
 
+export 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 export 'src/fields/form_builder_chips_input.dart';
 export 'src/fields/form_builder_color_picker.dart';
+export 'src/fields/form_builder_cupertino_date_time_picker.dart';
 export 'src/fields/form_builder_rating.dart';
 export 'src/fields/form_builder_searchable_dropdown.dart';
 export 'src/fields/form_builder_signature_pad.dart';

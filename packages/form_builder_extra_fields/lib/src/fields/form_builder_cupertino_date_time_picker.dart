@@ -56,9 +56,9 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
   final StrutStyle strutStyle;
 
   //
-  Locale? locale;
-  DateFormat? format;
-  InputType inputType;
+  final Locale? locale;
+  final DateFormat? format;
+  final InputType inputType;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final bool alwaysUse24HourFormat;
@@ -170,6 +170,10 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
             );
           },
         );
+
+  @override
+  _FormBuilderCupertinoDateTimePickerState createState() =>
+      _FormBuilderCupertinoDateTimePickerState();
 }
 
 class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
