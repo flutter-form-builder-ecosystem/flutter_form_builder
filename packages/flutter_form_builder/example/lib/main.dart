@@ -42,10 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 FormBuilderField<String>(
                   name: "option",
-                  validator: (valueCandidate){
+                  validator: (valueCandidate) {
                     if (valueCandidate == null ||
                         (valueCandidate is String && valueCandidate.isEmpty) ||
-                        (valueCandidate is Iterable && valueCandidate.isEmpty) ||
+                        (valueCandidate is Iterable &&
+                            valueCandidate.isEmpty) ||
                         (valueCandidate is Map && valueCandidate.isEmpty)) {
                       return 'This field is required.';
                     }
@@ -55,8 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     return InputDecorator(
                       decoration: InputDecoration(
                         labelText: "Select option",
-                        contentPadding:
-                        EdgeInsets.only(top: 10.0, bottom: 0.0),
+                        contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
                         border: InputBorder.none,
                         errorText: field.errorText,
                       ),
