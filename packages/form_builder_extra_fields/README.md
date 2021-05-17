@@ -1,6 +1,6 @@
-# Form Builder Extra Fields
+# FormBuilder Extra Fields
 
-Form Builder Fields provides common ready-made form input fields for [`flutter_form_builder` package](https://pub.dev/packages/flutter_form_builder). The package gives you a convenient way of adding common ready-made input fields instead of creating your own FormBuilderField from scratch.
+FormBuilder Extra Fields provides common ready-made form input fields for [`flutter_form_builder` package](https://pub.dev/packages/flutter_form_builder). The package gives you a convenient way of adding common ready-made input fields instead of creating your own FormBuilderField from scratch.
 ___
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?logo=flutter&style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
@@ -188,7 +188,6 @@ In order to create an input field in the form, along with the label, and any app
 | `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
 The rest of the attributes will be determined by the type of Widget being used.
-
 
 ## Support
 ### Issues and PRs
