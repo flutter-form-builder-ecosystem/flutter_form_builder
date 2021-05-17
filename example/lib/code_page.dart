@@ -36,4 +36,3 @@ class _CodePageState extends State<CodePage> {
     );
   }
 }
-

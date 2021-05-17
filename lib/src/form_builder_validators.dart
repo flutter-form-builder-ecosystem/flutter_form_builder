@@ -28,7 +28,7 @@ class FormBuilderValidators {
   }) {
     return (T? valueCandidate) {
       if (valueCandidate == null ||
-          (valueCandidate is String && valueCandidate.isEmpty) ||
+          (valueCandidate is String && valueCandidate.trim().isEmpty) ||
           (valueCandidate is Iterable && valueCandidate.isEmpty) ||
           (valueCandidate is Map && valueCandidate.isEmpty)) {
         return errorText ??
