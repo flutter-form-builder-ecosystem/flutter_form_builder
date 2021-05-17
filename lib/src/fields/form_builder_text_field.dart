@@ -444,6 +444,7 @@ class _FormBuilderTextFieldState
   @override
   void dispose() {
     // Dispose the _controller when initState created it
+    _controller!.removeListener(_handleControllerChanged);
     if (null == widget.controller) {
       _controller!.dispose();
     }
