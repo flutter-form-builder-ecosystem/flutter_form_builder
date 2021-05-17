@@ -5,6 +5,7 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'data.dart';
 
 class MyHomePage extends StatefulWidget {
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -31,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   name: 'searchable_dropdown',
                   items: allCountries,
                   onChanged: _onChanged,
+                  decoration: const InputDecoration(labelText: 'Searchable Dropdown'),
                 ),
                 const SizedBox(height: 15),
                 FormBuilderColorPickerField(
@@ -38,10 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   initialValue: Colors.yellow,
                   // readOnly: true,
                   colorPickerType: ColorPickerType.MaterialPicker,
-                  decoration: const InputDecoration(labelText: 'Pick Color'),
+                  decoration: const InputDecoration(labelText: 'Color Picker'),
                 ),
                 FormBuilderChipsInput<Contact>(
-                  decoration: const InputDecoration(labelText: 'Chips'),
+                  decoration: const InputDecoration(labelText: 'Chips Input'),
                   name: 'chips_test',
                   onChanged: _onChanged,
                   maxChips: 5,
@@ -50,8 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       var lowercaseQuery = query.toLowerCase();
                       return contacts.where((profile) {
                         return profile.name
-                                .toLowerCase()
-                                .contains(query.toLowerCase()) ||
+                            .toLowerCase()
+                            .contains(query.toLowerCase()) ||
                             profile.email
                                 .toLowerCase()
                                 .contains(query.toLowerCase());
@@ -59,8 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ..sort((a, b) => a.name
                             .toLowerCase()
                             .indexOf(lowercaseQuery)
-                            .compareTo(
-                                b.name.toLowerCase().indexOf(lowercaseQuery)));
+                            .compareTo(b.name
+                            .toLowerCase()
+                            .indexOf(lowercaseQuery)));
                     } else {
                       return const <Contact>[];
                     }
@@ -89,26 +92,36 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
                 FormBuilderCupertinoDateTimePicker(
-                  name: 'date',
+                  name: 'date_time',
                   initialValue: DateTime.now(),
-                  inputType: InputType.date,
+                  inputType: InputType.both,
                   decoration: const InputDecoration(
-                    labelText: 'Appointment Time',
+                    labelText: 'Cupertino DateTime Picker',
                   ),
                   locale: Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderCupertinoDateTimePicker(
-                  name: 'date_es',
+                  name: 'date',
                   initialValue: DateTime.now(),
-                  inputType: InputType.both,
+                  inputType: InputType.date,
                   decoration: const InputDecoration(
-                    labelText: 'Hora de la cita',
+                    labelText: 'Cupertino DateTime Picker - Date Only',
+                  ),
+                  locale: Locale.fromSubtags(languageCode: 'en_GB'),
+                ),
+                FormBuilderCupertinoDateTimePicker(
+                  name: 'time',
+                  initialValue: DateTime.now(),
+                  inputType: InputType.time,
+                  decoration: const InputDecoration(
+                    labelText: 'Cupertino DateTime Picker - Time Only',
                   ),
                   locale: Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderTypeAhead<String>(
                   decoration: const InputDecoration(
-                    labelText: 'Country',
+                    labelText: 'TypeAhead (Autocomplete TextField)',
+                    hintText: 'Start typing country name'
                   ),
                   name: 'country',
                   onChanged: _onChanged,
@@ -129,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             .toLowerCase()
                             .indexOf(lowercaseQuery)
                             .compareTo(
-                                b.toLowerCase().indexOf(lowercaseQuery)));
+                            b.toLowerCase().indexOf(lowercaseQuery)));
                     } else {
                       return allCountries;
                     }
@@ -147,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FormBuilderRating(
                   decoration:
-                      const InputDecoration(labelText: 'Rate this form'),
+                  const InputDecoration(labelText: 'Rating'),
                   name: 'rate',
                   iconSize: 32.0,
                   initialValue: 1.0,
@@ -156,8 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FormBuilderSignaturePad(
                   decoration: const InputDecoration(
-                    labelText: 'Signature',
-                    border: OutlineInputBorder(),
+                    labelText: 'Signature Pad',
                   ),
                   name: 'signature',
                   border: Border.all(color: Colors.green),
@@ -170,8 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: MaterialButton(
                         color: Theme.of(context).accentColor,
                         onPressed: () {
-                          if (_formKey.currentState?.saveAndValidate() ??
-                              false) {
+                          if (_formKey.currentState?.saveAndValidate() ?? false) {
                             print(_formKey.currentState?.value);
                           } else {
                             print(_formKey.currentState?.value);
@@ -193,8 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         // color: Theme.of(context).accentColor,
                         child: Text(
                           'Reset',
-                          style:
-                              TextStyle(color: Theme.of(context).accentColor),
+                          style: TextStyle(color: Theme.of(context).accentColor),
                         ),
                       ),
                     ),
