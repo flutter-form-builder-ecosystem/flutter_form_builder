@@ -48,7 +48,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   ///   _controller.text = suggestion['name'];
   /// }
   /// ```
-  final SuggestionSelectionCallback<T> ?onSuggestionSelected;
+  final SuggestionSelectionCallback<T>? onSuggestionSelected;
 
   /// Called for each suggestion returned by [suggestionsCallback] to build the
   /// corresponding widget.
@@ -74,7 +74,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
   /// Used to control the `_SuggestionsBox`. Allows manual control to
   /// open, close, toggle, or resize the `_SuggestionsBox`.
-  final SuggestionsBoxController ?suggestionsBoxController;
+  final SuggestionsBoxController? suggestionsBoxController;
 
   /// The duration to wait after the user stops typing before calling
   /// [suggestionsCallback]
@@ -96,7 +96,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   /// ```
   ///
   /// If not specified, a [CircularProgressIndicator](https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html) is shown
-  final WidgetBuilder ?loadingBuilder;
+  final WidgetBuilder? loadingBuilder;
 
   /// Called when [suggestionsCallback] returns an empty array.
   ///
@@ -124,7 +124,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   /// ```
   ///
   /// If not specified, the error is shown in [ThemeData.errorColor](https://docs.flutter.io/flutter/material/ThemeData/errorColor.html)
-  final ErrorBuilder ?errorBuilder;
+  final ErrorBuilder? errorBuilder;
 
   /// Called to display animations when [suggestionsCallback] returns suggestions
   ///
@@ -150,7 +150,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   /// To fully remove the animation, just return `suggestionsBox`
   ///
   /// If not specified, a [SizeTransition](https://docs.flutter.io/flutter/widgets/SizeTransition-class.html) is shown.
-  final AnimationTransitionBuilder ?transitionBuilder;
+  final AnimationTransitionBuilder? transitionBuilder;
 
   /// The duration that [transitionBuilder] animation takes.
   ///
@@ -249,12 +249,12 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
   /// Defaults to false
   final bool autoFlipDirection;
 
-  final SelectionToTextTransformer<T> ?selectionToTextTransformer;
+  final SelectionToTextTransformer<T>? selectionToTextTransformer;
 
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
-  final TextEditingController ?controller;
+  final TextEditingController? controller;
 
   final bool hideKeyboard;
 
