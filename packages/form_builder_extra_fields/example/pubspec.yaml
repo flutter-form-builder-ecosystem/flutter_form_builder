@@ -10,8 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   form_builder_extra_fields:
     path: ../
+  form_builder_validators:
+    path: ../../form_builder_validators/
 
 dev_dependencies:
   flutter_test:

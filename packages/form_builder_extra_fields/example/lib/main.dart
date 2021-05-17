@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
-
-import 'data.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'home_page.dart';
 
 void main() {
@@ -18,6 +16,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      localizationsDelegates: [
+        FormBuilderLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('es', ''),
+        Locale('fr', ''),
+        Locale('ja', ''),
+        Locale('pt', ''),
+        Locale('sk', ''),
+        Locale('pl', ''),
+      ],
       home: MyHomePage(),
     );
   }

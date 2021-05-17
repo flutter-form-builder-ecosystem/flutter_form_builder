@@ -5,7 +5,6 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'data.dart';
 
 class MyHomePage extends StatefulWidget {
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -51,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       var lowercaseQuery = query.toLowerCase();
                       return contacts.where((profile) {
                         return profile.name
-                            .toLowerCase()
-                            .contains(query.toLowerCase()) ||
+                                .toLowerCase()
+                                .contains(query.toLowerCase()) ||
                             profile.email
                                 .toLowerCase()
                                 .contains(query.toLowerCase());
@@ -60,9 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         ..sort((a, b) => a.name
                             .toLowerCase()
                             .indexOf(lowercaseQuery)
-                            .compareTo(b.name
-                            .toLowerCase()
-                            .indexOf(lowercaseQuery)));
+                            .compareTo(
+                                b.name.toLowerCase().indexOf(lowercaseQuery)));
                     } else {
                       return const <Contact>[];
                     }
@@ -97,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: const InputDecoration(
                     labelText: 'Appointment Time',
                   ),
+                  locale: Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderCupertinoDateTimePicker(
                   name: 'date_es',
@@ -105,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: const InputDecoration(
                     labelText: 'Hora de la cita',
                   ),
+                  locale: Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderTypeAhead<String>(
                   decoration: const InputDecoration(
@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             .toLowerCase()
                             .indexOf(lowercaseQuery)
                             .compareTo(
-                            b.toLowerCase().indexOf(lowercaseQuery)));
+                                b.toLowerCase().indexOf(lowercaseQuery)));
                     } else {
                       return allCountries;
                     }
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 FormBuilderRating(
                   decoration:
-                  const InputDecoration(labelText: 'Rate this form'),
+                      const InputDecoration(labelText: 'Rate this form'),
                   name: 'rate',
                   iconSize: 32.0,
                   initialValue: 1.0,
@@ -170,7 +170,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: MaterialButton(
                         color: Theme.of(context).accentColor,
                         onPressed: () {
-                          if (_formKey.currentState?.saveAndValidate() ?? false) {
+                          if (_formKey.currentState?.saveAndValidate() ??
+                              false) {
                             print(_formKey.currentState?.value);
                           } else {
                             print(_formKey.currentState?.value);
@@ -192,7 +193,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         // color: Theme.of(context).accentColor,
                         child: Text(
                           'Reset',
-                          style: TextStyle(color: Theme.of(context).accentColor),
+                          style:
+                              TextStyle(color: Theme.of(context).accentColor),
                         ),
                       ),
                     ),
