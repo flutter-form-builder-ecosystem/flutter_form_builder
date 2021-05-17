@@ -166,6 +166,14 @@ Widget build(BuildContext context) {
 
 ## Input widgets
 The currently supported fields include:
+* `FormBuilderChipsInput` - Takes a list of `Chip`s as input and suggests more options on typing
+* `FormBuilderColorPicker` - For `Color` input selection
+* `FormBuilderCupertinoDateTimePicker` - For `Date`, `Time` and `DateTime` input using a Cupertino-style picker
+* `FormBuilderRating` - For selection of a numerical value as a rating
+* `FormBuilderSearchableDropdown` - Field for selecting value(s) from a searchable list
+* `FormBuilderSignaturePad` - Field with drawing pad on which user can doodle
+* `FormBuilderTouchSpin` - Selection of a number by tapping on a plus or minus icon
+* `FormBuilderTypeAhead` - Auto-completes user input from a list of items
 
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
