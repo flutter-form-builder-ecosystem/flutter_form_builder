@@ -26,7 +26,9 @@ Flutter Form Builder provides an easy way of working with forms in Flutter by re
 ### flutter_form_builder
 > [![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?logo=flutter&style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
 
-FormBuilder provides APIs to manage your Form and generating a FormBuilder compliant FormField. This plugin is required by `form_builder_fields` and `form_builder_extra_fields` plugins.
+FormBuilder helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes,
+and collect final user input.
+This package provides APIs to manage your Form and generating a FormBuilder compliant FormField. It is required by `form_builder_fields` and `form_builder_extra_fields` packages.
 
 [[View Documentation][core_docs]] [[View Source][core_code]]
 
