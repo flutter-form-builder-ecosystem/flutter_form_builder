@@ -40,24 +40,6 @@ TextFormField(
 ),
 ```
 
-## l10n
-Add the `FormBuilderLocalizations.delegate` in the list of your app's `      localizationsDelegates`
-
-```dart
-  return MaterialApp(
-      supportedLocales: [
-        Locale('en'),
-        Locale('it'),
-        Locale('fr'),
-        Locale('es'),
-      ],
-      localizationsDelegates: [
-        FormBuilderLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-```
-
 ## Built-in Validators
 This package comes with several most common `FormFieldValidator`s such as required, numeric, mail,
 URL, min, max, minLength, maxLength, IP, credit card etc. with default `errorText`.
@@ -101,7 +83,24 @@ FormBuilderTextField(
 ),
 ```
 
-## Languages supported
+## l10n
+To allow for localization of error messages within your app, add the `FormBuilderLocalizations.delegate` in the list of your app's `localizationsDelegates`
+
+```dart
+  return MaterialApp(
+      supportedLocales: [
+        Locale('en'),
+        Locale('it'),
+        Locale('fr'),
+        Locale('es'),
+      ],
+      localizationsDelegates: [
+        FormBuilderLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+```
+### Languages supported
 - English (en)
 - French (fr)
 - German (de)
@@ -117,8 +116,7 @@ FormBuilderTextField(
 ### Issues and PRs
 Any kind of support in the form of reporting bugs, answering questions or PRs is always appreciated.
 
-We especially welcome efforts to internationalize/localize the package by translating the default
-validation `errorText` strings.
+We especially welcome efforts to internationalize/localize the package by translating the default validation `errorText` strings for built-in validation rules.
 
 ### Localizing messages
 1. With the app’s root directory as the current directory, generate `l10n/intl_messages.arb`
