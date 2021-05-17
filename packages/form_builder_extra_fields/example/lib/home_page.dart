@@ -156,12 +156,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   subtractIcon: const Icon(Icons.arrow_left),
                   onChanged: _onChanged,
                 ),
-                FormBuilderRating(
-                  decoration: const InputDecoration(labelText: 'Rating'),
+                FormBuilderRatingBar(
+                  decoration: const InputDecoration(labelText: 'Rating Bar'),
                   name: 'rate',
-                  iconSize: 32.0,
+                  enabled: false,
+                  itemSize: 32.0,
                   initialValue: 1.0,
-                  max: 5.0,
+                  maxRating: 5.0,
                   onChanged: _onChanged,
                 ),
                 FormBuilderSignaturePad(
