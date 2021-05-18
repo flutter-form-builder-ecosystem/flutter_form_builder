@@ -286,7 +286,8 @@ class CompleteFormState extends State<CompleteForm> {
                     // color: Theme.of(context).colorScheme.secondary,
                     child: Text(
                       'Reset',
-                      style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ),
