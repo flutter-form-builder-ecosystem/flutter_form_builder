@@ -42,7 +42,7 @@ TextFormField(
 
 ## Built-in Validators
 This package comes with several most common `FormFieldValidator`s such as required, numeric, mail,
-URL, min, max, minLength, maxLength, IP, credit card etc. with default `errorText`.
+URL, min, max, minLength, maxLength, IP, credit card etc. with default `errorText` messages.
 
 Available built-in validators include:
 * `FormBuilderValidators.creditCard()` - requires the field's value to be a valid credit card number.
@@ -61,19 +61,25 @@ Available built-in validators include:
 * ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
 
 ## Composing multiple validators
-`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes any number of `FormFieldValidator` functions. This allows for reusability of validation rules across multiple fields.
+`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes any number of `FormFieldValidator` functions. This allows you to create once and reuse validation rules across multiple fields.
 
-On validation each validator is run and if any returns a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the
+On validation each validator is run and if any one returns a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the
 returned string.
 
-Validation example:
+Example:
 ```dart
-FormBuilderTextField(
+TextFormField(
   name: 'age',
   decoration: InputDecoration(labelText: 'Age'),
   validator: FormBuilderValidators.compose([
+    /// Ensures the value entered is numeric
     FormBuilderValidators.numeric(context, errorText: 'La edad debe ser numérica.'),
+
+    /// Sets a maximum value of 70
     FormBuilderValidators.max(context, 70),
+
+    /// Include your own custom `FormFieldValidator` function if you want
+    /// Ensures postive values only. We could also have used `FormBuilderValidators.min(context, 0)`
     (val){
       if(val < 0)
         return 'We cannot have a negative age';
@@ -84,7 +90,7 @@ FormBuilderTextField(
 ```
 
 ## l10n
-To allow for localization of error messages within your app, add the `FormBuilderLocalizations.delegate` in the list of your app's `localizationsDelegates`
+To allow for localization of default error messages within your app, add `FormBuilderLocalizations.delegate` in the list of your app's `localizationsDelegates`
 
 ```dart
   return MaterialApp(
@@ -100,7 +106,7 @@ To allow for localization of error messages within your app, add the `FormBuilde
         GlobalWidgetsLocalizations.delegate,
       ],
 ```
-### Languages supported
+### Languages supported (default errorText messages)
 - English (en)
 - French (fr)
 - German (de)
@@ -111,6 +117,8 @@ To allow for localization of error messages within your app, add the `FormBuilde
 - Portuguese (pt)
 - Slovak (sk)
 - Spanish (es)
+
+and you can still add your own custom error messages.
 
 ## Support
 ### Issues and PRs
