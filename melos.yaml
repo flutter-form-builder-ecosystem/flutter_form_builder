@@ -12,3 +12,5 @@ environment:
 scripts:
   analyze: melos exec -- pub global run tuneup check
   format: melos exec -- flutter format .
+  test: melos exec -- flutter test
+  
