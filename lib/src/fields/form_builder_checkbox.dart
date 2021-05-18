@@ -79,7 +79,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
       errorBorder: InputBorder.none,
       disabledBorder: InputBorder.none,
     ),
-    ValueChanged<bool>? onChanged,
+    ValueChanged<bool?>? onChanged,
     ValueTransformer<bool>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<bool>? onSaved,

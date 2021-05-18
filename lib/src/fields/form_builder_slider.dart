@@ -136,7 +136,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
     FormFieldValidator<double>? validator,
     required double initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<double>? onChanged,
+    ValueChanged<double?>? onChanged,
     ValueTransformer<double>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<double>? onSaved,
