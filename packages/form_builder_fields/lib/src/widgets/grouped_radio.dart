@@ -17,7 +17,7 @@ class GroupedRadio<T> extends StatefulWidget {
   final OptionsOrientation orientation;
 
   /// Called when the value of the checkbox group changes.
-  final ValueChanged<T> onChanged;
+  final ValueChanged<T?> onChanged;
 
   /// The color to use when this checkbox is checked.
   ///
