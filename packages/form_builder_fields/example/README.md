@@ -274,7 +274,7 @@ Row(
   children: <Widget>[
     Expanded(
       child: MaterialButton(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Text(
           "Submit",
           style: TextStyle(color: Colors.white),
@@ -294,7 +294,7 @@ Row(
     ),
     Expanded(
       child: MaterialButton(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         child: Text(
           "Reset",
           style: TextStyle(color: Colors.white),

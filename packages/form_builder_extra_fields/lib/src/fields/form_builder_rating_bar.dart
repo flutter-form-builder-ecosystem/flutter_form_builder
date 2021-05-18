@@ -8,7 +8,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class FormBuilderRatingBar extends FormBuilderField<double> {
   /// Defines color for glow.
   ///
-  /// Default is [ThemeData.accentColor].
+  /// Default is [ThemeData.colorScheme.secondary].
   final Color? glowColor;
 
   /// Sets maximum rating

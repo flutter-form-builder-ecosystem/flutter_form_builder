@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Expanded(
                       child: MaterialButton(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         onPressed: () {
                           if (_formKey.currentState?.saveAndValidate() ??
                               false) {
@@ -200,11 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: () {
                           _formKey.currentState?.reset();
                         },
-                        // color: Theme.of(context).accentColor,
+                        // color: Theme.of(context).colorScheme.secondary,
                         child: Text(
                           'Reset',
                           style:
-                              TextStyle(color: Theme.of(context).accentColor),
+                              TextStyle(color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                     ),

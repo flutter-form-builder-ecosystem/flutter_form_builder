@@ -262,7 +262,7 @@ class CompleteFormState extends State<CompleteForm> {
               children: <Widget>[
                 Expanded(
                   child: MaterialButton(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     onPressed: () {
                       if (_formKey.currentState?.saveAndValidate() ?? false) {
                         print(_formKey.currentState?.value);
@@ -283,10 +283,10 @@ class CompleteFormState extends State<CompleteForm> {
                     onPressed: () {
                       _formKey.currentState?.reset();
                     },
-                    // color: Theme.of(context).accentColor,
+                    // color: Theme.of(context).colorScheme.secondary,
                     child: Text(
                       'Reset',
-                      style: TextStyle(color: Theme.of(context).accentColor),
+                      style: TextStyle(color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                 ),

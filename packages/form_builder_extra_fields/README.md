@@ -128,7 +128,7 @@ Widget build(BuildContext context) {
           children: <Widget>[
             Expanded(
               child: MaterialButton(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 child: Text(
                   "Submit",
                   style: TextStyle(color: Colors.white),
@@ -146,7 +146,7 @@ Widget build(BuildContext context) {
             SizedBox(width: 20),
             Expanded(
               child: MaterialButton(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 child: Text(
                   "Reset",
                   style: TextStyle(color: Colors.white),
