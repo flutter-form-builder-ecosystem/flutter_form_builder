@@ -69,20 +69,26 @@ returned string.
 Example:
 ```dart
 TextFormField(
-  name: 'age',
   decoration: InputDecoration(labelText: 'Age'),
+  keyboardType: TextInputType.number,
+  autovalidateMode: AutovalidateMode.always,
   validator: FormBuilderValidators.compose([
+    /// Makes this field required
+    FormBuilderValidators.required(context),
+
     /// Ensures the value entered is numeric - with custom error message
-    FormBuilderValidators.numeric(context, errorText: 'La edad debe ser numérica.'),
+    FormBuilderValidators.numeric(context,
+        errorText: 'La edad debe ser numérica.'),
 
     /// Sets a maximum value of 70
     FormBuilderValidators.max(context, 70),
 
-    /// Include your own custom `FormFieldValidator` function if you want
-    /// Ensures postive values only. We could also have used `FormBuilderValidators.min(context, 0)`
-    (val){
-      if(val < 0)
-        return 'We cannot have a negative age';
+    /// Include your own custom `FormFieldValidator` function, if you want
+    /// Ensures positive values only. We could also have used `FormBuilderValidators.min(context, 0)` instead
+    (val) {
+      final number = int.tryParse(val);
+      if (number == null) return null;
+      if (number < 0) return 'We cannot have a negative age';
       return null;
     }
   ]),
@@ -95,10 +101,11 @@ To allow for localization of default error messages within your app, add `FormBu
 ```dart
   return MaterialApp(
       supportedLocales: [
+        Locale('de'),
         Locale('en'),
-        Locale('it'),
-        Locale('fr'),
         Locale('es'),
+        Locale('fr'),
+        Locale('it'),
       ],
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
