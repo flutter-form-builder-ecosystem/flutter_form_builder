@@ -143,10 +143,10 @@ Create one ARB file inside the `lib/l10n` folder for each of the locales you nee
 
 #### 2. Translate the error messages
 
-Duplicate the contents of `intl_messages.arb` (or any other ARB file) into your newly created ARB file then translate the error messages by overwritting the default translations.
+Duplicate the contents of `intl_messages.arb` (or any other ARB file) into your newly created ARB file then translate the error messages by overwritting the default messages.
 
 #### 3. Run command
-To generate boilerplate code for localization, run the generate program inside package directory where pubspec.yaml file is located:
+To generate boilerplate code for localization, run the generate command inside package directory where pubspec.yaml file is located:
 
 ```
   flutter pub run intl_utils:generate
