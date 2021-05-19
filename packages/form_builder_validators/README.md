@@ -23,15 +23,18 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 TextFormField(
   decoration: InputDecoration(labelText: 'Name'),
+  autovalidateMode: AutovalidateMode.always,
   validator: FormBuilderValidators.required(context),
 ),
 TextFormField(
   decoration: InputDecoration(labelText: 'Age'),
+  keyboardType: TextInputType.number,
+  autovalidateMode: AutovalidateMode.always,
   validator: FormBuilderValidators.compose([
     FormBuilderValidators.numeric(context, errorText: 'La edad debe ser numérica.'),
     FormBuilderValidators.max(context, 70),
     (val) {
-      var number = double.tryParse(val ?? '');
+      var number = int.tryParse(val ?? '');
       if (number != null) if (number < 0)
         return 'We cannot have a negative age';
       return null;
@@ -134,39 +137,25 @@ Any kind of support in the form of reporting bugs, answering questions or PRs is
 We especially welcome efforts to internationalize/localize the package by translating the default validation `errorText` strings for built-in validation rules.
 
 ### Localizing messages
-1. With the app’s root directory as the current directory, generate `l10n/intl_messages.arb`
-from `lib/localization/form_builder_localizations.dart`:
 
-    ```flutter pub pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localization/form_builder_localizations.dart```
+#### 1. Add ARB files
+Create one ARB file inside the `lib/l10n` folder for each of the locales you need to add support for. Name the files in the following way: `intl_<LOCALE_ISO_CODE>.arb`. For example: `intl_fr.arb` or `intl_fr_FR.arb`.
 
-2. The `intl_messages.arb` file is a JSON format map with one entry for each `Intl.message()`
-function defined in `lib/localization/form_builder_localizations.dart`. This file serves as a template for the different translations
-(for example `intl_en.arb` and `intl_es.arb` are English and Spanish translations respectively). You are therefore you are required to copy the `intl_messages.arb` and put the content in a new file with the name of your locale with a name with format `intl_<locale>.arb` (e.g. `intl_fr.arb` for French Translations).
+#### 2. Translate the error messages
 
-3. Translate the messages in the new file to the required language.
+Duplicate the contents of `intl_messages.arb` (or any other ARB file) into your newly created ARB file then translate the error messages by overwritting the default translations.
 
-4. With the app’s root directory as the current directory, generate `intl_messages_<locale>.dart` for your `intl_<locale>.arb` file and update `intl_messages_all.dart`, which imports all of the messages files:
+#### 3. Run command
+To generate boilerplate code for localization, run the generate program inside package directory where pubspec.yaml file is located:
 
-  ```flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_<en>.arb lib/l10n/intl_messages.arb```
+```
+  flutter pub run intl_utils:generate
+```
 
-  e.g. To generate for French run: ```flutter pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_fr.arb lib/l10n/intl_messages.arb```
+This will produce files inside `lib/localization` directory.
 
-  - Alternatively you could run the following command to generate Dart translation files for all the `intl_<locale>.arb` files in the `l10n/` directory:
-
-  ```flutter pub pub run intl_translation:generate_from_arb --output-dir=lib/l10n --no-use-deferred-loading lib/localization/form_builder_localizations.dart lib/l10n/intl_*.arb```
-
-5. Include your new language to `FormBuilderLocalization`'s supported languages. Go to `lib/localization/form_builder_localizations.dart` and include the language like so:
-
-<pre>
-<code>
-@override
-  bool isSupported(Locale locale) {
-    return ['en', 'es', <strong>'fr'</strong>].contains(locale.languageCode);
-  }
-</code>
-</pre>
-
-6. Submit your PR and be of help to millions of people all over the world!
+#### 4. Submit PR
+Submit your PR and be of help to millions of people all over the world!
 
 ### Coffee :-)
 If this package was helpful to you in delivering your project or you just wanna to support this

@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a pt locale. All the
+// This is a library that provides messages for a fr locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -7,7 +7,7 @@
 // ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
-// ignore_for_file:unused_import, file_names
+// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -17,39 +17,39 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'pt';
+  String get localeName => 'fr';
 
-  static m1(max) => "O valor deve ser menor ou igual a ${max}";
+  static String m1(max) => "La valeur doit être inférieure ou égale à ${max}";
 
-  static m2(maxLength) =>
-      "O valor deve ter um comprimento menor ou igual a ${maxLength}";
+  static String m2(maxLength) =>
+      "La valeur doit avoir une longueur inférieure ou égale à ${maxLength}";
 
-  static m3(min) => "O valor deve ser maior ou igual a ${min}.";
+  static String m3(min) => "La valeur doit être supérieure ou égale à ${min}.";
 
-  static m4(minLength) =>
-      "O valor deve ter um comprimento maior ou igual a ${minLength}";
+  static String m4(minLength) =>
+      "La valeur doit avoir une longueur supérieure ou égale à ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um número de cartão de crédito válido."),
+            "Ce champ nécessite un numéro de carte de crédit valide."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer uma string de data válida."),
+            "Ce champ nécessite une chaîne de date valide."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de e-mail válido."),
+            "Ce champ nécessite une adresse e-mail valide."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um IP válido."),
+            "Ce champ nécessite une adresse IP valide."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "O valor não corresponde ao padrão."),
+            "La valeur ne correspond pas au modèle."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
-        "numericErrorText":
-            MessageLookupByLibrary.simpleMessage("O valor deve ser numérico."),
+        "numericErrorText": MessageLookupByLibrary.simpleMessage(
+            "La valeur doit être numérique."),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo não pode ficar vazio."),
+            "Ce champ ne peut pas être vide."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de URL válido.")
+            "Ce champ nécessite une adresse URL valide.")
       };
 }

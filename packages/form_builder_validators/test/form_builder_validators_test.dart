@@ -83,7 +83,7 @@ void main() {
   testWidgets(
       'FormBuilderValidators.equal',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.equal(context, true);
+            final validator = FormBuilderValidators.equal<bool>(context, true);
             // Pass
             expect(validator(true), isNull);
             // Fail
@@ -94,7 +94,8 @@ void main() {
   testWidgets(
       'FormBuilderValidators.notEqual',
       (WidgetTester tester) => testValidations(tester, (context) {
-            final validator = FormBuilderValidators.notEqual(context, true);
+            final validator =
+                FormBuilderValidators.notEqual<bool>(context, true);
             // Pass
             expect(validator(false), isNull);
             expect(validator(null), isNull);

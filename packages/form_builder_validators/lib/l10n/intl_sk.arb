@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2020-12-19T01:32:17.166732",
+  "@@locale": "sk",
   "requiredErrorText": "Toto pole nesmie byť prázdne.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",

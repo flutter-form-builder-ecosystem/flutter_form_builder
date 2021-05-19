@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a de locale. All the
+// This is a library that provides messages for a hu locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -7,7 +7,7 @@
 // ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
-// ignore_for_file:unused_import, file_names
+// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -17,44 +17,39 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'de';
+  String get localeName => 'hu';
 
-  static m0(value) => "Dieser Feldwert muss ${value} gleich sein.";
+  static String m1(max) => "Az érték legyen legfeljebb ${max}";
 
-  static m1(max) => "Der Wert muss kleiner als oder gleich ${max} sein.";
+  static String m2(maxLength) =>
+      "Value must have a length less than or equal to ${maxLength}";
 
-  static m2(maxLength) =>
-      "Der Wert muss eine Länge kleiner als oder gleich ${maxLength} haben.";
+  static String m3(min) => "Az érték legyen legalább ${min}.";
 
-  static m3(min) => "Der Wert muss größer als oder gleich ${min} sein.";
-
-  static m4(minLength) =>
-      "Der Wert muss eine Länge größer als oder gleich ${minLength} haben.";
+  static String m4(minLength) =>
+      "Az értéknel legalább ${minLength} karakter hosszúnak kell lennie";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Für dieses Feld ist eine gültige Kreditkartennummer erforderlich."),
+            "A megadott érték nem egy érvényes bankkártya szám."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Dieses Feld erfordert ein gültiges Datum."),
+            "Ennek a mezőnek dátumnak kell lennie."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Für dieses Feld ist eine gültige E-Mail-Adresse erforderlich."),
-        "equalErrorText": m0,
-        "integerErrorText": MessageLookupByLibrary.simpleMessage(
-            "Der Wert muss eine integer sein."),
+            "A megadott érték nem egy érvényes email cím."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Dieses Feld erfordert eine gültige IP-Adresse."),
+            "A megadott érték nem egy érvényes IP cím."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "Der Wert stimmt nicht mit dem Muster überein."),
+            "A megadott érték nem egyezik a szükséges formátummal."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
         "numericErrorText": MessageLookupByLibrary.simpleMessage(
-            "Der Wert muss numerisch sein."),
+            "Ebbe a mezőbe csak számot lehet írni."),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Dieses Feld kann nicht leer sein."),
+            "Ennek a mezőnek értéket kell adni."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Für dieses Feld ist eine gültige URL-Adresse erforderlich.")
+            "A megadott érték nem egy érvényes URL cím.")
       };
 }

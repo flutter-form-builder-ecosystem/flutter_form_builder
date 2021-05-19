@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2021-01-16T01:32:17.166732",
+  "@@locale": "pl",
   "requiredErrorText": "To pole nie może być puste.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",

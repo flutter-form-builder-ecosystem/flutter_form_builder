@@ -41,7 +41,7 @@ class FormBuilderValidators {
   /// provided value.
   static FormFieldValidator<T> equal<T>(
     BuildContext context,
-    T value, {
+    Object value, {
     String? errorText,
   }) =>
       (valueCandidate) => valueCandidate != value
@@ -53,7 +53,7 @@ class FormBuilderValidators {
   /// the provided value.
   static FormFieldValidator<T> notEqual<T>(
     BuildContext context,
-    T value, {
+    Object value, {
     String? errorText,
   }) =>
       (valueCandidate) => valueCandidate == value

@@ -7,7 +7,7 @@
 // ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
-// ignore_for_file:unused_import, file_names
+// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -19,18 +19,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static m1(max) => "El valor debe ser menor o igual que ${max}.";
+  static String m1(max) => "El valor debe ser menor o igual que ${max}.";
 
-  static m2(maxLength) =>
+  static String m2(maxLength) =>
       "El valor debe tener una longitud menor o igual a ${maxLength}";
 
-  static m3(min) => "El valor debe ser mayor o igual que ${min}.";
+  static String m3(min) => "El valor debe ser mayor o igual que ${min}.";
 
-  static m4(minLength) =>
+  static String m4(minLength) =>
       "El valor debe tener una longitud mayor o igual a ${minLength}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function>{
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
             "Este campo requiere un número de tarjeta de crédito válido."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(

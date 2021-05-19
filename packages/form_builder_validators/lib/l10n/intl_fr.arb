@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2020-11-17T09:00:39.706877",
+  "@@locale": "fr",
   "requiredErrorText": "Ce champ ne peut pas être vide.",
   "@requiredErrorText": {
     "description": "Error Text for required field",
