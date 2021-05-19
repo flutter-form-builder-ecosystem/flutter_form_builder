@@ -72,7 +72,7 @@ TextFormField(
   name: 'age',
   decoration: InputDecoration(labelText: 'Age'),
   validator: FormBuilderValidators.compose([
-    /// Ensures the value entered is numeric
+    /// Ensures the value entered is numeric - with custom error message
     FormBuilderValidators.numeric(context, errorText: 'La edad debe ser numérica.'),
 
     /// Sets a maximum value of 70
@@ -101,9 +101,9 @@ To allow for localization of default error messages within your app, add `FormBu
         Locale('es'),
       ],
       localizationsDelegates: [
-        FormBuilderLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
       ],
 ```
 ### Languages supported (default errorText messages)
