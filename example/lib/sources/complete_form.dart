@@ -184,7 +184,6 @@ class CompleteFormState extends State<CompleteForm> {
                             ))
                         .toList(),
                     onChanged: (val) {
-                      print(val);
                       setState(() {
                         _genderHasError = !(_formKey
                                 .currentState?.fields['gender']
@@ -192,11 +191,13 @@ class CompleteFormState extends State<CompleteForm> {
                             false);
                       });
                     },
+                    valueTransformer: (val) => val?.toString(),
                   ),
                   FormBuilderRadioGroup<String>(
                     decoration: const InputDecoration(
                       labelText: 'My chosen language',
                     ),
+                    initialValue: null,
                     name: 'best_language',
                     onChanged: _onChanged,
                     validator: FormBuilderValidators.compose(
@@ -238,7 +239,7 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: const InputDecoration(
                         labelText: 'The language of my people'),
                     name: 'languages',
-                    initialValue: const ['Dart'],
+                    // initialValue: const ['Dart'],
                     options: const [
                       FormBuilderFieldOption(value: 'Dart'),
                       FormBuilderFieldOption(value: 'Kotlin'),

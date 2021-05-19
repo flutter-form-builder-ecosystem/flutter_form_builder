@@ -48,7 +48,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
       disabledBorder: InputBorder.none,
     ),
     ValueChanged<List<T>?>? onChanged,
-    ValueTransformer<List<T>>? valueTransformer,
+    ValueTransformer<List<T>?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<List<T>>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
