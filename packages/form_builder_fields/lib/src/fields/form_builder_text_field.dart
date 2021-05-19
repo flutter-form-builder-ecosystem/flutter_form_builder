@@ -293,7 +293,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     String? initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<String>? onChanged,
+    ValueChanged<String?>? onChanged,
     ValueTransformer<String>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<String>? onSaved,
@@ -444,6 +444,7 @@ class _FormBuilderTextFieldState
   @override
   void dispose() {
     // Dispose the _controller when initState created it
+    _controller!.removeListener(_handleControllerChanged);
     if (null == widget.controller) {
       _controller!.dispose();
     }

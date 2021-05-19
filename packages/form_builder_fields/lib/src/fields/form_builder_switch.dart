@@ -89,7 +89,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     FormFieldValidator<bool>? validator,
     bool? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<bool>? onChanged,
+    ValueChanged<bool?>? onChanged,
     ValueTransformer<bool>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<bool>? onSaved,

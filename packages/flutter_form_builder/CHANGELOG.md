@@ -7,6 +7,11 @@
 ## [7.0.0-alpha.0] - 16-May-2021
 * Split up packages - removed fields and validation from core
 
+## [6.0.1] - 19-May-2021
+* Add whitespace check for required validator
+* Null-safety and type fixes
+* Dispose off registered listeners (#799)
+
 ## [6.0.0] - 20-Apr-2021
 * Re-introduced DateTimePicker field without external dependencies
 * Minor fixes

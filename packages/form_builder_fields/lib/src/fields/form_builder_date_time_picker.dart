@@ -135,7 +135,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     FormFieldValidator<DateTime>? validator,
     DateTime? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTime>? onChanged,
+    ValueChanged<DateTime?>? onChanged,
     ValueTransformer<DateTime>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTime>? onSaved,
@@ -268,6 +268,7 @@ class _FormBuilderDateTimePickerState
 
   @override
   void dispose() {
+    effectiveFocusNode!.removeListener(_handleFocus);
     // Dispose the _textFieldController when initState created it
     if (null == widget.controller) {
       _textFieldController.dispose();

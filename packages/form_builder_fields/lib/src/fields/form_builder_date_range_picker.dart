@@ -68,7 +68,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     FormFieldValidator<DateTimeRange>? validator,
     DateTimeRange? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTimeRange>? onChanged,
+    ValueChanged<DateTimeRange?>? onChanged,
     ValueTransformer<DateTimeRange>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTimeRange>? onSaved,
