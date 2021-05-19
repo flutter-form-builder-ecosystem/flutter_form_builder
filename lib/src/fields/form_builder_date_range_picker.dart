@@ -25,7 +25,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   final MaxLengthEnforcement? maxLengthEnforcement;
   final int? maxLength;
   final VoidCallback? onEditingComplete;
-  final ValueChanged<List<DateTime>>? onFieldSubmitted;
+  final ValueChanged<DateTimeRange?>? onFieldSubmitted;
   final List<TextInputFormatter>? inputFormatters;
   final double cursorWidth;
   final Radius? cursorRadius;

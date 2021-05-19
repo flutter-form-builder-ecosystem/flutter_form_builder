@@ -69,7 +69,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   /// Called when an enclosing form is submitted. The value passed will be
   /// `null` if [format] fails to parse the text.
-  final ValueChanged<DateTime>? onFieldSubmitted;
+  final ValueChanged<DateTime?>? onFieldSubmitted;
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final TextStyle? style;
