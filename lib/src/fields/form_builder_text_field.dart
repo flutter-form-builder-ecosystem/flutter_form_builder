@@ -345,7 +345,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
         assert(minLines == null || minLines > 0),
         assert(maxLines == null || maxLines > 0),
         assert(
-          (minLines == null && maxLines == null) || maxLines! >= minLines!,
+          (minLines == null) || (maxLines == null) || (maxLines >= minLines),
           'minLines can\'t be greater than maxLines',
         ),
         assert(
