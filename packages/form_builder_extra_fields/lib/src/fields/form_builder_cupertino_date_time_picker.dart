@@ -74,7 +74,7 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
     DateTime? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<DateTime>? onChanged,
-    ValueTransformer<DateTime>? valueTransformer,
+    ValueTransformer<DateTime?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTime>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

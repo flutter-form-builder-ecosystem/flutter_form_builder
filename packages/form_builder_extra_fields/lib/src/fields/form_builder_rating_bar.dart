@@ -104,7 +104,7 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
     double? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<double>? onChanged,
-    ValueTransformer<double>? valueTransformer,
+    ValueTransformer<double?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<double>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

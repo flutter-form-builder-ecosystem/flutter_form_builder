@@ -52,7 +52,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
     num? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<num>? onChanged,
-    ValueTransformer<num>? valueTransformer,
+    ValueTransformer<num?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<num>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

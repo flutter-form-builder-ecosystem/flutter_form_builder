@@ -76,7 +76,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     Color? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<Color>? onChanged,
-    ValueTransformer<Color>? valueTransformer,
+    ValueTransformer<Color?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<Color>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

@@ -37,7 +37,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
     Uint8List? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<Uint8List>? onChanged,
-    ValueTransformer<Uint8List>? valueTransformer,
+    ValueTransformer<Uint8List?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<Uint8List>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
