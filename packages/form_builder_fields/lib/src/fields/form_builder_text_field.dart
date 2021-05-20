@@ -155,7 +155,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///  * [EditableText.onSubmitted] for an example of how to handle moving to
   ///    the next/previous field when using [TextInputAction.next] and
   ///    [TextInputAction.previous] for [textInputAction].
-  final ValueChanged<String>? onSubmitted;
+  final ValueChanged<String?>? onSubmitted;
 
   /// {@macro flutter.widgets.editableText.inputFormatters}
   final List<TextInputFormatter>? inputFormatters;
@@ -294,7 +294,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<String?>? onChanged,
-    ValueTransformer<String>? valueTransformer,
+    ValueTransformer<String?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<String>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

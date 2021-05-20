@@ -32,7 +32,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     T? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<T?>? onChanged,
-    ValueTransformer<T>? valueTransformer,
+    ValueTransformer<T?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

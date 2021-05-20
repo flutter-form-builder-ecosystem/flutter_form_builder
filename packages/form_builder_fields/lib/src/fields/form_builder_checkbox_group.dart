@@ -34,7 +34,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     List<T>? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<List<T>?>? onChanged,
-    ValueTransformer<List<T>>? valueTransformer,
+    ValueTransformer<List<T>?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<List<T>>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

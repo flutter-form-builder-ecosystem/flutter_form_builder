@@ -5,6 +5,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 enum OptionsOrientation { horizontal, vertical, wrap }
 enum ControlAffinity { leading, trailing }
 
+typedef ValueTransformer<T> = dynamic Function(T value);
+
 /// A single form field.
 ///
 /// This widget maintains the current state of the form field, so that updates
