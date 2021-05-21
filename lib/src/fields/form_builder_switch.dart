@@ -95,6 +95,8 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     FormFieldSetter<bool>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.title,
     this.activeColor,
@@ -120,6 +122,8 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<bool?> field) {

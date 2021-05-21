@@ -299,6 +299,8 @@ class FormBuilderTextField extends FormBuilderField<String> {
     FormFieldSetter<String>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     this.maxLines = 1,
     this.obscureText = false,
@@ -365,6 +367,8 @@ class FormBuilderTextField extends FormBuilderField<String> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<String?> field) {

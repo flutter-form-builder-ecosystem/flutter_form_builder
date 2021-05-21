@@ -142,6 +142,8 @@ class FormBuilderSlider extends FormBuilderField<double> {
     FormFieldSetter<double>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.min,
     required this.max,
@@ -170,6 +172,8 @@ class FormBuilderSlider extends FormBuilderField<double> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<double?> field) {

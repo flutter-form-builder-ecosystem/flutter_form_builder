@@ -195,6 +195,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.items,
     this.isExpanded = true,
@@ -226,6 +228,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {

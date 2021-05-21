@@ -37,6 +37,8 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.options,
     this.activeColor,
@@ -66,6 +68,8 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           focusNode: focusNode,
           decoration: decoration,
           builder: (FormFieldState<T?> field) {

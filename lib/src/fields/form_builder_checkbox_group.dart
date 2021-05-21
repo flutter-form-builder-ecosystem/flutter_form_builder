@@ -39,6 +39,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     FormFieldSetter<List<T>>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.options,
     this.activeColor,
@@ -70,6 +72,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<T>?> field) {

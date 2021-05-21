@@ -118,6 +118,8 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     FormFieldSetter<RangeValues>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.min,
     required this.max,
@@ -144,6 +146,8 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             onSaved: onSaved,
             enabled: enabled,
             onReset: onReset,
+            hasError: hasError,
+            isValid: isValid,
             decoration: decoration,
             focusNode: focusNode,
             builder: (FormFieldState<RangeValues?> field) {

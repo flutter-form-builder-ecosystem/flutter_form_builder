@@ -7,6 +7,9 @@ enum ControlAffinity { leading, trailing }
 
 typedef ValueTransformer<T> = dynamic Function(T value);
 
+/// Typedef for error and validation handling functions.
+typedef BoolCallback = bool Function();
+
 /// A single form field.
 ///
 /// This widget maintains the current state of the form field, so that updates
@@ -43,6 +46,11 @@ class FormBuilderField<T> extends FormField<T?> {
   /// Called when the field value is reset.
   final VoidCallback? onReset;
 
+  /// Callbacks to determine error and validation status,
+  /// for example, in a widget and its state wrapping a form builder field.
+  final BoolCallback? hasError;
+  final BoolCallback? isValid;
+
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
@@ -63,6 +71,8 @@ class FormBuilderField<T> extends FormField<T?> {
     this.onChanged,
     this.decoration = const InputDecoration(),
     this.onReset,
+    this.hasError,
+    this.isValid,
     this.focusNode,
   }) : super(
           key: key,
@@ -99,10 +109,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
   FormBuilderState? _formBuilderState;
 
   @override
-  bool get hasError => super.hasError || widget.decoration.errorText != null;
+  bool get hasError =>
+      widget.hasError?.call() ??
+      (super.hasError || widget.decoration.errorText != null);
 
   @override
-  bool get isValid => super.isValid && widget.decoration.errorText == null;
+  bool get isValid =>
+      widget.isValid?.call() ??
+      (super.isValid && widget.decoration.errorText == null);
 
   bool _touched = false;
 

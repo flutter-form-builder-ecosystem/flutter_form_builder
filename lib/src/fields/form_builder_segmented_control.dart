@@ -51,6 +51,8 @@ class FormBuilderSegmentedControl<T extends Object>
     FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     required this.options,
     this.borderColor,
@@ -69,6 +71,8 @@ class FormBuilderSegmentedControl<T extends Object>
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {

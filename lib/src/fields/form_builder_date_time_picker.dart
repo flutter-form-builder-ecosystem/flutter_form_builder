@@ -141,6 +141,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     FormFieldSetter<DateTime>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
+    BoolCallback? hasError,
+    BoolCallback? isValid,
     FocusNode? focusNode,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
@@ -204,6 +206,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
           onSaved: onSaved,
           enabled: enabled,
           onReset: onReset,
+          hasError: hasError,
+          isValid: isValid,
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<DateTime?> field) {
