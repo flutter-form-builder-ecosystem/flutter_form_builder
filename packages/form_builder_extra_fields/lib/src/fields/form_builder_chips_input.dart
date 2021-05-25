@@ -6,11 +6,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 /// while typing
 class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
-  final ChipsInputSuggestions<T>? findSuggestions;
+  final ChipsInputSuggestions<T> findSuggestions;
 
   // final ValueChanged<List<T>> onChanged;
-  final ChipsBuilder<T>? chipBuilder;
-  final ChipsBuilder<T>? suggestionBuilder;
+  final ChipsBuilder<T> chipBuilder;
+  final ChipsBuilder<T> suggestionBuilder;
   final int? maxChips;
   final TextStyle? textStyle;
   final String? actionLabel;
@@ -23,7 +23,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   final TextCapitalization textCapitalization;
   final bool allowChipEditing;
   final bool autofocus;
-  final TextOverflow? textOverflow;
+  final TextOverflow textOverflow;
 
   /// Creates a field that takes a list of `Chip`s as input and suggests more options
   /// while typing
@@ -56,7 +56,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     this.textCapitalization = TextCapitalization.none,
     this.allowChipEditing = false,
     this.autofocus = false,
-    this.textOverflow,
+    this.textOverflow = TextOverflow.clip,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -74,7 +74,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
             final state = field as _FormBuilderChipsInputState<T>;
 
             return ChipsInput<T>(
-              initialValue: field.value,
+              initialValue: field.value!,
               enabled: state.enabled,
               decoration: state.decoration(),
               findSuggestions: findSuggestions,
