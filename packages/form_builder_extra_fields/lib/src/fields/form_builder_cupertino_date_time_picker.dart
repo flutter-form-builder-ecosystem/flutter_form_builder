@@ -7,7 +7,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
-enum InputType { date, time, both }
+enum CupertinoDateTimePickerInputType { date, time, both }
 
 class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
   /// Called when an enclosing form is submitted. The value passed will be
@@ -58,7 +58,7 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
   //
   final Locale? locale;
   final DateFormat? format;
-  final InputType inputType;
+  final CupertinoDateTimePickerInputType inputType;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final bool alwaysUse24HourFormat;
@@ -83,7 +83,7 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
     //
     this.locale,
     this.format,
-    this.inputType = InputType.both,
+    this.inputType = CupertinoDateTimePickerInputType.both,
     this.firstDate,
     this.lastDate,
     this.alwaysUse24HourFormat = false,
@@ -212,11 +212,11 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
   DateFormat _getDefaultDateTimeFormat() {
     final languageCode = widget.locale?.languageCode;
     switch (widget.inputType) {
-      case InputType.time:
+      case CupertinoDateTimePickerInputType.time:
         return DateFormat.Hm(languageCode);
-      case InputType.date:
+      case CupertinoDateTimePickerInputType.date:
         return DateFormat.yMd(languageCode);
-      case InputType.both:
+      case CupertinoDateTimePickerInputType.both:
       default:
         return DateFormat.yMd(languageCode).add_Hms();
     }
@@ -227,14 +227,14 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
     currentValue = value;
     DateTime? newValue;
     switch (widget.inputType) {
-      case InputType.date:
+      case CupertinoDateTimePickerInputType.date:
         newValue = await _showDatePicker(context, currentValue);
         break;
-      case InputType.time:
+      case CupertinoDateTimePickerInputType.time:
         final newTime = await _showTimePicker(context, currentValue);
         newValue = null != newTime ? convert(newTime) : null;
         break;
-      case InputType.both:
+      case CupertinoDateTimePickerInputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
           final time = await _showTimePicker(context, currentValue);
