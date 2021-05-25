@@ -64,7 +64,7 @@ Available built-in validators include:
 * ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
 
 ## Composing multiple validators
-`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes any number of `FormFieldValidator` functions. This allows you to create once and reuse validation rules across multiple fields.
+`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes a list of `FormFieldValidator` functions. This allows you to create once and reuse validation rules across multiple fields, widgets or apps.
 
 On validation each validator is run and if any one returns a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the
 returned string.
@@ -109,6 +109,7 @@ To allow for localization of default error messages within your app, add `FormBu
         Locale('es'),
         Locale('fr'),
         Locale('it'),
+        ...
       ],
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -146,13 +147,13 @@ Create one ARB file inside the `lib/l10n` folder for each of the locales you nee
 Duplicate the contents of `intl_messages.arb` (or any other ARB file) into your newly created ARB file then translate the error messages by overwritting the default messages.
 
 #### 3. Run command
-To generate boilerplate code for localization, run the generate command inside package directory where pubspec.yaml file is located:
+To generate boilerplate code for localization, run the generate command inside package directory where `pubspec.yaml` file is located:
 
 ```
   flutter pub run intl_utils:generate
 ```
 
-This will produce files inside `lib/localization` directory.
+This will automagically create/update files inside `lib/localization` directory which will include support for your newly added locale.
 
 #### 4. Submit PR
 Submit your PR and be of help to millions of people all over the world!
