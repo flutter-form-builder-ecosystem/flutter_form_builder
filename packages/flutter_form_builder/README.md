@@ -207,12 +207,15 @@ FormBuilderRadioGroup(
     },
   ),
 ```
-### Additional input fields
-To make this package compartible with as many platforms as Flutter supports, we separated some input fields into their own packages because they depend on platform-specific plugins. Here's are the links to some of the packages that could be used with `FormBuilder`
-* [FormBuilderFilePicker](https://pub.dev/packages/form_builder_file_picker) - Picks image(s) from user device storage.
-* [FormBuilderImagePicker](https://pub.dev/packages/form_builder_image_picker) - Picks image(s) from Gallery or Camera.
-* [FormBuilderLocationField](https://pub.dev/packages/form_builder_map_field) - Geographic location input.
-* [FormBuilderPhoneField](https://pub.dev/packages/form_builder_phone_field) - International phone number input.
+### Ecosystem
+Here are additional packages that you can use to extend `flutter_form_builder`'s functionality.
+* [form_builder_fields](https://pub.dev/packages/form_builder_fields) - provides common ready-made form input fields compartible with `flutter_form_builder`.
+* [form_builder_validators](https://pub.dev/packages/form_builder_validators) - provides a convenient way of validating data entered into any Flutter `FormField`.
+* [form_builder_extra_fields](https://pub.dev/packages/form_builder_extra_fields) - provides additional ready-made form input fields compartible with `flutter_form_builder`.
+* [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A `FormbuilderField` that allows selecting image(s) from user device storage.
+* [form_builder_image_picker](https://pub.dev/packages/form_builder_image_picker) - A `FormbuilderField` that allows selecting image(s) from device Gallery or Camera.
+* [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) - A `FormbuilderField` for geographic location input.
+* [form_builder_phone_field](https://pub.dev/packages/form_builder_phone_field) - A `FormbuilderField` for international phone number input.
 
 ## Support
 ### Issues and PRs
