@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FormBuilderCupertinoDateTimePicker(
                   name: 'date_time',
                   initialValue: DateTime.now(),
-                  inputType: InputType.both,
+                  inputType: CupertinoDateTimePickerInputType.both,
                   decoration: const InputDecoration(
                     labelText: 'Cupertino DateTime Picker',
                   ),
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FormBuilderCupertinoDateTimePicker(
                   name: 'date',
                   initialValue: DateTime.now(),
-                  inputType: InputType.date,
+                  inputType: CupertinoDateTimePickerInputType.date,
                   decoration: const InputDecoration(
                     labelText: 'Cupertino DateTime Picker - Date Only',
                   ),
@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FormBuilderCupertinoDateTimePicker(
                   name: 'time',
                   initialValue: DateTime.now(),
-                  inputType: InputType.time,
+                  inputType: CupertinoDateTimePickerInputType.time,
                   decoration: const InputDecoration(
                     labelText: 'Cupertino DateTime Picker - Time Only',
                   ),
