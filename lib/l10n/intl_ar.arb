@@ -1,0 +1,105 @@
+{
+  "@@last_modified": "2021-06-06T10:38:27.938366",
+  "requiredErrorText": "هذا الفراغ يجب املاؤه.",
+  "@requiredErrorText": {
+    "description": "Error Text for required validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "يجب أن تكون قيمة هذا الفراغ مساوية لـ {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "يجب أن لا تكون قيمة هذا الفراغ مساوية لـ {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "minErrorText": "يجب أن تكون قيمة هذا الفراغ مساوية او اكثر من {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "يجب أن يكون حجم هذا الفراغ مساوي او اكثر من {minLength}.",
+  "@minLengthErrorText": {
+    "description": "Error Text for minLength validator",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "يجب أن تكون قيمة هذا الفراغ مساوية او اقل من {max}.",
+  "@maxErrorText": {
+    "description": "Error Text for max validator",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "يجب أن يكون حجم هذا الفراغ مساوي او اقل من {maxLength}.",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "هذا الفراغ يتطلب عنوان بريد إلكتروني صالح.",
+  "@emailErrorText": {
+    "description": "Error Text for email field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "هذا الفراغ يتطلب عنوان موقع URL صالح.",
+  "@urlErrorText": {
+    "description": "Error Text for URL field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "قيمة الفراغ لا تطابق النمط.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "قيمة الفراغ ليست رقمية.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "قيمة الفراغ ليست رقمية صحيحة.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText":  "قيمة الفراغ ليست رقم بطاقة ائتمانيه صحيحة.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText":  "هذا الفراغ يتطلب رقم IP صالح.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "هذا الفراغ يتطلب تاريخ صالح.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string field",
+    "type": "text",
+    "placeholders": {}
+  }
+}
