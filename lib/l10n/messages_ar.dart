@@ -19,15 +19,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static m1(max) => "يجب أن تكون قيمة هذا الفراغ مساوية او اقل من {max}.";
+  static m1(max) => "يجب أن تكون قيمة هذا الفراغ مساوية او اقل من ${max}.";
 
   static m2(maxLength) =>
-      "يجب أن يكون حجم هذا الفراغ مساوي او اقل من {maxLength}.";
+      "يجب أن يكون حجم هذا الفراغ مساوي او اقل من ${maxLength}.";
 
-  static m3(min) => "يجب أن تكون قيمة هذا الفراغ مساوية او اكثر من {min}.";
+  static m3(min) => "يجب أن تكون قيمة هذا الفراغ مساوية او اكثر من ${min}.";
 
   static m4(minLength) =>
-      "يجب أن يكون حجم هذا الفراغ مساوي او اكثر من {minLength}.";
+      "يجب أن يكون حجم هذا الفراغ مساوي او اكثر من ${minLength}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
