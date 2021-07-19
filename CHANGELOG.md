@@ -1,3 +1,8 @@
+## [6.0.1] - 19-May-2021
+* Add whitespace check for required validator
+* Null-safety and type fixes
+* Dispose off registered listeners (#799)
+
 ## [6.0.0] - 20-Apr-2021
 * Re-introduced DateTimePicker field without external dependencies
 * Minor fixes
@@ -11,6 +16,9 @@
 
 **BREAKING CHANGES**:
 * Removed fields that depend on external dependencies incuding: `FormBuilderChipsInput`, `FormBuilderColorPicker`, `FormBuilderRating`, `FormBuilderSearchableDropdown`, `FormBuilderSignaturePad`, `FormBuilderTouchSpin`, `FormBuilderTypeAhead`
+
+## [5.0.0] - 24-Mar-2020
+* Flutter 2.* support
 
 ## [4.2.0] - 29-Dec-2020
 * Added support for Slovak (sk) - @cek-cek

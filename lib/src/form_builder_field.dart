@@ -33,7 +33,7 @@ class FormBuilderField<T> extends FormField<T?> {
   final ValueTransformer<T>? valueTransformer;
 
   /// Called when the field value is changed.
-  final ValueChanged<T>? onChanged;
+  final ValueChanged<T?>? onChanged;
 
   /// The border, labels, icons, and styles used to decorate the field.
   final InputDecoration decoration;

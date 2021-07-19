@@ -99,7 +99,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// to [TextField.noMaxLength] then only the current character count is displayed.
   ///
   /// After [maxLength] characters have been input, additional input
-  /// is ignored, unless [maxLengthEnforcement] is set to false. The text field
+  /// is ignored, unless [maxLengthEnforced] is set to false. The text field
   /// enforces the length with a [LengthLimitingTextInputFormatter], which is
   /// evaluated after the supplied [inputFormatters], if any.
   ///
@@ -111,7 +111,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// Whitespace characters (e.g. newline, space, tab) are included in the
   /// character count.
   ///
-  /// If [maxLengthEnforcement] is set to false, then more than [maxLength]
+  /// If [maxLengthEnforced] is set to false, then more than [maxLength]
   /// characters may be entered, but the error counter and divider will
   /// switch to the [decoration.errorStyle] when the limit is exceeded.
   ///
@@ -293,7 +293,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     String? initialValue,
     bool readOnly = false,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<String>? onChanged,
+    ValueChanged<String?>? onChanged,
     ValueTransformer<String>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<String>? onSaved,
@@ -444,6 +444,7 @@ class _FormBuilderTextFieldState
   @override
   void dispose() {
     // Dispose the _controller when initState created it
+    _controller!.removeListener(_handleControllerChanged);
     if (null == widget.controller) {
       _controller!.dispose();
     }

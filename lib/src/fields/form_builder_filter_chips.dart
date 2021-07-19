@@ -47,7 +47,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
       errorBorder: InputBorder.none,
       disabledBorder: InputBorder.none,
     ),
-    ValueChanged<List<T>>? onChanged,
+    ValueChanged<List<T>?>? onChanged,
     ValueTransformer<List<T>>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<List<T>>? onSaved,
