@@ -99,10 +99,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
   FormBuilderState? _formBuilderState;
 
   @override
-  bool get hasError => super.hasError;
+  bool get hasError => super.hasError || widget.decoration.errorText != null;
 
   @override
-  bool get isValid => super.isValid;
+  bool get isValid => super.isValid && widget.decoration.errorText == null;
 
   bool _touched = false;
 
@@ -177,8 +177,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
     setState(() {
       _customError = null;
     });
-    return super.validate();
-    //return super.validate() && widget.decoration.errorText == null;
+    return super.validate() && widget.decoration.errorText == null;
   }
 
   void requestFocus() {
