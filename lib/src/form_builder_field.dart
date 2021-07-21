@@ -100,11 +100,9 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
 
   @override
   bool get hasError => super.hasError;
-  //bool get hasError => super.hasError || widget.decoration.errorText != null;
 
   @override
   bool get isValid => super.isValid;
-  //bool get isValid => super.isValid && widget.decoration.errorText == null;
 
   bool _touched = false;
 
@@ -196,9 +194,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
   }
 
   //  FIXME: This  could be a getter instead of a classic function
-  InputDecoration decoration() {
-    return widget.decoration.copyWith(
+  InputDecoration decoration() => widget.decoration.copyWith(
       errorText: widget.decoration.errorText ?? errorText ?? _customError,
     );
-  }
 }
