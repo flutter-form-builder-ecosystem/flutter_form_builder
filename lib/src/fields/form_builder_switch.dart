@@ -90,7 +90,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     bool? initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<bool?>? onChanged,
-    ValueTransformer<bool>? valueTransformer,
+    ValueTransformer<bool?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<bool>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,

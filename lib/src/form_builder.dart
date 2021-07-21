@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-typedef ValueTransformer<T> = dynamic Function(T value);
-
 /// A container for form fields.
 class FormBuilder extends StatefulWidget {
   /// Called when one of the form fields changes.
