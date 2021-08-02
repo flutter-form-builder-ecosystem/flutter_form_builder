@@ -109,8 +109,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
   FocusNode? _focusNode;
-
-  FocusNode? get effectiveFocusNode => _focusNode;
+  FocusNode get effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
@@ -119,19 +118,15 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
     _formBuilderState = FormBuilder.of(context);
     _formBuilderState?.registerField(widget.name, this);
     // Register a touch handler
-    _focusNode = widget.focusNode ?? FocusNode();
-    _focusNode!.addListener(_touchedHandler);
+    effectiveFocusNode.addListener(_touchedHandler);
     // Set the initial value
     setValue(initialValue);
   }
 
   @override
   void dispose() {
-    _focusNode!.removeListener(_touchedHandler);
-    // Dispose focus node when created by initState
-    if (null == widget.focusNode) {
-      _focusNode!.dispose();
-    }
+    _focusNode?.removeListener(_touchedHandler);
+    _focusNode?.dispose();
     _formBuilderState?.unregisterField(widget.name, this);
     super.dispose();
   }
