@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a pt locale. All the
+// This is a library that provides messages for a ar locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -17,39 +17,40 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'pt';
+  String get localeName => 'ar';
 
-  static m1(max) => "O valor deve ser menor ou igual a ${max}";
+  static m1(max) => "يجب أن تكون قيمة هذا الفراغ مساوية او اقل من ${max}.";
 
   static m2(maxLength) =>
-      "O valor deve ter um comprimento menor ou igual a ${maxLength}";
+      "يجب أن يكون حجم هذا الفراغ مساوي او اقل من ${maxLength}.";
 
-  static m3(min) => "O valor deve ser maior ou igual a ${min}.";
+  static m3(min) => "يجب أن تكون قيمة هذا الفراغ مساوية او اكثر من ${min}.";
 
   static m4(minLength) =>
-      "O valor deve ter um comprimento maior ou igual a ${minLength}";
+      "يجب أن يكون حجم هذا الفراغ مساوي او اكثر من ${minLength}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um número de cartão de crédito válido."),
+            "قيمة الفراغ ليست رقم بطاقة ائتمانيه صحيحة."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer uma string de data válida."),
+          "هذا الفراغ يتطلب تاريخ صالح.",
+        ),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de e-mail válido."),
+            "هذا الفراغ يتطلب عنوان بريد إلكتروني صالح."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um IP válido."),
-        "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "O valor não corresponde ao padrão."),
+            "هذا الفراغ يتطلب رقم IP صالح."),
+        "matchErrorText":
+            MessageLookupByLibrary.simpleMessage("قيمة الفراغ لا تطابق النمط."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
         "numericErrorText":
-            MessageLookupByLibrary.simpleMessage("O valor deve ser numérico."),
-        "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo não pode ficar vazio."),
+            MessageLookupByLibrary.simpleMessage("قيمة الفراغ ليست رقمية."),
+        "requiredErrorText":
+            MessageLookupByLibrary.simpleMessage("هذا الفراغ يجب املاؤه."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Este campo requer um endereço de URL válido.")
+            "هذا الفراغ يتطلب عنوان موقع URL صالح.")
       };
 }

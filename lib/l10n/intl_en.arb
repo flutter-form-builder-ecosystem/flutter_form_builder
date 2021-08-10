@@ -44,6 +44,28 @@
     "type": "text",
     "placeholders": {}
   },
+  "integerErrorText": "This field requires a valid integer.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "This field value must be equal to {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "This field value must not be equal to {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
   "urlErrorText": "This field requires a valid URL address.",
   "@urlErrorText": {
     "description": "Error Text for URL field",

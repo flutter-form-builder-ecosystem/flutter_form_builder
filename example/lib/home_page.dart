@@ -18,13 +18,13 @@ class HomePage extends StatelessWidget {
             title: const Text('Complete Form'),
             trailing: const Icon(CupertinoIcons.right_chevron),
             onTap: () {
-              return Navigator.of(context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return CodePage(
                       title: 'Complete Form',
-                      child: CompleteForm(),
                       sourceFilePath: 'lib/sources/complete_form.dart',
+                      child: CompleteForm(),
                     );
                   },
                 ),
@@ -36,13 +36,13 @@ class HomePage extends StatelessWidget {
             title: const Text('Signup Form'),
             trailing: const Icon(CupertinoIcons.right_chevron),
             onTap: () {
-              return Navigator.of(context).push(
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return CodePage(
                       title: 'Signup Form',
-                      child: SignupForm(),
                       sourceFilePath: 'lib/sources/signup_form.dart',
+                      child: SignupForm(),
                     );
                   },
                 ),

@@ -1,5 +1,27 @@
+## [6.0.1] - 19-May-2021
+* Add whitespace check for required validator
+* Null-safety and type fixes
+* Dispose off registered listeners (#799)
+
+## [6.0.0] - 20-Apr-2021
+* Re-introduced DateTimePicker field without external dependencies
+* Minor fixes
+
+## [6.0.0-nullsafety.1] - 24-Mar-2021
+* Static analysis improvements
+* Documentation improvements
+
+## [6.0.0-nullsafety.0] - 24-Mar-2021
+* Started working on null-safety
+
+**BREAKING CHANGES**:
+* Removed fields that depend on external dependencies incuding: `FormBuilderChipsInput`, `FormBuilderColorPicker`, `FormBuilderRating`, `FormBuilderSearchableDropdown`, `FormBuilderSignaturePad`, `FormBuilderTouchSpin`, `FormBuilderTypeAhead`
+
+## [5.0.0] - 24-Mar-2020
+* Flutter 2.* support
+
 ## [4.2.0] - 29-Dec-2020
-* Added support for Slovak (sk) - @AdamA
+* Added support for Slovak (sk) - @cek-cek
 
 **BREAKING CHANGES**:
 * Removed file picker field from package - moved to [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) package.
@@ -15,7 +37,6 @@
 * Fixed focus issue  in `ChipsInput`
 * Fixed bug `SearchableDropdown` where setting value programmatically does not update UI. Fixes #627
 * Upgraded flutter_typeahead to 1.9.1.
-
 
 ## [4.0.2] - 27-Nov-2020
 * Fixed issue in Typeahead field where didChange not call and onChanged fired. Closes #595

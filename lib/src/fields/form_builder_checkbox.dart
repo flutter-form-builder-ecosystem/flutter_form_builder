@@ -13,22 +13,22 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// Additional content displayed below the title.
   ///
   /// Typically a [Text] widget.
-  final Widget subtitle;
+  final Widget? subtitle;
 
   /// A widget to display on the opposite side of the tile from the checkbox.
   ///
   /// Typically an [Icon] widget.
-  final Widget secondary;
+  final Widget? secondary;
 
   /// The color to use when this checkbox is checked.
   ///
   /// Defaults to accent color of the current [Theme].
-  final Color activeColor;
+  final Color? activeColor;
 
   /// The color to use for the check icon when this checkbox is checked.
   ///
   /// Defaults to Color(0xFFFFFFFF).
-  final Color checkColor;
+  final Color? checkColor;
 
   /// Where to place the control relative to its label.
   final ListTileControlAffinity controlAffinity;
@@ -68,19 +68,25 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// Creates a single Checkbox field
   FormBuilderCheckbox({
     //From Super
-    Key key,
-    @required String name,
-    FormFieldValidator<bool> validator,
-    bool initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<bool> onChanged,
-    ValueTransformer<bool> valueTransformer,
+    Key? key,
+    required String name,
+    FormFieldValidator<bool>? validator,
+    bool? initialValue,
+    InputDecoration decoration = const InputDecoration(
+      border: InputBorder.none,
+      focusedBorder: InputBorder.none,
+      enabledBorder: InputBorder.none,
+      errorBorder: InputBorder.none,
+      disabledBorder: InputBorder.none,
+    ),
+    ValueChanged<bool?>? onChanged,
+    ValueTransformer<bool?>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<bool> onSaved,
+    FormFieldSetter<bool?>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.title,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.title,
     this.activeColor,
     this.checkColor,
     this.subtitle,
@@ -103,7 +109,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<bool> field) {
+          builder: (FormFieldState<bool?> field) {
             final state = field as _FormBuilderCheckboxState;
 
             return InputDecorator(

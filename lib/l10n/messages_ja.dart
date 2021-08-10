@@ -32,21 +32,28 @@ class MessageLookup extends MessageLookupByLibrary {
   static m5(value) => "${value}と違うものにしてください。";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "creditCardErrorText" : MessageLookupByLibrary.simpleMessage("有効なクレジットカード番号を入力してください。"),
-    "dateStringErrorText" : MessageLookupByLibrary.simpleMessage("正しい日付を入力してください。"),
-    "emailErrorText" : MessageLookupByLibrary.simpleMessage("有効なメールアドレスを入力してください。"),
-    "equalErrorText" : m4,
-    "integerErrorText" : MessageLookupByLibrary.simpleMessage("整数で入力してください。"),
-    "ipErrorText" : MessageLookupByLibrary.simpleMessage("有効なIPアドレスを入力してください。"),
-    "matchErrorText" : MessageLookupByLibrary.simpleMessage("有効な正規表現を指定してください。"),
-    "maxErrorText" : m0,
-    "maxLengthErrorText" : m1,
-    "minErrorText" : m2,
-    "minLengthErrorText" : m3,
-    "notEqualErrorText" : m5,
-    "numericErrorText" : MessageLookupByLibrary.simpleMessage("半角数字で入力してください。"),
-    "requiredErrorText" : MessageLookupByLibrary.simpleMessage("必須項目です。"),
-    "urlErrorText" : MessageLookupByLibrary.simpleMessage("有効なURLを入力してください。")
-  };
+  static _notInlinedMessages(_) => <String, Function>{
+        "creditCardErrorText":
+            MessageLookupByLibrary.simpleMessage("有効なクレジットカード番号を入力してください。"),
+        "dateStringErrorText":
+            MessageLookupByLibrary.simpleMessage("正しい日付を入力してください。"),
+        "emailErrorText":
+            MessageLookupByLibrary.simpleMessage("有効なメールアドレスを入力してください。"),
+        "equalErrorText": m4,
+        "integerErrorText":
+            MessageLookupByLibrary.simpleMessage("整数で入力してください。"),
+        "ipErrorText":
+            MessageLookupByLibrary.simpleMessage("有効なIPアドレスを入力してください。"),
+        "matchErrorText":
+            MessageLookupByLibrary.simpleMessage("有効な正規表現を指定してください。"),
+        "maxErrorText": m0,
+        "maxLengthErrorText": m1,
+        "minErrorText": m2,
+        "minLengthErrorText": m3,
+        "notEqualErrorText": m5,
+        "numericErrorText":
+            MessageLookupByLibrary.simpleMessage("半角数字で入力してください。"),
+        "requiredErrorText": MessageLookupByLibrary.simpleMessage("必須項目です。"),
+        "urlErrorText": MessageLookupByLibrary.simpleMessage("有効なURLを入力してください。")
+      };
 }

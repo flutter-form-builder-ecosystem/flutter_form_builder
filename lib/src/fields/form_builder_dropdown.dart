@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -19,13 +20,13 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// If [value] is null, this widget is displayed as a placeholder for
   /// the dropdown button's value. This widget is also displayed if the button
   /// is disabled ([items] or [onChanged] is null) and [disabledHint] is null.
-  final Widget hint;
+  final Widget? hint;
 
   /// A message to show when the dropdown is disabled.
   ///
   /// Displayed if [items] or [onChanged] is null. If [hint] is non-null and
   /// [disabledHint] is null, the [hint] widget will be displayed instead.
-  final Widget disabledHint;
+  final Widget? disabledHint;
 
   /// Called when the dropdown button is tapped.
   ///
@@ -33,7 +34,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// selects an item from the dropdown.
   ///
   /// The callback will not be invoked if the dropdown button is disabled.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// A builder to customize the dropdown buttons corresponding to the
   /// [DropdownMenuItem]s in [items].
@@ -49,7 +50,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   ///
   /// If this callback is null, the [DropdownMenuItem] from [items]
   /// that matches [value] will be displayed.
-  final DropdownButtonBuilder selectedItemBuilder;
+  final DropdownButtonBuilder? selectedItemBuilder;
 
   /// The z-coordinate at which to place the menu when open.
   ///
@@ -109,12 +110,12 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   ///
   /// Defaults to the [TextTheme.subtitle1] value of the current
   /// [ThemeData.textTheme] of the current [Theme].
-  final TextStyle style;
+  final TextStyle? style;
 
   /// The widget to use for the drop-down button's icon.
   ///
   /// Defaults to an [Icon] with the [Icons.arrow_drop_down] glyph.
-  final Widget icon;
+  final Widget? icon;
 
   /// The color of any [Icon] descendant of [icon] if this button is disabled,
   /// i.e. if [onChanged] is null.
@@ -122,7 +123,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// Defaults to [Colors.grey.shade400] when the theme's
   /// [ThemeData.brightness] is [Brightness.light] and to
   /// [Colors.white10] when it is [Brightness.dark]
-  final Color iconDisabledColor;
+  final Color? iconDisabledColor;
 
   /// The color of any [Icon] descendant of [icon] if this button is enabled,
   /// i.e. if [onChanged] is defined.
@@ -130,7 +131,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// Defaults to [Colors.grey.shade700] when the theme's
   /// [ThemeData.brightness] is [Brightness.light] and to
   /// [Colors.white70] when it is [Brightness.dark]
-  final Color iconEnabledColor;
+  final Color? iconEnabledColor;
 
   /// The size to use for the drop-down button's down arrow icon button.
   ///
@@ -166,7 +167,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   final double itemHeight;
 
   /// The color for the button's [Material] when it has the input focus.
-  final Color focusColor;
+  final Color? focusColor;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
@@ -175,27 +176,27 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   ///
   /// If it is not provided, the theme's [ThemeData.canvasColor] will be used
   /// instead.
-  final Color dropdownColor;
+  final Color? dropdownColor;
 
   final bool allowClear;
   final Widget clearIcon;
 
   /// Creates field for Dropdown button
   FormBuilderDropdown({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<T> validator,
-    T initialValue,
+    required String name,
+    FormFieldValidator<T>? validator,
+    T? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T> onChanged,
-    ValueTransformer<T> valueTransformer,
+    ValueChanged<T?>? onChanged,
+    ValueTransformer<T?>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<T> onSaved,
+    FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.items,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.items,
     this.isExpanded = true,
     this.isDense = true,
     this.elevation = 8,
@@ -227,12 +228,12 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<T> field) {
+          builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
             // DropdownButtonFormField
             // TextFormField
 
-            void changeValue(T value) {
+            void changeValue(T? value) {
               state.requestFocus();
               state.didChange(value);
             }
@@ -257,9 +258,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         isDense: isDense,
                         disabledHint: field.value != null
                             ? (items
-                                    .firstWhere(
-                                        (val) => val.value == field.value,
-                                        orElse: () => null)
+                                    .firstWhereOrNull(
+                                        (val) => val.value == field.value)
                                     ?.child ??
                                 Text(field.value.toString()))
                             : disabledHint,
@@ -284,8 +284,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                   if (allowClear && state.enabled && field.value != null) ...[
                     const VerticalDivider(),
                     InkWell(
-                      child: clearIcon,
                       onTap: () => changeValue(null),
+                      child: clearIcon,
                     ),
                   ]
                 ],

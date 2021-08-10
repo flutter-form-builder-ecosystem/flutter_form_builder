@@ -14,48 +14,48 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   /// Additional content displayed below the title.
   ///
   /// Typically a [Text] widget.
-  final Widget subtitle;
+  final Widget? subtitle;
 
   /// A widget to display on the opposite side of the tile from the switch.
   ///
   /// Typically an [Icon] widget.
-  final Widget secondary;
+  final Widget? secondary;
 
   /// The color to use when this switch is on.
   ///
   /// Defaults to [ThemeData.toggleableActiveColor].
-  final Color activeColor;
+  final Color? activeColor;
 
   /// The color to use on the track when this switch is on.
   ///
   /// Defaults to [ThemeData.toggleableActiveColor] with the opacity set at 50%.
   ///
   /// Ignored if this switch is created with [Switch.adaptive].
-  final Color activeTrackColor;
+  final Color? activeTrackColor;
 
   /// The color to use on the thumb when this switch is off.
   ///
   /// Defaults to the colors described in the Material design specification.
   ///
   /// Ignored if this switch is created with [Switch.adaptive].
-  final Color inactiveThumbColor;
+  final Color? inactiveThumbColor;
 
   /// The color to use on the track when this switch is off.
   ///
   /// Defaults to the colors described in the Material design specification.
   ///
   /// Ignored if this switch is created with [Switch.adaptive].
-  final Color inactiveTrackColor;
+  final Color? inactiveTrackColor;
 
   /// An image to use on the thumb of this switch when the switch is on.
   ///
   /// Ignored if this switch is created with [Switch.adaptive].
-  final ImageProvider activeThumbImage;
+  final ImageProvider? activeThumbImage;
 
   /// An image to use on the thumb of this switch when the switch is off.
   ///
   /// Ignored if this switch is created with [Switch.adaptive].
-  final ImageProvider inactiveThumbImage;
+  final ImageProvider? inactiveThumbImage;
 
   /// The tile's internal padding.
   ///
@@ -83,20 +83,20 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
 
   /// Creates On/Off switch field
   FormBuilderSwitch({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<bool> validator,
-    bool initialValue,
+    required String name,
+    FormFieldValidator<bool>? validator,
+    bool? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<bool> onChanged,
-    ValueTransformer<bool> valueTransformer,
+    ValueChanged<bool?>? onChanged,
+    ValueTransformer<bool?>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<bool> onSaved,
+    FormFieldSetter<bool>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.title,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.title,
     this.activeColor,
     this.activeTrackColor,
     this.inactiveThumbColor,
@@ -122,7 +122,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<bool> field) {
+          builder: (FormFieldState<bool?> field) {
             final state = field as _FormBuilderSwitchState;
 
             return InputDecorator(
@@ -132,7 +132,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
                 isThreeLine: false,
                 contentPadding: contentPadding,
                 title: title,
-                value: state.value,
+                value: state.value!,
                 onChanged: state.enabled
                     ? (val) {
                         state.requestFocus();

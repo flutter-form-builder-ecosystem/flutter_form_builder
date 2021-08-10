@@ -16,7 +16,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   ///
   ///  * [onChangeEnd] for a callback that is called when the value change is
   ///    complete.
-  final ValueChanged<RangeValues> onChangeStart;
+  final ValueChanged<RangeValues>? onChangeStart;
 
   /// Called when the user is done selecting new values for the slider.
   ///
@@ -32,7 +32,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   ///
   ///  * [onChangeStart] for a callback that is called when a value change
   ///    begins.
-  final ValueChanged<RangeValues> onChangeEnd;
+  final ValueChanged<RangeValues>? onChangeEnd;
 
   /// The minimum value the user can select.
   ///
@@ -53,7 +53,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   /// Typically used with [labels] to show the current discrete values.
   ///
   /// If null, the slider is continuous.
-  final int divisions;
+  final int? divisions;
 
   /// Labels to show as text in the [SliderThemeData.rangeValueIndicatorShape].
   ///
@@ -70,7 +70,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   ///
   ///  * [RangeSliderValueIndicatorShape] for how to create a custom value
   ///    indicator shape.
-  final RangeLabels labels;
+  final RangeLabels? labels;
 
   /// The color of the track's active segment, i.e. the span of track between
   /// the thumbs.
@@ -79,7 +79,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   ///
   /// Using a [SliderTheme] gives more fine-grained control over the
   /// appearance of various components of the slider.
-  final Color activeColor;
+  final Color? activeColor;
 
   /// The color of the track's inactive segments, i.e. the span of tracks
   /// between the min and the start thumb, and the end thumb and the max.
@@ -88,7 +88,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   ///
   /// Using a [SliderTheme] gives more fine-grained control over the
   /// appearance of various components of the slider.
-  final Color inactiveColor;
+  final Color? inactiveColor;
 
   /// The callback used to create a semantic value from the slider's values.
   ///
@@ -96,31 +96,31 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   ///
   /// This is used by accessibility frameworks like TalkBack on Android to
   /// inform users what the currently selected value is with more context.
-  final SemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback? semanticFormatterCallback;
 
   final DisplayValues displayValues;
-  final TextStyle minTextStyle;
-  final TextStyle textStyle;
-  final TextStyle maxTextStyle;
-  final NumberFormat numberFormat;
+  final TextStyle? minTextStyle;
+  final TextStyle? textStyle;
+  final TextStyle? maxTextStyle;
+  final NumberFormat? numberFormat;
 
   /// Creates field to select a range of values on a Slider
   FormBuilderRangeSlider({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<RangeValues> validator,
-    RangeValues initialValue,
+    required String name,
+    FormFieldValidator<RangeValues>? validator,
+    RangeValues? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<RangeValues> onChanged,
-    ValueTransformer<RangeValues> valueTransformer,
+    ValueChanged<RangeValues?>? onChanged,
+    ValueTransformer<RangeValues?>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<RangeValues> onSaved,
+    FormFieldSetter<RangeValues>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.min,
-    @required this.max,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.min,
+    required this.max,
     this.divisions,
     this.activeColor,
     this.inactiveColor,
@@ -146,7 +146,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             onReset: onReset,
             decoration: decoration,
             focusNode: focusNode,
-            builder: (FormFieldState<RangeValues> field) {
+            builder: (FormFieldState<RangeValues?> field) {
               final state = field as _FormBuilderRangeSliderState;
               final _numberFormat = numberFormat ?? NumberFormat.compact();
 
@@ -158,7 +158,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RangeSlider(
-                        values: field.value,
+                        values: field.value!,
                         min: min,
                         max: max,
                         divisions: divisions,
@@ -187,7 +187,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                           if (displayValues != DisplayValues.none &&
                               displayValues != DisplayValues.minMax)
                             Text(
-                              '${_numberFormat.format(field.value.start)} - ${_numberFormat.format(field.value.end)}',
+                              '${_numberFormat.format(field.value!.start)} - ${_numberFormat.format(field.value!.end)}',
                               style: textStyle,
                             ),
                           const Spacer(),

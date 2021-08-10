@@ -6,39 +6,39 @@ import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 /// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
   final List<FormBuilderFieldOption<T>> options;
-  final Color activeColor;
-  final Color focusColor;
-  final Color hoverColor;
-  final List<T> disabled;
-  final MaterialTapTargetSize materialTapTargetSize;
+  final Color? activeColor;
+  final Color? focusColor;
+  final Color? hoverColor;
+  final List<T>? disabled;
+  final MaterialTapTargetSize? materialTapTargetSize;
   final Axis wrapDirection;
   final WrapAlignment wrapAlignment;
   final double wrapSpacing;
   final WrapAlignment wrapRunAlignment;
   final double wrapRunSpacing;
   final WrapCrossAlignment wrapCrossAxisAlignment;
-  final TextDirection wrapTextDirection;
+  final TextDirection? wrapTextDirection;
   final VerticalDirection wrapVerticalDirection;
-  final Widget separator;
+  final Widget? separator;
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
 
   /// Creates field to select one value from a list of Radio Widgets
   FormBuilderRadioGroup({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<T> validator,
-    T initialValue,
+    required String name,
+    FormFieldValidator<T>? validator,
+    T? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T> onChanged,
-    ValueTransformer<T> valueTransformer,
+    ValueChanged<T?>? onChanged,
+    ValueTransformer<T?>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<T> onSaved,
+    FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.options,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.options,
     this.activeColor,
     this.focusColor,
     this.hoverColor,
@@ -68,7 +68,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           onReset: onReset,
           focusNode: focusNode,
           decoration: decoration,
-          builder: (FormFieldState<T> field) {
+          builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderRadioGroupState<T>;
 
             return InputDecorator(

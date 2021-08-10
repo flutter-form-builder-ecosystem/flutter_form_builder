@@ -21,7 +21,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   ///
   ///  * [onChangeEnd] for a callback that is called when the value change is
   ///    complete.
-  final ValueChanged<double> onChangeStart;
+  final ValueChanged<double>? onChangeStart;
 
   /// Called when the user is done selecting a new value for the slider.
   ///
@@ -32,7 +32,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   ///
   ///  * [onChangeStart] for a callback that is called when a value change
   ///    begins.
-  final ValueChanged<double> onChangeEnd;
+  final ValueChanged<double>? onChangeEnd;
 
   /// The minimum value the user can select.
   ///
@@ -53,7 +53,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   /// Typically used with [label] to show the current discrete value.
   ///
   /// If null, the slider is continuous.
-  final int divisions;
+  final int? divisions;
 
   /// A label to show above the slider when the slider is active.
   ///
@@ -73,7 +73,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   ///
   ///  * [SliderComponentShape] for how to create a custom value indicator
   ///    shape.
-  final String label;
+  final String? label;
 
   /// The color to use for the portion of the slider track that is active.
   ///
@@ -84,7 +84,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   ///
   /// Using a [SliderTheme] gives much more fine-grained control over the
   /// appearance of various components of the slider.
-  final Color activeColor;
+  final Color? activeColor;
 
   /// The color for the inactive portion of the slider track.
   ///
@@ -98,7 +98,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   /// appearance of various components of the slider.
   ///
   /// Ignored if this slider is created with [Slider.adaptive].
-  final Color inactiveColor;
+  final Color? inactiveColor;
 
   /// The cursor for a mouse pointer when it enters or is hovering over the
   /// widget.
@@ -111,40 +111,40 @@ class FormBuilderSlider extends FormBuilderField<double> {
   ///  * [MaterialState.disabled].
   ///
   /// If this property is null, [MaterialStateMouseCursor.clickable] will be used.
-  final MouseCursor mouseCursor;
+  final MouseCursor? mouseCursor;
 
   /// The callback used to create a semantic value from a slider value.
   ///
   /// Defaults to formatting values as a percentage.
-  final SemanticFormatterCallback semanticFormatterCallback;
+  final SemanticFormatterCallback? semanticFormatterCallback;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
   ///TODO: Add documentation
-  final NumberFormat numberFormat;
+  final NumberFormat? numberFormat;
   final DisplayValues displayValues;
-  final TextStyle minTextStyle;
-  final TextStyle textStyle;
-  final TextStyle maxTextStyle;
+  final TextStyle? minTextStyle;
+  final TextStyle? textStyle;
+  final TextStyle? maxTextStyle;
 
   /// Creates field for selection of a numerical value on a slider
   FormBuilderSlider({
-    Key key,
+    Key? key,
     //From Super
-    @required String name,
-    FormFieldValidator<double> validator,
-    @required double initialValue,
+    required String name,
+    FormFieldValidator<double>? validator,
+    required double initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<double> onChanged,
-    ValueTransformer<double> valueTransformer,
+    ValueChanged<double?>? onChanged,
+    ValueTransformer<double?>? valueTransformer,
     bool enabled = true,
-    FormFieldSetter<double> onSaved,
+    FormFieldSetter<double>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback onReset,
-    FocusNode focusNode,
-    @required this.min,
-    @required this.max,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    required this.min,
+    required this.max,
     this.divisions,
     this.activeColor,
     this.inactiveColor,
@@ -172,7 +172,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
           onReset: onReset,
           decoration: decoration,
           focusNode: focusNode,
-          builder: (FormFieldState<double> field) {
+          builder: (FormFieldState<double?> field) {
             final state = field as _FormBuilderSliderState;
             final _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
@@ -183,7 +183,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Slider(
-                      value: field.value,
+                      value: field.value!,
                       min: min,
                       max: max,
                       divisions: divisions,

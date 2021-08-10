@@ -32,21 +32,30 @@ class MessageLookup extends MessageLookupByLibrary {
   static m5(value) => "Hodnota tohto poľa nesmie byť ${value}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
-    "creditCardErrorText" : MessageLookupByLibrary.simpleMessage("Toto pole vyžaduje platné číslo platobnej karty."),
-    "dateStringErrorText" : MessageLookupByLibrary.simpleMessage("Toto pole vyžaduje platný dátum."),
-    "emailErrorText" : MessageLookupByLibrary.simpleMessage("Toto pole vyžaduje platnú emailovú adresu."),
-    "equalErrorText" : m4,
-    "integerErrorText" : MessageLookupByLibrary.simpleMessage("Hodnota musí byť celé číslo."),
-    "ipErrorText" : MessageLookupByLibrary.simpleMessage("Toto pole vyžaduje platnú IP adresu."),
-    "matchErrorText" : MessageLookupByLibrary.simpleMessage("Hodnota nevyhovuje očakávanému tvaru."),
-    "maxErrorText" : m0,
-    "maxLengthErrorText" : m1,
-    "minErrorText" : m2,
-    "minLengthErrorText" : m3,
-    "notEqualErrorText" : m5,
-    "numericErrorText" : MessageLookupByLibrary.simpleMessage("Hodnota musí byť číslo."),
-    "requiredErrorText" : MessageLookupByLibrary.simpleMessage("Toto pole nesmie byť prázdne."),
-    "urlErrorText" : MessageLookupByLibrary.simpleMessage("Toto pole vyžaduje platnú URL adresu.")
-  };
+  static _notInlinedMessages(_) => <String, Function>{
+        "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
+            "Toto pole vyžaduje platné číslo platobnej karty."),
+        "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
+            "Toto pole vyžaduje platný dátum."),
+        "emailErrorText": MessageLookupByLibrary.simpleMessage(
+            "Toto pole vyžaduje platnú emailovú adresu."),
+        "equalErrorText": m4,
+        "integerErrorText": MessageLookupByLibrary.simpleMessage(
+            "Hodnota musí byť celé číslo."),
+        "ipErrorText": MessageLookupByLibrary.simpleMessage(
+            "Toto pole vyžaduje platnú IP adresu."),
+        "matchErrorText": MessageLookupByLibrary.simpleMessage(
+            "Hodnota nevyhovuje očakávanému tvaru."),
+        "maxErrorText": m0,
+        "maxLengthErrorText": m1,
+        "minErrorText": m2,
+        "minLengthErrorText": m3,
+        "notEqualErrorText": m5,
+        "numericErrorText":
+            MessageLookupByLibrary.simpleMessage("Hodnota musí byť číslo."),
+        "requiredErrorText": MessageLookupByLibrary.simpleMessage(
+            "Toto pole nesmie byť prázdne."),
+        "urlErrorText": MessageLookupByLibrary.simpleMessage(
+            "Toto pole vyžaduje platnú URL adresu.")
+      };
 }
