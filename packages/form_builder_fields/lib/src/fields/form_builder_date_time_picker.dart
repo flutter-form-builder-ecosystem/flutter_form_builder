@@ -263,12 +263,12 @@ class _FormBuilderDateTimePickerState
     final initVal = initialValue;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
-    effectiveFocusNode!.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   @override
   void dispose() {
-    effectiveFocusNode!.removeListener(_handleFocus);
+    effectiveFocusNode.removeListener(_handleFocus);
     // Dispose the _textFieldController when initState created it
     if (null == widget.controller) {
       _textFieldController.dispose();
@@ -277,8 +277,8 @@ class _FormBuilderDateTimePickerState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode!.hasFocus && enabled) {
-      effectiveFocusNode!.unfocus();
+    if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
       await onShowPicker(context, value);
     }
   }

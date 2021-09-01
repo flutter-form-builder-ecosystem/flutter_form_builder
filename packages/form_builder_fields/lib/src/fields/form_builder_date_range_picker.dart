@@ -198,12 +198,12 @@ class FormBuilderDateRangePickerState
     super.initState();
     _effectiveController =
         widget.controller ?? TextEditingController(text: _valueToText());
-    effectiveFocusNode!.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   @override
   void dispose() {
-    effectiveFocusNode!.removeListener(_handleFocus);
+    effectiveFocusNode.removeListener(_handleFocus);
     // Dispose the _effectiveController when initState created it
     if (null == widget.controller) {
       _effectiveController.dispose();
@@ -212,8 +212,8 @@ class FormBuilderDateRangePickerState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode!.hasFocus && enabled) {
-      effectiveFocusNode!.unfocus();
+    if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
       /*final initialFirstDate = value?.isEmpty ?? true
           ? (widget.initialFirstDate ?? DateTime.now())
           : value[0];
