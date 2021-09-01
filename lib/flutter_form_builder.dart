@@ -20,4 +20,3 @@ export './src/form_builder_field_option.dart';
 export './src/form_builder_validators.dart';
 export './src/widgets/grouped_checkbox.dart';
 export './src/widgets/grouped_radio.dart';
-export './src/utils/extension.dart';

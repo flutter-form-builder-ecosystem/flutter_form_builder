@@ -148,6 +148,12 @@ class FormBuilderState extends State<FormBuilder> {
     _formKey.currentState!.save();
   }
 
+  void invalidateField({required String name, String? errorText}) =>
+      fields[name]?.invalidate(errorText ?? '');
+
+  void invalidateFirstField({required String errorText}) =>
+      fields.values.first.invalidate(errorText);
+
   bool validate() {
     final validation = _formKey.currentState!.validate();
     if (!validation) {
