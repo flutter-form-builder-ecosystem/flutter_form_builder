@@ -113,13 +113,13 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
             final state = field as _FormBuilderCheckboxState;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: CheckboxListTile(
                 dense: true,
                 isThreeLine: false,
                 title: title,
                 subtitle: subtitle,
-                value: state.value,
+                value: state.value ?? false,
                 onChanged: state.enabled
                     ? (val) {
                         state.requestFocus();

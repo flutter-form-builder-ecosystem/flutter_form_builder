@@ -126,13 +126,13 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
             final state = field as _FormBuilderSwitchState;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: SwitchListTile(
                 dense: true,
                 isThreeLine: false,
                 contentPadding: contentPadding,
                 title: title,
-                value: state.value!,
+                value: state.value ?? false,
                 onChanged: state.enabled
                     ? (val) {
                         state.requestFocus();

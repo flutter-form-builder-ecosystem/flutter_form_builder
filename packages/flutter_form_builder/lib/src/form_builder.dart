@@ -94,22 +94,12 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, FormBuilderFieldState> get fields => _fields;
 
-  /*
-    bool get hasError => _fields.values.map((e) => e.hasError).firstWhere((element) => element == false, orElse: () => true);
-
-    bool get isValid => _fields.values.map((e) => e.isValid).firstWhere((element) => element == false, orElse: () => true);
-  */
-
   void setInternalFieldValue(String name, dynamic value) {
-    setState(() {
-      _value[name] = value;
-    });
+    setState(() => _value[name] = value);
   }
 
   void removeInternalFieldValue(String name) {
-    setState(() {
-      _value.remove(name);
-    });
+    setState(() => _value.remove(name));
   }
 
   void registerField(String name, FormBuilderFieldState field) {
@@ -146,14 +136,28 @@ class FormBuilderState extends State<FormBuilder> {
         return true;
       }());
     }
+    // Removes internal field value
+    _value.remove(name);
   }
 
   void save() {
     _formKey.currentState!.save();
   }
 
+  void invalidateField({required String name, String? errorText}) =>
+      fields[name]?.invalidate(errorText ?? '');
+
+  void invalidateFirstField({required String errorText}) =>
+      fields.values.first.invalidate(errorText);
+
   bool validate() {
-    return _formKey.currentState!.validate();
+    final hasError = !_formKey.currentState!.validate();
+    if (hasError) {
+      final wrongFields =
+          fields.values.where((element) => element.hasError).toList();
+      wrongFields.first.requestFocus();
+    }
+    return !hasError;
   }
 
   bool saveAndValidate() {

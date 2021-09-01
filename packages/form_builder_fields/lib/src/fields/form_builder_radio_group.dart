@@ -72,7 +72,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
             final state = field as _FormBuilderRadioGroupState<T>;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: GroupedRadio<T>(
                 orientation: orientation,
                 value: state.value,
