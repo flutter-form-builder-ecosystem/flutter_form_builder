@@ -376,7 +376,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
             return TextField(
               controller: state._effectiveController,
               focusNode: state.effectiveFocusNode,
-              decoration: state.decoration(),
+              decoration: state.decoration,
               keyboardType: keyboardType,
               textInputAction: textInputAction,
               style: style,

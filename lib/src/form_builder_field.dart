@@ -190,8 +190,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
     requestFocus();
   }
 
-  //  FIXME: This  could be a getter instead of a classic function
-  InputDecoration decoration() => widget.decoration.copyWith(
+  InputDecoration get decoration => widget.decoration.copyWith(
       errorText: widget.decoration.errorText ?? errorText ?? _customErrorText,
     );
 }

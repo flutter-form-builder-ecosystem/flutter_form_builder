@@ -176,7 +176,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
             final state = field as _FormBuilderSliderState;
             final _numberFormat = numberFormat ?? NumberFormat.compact();
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: Container(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Column(

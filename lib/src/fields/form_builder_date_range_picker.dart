@@ -143,7 +143,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
               enabled: state.enabled,
               style: style,
               focusNode: state.effectiveFocusNode,
-              decoration: state.decoration(),
+              decoration: state.decoration,
               // initialValue: "${_initialValue ?? ''}",
               maxLines: maxLines,
               keyboardType: keyboardType,

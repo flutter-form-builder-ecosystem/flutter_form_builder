@@ -76,7 +76,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
             final state = field as _FormBuilderCheckboxGroupState<T>;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: GroupedCheckbox<T>(
                 orientation: orientation,
                 value: state.value,

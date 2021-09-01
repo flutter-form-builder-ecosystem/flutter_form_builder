@@ -151,7 +151,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
               final _numberFormat = numberFormat ?? NumberFormat.compact();
 
               return InputDecorator(
-                decoration: state.decoration(),
+                decoration: state.decoration,
                 child: Container(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Column(

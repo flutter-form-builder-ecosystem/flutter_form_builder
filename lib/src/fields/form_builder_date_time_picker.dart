@@ -214,7 +214,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               textAlign: textAlign,
               maxLength: maxLength,
               autofocus: autofocus,
-              decoration: state.decoration(),
+              decoration: state.decoration,
               readOnly: true,
               enabled: state.enabled,
               autocorrect: autocorrect,
