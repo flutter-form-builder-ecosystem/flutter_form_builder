@@ -83,6 +83,8 @@ class FormBuilderField<T> extends FormField<T?> {
 
 class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
     extends FormFieldState<T?> {
+  String? _customErrorText;
+
   @override
   F get widget => super.widget as F;
 
@@ -174,15 +176,22 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
 
   @override
   bool validate() {
+    setState(() => _customErrorText = null);
     return super.validate() && widget.decoration.errorText == null;
   }
 
   void requestFocus() {
     FocusScope.of(context).requestFocus(effectiveFocusNode);
+    Scrollable.ensureVisible(context);
+  }
+
+  void invalidate(String reason) {
+    setState(() => _customErrorText = reason);
+    requestFocus();
   }
 
   //  FIXME: This  could be a getter instead of a classic function
   InputDecoration decoration() => widget.decoration.copyWith(
-        errorText: widget.decoration.errorText ?? errorText,
-      );
+      errorText: widget.decoration.errorText ?? errorText ?? _customErrorText,
+    );
 }
