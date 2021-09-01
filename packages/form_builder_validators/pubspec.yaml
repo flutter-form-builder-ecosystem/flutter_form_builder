@@ -17,8 +17,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  intl_utils: ^2.1.0
-  pedantic: ^1.11.0
+  intl_utils: ^2.4.0
+  pedantic: ^1.11.1
 
 flutter_intl:
   enabled: true
