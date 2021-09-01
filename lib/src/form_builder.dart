@@ -140,6 +140,8 @@ class FormBuilderState extends State<FormBuilder> {
         return true;
       }());
     }
+    // Removes internal field value
+    _value.remove(name);
   }
 
   void save() {
