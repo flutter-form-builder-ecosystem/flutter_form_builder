@@ -132,7 +132,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
                 isThreeLine: false,
                 contentPadding: contentPadding,
                 title: title,
-                value: state.value!,
+                value: state.value ?? false,
                 onChanged: state.enabled
                     ? (val) {
                         state.requestFocus();
