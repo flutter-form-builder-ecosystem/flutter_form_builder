@@ -1,3 +1,11 @@
+## [6.1.0] - 01-Sep-2021
+* When form validation fails, automatically scroll to first error
+* New way to programmatically induce custom errors by calling `GlobalKey<FormBuilderState>.invalidateField()` or `GlobalKey<FormBuilderFieldState>.invalidate()`
+* Added Arabic and Persian/Farsi locales
+* Made maxLines property nullable and added assertions
+* Remove field from internal value map on when a field is unregistered
+* Fix checkbox issue with null values
+
 ## [6.0.1] - 19-May-2021
 * Add whitespace check for required validator
 * Null-safety and type fixes

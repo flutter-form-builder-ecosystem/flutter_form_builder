@@ -374,6 +374,42 @@ FormBuilderTextField(
 ```
 
 ### Programmatically inducing an error
+#### Option 1 - Using FormBuilder / FieldBuilderField key
+```dart
+final _formKey = GlobalKey<FormBuilderState>();
+final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
+...
+FormBuilder(
+  key: _formKey,
+  child: Column(
+    children: [
+      FormBuilderTextField(
+        key: _emailFieldKey
+        name: 'email',
+        decoration: InputDecoration(labelText: 'Email'),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(context),
+          FormBuilderValidators.email(context),
+        ]),
+      ),
+      RaisedButton(
+        child: Text('Submit'),
+        onPressed: () async {
+          if(await checkIfEmailExists()){
+            // Either invalidate using Form Key
+            _formKey.currentState?.invalidateField(name: 'email', errorText: 'Email already taken.');
+            // OR invalidate using Field Key
+            _emailFieldKey.currentState?.invalidate('Email already taken.');
+          }
+        },
+      ),
+    ],
+  ),
+),
+
+```
+
+#### Option 2 - Using InputDecoration.errorText
 Declare a variable to hold your error:
 ```dart
 String _emailError;
@@ -400,7 +436,7 @@ RaisedButton(
   child: Text('Submit'),
   onPressed: () async {
     setState(() => _emailError = null);
-    if(checkIfEmailExists()){
+    if(await checkIfEmailExists()){
       setState(() => _emailError = 'Email already taken.');
     }
   },
