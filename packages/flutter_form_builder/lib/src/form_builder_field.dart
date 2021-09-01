@@ -11,7 +11,7 @@ typedef ValueTransformer<T> = dynamic Function(T value);
 ///
 /// This widget maintains the current state of the form field, so that updates
 /// and validation errors are visually reflected in the UI.
-class FormBuilderField<T> extends FormField<T?> {
+class FormBuilderField<T> extends FormField<T> {
   /// Used to reference the field within the form, or to reference form data
   /// after the form is submitted.
   final String name;
@@ -32,7 +32,7 @@ class FormBuilderField<T> extends FormField<T?> {
   ///     keyboardType: TextInputType.number,
   ///  ),
   /// ```
-  final ValueTransformer<T>? valueTransformer;
+  final ValueTransformer<T?>? valueTransformer;
 
   /// Called when the field value is changed.
   final ValueChanged<T?>? onChanged;
@@ -57,7 +57,7 @@ class FormBuilderField<T> extends FormField<T?> {
     AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
     bool enabled = true,
     FormFieldValidator<T>? validator,
-    required FormFieldBuilder<T?> builder,
+    required FormFieldBuilder<T> builder,
     required this.name,
     this.valueTransformer,
     this.onChanged,
@@ -81,8 +81,8 @@ class FormBuilderField<T> extends FormField<T?> {
       FormBuilderFieldState<FormBuilderField<T>, T>();
 }
 
-class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
-    extends FormFieldState<T?> {
+class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+    extends FormFieldState<T> {
   String? _customErrorText;
 
   @override
@@ -145,9 +145,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
       if (enabled || !_formBuilderState!.widget.skipDisabled) {
         _formBuilderState!.setInternalFieldValue(
           widget.name,
-          null != widget.valueTransformer
-              ? widget.valueTransformer!(value)
-              : value,
+          widget.valueTransformer?.call(value) ?? value,
         );
       } else {
         _formBuilderState!.removeInternalFieldValue(widget.name);
@@ -176,7 +174,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
 
   @override
   bool validate({bool clearCustomError = true}) {
-    print(clearCustomError);
     if (clearCustomError) {
       setState(() => _customErrorText = null);
     }
