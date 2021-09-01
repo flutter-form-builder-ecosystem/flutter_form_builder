@@ -1,3 +1,8 @@
+## [7.0.0-alpha.3] - 01-Sep-2021
+* When form validation fails, automatically scroll to first error
+* New way to programmatically induce custom errors by calling `GlobalKey<FormBuilderState>.invalidateField()` or `GlobalKey<FormBuilderFieldState>.invalidate()`
+* Remove field from internal value map on when a field is unregistered
+
 ## [7.0.0-alpha.2] - 17-May-2021
 * Improvements to package documentation and example
 
