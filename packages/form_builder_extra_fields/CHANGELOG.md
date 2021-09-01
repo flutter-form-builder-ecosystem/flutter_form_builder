@@ -1,3 +1,6 @@
+## [7.0.0-alpha.5] - 02-Sep-2021
+* Upgrade form_builder to v7.0.0-alpha.3
+
 ## [7.0.0-alpha.4] - 25-May-2021
 * Use null-safe version of `flutter_chips_input`
 * Rename `InputType` to `CupertinoDateTimePickerInputType` - avoids name clash with `form_builder_fields`
