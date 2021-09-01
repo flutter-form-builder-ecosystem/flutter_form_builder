@@ -34,7 +34,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
     FormFieldValidator<List<T>>? validator,
     List<T> initialValue = const [],
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<List<T>>? onChanged,
+    ValueChanged<List<T>?>? onChanged,
     ValueTransformer<List<T>?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<List<T>>? onSaved,
@@ -76,7 +76,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
             return ChipsInput<T>(
               initialValue: field.value!,
               enabled: state.enabled,
-              decoration: state.decoration(),
+              decoration: state.decoration,
               findSuggestions: findSuggestions,
               onChanged: (data) {
                 field.didChange(data);

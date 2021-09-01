@@ -103,7 +103,7 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
     FormFieldValidator<double>? validator,
     double? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<double>? onChanged,
+    ValueChanged<double?>? onChanged,
     ValueTransformer<double?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<double>? onSaved,
@@ -145,7 +145,7 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
             final widget = state.widget;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: RatingBar(
                 initialRating: field.value ?? widget.minRating,
                 minRating: widget.minRating,

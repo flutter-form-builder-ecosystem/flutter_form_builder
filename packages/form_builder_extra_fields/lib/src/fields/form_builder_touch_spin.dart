@@ -51,7 +51,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
     FormFieldValidator<num>? validator,
     num? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<num>? onChanged,
+    ValueChanged<num?>? onChanged,
     ValueTransformer<num?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<num>? onSaved,
@@ -87,7 +87,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
             final theme = Theme.of(state.context);
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: TouchSpin(
                 key: ObjectKey(state.value),
                 min: min,

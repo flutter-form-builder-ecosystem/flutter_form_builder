@@ -73,7 +73,7 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
     FormFieldValidator<DateTime>? validator,
     DateTime? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTime>? onChanged,
+    ValueChanged<DateTime?>? onChanged,
     ValueTransformer<DateTime?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<DateTime>? onSaved,
@@ -141,7 +141,7 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
               textAlign: textAlign,
               maxLength: maxLength,
               autofocus: autofocus,
-              decoration: state.decoration(),
+              decoration: state.decoration,
               readOnly: true,
               enabled: state.enabled,
               autocorrect: autocorrect,
@@ -190,7 +190,7 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
     final initVal = initialValue;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
-    effectiveFocusNode!.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   @override
@@ -203,8 +203,8 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode!.hasFocus && enabled) {
-      effectiveFocusNode!.unfocus();
+    if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
       await onShowPicker(context, value);
     }
   }

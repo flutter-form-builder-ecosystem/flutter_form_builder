@@ -266,7 +266,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     FormFieldValidator<T>? validator,
     T? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T>? onChanged,
+    ValueChanged<T?>? onChanged,
     ValueTransformer<T?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<T>? onSaved,
@@ -327,7 +327,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                         color: theme.disabledColor,
                       ),
                 focusNode: state.effectiveFocusNode,
-                decoration: state.decoration(),
+                decoration: state.decoration,
               ) as TextFieldConfiguration,
               // HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,

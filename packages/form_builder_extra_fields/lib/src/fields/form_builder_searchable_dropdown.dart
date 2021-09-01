@@ -123,7 +123,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     FormFieldValidator<T>? validator,
     T? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T>? onChanged,
+    ValueChanged<T?>? onChanged,
     ValueTransformer<T?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<T>? onSaved,
@@ -189,7 +189,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
             final state = field as _FormBuilderSearchableDropdownState<T>;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: dropdown_search.DropdownSearch<T>(
                 //Hack to rebuild when didChange is called
                 key: ValueKey(state.value),

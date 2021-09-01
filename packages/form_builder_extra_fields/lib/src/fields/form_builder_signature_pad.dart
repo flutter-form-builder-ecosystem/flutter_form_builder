@@ -36,7 +36,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
     FormFieldValidator<Uint8List>? validator,
     Uint8List? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<Uint8List>? onChanged,
+    ValueChanged<Uint8List?>? onChanged,
     ValueTransformer<Uint8List?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<Uint8List>? onSaved,
@@ -70,7 +70,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                 state.enabled ? theme.errorColor : theme.disabledColor;
 
             return InputDecorator(
-              decoration: state.decoration(),
+              decoration: state.decoration,
               child: Column(
                 children: <Widget>[
                   Container(

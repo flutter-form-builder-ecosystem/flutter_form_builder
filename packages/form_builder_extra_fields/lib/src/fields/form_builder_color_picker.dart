@@ -75,7 +75,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     FormFieldValidator<Color>? validator,
     Color? initialValue,
     InputDecoration decoration = const InputDecoration(),
-    ValueChanged<Color>? onChanged,
+    ValueChanged<Color?>? onChanged,
     ValueTransformer<Color?>? valueTransformer,
     bool enabled = true,
     FormFieldSetter<Color>? onSaved,
@@ -128,7 +128,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
             final state = field as _FormBuilderColorPickerFieldState;
             return TextField(
               style: style,
-              decoration: state.decoration().copyWith(
+              decoration: state.decoration.copyWith(
                     suffixIcon: LayoutBuilder(
                       key: ObjectKey(state.value),
                       builder: (context, constraints) {
@@ -198,12 +198,12 @@ class _FormBuilderColorPickerFieldState
     super.initState();
     _effectiveController = widget.controller ?? TextEditingController();
     _effectiveController.text = valueString ?? '';
-    effectiveFocusNode!.addListener(_handleFocus);
+    effectiveFocusNode.addListener(_handleFocus);
   }
 
   @override
   void dispose() {
-    effectiveFocusNode!.removeListener(_handleFocus);
+    effectiveFocusNode.removeListener(_handleFocus);
     // Dispose the _effectiveController when initState created it
     if (null == widget.controller) {
       _effectiveController.dispose();
@@ -212,8 +212,8 @@ class _FormBuilderColorPickerFieldState
   }
 
   Future<void> _handleFocus() async {
-    if (effectiveFocusNode!.hasFocus && enabled) {
-      effectiveFocusNode!.unfocus();
+    if (effectiveFocusNode.hasFocus && enabled) {
+      effectiveFocusNode.unfocus();
       final selected = await showDialog<bool>(
         context: context,
         builder: (BuildContext context) {
