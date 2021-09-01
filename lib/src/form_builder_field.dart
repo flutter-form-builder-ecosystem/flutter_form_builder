@@ -101,10 +101,15 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
   FormBuilderState? _formBuilderState;
 
   @override
-  bool get hasError => super.hasError || widget.decoration.errorText != null;
+  String? get errorText => super.errorText ?? _customErrorText;
 
   @override
-  bool get isValid => super.isValid && widget.decoration.errorText == null;
+  bool get hasError =>
+      super.hasError || decoration.errorText != null || errorText != null;
+
+  @override
+  bool get isValid =>
+      super.isValid && decoration.errorText == null && errorText == null;
 
   bool _touched = false;
 
@@ -175,9 +180,12 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
   }
 
   @override
-  bool validate() {
-    setState(() => _customErrorText = null);
-    return super.validate() && widget.decoration.errorText == null;
+  bool validate({bool clearCustomError = true}) {
+    print(clearCustomError);
+    if (clearCustomError) {
+      setState(() => _customErrorText = null);
+    }
+    return super.validate() && !hasError;
   }
 
   void requestFocus() {
@@ -185,12 +193,13 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
     Scrollable.ensureVisible(context);
   }
 
-  void invalidate(String reason) {
-    setState(() => _customErrorText = reason);
+  void invalidate(String errorText) {
+    setState(() => _customErrorText = errorText);
+    validate(clearCustomError: false);
     requestFocus();
   }
 
   InputDecoration get decoration => widget.decoration.copyWith(
-      errorText: widget.decoration.errorText ?? errorText ?? _customErrorText,
-    );
+        errorText: widget.decoration.errorText ?? errorText,
+      );
 }

@@ -9,6 +9,7 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   final _formKey = GlobalKey<FormBuilderState>();
+  final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class _SignupFormState extends State<SignupForm> {
           padding: const EdgeInsets.all(8.0),
           child: FormBuilder(
             key: _formKey,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            // autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
                 FormBuilderTextField(
@@ -30,6 +31,7 @@ class _SignupFormState extends State<SignupForm> {
                 ),
                 const SizedBox(height: 10),
                 FormBuilderTextField(
+                  key: _emailFieldKey,
                   name: 'email',
                   decoration: InputDecoration(labelText: 'Email'),
                   validator: FormBuilderValidators.compose([
@@ -53,10 +55,9 @@ class _SignupFormState extends State<SignupForm> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
                     labelText: 'Confirm Password',
-                    suffixIcon: (_formKey.currentState != null &&
-                            !(_formKey.currentState?.fields['confirm_password']
-                                    ?.isValid ??
-                                false))
+                    suffixIcon: ((_formKey.currentState
+                                ?.fields['confirm_password']?.hasError ??
+                            false))
                         ? const Icon(Icons.error, color: Colors.red)
                         : const Icon(Icons.check, color: Colors.green),
                   ),
@@ -106,6 +107,14 @@ class _SignupFormState extends State<SignupForm> {
                   color: Theme.of(context).colorScheme.secondary,
                   onPressed: () {
                     if (_formKey.currentState?.saveAndValidate() ?? false) {
+                      if (true) {
+                        // Either invalidate using Form Key
+                        _formKey.currentState?.invalidateField(
+                            name: 'email', errorText: 'Email already taken.');
+                        // OR invalidate using Field Key
+                        // _emailFieldKey.currentState?.invalidate('Email already taken.');
+                      }
+
                       print('Valid');
                     } else {
                       print('Invalid');

@@ -95,15 +95,11 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, FormBuilderFieldState> get fields => _fields;
 
   void setInternalFieldValue(String name, dynamic value) {
-    setState(() {
-      _value[name] = value;
-    });
+    setState(() => _value[name] = value);
   }
 
   void removeInternalFieldValue(String name) {
-    setState(() {
-      _value.remove(name);
-    });
+    setState(() => _value.remove(name));
   }
 
   void registerField(String name, FormBuilderFieldState field) {
@@ -155,13 +151,13 @@ class FormBuilderState extends State<FormBuilder> {
       fields.values.first.invalidate(errorText);
 
   bool validate() {
-    final validation = _formKey.currentState!.validate();
-    if (!validation) {
+    final hasError = !_formKey.currentState!.validate();
+    if (hasError) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
       wrongFields.first.requestFocus();
     }
-    return validation;
+    return !hasError;
   }
 
   bool saveAndValidate() {
