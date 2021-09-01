@@ -1,3 +1,6 @@
+## [7.0.0-RC.0] - 01-Sep-2021
+* Added Arabic and Persian/Farsi support
+
 ## [7.0.0-beta.0] - 19-May-2021
 * Use intl_utils package for localization
 * Documentation and example improvements - added instructions for localization
