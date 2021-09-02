@@ -183,7 +183,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     try {
       return format.format(date);
     } catch (e) {
-      // print('Error formatting date: $e');
+      // Ignore exception
     }
     return '';
   }

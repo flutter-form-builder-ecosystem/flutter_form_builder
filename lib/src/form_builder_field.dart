@@ -181,7 +181,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T?>, T>
 
   @override
   bool validate({bool clearCustomError = true}) {
-    print(clearCustomError);
     if (clearCustomError) {
       setState(() => _customErrorText = null);
     }
