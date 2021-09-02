@@ -1,3 +1,6 @@
+## [7.0.0-RC.1] - 02-Sep-2021
+* `maxLength` and `minLength` validators can now work with `Iterable` field values length
+
 ## [7.0.0-RC.0] - 01-Sep-2021
 * Added Arabic and Persian/Farsi support
 
