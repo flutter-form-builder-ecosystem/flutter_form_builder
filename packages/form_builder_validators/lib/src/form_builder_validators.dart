@@ -111,15 +111,20 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the length of the field's value to be
   /// greater than or equal to the provided minimum length.
-  static FormFieldValidator<String> minLength(
+  static FormFieldValidator<T> minLength<T>(
     BuildContext context,
     int minLength, {
     bool allowEmpty = false,
     String? errorText,
   }) {
     assert(minLength > 0);
-    return (valueCandidate) {
-      final valueLength = valueCandidate?.length ?? 0;
+    return (T? valueCandidate) {
+      assert(valueCandidate is String ||
+          valueCandidate is Iterable ||
+          valueCandidate == null);
+      var valueLength = 0;
+      if (valueCandidate is String) valueLength = valueCandidate.length;
+      if (valueCandidate is Iterable) valueLength = valueCandidate.length;
       return valueLength < minLength && (!allowEmpty || valueLength > 0)
           ? errorText ??
               FormBuilderLocalizations.of(context).minLengthErrorText(minLength)
@@ -129,17 +134,24 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the length of the field's value to be
   /// less than or equal to the provided maximum length.
-  static FormFieldValidator<String> maxLength(
+  static FormFieldValidator<T> maxLength<T>(
     BuildContext context,
     int maxLength, {
     String? errorText,
   }) {
     assert(maxLength > 0);
-    return (valueCandidate) => null != valueCandidate &&
-            valueCandidate.length > maxLength
-        ? errorText ??
-            FormBuilderLocalizations.of(context).maxLengthErrorText(maxLength)
-        : null;
+    return (T? valueCandidate) {
+      assert(valueCandidate is String ||
+          valueCandidate is Iterable ||
+          valueCandidate == null);
+      var valueLength = 0;
+      if (valueCandidate is String) valueLength = valueCandidate.length;
+      if (valueCandidate is Iterable) valueLength = valueCandidate.length;
+      return null != valueCandidate && valueLength > maxLength
+          ? errorText ??
+              FormBuilderLocalizations.of(context).maxLengthErrorText(maxLength)
+          : null;
+    };
   }
 
   /// [FormFieldValidator] that requires the field's value to be a valid email address.
