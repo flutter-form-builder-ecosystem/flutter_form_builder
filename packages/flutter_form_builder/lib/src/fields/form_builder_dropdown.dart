@@ -181,6 +181,17 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   final bool allowClear;
   final Widget clearIcon;
 
+  /// The maximum height of the menu.
+  ///
+  /// The maximum height of the menu must be at least one row shorter than
+  /// the height of the app's view. This ensures that a tappable area
+  /// outside of the simple menu is present so the user can dismiss the menu.
+  ///
+  /// If this property is set above the maximum allowable height threshold
+  /// mentioned above, then the menu defaults to being padded at the top
+  /// and bottom of the menu by at one menu item's height.
+  final double? menuMaxHeight;
+
   /// Creates field for Dropdown button
   FormBuilderDropdown({
     Key? key,
@@ -215,6 +226,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.focusColor,
     this.itemHeight = kMinInteractiveDimension,
     this.selectedItemBuilder,
+    this.menuMaxHeight,
   }) : /*: assert(allowClear == true || clearIcon != null)*/ super(
           key: key,
           initialValue: initialValue,
@@ -278,6 +290,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         focusColor: focusColor,
                         itemHeight: itemHeight,
                         selectedItemBuilder: selectedItemBuilder,
+                        menuMaxHeight: menuMaxHeight,
                       ),
                     ),
                   ),
