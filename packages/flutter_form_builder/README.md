@@ -2,6 +2,8 @@
 
 This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes,
 and collect final user input.
+
+Also included are common ready-made form input fields for FormBuilder. This gives you a convenient way of adding common ready-made input fields instead of creating your own FormBuilderField from scratch.
 ___
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?logo=flutter&style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
@@ -17,7 +19,13 @@ ___
 
 ### Example
 ```dart
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+
+...
+
 final _formKey = GlobalKey<FormBuilderState>();
+
+...
 
 @override
 Widget build(BuildContext context) {
@@ -28,7 +36,138 @@ Widget build(BuildContext context) {
         autovalidate: true,
         child: Column(
           children: <Widget>[
-            
+            FormBuilderFilterChip(
+              name: 'filter_chip',
+              decoration: InputDecoration(
+                labelText: 'Select many options',
+              ),
+              options: [
+                FormBuilderFieldOption(
+                    value: 'Test', child: Text('Test')),
+                FormBuilderFieldOption(
+                    value: 'Test 1', child: Text('Test 1')),
+                FormBuilderFieldOption(
+                    value: 'Test 2', child: Text('Test 2')),
+                FormBuilderFieldOption(
+                    value: 'Test 3', child: Text('Test 3')),
+                FormBuilderFieldOption(
+                    value: 'Test 4', child: Text('Test 4')),
+              ],
+            ),
+            FormBuilderChoiceChip(
+              name: 'choice_chip',
+              decoration: InputDecoration(
+                labelText: 'Select an option',
+              ),
+              options: [
+                FormBuilderFieldOption(
+                    value: 'Test', child: Text('Test')),
+                FormBuilderFieldOption(
+                    value: 'Test 1', child: Text('Test 1')),
+                FormBuilderFieldOption(
+                    value: 'Test 2', child: Text('Test 2')),
+                FormBuilderFieldOption(
+                    value: 'Test 3', child: Text('Test 3')),
+                FormBuilderFieldOption(
+                    value: 'Test 4', child: Text('Test 4')),
+              ],
+            ),
+            FormBuilderDateTimePicker(
+              name: 'date',
+              // onChanged: _onChanged,
+              inputType: InputType.time,
+              decoration: InputDecoration(
+                labelText: 'Appointment Time',
+              ),
+              initialTime: TimeOfDay(hour: 8, minute: 0),
+              // initialValue: DateTime.now(),
+              // enabled: true,
+            ),
+            FormBuilderDateRangePicker(
+              name: 'date_range',
+              firstDate: DateTime(1970),
+              lastDate: DateTime(2030),
+              format: DateFormat('yyyy-MM-dd'),
+              onChanged: _onChanged,
+              decoration: InputDecoration(
+                labelText: 'Date Range',
+                helperText: 'Helper text',
+                hintText: 'Hint text',
+              ),
+            ),
+            FormBuilderSlider(
+              name: 'slider',
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.min(context, 6),
+              ]),
+              onChanged: _onChanged,
+              min: 0.0,
+              max: 10.0,
+              initialValue: 7.0,
+              divisions: 20,
+              activeColor: Colors.red,
+              inactiveColor: Colors.pink[100],
+              decoration: InputDecoration(
+                labelText: 'Number of things',
+              ),
+            ),
+            FormBuilderCheckbox(
+              name: 'accept_terms',
+              initialValue: false,
+              onChanged: _onChanged,
+              title: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'I have read and agree to the ',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    TextSpan(
+                      text: 'Terms and Conditions',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ],
+                ),
+              ),
+              validator: FormBuilderValidators.equal(
+                context,
+                true,
+                errorText:
+                    'You must accept terms and conditions to continue',
+              ),
+            ),
+            FormBuilderTextField(
+              name: 'age',
+              decoration: InputDecoration(
+                labelText:
+                    'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
+              ),
+              onChanged: _onChanged,
+              // valueTransformer: (text) => num.tryParse(text),
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(context),
+                FormBuilderValidators.numeric(context),
+                FormBuilderValidators.max(context, 70),
+              ]),
+              keyboardType: TextInputType.number,
+            ),
+            FormBuilderDropdown(
+              name: 'gender',
+              decoration: InputDecoration(
+                labelText: 'Gender',
+              ),
+              // initialValue: 'Male',
+              allowClear: true,
+              hint: Text('Select Gender'),
+              validator: FormBuilderValidators.compose(
+                  [FormBuilderValidators.required(context)]),
+              items: genderOptions
+                  .map((gender) => DropdownMenuItem(
+                        value: gender,
+                        child: Text('$gender'),
+                      ))
+                  .toList(),
+            ),
           ],
         ),
       ),
@@ -65,13 +204,27 @@ Widget build(BuildContext context) {
             ),
           ),
         ],
-      ),
+      )
     ],
   );
 }
 ```
 
-## FormBuilderField attributes
+## Input widgets
+The currently supported fields include:
+* `FormBuilderCheckbox` - Single Checkbox field
+* `FormBuilderCheckboxGroup` - List of Checkboxes for multiple selection
+* `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
+* `FormBuilderDateRangePicker` - For selection of a range of dates
+* `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
+* `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
+* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
+* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
+* `FormBuilderRangeSlider` - Used to select a range from a range of values
+* `FormBuilderSegmentedControl` - For selection of a value using the `CupertinoSegmentedControl` widget as an input
+* `FormBuilderSlider` - For selection of a numerical value on a slider
+* `FormBuilderSwitch` - On/Off switch field
+* `FormBuilderTextField` - A Material Design text field input.
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
@@ -142,6 +295,42 @@ _formKey.currentState.patchValue({
 ```
 
 ### Programmatically inducing an error
+#### Option 1 - Using FormBuilder / FieldBuilderField key
+```dart
+final _formKey = GlobalKey<FormBuilderState>();
+final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
+...
+FormBuilder(
+  key: _formKey,
+  child: Column(
+    children: [
+      FormBuilderTextField(
+        key: _emailFieldKey
+        name: 'email',
+        decoration: InputDecoration(labelText: 'Email'),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(context),
+          FormBuilderValidators.email(context),
+        ]),
+      ),
+      RaisedButton(
+        child: Text('Submit'),
+        onPressed: () async {
+          if(await checkIfEmailExists()){
+            // Either invalidate using Form Key
+            _formKey.currentState?.invalidateField(name: 'email', errorText: 'Email already taken.');
+            // OR invalidate using Field Key
+            _emailFieldKey.currentState?.invalidate('Email already taken.');
+          }
+        },
+      ),
+    ],
+  ),
+),
+
+```
+
+#### Option 2 - Using InputDecoration.errorText
 Declare a variable to hold your error:
 ```dart
 String _emailError;
@@ -168,7 +357,7 @@ RaisedButton(
   child: Text('Submit'),
   onPressed: () async {
     setState(() => _emailError = null);
-    if(checkIfEmailExists()){
+    if(await checkIfEmailExists()){
       setState(() => _emailError = 'Email already taken.');
     }
   },
@@ -207,9 +396,9 @@ FormBuilderRadioGroup(
     },
   ),
 ```
+
 ### Ecosystem
 Here are additional packages that you can use to extend `flutter_form_builder`'s functionality.
-* [form_builder_fields](https://pub.dev/packages/form_builder_fields) - provides common ready-made form input fields compartible with `flutter_form_builder`.
 * [form_builder_validators](https://pub.dev/packages/form_builder_validators) - provides a convenient way of validating data entered into any Flutter `FormField`.
 * [form_builder_extra_fields](https://pub.dev/packages/form_builder_extra_fields) - provides additional ready-made form input fields compartible with `flutter_form_builder`.
 * [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A `FormbuilderField` that allows selecting image(s) from user device storage.

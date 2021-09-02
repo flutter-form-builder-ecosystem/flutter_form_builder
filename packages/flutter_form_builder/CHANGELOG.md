@@ -1,3 +1,6 @@
+## [7.0.0-beta.0] - 02-Sep-2021
+* Merged back `form_builder_fields` into `flutter_form_builder`
+
 ## [7.0.0-alpha.3] - 01-Sep-2021
 * When form validation fails, automatically scroll to first error
 * New way to programmatically induce custom errors by calling `GlobalKey<FormBuilderState>.invalidateField()` or `GlobalKey<FormBuilderFieldState>.invalidate()`

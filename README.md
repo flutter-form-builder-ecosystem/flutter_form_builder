@@ -20,7 +20,6 @@ Flutter Form Builder provides an easy way of working with forms in Flutter by re
 
 - [FormBuilder Core (`flutter_form_builder`)](#flutter_form_builder)
 - [FormBuilder Extra Fields (`form_builder_extra_fields`)](#form_builder_extra_fields)
-- [FormBuilder Fields (`form_builder_fields`)](#form_builder_fields)
 - [FormBuilder Validators (`form_builder_validators`)](#form_builder_validators)
 
 ### flutter_form_builder
@@ -28,27 +27,19 @@ Flutter Form Builder provides an easy way of working with forms in Flutter by re
 
 FormBuilder helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes,
 and collect final user input.
-This package provides APIs to manage your Form and generating a FormBuilder compliant FormField. It is required by `form_builder_fields` and `form_builder_extra_fields` packages.
+It provides APIs to manage your Form and generating a FormBuilder compliant FormField. It is required by `form_builder_extra_fields` packages.
+This package also contains common ready-made form input fields. The package gives you a convenient way of adding fields instead of creating your own FormBuilderField from scratch.
 
 [[View Documentation][core_docs]] [[View Source][core_code]]
 
 ### form_builder_extra_fields
 > [![Pub Version](https://img.shields.io/pub/v/form_builder_extra_fields?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_extra_fields)
 
-Form Builder Fields provides ready-made form input fields. Just like the form_builder_fields package, it gives you a convenient way of adding fields instead of creating your own FormBuilderField from scratch.
+Form Builder Fields provides ready-made form input fields. Just like the flutter_form_builder package, it gives you a convenient way of adding fields instead of creating your own FormBuilderField from scratch.
 
-Unlike form_builder_fields package which depends purely on Flutter provided input fields, flutter_extra_fields depends on external libraries to provide input widgets and extends them to be FormBuilderFields.
+Unlike flutter_form_builder package which depends purely on Flutter provided input fields, flutter_extra_fields depends on external libraries to provide input widgets and extends them to be FormBuilderFields.
 
 [[View Documentation][extra_fields_docs]] [[View Source][extra_fields_code]]
-
-
-### form_builder_fields
-> [![Pub Version](https://img.shields.io/pub/v/form_builder_fields?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_fields)
-
-Form Builder Fields provides common ready-made form input fields. The package gives you a convenient way of adding fields instead of creating your own FormBuilderField from scratch.
-
-[[View Documentation][fields_docs]] [[View Source][fields_code]]
-
 
 ### form_builder_validators
 > [![Pub Version](https://img.shields.io/pub/v/form_builder_validators?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_validators)
@@ -89,10 +80,6 @@ Made with [contributors-img](https://contributors-img.firebaseapp.com).
 [extra_fields_code]: https://github.com/danvick/flutter_form_builder/tree/split_packages/packages/form_builder_extra_fields
 
 [extra_fields_docs]: https://github.com/danvick/flutter_form_builder/blob/split_packages/packages/form_builder_extra_fields/README.md
-
-[fields_code]: https://github.com/danvick/flutter_form_builder/tree/split_packages/packages/form_builder_fields
-
-[fields_docs]: https://github.com/danvick/flutter_form_builder/blob/split_packages/packages/form_builder_fields/README.md
 
 [validators_code]: https://github.com/danvick/flutter_form_builder/tree/split_packages/packages/form_builder_validators
 

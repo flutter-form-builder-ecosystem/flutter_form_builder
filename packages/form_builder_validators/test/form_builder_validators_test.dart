@@ -140,37 +140,37 @@ void main() {
           }));
   testWidgets(
       'FormBuilderValidators.maxLength for Iterable',
-          (WidgetTester tester) => testValidations(tester, (context) {
-        final validator =
-        FormBuilderValidators.maxLength<Iterable<String>>(context, 3);
-        // Pass
-        expect(validator(null), isNull);
-        expect(validator([]), isNull);
-        expect(validator(['one', 'two']), isNull);
-        expect(validator(['one', 'two', 'three']), isNull);
-        // Fail
-        expect(validator(['one', 'two', 'three', 'four']), isNotNull);
-      }));
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator =
+                FormBuilderValidators.maxLength<Iterable<String>>(context, 3);
+            // Pass
+            expect(validator(null), isNull);
+            expect(validator([]), isNull);
+            expect(validator(['one', 'two']), isNull);
+            expect(validator(['one', 'two', 'three']), isNull);
+            // Fail
+            expect(validator(['one', 'two', 'three', 'four']), isNotNull);
+          }));
 
   testWidgets(
       'FormBuilderValidators.minLength for Iterable',
-          (WidgetTester tester) => testValidations(tester, (context) {
-        final validator =
-        FormBuilderValidators.minLength<Iterable<String>>(context, 3);
-        // Pass
-        expect(validator(['one', 'two', 'three']), isNull);
-        expect(validator(['one', 'two', 'three', 'four']), isNull);
-        // Fail
-        expect(validator(null), isNotNull);
-        expect(validator([]), isNotNull);
-        expect(validator(['one', 'two']), isNotNull);
-        // Advanced
-        final validatorAllowEmpty = FormBuilderValidators.minLength<Iterable<String>>(
-            context, 3,
-            allowEmpty: true);
-        expect(validatorAllowEmpty(null), isNull);
-        expect(validatorAllowEmpty([]), isNull);
-      }));
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator =
+                FormBuilderValidators.minLength<Iterable<String>>(context, 3);
+            // Pass
+            expect(validator(['one', 'two', 'three']), isNull);
+            expect(validator(['one', 'two', 'three', 'four']), isNull);
+            // Fail
+            expect(validator(null), isNotNull);
+            expect(validator([]), isNotNull);
+            expect(validator(['one', 'two']), isNotNull);
+            // Advanced
+            final validatorAllowEmpty =
+                FormBuilderValidators.minLength<Iterable<String>>(context, 3,
+                    allowEmpty: true);
+            expect(validatorAllowEmpty(null), isNull);
+            expect(validatorAllowEmpty([]), isNull);
+          }));
 
   testWidgets(
       'FormBuilderValidators.email',

@@ -18,7 +18,7 @@ ___
 ### Example
 ```dart
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_fields/form_builder_extra_fields.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 
 ...
 

@@ -129,24 +129,24 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
             return TextField(
               style: style,
               decoration: state.decoration.copyWith(
-                    suffixIcon: LayoutBuilder(
+                suffixIcon: LayoutBuilder(
+                  key: ObjectKey(state.value),
+                  builder: (context, constraints) {
+                    return Container(
                       key: ObjectKey(state.value),
-                      builder: (context, constraints) {
-                        return Container(
-                          key: ObjectKey(state.value),
-                          height: constraints.minHeight,
-                          width: constraints.minHeight,
-                          decoration: BoxDecoration(
-                            color: state.value,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.black,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                      height: constraints.minHeight,
+                      width: constraints.minHeight,
+                      decoration: BoxDecoration(
+                        color: state.value,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
               enabled: state.enabled,
               readOnly: readOnly,
               controller: state._effectiveController,

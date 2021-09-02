@@ -116,7 +116,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
   FocusNode? _focusNode;
-  FocusNode get effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode());
+  FocusNode get effectiveFocusNode =>
+      widget.focusNode ?? (_focusNode ??= FocusNode());
 
   @override
   void initState() {
