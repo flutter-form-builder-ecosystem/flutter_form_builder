@@ -118,7 +118,9 @@ To allow for localization of default error messages within your app, add `FormBu
       ],
 ```
 ### Languages supported (default errorText messages)
+- Arabic (ar)
 - English (en)
+- Farsi/Persian (fa)
 - French (fr)
 - German (de)
 - Hungarian (hu)
