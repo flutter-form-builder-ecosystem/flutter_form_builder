@@ -1,3 +1,8 @@
+## [7.0.0-alpha.6] - 10-Sep-2021
+* Upgraded `flutter_colorpicker` dependency - comes with improvements to `FormBuilderColorPicker` field
+* Upgraded `dropdown_search` dependency - comes with improvements to `FormBuilderDropdownSearch` field
+* **Breaking Changes**: comes with breaking  changes in `FormBuilderColorPicker` modes
+
 ## [7.0.0-alpha.5] - 02-Sep-2021
 * Upgrade form_builder to v7.0.0-alpha.3
 
