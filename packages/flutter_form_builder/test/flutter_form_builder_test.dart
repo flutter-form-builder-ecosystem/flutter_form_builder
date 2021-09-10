@@ -13,7 +13,7 @@ void main() {
       name: textFieldName,
       builder: (FormFieldState<String?> field) {
         return InputDecorator(
-          decoration: InputDecoration(),
+          decoration: const InputDecoration(),
           child: TextField(
             onChanged: (value) => field.didChange(value),
           ),

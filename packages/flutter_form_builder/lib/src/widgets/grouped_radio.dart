@@ -171,7 +171,8 @@ class GroupedRadio<T> extends StatefulWidget {
 
   final ControlAffinity controlAffinity;
 
-  GroupedRadio({
+  const GroupedRadio({
+    Key? key,
     required this.options,
     required this.orientation,
     required this.onChanged,
@@ -191,7 +192,7 @@ class GroupedRadio<T> extends StatefulWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
-  });
+  }) : super(key: key);
 
   @override
   _GroupedRadioState<T> createState() => _GroupedRadioState<T>();
