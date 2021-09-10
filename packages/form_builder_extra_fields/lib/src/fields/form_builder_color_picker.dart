@@ -29,7 +29,7 @@ extension on Color {
   }
 }
 
-enum ColorPickerType { ColorPicker, MaterialPicker, BlockPicker }
+enum ColorPickerType { colorPicker, materialPicker, blockPicker }
 
 /// Creates a field for `Color` input selection
 class FormBuilderColorPickerField extends FormBuilderField<Color> {
@@ -83,7 +83,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
     VoidCallback? onReset,
     FocusNode? focusNode,
     bool readOnly = false,
-    this.colorPickerType = ColorPickerType.ColorPicker,
+    this.colorPickerType = ColorPickerType.colorPicker,
     this.textCapitalization = TextCapitalization.none,
     this.textAlign = TextAlign.start,
     this.keyboardType,
@@ -245,7 +245,7 @@ class _FormBuilderColorPickerFieldState
 
   Widget _buildColorPicker() {
     switch (widget.colorPickerType) {
-      case ColorPickerType.ColorPicker:
+      case ColorPickerType.colorPicker:
         return ColorPicker(
           pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
@@ -256,13 +256,13 @@ class _FormBuilderColorPickerFieldState
           paletteType: PaletteType.hsl,
           pickerAreaHeightPercent: 1.0,
         );
-      case ColorPickerType.MaterialPicker:
+      case ColorPickerType.materialPicker:
         return MaterialPicker(
           pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
           enableLabel: true, // only on portrait mode
         );
-      case ColorPickerType.BlockPicker:
+      case ColorPickerType.blockPicker:
         return BlockPicker(
           pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
@@ -275,13 +275,9 @@ class _FormBuilderColorPickerFieldState
     }
   }
 
-  void _colorChanged(Color color) {
-    _selectedColor = color;
-  }
+  void _colorChanged(Color color) => _selectedColor = color;
 
-  void _setTextFieldString() {
-    _effectiveController.text = valueString ?? '';
-  }
+  void _setTextFieldString() => _effectiveController.text = valueString ?? '';
 
   @override
   void didChange(Color? value) {

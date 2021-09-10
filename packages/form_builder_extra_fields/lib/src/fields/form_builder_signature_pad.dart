@@ -100,7 +100,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                   ),
                   Row(
                     children: <Widget>[
-                      Expanded(child: const SizedBox()),
+                      const Expanded(child: SizedBox()),
                       TextButton.icon(
                         onPressed: state.enabled
                             ? () {

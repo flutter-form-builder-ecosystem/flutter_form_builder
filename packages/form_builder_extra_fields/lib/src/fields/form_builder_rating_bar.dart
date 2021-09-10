@@ -160,9 +160,9 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
                 },
                 ratingWidget: widget.ratingWidget ??
                     RatingWidget(
-                      full: Icon(Icons.star),
-                      half: Icon(Icons.star_half_outlined),
-                      empty: Icon(Icons.star_outline),
+                      full: const Icon(Icons.star),
+                      half: const Icon(Icons.star_half_outlined),
+                      empty: const Icon(Icons.star_outline),
                     ),
                 glow: widget.glow,
                 glowColor: widget.glowColor,

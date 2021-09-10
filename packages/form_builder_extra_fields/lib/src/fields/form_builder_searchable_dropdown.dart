@@ -8,7 +8,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selecting value(s) from a searchable list
 class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
-  /// final List<DropdownMenuItem<T>> items;
+  ///DropDownSearch label
+  final String? label;
 
   ///DropDownSearch hint
   final String? hint;
@@ -23,22 +24,28 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final bool showClearButton;
 
   ///offline items list
-  final List<T> items;
+  final List<T>? items;
 
   ///selected item
   final T? selectedItem;
 
+  ///selected items
+  final List<T> selectedItems;
+
   ///function that returns item from API
-  final dropdown_search.DropdownSearchOnFind<T>? onFind;
+  final DropdownSearchOnFind<T>? onFind;
+
+  ///called when a new items are selected
+  final ValueChanged<List<T>>? onChangedMultiSelection;
 
   ///to customize list of items UI
-  final dropdown_search.DropdownSearchBuilder<T>? dropdownBuilder;
+  final DropdownSearchBuilder<T>? dropdownBuilder;
+
+  ///to customize list of items UI in MultiSelection mode
+  final DropdownSearchBuilderMultiSelection<T>? dropdownBuilderMultiSelection;
 
   ///to customize selected item
-  final dropdown_search.DropdownSearchPopupItemBuilder<T>? popupItemBuilder;
-
-  ///decoration for search box
-  final InputDecoration? searchBoxDecoration;
+  final DropdownSearchPopupItemBuilder<T>? popupItemBuilder;
 
   ///the title for dialog/menu/bottomSheet
   final Color? popupBackgroundColor;
@@ -47,13 +54,13 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final Widget? popupTitle;
 
   ///customize the fields the be shown
-  final dropdown_search.DropdownSearchItemAsString<T>? itemAsString;
+  final DropdownSearchItemAsString<T>? itemAsString;
 
   ///	custom filter function
-  final dropdown_search.DropdownSearchFilterFn<T>? filterFn;
+  final DropdownSearchFilterFn<T>? filterFn;
 
   ///MENU / DIALOG/ BOTTOM_SHEET
-  final dropdown_search.Mode mode;
+  final Mode mode;
 
   ///the max height for dialog/bottomSheet/Menu
   final double? maxHeight;
@@ -62,10 +69,22 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final double? dialogMaxWidth;
 
   ///select the selected item in the menu/dialog/bottomSheet of items
-  final bool showSelectedItem;
+  final bool showSelectedItems;
 
   ///function that compares two object with the same type to detected if it's the selected item or not
-  final dropdown_search.DropdownSearchCompareFn<T>? compareFn;
+  final DropdownSearchCompareFn<T>? compareFn;
+
+  ///dropdownSearch input decoration
+  final InputDecoration? dropdownSearchDecoration;
+
+  /// style on which to base the label
+  final TextStyle? dropdownSearchBaseStyle;
+
+  /// How the text in the decoration should be aligned horizontally.
+  final TextAlign? dropdownSearchTextAlign;
+
+  /// How the text should be aligned vertically.
+  final TextAlignVertical? dropdownSearchTextAlignVertical;
 
   ///custom layout for empty results
   final EmptyBuilder? emptyBuilder;
@@ -74,22 +93,38 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final LoadingBuilder? loadingBuilder;
 
   ///custom layout for error
-  final dropdown_search.ErrorBuilder? errorBuilder;
-
-  ///the search box will be focused if true
-  final bool autoFocusSearchBox;
+  final ErrorBuilder? errorBuilder;
 
   ///custom shape for the popup
   final ShapeBorder? popupShape;
 
-  ///handle auto validation
-  final bool autoValidate;
+  final AutovalidateMode? autoValidateMode;
+
+  /// An optional method to call with the final value when the form is saved via
+  final FormFieldSetter<List<T>>? onSavedMultiSelection;
 
   ///custom dropdown clear button icon widget
   final Widget? clearButton;
 
+  ///custom clear button widget builder
+  final IconButtonBuilder? clearButtonBuilder;
+
+  ///custom splash radius for the clear button
+  ///If null, default splash radius of [icon_button] is used.
+  final double? clearButtonSplashRadius;
+
   ///custom dropdown icon button widget
   final Widget? dropDownButton;
+
+  ///custom dropdown button widget builder
+  final IconButtonBuilder? dropdownButtonBuilder;
+
+  ///custom splash radius for the dropdown button
+  ///If null, default splash radius of [icon_button] is used.
+  final double? dropdownButtonSplashRadius;
+
+  ///whether to manage the clear and dropdown icons via InputDecoration suffixIcon
+  final bool showAsSuffixIcons;
 
   ///If true, the dropdownBuilder will continue the uses of material behavior
   ///This will be useful if you want to handle a custom UI only if the item !=null
@@ -97,23 +132,67 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
 
   ///defines if an item of the popup is enabled or not, if the item is disabled,
   ///it cannot be clicked
-  final dropdown_search.DropdownSearchPopupItemEnabled<T>? popupItemDisabled;
+  final DropdownSearchPopupItemEnabled<T>? popupItemDisabled;
 
   ///set a custom color for the popup barrier
   final Color? popupBarrierColor;
 
-  final String? label;
-  final Widget Function(BuildContext)? clearButtonBuilder;
-  final Widget Function(BuildContext)? dropdownButtonBuilder;
-  final Widget Function(BuildContext, T)? favoriteItemBuilder;
-  final List<T> Function(List<T>)? favoriteItems;
-  final Future<bool> Function(T?, T?)? onBeforeChange;
-  final MainAxisAlignment favoriteItemsAlignment;
-  final void Function()? onPopupDismissed;
-  final TextEditingController? searchBoxController;
+  ///called when popup is dismissed
+  final VoidCallback? onPopupDismissed;
+
+  /// callback executed before applying value change
+  ///delay before searching, change it to Duration(milliseconds: 0)
+  ///if you do not use online search
   final Duration? searchDelay;
-  final bool showAsSuffixIcons;
+
+  /// callback executed before applying value change
+  final BeforeChange<T>? onBeforeChange;
+
+  /// callback executed before applying values changes
+  final BeforeChangeMultiSelection<T>? onBeforeChangeMultiSelection;
+
+  ///show or hide favorites items
   final bool showFavoriteItems;
+
+  ///to customize favorites chips
+  final FavoriteItemsBuilder<T>? favoriteItemBuilder;
+
+  ///favorites items list
+  final FavoriteItems<T>? favoriteItems;
+
+  ///favorite items alignment
+  final MainAxisAlignment? favoriteItemsAlignment;
+
+  ///set properties of popup safe area
+  final PopupSafeArea popupSafeArea;
+
+  /// object that passes all props to search field
+  final TextFieldProps? searchFieldProps;
+
+  /// scrollbar properties
+  final ScrollbarProps? scrollbarProps;
+
+  /// whether modal can be dismissed by tapping the modal barrier
+  final bool popupBarrierDismissible;
+
+  ///define whatever we are in multi selection mode or single selection mode
+  final bool isMultiSelectionMode;
+
+  ///called when a new item added on Multi selection mode
+  final OnItemAdded<T>? popupOnItemAdded;
+
+  ///called when a new item added on Multi selection mode
+  final OnItemRemoved<T>? popupOnItemRemoved;
+
+  ///widget used to show checked items in multiSelection mode
+  final DropdownSearchPopupItemBuilder<T>? popupSelectionWidget;
+
+  ///widget used to validate items in multiSelection mode
+  final ValidationMultiSelectionBuilder<T?>?
+      popupValidationMultiSelectionWidget;
+
+  /// elevation for popup items
+  final double popupElevation;
 
   /// Creates field for selecting value(s) from a searchable list
   FormBuilderSearchableDropdown({
@@ -131,7 +210,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     VoidCallback? onReset,
     FocusNode? focusNode,
     required this.items,
-    this.autoValidate = false,
     this.mode = dropdown_search.Mode.MENU,
     this.hint,
     this.isFilteredOnline = false,
@@ -142,17 +220,14 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.popupItemBuilder,
     this.showSearchBox = true,
     this.showClearButton = false,
-    this.searchBoxDecoration,
     this.popupBackgroundColor,
     this.maxHeight,
     this.filterFn,
     this.itemAsString,
-    this.showSelectedItem = false,
     this.compareFn,
     this.emptyBuilder,
     this.loadingBuilder,
     this.errorBuilder,
-    this.autoFocusSearchBox = false,
     this.dialogMaxWidth,
     this.clearButton,
     this.dropDownButton,
@@ -168,10 +243,33 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.onBeforeChange,
     this.favoriteItemsAlignment = MainAxisAlignment.start,
     this.onPopupDismissed,
-    this.searchBoxController,
+    // this.searchBoxController,
     this.searchDelay,
     this.showAsSuffixIcons = false,
     this.showFavoriteItems = false,
+    this.selectedItems = const [],
+    this.onChangedMultiSelection,
+    this.dropdownBuilderMultiSelection,
+    this.showSelectedItems = false,
+    this.dropdownSearchDecoration,
+    this.dropdownSearchBaseStyle,
+    this.dropdownSearchTextAlign,
+    this.dropdownSearchTextAlignVertical,
+    this.autoValidateMode,
+    this.onSavedMultiSelection,
+    this.clearButtonSplashRadius,
+    this.dropdownButtonSplashRadius,
+    this.onBeforeChangeMultiSelection,
+    this.popupSafeArea = const PopupSafeArea(),
+    this.searchFieldProps,
+    this.scrollbarProps,
+    this.popupBarrierDismissible = true,
+    this.isMultiSelectionMode = false,
+    this.popupOnItemAdded,
+    this.popupOnItemRemoved,
+    this.popupSelectionWidget,
+    this.popupValidationMultiSelectionWidget,
+    this.popupElevation = 0,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -191,8 +289,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
             return InputDecorator(
               decoration: state.decoration,
               child: dropdown_search.DropdownSearch<T>(
-                //Hack to rebuild when didChange is called
                 key: ValueKey(state.value),
+                // Hack to rebuild when didChange is called
                 items: items,
                 maxHeight: 300,
                 onFind: onFind,
@@ -203,7 +301,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 showSearchBox: showSearchBox,
                 hint: hint,
                 enabled: state.enabled,
-                autoFocusSearchBox: autoFocusSearchBox,
+
                 autoValidateMode: autovalidateMode,
                 clearButton: clearButton,
                 compareFn: compareFn,
@@ -228,10 +326,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 popupItemDisabled: popupItemDisabled,
                 popupShape: popupShape,
                 popupTitle: popupTitle,
-                searchBoxDecoration: searchBoxDecoration,
                 selectedItem: state.value,
                 showClearButton: showClearButton,
-                showSelectedItem: showSelectedItem,
                 label: label,
                 clearButtonBuilder: clearButtonBuilder,
                 dropdownButtonBuilder: dropdownButtonBuilder,
@@ -240,10 +336,23 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 onBeforeChange: onBeforeChange,
                 favoriteItemsAlignment: favoriteItemsAlignment,
                 onPopupDismissed: onPopupDismissed,
-                searchBoxController: searchBoxController,
+                // searchBoxController: searchBoxController,
                 searchDelay: searchDelay,
                 showAsSuffixIcons: showAsSuffixIcons,
                 showFavoriteItems: showFavoriteItems,
+                clearButtonSplashRadius: clearButtonSplashRadius,
+                dropdownButtonSplashRadius: dropdownButtonSplashRadius,
+                dropdownSearchBaseStyle: dropdownSearchBaseStyle,
+                dropdownSearchTextAlign: dropdownSearchTextAlign,
+                dropdownSearchTextAlignVertical:
+                    dropdownSearchTextAlignVertical,
+                // onSaved: onSaved,
+                popupBarrierDismissible: popupBarrierDismissible,
+                popupElevation: popupElevation,
+                popupSafeArea: popupSafeArea,
+                scrollbarProps: scrollbarProps,
+                searchFieldProps: searchFieldProps,
+                showSelectedItems: showSelectedItems,
               ),
             );
           },
