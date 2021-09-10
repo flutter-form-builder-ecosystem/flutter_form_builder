@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   name: 'color_picker',
                   initialValue: Colors.yellow,
                   // readOnly: true,
-                  colorPickerType: ColorPickerType.MaterialPicker,
+                  colorPickerType: ColorPickerType.materialPicker,
                   decoration: const InputDecoration(labelText: 'Color Picker'),
                 ),
                 FormBuilderChipsInput<Contact>(

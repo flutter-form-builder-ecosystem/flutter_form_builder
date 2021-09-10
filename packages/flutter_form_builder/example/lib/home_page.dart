@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Form Builder'),
+        title: const Text('Flutter Form Builder')
       ),
       body: ListView(
         children: <Widget>[

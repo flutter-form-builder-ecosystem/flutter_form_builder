@@ -19,7 +19,7 @@ class CompleteFormState extends State<CompleteForm> {
   bool _ageHasError = false;
   bool _genderHasError = false;
 
-  final ValueChanged _onChanged = (val) => print(val);
+  final ValueChanged _onChanged = (dynamic val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
 
   @override
@@ -33,7 +33,7 @@ class CompleteFormState extends State<CompleteForm> {
               key: _formKey,
               // enabled: false,
               autovalidateMode: AutovalidateMode.disabled,
-              initialValue: {
+              initialValue: const {
                 'movie_rating': 5,
                 'best_language': 'Dart',
                 'age': '13',
