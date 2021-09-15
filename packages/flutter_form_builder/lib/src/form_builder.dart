@@ -109,14 +109,23 @@ class FormBuilderState extends State<FormBuilder> {
     // field is being replaced, the new instance is registered before the old
     // one is unregistered.  To accommodate that use case, but also provide
     // assistance to accidental duplicate names, we check and emit a warning.
+    final oldField = _fields[name];
     assert(() {
-      if (_fields.containsKey(name)) {
+      if (oldField != null) {
         debugPrint('Warning! Replacing duplicate Field for $name'
             ' -- this is OK to ignore as long as the field was intentionally replaced');
       }
       return true;
     }());
+
     _fields[name] = field;
+    if (oldField != null) {
+      // ignore: invalid_use_of_protected_member
+      field.setValue(oldField.value);
+    } else {
+      // ignore: invalid_use_of_protected_member
+      field.setValue(field.initialValue);
+    }
   }
 
   void unregisterField(String name, FormBuilderFieldState field) {

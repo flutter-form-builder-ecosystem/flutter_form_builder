@@ -124,11 +124,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     super.initState();
     // Register this field when there is a parent FormBuilder
     _formBuilderState = FormBuilder.of(context);
+    // Set the initial value
     _formBuilderState?.registerField(widget.name, this);
     // Register a touch handler
     effectiveFocusNode.addListener(_touchedHandler);
-    // Set the initial value
-    setValue(initialValue);
   }
 
   @override
