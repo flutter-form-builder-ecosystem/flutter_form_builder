@@ -437,8 +437,8 @@ class _FormBuilderTextFieldState
   @override
   void initState() {
     super.initState();
-    _controller =
-        widget.controller ?? TextEditingController(text: initialValue);
+    //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
+    _controller = widget.controller ?? TextEditingController(text: value);
     _controller!.addListener(_handleControllerChanged);
   }
 

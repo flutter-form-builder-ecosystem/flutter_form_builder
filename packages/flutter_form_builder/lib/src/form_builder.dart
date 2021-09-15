@@ -122,12 +122,21 @@ class FormBuilderState extends State<FormBuilder> {
     if (oldField != null) {
       // ignore: invalid_use_of_protected_member
       field.setValue(oldField.value);
+      _tempFieldValues.remove(name);
     } else {
-      // ignore: invalid_use_of_protected_member
-      field.setValue(field.initialValue);
+      final oldTemp = _tempFieldValues[name];
+      if (oldTemp != null) {
+        // ignore: invalid_use_of_protected_member
+        field.setValue(oldTemp);
+        _tempFieldValues.remove(name);
+      } else {
+        // ignore: invalid_use_of_protected_member
+        field.setValue(field.initialValue);
+      }
     }
   }
 
+  final _tempFieldValues = <String, dynamic>{};
   void unregisterField(String name, FormBuilderFieldState field) {
     assert(_fields.containsKey(name));
     // Only remove the field when it is the one registered.  It's possible that
@@ -135,6 +144,7 @@ class FormBuilderState extends State<FormBuilder> {
     // before unregisterField is called for the name, so just emit a warning
     // since it may be intentional.
     if (field == _fields[name]) {
+      _tempFieldValues[name] = field.value;
       _fields.remove(name);
     } else {
       assert(() {
