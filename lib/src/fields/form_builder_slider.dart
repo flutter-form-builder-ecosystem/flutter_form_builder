@@ -124,6 +124,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
   /// The var used to limit the value SHOWN, not the actual value to an int
   final bool showByInt;
 
+
   ///TODO: Add documentation
   final NumberFormat? numberFormat;
   final DisplayValues displayValues;
@@ -187,7 +188,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Slider(
-                      value: (showByInt) ? ((field.value!)?.round()).toString() : field.value!,
+                      value: field.value!,
                       min: min,
                       max: max,
                       divisions: divisions,
@@ -219,6 +220,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.minMax)
                           Text(
+                            (showByInt) ? ((field.value!).round()).toString():
                             _numberFormat.format(field.value),
                             style: textStyle,
                           ),
