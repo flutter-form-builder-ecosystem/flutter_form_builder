@@ -121,6 +121,9 @@ class FormBuilderSlider extends FormBuilderField<double> {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
+  /// The var used to limit the value SHOWN, not the actual value to an int
+  final bool showByInt;
+
   ///TODO: Add documentation
   final NumberFormat? numberFormat;
   final DisplayValues displayValues;
@@ -145,6 +148,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
     FocusNode? focusNode,
     required this.min,
     required this.max,
+    this.showByInt = false,
     this.divisions,
     this.activeColor,
     this.inactiveColor,
@@ -183,7 +187,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Slider(
-                      value: field.value!,
+                      value: (showByInt) ? ((field.value!)?.round()).toString() : field.value!,
                       min: min,
                       max: max,
                       divisions: divisions,
