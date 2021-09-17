@@ -100,6 +100,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   FormBuilderState? _formBuilderState;
 
+  dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
+
   @override
   String? get errorText => super.errorText ?? _customErrorText;
 
@@ -138,17 +140,30 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     super.dispose();
   }
 
-  @override
-  void save() {
-    super.save();
+  // @override
+  // void save() {
+  //   _informFormForFieldChange(
+  //     isSetState: true,
+  //   );
+  //   super.save();
+  // }
+
+  void _informFormForFieldChange({
+    required bool isSetState,
+  }) {
     if (_formBuilderState != null) {
       if (enabled || !_formBuilderState!.widget.skipDisabled) {
-        _formBuilderState!.setInternalFieldValue(
+        _formBuilderState!.setInternalFieldValue<T>(
           widget.name,
-          widget.valueTransformer?.call(value) ?? value,
+          value,
+          transformer: widget.valueTransformer,
+          isSetState: isSetState,
         );
       } else {
-        _formBuilderState!.removeInternalFieldValue(widget.name);
+        _formBuilderState!.removeInternalFieldValue(
+          widget.name,
+          isSetState: isSetState,
+        );
       }
     }
   }
@@ -160,8 +175,21 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   @override
+  void setValue(T? value, {bool populateForm = true}) {
+    super.setValue(value);
+    if (populateForm) {
+      _informFormForFieldChange(
+        isSetState: false,
+      );
+    }
+  }
+
+  @override
   void didChange(T? value) {
     super.didChange(value);
+    _informFormForFieldChange(
+      isSetState: false,
+    );
     widget.onChanged?.call(value);
   }
 

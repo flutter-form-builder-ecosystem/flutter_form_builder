@@ -86,20 +86,62 @@ class FormBuilderState extends State<FormBuilder> {
 
   final _fields = <String, FormBuilderFieldState>{};
 
-  final _value = <String, dynamic>{};
+  final _transformers = <String, dynamic Function(Object?)>{};
+  final _instantValue = <String, dynamic>{};
+  final _savedValue = <String, dynamic>{};
 
-  Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(_value);
+  Map<String, dynamic> get instantValue =>
+      Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
+          MapEntry(key, _transformers[key]?.call(value) ?? value)));
 
+  /// Returns the saved value only
+  Map<String, dynamic> get value =>
+      Map<String, dynamic>.unmodifiable(_savedValue.map((key, value) =>
+          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+
+  /// Returns values after saving
   Map<String, dynamic> get initialValue => widget.initialValue;
 
   Map<String, FormBuilderFieldState> get fields => _fields;
 
-  void setInternalFieldValue(String name, dynamic value) {
-    setState(() => _value[name] = value);
+  dynamic transformValue<T>(String name, T? v) {
+    final t = _transformers[name];
+    return t != null ? t.call(v) : v;
   }
 
-  void removeInternalFieldValue(String name) {
-    setState(() => _value.remove(name));
+  dynamic getTransformedValue<T>(String name, {bool fromSaved = false}) {
+    final og = fromSaved ? _savedValue[name] : _instantValue[name];
+    return transformValue<T>(name, og);
+  }
+
+  T? getRawValue<T>(String name, {bool fromSaved = false}) {
+    return fromSaved ? _savedValue[name] : _instantValue[name];
+  }
+
+  void setInternalFieldValue<T>(
+    String name,
+    T? value, {
+    required dynamic Function(T?)? transformer,
+    required bool isSetState,
+  }) {
+    _instantValue[name] = value;
+
+    if (transformer != null) {
+      _transformers[name] = (val) => transformer(val as T?);
+    }
+    if (isSetState) {
+      setState(() {});
+    }
+  }
+
+  void removeInternalFieldValue(
+    String name, {
+    required bool isSetState,
+  }) {
+    _instantValue.remove(name);
+    if (isSetState) {
+      setState(() {});
+    }
   }
 
   void registerField(String name, FormBuilderFieldState field) {
@@ -121,22 +163,19 @@ class FormBuilderState extends State<FormBuilder> {
     _fields[name] = field;
     if (oldField != null) {
       // ignore: invalid_use_of_protected_member
-      field.setValue(oldField.value);
-      _tempFieldValues.remove(name);
+      field.setValue(
+        oldField.value,
+        populateForm: false,
+      );
     } else {
-      final oldTemp = _tempFieldValues[name];
-      if (oldTemp != null) {
-        // ignore: invalid_use_of_protected_member
-        field.setValue(oldTemp);
-        _tempFieldValues.remove(name);
-      } else {
-        // ignore: invalid_use_of_protected_member
-        field.setValue(field.initialValue);
-      }
+      // ignore: invalid_use_of_protected_member
+      field.setValue(
+        _instantValue[name] ?? field.initialValue,
+        populateForm: false,
+      );
     }
   }
 
-  final _tempFieldValues = <String, dynamic>{};
   void unregisterField(String name, FormBuilderFieldState field) {
     assert(_fields.containsKey(name));
     // Only remove the field when it is the one registered.  It's possible that
@@ -144,7 +183,6 @@ class FormBuilderState extends State<FormBuilder> {
     // before unregisterField is called for the name, so just emit a warning
     // since it may be intentional.
     if (field == _fields[name]) {
-      _tempFieldValues[name] = field.value;
       _fields.remove(name);
     } else {
       assert(() {
@@ -156,11 +194,14 @@ class FormBuilderState extends State<FormBuilder> {
       }());
     }
     // Removes internal field value
-    _value.remove(name);
+    // _savedValue.remove(name);
   }
 
   void save() {
     _formKey.currentState!.save();
+    //copy values from instant to saved
+    _savedValue.clear();
+    _savedValue.addAll(_instantValue);
   }
 
   void invalidateField({required String name, String? errorText}) =>
