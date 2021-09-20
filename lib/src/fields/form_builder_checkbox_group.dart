@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/widgets/grouped_checkbox.dart';
 
 /// A list of Checkboxes for selecting multiple options
 class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
