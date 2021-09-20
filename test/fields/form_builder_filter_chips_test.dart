@@ -5,9 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'form_builder_tester.dart';
 
 void main() {
-  testWidgets('FormBuilderChoiceChip -- 1,3', (WidgetTester tester) async {
-    const widgetName = 'cc1';
-    final testWidget = FormBuilderChoiceChip<int>(
+  testWidgets('FormBuilderFilterChip -- 1,3', (WidgetTester tester) async {
+    const widgetName = 'formBuilderFilterChip';
+
+    final testWidget = FormBuilderFilterChip<int>(
       shouldChipRequestFocus: false,
       name: widgetName,
       options: const [
@@ -19,14 +20,14 @@ void main() {
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), isNull);
+    expect(formValue(widgetName), equals(<num>[]));
     await tester.tap(find.byKey(ValueKey('1')));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(1));
+    expect(formValue(widgetName), equals(<num>[1]));
     await tester.tap(find.byKey(ValueKey('3')));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(3));
+    expect(formValue(widgetName), equals(<num>[1, 3]));
   });
 }
