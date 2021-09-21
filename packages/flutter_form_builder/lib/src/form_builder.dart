@@ -170,7 +170,7 @@ class FormBuilderState extends State<FormBuilder> {
     } else {
       // ignore: invalid_use_of_protected_member
       field.setValue(
-        _instantValue[name] ?? field.initialValue,
+        _instantValue[name] ??= field.initialValue,
         populateForm: false,
       );
     }
