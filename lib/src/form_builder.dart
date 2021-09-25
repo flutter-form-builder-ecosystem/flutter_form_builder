@@ -156,7 +156,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool validate() {
     final hasError = !_formKey.currentState!.validate();
-    if (hasError && validationAutoFocus) {
+    if (hasError && widget.validationAutoFocus) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
       wrongFields.first.requestFocus();
