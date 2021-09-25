@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -110,12 +112,12 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   dynamic getTransformedValue<T>(String name, {bool fromSaved = false}) {
-    final og = fromSaved ? _savedValue[name] : _instantValue[name];
-    return transformValue<T>(name, og);
+    return transformValue<T>(name, getRawValue(name));
   }
 
   T? getRawValue<T>(String name, {bool fromSaved = false}) {
-    return fromSaved ? _savedValue[name] : _instantValue[name];
+    return (fromSaved ? _savedValue[name] : _instantValue[name]) ??
+        initialValue[name];
   }
 
   void setInternalFieldValue<T>(
@@ -226,7 +228,21 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void reset() {
+    log('reset called');
     _formKey.currentState!.reset();
+    for (var item in _fields.entries) {
+      try {
+        item.value.didChange(getRawValue(item.key));
+      } catch (e, st) {
+        log(
+          'Error when resetting field: ${item.key}',
+          error: e,
+          stackTrace: st,
+          level: 2000,
+        );
+      }
+    }
+    // _formKey.currentState!.setState(() {});
   }
 
   void patchValue(Map<String, dynamic> val) {
