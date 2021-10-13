@@ -38,7 +38,7 @@ Widget build(BuildContext context) {
     children: <Widget>[
       FormBuilder(
         key: _formKey,
-        autovalidate: true,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: <Widget>[
             FormBuilderFilterChip(
