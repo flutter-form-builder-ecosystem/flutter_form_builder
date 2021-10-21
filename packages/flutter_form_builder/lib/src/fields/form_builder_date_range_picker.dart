@@ -183,7 +183,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     try {
       return format.format(date);
     } catch (e) {
-      // print('Error formatting date: $e');
+      // Ignore exception
     }
     return '';
   }
@@ -266,8 +266,8 @@ class FormBuilderDateRangePickerState
   }
 
   @override
-  void didChange(DateTimeRange? value) {
-    super.didChange(value);
+  void didChange(DateTimeRange? val) {
+    super.didChange(val);
     _setTextFieldString();
   }
 
