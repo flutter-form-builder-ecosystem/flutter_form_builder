@@ -240,10 +240,10 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
 
             return InputDecorator(
               decoration: state.decoration.copyWith(
-                    floatingLabelBehavior: hint == null
-                        ? decoration.floatingLabelBehavior
-                        : FloatingLabelBehavior.always,
-                  ),
+                floatingLabelBehavior: hint == null
+                    ? decoration.floatingLabelBehavior
+                    : FloatingLabelBehavior.always,
+              ),
               isEmpty: state.value == null,
               child: Row(
                 children: <Widget>[
