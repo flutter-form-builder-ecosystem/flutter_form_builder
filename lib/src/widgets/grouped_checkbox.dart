@@ -179,7 +179,7 @@ class GroupedCheckbox<T> extends StatefulWidget {
 
   final ControlAffinity controlAffinity;
 
-  GroupedCheckbox({
+  const GroupedCheckbox({
     Key? key,
     required this.options,
     required this.orientation,
