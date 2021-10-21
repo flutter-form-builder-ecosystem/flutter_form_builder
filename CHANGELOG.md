@@ -1,3 +1,10 @@
+## [6.2.0] - 21-Oct-2021
+* Fixed `didChange` unable to handle null value in  `FormBuilderTextField`
+
+**BREAKING CHANGE**
+* Added new attribute - `autoFocusOnValidationFailure` (default: `false`) - to FormBuilder to set whether should scroll to first error if validation fails
+
+
 ## [6.1.0] - 01-Sep-2021
 * When form validation fails, automatically scroll to first error
 * New way to programmatically induce custom errors by calling `GlobalKey<FormBuilderState>.invalidateField()` or `GlobalKey<FormBuilderFieldState>.invalidate()`
