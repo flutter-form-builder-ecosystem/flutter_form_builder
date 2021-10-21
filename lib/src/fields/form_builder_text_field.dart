@@ -465,7 +465,7 @@ class _FormBuilderTextFieldState
     super.didChange(value);
 
     if (_effectiveController!.text != value) {
-      _effectiveController!.text = value!;
+      _effectiveController!.text = value ?? '';
     }
   }
 
