@@ -58,6 +58,9 @@ class FormBuilder extends StatefulWidget {
   /// and their enabled state will be ignored.
   final bool enabled;
 
+  /// Whether the form should auto focus on the first field that fails validation.
+  final bool validationAutoFocus;
+
   /// Creates a container for form fields.
   ///
   /// The [child] argument must not be null.
@@ -70,6 +73,7 @@ class FormBuilder extends StatefulWidget {
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
     this.enabled = true,
+    this.validationAutoFocus = true,
   }) : super(key: key);
 
   static FormBuilderState? of(BuildContext context) =>
@@ -152,7 +156,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool validate() {
     final hasError = !_formKey.currentState!.validate();
-    if (hasError) {
+    if (hasError && widget.validationAutoFocus) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
       wrongFields.first.requestFocus();
