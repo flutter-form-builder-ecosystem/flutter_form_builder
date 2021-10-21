@@ -319,11 +319,11 @@ class _FormBuilderPhoneFieldState
     if (initialValue != null && initialValue!.isNotEmpty) {
       try {
         final parseResult = await PhoneNumberUtil().parse(initialValue!);
-          setState(() {
-            _selectedDialogCountry = CountryPickerUtils.getCountryByPhoneCode(
-                parseResult.countryCode);
-          });
-          _effectiveController.text = parseResult.nationalNumber;
+        setState(() {
+          _selectedDialogCountry =
+              CountryPickerUtils.getCountryByPhoneCode(parseResult.countryCode);
+        });
+        _effectiveController.text = parseResult.nationalNumber;
       } catch (error) {
         _effectiveController.text = initialValue!.replaceFirst('+', '');
       }

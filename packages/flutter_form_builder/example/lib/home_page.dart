@@ -10,9 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Form Builder')
-      ),
+      appBar: AppBar(title: const Text('Flutter Form Builder')),
       body: ListView(
         children: <Widget>[
           ListTile(

@@ -310,9 +310,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 dropdownBuilderSupportsNullItem:
                     dropdownBuilderSupportsNullItem,
                 dropDownButton: dropDownButton,
-                dropdownSearchDecoration: InputDecoration.collapsed(
-                  hintText: hint,
-                ),
+                dropdownSearchDecoration:
+                    InputDecoration.collapsed(hintText: hint),
                 emptyBuilder: emptyBuilder,
                 errorBuilder: errorBuilder,
                 filterFn: filterFn,
