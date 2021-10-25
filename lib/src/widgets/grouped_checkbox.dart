@@ -256,7 +256,9 @@ class GroupedCheckbox<T> extends StatelessWidget {
       focusColor: focusColor,
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
-      value: true == value?.contains(optionValue),
+      value: tristate
+          ? value?.contains(optionValue)
+          : true == value?.contains(optionValue),
       tristate: tristate,
       onChanged: isOptionDisabled
           ? null
