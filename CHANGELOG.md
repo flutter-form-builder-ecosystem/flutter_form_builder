@@ -1,3 +1,6 @@
+## [6.2.1] - 27-Oct-2021
+* Fixed bug where `didChange` and `reset` on FormBuilderCheckboxGroup has no visible effect
+
 ## [6.2.0] - 21-Oct-2021
 * Fixed `didChange` unable to handle null value in  `FormBuilderTextField`
 
