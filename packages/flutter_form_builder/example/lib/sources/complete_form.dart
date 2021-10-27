@@ -5,6 +5,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
 
 class CompleteForm extends StatefulWidget {
+  const CompleteForm({Key? key}) : super(key: key);
+
   @override
   CompleteFormState createState() {
     return CompleteFormState();
@@ -19,8 +21,9 @@ class CompleteFormState extends State<CompleteForm> {
   bool _ageHasError = false;
   bool _genderHasError = false;
 
-  final ValueChanged _onChanged = (dynamic val) => print(val);
   var genderOptions = ['Male', 'Female', 'Other'];
+
+  void _onChanged(dynamic val) => debugPrint(val);
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +53,14 @@ class CompleteFormState extends State<CompleteForm> {
                     decoration: InputDecoration(
                       labelText: 'Appointment Time',
                       suffixIcon: IconButton(
-                          icon: Icon(Icons.close),
+                          icon: const Icon(Icons.close),
                           onPressed: () {
                             _formKey.currentState!.fields['date']
                                 ?.didChange(null);
                           }),
                     ),
-                    initialTime: TimeOfDay(hour: 8, minute: 0),
-                    locale: Locale.fromSubtags(languageCode: 'fr'),
+                    initialTime: const TimeOfDay(hour: 8, minute: 0),
+                    locale: const Locale.fromSubtags(languageCode: 'fr'),
                   ),
                   FormBuilderDateRangePicker(
                     name: 'date_range',
@@ -70,7 +73,7 @@ class CompleteFormState extends State<CompleteForm> {
                       helperText: 'Helper text',
                       hintText: 'Hint text',
                       suffixIcon: IconButton(
-                          icon: Icon(Icons.close),
+                          icon: const Icon(Icons.close),
                           onPressed: () {
                             _formKey.currentState!.fields['date_range']
                                 ?.didChange(null);
@@ -99,7 +102,7 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                     min: 0.0,
                     max: 100.0,
-                    initialValue: RangeValues(4, 7),
+                    initialValue: const RangeValues(4, 7),
                     divisions: 20,
                     activeColor: Colors.red,
                     inactiveColor: Colors.pink[100],
@@ -110,7 +113,7 @@ class CompleteFormState extends State<CompleteForm> {
                     initialValue: false,
                     onChanged: _onChanged,
                     title: RichText(
-                      text: TextSpan(
+                      text: const TextSpan(
                         children: [
                           TextSpan(
                             text: 'I have read and agree to the ',
@@ -175,7 +178,7 @@ class CompleteFormState extends State<CompleteForm> {
                     ),
                     // initialValue: 'Male',
                     allowClear: true,
-                    hint: Text('Select Gender'),
+                    hint: const Text('Select Gender'),
                     validator: FormBuilderValidators.compose(
                         [FormBuilderValidators.required(context)]),
                     items: genderOptions
@@ -270,10 +273,10 @@ class CompleteFormState extends State<CompleteForm> {
                     color: Theme.of(context).colorScheme.secondary,
                     onPressed: () {
                       if (_formKey.currentState?.saveAndValidate() ?? false) {
-                        print(_formKey.currentState?.value);
+                        debugPrint(_formKey.currentState?.value.toString());
                       } else {
-                        print(_formKey.currentState?.value);
-                        print('validation failed');
+                        debugPrint(_formKey.currentState?.value.toString());
+                        debugPrint('validation failed');
                       }
                     },
                     child: const Text(

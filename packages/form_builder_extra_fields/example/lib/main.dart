@@ -4,10 +4,12 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -16,12 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         FormBuilderLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale('en', ''),
         Locale('es', ''),
         Locale('fr', ''),
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         Locale('sk', ''),
         Locale('pl', ''),
       ],
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }

@@ -7,6 +7,8 @@ import 'code_page.dart';
 import 'sources/complete_form.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +22,7 @@ class HomePage extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return CodePage(
+                    return const CodePage(
                       title: 'Complete Form',
                       sourceFilePath: 'lib/sources/complete_form.dart',
                       child: CompleteForm(),
@@ -38,7 +40,7 @@ class HomePage extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return CodePage(
+                    return const CodePage(
                       title: 'Custom Fields',
                       sourceFilePath: 'lib/sources/custom_fields.dart',
                       child: CustomFields(),
@@ -56,7 +58,7 @@ class HomePage extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return CodePage(
+                    return const CodePage(
                       title: 'Signup Form',
                       sourceFilePath: 'lib/sources/signup_form.dart',
                       child: SignupForm(),

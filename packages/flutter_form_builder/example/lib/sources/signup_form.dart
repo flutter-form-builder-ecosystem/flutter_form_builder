@@ -4,6 +4,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class SignupForm extends StatefulWidget {
+  const SignupForm({Key? key}) : super(key: key);
+
   @override
   _SignupFormState createState() => _SignupFormState();
 }
@@ -25,7 +27,7 @@ class _SignupFormState extends State<SignupForm> {
               children: [
                 FormBuilderTextField(
                   name: 'full_name',
-                  decoration: InputDecoration(labelText: 'Full Name'),
+                  decoration: const InputDecoration(labelText: 'Full Name'),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                   ]),
@@ -34,7 +36,7 @@ class _SignupFormState extends State<SignupForm> {
                 FormBuilderTextField(
                   key: _emailFieldKey,
                   name: 'email',
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email'),
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
                     FormBuilderValidators.email(context),
@@ -43,7 +45,7 @@ class _SignupFormState extends State<SignupForm> {
                 const SizedBox(height: 10),
                 FormBuilderTextField(
                   name: 'password',
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(context),
@@ -86,14 +88,14 @@ class _SignupFormState extends State<SignupForm> {
                     FormBuilderValidators.equal(context, true),
                   ]),
                   // initialValue: true,
-                  decoration: InputDecoration(labelText: 'Accept Terms?'),
+                  decoration: const InputDecoration(labelText: 'Accept Terms?'),
                   builder: (FormFieldState<bool?> field) {
                     return InputDecorator(
                       decoration: InputDecoration(
                         errorText: field.errorText,
                       ),
                       child: SwitchListTile(
-                        title: Text(
+                        title: const Text(
                             'I have read and accept the terms of service.'),
                         onChanged: (bool value) {
                           field.didChange(value);
@@ -116,13 +118,13 @@ class _SignupFormState extends State<SignupForm> {
                         // _emailFieldKey.currentState?.invalidate('Email already taken.');
                       }
 
-                      print('Valid');
+                      debugPrint('Valid');
                     } else {
-                      print('Invalid');
+                      debugPrint('Invalid');
                     }
-                    print(_formKey.currentState?.value);
+                    debugPrint(_formKey.currentState?.value.toString());
                   },
-                  child: Text('Signup', style: TextStyle(color: Colors.white)),
+                  child: const Text('Signup', style: TextStyle(color: Colors.white)),
                 )
               ],
             ),

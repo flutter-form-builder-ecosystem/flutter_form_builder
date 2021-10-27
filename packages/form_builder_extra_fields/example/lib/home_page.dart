@@ -5,20 +5,21 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'data.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   final _formKey = GlobalKey<FormBuilderState>();
-  final ValueChanged _onChanged = (dynamic val) => print(val);
+
+  void _onChanged(dynamic val) => debugPrint(val.toString());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Extra Fields Example'),
-      ),
+      appBar: AppBar(title: const Text('Extra Fields Example')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: const InputDecoration(
                     labelText: 'Cupertino DateTime Picker',
                   ),
-                  locale: Locale.fromSubtags(languageCode: 'en_GB'),
+                  locale: const Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderCupertinoDateTimePicker(
                   name: 'date',
@@ -106,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: const InputDecoration(
                     labelText: 'Cupertino DateTime Picker - Date Only',
                   ),
-                  locale: Locale.fromSubtags(languageCode: 'en_GB'),
+                  locale: const Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderCupertinoDateTimePicker(
                   name: 'time',
@@ -115,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: const InputDecoration(
                     labelText: 'Cupertino DateTime Picker - Time Only',
                   ),
-                  locale: Locale.fromSubtags(languageCode: 'en_GB'),
+                  locale: const Locale.fromSubtags(languageCode: 'en_GB'),
                 ),
                 FormBuilderTypeAhead<String>(
                   decoration: const InputDecoration(
@@ -182,10 +183,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: () {
                           if (_formKey.currentState?.saveAndValidate() ??
                               false) {
-                            print(_formKey.currentState?.value);
+                            debugPrint(_formKey.currentState?.value.toString());
                           } else {
-                            print(_formKey.currentState?.value);
-                            print('validation failed');
+                            debugPrint(_formKey.currentState?.value.toString());
+                            debugPrint('validation failed');
                           }
                         },
                         child: const Text(

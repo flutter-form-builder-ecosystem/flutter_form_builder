@@ -423,13 +423,11 @@ class _FormBuilderPhoneFieldState
   }
 
   Widget _buildDialogItem(Country country) {
-    return Container(
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: CountryPickerUtils.getDefaultFlagImage(country),
-        title: Text(country.name),
-        trailing: Text('+${country.phoneCode}'),
-      ),
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: CountryPickerUtils.getDefaultFlagImage(country),
+      title: Text(country.name),
+      trailing: Text('+${country.phoneCode}'),
     );
   }
 }

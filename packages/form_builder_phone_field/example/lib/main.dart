@@ -4,10 +4,12 @@ import 'package:form_builder_phone_field/form_builder_phone_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,12 +26,12 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  MyHomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("FormBuilderPhoneField"),
-      ),
+      appBar: AppBar(title: const Text("FormBuilderPhoneField")),
       body: FormBuilder(
         key: _formKey,
         child: Padding(
@@ -44,7 +46,7 @@ class MyHomePage extends StatelessWidget {
                   hintText: 'Hint',
                 ),
                 // onChanged: _onChanged,
-                priorityListByIsoCode: ['KE'],
+                priorityListByIsoCode: const ['KE'],
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.numeric(context),
                   FormBuilderValidators.required(context),
@@ -59,7 +61,7 @@ class MyHomePage extends StatelessWidget {
                   hintText: 'Hint',
                 ),
                 // onChanged: _onChanged,
-                priorityListByIsoCode: ['US'],
+                priorityListByIsoCode: const ['US'],
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.numeric(context),
                   FormBuilderValidators.required(context),
@@ -69,10 +71,10 @@ class MyHomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.saveAndValidate()) {
-                    print(_formKey.currentState!.value);
+                    debugPrint(_formKey.currentState!.value.toString());
                   }
                 },
-                child: Text("Submit"),
+                child: const Text("Submit"),
               )
             ],
           ),
