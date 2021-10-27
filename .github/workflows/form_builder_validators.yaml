@@ -6,13 +6,13 @@ name: Form Builder Validators
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [split_packages]
+    branches: [master]
     paths:
       - "packages/form_builder_validators/**"
       - ".github/workflows/form_builder_validators.yaml"
 
   pull_request:
-    branches: [split_packages]
+    branches: [master]
     paths:
       - "packages/form_builder_validators/**"
       - ".github/workflows/form_builder_validators.yaml"
