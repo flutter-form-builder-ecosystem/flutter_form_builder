@@ -192,7 +192,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final PositionCallback? positionCallback;
 
   /// Creates field for selecting value(s) from a searchable list
-  FormBuilderSearchableDropdown( {
+  FormBuilderSearchableDropdown({
     Key? key,
     //From Super
     required String name,

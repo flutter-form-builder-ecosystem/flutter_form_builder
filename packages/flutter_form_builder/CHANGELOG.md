@@ -1,5 +1,5 @@
 ## [7.0.0] - 27-Oct-2021
-**BREAKING CHANGES**:
+**BREAKING CHANGE**:
 * For ease of maintainability, validation functionality has been broken up into a separate package: [form_builder_validators](https://pub.dev/packages/form_builder_validators)
 
 ## [7.0.0-beta.0] - 02-Sep-2021
