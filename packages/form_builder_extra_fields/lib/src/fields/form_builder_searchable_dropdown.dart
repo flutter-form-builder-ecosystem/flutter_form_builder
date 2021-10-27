@@ -8,12 +8,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selecting value(s) from a searchable list
 class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
-  ///DropDownSearch label
-  final String? label;
-
-  ///DropDownSearch hint
-  final String? hint;
-
   ///show/hide the search box
   final bool showSearchBox;
 
@@ -164,7 +158,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final MainAxisAlignment? favoriteItemsAlignment;
 
   ///set properties of popup safe area
-  final PopupSafeArea popupSafeArea;
+  final PopupSafeAreaProps popupSafeArea;
 
   /// object that passes all props to search field
   final TextFieldProps? searchFieldProps;
@@ -194,8 +188,11 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   /// elevation for popup items
   final double popupElevation;
 
+  /// function to override position calculation
+  final PositionCallback? positionCallback;
+
   /// Creates field for selecting value(s) from a searchable list
-  FormBuilderSearchableDropdown({
+  FormBuilderSearchableDropdown( {
     Key? key,
     //From Super
     required String name,
@@ -211,7 +208,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     FocusNode? focusNode,
     required this.items,
     this.mode = dropdown_search.Mode.MENU,
-    this.hint,
     this.isFilteredOnline = false,
     this.popupTitle,
     this.selectedItem,
@@ -235,7 +231,6 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.popupShape,
     this.popupItemDisabled,
     this.popupBarrierColor,
-    this.label,
     this.clearButtonBuilder,
     this.dropdownButtonBuilder,
     this.favoriteItemBuilder,
@@ -260,7 +255,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.clearButtonSplashRadius,
     this.dropdownButtonSplashRadius,
     this.onBeforeChangeMultiSelection,
-    this.popupSafeArea = const PopupSafeArea(),
+    this.popupSafeArea = const PopupSafeAreaProps(),
     this.searchFieldProps,
     this.scrollbarProps,
     this.popupBarrierDismissible = true,
@@ -270,6 +265,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.popupSelectionWidget,
     this.popupValidationMultiSelectionWidget,
     this.popupElevation = 0,
+    this.positionCallback,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -286,73 +282,65 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderSearchableDropdownState<T>;
 
-            return InputDecorator(
-              decoration: state.decoration,
-              child: dropdown_search.DropdownSearch<T>(
-                key: ValueKey(state.value),
-                // Hack to rebuild when didChange is called
-                items: items,
-                maxHeight: 300,
-                onFind: onFind,
-                onChanged: (val) {
-                  state.requestFocus();
-                  state.didChange(val);
-                },
-                showSearchBox: showSearchBox,
-                hint: hint,
-                enabled: state.enabled,
+            return dropdown_search.DropdownSearch<T>(
+              key: ValueKey(state.value),
+              // Hack to rebuild when didChange is called
+              items: items,
+              maxHeight: 300,
+              onFind: onFind,
+              onChanged: (val) {
+                state.requestFocus();
+                state.didChange(val);
+              },
+              showSearchBox: showSearchBox,
+              enabled: state.enabled,
 
-                autoValidateMode: autovalidateMode,
-                clearButton: clearButton,
-                compareFn: compareFn,
-                dialogMaxWidth: dialogMaxWidth,
-                dropdownBuilder: dropdownBuilder,
-                dropdownBuilderSupportsNullItem:
-                    dropdownBuilderSupportsNullItem,
-                dropDownButton: dropDownButton,
-                dropdownSearchDecoration:
-                    InputDecoration.collapsed(hintText: hint),
-                emptyBuilder: emptyBuilder,
-                errorBuilder: errorBuilder,
-                filterFn: filterFn,
-                isFilteredOnline: isFilteredOnline,
-                itemAsString: itemAsString,
-                loadingBuilder: loadingBuilder,
-                popupBackgroundColor: popupBackgroundColor,
-                mode: mode,
-                popupBarrierColor: popupBarrierColor,
-                popupItemBuilder: popupItemBuilder,
-                popupItemDisabled: popupItemDisabled,
-                popupShape: popupShape,
-                popupTitle: popupTitle,
-                selectedItem: state.value,
-                showClearButton: showClearButton,
-                label: label,
-                clearButtonBuilder: clearButtonBuilder,
-                dropdownButtonBuilder: dropdownButtonBuilder,
-                favoriteItemBuilder: favoriteItemBuilder,
-                favoriteItems: favoriteItems,
-                onBeforeChange: onBeforeChange,
-                favoriteItemsAlignment: favoriteItemsAlignment,
-                onPopupDismissed: onPopupDismissed,
-                // searchBoxController: searchBoxController,
-                searchDelay: searchDelay,
-                showAsSuffixIcons: showAsSuffixIcons,
-                showFavoriteItems: showFavoriteItems,
-                clearButtonSplashRadius: clearButtonSplashRadius,
-                dropdownButtonSplashRadius: dropdownButtonSplashRadius,
-                dropdownSearchBaseStyle: dropdownSearchBaseStyle,
-                dropdownSearchTextAlign: dropdownSearchTextAlign,
-                dropdownSearchTextAlignVertical:
-                    dropdownSearchTextAlignVertical,
-                // onSaved: onSaved,
-                popupBarrierDismissible: popupBarrierDismissible,
-                popupElevation: popupElevation,
-                popupSafeArea: popupSafeArea,
-                scrollbarProps: scrollbarProps,
-                searchFieldProps: searchFieldProps,
-                showSelectedItems: showSelectedItems,
-              ),
+              autoValidateMode: autovalidateMode,
+              clearButton: clearButton,
+              compareFn: compareFn,
+              dialogMaxWidth: dialogMaxWidth,
+              dropdownBuilder: dropdownBuilder,
+              dropdownBuilderSupportsNullItem: dropdownBuilderSupportsNullItem,
+              dropDownButton: dropDownButton,
+              dropdownSearchDecoration: state.decoration,
+              emptyBuilder: emptyBuilder,
+              errorBuilder: errorBuilder,
+              filterFn: filterFn,
+              isFilteredOnline: isFilteredOnline,
+              itemAsString: itemAsString,
+              loadingBuilder: loadingBuilder,
+              popupBackgroundColor: popupBackgroundColor,
+              mode: mode,
+              popupBarrierColor: popupBarrierColor,
+              popupItemBuilder: popupItemBuilder,
+              popupItemDisabled: popupItemDisabled,
+              popupShape: popupShape,
+              popupTitle: popupTitle,
+              selectedItem: state.value,
+              showClearButton: showClearButton,
+              clearButtonBuilder: clearButtonBuilder,
+              dropdownButtonBuilder: dropdownButtonBuilder,
+              favoriteItemBuilder: favoriteItemBuilder,
+              favoriteItems: favoriteItems,
+              onBeforeChange: onBeforeChange,
+              favoriteItemsAlignment: favoriteItemsAlignment,
+              onPopupDismissed: onPopupDismissed,
+              searchDelay: searchDelay,
+              showAsSuffixIcons: showAsSuffixIcons,
+              showFavoriteItems: showFavoriteItems,
+              clearButtonSplashRadius: clearButtonSplashRadius,
+              dropdownButtonSplashRadius: dropdownButtonSplashRadius,
+              dropdownSearchBaseStyle: dropdownSearchBaseStyle,
+              dropdownSearchTextAlign: dropdownSearchTextAlign,
+              dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
+              // onSaved: onSaved,
+              popupBarrierDismissible: popupBarrierDismissible,
+              popupElevation: popupElevation,
+              popupSafeArea: popupSafeArea,
+              scrollbarProps: scrollbarProps,
+              searchFieldProps: searchFieldProps,
+              showSelectedItems: showSelectedItems,
+              positionCallback: positionCallback,
             );
           },
         );

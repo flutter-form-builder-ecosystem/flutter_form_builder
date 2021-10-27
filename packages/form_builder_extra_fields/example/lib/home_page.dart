@@ -159,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FormBuilderRatingBar(
                   decoration: const InputDecoration(labelText: 'Rating Bar'),
                   name: 'rate',
-                  enabled: false,
+                  // enabled: false,
                   itemSize: 32.0,
                   initialValue: 1.0,
                   maxRating: 5.0,

@@ -258,8 +258,10 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
   final bool hideKeyboard;
 
+  final ScrollController? scrollController;
+
   /// Creates text field that auto-completes user input from a list of items
-  FormBuilderTypeAhead({
+  FormBuilderTypeAhead( {
     Key? key,
     //From Super
     required String name,
@@ -299,6 +301,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     this.onSuggestionSelected,
     this.controller,
     this.hideKeyboard = false,
+    this.scrollController,
   })  : assert(T == String || selectionToTextTransformer != null),
         super(
           key: key,
@@ -358,6 +361,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
               keepSuggestionsOnSuggestionSelected:
                   keepSuggestionsOnSuggestionSelected,
               hideKeyboard: hideKeyboard,
+              scrollController: scrollController,
             );
           },
         );
@@ -420,7 +424,7 @@ class _FormBuilderTypeAheadState<T>
     var text = value == null
         ? ''
         : widget.selectionToTextTransformer != null
-            ? widget.selectionToTextTransformer!(value!)
+            ? widget.selectionToTextTransformer!(value)
             : value.toString();
 
     return text;
