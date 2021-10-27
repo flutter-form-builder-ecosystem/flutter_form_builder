@@ -124,7 +124,8 @@ class _SignupFormState extends State<SignupForm> {
                     }
                     debugPrint(_formKey.currentState?.value.toString());
                   },
-                  child: const Text('Signup', style: TextStyle(color: Colors.white)),
+                  child: const Text('Signup',
+                      style: TextStyle(color: Colors.white)),
                 )
               ],
             ),
