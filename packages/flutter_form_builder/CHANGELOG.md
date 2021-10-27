@@ -1,3 +1,7 @@
+## [7.0.0] - 27-Oct-2021
+**BREAKING CHANGES**:
+* For ease of maintainability, validation functionality has been broken up into a separate package: [form_builder_validators](https://pub.dev/packages/form_builder_validators)
+
 ## [7.0.0-beta.0] - 02-Sep-2021
 * Merged back `form_builder_fields` into `flutter_form_builder`
 
