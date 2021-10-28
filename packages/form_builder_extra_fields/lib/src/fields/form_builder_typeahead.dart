@@ -258,6 +258,8 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
 
   final bool hideKeyboard;
 
+  final ScrollController? scrollController;
+
   /// Creates text field that auto-completes user input from a list of items
   FormBuilderTypeAhead({
     Key? key,
@@ -299,6 +301,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
     this.onSuggestionSelected,
     this.controller,
     this.hideKeyboard = false,
+    this.scrollController,
   })  : assert(T == String || selectionToTextTransformer != null),
         super(
           key: key,
@@ -328,20 +331,14 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                       ),
                 focusNode: state.effectiveFocusNode,
                 decoration: state.decoration,
-              ) as TextFieldConfiguration,
+              ),
               // HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               transitionBuilder: (context, suggestionsBox, controller) =>
                   suggestionsBox,
               onSuggestionSelected: (T suggestion) {
-                if (selectionToTextTransformer != null) {
-                  state._typeAheadController.text =
-                      selectionToTextTransformer(suggestion);
-                } else {
-                  state._typeAheadController.text =
-                      suggestion != null ? suggestion.toString() : '';
-                }
+                state.didChange(suggestion);
                 onSuggestionSelected?.call(suggestion);
               },
               getImmediateSuggestions: getImmediateSuggestions,
@@ -364,6 +361,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
               keepSuggestionsOnSuggestionSelected:
                   keepSuggestionsOnSuggestionSelected,
               hideKeyboard: hideKeyboard,
+              scrollController: scrollController,
             );
           },
         );
@@ -381,44 +379,54 @@ class _FormBuilderTypeAheadState<T>
   void initState() {
     super.initState();
     _typeAheadController = widget.controller ??
-        TextEditingController(text: widget.initialValue?.toString());
-    _typeAheadController.addListener(_handleControllerChanged);
+        TextEditingController(text: _getTextString(initialValue));
+    // _typeAheadController.addListener(_handleControllerChanged);
   }
 
-  void _handleControllerChanged() {
-    // Suppress changes that originated from within this class.
-    //
-    // In the case where a controller has been passed in to this widget, we
-    // register this change listener. In these cases, we'll also receive change
-    // notifications for changes originating from within this class -- for
-    // example, the reset() method. In such cases, the FormField value will
-    // already have been set.
-    if (_typeAheadController.text != value) {
-      didChange(_typeAheadController.text as T);
-    }
-  }
+  // void _handleControllerChanged() {
+  // Suppress changes that originated from within this class.
+  //
+  // In the case where a controller has been passed in to this widget, we
+  // register this change listener. In these cases, we'll also receive change
+  // notifications for changes originating from within this class -- for
+  // example, the reset() method. In such cases, the FormField value will
+  // already have been set.
+  //   if (_typeAheadController.text != value) {
+  //     didChange(_typeAheadController.text as T);
+  //   }
+  // }
 
   @override
   void didChange(T? value) {
     super.didChange(value);
+    var text = _getTextString(value);
 
-    if (_typeAheadController.text != value) {
-      _typeAheadController.text = value.toString();
+    if (_typeAheadController.text != text) {
+      _typeAheadController.text = text;
     }
   }
 
   @override
   void dispose() {
     // Dispose the _typeAheadController when initState created it
-    if (null == widget.controller) {
-      _typeAheadController.dispose();
-    }
     super.dispose();
+    _typeAheadController.dispose();
   }
 
   @override
   void reset() {
     super.reset();
-    _typeAheadController.text = initialValue?.toString() ?? '';
+
+    _typeAheadController.text = _getTextString(initialValue);
+  }
+
+  String _getTextString(T? value) {
+    var text = value == null
+        ? ''
+        : widget.selectionToTextTransformer != null
+            ? widget.selectionToTextTransformer!(value)
+            : value.toString();
+
+    return text;
   }
 }

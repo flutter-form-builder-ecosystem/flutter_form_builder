@@ -3,10 +3,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,15 +16,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
-      supportedLocales: [
+      home: const MyHomePage(),
+      supportedLocales: const [
         Locale('de'),
         Locale('en'),
         Locale('es'),
         Locale('fr'),
         Locale('it'),
       ],
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         FormBuilderLocalizations.delegate,
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -41,21 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form Builder Validators'),
+        title: const Text('Form Builder Validators'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: <Widget>[
             TextFormField(
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: const InputDecoration(labelText: 'Name'),
               validator: FormBuilderValidators.required(context),
               autovalidateMode: AutovalidateMode.always,
             ),
 
             // Composing multiple validators
             TextFormField(
-              decoration: InputDecoration(labelText: 'Age'),
+              decoration: const InputDecoration(labelText: 'Age'),
               keyboardType: TextInputType.number,
               autovalidateMode: AutovalidateMode.always,
               validator: FormBuilderValidators.compose([

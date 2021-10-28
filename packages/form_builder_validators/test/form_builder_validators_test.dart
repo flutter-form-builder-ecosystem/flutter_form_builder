@@ -8,7 +8,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 Future<void> testValidations(
     WidgetTester tester, void Function(BuildContext) validations) async {
   await tester.pumpWidget(MaterialApp(
-    localizationsDelegates: [
+    localizationsDelegates: const [
       FormBuilderLocalizations.delegate,
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
@@ -18,7 +18,7 @@ Future<void> testValidations(
         // Exercise validations using the provided context
         validations(context);
         // The builder function must return a widget.
-        return Placeholder();
+        return const Placeholder();
       },
     ),
   ));

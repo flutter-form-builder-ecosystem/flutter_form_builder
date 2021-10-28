@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class CustomFields extends StatefulWidget {
+  const CustomFields({Key? key}) : super(key: key);
+
   @override
   _CustomFieldsState createState() => _CustomFieldsState();
 }
@@ -21,15 +23,12 @@ class _CustomFieldsState extends State<CustomFields> {
           children: <Widget>[
             FormBuilderField<String?>(
               name: 'name',
-              onChanged: (val) => print(val),
+              onChanged: (val) => debugPrint(val.toString()),
               builder: (FormFieldState field) {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Text('Name'),
-                      flex: 1,
-                    ),
+                    const Expanded(child: Text('Name'), flex: 1),
                     Expanded(
                       flex: 2,
                       child: InputDecorator(
@@ -71,11 +70,12 @@ class _CustomFieldsState extends State<CustomFields> {
                 return InputDecorator(
                   decoration: InputDecoration(
                     labelText: "Select option",
-                    contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+                    contentPadding:
+                        const EdgeInsets.only(top: 10.0, bottom: 0.0),
                     border: InputBorder.none,
                     errorText: field.errorText,
                   ),
-                  child: Container(
+                  child: SizedBox(
                     height: 200,
                     child: CupertinoPicker(
                       itemExtent: 30,
@@ -93,25 +93,25 @@ class _CustomFieldsState extends State<CustomFields> {
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
+                    child: const Text(
                       "Submit",
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
                       _formKey.currentState!.save();
                       if (_formKey.currentState!.validate()) {
-                        print(_formKey.currentState!.value);
+                        debugPrint(_formKey.currentState!.value.toString());
                       } else {
-                        print("validation failed");
+                        debugPrint("validation failed");
                       }
                     },
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Expanded(
                   child: MaterialButton(
                     color: Theme.of(context).colorScheme.secondary,
-                    child: Text(
+                    child: const Text(
                       "Reset",
                       style: TextStyle(color: Colors.white),
                     ),

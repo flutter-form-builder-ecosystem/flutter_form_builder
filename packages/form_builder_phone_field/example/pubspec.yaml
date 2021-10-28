@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_form_builder: ^7.0.0-beta.0
+  flutter_form_builder: ^7.0.0
   form_builder_phone_field:
     path: ../
   form_builder_validators: ^7.0.0
@@ -22,6 +22,7 @@ dependencies:
 #      url: https://github.com/espresso3389/flutter_datetime_picker
 
 dev_dependencies:
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
 

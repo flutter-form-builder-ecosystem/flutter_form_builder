@@ -5,25 +5,27 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'home_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter FormBuilder Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        inputDecorationTheme: InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
           labelStyle: TextStyle(color: Colors.blueAccent),
         ),
       ),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         FormBuilderLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale('en', ''),
         Locale('es', ''),
         Locale('fa', ''),
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         Locale('sk', ''),
         Locale('pl', ''),
       ],
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

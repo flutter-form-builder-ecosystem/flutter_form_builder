@@ -1,3 +1,7 @@
+## [7.0.0] - 27-Oct-2021
+**BREAKING CHANGE**:
+* For ease of maintainability, validation functionality has been broken up into a separate package: [form_builder_validators](https://pub.dev/packages/form_builder_validators)
+
 ## [7.0.0-beta.0] - 02-Sep-2021
 * Merged back `form_builder_fields` into `flutter_form_builder`
 
@@ -14,6 +18,16 @@
 
 ## [7.0.0-alpha.0] - 16-May-2021
 * Split up packages - removed fields and validation from core
+
+## [6.2.1] - 27-Oct-2021
+* Fixed bug where `didChange` and `reset` on FormBuilderCheckboxGroup has no visible effect
+
+## [6.2.0] - 21-Oct-2021
+* Fixed `didChange` unable to handle null value in  `FormBuilderTextField`
+
+**BREAKING CHANGE**
+* Added new attribute - `autoFocusOnValidationFailure` (default: `false`) - to FormBuilder to set whether should scroll to first error if validation fails
+
 
 ## [6.1.0] - 01-Sep-2021
 * When form validation fails, automatically scroll to first error
