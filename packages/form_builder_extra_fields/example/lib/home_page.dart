@@ -28,12 +28,31 @@ class _MyHomePageState extends State<MyHomePage> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: Column(
               children: [
-                FormBuilderSearchableDropdown(
-                  name: 'searchable_dropdown',
+                FormBuilderSearchableDropdown<String>(
+                  name: 'searchable_dropdown_online',
+                  // items: allCountries,
+                  onChanged: _onChanged,
+                  showSearchBox: true,
+                  isFilteredOnline: true,
+                  compareFn: (item, selectedItem) =>
+                      item.toLowerCase() == selectedItem.toLowerCase(),
+                  onFind: (text) async {
+                    await Future.delayed(const Duration(seconds: 1));
+                    return allCountries
+                        .where((element) =>
+                            element.toLowerCase().contains(text.toLowerCase()))
+                        .toList();
+                  },
+                  decoration: const InputDecoration(
+                      labelText: 'Searchable Dropdown Online'),
+                ),
+                FormBuilderSearchableDropdown<String>(
+                  name: 'searchable_dropdown_offline',
                   items: allCountries,
                   onChanged: _onChanged,
-                  decoration:
-                      const InputDecoration(labelText: 'Searchable Dropdown'),
+                  showSearchBox: true,
+                  decoration: const InputDecoration(
+                      labelText: 'Searchable Dropdown Offline'),
                 ),
                 const SizedBox(height: 15),
                 FormBuilderColorPickerField(
