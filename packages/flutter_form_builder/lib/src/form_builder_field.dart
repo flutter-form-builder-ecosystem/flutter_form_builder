@@ -122,7 +122,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
-  bool get _ownsFocusNode => widget.focusNode == null;
   late FocusNode effectiveFocusNode;
 
   @override
@@ -133,7 +132,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     // Set the initial value
     _formBuilderState?.registerField(widget.name, this);
 
-    effectiveFocusNode = widget.focusNode ?? FocusNode();
+    effectiveFocusNode = widget.focusNode ?? FocusNode(debugLabel: widget.name);
     // Register a touch handler
     effectiveFocusNode.addListener(_touchedHandler);
   }
@@ -143,19 +142,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     super.didUpdateWidget(oldWidget);
     if (widget.focusNode != oldWidget.focusNode) {
       effectiveFocusNode.removeListener(_touchedHandler);
-      if (oldWidget.focusNode == null) {
-        effectiveFocusNode.dispose();
-      }
       effectiveFocusNode = widget.focusNode ?? FocusNode();
+      effectiveFocusNode.addListener(_touchedHandler);
     }
   }
 
   @override
   void dispose() {
     effectiveFocusNode.removeListener(_touchedHandler);
-    if (_ownsFocusNode) {
-      effectiveFocusNode.dispose();
-    }
     _formBuilderState?.unregisterField(widget.name, this);
     super.dispose();
   }
