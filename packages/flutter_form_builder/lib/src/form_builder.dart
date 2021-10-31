@@ -92,7 +92,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   final _fields = <String, FormBuilderFieldState>{};
 
-  final _transformers = <String, dynamic Function(Object?)>{};
+  final _transformers = <String, dynamic Function(dynamic)>{};
   final _instantValue = <String, dynamic>{};
   final _savedValue = <String, dynamic>{};
 
@@ -163,8 +163,7 @@ class FormBuilderState extends State<FormBuilder> {
 
     _fields[name] = field;
     if (field.widget.valueTransformer != null) {
-      _transformers[name] =
-          (value) => field.widget.valueTransformer?.call(value);
+      _transformers[name] = field.widget.valueTransformer!;
     }
     if (oldField != null) {
       // ignore: invalid_use_of_protected_member
