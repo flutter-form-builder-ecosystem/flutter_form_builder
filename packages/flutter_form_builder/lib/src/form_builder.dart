@@ -92,7 +92,8 @@ class FormBuilderState extends State<FormBuilder> {
 
   final _fields = <String, FormBuilderFieldState>{};
 
-  final _transformers = <String, dynamic Function(dynamic)>{};
+  //because dart type system will not accept ValueTransformer<dynamic>
+  final _transformers = <String, Function>{};
   final _instantValue = <String, dynamic>{};
   final _savedValue = <String, dynamic>{};
 
@@ -162,9 +163,7 @@ class FormBuilderState extends State<FormBuilder> {
     }());
 
     _fields[name] = field;
-    if (field.widget.valueTransformer != null) {
-      _transformers[name] = field.widget.valueTransformer!;
-    }
+    field.registerTransformer(_transformers);
     if (oldField != null) {
       // ignore: invalid_use_of_protected_member
       field.setValue(

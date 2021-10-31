@@ -74,8 +74,6 @@ class FormBuilderField<T> extends FormField<T> {
           validator: validator,
         );
 
-  /*@override
-  FormBuilderFieldState<T> createState();*/
   @override
   FormBuilderFieldState<FormBuilderField<T>, T> createState() =>
       FormBuilderFieldState<FormBuilderField<T>, T>();
@@ -101,6 +99,13 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   FormBuilderState? _formBuilderState;
 
   dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
+
+  void registerTransformer(Map<String, Function> _map) {
+    final _fun = widget.valueTransformer;
+    if (_fun != null) {
+      _map[widget.name] = _fun;
+    }
+  }
 
   @override
   String? get errorText => super.errorText ?? _customErrorText;
