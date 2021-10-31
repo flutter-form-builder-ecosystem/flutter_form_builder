@@ -127,14 +127,9 @@ class FormBuilderState extends State<FormBuilder> {
   void setInternalFieldValue<T>(
     String name,
     T? value, {
-    required dynamic Function(T?)? transformer,
     required bool isSetState,
   }) {
     _instantValue[name] = value;
-
-    if (transformer != null) {
-      _transformers[name] = (val) => transformer(val as T?);
-    }
     if (isSetState) {
       setState(() {});
     }
@@ -167,6 +162,10 @@ class FormBuilderState extends State<FormBuilder> {
     }());
 
     _fields[name] = field;
+    if (field.widget.valueTransformer != null) {
+      _transformers[name] =
+          (value) => field.widget.valueTransformer?.call(value);
+    }
     if (oldField != null) {
       // ignore: invalid_use_of_protected_member
       field.setValue(
@@ -190,6 +189,7 @@ class FormBuilderState extends State<FormBuilder> {
     // since it may be intentional.
     if (field == _fields[name]) {
       _fields.remove(name);
+      _transformers.remove(name);
     } else {
       assert(() {
         // This is OK to ignore when you are intentionally replacing a field

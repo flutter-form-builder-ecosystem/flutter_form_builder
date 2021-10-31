@@ -117,9 +117,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
-  FocusNode? _focusNode;
-  FocusNode get effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  bool get _ownsFocusNode => widget.focusNode == null;
+  late FocusNode effectiveFocusNode;
 
   @override
   void initState() {
@@ -128,14 +127,30 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     _formBuilderState = FormBuilder.of(context);
     // Set the initial value
     _formBuilderState?.registerField(widget.name, this);
+
+    effectiveFocusNode = widget.focusNode ?? FocusNode();
     // Register a touch handler
     effectiveFocusNode.addListener(_touchedHandler);
   }
 
   @override
+  void didUpdateWidget(covariant FormBuilderField<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.focusNode != oldWidget.focusNode) {
+      effectiveFocusNode.removeListener(_touchedHandler);
+      if (oldWidget.focusNode == null) {
+        effectiveFocusNode.dispose();
+      }
+      effectiveFocusNode = widget.focusNode ?? FocusNode();
+    }
+  }
+
+  @override
   void dispose() {
-    _focusNode?.removeListener(_touchedHandler);
-    _focusNode?.dispose();
+    effectiveFocusNode.removeListener(_touchedHandler);
+    if (_ownsFocusNode) {
+      effectiveFocusNode.dispose();
+    }
     _formBuilderState?.unregisterField(widget.name, this);
     super.dispose();
   }
@@ -156,7 +171,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
         _formBuilderState!.setInternalFieldValue<T>(
           widget.name,
           value,
-          transformer: widget.valueTransformer,
           isSetState: isSetState,
         );
       } else {
@@ -169,7 +183,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   void _touchedHandler() {
-    if (_focusNode!.hasFocus && _touched == false) {
+    if (effectiveFocusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
     }
   }
