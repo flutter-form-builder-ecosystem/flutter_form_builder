@@ -9,7 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_form_builder: ^7.0.0
+  flutter_form_builder: 
+    git:
+      url: git@github.com:ashim-k-saha/flutter_form_builder.git
+      path: packages/flutter_form_builder
+      ref: master
+
   flutter_chips_input: ^1.10.0
   flutter_colorpicker: ^0.6.0
   dropdown_search: ^2.0.0
