@@ -133,8 +133,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   @override
   void dispose() {
-    _focusNode?.removeListener(_touchedHandler);
-    _focusNode?.dispose();
+    effectiveFocusNode.removeListener(_touchedHandler);
+    effectiveFocusNode.dispose();
     _formBuilderState?.unregisterField(widget.name, this);
     super.dispose();
   }
@@ -155,7 +155,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   void _touchedHandler() {
-    if (_focusNode!.hasFocus && _touched == false) {
+    if (effectiveFocusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
     }
   }
