@@ -117,7 +117,7 @@ To allow for localization of default error messages within your app, add `FormBu
         FormBuilderLocalizations.delegate,
       ],
 ```
-### Languages supported (default errorText messages)
+### Supported languages (default errorText messages)
 - Arabic (ar)
 - English (en)
 - Farsi/Persian (fa)
@@ -126,6 +126,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Hungarian (hu)
 - Italian (it)
 - Japanese (ja)
+- Korean (ko)  
 - Polish (pl)
 - Portuguese (pt)
 - Slovak (sk)
@@ -157,8 +158,11 @@ To generate boilerplate code for localization, run the generate command inside p
 
 This will automagically create/update files inside `lib/localization` directory which will include support for your newly added locale.
 
-#### 4. Submit PR
-Submit your PR and be of help to millions of people all over the world!
+#### 4. Update README
+Remember to update README, adding the new language (and language code) under [Supported languages section](#supported-languages-default-errortext-messages) so that everyone knows your new language is now supported!
+
+#### 5. Submit PR
+Submit your PR and be of help to millions of developers all over the world!
 
 ### Coffee :-)
 If this package was helpful to you in delivering your project or you just wanna to support this
