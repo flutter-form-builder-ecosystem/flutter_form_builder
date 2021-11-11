@@ -46,22 +46,16 @@ class _CustomFieldsState extends State<CustomFields> {
               },
               autovalidateMode: AutovalidateMode.always,
               validator: (valueCandidate) {
-                if (valueCandidate == null ||
-                    (valueCandidate is String && valueCandidate.isEmpty) ||
-                    (valueCandidate is Iterable && valueCandidate.isEmpty) ||
-                    (valueCandidate is Map && valueCandidate.isEmpty)) {
+                if (valueCandidate?.isEmpty ?? true) {
                   return 'This field is required.';
                 }
                 return null;
               },
             ),
-            FormBuilderField<String>(
+            FormBuilderField<String?>(
               name: "option",
               validator: (valueCandidate) {
-                if (valueCandidate == null ||
-                    (valueCandidate is String && valueCandidate.isEmpty) ||
-                    (valueCandidate is Iterable && valueCandidate.isEmpty) ||
-                    (valueCandidate is Map && valueCandidate.isEmpty)) {
+                if (valueCandidate?.isEmpty ?? true) {
                   return 'This field is required.';
                 }
                 return null;
