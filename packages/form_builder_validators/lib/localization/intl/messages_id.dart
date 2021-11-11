@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a fr locale. All the
+// This is a library that provides messages for a id locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,39 +18,48 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'fr';
+  String get localeName => 'id';
 
-  static String m1(max) => "La valeur doit être inférieure ou égale à ${max}";
+  static String m0(value) => "Nilai bidang ini harus sama dengan ${value}.";
+
+  static String m1(max) => "Nilai harus kurang dari atau sama dengan ${max}";
 
   static String m2(maxLength) =>
-      "La valeur doit avoir une longueur inférieure ou égale à ${maxLength}";
+      "Panjang karakter harus kurang dari atau sama dengan ${maxLength}";
 
-  static String m3(min) => "La valeur doit être supérieure ou égale à ${min}.";
+  static String m3(min) =>
+      "Nilai harus lebih besar dari atau sama dengan ${min}.";
 
   static String m4(minLength) =>
-      "La valeur doit avoir une longueur supérieure ou égale à ${minLength}";
+      "Panjang karakter harus lebih besar dari atau sama dengan ${minLength}";
+
+  static String m5(value) =>
+      "Nilai bidang ini tidak boleh sama dengan ${value}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite un numéro de carte de crédit valide."),
-        "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une chaîne de date valide."),
-        "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse e-mail valide."),
-        "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse IP valide."),
+            "Nomor kartu kredit tidak valid."),
+        "dateStringErrorText":
+            MessageLookupByLibrary.simpleMessage("Tanggal tidak valid"),
+        "emailErrorText":
+            MessageLookupByLibrary.simpleMessage("Alamat email tidak valid."),
+        "equalErrorText": m0,
+        "integerErrorText": MessageLookupByLibrary.simpleMessage(
+            "Nilai harus berupa bilangan bulat."),
+        "ipErrorText":
+            MessageLookupByLibrary.simpleMessage("Alamat IP tidak valid."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur ne correspond pas au modèle."),
+            "Nilai tidak cocok dengan pola."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
-        "numericErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur doit être numérique."),
+        "notEqualErrorText": m5,
+        "numericErrorText":
+            MessageLookupByLibrary.simpleMessage("Nilai harus berupa angka."),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ ne peut pas être vide."),
-        "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse URL valide.")
+            "Bidang ini tidak boleh kosong."),
+        "urlErrorText": MessageLookupByLibrary.simpleMessage("URL tidak valid")
       };
 }
