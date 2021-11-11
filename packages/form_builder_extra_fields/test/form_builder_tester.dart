@@ -15,4 +15,4 @@ Widget buildTestableFieldWidget(Widget widget) {
 }
 
 bool formSave() => _formKey.currentState!.saveAndValidate();
-dynamic formValue(String name) => _formKey.currentState!.value[name];
+dynamic formFieldValue(String name) => _formKey.currentState!.value[name];

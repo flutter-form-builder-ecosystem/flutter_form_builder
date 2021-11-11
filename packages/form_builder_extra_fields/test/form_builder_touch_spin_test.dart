@@ -16,14 +16,14 @@ void main() {
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(1));
+    expect(formFieldValue(widgetName), equals(1));
     await tester.tap(find.byIcon(Icons.add));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(2));
+    expect(formFieldValue(widgetName), equals(2));
     await tester.tap(find.byIcon(Icons.remove));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(1));
+    expect(formFieldValue(widgetName), equals(1));
   });
 }
