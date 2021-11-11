@@ -1,3 +1,6 @@
+## [7.2.0] - 06-Nov-2021
+* Added language support for Indonesian (id)
+
 ## [7.1.0] - 06-Nov-2021
 * Added language support for Korean (ko)
 
