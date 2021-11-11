@@ -50,14 +50,14 @@ void main() {
     expect(formFieldValue(textFieldName), equals(newTextValue));*/
 
     // await tester.enterText(widgetFinder, newTextValue);
-    testWidgetKey.currentState!.didChange(initialTextValue);
-    expect(textEditingController.text, initialTextValue);
+    testWidgetKey.currentState!.didChange(newTextValue);
+    expect(textEditingController.text, newTextValue);
     expect(formSave(), isTrue);
-    expect(formFieldValue(textFieldName), equals(initialTextValue));
+    expect(formFieldValue(textFieldName), equals(newTextValue));
 
     // await tester.enterText(widgetFinder, '');
-    textEditingController.text = '';
+    testWidgetKey.currentState!.didChange(null);
     expect(formSave(), isTrue);
-    expect(formFieldValue(textFieldName), isEmpty);
+    expect(formFieldValue(textFieldName), isNull);
   });
 }
