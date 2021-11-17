@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(minLength) =>
       "Value must have a length greater than or equal to ${minLength}";
 
+  static String m5(value) => "This field value must not be equal to ${value}.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
+        "notEqualErrorText": m5,
         "numericErrorText":
             MessageLookupByLibrary.simpleMessage("Value must be numeric."),
         "requiredErrorText":

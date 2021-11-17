@@ -6,7 +6,7 @@ Also included is the `l10n` / `i18n` of error text messages into multiple langua
 ___
 
 [![Pub Version](https://img.shields.io/pub/v/form_builder_validators?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_validators)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/CI?logo=github&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions?query=workflow%3ACI)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/Form%20Builder%20Validators?logo=github&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions/workflows/form_builder_validators.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/danvick/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/danvick/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/danvick/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/danvick/flutter_form_builder)
 [![GitHub](https://img.shields.io/github/license/danvick/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/blob/master/LICENSE)
@@ -117,15 +117,17 @@ To allow for localization of default error messages within your app, add `FormBu
         FormBuilderLocalizations.delegate,
       ],
 ```
-### Languages supported (default errorText messages)
+### Supported languages (default errorText messages)
 - Arabic (ar)
 - English (en)
 - Farsi/Persian (fa)
 - French (fr)
 - German (de)
 - Hungarian (hu)
+- Indonesian (id)
 - Italian (it)
 - Japanese (ja)
+- Korean (ko)  
 - Polish (pl)
 - Portuguese (pt)
 - Slovak (sk)
@@ -157,8 +159,11 @@ To generate boilerplate code for localization, run the generate command inside p
 
 This will automagically create/update files inside `lib/localization` directory which will include support for your newly added locale.
 
-#### 4. Submit PR
-Submit your PR and be of help to millions of people all over the world!
+#### 4. Update README
+Remember to update README, adding the new language (and language code) under [Supported languages section](#supported-languages-default-errortext-messages) so that everyone knows your new language is now supported!
+
+#### 5. Submit PR
+Submit your PR and be of help to millions of developers all over the world!
 
 ### Coffee :-)
 If this package was helpful to you in delivering your project or you just wanna to support this

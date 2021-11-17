@@ -41,24 +41,23 @@ void main() {
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
     expect(formSave(), isTrue);
-    expect(formValue(textFieldName), initialTextValue);
+    expect(formFieldValue(textFieldName), initialTextValue);
 
     // await tester.enterText(widgetFinder, newTextValue);
-    //TODO: review this test, since changing textEditingController only changes the suggestion, not the value
-    // textEditingController.text = newTextValue;
-    // expect(formSave(), isTrue);
-    // expect(formValue(textFieldName), equals(newTextValue));
-
-    // await tester.enterText(widgetFinder, newTextValue);
-    testWidgetKey.currentState!.didChange(initialTextValue);
-    expect(textEditingController.text, initialTextValue);
+    // TODO: Test typing a something in the field then choosing the first option
+    /*textEditingController.text = newTextValue;
     expect(formSave(), isTrue);
-    expect(formValue(textFieldName), equals(initialTextValue));
+    expect(formFieldValue(textFieldName), equals(newTextValue));*/
+
+    // await tester.enterText(widgetFinder, newTextValue);
+    testWidgetKey.currentState!.didChange(newTextValue);
+    expect(textEditingController.text, newTextValue);
+    expect(formSave(), isTrue);
+    expect(formFieldValue(textFieldName), equals(newTextValue));
 
     // await tester.enterText(widgetFinder, '');
-    //TODO: review this test, since changing textEditingController only changes the suggestion, not the value
-    // textEditingController.text = '';
-    // expect(formSave(), isTrue);
-    // expect(formValue(textFieldName), isEmpty);
+    testWidgetKey.currentState!.didChange(null);
+    expect(formSave(), isTrue);
+    expect(formFieldValue(textFieldName), isNull);
   });
 }

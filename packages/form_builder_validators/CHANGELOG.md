@@ -1,3 +1,9 @@
+## [7.2.0] - 06-Nov-2021
+* Added language support for Indonesian (id)
+
+## [7.1.0] - 06-Nov-2021
+* Added language support for Korean (ko)
+
 ## [7.0.0] - 02-Sep-2021
 * New Package 🎉🎊 - Split from and no dependency on [flutter_form_builder](https://pub.dev/packages/flutter_form_builder)
 * Added Arabic and Persian/Farsi support
