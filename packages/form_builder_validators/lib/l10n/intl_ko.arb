@@ -1,0 +1,106 @@
+{
+  "@@last_modified": "2021-11-04T12:24:27.938366",
+  "@@locale": "ko",
+  "requiredErrorText": "이 필드는 반드시 입력해야 합니다.",
+  "@requiredErrorText": {
+    "description": "Error Text for required validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "이 필드의 값은 반드시 {value}와 같아야 합니다.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "이 필드의 값은 반드시 {value}와 달라야 합니다.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "minErrorText": "이 필드의 값은 반드시 {min} 이상이어야 합니다.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "이 필드는 반드시 {minLength}자 이상이어야 합니다.",
+  "@minLengthErrorText": {
+    "description": "Error Text for minLength validator",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "이 필드의 값은 반드시 {max} 이하이어야 합니다.",
+  "@maxErrorText": {
+    "description": "Error Text for max validator",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "이 필드는 반드시 {maxLength}자 이하이어야 합니다.",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "이메일 주소 형식이 올바르지 않습니다.",
+  "@emailErrorText": {
+    "description": "Error Text for email validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "URL 형식이 올바르지 않습니다.",
+  "@urlErrorText": {
+    "description": "Error Text for URL validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "필드의 값이 패턴과 맞지 않습니다.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "숫자만 입력 가능합니다.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "정수만 입력 가능합니다.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "유효한 카드 번호를 입력해 주세요.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "유효한 IP를 입력해 주세요.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "날짜 형식이 올바르지 않습니다.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string validator",
+    "type": "text",
+    "placeholders": {}
+  }
+}

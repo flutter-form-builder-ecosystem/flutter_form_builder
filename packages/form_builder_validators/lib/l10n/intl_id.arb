@@ -1,0 +1,105 @@
+{
+  "@@last_modified": "2020-11-13T10:38:27.938366",
+  "requiredErrorText": "Bidang ini tidak boleh kosong.",
+  "@requiredErrorText": {
+    "description": "Error Text for required validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "Nilai bidang ini harus sama dengan {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "Nilai bidang ini tidak boleh sama dengan {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "minErrorText": "Nilai harus lebih besar dari atau sama dengan {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "Panjang karakter harus lebih besar dari atau sama dengan {minLength}",
+  "@minLengthErrorText": {
+    "description": "Error Text for minLength validator",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "Nilai harus kurang dari atau sama dengan {max}",
+  "@maxErrorText": {
+    "description": "Error Text for max validator",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "Panjang karakter harus kurang dari atau sama dengan {maxLength}",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "Alamat email tidak valid.",
+  "@emailErrorText": {
+    "description": "Error Text for email validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "URL tidak valid",
+  "@urlErrorText": {
+    "description": "Error Text for URL validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "Nilai tidak cocok dengan pola.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "Nilai harus berupa angka.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "Nilai harus berupa bilangan bulat.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "Nomor kartu kredit tidak valid.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "Alamat IP tidak valid.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "Tanggal tidak valid",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string validator",
+    "type": "text",
+    "placeholders": {}
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "@@last_modified": "2020-11-17T09:00:39.706877",
+  "@@locale": "fr",
+  "requiredErrorText": "Ce champ ne peut pas être vide.",
+  "@requiredErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minErrorText": "La valeur doit être supérieure ou égale à {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "La valeur doit avoir une longueur supérieure ou égale à {minLength}",
+  "@minLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "La valeur doit être inférieure ou égale à {max}",
+  "@maxErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "La valeur doit avoir une longueur inférieure ou égale à {maxLength}",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "Ce champ nécessite une adresse e-mail valide.",
+  "@emailErrorText": {
+    "description": "Error Text for email field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "Ce champ nécessite une adresse URL valide.",
+  "@urlErrorText": {
+    "description": "Error Text for URL field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "La valeur ne correspond pas au modèle.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "La valeur doit être numérique.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "Ce champ nécessite un numéro de carte de crédit valide.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "Ce champ nécessite une adresse IP valide.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "Ce champ nécessite une chaîne de date valide.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string field",
+    "type": "text",
+    "placeholders": {}
+  }
+}

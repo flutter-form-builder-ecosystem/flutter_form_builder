@@ -1,0 +1,106 @@
+{
+  "@@last_modified": "2020-12-19T01:32:17.166732",
+  "@@locale": "sk",
+  "requiredErrorText": "Toto pole nesmie byť prázdne.",
+  "@requiredErrorText": {
+    "description": "Error Text for required validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "Hodnota tohto poľa musí byť {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "Hodnota tohto poľa nesmie byť {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "minErrorText": "Hodnota musí byť väčšia alebo rovná ako {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "Hodnota musí mať dĺžku aspoň {minLength} znakov.",
+  "@minLengthErrorText": {
+    "description": "Error Text for minLength validator",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "Hodnota musí byť menšia alebo rovná ako {max}.",
+  "@maxErrorText": {
+    "description": "Error Text for max validator",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "Hodnota musí mať dĺžku najviac {maxLength} znakov.",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "Toto pole vyžaduje platnú emailovú adresu.",
+  "@emailErrorText": {
+    "description": "Error Text for email validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "Toto pole vyžaduje platnú URL adresu.",
+  "@urlErrorText": {
+    "description": "Error Text for URL validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "Hodnota nevyhovuje očakávanému tvaru.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "Hodnota musí byť číslo.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "Hodnota musí byť celé číslo.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "Toto pole vyžaduje platné číslo platobnej karty.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "Toto pole vyžaduje platnú IP adresu.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "Toto pole vyžaduje platný dátum.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string validator",
+    "type": "text",
+    "placeholders": {}
+  }
+}

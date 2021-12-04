@@ -1,0 +1,106 @@
+{
+  "@@last_modified": "2020-06-19T21:53:39.706877",
+  "@@locale": "en",
+  "requiredErrorText": "This field cannot be empty.",
+  "@requiredErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minErrorText": "Value must be greater than or equal to {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "Value must have a length greater than or equal to {minLength}",
+  "@minLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "Value must be less than or equal to {max}",
+  "@maxErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "Value must have a length less than or equal to {maxLength}",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "This field requires a valid email address.",
+  "@emailErrorText": {
+    "description": "Error Text for email field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "This field requires a valid integer.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "This field value must be equal to {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "This field value must not be equal to {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "urlErrorText": "This field requires a valid URL address.",
+  "@urlErrorText": {
+    "description": "Error Text for URL field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "Value does not match pattern.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "Value must be numeric.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "This field requires a valid credit card number.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "This field requires a valid IP.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "This field requires a valid date string.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string field",
+    "type": "text",
+    "placeholders": {}
+  }
+}

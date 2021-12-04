@@ -1,0 +1,106 @@
+{
+  "@@last_modified": "2021-01-16T01:32:17.166732",
+  "@@locale": "pl",
+  "requiredErrorText": "To pole nie może być puste.",
+  "@requiredErrorText": {
+    "description": "Error Text for required validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "Wartość tego pola musi wynosić {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "Wartość tego pola nie może być {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "minErrorText": "Wartość musi być większa lub równa {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "Wartość musi mieć co najmniej {minLength} znaków.",
+  "@minLengthErrorText": {
+    "description": "Error Text for minLength validator",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "Wartość musi być mniejsza lub równa {max}.",
+  "@maxErrorText": {
+    "description": "Error Text for max validator",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "Wartość nie może mieć więcej niż {maxLength} znaków.",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "To pole wymaga prawidłowego adresu e-mail.",
+  "@emailErrorText": {
+    "description": "Error Text for email validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "To pole wymaga prawidłowego adresu URL.",
+  "@urlErrorText": {
+    "description": "Error Text for URL validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "Wartość nie pasuje do oczekiwanego kształtu.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "Wartość musi być liczbą.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "Wartość musi być liczbą całkowitą.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "To pole wymaga podania ważnego numeru karty kredytowej.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "To pole wymaga prawidłowego adresu IP.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "To pole wymaga prawidłowej daty.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string validator",
+    "type": "text",
+    "placeholders": {}
+  }
+}

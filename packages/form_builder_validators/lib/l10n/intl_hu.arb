@@ -1,0 +1,84 @@
+{
+  "@@last_modified": "2020-06-19T21:53:39.706877",
+  "@@locale": "hu",
+  "requiredErrorText": "Ennek a mezőnek értéket kell adni.",
+  "@requiredErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minErrorText": "Az érték legyen legalább {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "Az értéknel legalább {minLength} karakter hosszúnak kell lennie",
+  "@minLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "Az érték legyen legfeljebb {max}",
+  "@maxErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "Value must have a length less than or equal to {maxLength}",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "A megadott érték nem egy érvényes email cím.",
+  "@emailErrorText": {
+    "description": "Error Text for email field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "urlErrorText": "A megadott érték nem egy érvényes URL cím.",
+  "@urlErrorText": {
+    "description": "Error Text for URL field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "A megadott érték nem egyezik a szükséges formátummal.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "Ebbe a mezőbe csak számot lehet írni.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "A megadott érték nem egy érvényes bankkártya szám.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "A megadott érték nem egy érvényes IP cím.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "Ennek a mezőnek dátumnak kell lennie.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string field",
+    "type": "text",
+    "placeholders": {}
+  }
+}

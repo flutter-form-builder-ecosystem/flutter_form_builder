@@ -1,0 +1,16 @@
+name: form_builder
+
+packages:
+  - packages/**
+
+dev_dependencies:
+  pedantic: ^1.10.0
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+scripts:
+  analyze: melos exec -- pub global run tuneup check
+  format: melos exec -- flutter format .
+  test: melos exec -- flutter test
+  translate: melos exec --depends-on="intl_utils" -- flutter pub run intl_utils:generate
