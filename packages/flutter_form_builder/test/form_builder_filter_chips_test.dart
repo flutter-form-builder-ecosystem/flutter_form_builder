@@ -21,11 +21,11 @@ void main() {
 
     expect(formSave(), isTrue);
     expect(formValue(widgetName), equals(<num>[]));
-    await tester.tap(find.byKey(ValueKey('1')));
+    await tester.tap(find.byKey(const ValueKey('1')));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
     expect(formValue(widgetName), equals(<num>[1]));
-    await tester.tap(find.byKey(ValueKey('3')));
+    await tester.tap(find.byKey(const ValueKey('3')));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
     expect(formValue(widgetName), equals(<num>[1, 3]));
