@@ -178,7 +178,7 @@ class FormBuilderValidators {
     List<String> hostBlacklist = const [],
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&
-              !isURL(valueCandidate!,
+              !isURL(valueCandidate,
                   protocols: protocols,
                   requireTld: requireTld,
                   requireProtocol: requireProtocol,
