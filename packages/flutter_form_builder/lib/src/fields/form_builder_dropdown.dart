@@ -192,6 +192,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// and bottom of the menu by at one menu item's height.
   final double? menuMaxHeight;
 
+  final bool shouldRequestFocus;
+
   /// Creates field for Dropdown button
   FormBuilderDropdown({
     Key? key,
@@ -222,6 +224,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.clearIcon = const Icon(Icons.close),
     this.onTap,
     this.autofocus = false,
+    this.shouldRequestFocus = false,
     this.dropdownColor,
     this.focusColor,
     this.itemHeight = kMinInteractiveDimension,
@@ -246,7 +249,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             // TextFormField
 
             void changeValue(T? value) {
-              state.requestFocus();
+              if (shouldRequestFocus) {
+                state.requestFocus();
+              }
               state.didChange(value);
             }
 
@@ -270,8 +275,8 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
                         isDense: isDense,
                         disabledHint: field.value != null
                             ? (items
-                                    .firstWhereOrNull(
-                                        (val) => val.value == field.value)
+                                    .firstWhereOrNull((dropDownItem) =>
+                                        dropDownItem.value == field.value)
                                     ?.child ??
                                 Text(field.value.toString()))
                             : disabledHint,
