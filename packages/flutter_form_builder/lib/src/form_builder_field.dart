@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../flutter_form_builder.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 enum OptionsOrientation { horizontal, vertical, wrap }
 enum ControlAffinity { leading, trailing }
