@@ -118,7 +118,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 isThreeLine: false,
                 title: title,
                 subtitle: subtitle,
-                value: state.value ?? false,
+                value: tristate? state.value : (state.value ?? false),
                 onChanged: state.enabled
                     ? (val) {
                         state.requestFocus();
