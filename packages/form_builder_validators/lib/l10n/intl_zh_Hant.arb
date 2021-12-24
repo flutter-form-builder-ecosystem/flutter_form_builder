@@ -1,0 +1,105 @@
+{
+  "@@last_modified": "2021-12-24T02:25:04.576038Z",
+  "requiredErrorText": "此字段不能為空。",
+  "@requiredErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "此字段必須與{value}相符",
+  "@equalErrorText": {
+    "type": "text",
+    "description": "Error Text for equal validator",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "此字段不得等於{value}",
+  "@notEqualErrorText": {
+    "type": "text",
+    "description": "Error Text for not-equal validator",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "minErrorText": "此字段必須大於或等於{min}",
+  "@minErrorText": {
+    "type": "text",
+    "description": "Error Text for required field",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "此字段的長度必須大於或等於{minLength}",
+  "@minLengthErrorText": {
+    "type": "text",
+    "description": "Error Text for required field",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "此字段必須小於或等於{max}",
+  "@maxErrorText": {
+    "type": "text",
+    "description": "Error Text for required field",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "此字段的長度必須小於或等於{maxLength}",
+  "@maxLengthErrorText": {
+    "type": "text",
+    "description": "Error Text for required field",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "此字段需要有效的電子郵件地址。",
+  "@emailErrorText": {
+    "type": "text",
+    "description": "Error Text for email field",
+    "placeholders": {}
+  },
+  "urlErrorText": "此字段需要有效的URL地址。",
+  "@urlErrorText": {
+    "type": "text",
+    "description": "Error Text for URL field",
+    "placeholders": {}
+  },
+  "matchErrorText": "此字段與格式不匹配。",
+  "@matchErrorText": {
+    "type": "text",
+    "description": "Error Text for pattern field",
+    "placeholders": {}
+  },
+  "numericErrorText": "此字段必須是數字。",
+  "@numericErrorText": {
+    "type": "text",
+    "description": "Error Text for numeric field",
+    "placeholders": {}
+  },
+  "integerErrorText": "此字段需要有效的整數。",
+  "@integerErrorText": {
+    "type": "text",
+    "description": "Error Text for integer validator",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "此字段需要有效的信用卡號碼。",
+  "@creditCardErrorText": {
+    "type": "text",
+    "description": "Error Text for credit card field",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "此字段需要有效的日期字符串。",
+  "@dateStringErrorText": {
+    "type": "text",
+    "description": "Error Text for date string field",
+    "placeholders": {}
+  },
+  "ipErrorText": "此字段需要有效的IP。",
+  "@ipErrorText": {
+    "type": "text",
+    "description": "Error Text for IP address field",
+    "placeholders": {}
+  }
+}
