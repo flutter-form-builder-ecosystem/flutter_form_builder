@@ -73,7 +73,7 @@
         "type": "text",
         "placeholders": {}
     },
-    "matchErrorText": "Vrednost ne ustreza prepisanemu vzorcu.",
+    "matchErrorText": "Vrednost ne ustreza predpisanemu vzorcu.",
     "@matchErrorText": {
         "description": "Error Text for pattern field",
         "type": "text",

@@ -48,7 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ipErrorText":
             MessageLookupByLibrary.simpleMessage("Vnesite IP naslov."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "Vrednost ne ustreza prepisanemu vzorcu."),
+            "Vrednost ne ustreza predpisanemu vzorcu."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
