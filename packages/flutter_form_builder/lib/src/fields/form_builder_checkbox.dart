@@ -94,6 +94,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.autofocus = false,
     this.tristate = false,
     this.selected = false,
+    bool focusOnChange=true
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -120,7 +121,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 value: tristate? state.value : (state.value ?? false),
                 onChanged: state.enabled
                     ? (val) {
-                        state.requestFocus();
+                        if(focusOnChange) state.requestFocus();
                         state.didChange(val);
                       }
                     : null,
