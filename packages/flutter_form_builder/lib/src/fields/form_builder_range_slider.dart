@@ -109,7 +109,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     //From Super
     required String name,
     FormFieldValidator<RangeValues>? validator,
-    RangeValues? initialValue,
+    required RangeValues initialValue,
     InputDecoration decoration = const InputDecoration(),
     ValueChanged<RangeValues?>? onChanged,
     ValueTransformer<RangeValues?>? valueTransformer,
