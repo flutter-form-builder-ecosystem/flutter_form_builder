@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a fr locale. All the
+// This is a library that provides messages for a sl locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,39 +18,47 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'fr';
+  String get localeName => 'sl';
 
-  static String m1(max) => "La valeur doit être inférieure ou égale à ${max}";
+  static String m0(value) => "Vrednost mora biti enaka ${value}.";
+
+  static String m1(max) => "Vrednost ne sme presegati ${max}";
 
   static String m2(maxLength) =>
-      "La valeur doit avoir une longueur inférieure ou égale à ${maxLength}";
+      "Besedilo mora biti krajše ali enako ${maxLength} znakov";
 
-  static String m3(min) => "La valeur doit être supérieure ou égale à ${min}.";
+  static String m3(min) => "Vrednost mora biti večja ali enaka ${min}.";
 
   static String m4(minLength) =>
-      "La valeur doit avoir une longueur supérieure ou égale à ${minLength}";
+      "Besedilo mora biti daljše ali enako ${minLength} znakov";
+
+  static String m5(value) => "Vrednost ne sme biti večja kot ${value}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite un numéro de carte de crédit valide."),
-        "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une chaîne de date valide."),
+            "Vnesite veljavno številko kreditne kartice."),
+        "dateStringErrorText":
+            MessageLookupByLibrary.simpleMessage("Vnesite veljaven datum."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse e-mail valide."),
-        "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse IP valide."),
+            "Vnesite veljaven e-mail naslov."),
+        "equalErrorText": m0,
+        "integerErrorText":
+            MessageLookupByLibrary.simpleMessage("Vnesite celo število."),
+        "ipErrorText":
+            MessageLookupByLibrary.simpleMessage("Vnesite IP naslov."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur ne correspond pas au modèle."),
+            "Vrednost ne ustreza predpisanemu vzorcu."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
+        "notEqualErrorText": m5,
         "numericErrorText": MessageLookupByLibrary.simpleMessage(
-            "La valeur doit être numérique."),
-        "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ ne peut pas être vide."),
-        "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "Ce champ nécessite une adresse URL valide.")
+            "Vrednost polja mora biti numerična."),
+        "requiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Polje ne more biti prazno."),
+        "urlErrorText":
+            MessageLookupByLibrary.simpleMessage("Vnesite veljaven URL naslov.")
       };
 }
