@@ -131,6 +131,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Polish (pl)
 - Portuguese (pt)
 - Slovak (sk)
+- Slovenian (sl)
 - Spanish (es)
 - Chinese Traditional (zh_Hant)
 - Chinese Simplified (zh_Hans)

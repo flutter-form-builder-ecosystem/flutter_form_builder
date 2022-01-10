@@ -1,3 +1,7 @@
+## [7.3.0] - 10-Jan-2022
+* Added support for Slovenian (sl)
+* Added Chinese language support - both traditional (zh_Hant) and simplified (zh_Hans)
+
 ## [7.2.0] - 06-Nov-2021
 * Added language support for Indonesian (id)
 
