@@ -1,0 +1,106 @@
+{
+    "@@last_modified": "2021-12-26T12:00:39.706877",
+    "@@locale": "sl",
+    "requiredErrorText": "Polje ne more biti prazno.",
+    "@requiredErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "minErrorText": "Vrednost mora biti večja ali enaka {min}.",
+    "@minErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "min": {}
+        }
+    },
+    "minLengthErrorText": "Besedilo mora biti daljše ali enako {minLength} znakov",
+    "@minLengthErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "minLength": {}
+        }
+    },
+    "maxErrorText": "Vrednost ne sme presegati {max}",
+    "@maxErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "max": {}
+        }
+    },
+    "maxLengthErrorText": "Besedilo mora biti krajše ali enako {maxLength} znakov",
+    "@maxLengthErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "maxLength": {}
+        }
+    },
+    "emailErrorText": "Vnesite veljaven e-mail naslov.",
+    "@emailErrorText": {
+        "description": "Error Text for email field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "integerErrorText": "Vnesite celo število.",
+    "@integerErrorText": {
+        "description": "Error Text for integer validator",
+        "type": "text",
+        "placeholders": {}
+    },
+    "equalErrorText": "Vrednost mora biti enaka {value}.",
+    "@equalErrorText": {
+        "description": "Error Text for equal validator",
+        "type": "text",
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "notEqualErrorText": "Vrednost ne sme biti večja kot {value}.",
+    "@notEqualErrorText": {
+        "description": "Error Text for not-equal validator",
+        "type": "text",
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "urlErrorText": "Vnesite veljaven URL naslov.",
+    "@urlErrorText": {
+        "description": "Error Text for URL field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "matchErrorText": "Vrednost ne ustreza predpisanemu vzorcu.",
+    "@matchErrorText": {
+        "description": "Error Text for pattern field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "numericErrorText": "Vrednost polja mora biti numerična.",
+    "@numericErrorText": {
+        "description": "Error Text for numeric field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "creditCardErrorText": "Vnesite veljavno številko kreditne kartice.",
+    "@creditCardErrorText": {
+        "description": "Error Text for credit card field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "ipErrorText": "Vnesite IP naslov.",
+    "@ipErrorText": {
+        "description": "Error Text for IP address field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateStringErrorText": "Vnesite veljaven datum.",
+    "@dateStringErrorText": {
+        "description": "Error Text for date string field",
+        "type": "text",
+        "placeholders": {}
+    }
+}
