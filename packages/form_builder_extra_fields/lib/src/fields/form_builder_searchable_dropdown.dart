@@ -3,6 +3,8 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+export 'package:dropdown_search/dropdown_search.dart' show TextFieldProps;
+
 /// Field for selecting value(s) from a searchable list
 class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   ///show/hide the search box
