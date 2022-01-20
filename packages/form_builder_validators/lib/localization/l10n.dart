@@ -223,6 +223,9 @@ class AppLocalizationDelegate
       Locale.fromSubtags(languageCode: 'pl'),
       Locale.fromSubtags(languageCode: 'pt'),
       Locale.fromSubtags(languageCode: 'sk'),
+      Locale.fromSubtags(languageCode: 'sl'),
+      Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+      Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
     ];
   }
 

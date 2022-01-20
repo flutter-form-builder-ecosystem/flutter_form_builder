@@ -85,15 +85,15 @@ Made with [contributors-img](https://contributors-img.firebaseapp.com).
 
 
 
-[core_code]: https://github.com/danvick/flutter_form_builder/tree/split_packages/packages/flutter_form_builder
+[core_code]: https://github.com/danvick/flutter_form_builder/tree/master/packages/flutter_form_builder
 
-[core_docs]: https://github.com/danvick/flutter_form_builder/blob/split_packages/packages/flutter_form_builder/README.md
+[core_docs]: https://github.com/danvick/flutter_form_builder/blob/master/packages/flutter_form_builder/README.md
 
-[extra_fields_code]: https://github.com/danvick/flutter_form_builder/tree/split_packages/packages/form_builder_extra_fields
+[extra_fields_code]: https://github.com/danvick/flutter_form_builder/tree/master/packages/form_builder_extra_fields
 
-[extra_fields_docs]: https://github.com/danvick/flutter_form_builder/blob/split_packages/packages/form_builder_extra_fields/README.md
+[extra_fields_docs]: https://github.com/danvick/flutter_form_builder/blob/master/packages/form_builder_extra_fields/README.md
 
-[validators_code]: https://github.com/danvick/flutter_form_builder/tree/split_packages/packages/form_builder_validators
+[validators_code]: https://github.com/danvick/flutter_form_builder/tree/master/packages/form_builder_validators
 
-[validators_docs]: https://github.com/danvick/flutter_form_builder/blob/split_packages/packages/form_builder_validators/README.md
+[validators_docs]: https://github.com/danvick/flutter_form_builder/blob/master/packages/form_builder_validators/README.md
 

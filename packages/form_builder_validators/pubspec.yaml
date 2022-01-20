@@ -1,6 +1,6 @@
 name: form_builder_validators
 description: This package provides common reusable FormFieldValidators for Flutter FormField widgets with internationalization
-version: 7.2.0
+version: 7.3.0
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
@@ -18,7 +18,7 @@ dev_dependencies:
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
-  intl_utils: ^2.5.0
+  intl_utils: ^2.6.0
 
 flutter_intl:
   enabled: true
