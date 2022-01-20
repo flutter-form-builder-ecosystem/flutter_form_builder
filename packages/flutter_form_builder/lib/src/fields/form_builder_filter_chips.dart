@@ -5,7 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 /// Field with chips that acts like a list checkboxes.
 class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
-  final bool shouldChipRequestFocus;
+  final bool shouldRequestFocus;
   final Color? backgroundColor;
   final Color? disabledColor;
   final Color? selectedColor;
@@ -65,7 +65,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     this.selectedShadowColor,
     this.shadowColor,
     this.shape,
-    this.shouldChipRequestFocus = false,
+    this.shouldRequestFocus = false,
     this.showCheckmark = true,
     this.spacing = 0.0,
     this.textDirection,
@@ -117,7 +117,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                               } else {
                                 currentValue.remove(option.value);
                               }
-                              if (shouldChipRequestFocus) {
+                              if (shouldRequestFocus) {
                                 state.requestFocus();
                               }
                               field.didChange(currentValue);

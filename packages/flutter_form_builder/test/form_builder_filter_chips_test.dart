@@ -9,7 +9,7 @@ void main() {
     const widgetName = 'formBuilderFilterChip';
 
     final testWidget = FormBuilderFilterChip<int>(
-      shouldChipRequestFocus: false,
+      shouldRequestFocus: false,
       name: widgetName,
       options: const [
         FormBuilderFieldOption(key: ValueKey('1'), value: 1),

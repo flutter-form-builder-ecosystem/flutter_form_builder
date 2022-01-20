@@ -9,7 +9,7 @@ void main() {
   testWidgets('FormBuilderChoiceChip -- 1,3', (WidgetTester tester) async {
     const widgetName = 'cc1';
     final testWidget = FormBuilderChoiceChip<int>(
-      shouldChipRequestFocus: false,
+      shouldRequestFocus: false,
       name: widgetName,
       options: const [
         FormBuilderFieldOption(key: ValueKey('1'), value: 1),
