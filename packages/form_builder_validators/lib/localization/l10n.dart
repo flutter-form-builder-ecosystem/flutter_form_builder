@@ -222,6 +222,7 @@ class AppLocalizationDelegate
       Locale.fromSubtags(languageCode: 'messages'),
       Locale.fromSubtags(languageCode: 'pl'),
       Locale.fromSubtags(languageCode: 'pt'),
+      Locale.fromSubtags(languageCode: 'ru'),
       Locale.fromSubtags(languageCode: 'sk'),
       Locale.fromSubtags(languageCode: 'sl'),
       Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
