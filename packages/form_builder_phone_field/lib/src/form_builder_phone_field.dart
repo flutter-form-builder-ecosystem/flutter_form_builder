@@ -238,7 +238,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                         hintText: decoration.hintText,
                         hintStyle: decoration.hintStyle,
                       ),
-                      onChanged: (val) {
+                      onChanged: (_) {
                         state.invokeChange();
                       },
                       maxLines: 1,
