@@ -1,100 +1,95 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field with chips that acts like a list checkboxes.
 class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
-  final List<FormBuilderFieldOption<T>> options;
-  final double? elevation, pressElevation;
-  final Color? selectedColor;
-  final Color? disabledColor;
+  final bool shouldRequestFocus;
   final Color? backgroundColor;
+  final Color? disabledColor;
+  final Color? selectedColor;
   final Color? selectedShadowColor;
   final Color? shadowColor;
-  final OutlinedBorder? shape;
+  final double? elevation, pressElevation;
+  final List<FormBuilderFieldOption<T>> options;
   final MaterialTapTargetSize? materialTapTargetSize;
+  final OutlinedBorder? shape;
 
   // Wrap Settings
   final Axis direction;
-  final WrapAlignment alignment;
-  final WrapCrossAlignment crossAxisAlignment;
-  final WrapAlignment runAlignment;
-  final double runSpacing, spacing;
-  final TextDirection? textDirection;
-  final VerticalDirection verticalDirection;
-  final EdgeInsets? padding;
-  final Color? checkmarkColor;
-  final Clip clipBehavior;
-  final TextStyle? labelStyle;
   final bool showCheckmark;
+  final Clip clipBehavior;
+  final Color? checkmarkColor;
+  final double runSpacing, spacing;
   final EdgeInsets? labelPadding;
+  final EdgeInsets? padding;
+  final TextDirection? textDirection;
+  final TextStyle? labelStyle;
+  final VerticalDirection verticalDirection;
+  final WrapAlignment alignment;
+  final WrapAlignment runAlignment;
+  final WrapCrossAlignment crossAxisAlignment;
 
-  // final VisualDensity visualDensity;
   final int? maxChips;
 
   /// Creates field with chips that acts like a list checkboxes.
   FormBuilderFilterChip({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<List<T>>? validator,
-    List<T> initialValue = const [],
-    InputDecoration decoration = const InputDecoration(
-      border: InputBorder.none,
-      focusedBorder: InputBorder.none,
-      enabledBorder: InputBorder.none,
-      errorBorder: InputBorder.none,
-      disabledBorder: InputBorder.none,
-    ),
-    ValueChanged<List<T>?>? onChanged,
-    ValueTransformer<List<T>?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<List<T>>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
+    bool enabled = true,
     FocusNode? focusNode,
+    FormFieldSetter<List<T>>? onSaved,
+    FormFieldValidator<List<T>>? validator,
+    InputDecoration decoration = const InputDecoration(),
+    Key? key,
+    List<T> initialValue = const [],
+    required String name, // From Super
     required this.options,
-    this.selectedColor,
-    this.disabledColor,
-    this.backgroundColor,
-    this.shadowColor,
-    this.selectedShadowColor,
-    this.shape,
-    this.elevation,
-    this.pressElevation,
-    this.materialTapTargetSize,
-    this.direction = Axis.horizontal,
     this.alignment = WrapAlignment.start,
+    this.backgroundColor,
+    this.checkmarkColor,
+    this.clipBehavior = Clip.none,
     this.crossAxisAlignment = WrapCrossAlignment.start,
+    this.direction = Axis.horizontal,
+    this.disabledColor,
+    this.elevation,
+    this.labelPadding,
+    this.labelStyle,
+    this.materialTapTargetSize,
+    this.maxChips,
+    this.padding,
+    this.pressElevation,
     this.runAlignment = WrapAlignment.start,
     this.runSpacing = 0.0,
+    this.selectedColor,
+    this.selectedShadowColor,
+    this.shadowColor,
+    this.shape,
+    this.shouldRequestFocus = false,
+    this.showCheckmark = true,
     this.spacing = 0.0,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
-    this.padding,
-    this.checkmarkColor,
-    this.clipBehavior = Clip.none,
-    this.labelStyle,
-    this.showCheckmark = true,
-    this.labelPadding,
-    this.maxChips,
-    // this.visualDensity,
+    ValueChanged<List<T>?>? onChanged,
+    ValueTransformer<List<T>?>? valueTransformer,
+    VoidCallback? onReset,
   })  : assert((maxChips == null) || (initialValue.length <= maxChips)),
         super(
-          key: key,
+          autovalidateMode: autovalidateMode,
+          decoration: decoration,
+          enabled: enabled,
+          focusNode: focusNode,
           initialValue: initialValue,
+          key: key,
           name: name,
+          onChanged: onChanged,
+          onReset: onReset,
+          onSaved: onSaved,
           validator: validator,
           valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderFilterChipState<T>;
+
             return InputDecorator(
               decoration: state.decoration,
               child: Wrap(
@@ -122,7 +117,9 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                               } else {
                                 currentValue.remove(option.value);
                               }
-                              state.requestFocus();
+                              if (shouldRequestFocus) {
+                                state.requestFocus();
+                              }
                               field.didChange(currentValue);
                             }
                           : null,
@@ -131,7 +128,6 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                       backgroundColor: backgroundColor,
                       shadowColor: shadowColor,
                       selectedShadowColor: selectedShadowColor,
-                      // shape: shape,  //TODO: remove - latter flutter versions
                       elevation: elevation,
                       pressElevation: pressElevation,
                       materialTapTargetSize: materialTapTargetSize,
@@ -141,7 +137,6 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                       labelStyle: labelStyle,
                       showCheckmark: showCheckmark,
                       labelPadding: labelPadding,
-                      // visualDensity: visualDensity,
                     ),
                 ],
               ),

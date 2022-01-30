@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
+
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field to select a range of values on a Slider
 class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
