@@ -98,6 +98,9 @@ class FormBuilderState extends State<FormBuilder> {
 
   Map<String, FormBuilderFieldState> get fields => _fields;
 
+  bool get isValid =>
+      fields.values.where((element) => !element.isValid).isEmpty;
+
   void setInternalFieldValue(String name, dynamic value) {
     setState(() => _value[name] = value);
   }
