@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:form_builder_validators/src/utils/validators.dart';
+
+import 'utils/validators.dart';
 
 /// For creation of [FormFieldValidator]s.
 class FormBuilderValidators {
@@ -176,7 +178,7 @@ class FormBuilderValidators {
     List<String> hostBlacklist = const [],
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&
-              !isURL(valueCandidate!,
+              !isURL(valueCandidate,
                   protocols: protocols,
                   requireTld: requireTld,
                   requireProtocol: requireProtocol,

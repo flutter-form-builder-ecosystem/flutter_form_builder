@@ -4,7 +4,6 @@ import 'package:country_pickers/utils/typedefs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:phone_number/phone_number.dart';
 
@@ -239,7 +238,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                         hintText: decoration.hintText,
                         hintStyle: decoration.hintStyle,
                       ),
-                      onChanged: (val) {
+                      onChanged: (_) {
                         state.invokeChange();
                       },
                       maxLines: 1,
