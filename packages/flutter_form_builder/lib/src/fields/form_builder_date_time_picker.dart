@@ -260,7 +260,8 @@ class _FormBuilderDateTimePickerState
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
     _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
-    final initVal = initialValue;
+    //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
+    final initVal = value;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
     effectiveFocusNode.addListener(_handleFocus);
