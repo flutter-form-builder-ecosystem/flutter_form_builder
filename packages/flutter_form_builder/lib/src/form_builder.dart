@@ -136,6 +136,7 @@ class FormBuilderState extends State<FormBuilder> {
       setState(() {});
     }
   }
+
   bool get isValid =>
       fields.values.where((element) => !element.isValid).isEmpty;
 

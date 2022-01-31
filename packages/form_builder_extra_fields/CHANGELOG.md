@@ -1,3 +1,8 @@
+## [7.1.0] - 31-Jan-2022
+* Use `flutter_datetime_picker_bdaya` instead of the unmaintained `flutter_datetime_picker`
+* TypeAhead onReset uses `valueTransformer`
+* Export the class `TextFieldProps` - prevents importing from transitive dependency `dropdown_search`
+
 ## [7.0.0] - 27-Oct-2021
 * `flutter_form_builder` ^7.0.0 compatibility
 * Upgraded packages
