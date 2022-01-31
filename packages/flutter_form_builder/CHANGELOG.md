@@ -1,3 +1,9 @@
+## [7.1.0] - 31-Jan-2022
+* Added silent validation to the FormBuilder widget
+* Implemented `shouldChipRequestFocus` feature - fixes request focus for non-test based fields
+* Improved field replacement logic
+* Documentation fixes
+
 ## [7.0.0] - 27-Oct-2021
 **BREAKING CHANGE**:
 * For ease of maintainability, validation functionality has been broken up into a separate package: [form_builder_validators](https://pub.dev/packages/form_builder_validators)
