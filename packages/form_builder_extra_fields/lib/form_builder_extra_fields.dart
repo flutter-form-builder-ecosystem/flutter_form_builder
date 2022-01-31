@@ -1,6 +1,6 @@
 library form_builder_extra_fields;
 
-export 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+export 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 export 'src/fields/form_builder_chips_input.dart';

@@ -1,58 +1,60 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
-  final List<FormBuilderFieldOption<T>> options;
+  final Axis wrapDirection;
+  final bool shouldRadioRequestFocus;
   final Color? activeColor;
   final Color? focusColor;
   final Color? hoverColor;
+  final ControlAffinity controlAffinity;
+  final double wrapRunSpacing;
+  final double wrapSpacing;
+  final List<FormBuilderFieldOption<T>> options;
   final List<T>? disabled;
   final MaterialTapTargetSize? materialTapTargetSize;
-  final Axis wrapDirection;
-  final WrapAlignment wrapAlignment;
-  final double wrapSpacing;
-  final WrapAlignment wrapRunAlignment;
-  final double wrapRunSpacing;
-  final WrapCrossAlignment wrapCrossAxisAlignment;
+  final OptionsOrientation orientation;
   final TextDirection? wrapTextDirection;
   final VerticalDirection wrapVerticalDirection;
   final Widget? separator;
-  final ControlAffinity controlAffinity;
-  final OptionsOrientation orientation;
+  final WrapAlignment wrapAlignment;
+  final WrapAlignment wrapRunAlignment;
+  final WrapCrossAlignment wrapCrossAxisAlignment;
 
   /// Creates field to select one value from a list of Radio Widgets
   FormBuilderRadioGroup({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<T>? validator,
-    T? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T?>? onChanged,
-    ValueTransformer<T?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
+    bool enabled = true,
     FocusNode? focusNode,
+    FormFieldSetter<T>? onSaved,
+    FormFieldValidator<T>? validator,
+    InputDecoration decoration = const InputDecoration(),
+    Key? key,
+    required String name, //From Super
     required this.options,
+    T? initialValue,
+    this.shouldRadioRequestFocus = false,
     this.activeColor,
+    this.controlAffinity = ControlAffinity.leading,
+    this.disabled,
     this.focusColor,
     this.hoverColor,
-    this.disabled,
     this.materialTapTargetSize,
-    this.wrapDirection = Axis.horizontal,
+    this.orientation = OptionsOrientation.wrap,
+    this.separator,
     this.wrapAlignment = WrapAlignment.start,
-    this.wrapSpacing = 0.0,
+    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+    this.wrapDirection = Axis.horizontal,
     this.wrapRunAlignment = WrapAlignment.start,
     this.wrapRunSpacing = 0.0,
-    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+    this.wrapSpacing = 0.0,
     this.wrapTextDirection,
     this.wrapVerticalDirection = VerticalDirection.down,
-    this.separator,
-    this.controlAffinity = ControlAffinity.leading,
-    this.orientation = OptionsOrientation.wrap,
+    ValueChanged<T?>? onChanged,
+    ValueTransformer<T?>? valueTransformer,
+    VoidCallback? onReset,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -72,20 +74,24 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
             return InputDecorator(
               decoration: state.decoration,
               child: GroupedRadio<T>(
-                orientation: orientation,
-                value: state.value,
-                options: options,
-                onChanged: (val) {
-                  state.requestFocus();
-                  state.didChange(val);
-                },
+                activeColor: activeColor,
+                controlAffinity: controlAffinity,
                 disabled: state.enabled
                     ? disabled
-                    : options.map((e) => e.value).toList(),
-                activeColor: activeColor,
+                    : options.map((option) => option.value).toList(),
                 focusColor: focusColor,
-                materialTapTargetSize: materialTapTargetSize,
                 hoverColor: hoverColor,
+                materialTapTargetSize: materialTapTargetSize,
+                onChanged: (value) {
+                  if (shouldRadioRequestFocus) {
+                    state.requestFocus();
+                  }
+                  state.didChange(value);
+                },
+                options: options,
+                orientation: orientation,
+                separator: separator,
+                value: state.value,
                 wrapAlignment: wrapAlignment,
                 wrapCrossAxisAlignment: wrapCrossAxisAlignment,
                 wrapDirection: wrapDirection,
@@ -94,8 +100,6 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 wrapSpacing: wrapSpacing,
                 wrapTextDirection: wrapTextDirection,
                 wrapVerticalDirection: wrapVerticalDirection,
-                separator: separator,
-                controlAffinity: controlAffinity,
               ),
             );
           },

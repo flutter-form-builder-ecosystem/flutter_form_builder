@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
 class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
+  final bool shouldRequestFocus;
+
   /// The list of items the user can select.
   final List<FormBuilderFieldOption<T>> options;
 
@@ -240,41 +243,41 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
 
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<T>? validator,
-    T? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T?>? onChanged,
-    ValueTransformer<T?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<T>? onSaved,
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
+    bool enabled = true,
     FocusNode? focusNode,
+    FormFieldSetter<T>? onSaved,
+    FormFieldValidator<T>? validator,
+    InputDecoration decoration = const InputDecoration(),
+    Key? key,
+    required String name, //From Super
     required this.options,
-    this.selectedColor,
-    this.disabledColor,
-    this.backgroundColor,
-    this.shadowColor,
-    this.selectedShadowColor,
-    this.shape,
-    this.elevation,
-    this.pressElevation,
-    this.materialTapTargetSize,
-    this.direction = Axis.horizontal,
+    T? initialValue,
     this.alignment = WrapAlignment.start,
+    this.backgroundColor,
     this.crossAxisAlignment = WrapCrossAlignment.start,
+    this.direction = Axis.horizontal,
+    this.disabledColor,
+    this.elevation,
+    this.labelPadding,
+    this.labelStyle,
+    this.materialTapTargetSize,
+    this.padding,
+    this.pressElevation,
     this.runAlignment = WrapAlignment.start,
     this.runSpacing = 0.0,
+    this.selectedColor,
+    this.selectedShadowColor,
+    this.shadowColor,
+    this.shape,
+    this.shouldRequestFocus = false,
     this.spacing = 0.0,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
-    this.labelPadding,
-    this.labelStyle,
-    this.padding,
     this.visualDensity,
+    ValueChanged<T?>? onChanged,
+    ValueTransformer<T?>? valueTransformer,
+    VoidCallback? onReset,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -310,7 +313,9 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                         onSelected: state.enabled
                             ? (selected) {
                                 final choice = selected ? option.value : null;
-                                state.requestFocus();
+                                if (shouldRequestFocus) {
+                                  state.requestFocus();
+                                }
                                 state.didChange(choice);
                               }
                             : null,
@@ -319,7 +324,6 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                         backgroundColor: backgroundColor,
                         shadowColor: shadowColor,
                         selectedShadowColor: selectedShadowColor,
-                        // shape: shape,
                         elevation: elevation,
                         pressElevation: pressElevation,
                         materialTapTargetSize: materialTapTargetSize,

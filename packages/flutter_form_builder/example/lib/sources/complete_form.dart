@@ -22,7 +22,7 @@ class CompleteFormState extends State<CompleteForm> {
 
   var genderOptions = ['Male', 'Female', 'Other'];
 
-  void _onChanged(dynamic val) => debugPrint(val);
+  void _onChanged(dynamic val) => debugPrint(val.toString());
 
   @override
   Widget build(BuildContext context) {

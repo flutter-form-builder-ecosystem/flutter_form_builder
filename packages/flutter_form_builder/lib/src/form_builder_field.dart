@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 enum OptionsOrientation { horizontal, vertical, wrap }
@@ -73,8 +74,6 @@ class FormBuilderField<T> extends FormField<T> {
           validator: validator,
         );
 
-  /*@override
-  FormBuilderFieldState<T> createState();*/
   @override
   FormBuilderFieldState<FormBuilderField<T>, T> createState() =>
       FormBuilderFieldState<FormBuilderField<T>, T>();
@@ -99,6 +98,15 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   FormBuilderState? _formBuilderState;
 
+  dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
+
+  void registerTransformer(Map<String, Function> _map) {
+    final _fun = widget.valueTransformer;
+    if (_fun != null) {
+      _map[widget.name] = _fun;
+    }
+  }
+
   @override
   String? get errorText => super.errorText ?? _customErrorText;
 
@@ -114,20 +122,29 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
-  FocusNode? _focusNode;
-  FocusNode get effectiveFocusNode =>
-      widget.focusNode ?? (_focusNode ??= FocusNode());
+  late FocusNode effectiveFocusNode;
 
   @override
   void initState() {
     super.initState();
     // Register this field when there is a parent FormBuilder
     _formBuilderState = FormBuilder.of(context);
+    // Set the initial value
     _formBuilderState?.registerField(widget.name, this);
+
+    effectiveFocusNode = widget.focusNode ?? FocusNode(debugLabel: widget.name);
     // Register a touch handler
     effectiveFocusNode.addListener(_touchedHandler);
-    // Set the initial value
-    setValue(initialValue);
+  }
+
+  @override
+  void didUpdateWidget(covariant FormBuilderField<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.focusNode != oldWidget.focusNode) {
+      effectiveFocusNode.removeListener(_touchedHandler);
+      effectiveFocusNode = widget.focusNode ?? FocusNode();
+      effectiveFocusNode.addListener(_touchedHandler);
+    }
   }
 
   @override
@@ -141,17 +158,29 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     super.dispose();
   }
 
-  @override
-  void save() {
-    super.save();
+  // @override
+  // void save() {
+  //   _informFormForFieldChange(
+  //     isSetState: true,
+  //   );
+  //   super.save();
+  // }
+
+  void _informFormForFieldChange({
+    required bool isSetState,
+  }) {
     if (_formBuilderState != null) {
       if (enabled || !_formBuilderState!.widget.skipDisabled) {
-        _formBuilderState!.setInternalFieldValue(
+        _formBuilderState!.setInternalFieldValue<T>(
           widget.name,
-          widget.valueTransformer?.call(value) ?? value,
+          value,
+          isSetState: isSetState,
         );
       } else {
-        _formBuilderState!.removeInternalFieldValue(widget.name);
+        _formBuilderState!.removeInternalFieldValue(
+          widget.name,
+          isSetState: isSetState,
+        );
       }
     }
   }
@@ -163,8 +192,21 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   @override
+  void setValue(T? value, {bool populateForm = true}) {
+    super.setValue(value);
+    if (populateForm) {
+      _informFormForFieldChange(
+        isSetState: false,
+      );
+    }
+  }
+
+  @override
   void didChange(T? value) {
     super.didChange(value);
+    _informFormForFieldChange(
+      isSetState: false,
+    );
     widget.onChanged?.call(value);
   }
 

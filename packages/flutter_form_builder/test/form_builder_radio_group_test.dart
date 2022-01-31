@@ -7,6 +7,7 @@ void main() {
   testWidgets('FormBuilderRadioGroup -- 1,3', (WidgetTester tester) async {
     const widgetName = 'rg1';
     final testWidget = FormBuilderRadioGroup<int>(
+      shouldRadioRequestFocus: false,
       name: widgetName,
       options: const [
         FormBuilderFieldOption(key: ValueKey('1'), value: 1),

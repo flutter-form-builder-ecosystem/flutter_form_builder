@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A container for form fields.
@@ -90,20 +93,60 @@ class FormBuilderState extends State<FormBuilder> {
 
   final _fields = <String, FormBuilderFieldState>{};
 
-  final _value = <String, dynamic>{};
+  //because dart type system will not accept ValueTransformer<dynamic>
+  final _transformers = <String, Function>{};
+  final _instantValue = <String, dynamic>{};
+  final _savedValue = <String, dynamic>{};
 
-  Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(_value);
+  Map<String, dynamic> get instantValue =>
+      Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
+          MapEntry(key, _transformers[key]?.call(value) ?? value)));
 
+  /// Returns the saved value only
+  Map<String, dynamic> get value =>
+      Map<String, dynamic>.unmodifiable(_savedValue.map((key, value) =>
+          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+
+  /// Returns values after saving
   Map<String, dynamic> get initialValue => widget.initialValue;
 
   Map<String, FormBuilderFieldState> get fields => _fields;
 
-  void setInternalFieldValue(String name, dynamic value) {
-    setState(() => _value[name] = value);
+  dynamic transformValue<T>(String name, T? v) {
+    final t = _transformers[name];
+    return t != null ? t.call(v) : v;
   }
 
-  void removeInternalFieldValue(String name) {
-    setState(() => _value.remove(name));
+  dynamic getTransformedValue<T>(String name, {bool fromSaved = false}) {
+    return transformValue<T>(name, getRawValue(name));
+  }
+
+  T? getRawValue<T>(String name, {bool fromSaved = false}) {
+    return (fromSaved ? _savedValue[name] : _instantValue[name]) ??
+        initialValue[name];
+  }
+
+  void setInternalFieldValue<T>(
+    String name,
+    T? value, {
+    required bool isSetState,
+  }) {
+    _instantValue[name] = value;
+    if (isSetState) {
+      setState(() {});
+    }
+  }
+  bool get isValid =>
+      fields.values.where((element) => !element.isValid).isEmpty;
+
+  void removeInternalFieldValue(
+    String name, {
+    required bool isSetState,
+  }) {
+    _instantValue.remove(name);
+    if (isSetState) {
+      setState(() {});
+    }
   }
 
   void registerField(String name, FormBuilderFieldState field) {
@@ -113,14 +156,30 @@ class FormBuilderState extends State<FormBuilder> {
     // field is being replaced, the new instance is registered before the old
     // one is unregistered.  To accommodate that use case, but also provide
     // assistance to accidental duplicate names, we check and emit a warning.
+    final oldField = _fields[name];
     assert(() {
-      if (_fields.containsKey(name)) {
+      if (oldField != null) {
         debugPrint('Warning! Replacing duplicate Field for $name'
             ' -- this is OK to ignore as long as the field was intentionally replaced');
       }
       return true;
     }());
+
     _fields[name] = field;
+    field.registerTransformer(_transformers);
+    if (oldField != null) {
+      // ignore: invalid_use_of_protected_member
+      field.setValue(
+        oldField.value,
+        populateForm: false,
+      );
+    } else {
+      // ignore: invalid_use_of_protected_member
+      field.setValue(
+        _instantValue[name] ??= field.initialValue,
+        populateForm: false,
+      );
+    }
   }
 
   void unregisterField(String name, FormBuilderFieldState field) {
@@ -131,6 +190,7 @@ class FormBuilderState extends State<FormBuilder> {
     // since it may be intentional.
     if (field == _fields[name]) {
       _fields.remove(name);
+      _transformers.remove(name);
     } else {
       assert(() {
         // This is OK to ignore when you are intentionally replacing a field
@@ -141,11 +201,14 @@ class FormBuilderState extends State<FormBuilder> {
       }());
     }
     // Removes internal field value
-    _value.remove(name);
+    // _savedValue.remove(name);
   }
 
   void save() {
     _formKey.currentState!.save();
+    //copy values from instant to saved
+    _savedValue.clear();
+    _savedValue.addAll(_instantValue);
   }
 
   void invalidateField({required String name, String? errorText}) =>
@@ -170,7 +233,21 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void reset() {
+    log('reset called');
     _formKey.currentState!.reset();
+    for (var item in _fields.entries) {
+      try {
+        item.value.didChange(getRawValue(item.key));
+      } catch (e, st) {
+        log(
+          'Error when resetting field: ${item.key}',
+          error: e,
+          stackTrace: st,
+          level: 2000,
+        );
+      }
+    }
+    // _formKey.currentState!.setState(() {});
   }
 
   void patchValue(Map<String, dynamic> val) {

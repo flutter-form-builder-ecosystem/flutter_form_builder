@@ -11,19 +11,15 @@ dependencies:
     sdk: flutter
   flutter_form_builder: ^7.0.0
   flutter_chips_input: ^1.10.0
-  flutter_colorpicker: ^0.6.0
-  dropdown_search: ^2.0.0
-  signature: ^4.1.1
+  flutter_colorpicker: ^1.0.3
+  dropdown_search: ^2.0.1
+  signature: ^5.0.0
   flutter_touch_spin: ^2.0.0-nullsafety.1
   intl: ^0.17.0
-  flutter_typeahead: ^3.2.1
-  flutter_datetime_picker: ^1.5.1
+  flutter_typeahead: ^3.2.4
+  flutter_datetime_picker_bdaya: ^2.0.0
   flutter_rating_bar: ^4.0.0
-
 dev_dependencies:
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
-
-flutter:
-

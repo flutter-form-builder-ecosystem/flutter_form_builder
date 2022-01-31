@@ -3,6 +3,7 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A Material Design text field input.
@@ -434,8 +435,8 @@ class _FormBuilderTextFieldState
   @override
   void initState() {
     super.initState();
-    _controller =
-        widget.controller ?? TextEditingController(text: initialValue);
+    //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
+    _controller = widget.controller ?? TextEditingController(text: value);
     _controller!.addListener(_handleControllerChanged);
   }
 

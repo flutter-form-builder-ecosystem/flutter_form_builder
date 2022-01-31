@@ -188,6 +188,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   /// function to override position calculation
   final PositionCallback? positionCallback;
 
+  final dropdown_search.SelectionListViewProps selectionListViewProps;
+
   /// Creates field for selecting value(s) from a searchable list
   FormBuilderSearchableDropdown({
     Key? key,
@@ -203,7 +205,8 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
     FocusNode? focusNode,
-    required this.items,
+    this.items,
+    this.selectionListViewProps = const SelectionListViewProps(),
     this.mode = dropdown_search.Mode.MENU,
     this.isFilteredOnline = false,
     this.popupTitle,
@@ -278,10 +281,9 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderSearchableDropdownState<T>;
-
             return dropdown_search.DropdownSearch<T>(
-              key: ValueKey(state.value),
               // Hack to rebuild when didChange is called
+              key: UniqueKey(),
               items: items,
               maxHeight: maxHeight,
               onFind: onFind,
@@ -289,9 +291,9 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
                 state.requestFocus();
                 state.didChange(val);
               },
+              selectionListViewProps: selectionListViewProps,
               showSearchBox: showSearchBox,
               enabled: state.enabled,
-
               autoValidateMode: autovalidateMode,
               clearButton: clearButton,
               compareFn: compareFn,

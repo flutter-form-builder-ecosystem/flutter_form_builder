@@ -1,10 +1,11 @@
-import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+
 import 'package:intl/intl.dart';
+
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 enum InputType { date, time, both }
 
@@ -259,7 +260,8 @@ class _FormBuilderDateTimePickerState
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
     _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
-    final initVal = initialValue;
+    //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
+    final initVal = value;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
     effectiveFocusNode.addListener(_handleFocus);

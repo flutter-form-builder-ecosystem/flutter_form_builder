@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// On/Off switch field
@@ -75,6 +76,8 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
+  final bool shouldRequestFocus;
+
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -105,6 +108,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     this.controlAffinity = ListTileControlAffinity.trailing,
     this.contentPadding = EdgeInsets.zero,
     this.autofocus = false,
+    this.shouldRequestFocus = false,
     this.selected = false,
   }) : super(
           key: key,
@@ -131,9 +135,11 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
                 title: title,
                 value: state.value ?? false,
                 onChanged: state.enabled
-                    ? (val) {
-                        state.requestFocus();
-                        field.didChange(val);
+                    ? (value) {
+                        if (shouldRequestFocus) {
+                          state.requestFocus();
+                        }
+                        field.didChange(value);
                       }
                     : null,
                 activeColor: activeColor,

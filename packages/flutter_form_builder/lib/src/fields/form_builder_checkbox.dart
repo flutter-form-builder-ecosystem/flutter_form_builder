@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Single Checkbox field
@@ -41,6 +42,8 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
+
+  final bool shouldRequestFocus;
 
   /// If true the checkbox's [value] can be true, false, or null.
   ///
@@ -86,14 +89,15 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     FocusNode? focusNode,
     required this.title,
     this.activeColor,
-    this.checkColor,
-    this.subtitle,
-    this.secondary,
-    this.controlAffinity = ListTileControlAffinity.leading,
-    this.contentPadding = EdgeInsets.zero,
     this.autofocus = false,
-    this.tristate = false,
+    this.checkColor,
+    this.contentPadding = EdgeInsets.zero,
+    this.controlAffinity = ListTileControlAffinity.leading,
+    this.secondary,
     this.selected = false,
+    this.shouldRequestFocus = false,
+    this.subtitle,
+    this.tristate = false,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -117,11 +121,13 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 isThreeLine: false,
                 title: title,
                 subtitle: subtitle,
-                value: tristate? state.value : (state.value ?? false),
+                value: tristate ? state.value : (state.value ?? false),
                 onChanged: state.enabled
-                    ? (val) {
-                        state.requestFocus();
-                        state.didChange(val);
+                    ? (value) {
+                        if (shouldRequestFocus) {
+                          state.requestFocus();
+                        }
+                        state.didChange(value);
                       }
                     : null,
                 checkColor: checkColor,
