@@ -1,3 +1,6 @@
+## [7.4.0] - 31-Jan-2022
+* Added Russian (ru) language support
+
 ## [7.3.0] - 10-Jan-2022
 * Added support for Slovenian (sl)
 * Added Chinese language support - both traditional (zh_Hant) and simplified (zh_Hans)
@@ -11,7 +14,7 @@
 ## [7.0.0] - 02-Sep-2021
 * New Package 🎉🎊 - Split from and no dependency on [flutter_form_builder](https://pub.dev/packages/flutter_form_builder)
 * Added Arabic and Persian/Farsi support
-* Use intl_utils package for localization
+* Use `intl_utils` package for localization
 * Minor type fixes
 * Documentation and example improvements
 
