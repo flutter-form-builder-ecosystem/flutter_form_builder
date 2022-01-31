@@ -1,6 +1,6 @@
 name: form_builder_extra_fields
 description: This package provides additional input fields for flutter_form_builder package
-version: 7.0.0
+version: 7.1.0
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
