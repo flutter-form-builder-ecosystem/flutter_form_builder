@@ -49,18 +49,18 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
     this.controller,
     this.border,
   }) : super(
-          key: key,
+          autovalidateMode: autovalidateMode,
+          decoration: decoration,
+          enabled: enabled,
+          focusNode: focusNode,
           initialValue: initialValue,
+          key: key,
           name: name,
+          onChanged: onChanged,
+          onReset: onReset,
+          onSaved: onSaved,
           validator: validator,
           valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<Uint8List?> field) {
             final state = field as _FormBuilderSignaturePadState;
             final theme = Theme.of(state.context);

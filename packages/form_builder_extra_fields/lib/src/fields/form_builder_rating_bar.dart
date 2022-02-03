@@ -4,6 +4,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 /// Field for selection of a numerical value using a star* rating widget
 class FormBuilderRatingBar extends FormBuilderField<double> {
+  final bool shouldRequestFocus;
+
   /// Defines color for glow.
   ///
   /// Default is [ThemeData.colorScheme.secondary].
@@ -97,34 +99,35 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
   FormBuilderRatingBar({
     Key? key,
     //From Super
-    required String name,
-    FormFieldValidator<double>? validator,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    bool enabled = true,
     double? initialValue,
+    FocusNode? focusNode,
+    FormFieldSetter<double>? onSaved,
+    FormFieldValidator<double>? validator,
     InputDecoration decoration = const InputDecoration(),
+    required String name,
     ValueChanged<double?>? onChanged,
     ValueTransformer<double?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<double>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
-    FocusNode? focusNode,
-    this.glowColor,
-    this.maxRating,
-    this.textDirection,
-    this.unratedColor,
     this.allowHalfRating = false,
     this.direction = Axis.horizontal,
     this.glow = true,
+    this.glowColor,
     this.glowRadius = 2,
     this.initialRating = 0.0,
     this.itemCount = 5,
     this.itemPadding = EdgeInsets.zero,
     this.itemSize = 40.0,
+    this.maxRating,
     this.minRating = 0,
+    this.ratingWidget,
+    this.shouldRequestFocus = false,
     this.tapOnlyMode = false,
+    this.textDirection,
+    this.unratedColor,
     this.updateOnDrag = false,
     this.wrapAlignment = WrapAlignment.start,
-    this.ratingWidget,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -153,7 +156,10 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
                 itemPadding: widget.itemPadding,
                 // itemBuilder: widget.itemBuilder
                 onRatingUpdate: (rating) {
-                  state.requestFocus();
+                  if (shouldRequestFocus) {
+                    state.requestFocus();
+                  }
+
                   field.didChange(rating);
                 },
                 ratingWidget: widget.ratingWidget ??

@@ -8,68 +8,67 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
   //TODO: Add documentation
   final ChipsInputSuggestions<T> findSuggestions;
 
-  // final ValueChanged<List<T>> onChanged;
+  final bool allowChipEditing;
+  final bool autocorrect;
+  final bool autofocus;
+  final bool obscureText;
+  final Brightness keyboardAppearance;
   final ChipsBuilder<T> chipBuilder;
   final ChipsBuilder<T> suggestionBuilder;
+  final double? suggestionsBoxMaxHeight;
   final int? maxChips;
-  final TextStyle? textStyle;
   final String? actionLabel;
-  final bool autocorrect;
+  final TextCapitalization textCapitalization;
   final TextInputAction inputAction;
   final TextInputType inputType;
-  final Brightness keyboardAppearance;
-  final bool obscureText;
-  final double? suggestionsBoxMaxHeight;
-  final TextCapitalization textCapitalization;
-  final bool allowChipEditing;
-  final bool autofocus;
   final TextOverflow textOverflow;
+  final TextStyle? textStyle;
 
   /// Creates a field that takes a list of `Chip`s as input and suggests more options
   /// while typing
   FormBuilderChipsInput({
     Key? key,
     //From Super
-    required String name,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    bool enabled = true,
+    FocusNode? focusNode,
+    FormFieldSetter<List<T>>? onSaved,
     FormFieldValidator<List<T>>? validator,
-    List<T> initialValue = const [],
     InputDecoration decoration = const InputDecoration(),
+    List<T> initialValue = const [],
+    required String name,
+    required this.chipBuilder,
+    required this.findSuggestions,
+    required this.suggestionBuilder,
     ValueChanged<List<T>?>? onChanged,
     ValueTransformer<List<T>?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<List<T>>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
-    FocusNode? focusNode,
-    required this.chipBuilder,
-    required this.suggestionBuilder,
-    required this.findSuggestions,
-    this.maxChips,
-    this.textStyle,
     this.actionLabel,
-    this.suggestionsBoxMaxHeight,
+    this.allowChipEditing = false,
     this.autocorrect = false,
+    this.autofocus = false,
     this.inputAction = TextInputAction.done,
     this.inputType = TextInputType.text,
     this.keyboardAppearance = Brightness.light,
+    this.maxChips,
     this.obscureText = false,
+    this.suggestionsBoxMaxHeight,
     this.textCapitalization = TextCapitalization.none,
-    this.allowChipEditing = false,
-    this.autofocus = false,
     this.textOverflow = TextOverflow.clip,
+    this.textStyle,
   }) : super(
-          key: key,
+          autovalidateMode: autovalidateMode,
+          decoration: decoration,
+          enabled: enabled,
+          focusNode: focusNode,
           initialValue: initialValue,
+          key: key,
           name: name,
+          onChanged: onChanged,
+          onReset: onReset,
+          onSaved: onSaved,
           validator: validator,
           valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderChipsInputState<T>;
 

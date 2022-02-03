@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 
 /// Field for selection of a number by tapping on an add or subtract icon
 class FormBuilderTouchSpin extends FormBuilderField<num> {
+  final bool shouldRequestFocus;
+
   /// Value to increment or decrement by
   final num step;
 
@@ -46,41 +48,42 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
   FormBuilderTouchSpin({
     Key? key,
     //From Super
-    required String name,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    bool enabled = true,
+    FocusNode? focusNode,
+    FormFieldSetter<num>? onSaved,
     FormFieldValidator<num>? validator,
-    num? initialValue,
     InputDecoration decoration = const InputDecoration(),
+    num? initialValue,
+    required String name,
     ValueChanged<num?>? onChanged,
     ValueTransformer<num?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<num>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
-    FocusNode? focusNode,
-    this.step = 1.0,
-    this.min = 1.0,
-    this.max = 9999999.0,
-    this.iconSize = 24.0,
-    this.displayFormat,
-    this.subtractIcon = const Icon(Icons.remove),
     this.addIcon = const Icon(Icons.add),
-    this.iconPadding = const EdgeInsets.all(4.0),
-    this.textStyle = const TextStyle(fontSize: 24),
+    this.displayFormat,
     this.iconActiveColor,
     this.iconDisabledColor,
+    this.iconPadding = const EdgeInsets.all(4.0),
+    this.iconSize = 24.0,
+    this.max = 9999999.0,
+    this.min = 1.0,
+    this.step = 1.0,
+    this.subtractIcon = const Icon(Icons.remove),
+    this.textStyle = const TextStyle(fontSize: 24),
+    this.shouldRequestFocus = false,
   }) : super(
-          key: key,
+          autovalidateMode: autovalidateMode,
+          decoration: decoration,
+          enabled: enabled,
+          focusNode: focusNode,
           initialValue: initialValue,
+          key: key,
           name: name,
+          onChanged: onChanged,
+          onReset: onReset,
+          onSaved: onSaved,
           validator: validator,
           valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<num?> field) {
             final state = field as _FormBuilderTouchSpinState;
             final theme = Theme.of(state.context);
@@ -96,7 +99,9 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
                 iconSize: iconSize,
                 onChanged: state.enabled
                     ? (value) {
-                        state.requestFocus();
+                        if (shouldRequestFocus) {
+                          state.requestFocus();
+                        }
                         state.didChange(value);
                       }
                     : null,
