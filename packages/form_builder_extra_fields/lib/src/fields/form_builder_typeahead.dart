@@ -331,7 +331,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
                 focusNode: state.effectiveFocusNode,
                 decoration: state.decoration,
               ),
-              // HACK to satisfy strictness
+              // TODO HACK to satisfy strictness
               suggestionsCallback: suggestionsCallback,
               itemBuilder: itemBuilder,
               transitionBuilder: (context, suggestionsBox, controller) =>
