@@ -23,6 +23,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final Widget? separator;
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
+  final bool shouldRequestFocus;
 
   /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
@@ -58,6 +59,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
     this.orientation = OptionsOrientation.wrap,
+    this.shouldRequestFocus = false,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -81,7 +83,9 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                 value: state.value,
                 options: options,
                 onChanged: (val) {
-                  state.requestFocus();
+                  if (shouldRequestFocus) {
+                    state.requestFocus();
+                  }
                   field.didChange(val);
                 },
                 disabled: state.enabled

@@ -103,6 +103,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   final TextStyle? textStyle;
   final TextStyle? maxTextStyle;
   final NumberFormat? numberFormat;
+  final bool shouldRequestFocus;
 
   /// Creates field to select a range of values on a Slider
   FormBuilderRangeSlider({
@@ -133,6 +134,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     this.textStyle,
     this.maxTextStyle,
     this.numberFormat,
+    this.shouldRequestFocus = false,
   }) : super(
             key: key,
             initialValue: initialValue,
@@ -170,7 +172,9 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                         semanticFormatterCallback: semanticFormatterCallback,
                         onChanged: state.enabled
                             ? (values) {
-                                state.requestFocus();
+                                if (shouldRequestFocus) {
+                                  state.requestFocus();
+                                }
                                 field.didChange(values);
                               }
                             : null,
