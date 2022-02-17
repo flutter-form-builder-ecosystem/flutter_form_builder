@@ -1,3 +1,7 @@
+## [7.1.1] - 17-Feb-2022
+* More improvements to focus handling
+* Other minor fixes
+
 ## [7.1.0] - 31-Jan-2022
 * Added silent validation to the FormBuilder widget
 * Implemented `shouldChipRequestFocus` feature - fixes request focus for non-test based fields
