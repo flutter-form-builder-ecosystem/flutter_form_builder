@@ -129,6 +129,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Italian (it)
 - Japanese (ja)
 - Korean (ko)
+- Lao (lo)
 - Polish (pl)
 - Portuguese (pt)
 - Russian (ru)
