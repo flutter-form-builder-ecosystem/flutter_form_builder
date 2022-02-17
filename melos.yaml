@@ -11,6 +11,11 @@ environment:
 
 scripts:
   analyze: melos exec -- pub global run tuneup check
+
   format: melos exec -- flutter format .
-  test: melos exec -- flutter test
+
+  test: >
+    melos exec -c 1 --fail-fast --dir-exists=test --ignore="*example*" -- \
+      flutter test test
+
   translate: melos exec --depends-on="intl_utils" -- flutter pub run intl_utils:generate

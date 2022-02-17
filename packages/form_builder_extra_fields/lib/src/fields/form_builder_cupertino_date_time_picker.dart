@@ -56,117 +56,117 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
   final StrutStyle strutStyle;
 
   //
-  final Locale? locale;
-  final DateFormat? format;
+  final bool alwaysUse24HourFormat;
   final CupertinoDateTimePickerInputType inputType;
+  final DateCancelledCallback? onCancel;
+  final DateChangedCallback? onConfirm;
+  final DateFormat? format;
+  final DatePickerTheme? theme;
   final DateTime? firstDate;
   final DateTime? lastDate;
-  final bool alwaysUse24HourFormat;
-  final DatePickerTheme? theme;
-  final DateChangedCallback? onConfirm;
-  final DateCancelledCallback? onCancel;
+  final Locale? locale;
 
   FormBuilderCupertinoDateTimePicker({
     Key? key,
     //From Super
-    required String name,
-    FormFieldValidator<DateTime>? validator,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    bool enabled = true,
     DateTime? initialValue,
+    FocusNode? focusNode,
+    FormFieldSetter<DateTime>? onSaved,
+    FormFieldValidator<DateTime>? validator,
     InputDecoration decoration = const InputDecoration(),
+    required String name,
     ValueChanged<DateTime?>? onChanged,
     ValueTransformer<DateTime?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<DateTime>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
     VoidCallback? onReset,
-    FocusNode? focusNode,
     //
-    this.locale,
+    this.alwaysUse24HourFormat = false,
+    this.firstDate,
     this.format,
     this.inputType = CupertinoDateTimePickerInputType.both,
-    this.firstDate,
     this.lastDate,
-    this.alwaysUse24HourFormat = false,
-    this.theme,
-    this.onConfirm,
+    this.locale,
     this.onCancel,
+    this.onConfirm,
+    this.theme,
 
     //TextField options
-    this.onFieldSubmitted,
+    this.autocorrect = false,
+    this.autofocus = false,
+    this.buildCounter,
     this.controller,
+    this.cursorColor,
+    this.cursorRadius,
+    this.cursorWidth = 2.0,
+    this.enableInteractiveSelection = false,
+    this.expands = false,
+    this.inputFormatters,
+    this.keyboardAppearance,
     this.keyboardType = TextInputType.datetime,
+    this.maxLength,
+    this.maxLengthEnforcement = MaxLengthEnforcement.none,
+    this.maxLines,
+    this.minLines,
+    this.obscureText = false,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
+    this.scrollPadding = const EdgeInsets.all(20.0),
+    this.showCursor = false,
+    this.strutStyle = StrutStyle.disabled,
     this.style,
     this.textAlign = TextAlign.start,
-    this.autofocus = false,
-    this.obscureText = false,
-    this.autocorrect = false,
-    this.maxLengthEnforcement = MaxLengthEnforcement.none,
-    this.textDirection,
-    this.maxLines,
-    this.maxLength,
-    this.inputFormatters,
-    this.strutStyle = StrutStyle.disabled,
-    this.transitionBuilder,
-    this.showCursor = false,
-    this.minLines,
-    this.expands = false,
-    this.textInputAction,
-    this.onEditingComplete,
-    this.buildCounter,
-    this.cursorRadius,
-    this.cursorColor,
-    this.keyboardAppearance,
-    this.scrollPadding = const EdgeInsets.all(20.0),
-    this.enableInteractiveSelection = false,
-    this.cursorWidth = 2.0,
     this.textCapitalization = TextCapitalization.none,
+    this.textDirection,
+    this.textInputAction,
+    this.transitionBuilder,
   }) : super(
-          key: key,
+          autovalidateMode: autovalidateMode,
+          decoration: decoration,
+          enabled: enabled,
+          focusNode: focusNode,
           initialValue: initialValue,
+          key: key,
           name: name,
+          onChanged: onChanged,
+          onReset: onReset,
+          onSaved: onSaved,
           validator: validator,
           valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<DateTime?> field) {
             final state = field as _FormBuilderCupertinoDateTimePickerState;
 
             return TextField(
-              textDirection: textDirection,
-              textAlign: textAlign,
-              maxLength: maxLength,
-              autofocus: autofocus,
-              decoration: state.decoration,
-              readOnly: true,
-              enabled: state.enabled,
               autocorrect: autocorrect,
-              controller: state._textFieldController,
-              focusNode: state.effectiveFocusNode,
-              inputFormatters: inputFormatters,
-              keyboardType: keyboardType,
-              maxLines: maxLines,
-              obscureText: obscureText,
-              showCursor: showCursor,
-              minLines: minLines,
-              expands: expands,
-              style: style,
-              onEditingComplete: onEditingComplete,
+              autofocus: autofocus,
               buildCounter: buildCounter,
+              controller: state._textFieldController,
               cursorColor: cursorColor,
               cursorRadius: cursorRadius,
               cursorWidth: cursorWidth,
+              decoration: state.decoration,
+              enabled: state.enabled,
               enableInteractiveSelection: enableInteractiveSelection,
+              expands: expands,
+              focusNode: state.effectiveFocusNode,
+              inputFormatters: inputFormatters,
               keyboardAppearance: keyboardAppearance,
-              scrollPadding: scrollPadding,
-              strutStyle: strutStyle,
-              textCapitalization: textCapitalization,
-              textInputAction: textInputAction,
+              keyboardType: keyboardType,
+              maxLength: maxLength,
               maxLengthEnforcement: maxLengthEnforcement,
+              maxLines: maxLines,
+              minLines: minLines,
+              obscureText: obscureText,
+              onEditingComplete: onEditingComplete,
+              readOnly: true,
+              scrollPadding: scrollPadding,
+              showCursor: showCursor,
+              strutStyle: strutStyle,
+              style: style,
+              textAlign: textAlign,
+              textCapitalization: textCapitalization,
+              textDirection: textDirection,
+              textInputAction: textInputAction,
             );
           },
         );
@@ -187,9 +187,9 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
     _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
-    final initVal = initialValue;
+    final _initialValue = initialValue;
     _textFieldController.text =
-        initVal == null ? '' : _dateFormat.format(initVal);
+        _initialValue == null ? '' : _dateFormat.format(_initialValue);
     effectiveFocusNode.addListener(_handleFocus);
   }
 

@@ -169,7 +169,6 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
               maxLines: maxLines,
               minLines: minLines,
               onEditingComplete: onEditingComplete,
-              // onFieldSubmitted: onFieldSubmitted,
               showCursor: showCursor,
               strutStyle: strutStyle,
               textDirection: textDirection,
@@ -247,7 +246,6 @@ class _FormBuilderColorPickerFieldState
         return ColorPicker(
           pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
-          // enableLabel: true,
           colorPickerWidth: 300,
           displayThumbColor: true,
           enableAlpha: true,
@@ -264,9 +262,6 @@ class _FormBuilderColorPickerFieldState
         return BlockPicker(
           pickerColor: value ?? Colors.transparent,
           onColorChanged: _colorChanged,
-          /*availableColors: [],
-          itemBuilder: ,
-          layoutBuilder: ,*/
         );
       default:
         throw 'Unknown ColorPickerType';
