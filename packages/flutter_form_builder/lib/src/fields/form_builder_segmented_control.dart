@@ -37,6 +37,8 @@ class FormBuilderSegmentedControl<T extends Object>
   /// The list of options the user can select.
   final List<FormBuilderFieldOption<T>> options;
 
+  final bool shouldRequestFocus;
+
   /// Creates field for selection of a value from the `CupertinoSegmentedControl`
   FormBuilderSegmentedControl({
     Key? key,
@@ -58,6 +60,7 @@ class FormBuilderSegmentedControl<T extends Object>
     this.pressedColor,
     this.padding,
     this.unselectedColor,
+    this.shouldRequestFocus = false,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -100,7 +103,9 @@ class FormBuilderSegmentedControl<T extends Object>
                   padding: padding,
                   unselectedColor: unselectedColor,
                   onValueChanged: (value) {
-                    state.requestFocus();
+                    if (shouldRequestFocus) {
+                      state.requestFocus();
+                    }
                     if (state.enabled) {
                       field.didChange(value);
                     } else {
