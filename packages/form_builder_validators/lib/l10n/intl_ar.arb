@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2021-06-06T10:38:27.938366",
+  "@@locale": "ar",
   "requiredErrorText": "هذا الفراغ يجب املاؤه.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",

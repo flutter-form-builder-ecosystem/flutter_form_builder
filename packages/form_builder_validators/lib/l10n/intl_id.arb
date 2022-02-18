@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2020-11-13T10:38:27.938366",
+  "@@locale": "id",
   "requiredErrorText": "Bidang ini tidak boleh kosong.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",

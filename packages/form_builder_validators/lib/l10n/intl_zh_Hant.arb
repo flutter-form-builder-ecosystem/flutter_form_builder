@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2021-12-24T02:25:04.576038Z",
+  "@@locale": "zh_Hant",
   "requiredErrorText": "此字段不能為空。",
   "@requiredErrorText": {
     "description": "Error Text for required field",

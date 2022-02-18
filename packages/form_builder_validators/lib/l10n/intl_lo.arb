@@ -1,5 +1,6 @@
 {
   "@@last_modified": "2022-02-17T13:48:20.938366",
+  "@@locale": "lo",
   "requiredErrorText": "ແບບຟອມນີ້ບໍ່ສາມາດຫວ່າງເປົ່າໄດ້.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",
