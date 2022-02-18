@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         Locale('fr'),
         Locale('it'),
         Locale('lo'),
+        Locale('uk'),
       ],
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

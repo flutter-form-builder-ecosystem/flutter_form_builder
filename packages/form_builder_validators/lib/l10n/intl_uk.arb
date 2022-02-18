@@ -1,0 +1,106 @@
+{
+  "@@last_modified": "2022-02-15T13: 30: 00.706877",
+  "@@locale": "uk",
+  "requiredErrorText": "Поле не може бути порожнім.",
+  "@requiredErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "minErrorText": "Значення має бути більш або дорівнює {min}.",
+  "@minErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "min": {}
+    }
+  },
+  "minLengthErrorText": "Довжина значеня Має бути більш або дорівнює {minLength}.",
+  "@minLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "minLength": {}
+    }
+  },
+  "maxErrorText": "Значення має бути менше або дорівнює {max}.",
+  "@maxErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "maxLengthErrorText": "Довжина значеня Має бути менше або дорівнює {maxLength}.",
+  "@maxLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "maxLength": {}
+    }
+  },
+  "emailErrorText": "Поле має бути email адрес.",
+  "@emailErrorText": {
+    "description": "Error Text for email field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "integerErrorText": "Поле має бути цілим числом.",
+  "@integerErrorText": {
+    "description": "Error Text for integer validator",
+    "type": "text",
+    "placeholders": {}
+  },
+  "equalErrorText": "Значення поля має дорівнювати {value}.",
+  "@equalErrorText": {
+    "description": "Error Text for equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "notEqualErrorText": "Значення поля не повинно бути рівним {value}.",
+  "@notEqualErrorText": {
+    "description": "Error Text for not-equal validator",
+    "type": "text",
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "urlErrorText": "Поле має бути URL адресою.",
+  "@urlErrorText": {
+    "description": "Error Text for URL field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "matchErrorText": "Значення має задовольняти шаблоном.",
+  "@matchErrorText": {
+    "description": "Error Text for pattern field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "numericErrorText": "Значення має бути числом.",
+  "@numericErrorText": {
+    "description": "Error Text for numeric field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "creditCardErrorText": "Значення поля має бути номером кредитної картки.",
+  "@creditCardErrorText": {
+    "description": "Error Text for credit card field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "ipErrorText": "Поле має бути IP номером.",
+  "@ipErrorText": {
+    "description": "Error Text for IP address field",
+    "type": "text",
+    "placeholders": {}
+  },
+  "dateStringErrorText": "Поле має бути датою.",
+  "@dateStringErrorText": {
+    "description": "Error Text for date string field",
+    "type": "text",
+    "placeholders": {}
+  }
+}
