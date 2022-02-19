@@ -1,3 +1,6 @@
+## [7.6.1] - 19-Feb-2022
+* Fixed duplicate `en` locale translations. Fixes #969
+
 ## [7.6.0] - 18-Feb-2022
 * Added Ukrainian (uk) language support
 
