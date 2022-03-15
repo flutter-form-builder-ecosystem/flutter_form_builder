@@ -1,3 +1,6 @@
+## [7.7.0] - 15-Mar-2022
+* Added Catalan (ca) language support
+
 ## [7.6.1] - 19-Feb-2022
 * Fixed duplicate `en` locale translations. Fixes #969
 
