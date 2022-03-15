@@ -20,48 +20,46 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(value) => "يجب أن تكون قيمة هذا الفراغ مساوية لـ ${value}.";
+  static String m0(value) => "يجب أن تكون القيمة المدخلة مساوية لـ ${value}.";
 
-  static String m1(max) =>
-      "يجب أن تكون قيمة هذا الفراغ مساوية او اقل من ${max}.";
+  static String m1(max) => "يجب أن لا تزيد القيمة المدخلة عن ${max}.";
 
   static String m2(maxLength) =>
-      "يجب أن يكون حجم هذا الفراغ مساوي او اقل من ${maxLength}.";
+      "يجب أن لا يزيد طول القيمة المدخلة عن ${maxLength}.";
 
-  static String m3(min) =>
-      "يجب أن تكون قيمة هذا الفراغ مساوية او اكثر من ${min}.";
+  static String m3(min) => "يجب أن لا تقل القيمة المدخلة عن ${min}.";
 
   static String m4(minLength) =>
-      "يجب أن يكون حجم هذا الفراغ مساوي او اكثر من ${minLength}.";
+      "يجب أن لا يقل طول القيمة المدخلة عن ${minLength}.";
 
   static String m5(value) =>
-      "يجب أن لا تكون قيمة هذا الفراغ مساوية لـ ${value}.";
+      "يجب أن لا تكون القيمة المدخلة مساوية لـ ${value}.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "قيمة الفراغ ليست رقم بطاقة ائتمانيه صحيحة."),
+            "القيمة المدخلة لا تصلح كرقم بطاقة إئتمانية."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "هذا الفراغ يتطلب تاريخ صالح."),
+            "هذا الحقل يتطلب تاريخا صالحا."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "هذا الفراغ يتطلب عنوان بريد إلكتروني صالح."),
+            "هذا الحقل يتطلب عنوان بريد إلكتروني صالح."),
         "equalErrorText": m0,
         "integerErrorText": MessageLookupByLibrary.simpleMessage(
-            "قيمة الفراغ ليست رقمية صحيحة."),
+            "القيمة المدخلة ليست رقما صحيحا."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "هذا الفراغ يتطلب رقم IP صالح."),
-        "matchErrorText":
-            MessageLookupByLibrary.simpleMessage("قيمة الفراغ لا تطابق النمط."),
+            "هذا الحقل يتطلب عنوان IP صالح."),
+        "matchErrorText": MessageLookupByLibrary.simpleMessage(
+            "القيمة المدخلة لا تطابق الصيغة المطلوبة."),
         "maxErrorText": m1,
         "maxLengthErrorText": m2,
         "minErrorText": m3,
         "minLengthErrorText": m4,
         "notEqualErrorText": m5,
         "numericErrorText":
-            MessageLookupByLibrary.simpleMessage("قيمة الفراغ ليست رقمية."),
+            MessageLookupByLibrary.simpleMessage("القيمة المدخلة ليست رقما."),
         "requiredErrorText":
-            MessageLookupByLibrary.simpleMessage("هذا الفراغ يجب املاؤه."),
+            MessageLookupByLibrary.simpleMessage("هذا الحقل يجب ملؤه."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "هذا الفراغ يتطلب عنوان موقع URL صالح.")
+            "هذا الحقل يتطلب عنوان URL صالح.")
       };
 }
