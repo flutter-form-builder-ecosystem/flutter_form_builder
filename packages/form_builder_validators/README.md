@@ -123,6 +123,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Chinese Simplified (zh_Hans)
 - Chinese Traditional (zh_Hant)
 - English (en)
+- Estonian (et)
 - Dutch (nl)
 - Farsi/Persian (fa)
 - French (fr)
