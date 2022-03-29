@@ -1,3 +1,7 @@
+## [7.8.0] - 29-Mar-2022
+* Added Estonian (et) language support
+* Improved/Corrected the Arabic translations
+
 ## [7.7.0] - 15-Mar-2022
 * Added Catalan (ca) language support
 
