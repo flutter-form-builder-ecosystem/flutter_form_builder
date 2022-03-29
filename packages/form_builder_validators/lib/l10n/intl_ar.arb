@@ -1,13 +1,13 @@
 {
-  "@@last_modified": "2021-06-06T10:38:27.938366",
+  "@@last_modified": "2022-03-15T18:27:00.938366",
   "@@locale": "ar",
-  "requiredErrorText": "هذا الفراغ يجب املاؤه.",
+  "requiredErrorText": "هذا الحقل يجب ملؤه.",
   "@requiredErrorText": {
     "description": "Error Text for required validator",
     "type": "text",
     "placeholders": {}
   },
-  "equalErrorText": "يجب أن تكون قيمة هذا الفراغ مساوية لـ {value}.",
+  "equalErrorText": "يجب أن تكون القيمة المدخلة مساوية لـ {value}.",
   "@equalErrorText": {
     "description": "Error Text for equal validator",
     "type": "text",
@@ -15,7 +15,7 @@
       "value": {}
     }
   },
-  "notEqualErrorText": "يجب أن لا تكون قيمة هذا الفراغ مساوية لـ {value}.",
+  "notEqualErrorText": "يجب أن لا تكون القيمة المدخلة مساوية لـ {value}.",
   "@notEqualErrorText": {
     "description": "Error Text for not-equal validator",
     "type": "text",
@@ -23,7 +23,7 @@
       "value": {}
     }
   },
-  "minErrorText": "يجب أن تكون قيمة هذا الفراغ مساوية او اكثر من {min}.",
+  "minErrorText": "يجب أن لا تقل القيمة المدخلة عن {min}.",
   "@minErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -31,7 +31,7 @@
       "min": {}
     }
   },
-  "minLengthErrorText": "يجب أن يكون حجم هذا الفراغ مساوي او اكثر من {minLength}.",
+  "minLengthErrorText": "يجب أن لا يقل طول القيمة المدخلة عن {minLength}.",
   "@minLengthErrorText": {
     "description": "Error Text for minLength validator",
     "type": "text",
@@ -39,7 +39,7 @@
       "minLength": {}
     }
   },
-  "maxErrorText": "يجب أن تكون قيمة هذا الفراغ مساوية او اقل من {max}.",
+  "maxErrorText": "يجب أن لا تزيد القيمة المدخلة عن {max}.",
   "@maxErrorText": {
     "description": "Error Text for max validator",
     "type": "text",
@@ -47,7 +47,7 @@
       "max": {}
     }
   },
-  "maxLengthErrorText": "يجب أن يكون حجم هذا الفراغ مساوي او اقل من {maxLength}.",
+  "maxLengthErrorText": "يجب أن لا يزيد طول القيمة المدخلة عن {maxLength}.",
   "@maxLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -55,49 +55,49 @@
       "maxLength": {}
     }
   },
-  "emailErrorText": "هذا الفراغ يتطلب عنوان بريد إلكتروني صالح.",
+  "emailErrorText": "هذا الحقل يتطلب عنوان بريد إلكتروني صالح.",
   "@emailErrorText": {
     "description": "Error Text for email field",
     "type": "text",
     "placeholders": {}
   },
-  "urlErrorText": "هذا الفراغ يتطلب عنوان موقع URL صالح.",
+  "urlErrorText": "هذا الحقل يتطلب عنوان URL صالح.",
   "@urlErrorText": {
     "description": "Error Text for URL field",
     "type": "text",
     "placeholders": {}
   },
-  "matchErrorText": "قيمة الفراغ لا تطابق النمط.",
+  "matchErrorText": "القيمة المدخلة لا تطابق الصيغة المطلوبة.",
   "@matchErrorText": {
     "description": "Error Text for pattern field",
     "type": "text",
     "placeholders": {}
   },
-  "numericErrorText": "قيمة الفراغ ليست رقمية.",
+  "numericErrorText": "القيمة المدخلة ليست رقما.",
   "@numericErrorText": {
     "description": "Error Text for numeric field",
     "type": "text",
     "placeholders": {}
   },
-  "integerErrorText": "قيمة الفراغ ليست رقمية صحيحة.",
+  "integerErrorText": "القيمة المدخلة ليست رقما صحيحا.",
   "@integerErrorText": {
     "description": "Error Text for integer validator",
     "type": "text",
     "placeholders": {}
   },
-  "creditCardErrorText":  "قيمة الفراغ ليست رقم بطاقة ائتمانيه صحيحة.",
+  "creditCardErrorText":  "القيمة المدخلة لا تصلح كرقم بطاقة إئتمانية.",
   "@creditCardErrorText": {
     "description": "Error Text for credit card field",
     "type": "text",
     "placeholders": {}
   },
-  "ipErrorText":  "هذا الفراغ يتطلب رقم IP صالح.",
+  "ipErrorText":  "هذا الحقل يتطلب عنوان IP صالح.",
   "@ipErrorText": {
     "description": "Error Text for IP address field",
     "type": "text",
     "placeholders": {}
   },
-  "dateStringErrorText": "هذا الفراغ يتطلب تاريخ صالح.",
+  "dateStringErrorText": "هذا الحقل يتطلب تاريخا صالحا.",
   "@dateStringErrorText": {
     "description": "Error Text for date string field",
     "type": "text",
