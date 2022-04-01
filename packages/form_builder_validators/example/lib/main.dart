@@ -18,13 +18,14 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(),
       supportedLocales: const [
+        Locale('bn'),
         Locale('de'),
         Locale('en'),
         Locale('es'),
         Locale('fr'),
         Locale('it'),
         Locale('lo'),
-        Locale('uk'),
+        Locale('uk'),        
       ],
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
