@@ -1,12 +1,13 @@
 {
   "@@last_modified": "2020-11-13T10:38:27.938366",
-  "requiredErrorText": "এই ক্ষেত্রটি খালি রাখা যাবে না.",
+  "@@locale": "bn",
+  "requiredErrorText": "খালি রাখা যাবে না।",
   "@requiredErrorText": {
     "description": "Error Text for required validator",
     "type": "text",
     "placeholders": {}
   },
-  "equalErrorText": "এই ক্ষেত্রের মান {value} সমান হতে হবে.",
+  "equalErrorText": "মান {value} সমান হতে হবে।",
   "@equalErrorText": {
     "description": "Error Text for equal validator",
     "type": "text",
@@ -14,7 +15,7 @@
       "value": {}
     }
   },
-  "notEqualErrorText": "এই ক্ষেত্রের মান {value} এর সমান হওয়া উচিত নয়৷",
+  "notEqualErrorText": "মান {value} এর সমান হওয়া উচিত নয়।",
   "@notEqualErrorText": {
     "description": "Error Text for not-equal validator",
     "type": "text",
@@ -22,7 +23,7 @@
       "value": {}
     }
   },
-  "minErrorText": "মান অবশ্যই {min} এর থেকে বেশি বা সমান হতে হবে।.",
+  "minErrorText": "মান অবশ্যই {min} এর থেকে বেশি বা সমান হতে হবে।",
   "@minErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -30,7 +31,7 @@
       "min": {}
     }
   },
-  "minLengthErrorText": "মান অবশ্যই {minLength} এর চেয়ে বেশি বা সমান দৈর্ঘ্য থাকতে হবে",
+  "minLengthErrorText": "মান অবশ্যই {minLength} এর চেয়ে বেশি বা সমান সংখ্যা হতে হবে।",
   "@minLengthErrorText": {
     "description": "Error Text for minLength validator",
     "type": "text",
@@ -38,7 +39,7 @@
       "minLength": {}
     }
   },
-  "maxErrorText": "মান অবশ্যই {max} এর কম বা সমান হতে হবে",
+  "maxErrorText": "মান অবশ্যই {max} এর কম বা সমান হতে হবে।",
   "@maxErrorText": {
     "description": "Error Text for max validator",
     "type": "text",
@@ -46,7 +47,7 @@
       "max": {}
     }
   },
-  "maxLengthErrorText": "মান অবশ্যই {maxLength} এর থেকে কম বা সমান দৈর্ঘ্য থাকতে হবেValue must have a length less than or equal to {maxLength}",
+  "maxLengthErrorText": "মান অবশ্যই {maxLength} এর থেকে কম বা সমান সংখ্যা হতে হবে।",
   "@maxLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
@@ -54,13 +55,13 @@
       "maxLength": {}
     }
   },
-  "emailErrorText": "এই ক্ষেত্রে একটি বৈধ ইমেল ঠিকানা প্রয়োজন.",
+  "emailErrorText": "একটি বৈধ ইমেল আইডি প্রয়োজন।",
   "@emailErrorText": {
     "description": "Error Text for email validator",
     "type": "text",
     "placeholders": {}
   },
-  "urlErrorText": "এই ক্ষেত্রের একটি বৈধ ওয়েব ঠিকানা প্রয়োজন.",
+  "urlErrorText": "একটি বৈধ ওয়েব এড্রেস প্রয়োজন।",
   "@urlErrorText": {
     "description": "Error Text for URL validator",
     "type": "text",
@@ -72,7 +73,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "numericErrorText": "মান অবশ্যই সাংখ্যিক হতে হবে।",
+  "numericErrorText": "মান অবশ্যই সংখ্যায় হতে হবে।",
   "@numericErrorText": {
     "description": "Error Text for numeric validator",
     "type": "text",
@@ -84,19 +85,19 @@
     "type": "text",
     "placeholders": {}
   },
-  "creditCardErrorText": "এই ক্ষেত্রে একটি বৈধ ক্রেডিট কার্ড নম্বর প্রয়োজন.",
+  "creditCardErrorText": "বৈধ ক্রেডিট কার্ড নম্বর প্রয়োজন।",
   "@creditCardErrorText": {
     "description": "Error Text for credit card validator",
     "type": "text",
     "placeholders": {}
   },
-  "ipErrorText": "এই ক্ষেত্রে একটি বৈধ আইপি প্রয়োজন.",
+  "ipErrorText": "একটি বৈধ আইপি এড্রেস প্রয়োজন।",
   "@ipErrorText": {
     "description": "Error Text for IP address validator",
     "type": "text",
     "placeholders": {}
   },
-  "dateStringErrorText": "এই ক্ষেত্রে একটি বৈধ তারিখ স্ট্রিং প্রয়োজন.",
+  "dateStringErrorText": "একটি বৈধ তারিখ প্রয়োজন।",
   "@dateStringErrorText": {
     "description": "Error Text for date string validator",
     "type": "text",
