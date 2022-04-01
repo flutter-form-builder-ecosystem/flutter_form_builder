@@ -20,33 +20,34 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'bn';
 
-  static String m0(value) => "এই ক্ষেত্রের মান সমান হতে হবে ${value}।";
+  static String m0(value) => "এই ক্ষেত্রের মান ${value} সমান হতে হবে.";
 
-  static String m1(max) => "মান এর থেকে কম বা সমান হতে হবে ${max}।";
+  static String m1(max) => "মান অবশ্যই ${max} এর কম বা সমান হতে হবে";
 
   static String m2(maxLength) =>
-      "মান অবশ্যই এর থেকে কম বা সমান দৈর্ঘ্য থাকতে হবে ${maxLength}।";
+      "মান অবশ্যই ${maxLength} এর থেকে কম বা সমান দৈর্ঘ্য থাকতে হবেValue must have a length less than or equal to ${maxLength}";
 
-  static String m3(min) => "মান এর থেকে বেশি বা সমান হতে হবে ${min}।";
+  static String m3(min) => "মান অবশ্যই ${min} এর থেকে বেশি বা সমান হতে হবে।.";
 
   static String m4(minLength) =>
-      "মান অবশ্যই এর চেয়ে বেশি বা সমান দৈর্ঘ্য থাকতে হবে ${minLength}।";
+      "মান অবশ্যই ${minLength} এর চেয়ে বেশি বা সমান দৈর্ঘ্য থাকতে হবে";
 
-  static String m5(value) => "এই ক্ষেত্রের মান সমান হওয়া উচিত নয় ${value}।";
+  static String m5(value) =>
+      "এই ক্ষেত্রের মান ${value} এর সমান হওয়া উচিত নয়৷";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "creditCardErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রে একটি বৈধ ক্রেডিট কার্ড নম্বর প্রয়োজন।"),
+            "এই ক্ষেত্রে একটি বৈধ ক্রেডিট কার্ড নম্বর প্রয়োজন."),
         "dateStringErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রে একটি বৈধ তারিখ স্ট্রিং প্রয়োজন।"),
+            "এই ক্ষেত্রে একটি বৈধ তারিখ স্ট্রিং প্রয়োজন."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রে একটি বৈধ ইমেল ঠিকানা প্রয়োজন।"),
+            "এই ক্ষেত্রে একটি বৈধ ইমেল ঠিকানা প্রয়োজন."),
         "equalErrorText": m0,
         "integerErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রের একটি বৈধ পূর্ণসংখ্যা প্রয়োজন।"),
+            "মান অবশ্যই একটি পূর্ণসংখ্যা হতে হবে।"),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রে একটি বৈধ আইপি প্রয়োজন।"),
+            "এই ক্ষেত্রে একটি বৈধ আইপি প্রয়োজন."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
             "মান প্যাটার্নের সাথে মেলে না।"),
         "maxErrorText": m1,
@@ -57,8 +58,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "numericErrorText": MessageLookupByLibrary.simpleMessage(
             "মান অবশ্যই সাংখ্যিক হতে হবে।"),
         "requiredErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রটি খালি রাখা যাবে না।"),
+            "এই ক্ষেত্রটি খালি রাখা যাবে না."),
         "urlErrorText": MessageLookupByLibrary.simpleMessage(
-            "এই ক্ষেত্রের একটি বৈধ ওয়েব ঠিকানা প্রয়োজন।")
+            "এই ক্ষেত্রের একটি বৈধ ওয়েব ঠিকানা প্রয়োজন.")
       };
 }
