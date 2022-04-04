@@ -1,3 +1,6 @@
+## [7.9.0] - 04-Apr-2022
+* Added Bangla (bn) language support
+
 ## [7.8.0] - 29-Mar-2022
 * Added Estonian (et) language support
 * Improved and corrected Arabic translations

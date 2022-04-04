@@ -13,11 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Form Builder Validators Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const MyHomePage(),
       supportedLocales: const [
+        Locale('bn'),
         Locale('de'),
         Locale('en'),
         Locale('es'),
@@ -46,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Form Builder Validators'),
-      ),
+      appBar: AppBar(title: const Text('Form Builder Validators')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
