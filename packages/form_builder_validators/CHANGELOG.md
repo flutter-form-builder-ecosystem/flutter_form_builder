@@ -1,3 +1,10 @@
+## [8.0.0] - 10-Apr-2022
+**BREAKING CHANGE**:
+* Avoid passing context to validator functions.
+
+* Added Swahili (sw) language support
+
+
 ## [7.9.0] - 04-Apr-2022
 * Added Bangla (bn) language support
 

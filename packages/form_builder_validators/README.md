@@ -1,8 +1,8 @@
 # FormBuilder Validators
 
-Form Builder Validators provide a convenient way of validating data entered into any Flutter FormField. It provides common validation rules out of box (such as required, email, number, min, max, minLength, maxLength, date validations etc.) as well as a way to compose multiple validation rules into one FormFieldValidator.
+Form Builder Validators provide a convenient way of validating data entered into any Flutter FormField. It offers common validation rules out of the box (such as required, email, number, min, max, minLength, maxLength, date validations, etc.) and a way to compose multiple validation rules into one FormFieldValidator.
 
-Also included is the `l10n` / `i18n` of error text messages into multiple languages
+Also included is the `l10n` / `i18n` of error text messages to multiple languages.
 ___
 
 [![Pub Version](https://img.shields.io/pub/v/form_builder_validators?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_validators)
@@ -15,6 +15,9 @@ ___
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
 ___
 
+> ### Migrating from version 7 to 8
+> To migrate from v7 to v8, remove `context` as a parameter to validator functions. For example, `FormBuilderValidators.required(context)` becomes `FormBuilderValidators.required()` without context passed to it.
+
 ### Example
 ```dart
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -24,15 +27,15 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 TextFormField(
   decoration: InputDecoration(labelText: 'Name'),
   autovalidateMode: AutovalidateMode.always,
-  validator: FormBuilderValidators.required(context),
+  validator: FormBuilderValidators.required(),
 ),
 TextFormField(
   decoration: InputDecoration(labelText: 'Age'),
   keyboardType: TextInputType.number,
   autovalidateMode: AutovalidateMode.always,
   validator: FormBuilderValidators.compose([
-    FormBuilderValidators.numeric(context, errorText: 'La edad debe ser numérica.'),
-    FormBuilderValidators.max(context, 70),
+    FormBuilderValidators.numeric(errorText: 'La edad debe ser numérica.'),
+    FormBuilderValidators.max(70),
     (val) {
       var number = int.tryParse(val ?? '');
       if (number != null) if (number < 0)
@@ -45,7 +48,7 @@ TextFormField(
 
 ## Built-in Validators
 This package comes with several most common `FormFieldValidator`s such as required, numeric, mail,
-URL, min, max, minLength, maxLength, IP, credit card etc. with default `errorText` messages.
+URL, min, max, minLength, maxLength, IP, credit card, etc., with default `errorText` messages.
 
 Available built-in validators include:
 * `FormBuilderValidators.creditCard()` - requires the field's value to be a valid credit card number.
@@ -64,10 +67,9 @@ Available built-in validators include:
 * ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
 
 ## Composing multiple validators
-`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes a list of `FormFieldValidator` functions. This allows you to create once and reuse validation rules across multiple fields, widgets or apps.
+`FormBuilderValidators` class comes with a very useful static function named `compose()` which takes a list of `FormFieldValidator` functions. Composing allows you to create once and reuse validation rules across multiple fields, widgets, or apps.
 
-On validation each validator is run and if any one returns a non-null value (i.e. a String), validation fails and the `errorText` for the field is set as the
-returned string.
+On validation, each validator is run, and if any one validator returns a non-null value (i.e., a String), validation fails, and the `errorText` for the field is set as the returned string.
 
 Example:
 ```dart
@@ -77,17 +79,16 @@ TextFormField(
   autovalidateMode: AutovalidateMode.always,
   validator: FormBuilderValidators.compose([
     /// Makes this field required
-    FormBuilderValidators.required(context),
+    FormBuilderValidators.required(),
 
     /// Ensures the value entered is numeric - with custom error message
-    FormBuilderValidators.numeric(context,
-        errorText: 'La edad debe ser numérica.'),
+    FormBuilderValidators.numeric(errorText: 'La edad debe ser numérica.'),
 
     /// Sets a maximum value of 70
-    FormBuilderValidators.max(context, 70),
+    FormBuilderValidators.max(70),
 
     /// Include your own custom `FormFieldValidator` function, if you want
-    /// Ensures positive values only. We could also have used `FormBuilderValidators.min(context, 0)` instead
+    /// Ensures positive values only. We could also have used `FormBuilderValidators.min(0)` instead
     (val) {
       final number = int.tryParse(val);
       if (number == null) return null;
@@ -144,31 +145,31 @@ To allow for localization of default error messages within your app, add `FormBu
 - Swahili (sw)
 - Ukrainian (uk)
 
-and you can still add your own custom error messages.
+And you can still add your custom error messages.
 
 ## Support
 ### Issues and PRs
-Any kind of support in the form of reporting bugs, answering questions or PRs is always appreciated.
+Any support in reporting bugs, answering questions, or PRs is always appreciated.
 
 We especially welcome efforts to internationalize/localize the package by translating the default validation `errorText` strings for built-in validation rules.
 
 ### Localizing messages
 
 #### 1. Add ARB files
-Create one ARB file inside the `lib/l10n` folder for each of the locales you need to add support for. Name the files in the following way: `intl_<LOCALE_ISO_CODE>.arb`. For example: `intl_fr.arb` or `intl_fr_FR.arb`.
+Create one ARB file inside the `lib/l10n` folder for each of the locales you need to add support. Name the files in the following way: `intl_<LOCALE_ISO_CODE>.arb`. For example: `intl_fr.arb` or `intl_fr_FR.arb`.
 
 #### 2. Translate the error messages
 
-Duplicate the contents of `intl_messages.arb` (or any other ARB file) into your newly created ARB file then translate the error messages by overwritting the default messages.
+Duplicate the contents of `intl_messages.arb` (or any other ARB file) into your newly created ARB file, then translate the error messages by overwriting the default messages.
 
 #### 3. Run command
-To generate boilerplate code for localization, run the generate command inside package directory where `pubspec.yaml` file is located:
+To generate boilerplate code for localization, run the generate command inside the package directory where `pubspec.yaml` file is located:
 
 ```
   flutter pub run intl_utils:generate
 ```
 
-This will automagically create/update files inside `lib/localization` directory which will include support for your newly added locale.
+Running the command will automatically create/update files inside the `lib/localization` directory, including your newly added locale support.
 
 #### 4. Update README
 Remember to update README, adding the new language (and language code) under [Supported languages section](#supported-languages-default-errortext-messages) so that everyone knows your new language is now supported!
@@ -177,8 +178,7 @@ Remember to update README, adding the new language (and language code) under [Su
 Submit your PR and be of help to millions of developers all over the world!
 
 ### Coffee :-)
-If this package was helpful to you in delivering your project or you just wanna to support this
-package, a cup of coffee would be highly appreciated ;-)
+If this package was helpful to you in delivering your project, or you want to support this package, I would highly appreciate a cup of coffee ;-)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
 
