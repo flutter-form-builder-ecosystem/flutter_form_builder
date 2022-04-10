@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'utils/validators.dart';
@@ -23,8 +22,7 @@ class FormBuilderValidators {
   }
 
   /// [FormFieldValidator] that requires the field have a non-empty value.
-  static FormFieldValidator<T> required<T>(
-    BuildContext context, {
+  static FormFieldValidator<T> required<T>({
     String? errorText,
   }) {
     return (T? valueCandidate) {
@@ -32,8 +30,7 @@ class FormBuilderValidators {
           (valueCandidate is String && valueCandidate.trim().isEmpty) ||
           (valueCandidate is Iterable && valueCandidate.isEmpty) ||
           (valueCandidate is Map && valueCandidate.isEmpty)) {
-        return errorText ??
-            FormBuilderLocalizations.of(context).requiredErrorText;
+        return errorText ?? FormBuilderLocalizations.current.requiredErrorText;
       }
       return null;
     };
@@ -42,31 +39,27 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value be equal to the
   /// provided value.
   static FormFieldValidator<T> equal<T>(
-    BuildContext context,
     Object value, {
     String? errorText,
   }) =>
       (valueCandidate) => valueCandidate != value
-          ? errorText ??
-              FormBuilderLocalizations.of(context).equalErrorText(value)
+          ? errorText ?? FormBuilderLocalizations.current.equalErrorText(value)
           : null;
 
   /// [FormFieldValidator] that requires the field's value be not equal to
   /// the provided value.
   static FormFieldValidator<T> notEqual<T>(
-    BuildContext context,
     Object value, {
     String? errorText,
   }) =>
       (valueCandidate) => valueCandidate == value
           ? errorText ??
-              FormBuilderLocalizations.of(context).notEqualErrorText(value)
+              FormBuilderLocalizations.current.notEqualErrorText(value)
           : null;
 
   /// [FormFieldValidator] that requires the field's value to be greater than
   /// (or equal) to the provided number.
   static FormFieldValidator<T> min<T>(
-    BuildContext context,
     num min, {
     bool inclusive = true,
     String? errorText,
@@ -80,7 +73,7 @@ class FormBuilderValidators {
 
         if (number != null && (inclusive ? number < min : number <= min)) {
           return errorText ??
-              FormBuilderLocalizations.of(context).minErrorText(min);
+              FormBuilderLocalizations.current.minErrorText(min);
         }
       }
       return null;
@@ -90,7 +83,6 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the field's value to be less than
   /// (or equal) to the provided number.
   static FormFieldValidator<T> max<T>(
-    BuildContext context,
     num max, {
     bool inclusive = true,
     String? errorText,
@@ -104,7 +96,7 @@ class FormBuilderValidators {
 
         if (number != null && (inclusive ? number > max : number >= max)) {
           return errorText ??
-              FormBuilderLocalizations.of(context).maxErrorText(max);
+              FormBuilderLocalizations.current.maxErrorText(max);
         }
       }
       return null;
@@ -114,7 +106,6 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the length of the field's value to be
   /// greater than or equal to the provided minimum length.
   static FormFieldValidator<T> minLength<T>(
-    BuildContext context,
     int minLength, {
     bool allowEmpty = false,
     String? errorText,
@@ -129,7 +120,7 @@ class FormBuilderValidators {
       if (valueCandidate is Iterable) valueLength = valueCandidate.length;
       return valueLength < minLength && (!allowEmpty || valueLength > 0)
           ? errorText ??
-              FormBuilderLocalizations.of(context).minLengthErrorText(minLength)
+              FormBuilderLocalizations.current.minLengthErrorText(minLength)
           : null;
     };
   }
@@ -137,7 +128,6 @@ class FormBuilderValidators {
   /// [FormFieldValidator] that requires the length of the field's value to be
   /// less than or equal to the provided maximum length.
   static FormFieldValidator<T> maxLength<T>(
-    BuildContext context,
     int maxLength, {
     String? errorText,
   }) {
@@ -151,24 +141,22 @@ class FormBuilderValidators {
       if (valueCandidate is Iterable) valueLength = valueCandidate.length;
       return null != valueCandidate && valueLength > maxLength
           ? errorText ??
-              FormBuilderLocalizations.of(context).maxLengthErrorText(maxLength)
+              FormBuilderLocalizations.current.maxLengthErrorText(maxLength)
           : null;
     };
   }
 
   /// [FormFieldValidator] that requires the field's value to be a valid email address.
-  static FormFieldValidator<String> email(
-    BuildContext context, {
+  static FormFieldValidator<String> email({
     String? errorText,
   }) =>
       (valueCandidate) =>
           true == valueCandidate?.isNotEmpty && !isEmail(valueCandidate!.trim())
-              ? errorText ?? FormBuilderLocalizations.of(context).emailErrorText
+              ? errorText ?? FormBuilderLocalizations.current.emailErrorText
               : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid url.
-  static FormFieldValidator<String> url(
-    BuildContext context, {
+  static FormFieldValidator<String> url({
     String? errorText,
     List<String> protocols = const ['http', 'https', 'ftp'],
     bool requireTld = true,
@@ -185,72 +173,64 @@ class FormBuilderValidators {
                   allowUnderscore: allowUnderscore,
                   hostWhitelist: hostWhitelist,
                   hostBlacklist: hostBlacklist)
-          ? errorText ?? FormBuilderLocalizations.of(context).urlErrorText
+          ? errorText ?? FormBuilderLocalizations.current.urlErrorText
           : null;
 
   /// [FormFieldValidator] that requires the field's value to match the provided regex pattern.
   static FormFieldValidator<String> match(
-    BuildContext context,
     String pattern, {
     String? errorText,
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&
               !RegExp(pattern).hasMatch(valueCandidate!)
-          ? errorText ?? FormBuilderLocalizations.of(context).matchErrorText
+          ? errorText ?? FormBuilderLocalizations.current.matchErrorText
           : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid number.
-  static FormFieldValidator<String> numeric(
-    BuildContext context, {
+  static FormFieldValidator<String> numeric({
     String? errorText,
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&
               null == num.tryParse(valueCandidate!)
-          ? errorText ?? FormBuilderLocalizations.of(context).numericErrorText
+          ? errorText ?? FormBuilderLocalizations.current.numericErrorText
           : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid integer.
-  static FormFieldValidator<String> integer(
-    BuildContext context, {
+  static FormFieldValidator<String> integer({
     String? errorText,
     int? radix,
   }) =>
       (valueCandidate) => true == valueCandidate?.isNotEmpty &&
               null == int.tryParse(valueCandidate!, radix: radix)
-          ? errorText ?? FormBuilderLocalizations.of(context).integerErrorText
+          ? errorText ?? FormBuilderLocalizations.current.integerErrorText
           : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid credit card number.
-  static FormFieldValidator<String> creditCard(
-    BuildContext context, {
+  static FormFieldValidator<String> creditCard({
     String? errorText,
   }) =>
-      (valueCandidate) =>
-          true == valueCandidate?.isNotEmpty && !isCreditCard(valueCandidate!)
-              ? errorText ??
-                  FormBuilderLocalizations.of(context).creditCardErrorText
-              : null;
+      (valueCandidate) => true == valueCandidate?.isNotEmpty &&
+              !isCreditCard(valueCandidate!)
+          ? errorText ?? FormBuilderLocalizations.current.creditCardErrorText
+          : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid IP address.
   /// * [version] is a `String` or an `int`.
-  static FormFieldValidator<String> ip(
-    BuildContext context, {
+  static FormFieldValidator<String> ip({
     int? version,
     String? errorText,
   }) =>
       (valueCandidate) =>
           true == valueCandidate?.isNotEmpty && !isIP(valueCandidate!, version)
-              ? errorText ?? FormBuilderLocalizations.of(context).ipErrorText
+              ? errorText ?? FormBuilderLocalizations.current.ipErrorText
               : null;
 
   /// [FormFieldValidator] that requires the field's value to be a valid date string.
-  static FormFieldValidator<String> dateString(
-    BuildContext context, {
+  static FormFieldValidator<String> dateString({
     String? errorText,
   }) =>
-      (valueCandidate) =>
-          true == valueCandidate?.isNotEmpty && !isDate(valueCandidate!)
-              ? errorText ??
-                  FormBuilderLocalizations.of(context).dateStringErrorText
-              : null;
+      (valueCandidate) => true == valueCandidate?.isNotEmpty &&
+              !isDate(valueCandidate!)
+          ? errorText ?? FormBuilderLocalizations.current.dateStringErrorText
+          : null;
 }

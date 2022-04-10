@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             TextFormField(
               decoration: const InputDecoration(labelText: 'Name'),
-              validator: FormBuilderValidators.required(context),
+              validator: FormBuilderValidators.required(),
               autovalidateMode: AutovalidateMode.always,
             ),
 
@@ -64,17 +64,17 @@ class _MyHomePageState extends State<MyHomePage> {
               autovalidateMode: AutovalidateMode.always,
               validator: FormBuilderValidators.compose([
                 /// Makes this field required
-                FormBuilderValidators.required(context),
+                FormBuilderValidators.required(),
 
                 /// Ensures the value entered is numeric - with custom error message
-                FormBuilderValidators.numeric(context,
+                FormBuilderValidators.numeric(
                     errorText: 'La edad debe ser numérica.'),
 
                 /// Sets a maximum value of 70
-                FormBuilderValidators.max(context, 70),
+                FormBuilderValidators.max(70),
 
                 /// Include your own custom `FormFieldValidator` function, if you want
-                /// Ensures positive values only. We could also have used `FormBuilderValidators.min(context, 0)` instead
+                /// Ensures positive values only. We could also have used `FormBuilderValidators.min( 0)` instead
                 (val) {
                   final number = int.tryParse(val);
                   if (number == null) return null;
