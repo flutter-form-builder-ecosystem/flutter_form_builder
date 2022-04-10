@@ -141,6 +141,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Slovak (sk)
 - Slovenian (sl)
 - Spanish (es)
+- Swahili (sw)
 - Ukrainian (uk)
 
 and you can still add your own custom error messages.
