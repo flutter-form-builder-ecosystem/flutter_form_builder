@@ -82,7 +82,7 @@ class CompleteFormState extends State<CompleteForm> {
                   FormBuilderSlider(
                     name: 'slider',
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.min(context, 6),
+                      FormBuilderValidators.min(6),
                     ]),
                     onChanged: _onChanged,
                     min: 0.0,
@@ -134,7 +134,6 @@ class CompleteFormState extends State<CompleteForm> {
                       ),
                     ),
                     validator: FormBuilderValidators.equal(
-                      context,
                       true,
                       errorText:
                           'You must accept terms and conditions to continue',
@@ -158,9 +157,9 @@ class CompleteFormState extends State<CompleteForm> {
                     },
                     // valueTransformer: (text) => num.tryParse(text),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(context),
-                      FormBuilderValidators.numeric(context),
-                      FormBuilderValidators.max(context, 70),
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.max(70),
                     ]),
                     // initialValue: '12',
                     keyboardType: TextInputType.number,
@@ -179,7 +178,7 @@ class CompleteFormState extends State<CompleteForm> {
                     allowClear: true,
                     hint: const Text('Select Gender'),
                     validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.required(context)]),
+                        [FormBuilderValidators.required()]),
                     items: genderOptions
                         .map((gender) => DropdownMenuItem(
                               value: gender,
@@ -204,7 +203,7 @@ class CompleteFormState extends State<CompleteForm> {
                     name: 'best_language',
                     onChanged: _onChanged,
                     validator: FormBuilderValidators.compose(
-                        [FormBuilderValidators.required(context)]),
+                        [FormBuilderValidators.required()]),
                     options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
                         .map((lang) => FormBuilderFieldOption(
                               value: lang,
@@ -258,8 +257,8 @@ class CompleteFormState extends State<CompleteForm> {
                       color: Colors.red,
                     ),
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.minLength(context, 1),
-                      FormBuilderValidators.maxLength(context, 3),
+                      FormBuilderValidators.minLength(1),
+                      FormBuilderValidators.maxLength(3),
                     ]),
                   ),
                 ],

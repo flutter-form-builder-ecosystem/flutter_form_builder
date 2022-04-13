@@ -28,7 +28,7 @@ class _SignupFormState extends State<SignupForm> {
                   name: 'full_name',
                   decoration: const InputDecoration(labelText: 'Full Name'),
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
+                    FormBuilderValidators.required(),
                   ]),
                 ),
                 const SizedBox(height: 10),
@@ -37,8 +37,8 @@ class _SignupFormState extends State<SignupForm> {
                   name: 'email',
                   decoration: const InputDecoration(labelText: 'Email'),
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.email(context),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.email(),
                   ]),
                 ),
                 const SizedBox(height: 10),
@@ -47,8 +47,8 @@ class _SignupFormState extends State<SignupForm> {
                   decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.minLength(context, 6),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.minLength(6),
                   ]),
                 ),
                 const SizedBox(height: 10),
@@ -83,8 +83,8 @@ class _SignupFormState extends State<SignupForm> {
                 FormBuilderField<bool>(
                   name: 'test',
                   validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(context),
-                    FormBuilderValidators.equal(context, true),
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.equal(true),
                   ]),
                   // initialValue: true,
                   decoration: const InputDecoration(labelText: 'Accept Terms?'),

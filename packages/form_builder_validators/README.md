@@ -138,6 +138,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Lao (lo)
 - Polish (pl)
 - Portuguese (pt)
+- Romanian (ro)
 - Russian (ru)
 - Slovak (sk)
 - Slovenian (sl)
