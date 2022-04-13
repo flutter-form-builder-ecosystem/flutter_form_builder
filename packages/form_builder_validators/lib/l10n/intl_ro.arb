@@ -1,0 +1,106 @@
+{
+    "@@last_modified": "2020-06-19T21:53:39.706877",
+    "@@locale": "ro",
+    "requiredErrorText": "Acest câmp nu poate fi gol.",
+    "@requiredErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "minErrorText": "Valoarea trebuie să fie mai mare sau egală cu {min}.",
+    "@minErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "min": {}
+        }
+    },
+    "minLengthErrorText": "Valoarea trebuie să aibă o lungime mai mare sau egală cu {minLength}",
+    "@minLengthErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "minLength": {}
+        }
+    },
+    "maxErrorText": "Valoarea trebuie să fie mai mică sau egală cu {max}",
+    "@maxErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "max": {}
+        }
+    },
+    "maxLengthErrorText": "Valoarea trebuie să aibă o lungime mai mică sau egală cu {maxLength}",
+    "@maxLengthErrorText": {
+        "description": "Error Text for required field",
+        "type": "text",
+        "placeholders": {
+            "maxLength": {}
+        }
+    },
+    "emailErrorText": "Acest câmp necesită o adresă de e-mail validă.",
+    "@emailErrorText": {
+        "description": "Error Text for email field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "integerErrorText": "Acest câmp necesită un număr întreg valid.",
+    "@integerErrorText": {
+        "description": "Error Text for integer validator",
+        "type": "text",
+        "placeholders": {}
+    },
+    "equalErrorText": "Valoarea câmpului trebuie să fie egală cu {value}.",
+    "@equalErrorText": {
+        "description": "Error Text for equal validator",
+        "type": "text",
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "notEqualErrorText": "Valoarea câmpului nu trebuie să fie egală cu {value}.",
+    "@notEqualErrorText": {
+        "description": "Error Text for not-equal validator",
+        "type": "text",
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "urlErrorText": "Acest câmp necesită o adresă URL validă.",
+    "@urlErrorText": {
+        "description": "Error Text for URL field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "matchErrorText": "Valoarea nu se potrivește cu modelul.",
+    "@matchErrorText": {
+        "description": "Error Text for pattern field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "numericErrorText": "Valoarea trebuie să fie numerică.",
+    "@numericErrorText": {
+        "description": "Error Text for numeric field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "creditCardErrorText": "Acest câmp necesită un număr valid de card de credit.",
+    "@creditCardErrorText": {
+        "description": "Error Text for credit card field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "ipErrorText": "Acest câmp necesită un IP valid.",
+    "@ipErrorText": {
+        "description": "Error Text for IP address field",
+        "type": "text",
+        "placeholders": {}
+    },
+    "dateStringErrorText": "Acest câmp necesită un șir de date valid.",
+    "@dateStringErrorText": {
+        "description": "Error Text for date string field",
+        "type": "text",
+        "placeholders": {}
+    }
+}
