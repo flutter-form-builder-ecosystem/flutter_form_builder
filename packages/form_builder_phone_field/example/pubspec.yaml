@@ -10,10 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_form_builder: ^7.0.0
+  flutter_form_builder: ^7.1.0
   form_builder_phone_field:
     path: ../
-  form_builder_validators: ^7.0.0
+  form_builder_validators: ^7.4.0
   
 dev_dependencies:
   flutter_lints: ^1.0.4
