@@ -151,7 +151,7 @@ class FormBuilderValidators {
     String? errorText,
   }) =>
       (valueCandidate) =>
-          true == valueCandidate?.isNotEmpty && !isEmail(valueCandidate!.trim())
+          true == valueCandidate?.isNotEmpty && !isEmail(valueCandidate ?? '')
               ? errorText ?? FormBuilderLocalizations.current.emailErrorText
               : null;
 
