@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 /// Field to select a range of values on a Slider
 class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
@@ -160,7 +159,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RangeSlider(
-                        values: field.value!,
+                        values: field.value ?? RangeValues(min, min),
                         min: min,
                         max: max,
                         divisions: divisions,
