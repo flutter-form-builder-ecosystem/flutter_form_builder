@@ -18,7 +18,7 @@ ___
 ___
 
 ### Example
-```dart
+```Dart
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 ...
@@ -238,11 +238,12 @@ The rest of the attributes will be determined by the type of Widget being used.
 
 ### Building your own custom field
 To build your own field within a `FormBuilder`, we use `FormBuilderField` which will require that you define your own field.
-```dart
+Read [this article](https://medium.com/@danvickmiller/building-a-custom-flutter-form-builder-field-c67e2b2a27f4) for step-by-step instructions on how to build your own custom field.
+```Dart
 var options = ["Option 1", "Option 2", "Option 3"];
 ```
 
-```dart
+```Dart
 FormBuilderField(
   name: "name",
   validator: FormBuilderValidators.compose([
@@ -274,11 +275,11 @@ FormBuilderField(
 
 ### Programmatically changing field value
 You can either change the value of one field at a time like so:
-```dart
+```Dart
 _formKey.currentState.fields['color_picker'].didChange(Colors.black);
 ```
 Or multiple fields value like so:
-```dart
+```Dart
 _formKey.currentState.patchValue({
   'age': '50',
   'slider': 6.7,
@@ -293,7 +294,7 @@ _formKey.currentState.patchValue({
 
 ### Programmatically inducing an error
 #### Option 1 - Using FormBuilder / FieldBuilderField key
-```dart
+```Dart
 final _formKey = GlobalKey<FormBuilderState>();
 final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
 ...
@@ -329,12 +330,12 @@ FormBuilder(
 
 #### Option 2 - Using InputDecoration.errorText
 Declare a variable to hold your error:
-```dart
+```Dart
 String _emailError;
 ```
 
 Use the variable as the `errorText` within `InputDecoration`
-```dart
+```Dart
 FormBuilderTextField(
   name: 'email',
   decoration: InputDecoration(
@@ -349,7 +350,7 @@ FormBuilderTextField(
 ```
 
 Set the error text
-```dart
+```Dart
 RaisedButton(
   child: Text('Submit'),
   onPressed: () async {
@@ -363,7 +364,7 @@ RaisedButton(
 
 ### Conditional validation
 You can also validate a field based on the value of another field
-```dart
+```Dart
 FormBuilderRadioGroup(
   decoration: InputDecoration(labelText: 'My best language'),
   name: 'my_language',
