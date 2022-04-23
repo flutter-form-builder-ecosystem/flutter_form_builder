@@ -171,14 +171,15 @@ void main() {
             expect(validator(null), isNull);
             expect(validator(''), isNull);
             expect(validator('john@flutter.dev'), isNull);
-            expect(validator(' john@flutter.dev '), isNull);
-            expect(validator('john@flutter.dev '), isNull);
-            expect(validator(' john@flutter.dev'), isNull);
+
             // Fail
             expect(validator('john@flutter'), isNotNull);
             expect(validator('john@ flutter.dev'), isNotNull);
             expect(validator('john flutter.dev'), isNotNull);
             expect(validator('flutter.dev'), isNotNull);
+            expect(validator(' john@flutter.dev '), isNotNull);
+            expect(validator('john@flutter.dev '), isNotNull);
+            expect(validator(' john@flutter.dev'), isNotNull);
           }));
 
   testWidgets(
