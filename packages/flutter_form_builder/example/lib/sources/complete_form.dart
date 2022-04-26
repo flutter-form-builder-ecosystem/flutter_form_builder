@@ -181,6 +181,7 @@ class CompleteFormState extends State<CompleteForm> {
                         [FormBuilderValidators.required()]),
                     items: genderOptions
                         .map((gender) => DropdownMenuItem(
+                              alignment: AlignmentDirectional.center,
                               value: gender,
                               child: Text(gender),
                             ))
@@ -232,7 +233,7 @@ class CompleteFormState extends State<CompleteForm> {
                     onChanged: _onChanged,
                   ),
                   FormBuilderSwitch(
-                    title: const Text('I Accept the tems and conditions'),
+                    title: const Text('I Accept the terms and conditions'),
                     name: 'accept_terms_switch',
                     initialValue: true,
                     onChanged: _onChanged,

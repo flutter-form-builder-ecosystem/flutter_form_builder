@@ -21,27 +21,38 @@ class _CustomFieldsState extends State<CustomFields> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+            const SizedBox(height: 20),
             FormBuilderField<String?>(
               name: 'name',
-              onChanged: (val) => debugPrint(val.toString()),
               builder: (FormFieldState field) {
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Expanded(child: Text('Name'), flex: 1),
-                    Expanded(
-                      flex: 2,
-                      child: InputDecorator(
-                        decoration: InputDecoration(
-                            errorText: field.errorText,
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.zero),
-                        child: CupertinoTextField(
-                          onChanged: (value) => field.didChange(value),
-                        ),
-                      ),
-                    ),
-                  ],
+                return CupertinoTextField(
+                  onChanged: (value) => field.didChange(value),
+                );
+              },
+            ),
+            const SizedBox(height: 10),
+            FormBuilderField<bool>(
+              name: 'terms',
+              builder: (FormFieldState field) {
+                return CheckboxListTile(
+                  title: const Text('I Accept the terms and conditions'),
+                  value: false,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  onChanged: (value) => field.didChange(value),
+                );
+              },
+            ),
+            const SizedBox(height: 10),
+            FormBuilderField<String?>(
+              name: 'name',
+              builder: (FormFieldState field) {
+                return CupertinoFormRow(
+                  prefix: const Text('Name: '),
+                  error:
+                      field.errorText != null ? Text(field.errorText!) : null,
+                  child: CupertinoTextField(
+                    onChanged: (value) => field.didChange(value),
+                  ),
                 );
               },
               autovalidateMode: AutovalidateMode.always,
@@ -52,36 +63,31 @@ class _CustomFieldsState extends State<CustomFields> {
                 return null;
               },
             ),
-            FormBuilderField<String?>(
-              name: "option",
-              validator: (valueCandidate) {
-                if (valueCandidate?.isEmpty ?? true) {
-                  return 'This field is required.';
-                }
-                return null;
-              },
-              builder: (FormFieldState<String?> field) {
+            const SizedBox(height: 10),
+            FormBuilderField<bool>(
+              name: 'terms',
+              builder: (FormFieldState field) {
                 return InputDecorator(
                   decoration: InputDecoration(
-                    labelText: "Select option",
-                    contentPadding:
-                        const EdgeInsets.only(top: 10.0, bottom: 0.0),
-                    border: InputBorder.none,
+                    labelText: 'Terms',
                     errorText: field.errorText,
                   ),
-                  child: SizedBox(
-                    height: 200,
-                    child: CupertinoPicker(
-                      itemExtent: 30,
-                      children: options.map((c) => Text(c)).toList(),
-                      onSelectedItemChanged: (index) {
-                        field.didChange(options[index]);
-                      },
-                    ),
+                  child: CheckboxListTile(
+                    title: const Text('I Accept the terms and conditions'),
+                    controlAffinity: ListTileControlAffinity.leading,
+                    value: false,
+                    onChanged: (value) => field.didChange(value),
                   ),
                 );
               },
+              validator: (valueCandidate) {
+                if (valueCandidate != true) {
+                  return 'Accept terms and conditions to continue.';
+                }
+                return null;
+              },
             ),
+            const SizedBox(height: 10),
             Row(
               children: <Widget>[
                 Expanded(
