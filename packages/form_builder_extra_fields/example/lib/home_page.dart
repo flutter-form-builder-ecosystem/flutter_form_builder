@@ -32,17 +32,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   name: 'searchable_dropdown_online',
                   // items: allCountries,
                   onChanged: _onChanged,
-                  showSearchBox: true,
                   isFilteredOnline: true,
                   compareFn: (item, selectedItem) =>
                       item.toLowerCase() == selectedItem.toLowerCase(),
+                  /*showSearchBox: true,
                   onFind: (text) async {
                     await Future.delayed(const Duration(seconds: 1));
                     return allCountries
                         .where((element) =>
                             element.toLowerCase().contains(text.toLowerCase()))
                         .toList();
-                  },
+                  },*/
                   decoration: const InputDecoration(
                       labelText: 'Searchable Dropdown Online'),
                 ),
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   name: 'searchable_dropdown_offline',
                   items: allCountries,
                   onChanged: _onChanged,
-                  showSearchBox: true,
+                  // showSearchBox: true,
                   decoration: const InputDecoration(
                       labelText: 'Searchable Dropdown Offline'),
                 ),

@@ -1,3 +1,6 @@
+## [8.0.0] - 16-May-2022
+* Flutter 3 compatibility
+
 ## [7.1.0] - 31-Jan-2022
 * Use `flutter_datetime_picker_bdaya` instead of the unmaintained `flutter_datetime_picker`
 * TypeAhead onReset uses `valueTransformer`

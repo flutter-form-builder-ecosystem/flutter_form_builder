@@ -1,25 +1,27 @@
 name: form_builder_extra_fields
 description: This package provides additional input fields for flutter_form_builder package
-version: 7.1.0
+version: 8.0.0
 homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_form_builder: ^7.0.0
-  flutter_chips_input: ^1.10.0
+  flutter_form_builder: ^7.1.1
+  flutter_chips_input: ^2.0.0
   flutter_colorpicker: ^1.0.3
-  dropdown_search: ^2.0.1
+  dropdown_search: ^4.0.0
   signature: ^5.0.0
   flutter_touch_spin: ^2.0.0-nullsafety.1
   intl: ^0.17.0
-  flutter_typeahead: ^3.2.4
+  flutter_typeahead: ^4.0.0
   flutter_datetime_picker_bdaya: ^2.0.0
   flutter_rating_bar: ^4.0.0
+
 dev_dependencies:
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
