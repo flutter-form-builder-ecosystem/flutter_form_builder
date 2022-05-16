@@ -1,3 +1,6 @@
+## [8.1.1] - 26-Apr-2022
+* Fixed issue where email validator trims string before validation 
+
 ## [8.1.0] - 13-Apr-2022
 * Added Romanian (ro) language support
 
