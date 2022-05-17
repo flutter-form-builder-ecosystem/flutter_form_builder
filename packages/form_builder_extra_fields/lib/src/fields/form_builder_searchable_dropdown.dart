@@ -87,41 +87,53 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
 
   final PopupProps<T> popupProps;
 
+  ///custom dropdown clear button icon properties
+  final IconButtonProps? clearButtonProps;
+
+  /// style on which to base the label
+  final TextStyle? dropdownSearchTextStyle;
+
+  ///custom dropdown icon button properties
+  final IconButtonProps? dropdownButtonProps;
+
   /// Creates field for selecting value(s) from a searchable list
-  FormBuilderSearchableDropdown(
-      {Key? key,
-      AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-      bool enabled = true,
-      FocusNode? focusNode,
-      FormFieldSetter<T>? onSaved,
-      FormFieldValidator<T>? validator,
-      InputDecoration decoration = const InputDecoration(),
-      required String name,
-      T? initialValue,
-      ValueChanged<T?>? onChanged,
-      ValueTransformer<T?>? valueTransformer,
-      VoidCallback? onReset,
-      this.asyncItems,
-      this.autoValidateMode,
-      this.compareFn,
-      this.dropdownBuilder,
-      this.dropdownSearchDecoration,
-      this.dropdownSearchTextAlign,
-      this.dropdownSearchTextAlignVertical,
-      this.filterFn,
-      this.isFilteredOnline = false,
-      this.itemAsString,
-      this.items,
-      this.onBeforeChange,
-      this.popupOnItemAdded,
-      this.popupOnItemRemoved,
-      this.popupSelectionWidget,
-      this.selectedItem,
-      this.selectedItems = const [],
-      this.shouldRequestFocus = false,
-      this.showClearButton = false,
-      this.popupProps = const PopupProps.menu()})
-      : assert(T == String || compareFn != null),
+  FormBuilderSearchableDropdown({
+    Key? key,
+    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
+    bool enabled = true,
+    FocusNode? focusNode,
+    FormFieldSetter<T>? onSaved,
+    FormFieldValidator<T>? validator,
+    InputDecoration decoration = const InputDecoration(),
+    required String name,
+    T? initialValue,
+    ValueChanged<T?>? onChanged,
+    ValueTransformer<T?>? valueTransformer,
+    VoidCallback? onReset,
+    this.asyncItems,
+    this.autoValidateMode,
+    this.compareFn,
+    this.dropdownBuilder,
+    this.dropdownSearchDecoration,
+    this.dropdownSearchTextAlign,
+    this.dropdownSearchTextAlignVertical,
+    this.filterFn,
+    this.isFilteredOnline = false,
+    this.itemAsString,
+    this.items,
+    this.onBeforeChange,
+    this.popupOnItemAdded,
+    this.popupOnItemRemoved,
+    this.popupSelectionWidget,
+    this.selectedItem,
+    this.selectedItems = const [],
+    this.shouldRequestFocus = false,
+    this.showClearButton = false,
+    this.popupProps = const PopupProps.menu(),
+    this.clearButtonProps,
+    this.dropdownSearchTextStyle,
+    this.dropdownButtonProps,
+  })  : assert(T == String || compareFn != null),
         isMultiSelectionMode = false,
         dropdownBuilderMultiSelection = null,
         onBeforeChangeMultiSelection = null,
@@ -147,28 +159,30 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
             return dropdown_search.DropdownSearch<T>(
               // Hack to rebuild when didChange is called
               key: UniqueKey(),
+              asyncItems: asyncItems,
+              clearButtonProps: clearButtonProps,
+              compareFn: compareFn,
+              enabled: state.enabled,
+              dropdownBuilder: dropdownBuilder,
+              dropdownButtonProps: dropdownButtonProps,
+              dropdownSearchDecoration: state.decoration,
+              dropdownSearchTextAlign: dropdownSearchTextAlign,
+              dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
+              dropdownSearchTextStyle: dropdownSearchTextStyle,
+              filterFn: filterFn,
+              isFilteredOnline: isFilteredOnline,
               items: items,
+              itemAsString: itemAsString,
+              onBeforeChange: onBeforeChange,
               onChanged: (value) {
                 if (shouldRequestFocus) {
                   state.requestFocus();
                 }
                 state.didChange(value);
               },
-              enabled: state.enabled,
-              autoValidateMode: autovalidateMode,
-              compareFn: compareFn,
-              dropdownBuilder: dropdownBuilder,
-              dropdownSearchDecoration: state.decoration,
-              filterFn: filterFn,
-              isFilteredOnline: isFilteredOnline,
-              itemAsString: itemAsString,
+              popupProps: popupProps,
               selectedItem: state.value,
               showClearButton: showClearButton,
-              onBeforeChange: onBeforeChange,
-              dropdownSearchTextAlign: dropdownSearchTextAlign,
-              dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
-              asyncItems: asyncItems,
-              popupProps: popupProps,
             );
           },
         );
