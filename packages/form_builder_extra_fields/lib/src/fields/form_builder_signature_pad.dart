@@ -138,8 +138,8 @@ class _FormBuilderSignaturePadState
     _controller = widget.controller ?? SignatureController();
     _controller.addListener(() async {
       requestFocus();
-      final _value = await _getControllerValue();
-      didChange(_value);
+      final val = await _getControllerValue();
+      didChange(val);
     });
     SchedulerBinding.instance.addPostFrameCallback((Duration duration) async {
       // Get initialValue or if points are set, use the  points

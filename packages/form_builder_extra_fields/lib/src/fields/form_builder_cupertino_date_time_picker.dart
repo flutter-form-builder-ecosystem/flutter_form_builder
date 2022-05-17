@@ -187,9 +187,9 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
     super.initState();
     _textFieldController = widget.controller ?? TextEditingController();
     _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
-    final _initialValue = initialValue;
+    final initialVal = initialValue;
     _textFieldController.text =
-        _initialValue == null ? '' : _dateFormat.format(_initialValue);
+        initialVal == null ? '' : _dateFormat.format(initialVal);
     effectiveFocusNode.addListener(_handleFocus);
   }
 
