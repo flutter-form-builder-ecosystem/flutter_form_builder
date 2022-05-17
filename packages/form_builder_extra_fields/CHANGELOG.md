@@ -1,3 +1,6 @@
+## [8.0.1] - 17-May-2022
+* Add missing attributes for `FormBuilderSearchableDropdown`
+
 ## [8.0.0] - 16-May-2022
 * Flutter 3 compatibility
 
