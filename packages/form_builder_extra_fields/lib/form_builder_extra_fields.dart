@@ -1,6 +1,6 @@
 library form_builder_extra_fields;
 
-export 'package:dropdown_search/dropdown_search.dart' show TextFieldProps;
+export 'package:dropdown_search/dropdown_search.dart';
 export 'package:flutter_datetime_picker_bdaya/flutter_datetime_picker_bdaya.dart';
 export 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
