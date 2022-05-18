@@ -142,7 +142,7 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<double?> field) {
-            final state = field as _FormBuilderRatingBarState;
+            final state = field as FormBuilderRatingBarState;
             final widget = state.widget;
 
             return InputDecorator(
@@ -185,8 +185,8 @@ class FormBuilderRatingBar extends FormBuilderField<double> {
         );
 
   @override
-  _FormBuilderRatingBarState createState() => _FormBuilderRatingBarState();
+  FormBuilderRatingBarState createState() => FormBuilderRatingBarState();
 }
 
-class _FormBuilderRatingBarState
+class FormBuilderRatingBarState
     extends FormBuilderFieldState<FormBuilderRatingBar, double> {}

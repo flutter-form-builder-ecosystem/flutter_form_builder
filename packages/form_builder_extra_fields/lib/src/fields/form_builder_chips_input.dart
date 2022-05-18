@@ -70,7 +70,7 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
           validator: validator,
           valueTransformer: valueTransformer,
           builder: (FormFieldState<List<T>?> field) {
-            final state = field as _FormBuilderChipsInputState<T>;
+            final state = field as FormBuilderChipsInputState<T>;
 
             return ChipsInput<T>(
               key: UniqueKey(),
@@ -102,9 +102,9 @@ class FormBuilderChipsInput<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  _FormBuilderChipsInputState<T> createState() =>
-      _FormBuilderChipsInputState<T>();
+  FormBuilderChipsInputState<T> createState() =>
+      FormBuilderChipsInputState<T>();
 }
 
-class _FormBuilderChipsInputState<T>
+class FormBuilderChipsInputState<T>
     extends FormBuilderFieldState<FormBuilderChipsInput<T>, List<T>> {}

@@ -155,7 +155,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
-            final state = field as _FormBuilderSearchableDropdownState<T>;
+            final state = field as FormBuilderSearchableDropdownState<T>;
             return dropdown_search.DropdownSearch<T>(
               // Hack to rebuild when didChange is called
               key: UniqueKey(),
@@ -188,9 +188,9 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
         );
 
   @override
-  _FormBuilderSearchableDropdownState<T> createState() =>
-      _FormBuilderSearchableDropdownState<T>();
+  FormBuilderSearchableDropdownState<T> createState() =>
+      FormBuilderSearchableDropdownState<T>();
 }
 
-class _FormBuilderSearchableDropdownState<T>
+class FormBuilderSearchableDropdownState<T>
     extends FormBuilderFieldState<FormBuilderSearchableDropdown<T>, T> {}

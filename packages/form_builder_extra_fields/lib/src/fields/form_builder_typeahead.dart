@@ -316,7 +316,7 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
-            final state = field as _FormBuilderTypeAheadState<T>;
+            final state = field as FormBuilderTypeAheadState<T>;
             final theme = Theme.of(state.context);
 
             return TypeAheadField<T>(
@@ -366,11 +366,10 @@ class FormBuilderTypeAhead<T> extends FormBuilderField<T> {
         );
 
   @override
-  _FormBuilderTypeAheadState<T> createState() =>
-      _FormBuilderTypeAheadState<T>();
+  FormBuilderTypeAheadState<T> createState() => FormBuilderTypeAheadState<T>();
 }
 
-class _FormBuilderTypeAheadState<T>
+class FormBuilderTypeAheadState<T>
     extends FormBuilderFieldState<FormBuilderTypeAhead<T>, T> {
   late TextEditingController _typeAheadController;
 

@@ -134,7 +134,7 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
           validator: validator,
           valueTransformer: valueTransformer,
           builder: (FormFieldState<DateTime?> field) {
-            final state = field as _FormBuilderCupertinoDateTimePickerState;
+            final state = field as FormBuilderCupertinoDateTimePickerState;
 
             return TextField(
               autocorrect: autocorrect,
@@ -172,11 +172,11 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
         );
 
   @override
-  _FormBuilderCupertinoDateTimePickerState createState() =>
-      _FormBuilderCupertinoDateTimePickerState();
+  FormBuilderCupertinoDateTimePickerState createState() =>
+      FormBuilderCupertinoDateTimePickerState();
 }
 
-class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
+class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
     FormBuilderCupertinoDateTimePicker, DateTime> {
   late TextEditingController _textFieldController;
 
@@ -237,6 +237,7 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
       case CupertinoDateTimePickerInputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
+          if (!mounted) return null;
           final time = await _showTimePicker(context, currentValue);
           newValue = combine(date, time);
         }
@@ -293,9 +294,10 @@ class _FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
       time == null ? null : DateTime(1, 1, 1, time.hour, time.minute);
 
   @override
-  void didChange(DateTime? val) {
-    super.didChange(val);
-    _textFieldController.text = (val == null) ? '' : _dateFormat.format(val);
+  void didChange(DateTime? value) {
+    super.didChange(value);
+    _textFieldController.text =
+        (value == null) ? '' : _dateFormat.format(value);
   }
 
   LocaleType _localeType() {

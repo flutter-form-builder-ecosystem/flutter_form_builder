@@ -85,7 +85,7 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
           validator: validator,
           valueTransformer: valueTransformer,
           builder: (FormFieldState<num?> field) {
-            final state = field as _FormBuilderTouchSpinState;
+            final state = field as FormBuilderTouchSpinState;
             final theme = Theme.of(state.context);
 
             return InputDecorator(
@@ -119,8 +119,8 @@ class FormBuilderTouchSpin extends FormBuilderField<num> {
         );
 
   @override
-  _FormBuilderTouchSpinState createState() => _FormBuilderTouchSpinState();
+  FormBuilderTouchSpinState createState() => FormBuilderTouchSpinState();
 }
 
-class _FormBuilderTouchSpinState
+class FormBuilderTouchSpinState
     extends FormBuilderFieldState<FormBuilderTouchSpin, num> {}

@@ -62,7 +62,7 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
           validator: validator,
           valueTransformer: valueTransformer,
           builder: (FormFieldState<Uint8List?> field) {
-            final state = field as _FormBuilderSignaturePadState;
+            final state = field as FormBuilderSignaturePadState;
             final theme = Theme.of(state.context);
             final localizations = MaterialLocalizations.of(state.context);
             final cancelButtonColor =
@@ -122,11 +122,10 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
         );
 
   @override
-  _FormBuilderSignaturePadState createState() =>
-      _FormBuilderSignaturePadState();
+  FormBuilderSignaturePadState createState() => FormBuilderSignaturePadState();
 }
 
-class _FormBuilderSignaturePadState
+class FormBuilderSignaturePadState
     extends FormBuilderFieldState<FormBuilderSignaturePad, Uint8List> {
   late SignatureController _controller;
 

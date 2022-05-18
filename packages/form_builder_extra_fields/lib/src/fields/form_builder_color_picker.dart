@@ -123,7 +123,7 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<Color?> field) {
-            final state = field as _FormBuilderColorPickerFieldState;
+            final state = field as FormBuilderColorPickerFieldState;
             return TextField(
               style: style,
               decoration: state.decoration.copyWith(
@@ -178,11 +178,11 @@ class FormBuilderColorPickerField extends FormBuilderField<Color> {
         );
 
   @override
-  _FormBuilderColorPickerFieldState createState() =>
-      _FormBuilderColorPickerFieldState();
+  FormBuilderColorPickerFieldState createState() =>
+      FormBuilderColorPickerFieldState();
 }
 
-class _FormBuilderColorPickerFieldState
+class FormBuilderColorPickerFieldState
     extends FormBuilderFieldState<FormBuilderColorPickerField, Color> {
   late TextEditingController _effectiveController;
 
