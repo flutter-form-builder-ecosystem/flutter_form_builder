@@ -29,30 +29,34 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: [
                 FormBuilderSearchableDropdown<String>(
+                  popupProps: const PopupProps.menu(showSearchBox: true),
                   name: 'searchable_dropdown_online',
-                  // items: allCountries,
                   onChanged: _onChanged,
-                  isFilteredOnline: true,
-                  compareFn: (item, selectedItem) =>
-                      item.toLowerCase() == selectedItem.toLowerCase(),
-                  /*showSearchBox: true,
-                  onFind: (text) async {
+                  asyncItems: (filter) async {
                     await Future.delayed(const Duration(seconds: 1));
                     return allCountries
-                        .where((element) =>
-                            element.toLowerCase().contains(text.toLowerCase()))
+                        .where((element) => element
+                            .toLowerCase()
+                            .contains(filter.toLowerCase()))
                         .toList();
-                  },*/
+                  },
                   decoration: const InputDecoration(
-                      labelText: 'Searchable Dropdown Online'),
+                    labelText: 'Searchable Dropdown Online',
+                  ),
                 ),
                 FormBuilderSearchableDropdown<String>(
+                  popupProps: const PopupProps.menu(showSearchBox: true),
+                  dropdownSearchDecoration: const InputDecoration(
+                    hintText: 'Search',
+                    labelText: 'Search',
+                  ),
                   name: 'searchable_dropdown_offline',
                   items: allCountries,
                   onChanged: _onChanged,
-                  // showSearchBox: true,
                   decoration: const InputDecoration(
                       labelText: 'Searchable Dropdown Offline'),
+                  filterFn: (country, filter) =>
+                      country.toLowerCase().contains(filter.toLowerCase()),
                 ),
                 const SizedBox(height: 15),
                 FormBuilderColorPickerField(

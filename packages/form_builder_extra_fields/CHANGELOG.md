@@ -1,3 +1,7 @@
+## [8.1.0] - 18-May-2022
+* Bump up `dropdown_search` package version
+* Export the whole `dropdown_search` package
+
 ## [8.0.1] - 17-May-2022
 * Add missing attributes for `FormBuilderSearchableDropdown`
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+
 import 'home_page.dart';
 
 void main() {
@@ -23,15 +24,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en', ''),
-        Locale('es', ''),
-        Locale('fr', ''),
-        Locale('ja', ''),
-        Locale('pt', ''),
-        Locale('sk', ''),
-        Locale('pl', ''),
-      ],
+      supportedLocales: FormBuilderLocalizations.delegate.supportedLocales,
       home: const MyHomePage(),
     );
   }

@@ -8,13 +8,13 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
   final bool shouldRequestFocus;
 
   ///true if the filter on items is applied onlie (via API)
-  final bool isFilteredOnline;
+  // final bool isFilteredOnline;
 
   ///show/hide clear selected item
   final bool showClearButton;
 
   ///offline items list
-  final List<T>? items;
+  final List<T> items;
 
   ///selected item
   final T? selectedItem;
@@ -118,9 +118,9 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
     this.dropdownSearchTextAlign,
     this.dropdownSearchTextAlignVertical,
     this.filterFn,
-    this.isFilteredOnline = false,
+    // this.isFilteredOnline = false,
     this.itemAsString,
-    this.items,
+    this.items = const [],
     this.onBeforeChange,
     this.popupOnItemAdded,
     this.popupOnItemRemoved,
@@ -170,7 +170,7 @@ class FormBuilderSearchableDropdown<T> extends FormBuilderField<T> {
               dropdownSearchTextAlignVertical: dropdownSearchTextAlignVertical,
               dropdownSearchTextStyle: dropdownSearchTextStyle,
               filterFn: filterFn,
-              isFilteredOnline: isFilteredOnline,
+              // isFilteredOnline: isFilteredOnline,
               items: items,
               itemAsString: itemAsString,
               onBeforeChange: onBeforeChange,
