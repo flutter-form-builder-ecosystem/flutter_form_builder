@@ -75,7 +75,7 @@ class FormBuilderSegmentedControl<T extends Object>
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
-            final state = field as _FormBuilderSegmentedControlState<T>;
+            final state = field as FormBuilderSegmentedControlState<T>;
             final theme = Theme.of(state.context);
 
             return InputDecorator(
@@ -119,9 +119,9 @@ class FormBuilderSegmentedControl<T extends Object>
         );
 
   @override
-  _FormBuilderSegmentedControlState<T> createState() =>
-      _FormBuilderSegmentedControlState();
+  FormBuilderSegmentedControlState<T> createState() =>
+      FormBuilderSegmentedControlState();
 }
 
-class _FormBuilderSegmentedControlState<T extends Object>
+class FormBuilderSegmentedControlState<T extends Object>
     extends FormBuilderFieldState<FormBuilderSegmentedControl<T>, T> {}

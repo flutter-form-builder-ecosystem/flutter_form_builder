@@ -1,3 +1,9 @@
+## [7.2.0] - 19-May-2022
+* Added new dropdown attributes: borderRadius, enableFeedback, alignment. Fixes #1011
+* Added more date picker and time picker options
+* Made itemHeight attribute of FormBuilderDropdown nullable. Fixes #1015
+* Resolved 'Null check operator used on a null value' bug in RangeSlider. Fixes #990
+
 ## [7.1.1] - 17-Feb-2022
 * More improvements to focus handling
 * Other minor fixes

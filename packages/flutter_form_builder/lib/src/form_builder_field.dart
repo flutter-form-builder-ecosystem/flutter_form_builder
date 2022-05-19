@@ -101,10 +101,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
 
-  void registerTransformer(Map<String, Function> _map) {
-    final _fun = widget.valueTransformer;
-    if (_fun != null) {
-      _map[widget.name] = _fun;
+  void registerTransformer(Map<String, Function> map) {
+    final fun = widget.valueTransformer;
+    if (fun != null) {
+      map[widget.name] = fun;
     }
   }
 
