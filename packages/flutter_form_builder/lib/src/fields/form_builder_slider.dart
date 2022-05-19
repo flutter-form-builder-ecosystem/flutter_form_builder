@@ -176,7 +176,8 @@ class FormBuilderSlider extends FormBuilderField<double> {
           focusNode: focusNode,
           builder: (FormFieldState<double?> field) {
             final state = field as FormBuilderSliderState;
-            final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
+            final effectiveNumberFormat =
+                numberFormat ?? NumberFormat.compact();
 
             return InputDecorator(
               decoration: state.decoration,

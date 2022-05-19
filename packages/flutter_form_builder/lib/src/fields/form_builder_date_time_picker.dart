@@ -316,7 +316,7 @@ class FormBuilderDateTimePickerState
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
-          if(!mounted) break;
+          if (!mounted) break;
           final time = await _showTimePicker(context, currentValue);
           newValue = combine(date, time);
         }
@@ -388,6 +388,7 @@ class FormBuilderDateTimePickerState
   @override
   void didChange(DateTime? value) {
     super.didChange(value);
-    _textFieldController.text = (value == null) ? '' : _dateFormat.format(value);
+    _textFieldController.text =
+        (value == null) ? '' : _dateFormat.format(value);
   }
 }
