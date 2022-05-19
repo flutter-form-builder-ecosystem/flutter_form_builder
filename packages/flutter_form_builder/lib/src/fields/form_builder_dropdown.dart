@@ -163,7 +163,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// the dropdown button. That's because, in this case, the initial scroll
   /// offset is computed as if all of the menu item heights were
   /// [kMinInteractiveDimension].
-  final double itemHeight;
+  final double? itemHeight;
 
   /// The color for the button's [Material] when it has the input focus.
   final Color? focusColor;
@@ -258,7 +258,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.shouldRequestFocus = false,
     this.dropdownColor,
     this.focusColor,
-    this.itemHeight = kMinInteractiveDimension,
+    this.itemHeight,
     this.selectedItemBuilder,
     this.menuMaxHeight,
     this.enableFeedback,
