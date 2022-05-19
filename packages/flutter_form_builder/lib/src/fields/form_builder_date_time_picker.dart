@@ -126,6 +126,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final TimePickerEntryMode timePickerInitialEntryMode;
   final StrutStyle? strutStyle;
   final SelectableDayPredicate? selectableDayPredicate;
+  final Offset? anchorPoint;
+  final EntryModeChangeCallback? onEntryModeChanged;
 
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
@@ -193,6 +195,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.routeSettings,
     this.strutStyle,
     this.selectableDayPredicate,
+    this.anchorPoint,
+    this.onEntryModeChanged,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -347,6 +351,7 @@ class _FormBuilderDateTimePickerState
       initialEntryMode: widget.initialEntryMode,
       routeSettings: widget.routeSettings,
       currentDate: widget.currentDate,
+      anchorPoint: widget.anchorPoint,
     );
   }
 
@@ -364,6 +369,9 @@ class _FormBuilderDateTimePickerState
       helpText: widget.helpText,
       confirmText: widget.confirmText,
       cancelText: widget.cancelText,
+      anchorPoint: widget.anchorPoint,
+      errorInvalidText: widget.errorInvalidText,
+      onEntryModeChanged: widget.onEntryModeChanged,
     );
     return timePickerResult ??
         (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
