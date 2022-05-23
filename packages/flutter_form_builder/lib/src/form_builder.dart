@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A container for form fields.
@@ -126,15 +125,13 @@ class FormBuilderState extends State<FormBuilder> {
         initialValue[name];
   }
 
-  void setInternalFieldValue<T>(
-    String name,
-    T? value, {
-    required bool isSetState,
-  }) {
+  void setInternalFieldValue<T>(String name, T? value,
+      {required bool isSetState}) {
     _instantValue[name] = value;
     if (isSetState) {
       setState(() {});
     }
+    widget.onChanged?.call();
   }
 
   bool get isValid =>
@@ -170,10 +167,7 @@ class FormBuilderState extends State<FormBuilder> {
     field.registerTransformer(_transformers);
     if (oldField != null) {
       // ignore: invalid_use_of_protected_member
-      field.setValue(
-        oldField.value,
-        populateForm: false,
-      );
+      field.setValue(oldField.value, populateForm: false);
     } else {
       // ignore: invalid_use_of_protected_member
       field.setValue(
@@ -263,7 +257,7 @@ class FormBuilderState extends State<FormBuilder> {
       key: _formKey,
       autovalidateMode: widget.autovalidateMode,
       onWillPop: widget.onWillPop,
-      onChanged: widget.onChanged,
+      // `onChanged` is called during setInternalFieldValue else will be called early
       child: FocusTraversalGroup(
         policy: WidgetOrderTraversalPolicy(),
         child: widget.child,

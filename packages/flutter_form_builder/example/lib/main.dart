@@ -58,6 +58,10 @@ class CompleteFormState extends State<CompleteForm> {
               FormBuilder(
                 key: _formKey,
                 // enabled: false,
+                onChanged: () {
+                  _formKey.currentState!.save();
+                  debugPrint(_formKey.currentState!.value.toString());
+                },
                 autovalidateMode: AutovalidateMode.disabled,
                 initialValue: const {
                   'movie_rating': 5,
