@@ -6,10 +6,10 @@ class CustomFields extends StatefulWidget {
   const CustomFields({Key? key}) : super(key: key);
 
   @override
-  _CustomFieldsState createState() => _CustomFieldsState();
+  CustomFieldsState createState() => CustomFieldsState();
 }
 
-class _CustomFieldsState extends State<CustomFields> {
+class CustomFieldsState extends State<CustomFields> {
   final _formKey = GlobalKey<FormBuilderState>();
   var options = ["Option 1", "Option 2", "Option 3"];
 
