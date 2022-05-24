@@ -176,7 +176,9 @@ class FormBuilderSlider extends FormBuilderField<double> {
           focusNode: focusNode,
           builder: (FormFieldState<double?> field) {
             final state = field as _FormBuilderSliderState;
-            final _numberFormat = numberFormat ?? NumberFormat.compact();
+            final effectiveNumberFormat =
+                numberFormat ?? NumberFormat.compact();
+
             return InputDecorator(
               decoration: state.decoration,
               child: Container(
@@ -212,21 +214,21 @@ class FormBuilderSlider extends FormBuilderField<double> {
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
                           Text(
-                            _numberFormat.format(min),
+                            effectiveNumberFormat.format(min),
                             style: minTextStyle ?? textStyle,
                           ),
                         const Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.minMax)
                           Text(
-                            _numberFormat.format(field.value),
+                            effectiveNumberFormat.format(field.value),
                             style: textStyle,
                           ),
                         const Spacer(),
                         if (displayValues != DisplayValues.none &&
                             displayValues != DisplayValues.current)
                           Text(
-                            _numberFormat.format(max),
+                            effectiveNumberFormat.format(max),
                             style: maxTextStyle ?? textStyle,
                           ),
                       ],
@@ -239,7 +241,8 @@ class FormBuilderSlider extends FormBuilderField<double> {
         );
 
   @override
-  _FormBuilderSliderState createState() => _FormBuilderSliderState();
+  FormBuilderFieldState<FormBuilderSlider, double> createState() =>
+      _FormBuilderSliderState();
 }
 
 class _FormBuilderSliderState

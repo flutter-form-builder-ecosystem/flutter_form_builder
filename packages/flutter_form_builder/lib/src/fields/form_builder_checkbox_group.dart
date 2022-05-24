@@ -113,7 +113,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  _FormBuilderCheckboxGroupState<T> createState() =>
+  FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> createState() =>
       _FormBuilderCheckboxGroupState<T>();
 }
 

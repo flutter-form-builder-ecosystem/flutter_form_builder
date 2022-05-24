@@ -7,12 +7,12 @@ class CompleteForm extends StatefulWidget {
   const CompleteForm({Key? key}) : super(key: key);
 
   @override
-  CompleteFormState createState() {
-    return CompleteFormState();
+  State<CompleteForm> createState() {
+    return _CompleteFormState();
   }
 }
 
-class CompleteFormState extends State<CompleteForm> {
+class _CompleteFormState extends State<CompleteForm> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
@@ -47,19 +47,21 @@ class CompleteFormState extends State<CompleteForm> {
                   const SizedBox(height: 15),
                   FormBuilderDateTimePicker(
                     name: 'date',
+                    initialEntryMode: DatePickerEntryMode.calendar,
                     initialValue: DateTime.now(),
-                    inputType: InputType.time,
+                    inputType: InputType.both,
                     decoration: InputDecoration(
                       labelText: 'Appointment Time',
                       suffixIcon: IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () {
-                            _formKey.currentState!.fields['date']
-                                ?.didChange(null);
-                          }),
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          _formKey.currentState!.fields['date']
+                              ?.didChange(null);
+                        },
+                      ),
                     ),
                     initialTime: const TimeOfDay(hour: 8, minute: 0),
-                    locale: const Locale.fromSubtags(languageCode: 'fr'),
+                    // locale: const Locale.fromSubtags(languageCode: 'fr'),
                   ),
                   FormBuilderDateRangePicker(
                     name: 'date_range',

@@ -3,7 +3,6 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A Material Design text field input.
@@ -422,7 +421,8 @@ class FormBuilderTextField extends FormBuilderField<String> {
         );
 
   @override
-  _FormBuilderTextFieldState createState() => _FormBuilderTextFieldState();
+  FormBuilderFieldState<FormBuilderTextField, String> createState() =>
+      _FormBuilderTextFieldState();
 }
 
 class _FormBuilderTextFieldState

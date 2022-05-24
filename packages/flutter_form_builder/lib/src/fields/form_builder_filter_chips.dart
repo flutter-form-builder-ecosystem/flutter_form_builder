@@ -145,7 +145,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  _FormBuilderFilterChipState<T> createState() =>
+  FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>> createState() =>
       _FormBuilderFilterChipState<T>();
 }
 

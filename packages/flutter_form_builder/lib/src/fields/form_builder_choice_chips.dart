@@ -338,7 +338,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
             });
 
   @override
-  _FormBuilderChoiceChipState<T> createState() =>
+  FormBuilderFieldState<FormBuilderChoiceChip<T>, T> createState() =>
       _FormBuilderChoiceChipState<T>();
 }
 

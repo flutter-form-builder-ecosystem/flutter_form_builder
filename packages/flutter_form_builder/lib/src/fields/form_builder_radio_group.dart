@@ -106,7 +106,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
         );
 
   @override
-  _FormBuilderRadioGroupState<T> createState() =>
+  FormBuilderFieldState<FormBuilderRadioGroup<T>, T> createState() =>
       _FormBuilderRadioGroupState<T>();
 }
 

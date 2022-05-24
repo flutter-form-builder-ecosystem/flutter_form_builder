@@ -119,7 +119,7 @@ class FormBuilderSegmentedControl<T extends Object>
         );
 
   @override
-  _FormBuilderSegmentedControlState<T> createState() =>
+  FormBuilderFieldState<FormBuilderSegmentedControl<T>, T> createState() =>
       _FormBuilderSegmentedControlState();
 }
 

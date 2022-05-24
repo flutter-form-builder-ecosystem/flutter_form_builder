@@ -6,7 +6,7 @@ class CustomFields extends StatefulWidget {
   const CustomFields({Key? key}) : super(key: key);
 
   @override
-  _CustomFieldsState createState() => _CustomFieldsState();
+  State<CustomFields> createState() => _CustomFieldsState();
 }
 
 class _CustomFieldsState extends State<CustomFields> {

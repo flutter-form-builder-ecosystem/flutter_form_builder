@@ -136,7 +136,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<DateTimeRange?> field) {
-            final state = field as FormBuilderDateRangePickerState;
+            final state = field as _FormBuilderDateRangePickerState;
 
             return TextField(
               enabled: state.enabled,
@@ -175,8 +175,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
         );
 
   @override
-  FormBuilderDateRangePickerState createState() =>
-      FormBuilderDateRangePickerState();
+  FormBuilderFieldState<FormBuilderDateRangePicker, DateTimeRange>
+      createState() => _FormBuilderDateRangePickerState();
 
   static String tryFormat(DateTime date, intl.DateFormat format) {
     try {
@@ -188,7 +188,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   }
 }
 
-class FormBuilderDateRangePickerState
+class _FormBuilderDateRangePickerState
     extends FormBuilderFieldState<FormBuilderDateRangePicker, DateTimeRange> {
   late TextEditingController _effectiveController;
 

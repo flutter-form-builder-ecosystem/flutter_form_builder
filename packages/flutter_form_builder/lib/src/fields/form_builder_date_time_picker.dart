@@ -126,6 +126,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final TimePickerEntryMode timePickerInitialEntryMode;
   final StrutStyle? strutStyle;
   final SelectableDayPredicate? selectableDayPredicate;
+  final Offset? anchorPoint;
+  final EntryModeChangeCallback? onEntryModeChanged;
 
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
@@ -193,6 +195,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.routeSettings,
     this.strutStyle,
     this.selectableDayPredicate,
+    this.anchorPoint,
+    this.onEntryModeChanged,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -245,7 +249,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
         );
 
   @override
-  _FormBuilderDateTimePickerState createState() =>
+  FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> createState() =>
       _FormBuilderDateTimePickerState();
 }
 
@@ -312,6 +316,7 @@ class _FormBuilderDateTimePickerState
       case InputType.both:
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
+          if (!mounted) break;
           final time = await _showTimePicker(context, currentValue);
           newValue = combine(date, time);
         }
@@ -347,6 +352,7 @@ class _FormBuilderDateTimePickerState
       initialEntryMode: widget.initialEntryMode,
       routeSettings: widget.routeSettings,
       currentDate: widget.currentDate,
+      anchorPoint: widget.anchorPoint,
     );
   }
 
@@ -364,6 +370,9 @@ class _FormBuilderDateTimePickerState
       helpText: widget.helpText,
       confirmText: widget.confirmText,
       cancelText: widget.cancelText,
+      anchorPoint: widget.anchorPoint,
+      errorInvalidText: widget.errorInvalidText,
+      onEntryModeChanged: widget.onEntryModeChanged,
     );
     return timePickerResult ??
         (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
@@ -377,8 +386,9 @@ class _FormBuilderDateTimePickerState
       time == null ? null : DateTime(1, 1, 1, time.hour, time.minute);
 
   @override
-  void didChange(DateTime? val) {
-    super.didChange(val);
-    _textFieldController.text = (val == null) ? '' : _dateFormat.format(val);
+  void didChange(DateTime? value) {
+    super.didChange(value);
+    _textFieldController.text =
+        (value == null) ? '' : _dateFormat.format(value);
   }
 }

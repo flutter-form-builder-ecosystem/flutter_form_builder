@@ -14,7 +14,7 @@ class CodePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CodePageState createState() => _CodePageState();
+  State<CodePage> createState() => _CodePageState();
 }
 
 class _CodePageState extends State<CodePage> {

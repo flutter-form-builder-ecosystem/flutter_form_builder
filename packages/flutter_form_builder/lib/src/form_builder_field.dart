@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 enum OptionsOrientation { horizontal, vertical, wrap }
@@ -47,7 +46,7 @@ class FormBuilderField<T> extends FormField<T> {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
-  //TODO: implement bool autofocus, ValueChanged<bool> onValidated
+  // TODO: implement bool autofocus, ValueChanged<bool> onValidated
 
   /// Creates a single form field.
   const FormBuilderField({
@@ -101,10 +100,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
 
-  void registerTransformer(Map<String, Function> _map) {
-    final _fun = widget.valueTransformer;
-    if (_fun != null) {
-      _map[widget.name] = _fun;
+  void registerTransformer(Map<String, Function> map) {
+    final fun = widget.valueTransformer;
+    if (fun != null) {
+      map[widget.name] = fun;
     }
   }
 
@@ -167,9 +166,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   //   super.save();
   // }
 
-  void _informFormForFieldChange({
-    required bool isSetState,
-  }) {
+  void _informFormForFieldChange({required bool isSetState}) {
     if (_formBuilderState != null) {
       if (enabled || !_formBuilderState!.widget.skipDisabled) {
         _formBuilderState!.setInternalFieldValue<T>(
@@ -196,18 +193,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void setValue(T? value, {bool populateForm = true}) {
     super.setValue(value);
     if (populateForm) {
-      _informFormForFieldChange(
-        isSetState: false,
-      );
+      _informFormForFieldChange(isSetState: false);
     }
   }
 
   @override
   void didChange(T? value) {
     super.didChange(value);
-    _informFormForFieldChange(
-      isSetState: false,
-    );
+    _informFormForFieldChange(isSetState: false);
     widget.onChanged?.call(value);
   }
 

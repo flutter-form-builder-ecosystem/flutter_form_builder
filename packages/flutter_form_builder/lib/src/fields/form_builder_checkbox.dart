@@ -144,7 +144,8 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
         );
 
   @override
-  _FormBuilderCheckboxState createState() => _FormBuilderCheckboxState();
+  FormBuilderFieldState<FormBuilderCheckbox, bool> createState() =>
+      _FormBuilderCheckboxState();
 }
 
 class _FormBuilderCheckboxState
