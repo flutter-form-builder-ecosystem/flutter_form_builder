@@ -14,10 +14,10 @@ class CodePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  CodePageState createState() => CodePageState();
+  State<CodePage> createState() => _CodePageState();
 }
 
-class CodePageState extends State<CodePage> {
+class _CodePageState extends State<CodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

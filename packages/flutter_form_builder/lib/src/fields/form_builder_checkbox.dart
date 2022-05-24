@@ -112,7 +112,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<bool?> field) {
-            final state = field as FormBuilderCheckboxState;
+            final state = field as _FormBuilderCheckboxState;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -144,8 +144,9 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
         );
 
   @override
-  FormBuilderCheckboxState createState() => FormBuilderCheckboxState();
+  FormBuilderFieldState<FormBuilderCheckbox, bool> createState() =>
+      _FormBuilderCheckboxState();
 }
 
-class FormBuilderCheckboxState
+class _FormBuilderCheckboxState
     extends FormBuilderFieldState<FormBuilderCheckbox, bool> {}

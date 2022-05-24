@@ -1,3 +1,6 @@
+## [7.2.1] - 23-May-2022
+* Fix bug where `FormBuilder.onChanged` is called before `setInternalFieldValue` is done
+
 ## [7.2.0] - 19-May-2022
 * Added new dropdown attributes: borderRadius, enableFeedback, alignment. Fixes #1011
 * Added more date picker and time picker options

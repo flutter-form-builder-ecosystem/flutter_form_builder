@@ -69,7 +69,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
           focusNode: focusNode,
           decoration: decoration,
           builder: (FormFieldState<T?> field) {
-            final state = field as FormBuilderRadioGroupState<T>;
+            final state = field as _FormBuilderRadioGroupState<T>;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -106,9 +106,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
         );
 
   @override
-  FormBuilderRadioGroupState<T> createState() =>
-      FormBuilderRadioGroupState<T>();
+  FormBuilderFieldState<FormBuilderRadioGroup<T>, T> createState() =>
+      _FormBuilderRadioGroupState<T>();
 }
 
-class FormBuilderRadioGroupState<T>
+class _FormBuilderRadioGroupState<T>
     extends FormBuilderFieldState<FormBuilderRadioGroup<T>, T> {}

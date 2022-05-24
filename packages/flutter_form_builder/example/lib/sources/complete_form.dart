@@ -7,12 +7,12 @@ class CompleteForm extends StatefulWidget {
   const CompleteForm({Key? key}) : super(key: key);
 
   @override
-  CompleteFormState createState() {
-    return CompleteFormState();
+  State<CompleteForm> createState() {
+    return _CompleteFormState();
   }
 }
 
-class CompleteFormState extends State<CompleteForm> {
+class _CompleteFormState extends State<CompleteForm> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;

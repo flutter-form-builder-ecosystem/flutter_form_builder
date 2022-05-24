@@ -278,7 +278,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
-            final state = field as FormBuilderDropdownState<T>;
+            final state = field as _FormBuilderDropdownState<T>;
             // DropdownButtonFormField
             // TextFormField
 
@@ -350,8 +350,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
         );
 
   @override
-  FormBuilderDropdownState<T> createState() => FormBuilderDropdownState<T>();
+  FormBuilderFieldState<FormBuilderDropdown<T>, T> createState() =>
+      _FormBuilderDropdownState<T>();
 }
 
-class FormBuilderDropdownState<T>
+class _FormBuilderDropdownState<T>
     extends FormBuilderFieldState<FormBuilderDropdown<T>, T> {}

@@ -211,7 +211,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<DateTime?> field) {
-            final state = field as FormBuilderDateTimePickerState;
+            final state = field as _FormBuilderDateTimePickerState;
 
             return TextField(
               textDirection: textDirection,
@@ -249,11 +249,11 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
         );
 
   @override
-  FormBuilderDateTimePickerState createState() =>
-      FormBuilderDateTimePickerState();
+  FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> createState() =>
+      _FormBuilderDateTimePickerState();
 }
 
-class FormBuilderDateTimePickerState
+class _FormBuilderDateTimePickerState
     extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
   late TextEditingController _textFieldController;
 

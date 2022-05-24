@@ -74,7 +74,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<List<T>?> field) {
-            final state = field as FormBuilderCheckboxGroupState<T>;
+            final state = field as _FormBuilderCheckboxGroupState<T>;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -113,9 +113,9 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  FormBuilderCheckboxGroupState<T> createState() =>
-      FormBuilderCheckboxGroupState<T>();
+  FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> createState() =>
+      _FormBuilderCheckboxGroupState<T>();
 }
 
-class FormBuilderCheckboxGroupState<T>
+class _FormBuilderCheckboxGroupState<T>
     extends FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> {}

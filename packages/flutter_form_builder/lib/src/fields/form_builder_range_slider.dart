@@ -148,7 +148,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             decoration: decoration,
             focusNode: focusNode,
             builder: (FormFieldState<RangeValues?> field) {
-              final state = field as FormBuilderRangeSliderState;
+              final state = field as _FormBuilderRangeSliderState;
               final effectiveNumberFormat =
                   numberFormat ?? NumberFormat.compact();
 
@@ -210,8 +210,9 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
             });
 
   @override
-  FormBuilderRangeSliderState createState() => FormBuilderRangeSliderState();
+  FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> createState() =>
+      _FormBuilderRangeSliderState();
 }
 
-class FormBuilderRangeSliderState
+class _FormBuilderRangeSliderState
     extends FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> {}

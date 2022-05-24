@@ -88,7 +88,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
           validator: validator,
           valueTransformer: valueTransformer,
           builder: (FormFieldState<List<T>?> field) {
-            final state = field as FormBuilderFilterChipState<T>;
+            final state = field as _FormBuilderFilterChipState<T>;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -145,9 +145,9 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  FormBuilderFilterChipState<T> createState() =>
-      FormBuilderFilterChipState<T>();
+  FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>> createState() =>
+      _FormBuilderFilterChipState<T>();
 }
 
-class FormBuilderFilterChipState<T>
+class _FormBuilderFilterChipState<T>
     extends FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>> {}

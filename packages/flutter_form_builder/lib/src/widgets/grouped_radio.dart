@@ -196,10 +196,10 @@ class GroupedRadio<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  GroupedRadioState<T> createState() => GroupedRadioState<T>();
+  State<GroupedRadio<T?>> createState() => _GroupedRadioState<T>();
 }
 
-class GroupedRadioState<T> extends State<GroupedRadio<T?>> {
+class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];

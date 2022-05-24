@@ -29,12 +29,12 @@ class CompleteForm extends StatefulWidget {
   const CompleteForm({Key? key}) : super(key: key);
 
   @override
-  CompleteFormState createState() {
-    return CompleteFormState();
+  State<CompleteForm> createState() {
+    return _CompleteFormState();
   }
 }
 
-class CompleteFormState extends State<CompleteForm> {
+class _CompleteFormState extends State<CompleteForm> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
@@ -102,11 +102,12 @@ class CompleteFormState extends State<CompleteForm> {
                         helperText: 'Helper text',
                         hintText: 'Hint text',
                         suffixIcon: IconButton(
-                            icon: const Icon(Icons.close),
-                            onPressed: () {
-                              _formKey.currentState!.fields['date_range']
-                                  ?.didChange(null);
-                            }),
+                          icon: const Icon(Icons.close),
+                          onPressed: () {
+                            _formKey.currentState!.fields['date_range']
+                                ?.didChange(null);
+                          },
+                        ),
                       ),
                     ),
                     FormBuilderSlider(

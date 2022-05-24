@@ -124,7 +124,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<bool?> field) {
-            final state = field as FormBuilderSwitchState;
+            final state = field as _FormBuilderSwitchState;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -159,8 +159,9 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
         );
 
   @override
-  FormBuilderSwitchState createState() => FormBuilderSwitchState();
+  FormBuilderFieldState<FormBuilderSwitch, bool> createState() =>
+      _FormBuilderSwitchState();
 }
 
-class FormBuilderSwitchState
+class _FormBuilderSwitchState
     extends FormBuilderFieldState<FormBuilderSwitch, bool> {}

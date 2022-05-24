@@ -175,7 +175,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
           decoration: decoration,
           focusNode: focusNode,
           builder: (FormFieldState<double?> field) {
-            final state = field as FormBuilderSliderState;
+            final state = field as _FormBuilderSliderState;
             final effectiveNumberFormat =
                 numberFormat ?? NumberFormat.compact();
 
@@ -241,8 +241,9 @@ class FormBuilderSlider extends FormBuilderField<double> {
         );
 
   @override
-  FormBuilderSliderState createState() => FormBuilderSliderState();
+  FormBuilderFieldState<FormBuilderSlider, double> createState() =>
+      _FormBuilderSliderState();
 }
 
-class FormBuilderSliderState
+class _FormBuilderSliderState
     extends FormBuilderFieldState<FormBuilderSlider, double> {}
