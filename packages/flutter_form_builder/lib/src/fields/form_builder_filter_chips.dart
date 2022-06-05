@@ -12,7 +12,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final Color? selectedShadowColor;
   final Color? shadowColor;
   final double? elevation, pressElevation;
-  final List<FormBuilderFieldOption<T>> options;
+  final List<FormBuilderFilterChipsOption<T>> options;
   final MaterialTapTargetSize? materialTapTargetSize;
   final OutlinedBorder? shape;
 
@@ -102,10 +102,11 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                 textDirection: textDirection,
                 verticalDirection: verticalDirection,
                 children: <Widget>[
-                  for (FormBuilderFieldOption<T> option in options)
+                  for (FormBuilderFilterChipsOption<T> option in options)
                     FilterChip(
                       label: option,
                       selected: field.value!.contains(option.value),
+                      avatar: option.avatar,
                       onSelected: state.enabled &&
                               (null == maxChips ||
                                   field.value!.length < maxChips ||
