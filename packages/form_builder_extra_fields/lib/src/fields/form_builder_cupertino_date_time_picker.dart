@@ -274,12 +274,14 @@ class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
             currentTime: currentValue,
             showSecondsColumn: false,
             locale: _localeType(),
+            theme: widget.theme,
           )
         : DatePicker.showTime12hPicker(
             context,
             showTitleActions: true,
             currentTime: currentValue,
             locale: _localeType(),
+            theme: widget.theme,
           );
     final timePickerResult = await timePicker;
     final newDateTime = timePickerResult ?? currentValue;
