@@ -61,7 +61,8 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
   final DateCancelledCallback? onCancel;
   final DateChangedCallback? onConfirm;
   final DateFormat? format;
-  final DatePickerTheme? theme;
+  final DatePickerTheme? datePickerTheme;
+  final DatePickerTheme? timePickerTheme;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final Locale? locale;
@@ -89,7 +90,8 @@ class FormBuilderCupertinoDateTimePicker extends FormBuilderField<DateTime> {
     this.locale,
     this.onCancel,
     this.onConfirm,
-    this.theme,
+    this.timePickerTheme,
+    this.datePickerTheme,
 
     //TextField options
     this.autocorrect = false,
@@ -259,7 +261,7 @@ class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
       maxTime: widget.lastDate ?? DateTime(2100),
       currentTime: currentValue,
       locale: _localeType(),
-      theme: widget.theme,
+      theme: widget.datePickerTheme,
       onCancel: widget.onCancel,
       onConfirm: widget.onConfirm,
     );
@@ -274,14 +276,14 @@ class FormBuilderCupertinoDateTimePickerState extends FormBuilderFieldState<
             currentTime: currentValue,
             showSecondsColumn: false,
             locale: _localeType(),
-            theme: widget.theme,
+            theme: widget.timePickerTheme,
           )
         : DatePicker.showTime12hPicker(
             context,
             showTitleActions: true,
             currentTime: currentValue,
             locale: _localeType(),
-            theme: widget.theme,
+            theme: widget.timePickerTheme,
           );
     final timePickerResult = await timePicker;
     final newDateTime = timePickerResult ?? currentValue;
