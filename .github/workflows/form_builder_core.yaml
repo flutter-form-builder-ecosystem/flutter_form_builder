@@ -29,7 +29,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        channel: [stable, beta, dev]
+        channel: [stable, beta]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Flutter action
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           channel: ${{ matrix.channel }}
 
