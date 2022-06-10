@@ -45,7 +45,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// If defined, the TextField [decoration]'s [suffixIcon] will be
   /// overridden to reset the input using the icon defined here.
   /// Set this to `null` to stop that behavior. Defaults to [Icons.close].
-  final Icon resetIcon;
+  final Widget? resetIcon;
 
   /// Called when an enclosing form is saved. The value passed will be `null`
   /// if [format] fails to parse the text.
@@ -218,7 +218,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               textAlign: textAlign,
               maxLength: maxLength,
               autofocus: autofocus,
-              decoration: state.decoration,
+              decoration: state.decoration.copyWith(suffixIcon: resetIcon),
               readOnly: true,
               enabled: state.enabled,
               autocorrect: autocorrect,
