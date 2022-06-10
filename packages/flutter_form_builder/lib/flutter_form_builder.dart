@@ -18,4 +18,4 @@ export 'src/fields/form_builder_switch.dart';
 export 'src/fields/form_builder_text_field.dart';
 export 'src/widgets/grouped_checkbox.dart';
 export 'src/widgets/grouped_radio.dart';
-export 'src/options/form_builder_filter_chips_option.dart';
+export 'src/options/form_builder_chip_option.dart';
