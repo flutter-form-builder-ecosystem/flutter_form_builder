@@ -7,7 +7,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   final bool shouldRequestFocus;
 
   /// The list of items the user can select.
-  final List<FormBuilderFieldOption<T>> options;
+  final List<FormBuilderChipOption<T>> options;
 
   // FilterChip Settings
   /// Elevation to be applied on the chip relative to its parent.
@@ -306,7 +306,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                   textDirection: textDirection,
                   verticalDirection: verticalDirection,
                   children: <Widget>[
-                    for (FormBuilderFieldOption<T> option in options)
+                    for (FormBuilderChipOption<T> option in options)
                       ChoiceChip(
                         label: option,
                         selected: field.value == option.value,
@@ -319,6 +319,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                                 state.didChange(choice);
                               }
                             : null,
+                        avatar: option.avatar,
                         selectedColor: selectedColor,
                         disabledColor: disabledColor,
                         backgroundColor: backgroundColor,
