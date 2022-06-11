@@ -32,6 +32,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final WrapCrossAlignment crossAxisAlignment;
 
   final int? maxChips;
+  final ShapeBorder avatarBorder;
 
   /// Creates field with chips that acts like a list checkboxes.
   FormBuilderFilterChip({
@@ -46,6 +47,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     required String name, // From Super
     required this.options,
     this.alignment = WrapAlignment.start,
+    this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
     this.checkmarkColor,
     this.clipBehavior = Clip.none,
@@ -138,6 +140,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                       labelStyle: labelStyle,
                       showCheckmark: showCheckmark,
                       labelPadding: labelPadding,
+                      avatarBorder: avatarBorder,
                     ),
                 ],
               ),

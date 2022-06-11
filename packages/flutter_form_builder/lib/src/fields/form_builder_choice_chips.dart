@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
@@ -241,6 +240,8 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// [verticalDirection] must not be null.
   final VerticalDirection verticalDirection;
 
+  final ShapeBorder avatarBorder;
+
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
@@ -254,6 +255,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     required this.options,
     T? initialValue,
     this.alignment = WrapAlignment.start,
+    this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
     this.crossAxisAlignment = WrapCrossAlignment.start,
     this.direction = Axis.horizontal,
@@ -332,6 +334,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                         labelPadding: labelPadding,
                         padding: padding,
                         visualDensity: visualDensity,
+                        avatarBorder: avatarBorder,
                       ),
                   ],
                 ),
