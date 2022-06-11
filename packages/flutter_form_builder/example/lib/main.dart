@@ -332,7 +332,8 @@ class _CompleteFormState extends State<CompleteForm> {
                     FormBuilderChoiceChip<String>(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
-                          labelText: 'Ok, if I had to choose one language, it would be:'),
+                          labelText:
+                              'Ok, if I had to choose one language, it would be:'),
                       name: 'languages_choice',
                       initialValue: 'Dart',
                       options: const [
