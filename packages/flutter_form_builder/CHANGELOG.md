@@ -1,3 +1,12 @@
+## [7.3.0] - 11-Jun-2022
+* Added new attribute `timePickerTheme` to FormBuilderCupertinoDateTimePicker
+* `FormBuilderDateTimePicker.resetIcon` changed from Icon to Widget
+* Added `avatarBorder` attribute to `FormBuilderChoiceChip` and `FormBuilderChoiceChip`
+
+**BREAKING CHANGE**:
+* Renamed attribute `theme` in FormBuilderCupertinoDateTimePicker to `datePickerTheme`
+* For `FormBuilderChoiceChip` and `FormBuilderChoiceChip` options, replace `FormBuilderFieldOption` to `FormBuilderChipOption` which has `avatar` option for chips
+
 ## [7.2.1] - 23-May-2022
 * Fix bug where `FormBuilder.onChanged` is called before `setInternalFieldValue` is done
 

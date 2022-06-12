@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
@@ -7,7 +6,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   final bool shouldRequestFocus;
 
   /// The list of items the user can select.
-  final List<FormBuilderFieldOption<T>> options;
+  final List<FormBuilderChipOption<T>> options;
 
   // FilterChip Settings
   /// Elevation to be applied on the chip relative to its parent.
@@ -241,6 +240,8 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// [verticalDirection] must not be null.
   final VerticalDirection verticalDirection;
 
+  final ShapeBorder avatarBorder;
+
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
@@ -254,6 +255,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     required this.options,
     T? initialValue,
     this.alignment = WrapAlignment.start,
+    this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
     this.crossAxisAlignment = WrapCrossAlignment.start,
     this.direction = Axis.horizontal,
@@ -306,7 +308,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                   textDirection: textDirection,
                   verticalDirection: verticalDirection,
                   children: <Widget>[
-                    for (FormBuilderFieldOption<T> option in options)
+                    for (FormBuilderChipOption<T> option in options)
                       ChoiceChip(
                         label: option,
                         selected: field.value == option.value,
@@ -319,6 +321,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                                 state.didChange(choice);
                               }
                             : null,
+                        avatar: option.avatar,
                         selectedColor: selectedColor,
                         disabledColor: disabledColor,
                         backgroundColor: backgroundColor,
@@ -331,6 +334,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                         labelPadding: labelPadding,
                         padding: padding,
                         visualDensity: visualDensity,
+                        avatarBorder: avatarBorder,
                       ),
                   ],
                 ),

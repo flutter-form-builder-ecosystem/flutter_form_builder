@@ -12,9 +12,9 @@ void main() {
       shouldRequestFocus: false,
       name: widgetName,
       options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-        FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+        FormBuilderChipOption(key: ValueKey('1'), value: 1),
+        FormBuilderChipOption(key: ValueKey('2'), value: 2),
+        FormBuilderChipOption(key: ValueKey('3'), value: 3),
       ],
     );
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));

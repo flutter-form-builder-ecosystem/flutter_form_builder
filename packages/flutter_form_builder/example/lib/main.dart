@@ -295,6 +295,71 @@ class _CompleteFormState extends State<CompleteForm> {
                         FormBuilderValidators.maxLength(3),
                       ]),
                     ),
+                    FormBuilderFilterChip<String>(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                          labelText: 'The language of my people'),
+                      name: 'languages_filter',
+                      // initialValue: const ['Dart'],
+                      options: const [
+                        FormBuilderChipOption(
+                          value: 'Dart',
+                          avatar: CircleAvatar(child: Text('D')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Kotlin',
+                          avatar: CircleAvatar(child: Text('K')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Java',
+                          avatar: CircleAvatar(child: Text('J')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Swift',
+                          avatar: CircleAvatar(child: Text('S')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Objective-C',
+                          avatar: CircleAvatar(child: Text('O')),
+                        ),
+                      ],
+                      onChanged: _onChanged,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.minLength(1),
+                        FormBuilderValidators.maxLength(3),
+                      ]),
+                    ),
+                    FormBuilderChoiceChip<String>(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: const InputDecoration(
+                          labelText:
+                              'Ok, if I had to choose one language, it would be:'),
+                      name: 'languages_choice',
+                      initialValue: 'Dart',
+                      options: const [
+                        FormBuilderChipOption(
+                          value: 'Dart',
+                          avatar: CircleAvatar(child: Text('D')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Kotlin',
+                          avatar: CircleAvatar(child: Text('K')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Java',
+                          avatar: CircleAvatar(child: Text('J')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Swift',
+                          avatar: CircleAvatar(child: Text('S')),
+                        ),
+                        FormBuilderChipOption(
+                          value: 'Objective-C',
+                          avatar: CircleAvatar(child: Text('O')),
+                        ),
+                      ],
+                      onChanged: _onChanged,
+                    ),
                   ],
                 ),
               ),

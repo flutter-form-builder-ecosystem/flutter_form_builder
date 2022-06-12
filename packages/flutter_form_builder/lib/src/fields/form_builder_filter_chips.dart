@@ -12,7 +12,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final Color? selectedShadowColor;
   final Color? shadowColor;
   final double? elevation, pressElevation;
-  final List<FormBuilderFieldOption<T>> options;
+  final List<FormBuilderChipOption<T>> options;
   final MaterialTapTargetSize? materialTapTargetSize;
   final OutlinedBorder? shape;
 
@@ -32,6 +32,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
   final WrapCrossAlignment crossAxisAlignment;
 
   final int? maxChips;
+  final ShapeBorder avatarBorder;
 
   /// Creates field with chips that acts like a list checkboxes.
   FormBuilderFilterChip({
@@ -46,6 +47,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     required String name, // From Super
     required this.options,
     this.alignment = WrapAlignment.start,
+    this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
     this.checkmarkColor,
     this.clipBehavior = Clip.none,
@@ -102,10 +104,11 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                 textDirection: textDirection,
                 verticalDirection: verticalDirection,
                 children: <Widget>[
-                  for (FormBuilderFieldOption<T> option in options)
+                  for (FormBuilderChipOption<T> option in options)
                     FilterChip(
                       label: option,
                       selected: field.value!.contains(option.value),
+                      avatar: option.avatar,
                       onSelected: state.enabled &&
                               (null == maxChips ||
                                   field.value!.length < maxChips ||
@@ -137,6 +140,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                       labelStyle: labelStyle,
                       showCheckmark: showCheckmark,
                       labelPadding: labelPadding,
+                      avatarBorder: avatarBorder,
                     ),
                 ],
               ),
