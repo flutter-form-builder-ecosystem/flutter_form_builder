@@ -1,5 +1,5 @@
 
-# Flutter form builder ecosystem Code of Conduct
+# Flutter Form Builder Ecosystem Code of Conduct
 
 ## Our Pledge
 
