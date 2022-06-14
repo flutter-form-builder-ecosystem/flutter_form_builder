@@ -219,9 +219,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 FormBuilderSignaturePad(
                   decoration: const InputDecoration(
                     labelText: 'Signature Pad',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green)),
                   ),
                   name: 'signature',
-                  border: Border.all(color: Colors.green),
                   onChanged: _onChanged,
                 ),
                 const SizedBox(height: 10),

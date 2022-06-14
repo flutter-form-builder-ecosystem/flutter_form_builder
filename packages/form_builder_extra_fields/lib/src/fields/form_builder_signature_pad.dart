@@ -24,9 +24,6 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
   /// Text to be displayed on the clear button which clears user input from the canvas
   final String? clearButtonText;
 
-  /// Styles the canvas border
-  final Border? border;
-
   /// Creates field with drawing pad on which user can doodle
   FormBuilderSignaturePad({
     Key? key,
@@ -47,7 +44,6 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
     this.width,
     this.height = 200,
     this.controller,
-    this.border,
   }) : super(
           autovalidateMode: autovalidateMode,
           decoration: decoration,
@@ -69,14 +65,18 @@ class FormBuilderSignaturePad extends FormBuilderField<Uint8List> {
                 state.enabled ? theme.errorColor : theme.disabledColor;
 
             return InputDecorator(
-              decoration: state.decoration,
+              decoration:
+                  InputDecoration(labelText: state.decoration.labelText),
               child: Column(
                 children: <Widget>[
                   Container(
                     height: height,
                     width: width,
                     decoration: BoxDecoration(
-                      border: border,
+                      border: (null != state.decoration.border)
+                          ? Border.fromBorderSide(
+                              state.decoration.border!.borderSide)
+                          : Border.all(),
                       image:
                           (null != initialValue && initialValue == state.value)
                               ? DecorationImage(
