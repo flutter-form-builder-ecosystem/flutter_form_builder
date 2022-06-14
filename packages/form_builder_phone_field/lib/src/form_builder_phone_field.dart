@@ -278,7 +278,8 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
         );
 
   @override
-  _FormBuilderPhoneFieldState createState() => _FormBuilderPhoneFieldState();
+  FormBuilderFieldState<FormBuilderPhoneField, String> createState() =>
+      _FormBuilderPhoneFieldState();
 }
 
 class _FormBuilderPhoneFieldState

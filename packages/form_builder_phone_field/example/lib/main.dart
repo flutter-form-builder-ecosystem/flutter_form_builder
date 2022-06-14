@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_phone_field/form_builder_phone_field.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      // Locale config required by form_builder_validators
+      // https://github.com/danvick/flutter_form_builder/blob/master/packages/form_builder_validators/example/lib/main.dart
+      supportedLocales: [...FormBuilderLocalizations.delegate.supportedLocales],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
+      ],
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -48,8 +58,8 @@ class MyHomePage extends StatelessWidget {
                 // onChanged: _onChanged,
                 priorityListByIsoCode: const ['KE'],
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.numeric(context),
-                  FormBuilderValidators.required(context),
+                  FormBuilderValidators.numeric(),
+                  FormBuilderValidators.required(),
                 ]),
               ),
               const SizedBox(height: 15),
@@ -63,8 +73,8 @@ class MyHomePage extends StatelessWidget {
                 // onChanged: _onChanged,
                 priorityListByIsoCode: const ['US'],
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.numeric(context),
-                  FormBuilderValidators.required(context),
+                  FormBuilderValidators.numeric(),
+                  FormBuilderValidators.required(),
                 ]),
               ),
               const SizedBox(height: 15),
