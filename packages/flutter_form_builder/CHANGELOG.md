@@ -3,7 +3,7 @@
 * `FormBuilderDateTimePicker.resetIcon` changed from Icon to Widget
 * Added `avatarBorder` attribute to `FormBuilderChoiceChip` and `FormBuilderChoiceChip`
 
-**BREAKING CHANGE**:
+**BREAKING CHANGES**:
 * Renamed attribute `theme` in FormBuilderCupertinoDateTimePicker to `datePickerTheme`
 * For `FormBuilderChoiceChip` and `FormBuilderChoiceChip` options, replace `FormBuilderFieldOption` to `FormBuilderChipOption` which has `avatar` option for chips
 
