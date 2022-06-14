@@ -1,8 +1,6 @@
-# packages.form_builder_phone_field
+# Form Builder Phone Field
 
 Phone input field for [flutter_form_builder](https://pub.dev/packages/flutter_form_builder) package
-
-Compatible with flutter_form_builder 7.1.1 and below
 
 # Usage
 ```dart
