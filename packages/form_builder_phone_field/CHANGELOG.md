@@ -1,3 +1,6 @@
+## [1.0.0] - 15-Jun-2022
+* Added web support
+
 ## [1.0.0-beta.0] - 07-Sep-2021
 * Compatibility with `flutter_form_builder` ^7.*
 

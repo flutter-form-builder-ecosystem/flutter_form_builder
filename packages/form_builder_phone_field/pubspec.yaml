@@ -1,16 +1,16 @@
 name: form_builder_phone_field
 description: Field for international phone number input for flutter_form_builder package.
-version: 1.0.0-beta.0
-homepage: https://github.com/danvick/form_builder_phone_field
+version: 1.0.0
+homepage: https://github.com/danvick/flutter_form_builder
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.8.0 <3.0.0"
+  flutter: ">=2.8.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_form_builder: 7.1.1
+  flutter_form_builder: ^7.1.1
   phone_number: ^0.12.0+2
   country_pickers: ^2.0.0
 
