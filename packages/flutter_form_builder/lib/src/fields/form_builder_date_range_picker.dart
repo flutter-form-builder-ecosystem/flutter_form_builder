@@ -58,6 +58,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   final RouteSettings? routeSettings; // widget.routeSettings,
   final String? saveText; // widget.saveText,
   final bool useRootNavigator; // widget.useRootNavigator,
+  final bool allowClear;
+  final Widget? clearIcon;
 
   /// Creates field for selecting a range of dates
   FormBuilderDateRangePicker({
@@ -122,6 +124,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     this.routeSettings,
     this.saveText,
     this.useRootNavigator = true,
+    this.allowClear = false,
+    this.clearIcon,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -275,4 +279,18 @@ class _FormBuilderDateRangePickerState
     super.reset();
     _setTextFieldString();
   }
+
+  @override
+  InputDecoration get decoration => widget.allowClear
+      ? super.decoration.copyWith(
+          suffix: IconButton(
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
+              onPressed: () {
+                requestFocus();
+                didChange(null);
+                effectiveFocusNode.unfocus();
+              },
+              icon: widget.clearIcon ?? const Icon(Icons.clear)))
+      : super.decoration;
 }
