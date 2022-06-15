@@ -123,6 +123,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
 
   late FocusNode effectiveFocusNode;
+  FocusAttachment? focusAttachment;
 
   @override
   void initState() {
@@ -135,15 +136,18 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     effectiveFocusNode = widget.focusNode ?? FocusNode(debugLabel: widget.name);
     // Register a touch handler
     effectiveFocusNode.addListener(_touchedHandler);
+    focusAttachment = effectiveFocusNode.attach(context);
   }
 
   @override
   void didUpdateWidget(covariant FormBuilderField<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.focusNode != oldWidget.focusNode) {
+      focusAttachment?.detach();
       effectiveFocusNode.removeListener(_touchedHandler);
       effectiveFocusNode = widget.focusNode ?? FocusNode();
       effectiveFocusNode.addListener(_touchedHandler);
+      focusAttachment = effectiveFocusNode.attach(context);
     }
   }
 
