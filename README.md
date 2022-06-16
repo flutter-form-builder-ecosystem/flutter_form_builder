@@ -19,6 +19,7 @@ Flutter Form Builder provides an easy way of working with forms in Flutter by re
 
 - [FormBuilder Core (`flutter_form_builder`)](#flutter_form_builder)
 - [FormBuilder Extra Fields (`form_builder_extra_fields`)](#form_builder_extra_fields)
+- [FormBuilder Phone Field (`form_builder_phone_field`)](#form_builder_phone_field)
 - [FormBuilder Validators (`form_builder_validators`)](#form_builder_validators)
 
 ### flutter_form_builder
@@ -51,7 +52,7 @@ Unlike flutter_form_builder package which depends purely on Flutter provided inp
 
 ### form_builder_phone_field
 > [![Pub Version](https://img.shields.io/pub/v/form_builder_phone_field?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_phone_field)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/Form%20Builder%20Phone%20Field?logo=github&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions/workflows/form_builder_validators.yaml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danvick/flutter_form_builder/Form%20Builder%20Phone%20Field?logo=github&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/actions/workflows/form_builder_phone_field.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/danvick/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/danvick/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/danvick/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/danvick/flutter_form_builder)
 [![GitHub](https://img.shields.io/github/license/danvick/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/danvick/flutter_form_builder/blob/master/LICENSE)
