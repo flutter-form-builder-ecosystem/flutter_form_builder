@@ -1,3 +1,7 @@
+## [7.3.1] - 17-Jun-2022
+* `initialValue` no longer required in FormBuilderRangeSlider
+* Improvements to focus handling - attach focus node to widget tree
+
 ## [7.3.0] - 11-Jun-2022
 * Added new attribute `timePickerTheme` to FormBuilderCupertinoDateTimePicker
 * `FormBuilderDateTimePicker.resetIcon` changed from Icon to Widget
