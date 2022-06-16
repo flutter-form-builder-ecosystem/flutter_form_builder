@@ -56,11 +56,14 @@ jobs:
           flutter build ios --no-pub --debug --no-codesign
           flutter build web --no-pub
 
-#       - name: Upload coverage to Codecov
-#         if: ${{ matrix.channel == 'stable' }}
-#         uses: codecov/codecov-action@v1
-#         with:
-#           file: coverage/lcov.info
+      - name: Upload coverage to Codecov
+        if: ${{ matrix.channel == 'stable' }}
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov.info
+          flags: unittests
+          name: form_builder_phone_field
+
   deployment:
     if: ${{ github.ref_type == 'tag' }}
     needs: build
