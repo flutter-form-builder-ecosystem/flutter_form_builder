@@ -4,7 +4,7 @@ name: Form Builder Phone Builder
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    tags:        
+    tags:
       - 'form_builder_phone_field-v*'
     branches: [master]
     paths:
