@@ -54,6 +54,7 @@ jobs:
           pushd packages/form_builder_phone_field/example
           flutter build appbundle --no-pub --debug
           flutter build ios --no-pub --debug --no-codesign
+          flutter build web --no-pub
 
 #       - name: Upload coverage to Codecov
 #         if: ${{ matrix.channel == 'stable' }}
