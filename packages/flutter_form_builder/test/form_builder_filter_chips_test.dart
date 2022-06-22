@@ -21,15 +21,15 @@ void main() {
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
-      expect(formValue(widgetName), equals(null));
+      expect(formValue<List<int>?>(widgetName), equals(null));
       await tester.tap(find.byKey(const ValueKey('1')));
       await tester.pumpAndSettle();
       expect(formSave(), isTrue);
-      expect(formValue(widgetName), equals(<num>[1]));
+      expect(formValue<List<int>?>(widgetName), equals(<int>[1]));
       await tester.tap(find.byKey(const ValueKey('3')));
       await tester.pumpAndSettle();
       expect(formSave(), isTrue);
-      expect(formValue(widgetName), equals(<num>[1, 3]));
+      expect(formValue<List<int>?>(widgetName), equals(<int>[1, 3]));
     });
     group('initial value -', () {
       testWidgets('to FormBuilder', (WidgetTester tester) async {
@@ -52,19 +52,17 @@ void main() {
         ));
 
         await tester.ensureVisible(find.byKey(const ValueKey('1')));
-        expect(formInstantValue(widgetName), equals(<num>[1]));
+        expect(formInstantValue(widgetName), equals(<int>[1]));
         expect(formSave(), isTrue);
-        expect(formValue(widgetName), equals(<num>[1]));
-        await tester.ensureVisible(find.byKey(const ValueKey('1')));
-        await tester.pumpAndSettle();
+        expect(formValue<List<int>?>(widgetName), equals(<int>[1]));
         await tester.tap(find.byKey(const ValueKey('1')));
         await tester.pumpAndSettle();
         expect(formSave(), isTrue);
-        expect(formValue(widgetName), equals(<num>[]));
+        expect(formValue<List<int>?>(widgetName), equals(<int>[]));
         await tester.tap(find.byKey(const ValueKey('3')));
         await tester.pumpAndSettle();
         expect(formSave(), isTrue);
-        expect(formValue(widgetName), equals(<num>[3]));
+        expect(formValue<List<int>?>(widgetName), equals(<int>[3]));
       });
       testWidgets('to Widget', (WidgetTester tester) async {
         const widgetName = 'fc3';
@@ -83,17 +81,17 @@ void main() {
         await tester.pumpAndSettle();
 
         await tester.ensureVisible(find.byKey(const ValueKey('1')));
-        expect(formInstantValue(widgetName), equals(<num>[1]));
+        expect(formInstantValue(widgetName), equals(<int>[1]));
         expect(formSave(), isTrue);
-        expect(formValue(widgetName), equals(<num>[1]));
+        expect(formValue<List<int>?>(widgetName), equals(<int>[1]));
         await tester.tap(find.byKey(const ValueKey('1')));
         await tester.pumpAndSettle();
         expect(formSave(), isTrue);
-        expect(formValue(widgetName), equals(<num>[]));
+        expect(formValue<List<int>?>(widgetName), equals(<int>[]));
         await tester.tap(find.byKey(const ValueKey('3')));
         await tester.pumpAndSettle();
         expect(formSave(), isTrue);
-        expect(formValue(widgetName), equals(<num>[3]));
+        expect(formValue<List<int>?>(widgetName), equals(<int>[3]));
       });
     });
   });
