@@ -5,70 +5,96 @@ import 'package:flutter_test/flutter_test.dart';
 import 'form_builder_tester.dart';
 
 void main() {
-  testWidgets('FormBuilderFilterChip -- 1,3', (WidgetTester tester) async {
-    const widgetName = 'formBuilderFilterChip';
+  group('FormBuilderFilterChip --', () {
+    testWidgets('basic', (WidgetTester tester) async {
+      const widgetName = 'formBuilderFilterChip';
 
-    final testWidget = FormBuilderFilterChip<int>(
-      shouldRequestFocus: false,
-      name: widgetName,
-      options: const [
-        FormBuilderChipOption(key: ValueKey('1'), value: 1),
-        FormBuilderChipOption(key: ValueKey('2'), value: 2),
-        FormBuilderChipOption(key: ValueKey('3'), value: 3),
-      ],
-    );
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      final testWidget = FormBuilderFilterChip<int>(
+        shouldRequestFocus: false,
+        name: widgetName,
+        options: const [
+          FormBuilderChipOption(key: ValueKey('1'), value: 1),
+          FormBuilderChipOption(key: ValueKey('2'), value: 2),
+          FormBuilderChipOption(key: ValueKey('3'), value: 3),
+        ],
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
-    expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(<num>[]));
-    await tester.tap(find.byKey(const ValueKey('1')));
-    await tester.pumpAndSettle();
-    expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(<num>[1]));
-    await tester.tap(find.byKey(const ValueKey('3')));
-    await tester.pumpAndSettle();
-    expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(<num>[1, 3]));
-  });
-  testWidgets('FormBuilderCheckboxGroup -- didChange',
-      (WidgetTester tester) async {
-    const fieldName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
-      name: fieldName,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-        FormBuilderFieldOption(key: ValueKey('3'), value: 3),
-      ],
-    );
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      expect(formSave(), isTrue);
+      expect(formValue(widgetName), equals(null));
+      await tester.tap(find.byKey(const ValueKey('1')));
+      await tester.pumpAndSettle();
+      expect(formSave(), isTrue);
+      expect(formValue(widgetName), equals(<num>[1]));
+      await tester.tap(find.byKey(const ValueKey('3')));
+      await tester.pumpAndSettle();
+      expect(formSave(), isTrue);
+      expect(formValue(widgetName), equals(<num>[1, 3]));
+    });
+    group('initial value -', () {
+      testWidgets('to FormBuilder', (WidgetTester tester) async {
+        const widgetName = 'fc2';
 
-    expect(formSave(), isTrue);
-    expect(formValue(fieldName), isNull);
-    formFieldDidChange(fieldName, [1, 3]);
-    await tester.pumpAndSettle();
-    expect(formSave(), isTrue);
-    expect(formValue(fieldName), [1, 3]);
+        final testWidget = FormBuilderFilterChip<int>(
+          shouldRequestFocus: false,
+          name: widgetName,
+          options: const [
+            FormBuilderChipOption(key: ValueKey('1'), value: 1),
+            FormBuilderChipOption(key: ValueKey('2'), value: 2),
+            FormBuilderChipOption(key: ValueKey('3'), value: 3),
+          ],
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(
+          testWidget,
+          initialValue: {
+            widgetName: [1]
+          },
+        ));
 
-    Checkbox checkbox1 = tester
-        .element(find.byKey(const ValueKey('1')))
-        .findAncestorWidgetOfExactType<Row>()!
-        .children
-        .first as Checkbox;
-    Checkbox checkbox2 = tester
-        .element(find.byKey(const ValueKey('2')))
-        .findAncestorWidgetOfExactType<Row>()!
-        .children
-        .first as Checkbox;
-    Checkbox checkbox3 = tester
-        .element(find.byKey(const ValueKey('3')))
-        .findAncestorWidgetOfExactType<Row>()!
-        .children
-        .first as Checkbox;
+        await tester.ensureVisible(find.byKey(const ValueKey('1')));
+        expect(formInstantValue(widgetName), equals(<num>[1]));
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), equals(<num>[1]));
+        await tester.ensureVisible(find.byKey(const ValueKey('1')));
+        await tester.pumpAndSettle();
+        await tester.tap(find.byKey(const ValueKey('1')));
+        await tester.pumpAndSettle();
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), equals(<num>[]));
+        await tester.tap(find.byKey(const ValueKey('3')));
+        await tester.pumpAndSettle();
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), equals(<num>[3]));
+      });
+      testWidgets('to Widget', (WidgetTester tester) async {
+        const widgetName = 'fc3';
 
-    // checkboxes should represent the state of the didChange value
-    expect(checkbox1.value, true);
-    expect(checkbox2.value, false);
-    expect(checkbox3.value, true);
+        final testWidget = FormBuilderFilterChip<int>(
+          shouldRequestFocus: false,
+          name: widgetName,
+          initialValue: const [1],
+          options: const [
+            FormBuilderChipOption(key: ValueKey('1'), value: 1),
+            FormBuilderChipOption(key: ValueKey('2'), value: 2),
+            FormBuilderChipOption(key: ValueKey('3'), value: 3),
+          ],
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        await tester.pumpAndSettle();
+
+        await tester.ensureVisible(find.byKey(const ValueKey('1')));
+        expect(formInstantValue(widgetName), equals(<num>[1]));
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), equals(<num>[1]));
+        await tester.tap(find.byKey(const ValueKey('1')));
+        await tester.pumpAndSettle();
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), equals(<num>[]));
+        await tester.tap(find.byKey(const ValueKey('3')));
+        await tester.pumpAndSettle();
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), equals(<num>[3]));
+      });
+    });
   });
 }

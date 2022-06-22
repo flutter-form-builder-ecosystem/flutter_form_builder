@@ -43,7 +43,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     FormFieldValidator<List<T>>? validator,
     InputDecoration decoration = const InputDecoration(),
     Key? key,
-    List<T> initialValue = const [],
+    List<T>? initialValue,
     required String name, // From Super
     required this.options,
     this.alignment = WrapAlignment.start,
@@ -75,7 +75,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     ValueChanged<List<T>?>? onChanged,
     ValueTransformer<List<T>?>? valueTransformer,
     VoidCallback? onReset,
-  })  : assert((maxChips == null) || (initialValue.length <= maxChips)),
+  })  : assert((maxChips == null) || ((initialValue ?? []).length <= maxChips)),
         super(
           autovalidateMode: autovalidateMode,
           decoration: decoration,
@@ -91,6 +91,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
           valueTransformer: valueTransformer,
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderFilterChipState<T>;
+            final fieldValue = field.value ?? [];
 
             return InputDecorator(
               decoration: state.decoration,
@@ -107,14 +108,14 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                   for (FormBuilderChipOption<T> option in options)
                     FilterChip(
                       label: option,
-                      selected: field.value!.contains(option.value),
+                      selected: fieldValue.contains(option.value),
                       avatar: option.avatar,
                       onSelected: state.enabled &&
                               (null == maxChips ||
-                                  field.value!.length < maxChips ||
-                                  field.value!.contains(option.value))
+                                  fieldValue.length < maxChips ||
+                                  fieldValue.contains(option.value))
                           ? (selected) {
-                              final currentValue = [...field.value!];
+                              final currentValue = [...fieldValue];
                               if (selected) {
                                 currentValue.add(option.value);
                               } else {

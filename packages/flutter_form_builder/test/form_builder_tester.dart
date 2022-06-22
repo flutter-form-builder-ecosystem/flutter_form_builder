@@ -3,11 +3,15 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 final _formKey = GlobalKey<FormBuilderState>();
 
-Widget buildTestableFieldWidget(Widget widget) {
+Widget buildTestableFieldWidget(
+  Widget widget, {
+  Map<String, dynamic> initialValue = const {},
+}) {
   return MaterialApp(
     home: Scaffold(
       body: FormBuilder(
         key: _formKey,
+        initialValue: initialValue,
         child: widget,
       ),
     ),
@@ -20,3 +24,5 @@ void formFieldDidChange(String fieldName, dynamic value) {
 }
 
 dynamic formValue(String name) => _formKey.currentState!.value[name];
+dynamic formInstantValue(String name) =>
+    _formKey.currentState!.instantValue[name];
