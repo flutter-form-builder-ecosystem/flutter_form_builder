@@ -67,7 +67,8 @@ class _CompleteFormState extends State<CompleteForm> {
                   'movie_rating': 5,
                   'best_language': 'Dart',
                   'age': '13',
-                  'gender': 'Male'
+                  'gender': 'Male',
+                  'languages_filter': ['Dart']
                 },
                 skipDisabled: true,
                 child: Column(
@@ -300,7 +301,7 @@ class _CompleteFormState extends State<CompleteForm> {
                       decoration: const InputDecoration(
                           labelText: 'The language of my people'),
                       name: 'languages_filter',
-                      // initialValue: const ['Dart'],
+                      selectedColor: Colors.red,
                       options: const [
                         FormBuilderChipOption(
                           value: 'Dart',
