@@ -108,6 +108,11 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
   ///Widget to build list view item inside dialog
   final ItemBuilder? itemBuilder;
 
+  /// Set a custom widget in left side of flag, (country selector)
+  ///
+  /// By default this widget is `const Icon(Icons.arrow_drop_down)`
+  final Widget? iconSelector;
+
   /// Creates field for international phone number input.
   FormBuilderPhoneField({
     Key? key,
@@ -174,6 +179,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
     this.sortComparator,
     this.priorityList,
     this.itemBuilder,
+    this.iconSelector,
   })  : assert(initialValue == null ||
             controller == null ||
             defaultSelectedCountryIsoCode != null),
@@ -201,16 +207,14 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
                     onTap: state.enabled
                         ? () {
                             state.requestFocus();
-                            if (isCupertinoPicker) {
-                              state._openCupertinoCountryPicker();
-                            } else {
-                              state._openCountryPickerDialog();
-                            }
+                            isCupertinoPicker
+                                ? state._openCupertinoCountryPicker()
+                                : state._openCountryPickerDialog();
                           }
                         : null,
                     child: Row(
                       children: <Widget>[
-                        const Icon(Icons.arrow_drop_down),
+                        iconSelector ?? const Icon(Icons.arrow_drop_down),
                         const SizedBox(width: 10),
                         CountryPickerUtils.getDefaultFlagImage(
                           state._selectedDialogCountry,
