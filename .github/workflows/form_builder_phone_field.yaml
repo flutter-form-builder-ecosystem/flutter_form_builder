@@ -71,7 +71,7 @@ jobs:
     if: ${{ github.ref_type == 'tag' }}
     needs: build
     name: Deploy package
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Configure enviroment
