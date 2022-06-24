@@ -57,7 +57,9 @@ jobs:
           flutter build web --no-pub
 
       - name: Check publish warnings
-        run: dart pub publish --dry-run
+        run: |
+          pushd packages/form_builder_phone_field
+          dart pub publish --dry-run
 
       - name: Upload coverage to Codecov
         if: ${{ matrix.channel == 'stable' }}
