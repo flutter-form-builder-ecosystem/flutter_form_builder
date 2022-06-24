@@ -49,6 +49,9 @@ jobs:
           flutter analyze --no-pub
           flutter test --no-pub --coverage
 
+      - name: Check publish warnings
+        run: dart pub publish --dry-run
+
       - name: Build Example
         run: |
           pushd packages/form_builder_phone_field/example
@@ -68,13 +71,13 @@ jobs:
     if: ${{ github.ref_type == 'tag' }}
     needs: build
     name: Deploy package
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - name: Configure enviroment
       uses: actions/checkout@v3
     - name: Download flutter
-      uses: subosito/flutter-action@v2.4.0
+      uses: subosito/flutter-action@v2
       with:
         channel: 'stable'
     - name: Setup pub credentials
@@ -84,7 +87,5 @@ jobs:
         PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
       run: |
         sh ./tools/pub_login.sh
-    - name: Check publish warnings
-      run: pub publish --dry-run
     - name: Publish package
-      run: pub publish -f
+      run: dart pub publish -f
