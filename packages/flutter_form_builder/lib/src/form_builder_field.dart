@@ -92,7 +92,9 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// parent [FormBuilder.initialValue]. When declared at both levels, the field
   /// initialValue prevails.
   T? get initialValue =>
-      widget.initialValue ?? _formBuilderState?.initialValue[widget.name] as T?;
+      widget.initialValue ??
+      (_formBuilderState?.initialValue ??
+          const <String, dynamic>{})[widget.name] as T?;
 
   FormBuilderState? _formBuilderState;
 
