@@ -435,6 +435,12 @@ class _FormBuilderTextFieldState
   TextEditingController? _controller;
 
   @override
+  String? get initialValue => widget.initialValue?.isNotEmpty == true
+      ? widget.initialValue
+      // if widget.initialValue is null OR empty string, formState.initialValue should be read.
+      : formState?.initialValue[widget.name] as String? ?? '';
+
+  @override
   void initState() {
     super.initState();
     //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
