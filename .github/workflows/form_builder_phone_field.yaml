@@ -50,7 +50,9 @@ jobs:
           flutter test --no-pub --coverage
 
       - name: Check publish warnings
-        run: dart pub publish --dry-run
+        run: |
+          pushd packages/form_builder_phone_field
+          dart pub publish --dry-run
 
       - name: Build Example
         run: |
@@ -88,4 +90,6 @@ jobs:
       run: |
         sh ./tools/pub_login.sh
     - name: Publish package
-      run: dart pub publish -v -f
+      run: |
+          pushd packages/form_builder_phone_field
+          dart pub publish -v -f
