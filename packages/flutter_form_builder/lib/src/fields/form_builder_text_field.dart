@@ -354,9 +354,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
         assert(maxLength == null || maxLength > 0),
         super(
           key: key,
-          // Must fall back to the empty string, just like TextFormField
-          initialValue:
-              controller != null ? controller.text : (initialValue ?? ''),
+          initialValue: controller != null ? controller.text : initialValue,
           name: name,
           validator: validator,
           valueTransformer: valueTransformer,
