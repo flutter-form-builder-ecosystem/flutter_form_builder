@@ -1,3 +1,6 @@
+## [1.1.0] - 23-Jun-2022
+* Added property iconSelector
+
 ## [1.0.0] - 15-Jun-2022
 * Added web support
 
