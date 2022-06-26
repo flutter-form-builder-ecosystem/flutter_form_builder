@@ -56,6 +56,11 @@ jobs:
           flutter build ios --no-pub --debug --no-codesign
           flutter build web --no-pub
 
+      - name: Check publish warnings
+        run: |
+          pushd packages/form_builder_phone_field
+          dart pub publish --dry-run
+
       - name: Upload coverage to Codecov
         if: ${{ matrix.channel == 'stable' }}
         uses: codecov/codecov-action@v3
@@ -74,7 +79,7 @@ jobs:
     - name: Configure enviroment
       uses: actions/checkout@v3
     - name: Download flutter
-      uses: subosito/flutter-action@v2.4.0
+      uses: subosito/flutter-action@v2
       with:
         channel: 'stable'
     - name: Setup pub credentials
@@ -84,7 +89,7 @@ jobs:
         PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
       run: |
         sh ./tools/pub_login.sh
-    - name: Check publish warnings
-      run: pub publish --dry-run
     - name: Publish package
-      run: pub publish -f
+      run: |
+          pushd packages/form_builder_phone_field
+          dart pub publish -v -f
