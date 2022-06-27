@@ -475,7 +475,7 @@ class _FormBuilderTextFieldState
     // notifications for changes originating from within this class -- for
     // example, the reset() method. In such cases, the FormField value will
     // already have been set.
-    if (_effectiveController!.text != value) {
+    if (_effectiveController!.text != (value ?? '')) {
       didChange(_effectiveController!.text);
     }
   }
