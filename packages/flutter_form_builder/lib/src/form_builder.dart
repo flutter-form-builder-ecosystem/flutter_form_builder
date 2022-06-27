@@ -65,7 +65,7 @@ class FormBuilder extends StatefulWidget {
 
   /// Whether to clear the internal value of a field when it is unregistered.
   ///
-  /// Defaults to false.
+  /// Defaults to `false`.
   ///
   /// When set to `true`, the form builder will not keep the internal values
   /// from disposed [FormBuilderField]s. This is useful for dynamic forms where
