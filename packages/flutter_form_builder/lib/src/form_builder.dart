@@ -71,7 +71,7 @@ class FormBuilder extends StatefulWidget {
   /// from disposed [FormBuilderField]s. This is useful for dynamic forms where
   /// fields are registered and unregistered due to state change.
   ///
-  /// This setting will have no effect due to registering a field with the same
+  /// This setting will have no effect ẁhen to registering a field with the same
   /// name as the unregistered one.
   final bool clearValueOnUnregister;
 
