@@ -1,4 +1,4 @@
-import 'package:flutter_form_builder/src/fields/form_builder_text_field.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'form_builder_tester.dart';
@@ -15,7 +15,6 @@ void main() {
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
     expect(formSave(), isTrue);
-    // TODO Confirm that this should not be isEmpty
     expect(formValue(textFieldName), isNull);
     await tester.enterText(widgetFinder, newTextValue);
     expect(formSave(), isTrue);
@@ -24,4 +23,55 @@ void main() {
     expect(formSave(), isTrue);
     expect(formValue(textFieldName), isEmpty);
   });
+  testWidgets(
+    'FormBuilderTextField without initialValue',
+    (tester) => _testFormBuilderTextFieldWithInitialValue(
+      tester,
+    ),
+  );
+  testWidgets(
+    'FormBuilderTextField has initialValue on Field',
+    (tester) => _testFormBuilderTextFieldWithInitialValue(
+      tester,
+      initialValueOnField: 'ok',
+    ),
+  );
+  testWidgets(
+    'FormBuilderTextField has initialValue on Form',
+    (tester) => _testFormBuilderTextFieldWithInitialValue(
+      tester,
+      initialValueOnForm: 'ok',
+    ),
+  );
+}
+
+Future<void> _testFormBuilderTextFieldWithInitialValue(
+  WidgetTester tester, {
+  String? initialValueOnField,
+  String? initialValueOnForm,
+}) async {
+  int changedCount = 0;
+  const newTextValue = 'Hello 🪐';
+  const textFieldName = 'text1';
+
+  var testWidget = FormBuilderTextField(
+    name: textFieldName,
+    initialValue: initialValueOnField,
+    onChanged: (String? value) => changedCount++,
+  );
+  await tester.pumpWidget(buildTestableFieldWidget(
+    testWidget,
+    initialValue: {
+      textFieldName: initialValueOnForm,
+    },
+  ));
+  expect(formSave(), isTrue);
+  expect(formValue(textFieldName), initialValueOnField ?? initialValueOnForm);
+  expect(changedCount, 0);
+
+  await tester.enterText(find.byWidget(testWidget), newTextValue);
+  expect(formSave(), isTrue);
+  expect(formValue(textFieldName), newTextValue);
+
+  expect(changedCount, 1);
 }
