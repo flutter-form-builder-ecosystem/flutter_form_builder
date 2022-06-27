@@ -225,13 +225,27 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void requestFocus() {
     FocusScope.of(context).requestFocus(effectiveFocusNode);
+  }
+
+  void ensureScrollableVisibility() {
     Scrollable.ensureVisible(context);
   }
 
-  void invalidate(String errorText) {
+  void invalidate(
+    String errorText, {
+    required bool shouldAutofocus,
+    required bool shouldScrollToInvalidField,
+  }) {
     setState(() => _customErrorText = errorText);
     validate(clearCustomError: false);
-    requestFocus();
+
+    if (shouldAutofocus) {
+      requestFocus();
+    }
+
+    if (shouldScrollToInvalidField) {
+      ensureScrollableVisibility();
+    }
   }
 
   InputDecoration get decoration => widget.decoration.copyWith(
