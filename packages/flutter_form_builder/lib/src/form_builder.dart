@@ -64,7 +64,7 @@ class FormBuilder extends StatefulWidget {
   final bool autoFocusOnValidationFailure;
 
   /// Whether the form should scroll to the first field that fails validation.
-  final bool shouldScrollToInvalidField;
+  final bool autoScrollToInvalidField;
 
   /// Creates a container for form fields.
   ///
@@ -79,7 +79,7 @@ class FormBuilder extends StatefulWidget {
     this.skipDisabled = false,
     this.enabled = true,
     this.autoFocusOnValidationFailure = false,
-    this.shouldScrollToInvalidField = false,
+    this.autoScrollToInvalidField = false,
   }) : super(key: key);
 
   static FormBuilderState? of(BuildContext context) =>
@@ -214,14 +214,14 @@ class FormBuilderState extends State<FormBuilder> {
       fields[name]?.invalidate(
         errorText ?? '',
         shouldAutofocus: widget.autoFocusOnValidationFailure,
-        shouldScrollToInvalidField: widget.shouldScrollToInvalidField,
+        shouldScrollToInvalidField: widget.autoScrollToInvalidField,
       );
 
   void invalidateFirstField({required String errorText}) =>
       fields.values.first.invalidate(
         errorText,
         shouldAutofocus: widget.autoFocusOnValidationFailure,
-        shouldScrollToInvalidField: widget.shouldScrollToInvalidField,
+        shouldScrollToInvalidField: widget.autoScrollToInvalidField,
       );
 
   bool validate() {
@@ -234,7 +234,7 @@ class FormBuilderState extends State<FormBuilder> {
         wrongFields.first.requestFocus();
       }
 
-      if (widget.shouldScrollToInvalidField) {
+      if (widget.autoScrollToInvalidField) {
         wrongFields.first.ensureScrollableVisibility();
       }
     }
