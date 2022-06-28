@@ -156,9 +156,11 @@ class FormBuilderValidators {
     return (T? valueCandidate) {
       assert(valueCandidate is String ||
           valueCandidate is Iterable ||
+          valueCandidate is int ||
           valueCandidate == null);
       var valueLength = 0;
 
+      if (valueCandidate is int) valueLength = valueCandidate.toString().length;
       if (valueCandidate is String) valueLength = valueCandidate.length;
       if (valueCandidate is Iterable) valueLength = valueCandidate.length;
 

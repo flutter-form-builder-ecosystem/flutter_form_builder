@@ -193,6 +193,22 @@ void main() {
           }));
 
   testWidgets(
+      'FormBuilderValidators.lengthEqual for int',
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator = FormBuilderValidators.lengthEqual<int>(3);
+
+            // Pass
+            expect(validator(333), isNull);
+
+            // Fail
+            expect(validator(null), isNotNull);
+            expect(validator(0), isNotNull);
+            expect(validator(1), isNotNull);
+            expect(validator(22), isNotNull);
+            expect(validator(4444), isNotNull);
+          }));
+
+  testWidgets(
       'FormBuilderValidators.email',
       (WidgetTester tester) => testValidations(tester, (context) {
             final validator = FormBuilderValidators.email();
