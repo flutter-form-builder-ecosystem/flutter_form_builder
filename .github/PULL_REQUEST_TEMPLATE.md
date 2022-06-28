@@ -1,16 +1,12 @@
 ## Connection with issue(s)
 
-Resolve issue #???
-
-<!-- Required: this reference (one or many) will be closed upon merge. Ideally it has the acceptance criteria and designs for features or fixes related to the work in this Pull Request -->
-
-Connected to #???
+<!-- If this pull request close some issue, use this reference to close it automatically -->
+Close #???
 
 <!-- Optional: other issues or pull requests related to this, but merging should not close it -->
+Connected to #???
 
-## Testing and Review Notes
-
-<!-- Required: steps to take to confirm this works as expected or other guidance for code, UX, and any other reviewers -->
+## Solution description
 
 ## Screenshots or Videos
 
@@ -18,7 +14,8 @@ Connected to #???
 
 ## To Do
 
-<!-- Add “WIP” to the PR title if pushing up but not complete nor ready for review -->
-- [ ] double check the original issue to confirm it is fully satisfied
-- [ ] add testing notes and screenshots in PR description to help guide reviewers
-- [ ] request the "UX" team perform a design review (if/when applicable)
+- [ ] Read [contributing guide](https://github.com/danvick/flutter_form_builder/blob/master/CONTRIBUTING.md)
+- [ ] Check the original issue to confirm it is fully satisfied
+- [ ] Add solution description to help guide reviewers
+- [ ] Add unit test to verify new or fixed behaviour
+- [ ] If apply, add documentation to code properties and package readme
