@@ -158,9 +158,11 @@ class FormBuilderValidators {
           valueCandidate is Iterable ||
           valueCandidate == null);
       var valueLength = 0;
+
       if (valueCandidate is String) valueLength = valueCandidate.length;
       if (valueCandidate is Iterable) valueLength = valueCandidate.length;
-      return null != valueCandidate && valueLength != length
+
+      return valueLength != length
           ? errorText ??
               FormBuilderLocalizations.current.lengthEqualErrorText(length)
           : null;
