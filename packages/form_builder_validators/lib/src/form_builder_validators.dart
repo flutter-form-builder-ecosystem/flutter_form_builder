@@ -146,7 +146,7 @@ class FormBuilderValidators {
     };
   }
 
-  /// [FormFieldValidator] that requires the length of the field's string value length to be
+  /// [FormFieldValidator] that requires the length of the field to be
   /// equal to the provided length. Works with String and Iterable types.
   static FormFieldValidator<T> lengthEqual<T>(
     int length, {
