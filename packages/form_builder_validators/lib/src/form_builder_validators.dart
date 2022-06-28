@@ -136,7 +136,7 @@ class FormBuilderValidators {
       assert(valueCandidate is String ||
           valueCandidate is Iterable ||
           valueCandidate == null);
-      var valueLength = 0;
+      int valueLength = 0;
       if (valueCandidate is String) valueLength = valueCandidate.length;
       if (valueCandidate is Iterable) valueLength = valueCandidate.length;
       return null != valueCandidate && valueLength > maxLength
