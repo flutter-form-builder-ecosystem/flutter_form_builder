@@ -163,16 +163,33 @@ void main() {
             expect(validatorAllowEmpty([]), isNull);
           }));
   testWidgets(
+      'FormBuilderValidators.lengthEqual for Iterable',
+      (WidgetTester tester) => testValidations(tester, (context) {
+            final validator =
+                FormBuilderValidators.lengthEqual<Iterable<String>>(3);
+
+            // Pass
+            expect(validator(["a", "b", "c"]), isNull);
+
+            // Fail
+            expect(validator(null), isNotNull);
+            expect(validator([]), isNotNull);
+            expect(validator(['one', 'two']), isNotNull);
+            expect(validator(['one', 'two', 'three', 'four']), isNotNull);
+          }));
+  testWidgets(
       'FormBuilderValidators.lengthEqual for String',
       (WidgetTester tester) => testValidations(tester, (context) {
             final validator = FormBuilderValidators.lengthEqual<String>(3);
+
             // Pass
-            expect(validator("one"), isNull);
+            expect(validator("333"), isNull);
 
             // Fail
             expect(validator(null), isNotNull);
             expect(validator(""), isNotNull);
-            expect(validator("three"), isNotNull);
+            expect(validator("22"), isNotNull);
+            expect(validator("4444"), isNotNull);
           }));
 
   testWidgets(
