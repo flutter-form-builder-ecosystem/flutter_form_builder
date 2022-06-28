@@ -146,6 +146,27 @@ class FormBuilderValidators {
     };
   }
 
+  /// [FormFieldValidator] that requires the length of the field's value to be
+  /// equal to the provided length.
+  static FormFieldValidator<T> lengthEqual<T>(
+    int length, {
+    String? errorText,
+  }) {
+    assert(length > 0);
+    return (T? valueCandidate) {
+      assert(valueCandidate is String ||
+          valueCandidate is Iterable ||
+          valueCandidate == null);
+      var valueLength = 0;
+      if (valueCandidate is String) valueLength = valueCandidate.length;
+      if (valueCandidate is Iterable) valueLength = valueCandidate.length;
+      return null != valueCandidate && valueLength != length
+          ? errorText ??
+              FormBuilderLocalizations.current.lengthEqualErrorText(length)
+          : null;
+    };
+  }
+
   /// [FormFieldValidator] that requires the field's value to be a valid email address.
   static FormFieldValidator<String> email({
     String? errorText,

@@ -39,6 +39,14 @@
       "maxLength": {}
     }
   },
+  "lengthEqualErrorText": "Değerin uzunluğu {length} değerine eşit olmalıdır.",
+  "@lengthEqualErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "length": {}
+    }
+  },
   "emailErrorText": "Bu alan geçerli bir e-posta adresi gerektirir.",
   "@emailErrorText": {
     "description": "Error Text for email field",
