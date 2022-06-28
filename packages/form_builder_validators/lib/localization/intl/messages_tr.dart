@@ -23,6 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(value) =>
       "Bu alanın değeri, ${value} değerine eşit olmalıdır.";
 
+  static String m6(length) =>
+      "Değerin uzunluğu ${length} değerine eşit olmalıdır.";
+
   static String m1(max) => "Değer ${max} değerinden küçük veya eşit olmalıdır.";
 
   static String m2(maxLength) =>
@@ -49,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bu alan geçerli bir tamsayı gerektirir."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
             "Bu alan geçerli bir IP adresi gerektirir."),
+        "lengthEqualErrorText": m6,
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
             "Lütfen geçerli bir değer giriniz."),
         "maxErrorText": m1,

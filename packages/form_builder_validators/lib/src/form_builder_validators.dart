@@ -136,12 +136,37 @@ class FormBuilderValidators {
       assert(valueCandidate is String ||
           valueCandidate is Iterable ||
           valueCandidate == null);
-      var valueLength = 0;
+      int valueLength = 0;
       if (valueCandidate is String) valueLength = valueCandidate.length;
       if (valueCandidate is Iterable) valueLength = valueCandidate.length;
       return null != valueCandidate && valueLength > maxLength
           ? errorText ??
               FormBuilderLocalizations.current.maxLengthErrorText(maxLength)
+          : null;
+    };
+  }
+
+  /// [FormFieldValidator] that requires the length of the field to be
+  /// equal to the provided length. Works with String, iterable and int types
+  static FormFieldValidator<T> lengthEqual<T>(
+    int length, {
+    String? errorText,
+  }) {
+    assert(length > 0);
+    return (T? valueCandidate) {
+      assert(valueCandidate is String ||
+          valueCandidate is Iterable ||
+          valueCandidate is int ||
+          valueCandidate == null);
+      var valueLength = 0;
+
+      if (valueCandidate is int) valueLength = valueCandidate.toString().length;
+      if (valueCandidate is String) valueLength = valueCandidate.length;
+      if (valueCandidate is Iterable) valueLength = valueCandidate.length;
+
+      return valueLength != length
+          ? errorText ??
+              FormBuilderLocalizations.current.lengthEqualErrorText(length)
           : null;
     };
   }
