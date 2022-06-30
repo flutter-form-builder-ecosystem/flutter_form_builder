@@ -39,8 +39,8 @@
       "maxLength": {}
     }
   },
-  "lengthEqualErrorText": "Değerin uzunluğu {length} değerine eşit olmalıdır.",
-  "@lengthEqualErrorText": {
+  "equalLengthErrorText": "Değerin uzunluğu {length} değerine eşit olmalıdır.",
+  "@equalLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
     "placeholders": {

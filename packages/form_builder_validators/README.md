@@ -62,6 +62,7 @@ Available built-in validators include:
 * `FormBuilderValidators.maxLength()` - requires the length of the field's value to be less than or equal to the provided maximum length.
 * `FormBuilderValidators.min()` - requires the field's value to be greater than or equal to the provided number.
 * `FormBuilderValidators.minLength()` - requires the length of the field's value to be greater than or equal to the provided minimum length.
+* ``FormBuilderValidators.equalLength()`` - requires the length of the field's value to be equal to the provided minimum length.
 * `FormBuilderValidators.numeric()` - requires the field's value to be a valid number.
 * `FormBuilderValidators.required()` - requires the field have a non-empty value.
 * ``FormBuilderValidators.url()`` - requires the field's value to be a valid url.
@@ -145,6 +146,7 @@ To allow for localization of default error messages within your app, add `FormBu
 - Spanish (es)
 - Swahili (sw)
 - Ukrainian (uk)
+- Turkish (tr)
 
 And you can still add your custom error messages.
 

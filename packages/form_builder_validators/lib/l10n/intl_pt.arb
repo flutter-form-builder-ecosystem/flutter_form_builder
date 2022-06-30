@@ -39,6 +39,14 @@
       "maxLength": {}
     }
   },
+  "equalLengthErrorText": "O valor deve ter um comprimento igual a {length}",
+  "@equalLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "length": {}
+    }
+  },
   "emailErrorText": "Este campo requer um endereço de e-mail válido.",
   "@emailErrorText": {
     "description": "Error Text for email field",

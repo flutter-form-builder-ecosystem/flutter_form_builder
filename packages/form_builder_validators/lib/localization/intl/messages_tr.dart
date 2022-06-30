@@ -48,11 +48,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
             "Bu alan geçerli bir e-posta adresi gerektirir."),
         "equalErrorText": m0,
+        "equalLengthErrorText": m6,
         "integerErrorText": MessageLookupByLibrary.simpleMessage(
             "Bu alan geçerli bir tamsayı gerektirir."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
             "Bu alan geçerli bir IP adresi gerektirir."),
-        "lengthEqualErrorText": m6,
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
             "Lütfen geçerli bir değer giriniz."),
         "maxErrorText": m1,
