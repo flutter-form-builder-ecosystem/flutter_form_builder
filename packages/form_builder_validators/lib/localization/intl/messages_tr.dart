@@ -21,7 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'tr';
 
   static String m0(value) =>
-      "Bu alanın değeri, {değer} değerine eşit olmalıdır.";
+      "Bu alanın değeri, ${value} değerine eşit olmalıdır.";
+
+  static String m6(length) =>
+      "Değerin uzunluğu ${length} değerine eşit olmalıdır.";
 
   static String m1(max) => "Değer ${max} değerinden küçük veya eşit olmalıdır.";
 
@@ -34,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Değerin uzunluğu ${minLength} değerinden büyük veya eşit olmalıdır.";
 
   static String m5(value) =>
-      "Bu alanın değeri, {değer} değerine eşit olmamalıdır.";
+      "Bu alanın değeri, ${value} değerine eşit olmamalıdır.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -45,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
             "Bu alan geçerli bir e-posta adresi gerektirir."),
         "equalErrorText": m0,
+        "equalLengthErrorText": m6,
         "integerErrorText": MessageLookupByLibrary.simpleMessage(
             "Bu alan geçerli bir tamsayı gerektirir."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(

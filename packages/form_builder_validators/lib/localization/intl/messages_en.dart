@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(value) => "This field value must be equal to ${value}.";
 
+  static String m6(length) => "Value must have a length equal to ${length}";
+
   static String m1(max) => "Value must be less than or equal to ${max}";
 
   static String m2(maxLength) =>
@@ -43,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
             "This field requires a valid email address."),
         "equalErrorText": m0,
+        "equalLengthErrorText": m6,
         "integerErrorText": MessageLookupByLibrary.simpleMessage(
             "This field requires a valid integer."),
         "ipErrorText": MessageLookupByLibrary.simpleMessage(

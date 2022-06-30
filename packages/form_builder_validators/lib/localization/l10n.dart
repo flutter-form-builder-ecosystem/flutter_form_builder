@@ -101,6 +101,16 @@ class FormBuilderLocalizations {
     );
   }
 
+  /// `Value must have a length equal to {length}`
+  String equalLengthErrorText(Object length) {
+    return Intl.message(
+      'Value must have a length equal to $length',
+      name: 'equalLengthErrorText',
+      desc: 'Error Text for required field',
+      args: [length],
+    );
+  }
+
   /// `This field requires a valid email address.`
   String get emailErrorText {
     return Intl.message(

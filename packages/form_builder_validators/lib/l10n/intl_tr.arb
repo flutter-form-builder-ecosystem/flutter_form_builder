@@ -39,6 +39,14 @@
       "maxLength": {}
     }
   },
+  "equalLengthErrorText": "Değerin uzunluğu {length} değerine eşit olmalıdır.",
+  "@equalLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "length": {}
+    }
+  },
   "emailErrorText": "Bu alan geçerli bir e-posta adresi gerektirir.",
   "@emailErrorText": {
     "description": "Error Text for email field",
@@ -51,7 +59,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "equalErrorText": "Bu alanın değeri, {değer} değerine eşit olmalıdır.",
+  "equalErrorText": "Bu alanın değeri, {value} değerine eşit olmalıdır.",
   "@equalErrorText": {
     "description": "Error Text for equal validator",
     "type": "text",
@@ -59,7 +67,7 @@
       "value": {}
     }
   },
-  "notEqualErrorText": "Bu alanın değeri, {değer} değerine eşit olmamalıdır.",
+  "notEqualErrorText": "Bu alanın değeri, {value} değerine eşit olmamalıdır.",
   "@notEqualErrorText": {
     "description": "Error Text for not-equal validator",
     "type": "text",

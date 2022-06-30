@@ -54,6 +54,14 @@
       "maxLength": {}
     }
   },
+  "equalLengthErrorText": "Value must have a length equal to {length}",
+  "@equalLengthErrorText": {
+    "description": "Error Text for required field",
+    "type": "text",
+    "placeholders": {
+      "length": {}
+    }
+  },
   "emailErrorText": "This field requires a valid email address.",
   "@emailErrorText": {
     "description": "Error Text for email validator",
