@@ -39,8 +39,8 @@
       "maxLength": {}
     }
   },
-  "lengthEqualErrorText": "Value must have a length equal to {length}",
-  "@lengthEqualErrorText": {
+  "equalLengthErrorText": "Value must have a length equal to {length}",
+  "@equalLengthErrorText": {
     "description": "Error Text for required field",
     "type": "text",
     "placeholders": {

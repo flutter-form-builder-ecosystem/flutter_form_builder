@@ -148,7 +148,7 @@ class FormBuilderValidators {
 
   /// [FormFieldValidator] that requires the length of the field to be
   /// equal to the provided length. Works with String, iterable and int types
-  static FormFieldValidator<T> lengthEqual<T>(
+  static FormFieldValidator<T> equalLength<T>(
     int length, {
     String? errorText,
   }) {
@@ -158,7 +158,7 @@ class FormBuilderValidators {
           valueCandidate is Iterable ||
           valueCandidate is int ||
           valueCandidate == null);
-      var valueLength = 0;
+      int valueLength = 0;
 
       if (valueCandidate is int) valueLength = valueCandidate.toString().length;
       if (valueCandidate is String) valueLength = valueCandidate.length;
@@ -166,7 +166,7 @@ class FormBuilderValidators {
 
       return valueLength != length
           ? errorText ??
-              FormBuilderLocalizations.current.lengthEqualErrorText(length)
+              FormBuilderLocalizations.current.equalLengthErrorText(length)
           : null;
     };
   }

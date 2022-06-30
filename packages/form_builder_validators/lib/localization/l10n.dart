@@ -102,10 +102,10 @@ class FormBuilderLocalizations {
   }
 
   /// `Value must have a length equal to {length}`
-  String lengthEqualErrorText(Object length) {
+  String equalLengthErrorText(Object length) {
     return Intl.message(
       'Value must have a length equal to $length',
-      name: 'lengthEqualErrorText',
+      name: 'equalLengthErrorText',
       desc: 'Error Text for required field',
       args: [length],
     );

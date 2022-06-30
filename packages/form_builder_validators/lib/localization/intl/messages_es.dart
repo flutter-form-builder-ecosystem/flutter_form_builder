@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
+  static String m6(length) =>
+      "El valor debe tener una longitud igual a ${length}";
+
   static String m1(max) => "El valor debe ser menor o igual que ${max}.";
 
   static String m2(maxLength) =>
@@ -38,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Este campo requiere una cadena de fecha válida."),
         "emailErrorText": MessageLookupByLibrary.simpleMessage(
             "Este campo requiere una dirección de correo electrónico válida."),
+        "equalLengthErrorText": m6,
         "ipErrorText": MessageLookupByLibrary.simpleMessage(
             "Este campo requiere una IP válida."),
         "matchErrorText": MessageLookupByLibrary.simpleMessage(
