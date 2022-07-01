@@ -596,7 +596,7 @@
 
 ## [3.2.1] - 22-Jun-2019
 * Add missing attributes for `FormBuilderSlider` to customize `Slider` Widget including `activeColor`, `inactiveColor`, `onChangeStart`, `onChangeEnd`, `label` and `semanticFormatterCallback`. Closes [#80](https://github.com/danvick/flutter_form_builder/issues/80).
-* Add support for `underline` to `FormBuilderDropdown`. Credit [Jordan Nelson](https://github.com/jrnelson333).
+* Add support for `underline` to `FormBuilderDropdown`. Credit Jordan Nelson (github/jrnelson333).
 * Minor fixes to README
 
 ## [3.2.0] - 07-Jun-2019
@@ -604,7 +604,7 @@
 * Bumped up `datetime_picker_formfield` from v0.1.8 to 0.2.0
 
 ## [3.1.3] - 06-Jun-2019
-* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead` - Closes [#73](https://github.com/danvick/flutter_form_builder/issues/73). Credit to [daWeed](https://github.com/psrcek)
+* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead` - Closes [#73](https://github.com/danvick/flutter_form_builder/issues/73). Credit to daWeed (github/psrcek)
 
 ## [3.1.2] - 27-May-2019
 * Attempted fix for `FormBuilderTextField` retaining focus even after moving to other fields causing the UI to jump back to the TextField
@@ -625,7 +625,7 @@
 * Complete rewrite of the package - stateful field widgets
     * `FormBuilderCheckbox` - Single Checkbox field
     * `FormBuilderCheckboxList` - List of Checkboxes for multiple selection
-    * `FormBuilderChipsInput` - Takes a list of Flutter [Chip](https://docs.flutter.io/flutter/material/Chip-class.html) as inputs
+    * `FormBuilderChipsInput` - Takes a list of Flutter [Chip](https://api.flutter.dev/flutter/material/Chip-class.html) as inputs
     * `FormBuilderDateTimePicker` - For Date, Time and DateTime input
     * `FormBuilderDropdown` - Allow selection of one value from a list as a Dropdown
     * `FormBuilderRadio` - Allow selection of one value from a list of Radio Widgets 

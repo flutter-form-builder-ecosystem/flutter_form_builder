@@ -4,7 +4,7 @@ Thank you for considering and taking the time to contribute to this project!
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with collaborators of this repository before making a change.
 
-Please note we have a [code of conduct](https://github.com/danvick/flutter_form_builder/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
+Please note we have a [code of conduct](https://github.com/danvick/flutter_form_builder/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
 ## How to Contribute
 
@@ -32,7 +32,23 @@ You don't need to code to help us. If you have a suggestion of a feature, see a 
  * Change into the example directory: `cd example`
  * Run the App: `flutter run`
 
-### Make a pull request
+## Implement code
+
+### Enhancement (new feature or request)
+
+- Implement code
+- Implement unit tests
+- Add example
+- Test example in all package compatible platforms
+- Are a new component, validator or behaviour; add to readme package
+
+### Bug
+
+- Fix bug
+- Update and/or add unit tests to verify fixed behaviour
+- Verify if bug is fixed all package compatible platforms
+
+## Make a pull request
 
 We really appreciate contributions via GitHub pull requests. To contribute take the following steps:
 
@@ -40,11 +56,12 @@ We really appreciate contributions via GitHub pull requests. To contribute take 
    * `git fetch upstream`
    * `git checkout upstream/master -b <name_of_your_branch>`
  * Apply your changes
- * Verify your changes and fix potential warnings/ errors:
+ * Verify your local changes and fix potential warnings/errors:
    * Check formatting: `flutter format .`
    * Run static analyses: `flutter analyze`
    * Run tests: `flutter test`
  * Commit your changes: `git commit -am "<your informative commit message>"`
  * Push changes to your fork: `git push origin <name_of_your_branch>`
+ * Open a pull request and fill template
 
  Please make sure you solved all warnings and errors reported by the static code analyses and that you fill in the full pull request template. Failing to do so will result in us asking you to fix it.
