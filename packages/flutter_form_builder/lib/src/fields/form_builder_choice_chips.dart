@@ -53,9 +53,21 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
   /// The default is [Colors.black].
   final Color? shadowColor;
 
-  /// The [ShapeBorder] to draw around the chip.
+  /// The [OutlinedBorder] to draw around the chip.
   ///
-  /// Defaults to the shape in the ambient [ChipThemeData].
+  /// Defaults to the shape in the ambient [ChipThemeData]. If the theme
+  /// shape resolves to null, the default is [StadiumBorder].
+  ///
+  /// This shape is combined with [side] to create a shape decorated with an
+  /// outline. If it is a [MaterialStateOutlinedBorder],
+  /// [MaterialStateProperty.resolve] is used for the following
+  /// [MaterialState]s:
+  ///
+  ///  * [MaterialState.disabled].
+  ///  * [MaterialState.selected].
+  ///  * [MaterialState.hovered].
+  ///  * [MaterialState.focused].
+  ///  * [MaterialState.pressed].
   final OutlinedBorder? shape;
 
   /// Configures the minimum size of the tap target.
@@ -311,6 +323,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                     for (FormBuilderChipOption<T> option in options)
                       ChoiceChip(
                         label: option,
+                        shape: shape,
                         selected: field.value == option.value,
                         onSelected: state.enabled
                             ? (selected) {
