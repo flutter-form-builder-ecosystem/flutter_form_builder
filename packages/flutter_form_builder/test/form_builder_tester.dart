@@ -6,12 +6,14 @@ final _formKey = GlobalKey<FormBuilderState>();
 Widget buildTestableFieldWidget(
   Widget widget, {
   Map<String, dynamic> initialValue = const {},
+  bool clearValueOnUnregister = false,
 }) {
   return MaterialApp(
     home: Scaffold(
       body: FormBuilder(
         key: _formKey,
         initialValue: initialValue,
+        clearValueOnUnregister: clearValueOnUnregister,
         child: widget,
       ),
     ),
