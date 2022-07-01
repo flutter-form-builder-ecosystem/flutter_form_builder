@@ -63,6 +63,18 @@ class FormBuilder extends StatefulWidget {
   /// Whether the form should auto focus on the first field that fails validation.
   final bool autoFocusOnValidationFailure;
 
+  /// Whether to clear the internal value of a field when it is unregistered.
+  ///
+  /// Defaults to `false`.
+  ///
+  /// When set to `true`, the form builder will not keep the internal values
+  /// from disposed [FormBuilderField]s. This is useful for dynamic forms where
+  /// fields are registered and unregistered due to state change.
+  ///
+  /// This setting will have no effect when registering a field with the same
+  /// name as the unregistered one.
+  final bool clearValueOnUnregister;
+
   /// Creates a container for form fields.
   ///
   /// The [child] argument must not be null.
@@ -76,6 +88,7 @@ class FormBuilder extends StatefulWidget {
     this.skipDisabled = false,
     this.enabled = true,
     this.autoFocusOnValidationFailure = false,
+    this.clearValueOnUnregister = false,
   }) : super(key: key);
 
   static FormBuilderState? of(BuildContext context) =>
@@ -186,6 +199,10 @@ class FormBuilderState extends State<FormBuilder> {
     if (field == _fields[name]) {
       _fields.remove(name);
       _transformers.remove(name);
+      if (widget.clearValueOnUnregister) {
+        _instantValue.remove(name);
+        _savedValue.remove(name);
+      }
     } else {
       assert(() {
         // This is OK to ignore when you are intentionally replacing a field
@@ -195,8 +212,6 @@ class FormBuilderState extends State<FormBuilder> {
         return true;
       }());
     }
-    // Removes internal field value
-    // _savedValue.remove(name);
   }
 
   void save() {
