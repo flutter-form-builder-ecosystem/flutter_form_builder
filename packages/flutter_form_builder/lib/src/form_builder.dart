@@ -63,7 +63,6 @@ class FormBuilder extends StatefulWidget {
   /// Whether the form should auto focus on the first field that fails validation.
   final bool autoFocusOnValidationFailure;
 
-
   /// Whether the form should scroll to the first field that fails validation.
   final bool autoScrollToInvalidField;
 
