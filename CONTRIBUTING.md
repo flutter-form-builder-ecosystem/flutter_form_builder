@@ -4,22 +4,22 @@ Thank you for considering and taking the time to contribute to this project!
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with collaborators of this repository before making a change.
 
-Please note we have a [code of conduct](https://github.com/danvick/flutter_form_builder/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
+Please note we have a [code of conduct](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
 ## How to Contribute
 
 First setup repository to contribute
 
-If you already setup repository, take a look at the issues and take a stab at them. We'll try to make the issue as verbose as possible, so it is easy for you to help. When you're done, create a [Pull Request](https://github.com/danvick/flutter_form_builder/compare).
+If you already setup repository, take a look at the issues and take a stab at them. We'll try to make the issue as verbose as possible, so it is easy for you to help. When you're done, create a [Pull Request](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/compare).
 
-You don't need to code to help us. If you have a suggestion of a feature, see a bug or a thing that should be improved, [open an issue](https://github.com/danvick/flutter_form_builder/issues/new/choose) on Github.
+You don't need to code to help us. If you have a suggestion of a feature, see a bug or a thing that should be improved, [open an issue](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/new/choose) on Github.
 
 
 ## Setup development environment
 
 ### Copy repository
 
- * Fork `https://github.com/danvick/flutter_form_builder/` into your own GitHub account. If you already have a fork and moving to a new computer, make sure you update you fork.
+ * Fork `https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/` into your own GitHub account. If you already have a fork and moving to a new computer, make sure you update you fork.
  * If you haven't configured your machine with an SSH key that's known to github, then
    follow [GitHub's directions](https://help.github.com/articles/generating-ssh-keys/)
    to generate an SSH key.
