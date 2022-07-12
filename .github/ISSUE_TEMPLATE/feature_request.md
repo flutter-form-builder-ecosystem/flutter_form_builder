@@ -7,7 +7,7 @@ labels: enhancement
 
 ## Environment
 
-**Package name and version:**  <!-- flutter_form_builder, form_builder_extra_field, form_builder_phone_field or form_builder_validators with version-->
+**Package name and version:**  <!-- flutter_form_builder, form_builder_extra_field with version-->
 
 ## Description
 

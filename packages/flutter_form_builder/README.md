@@ -396,12 +396,12 @@ FormBuilderRadioGroup(
 ```
 
 ### Ecosystem
+
 Here are additional packages that you can use to extend `flutter_form_builder`'s functionality.
 * [form_builder_validators](https://pub.dev/packages/form_builder_validators) - provides a convenient way of validating data entered into any Flutter `FormField`.
 * [form_builder_extra_fields](https://pub.dev/packages/form_builder_extra_fields) - provides additional ready-made form input fields compartible with `flutter_form_builder`.
 * [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A `FormbuilderField` that allows selecting image(s) from user device storage.
 * [form_builder_image_picker](https://pub.dev/packages/form_builder_image_picker) - A `FormbuilderField` that allows selecting image(s) from device Gallery or Camera.
-* [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) - A `FormbuilderField` for geographic location input.
 * [form_builder_phone_field](https://pub.dev/packages/form_builder_phone_field) - A `FormbuilderField` for international phone number input.
 
 ## Support

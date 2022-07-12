@@ -14,8 +14,7 @@ dependencies:
     sdk: flutter
   form_builder_extra_fields:
     path: ../
-  form_builder_validators:
-    path: ../../form_builder_validators/
+  form_builder_validators: ^8.1.1
 
 dev_dependencies:
   flutter_lints: ^1.0.4

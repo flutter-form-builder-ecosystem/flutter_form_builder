@@ -19,7 +19,6 @@ Flutter Form Builder provides an easy way of working with forms in Flutter by re
 
 - [FormBuilder Core (`flutter_form_builder`)](#flutter_form_builder)
 - [FormBuilder Extra Fields (`form_builder_extra_fields`)](#form_builder_extra_fields)
-- [FormBuilder Validators (`form_builder_validators`)](#form_builder_validators)
 
 ### flutter_form_builder
 > [![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?logo=flutter&style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
@@ -48,19 +47,6 @@ Form Builder Fields provides ready-made form input fields. Just like the flutter
 Unlike flutter_form_builder package which depends purely on Flutter provided input fields, flutter_extra_fields depends on external libraries to provide input widgets and extends them to be FormBuilderFields.
 
 [[View Documentation][extra_fields_docs]] [[View Source][extra_fields_code]]
-
-### form_builder_validators
-> [![Pub Version](https://img.shields.io/pub/v/form_builder_validators?logo=flutter&style=for-the-badge)](https://pub.dev/packages/form_builder_validators)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/flutter-form-builder-ecosystem/flutter_form_builder/Form%20Builder%20Validators?logo=github&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/actions/workflows/form_builder_validators.yaml)
-[![Codecov](https://img.shields.io/codecov/c/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/flutter-form-builder-ecosystem/flutter_form_builder/)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
-[![GitHub](https://img.shields.io/github/license/flutter-form-builder-ecosystem/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/master/LICENSE)
-
-Form Builder Validators provide a convenient way of validating data entered into any Flutter FormField. It provides common validation rules out of box (such as required, email, number, min, max, minLength, maxLength, date validations) as well as a way to compose multiple validation rules into one FormFieldValidator.
-
-Also included is the `l10n` / `i18n` of error text messages into multiple languages
-
-[[View Documentation][validators_docs]] [[View Source][validators_code]]
 
 
 ## Support
@@ -92,8 +78,3 @@ Made with [contributors-img](https://contributors-img.firebaseapp.com).
 [extra_fields_code]: https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/tree/master/packages/form_builder_extra_fields
 
 [extra_fields_docs]: https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/master/packages/form_builder_extra_fields/README.md
-
-[validators_code]: https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/tree/master/packages/form_builder_validators
-
-[validators_docs]: https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/master/packages/form_builder_validators/README.md
-
