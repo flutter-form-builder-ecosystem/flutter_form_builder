@@ -7,7 +7,7 @@ labels: question
 
 ## Environment
 
-**Package name:**  <!-- flutter_form_builder, form_builder_extra_field -->
+**Package version:**
 
 ## Describe your question
 <!-- A clear and concise description of your question or help wanted.
