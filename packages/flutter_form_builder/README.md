@@ -10,7 +10,7 @@ ___
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/flutter-form-builder-ecosystem/flutter_form_builder/Form%20Builder%20Core?logo=github&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/actions/workflows/form_builder_core.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/flutter-form-builder-ecosystem/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
-[![GitHub](https://img.shields.io/github/license/flutter-form-builder-ecosystem/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/flutter-form-builder-ecosystem/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/main/LICENSE)
 [![OSS Lifecycle](https://img.shields.io/osslifecycle/flutter-form-builder-ecosystem/flutter_form_builder?style=for-the-badge)](#support)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
@@ -396,12 +396,12 @@ FormBuilderRadioGroup(
 ```
 
 ### Ecosystem
+
 Here are additional packages that you can use to extend `flutter_form_builder`'s functionality.
 * [form_builder_validators](https://pub.dev/packages/form_builder_validators) - provides a convenient way of validating data entered into any Flutter `FormField`.
 * [form_builder_extra_fields](https://pub.dev/packages/form_builder_extra_fields) - provides additional ready-made form input fields compartible with `flutter_form_builder`.
 * [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A `FormbuilderField` that allows selecting image(s) from user device storage.
 * [form_builder_image_picker](https://pub.dev/packages/form_builder_image_picker) - A `FormbuilderField` that allows selecting image(s) from device Gallery or Camera.
-* [form_builder_map_field](https://pub.dev/packages/form_builder_map_field) - A `FormbuilderField` for geographic location input.
 * [form_builder_phone_field](https://pub.dev/packages/form_builder_phone_field) - A `FormbuilderField` for international phone number input.
 
 ## Support
