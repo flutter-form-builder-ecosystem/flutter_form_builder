@@ -17,13 +17,13 @@ extension on Color {
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
   String toHex({bool leadingHashSign = true}) {
     /// Converts an rgba value (0-255) into a 2-digit Hex code.
-    String _hexValue(int rgbaVal) {
+    String hexValue(int rgbaVal) {
       assert(rgbaVal == rgbaVal & 0xFF);
       return rgbaVal.toRadixString(16).padLeft(2, '0').toUpperCase();
     }
 
     return '${leadingHashSign ? '#' : ''}'
-        '${_hexValue(alpha)}${_hexValue(red)}${_hexValue(green)}${_hexValue(blue)}';
+        '${hexValue(alpha)}${hexValue(red)}${hexValue(green)}${hexValue(blue)}';
   }
 }
 
