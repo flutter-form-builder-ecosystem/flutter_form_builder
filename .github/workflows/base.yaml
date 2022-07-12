@@ -1,0 +1,81 @@
+name: Base
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - '*'
+
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: [stable, beta]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check broken links
+        uses: JustinBeckwith/linkinator-action@v1
+        with:
+          paths: "**/*.md"
+
+      - name: Flutter action
+        uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ matrix.channel }}
+
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Format code
+        run: flutter format --dry-run --set-exit-if-changed .
+      - name: Analyze static code
+        run: flutter analyze
+      - name: Run tests
+        run: flutter test
+      - name: Check publish warnings
+        run: dart pub publish --dry-run
+      - name: Build example
+        run: |
+          cd example
+          flutter build appbundle --debug
+          flutter build ios --debug --no-codesign
+          flutter build web
+
+      - name: Upload coverage to Codecov
+        if: ${{ matrix.channel == 'stable' }}
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov.info
+          flags: unittests
+          name: flutter_form_builder
+
+  deployment:
+    if: ${{ github.ref_type == 'tag' }}
+    needs: build
+    name: Deploy package
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Configure enviroment
+      uses: actions/checkout@v3
+    - name: Download flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+    - name: Setup pub credentials
+      shell: bash
+      env:
+        PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+        PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+      run: |
+        sh ./tool/pub_login.sh
+    - name: Publish package
+      run: dart pub publish -v -f
