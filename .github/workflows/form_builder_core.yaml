@@ -4,15 +4,14 @@ name: Form Builder Core
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/flutter_form_builder/**"
       - ".github/workflows/form_builder_core.yaml"
 
   pull_request:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/flutter_form_builder/**"
       - ".github/workflows/form_builder_core.yaml"

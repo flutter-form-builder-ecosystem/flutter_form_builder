@@ -4,15 +4,14 @@ name: Form Builder Extra Fields
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/form_builder_extra_fields/**"
       - ".github/workflows/form_builder_extra_fields.yaml"
 
   pull_request:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/form_builder_extra_fields/**"
       - ".github/workflows/form_builder_extra_fields.yaml"

@@ -7,7 +7,7 @@ ___
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/flutter-form-builder-ecosystem/flutter_form_builder/Form%20Builder%20Extra%20Fields?logo=github&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/actions/workflows/form_builder_extra_fields.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/flutter-form-builder-ecosystem/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
-[![GitHub](https://img.shields.io/github/license/flutter-form-builder-ecosystem/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/flutter-form-builder-ecosystem/flutter_form_builder?logo=open+source+initiative&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/blob/main/LICENSE)
 [![OSS Lifecycle](https://img.shields.io/osslifecycle/flutter-form-builder-ecosystem/flutter_form_builder?style=for-the-badge)](#support)
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
