@@ -1,3 +1,10 @@
+## [7.4.0] - 12-Jul-2022
+
+* Added shape property to FormBuilderChoiceChip
+* Added option to remove field values from internal maps when unregistered
+* Fix call FormBuilder.onChanged when it has no changes
+* Fix set initial values by FormBuilder in FormBuilderFilterChip
+
 ## [7.3.1] - 17-Jun-2022
 
 * `initialValue` no longer required in FormBuilderRangeSlider
