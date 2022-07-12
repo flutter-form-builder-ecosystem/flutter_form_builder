@@ -7,7 +7,7 @@ labels: bug
 
 ## Environment
 
-**Package name and version:**  <!-- flutter_form_builder, form_builder_extra_field with version-->
+**Package version:**
 
 <details>
   <summary>Flutter doctor</summary>
