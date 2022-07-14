@@ -9,8 +9,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 enum InputType { date, time, both }
 
-// enum PickerType { material, cupertino }
-
 /// Field for `Date`, `Time` and `DateTime` input
 class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// The date/time picker dialogs to show.
@@ -102,7 +100,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   final InputCounterWidgetBuilder? buildCounter;
 
-  // final VoidCallback onEditingComplete,
   final Radius? cursorRadius;
   final Color? cursorColor;
   final Brightness? keyboardAppearance;
@@ -111,7 +108,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   final double cursorWidth;
   final TextCapitalization textCapitalization;
-  final bool alwaysUse24HourFormat;
 
   final String? cancelText;
   final String? confirmText;
@@ -161,7 +157,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.transitionBuilder,
     this.textCapitalization = TextCapitalization.none,
     this.useRootNavigator = true,
-    this.alwaysUse24HourFormat = false,
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.timePickerInitialEntryMode = TimePickerEntryMode.dial,
     this.format,
