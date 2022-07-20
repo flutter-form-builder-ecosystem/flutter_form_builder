@@ -1,225 +1,56 @@
-# Flutter FormBuilder - flutter_form_builder
+# Flutter Form Builder
 
 This package helps in creation of data collection forms in Flutter by removing the boilerplate needed to build a form, validate fields, react to changes and collect final user input.
 
 Also included are common ready-made form input fields for FormBuilder. This gives you a convenient way of adding common ready-made input fields instead of creating your own FormBuilderField from scratch.
-___
 
 [![Pub Version](https://img.shields.io/pub/v/flutter_form_builder?logo=flutter&style=for-the-badge)](https://pub.dev/packages/flutter_form_builder)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/flutter-form-builder-ecosystem/flutter_form_builder/Base?logo=github&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/actions/workflows/base.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/flutter-form-builder-ecosystem/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
-
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
-
 ___
 
-### Example
-```Dart
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+- [Features](#features)
+- [Inputs](#inpus)
+    - [Parameters](#parameters)
+- [Use](#use)
+    - [Setup](#setup)
+    - [Basic use](#basic-use)
+    - [Especific uses](#especific-uses)
+- [Support](#support)
+    - [Contribute](#contribute)
+    - [Questions and answers](#questions-and-answers)
+    - [Donations](#donations)
+- [Roadmap](#roadmap)
+- [Ecosystem](#ecosystem)
+- [Thanks to](#thanks-to)
+    - [Contributors](#contributors)
 
-...
+## Features
 
-final _formKey = GlobalKey<FormBuilderState>();
+- Create a form with several type of inputs
+- Get values from form by easy way
+- Apply validators to inputs fields
+- React to form changes
 
-...
-
-@override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        FormBuilder(
-          key: _formKey,
-          autovalidateMode: AutovalidateMode.disabled,
-          child: Column(
-            children: <Widget>[
-              FormBuilderFilterChip(
-                name: 'filter_chip',
-                decoration: const InputDecoration(
-                  labelText: 'Select many options',
-                ),
-                options: const [
-                  FormBuilderFieldOption(value: 'Test', child: Text('Test')),
-                  FormBuilderFieldOption(
-                      value: 'Test 1', child: Text('Test 1')),
-                  FormBuilderFieldOption(
-                      value: 'Test 2', child: Text('Test 2')),
-                  FormBuilderFieldOption(
-                      value: 'Test 3', child: Text('Test 3')),
-                  FormBuilderFieldOption(
-                      value: 'Test 4', child: Text('Test 4')),
-                ],
-              ),
-              FormBuilderChoiceChip(
-                name: 'choice_chip',
-                decoration: const InputDecoration(
-                  labelText: 'Select an option',
-                ),
-                options: const [
-                  FormBuilderFieldOption(value: 'Test', child: Text('Test')),
-                  FormBuilderFieldOption(
-                      value: 'Test 1', child: Text('Test 1')),
-                  FormBuilderFieldOption(
-                      value: 'Test 2', child: Text('Test 2')),
-                  FormBuilderFieldOption(
-                      value: 'Test 3', child: Text('Test 3')),
-                  FormBuilderFieldOption(
-                      value: 'Test 4', child: Text('Test 4')),
-                ],
-              ),
-              FormBuilderDateTimePicker(
-                name: 'date',
-                // onChanged: _onChanged,
-                inputType: InputType.time,
-                decoration: const InputDecoration(
-                  labelText: 'Appointment Time',
-                ),
-                initialTime: const TimeOfDay(hour: 8, minute: 0),
-                // initialValue: DateTime.now(),
-                // enabled: true,
-              ),
-              FormBuilderDateRangePicker(
-                name: 'date_range',
-                firstDate: DateTime(1970),
-                lastDate: DateTime(2030),
-                format: DateFormat('yyyy-MM-dd'),
-                onChanged: _onChanged,
-                decoration: const InputDecoration(
-                  labelText: 'Date Range',
-                  helperText: 'Helper text',
-                  hintText: 'Hint text',
-                ),
-              ),
-              FormBuilderSlider(
-                name: 'slider',
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.min(context, 6),
-                ]),
-                onChanged: _onChanged,
-                min: 0.0,
-                max: 10.0,
-                initialValue: 7.0,
-                divisions: 20,
-                activeColor: Colors.red,
-                inactiveColor: Colors.pink[100],
-                decoration: const InputDecoration(
-                  labelText: 'Number of things',
-                ),
-              ),
-              FormBuilderCheckbox(
-                name: 'accept_terms',
-                initialValue: false,
-                onChanged: _onChanged,
-                title: RichText(
-                  text: const TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'I have read and agree to the ',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      TextSpan(
-                        text: 'Terms and Conditions',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ],
-                  ),
-                ),
-                validator: FormBuilderValidators.equal(
-                  context,
-                  true,
-                  errorText: 'You must accept terms and conditions to continue',
-                ),
-              ),
-              FormBuilderTextField(
-                name: 'age',
-                decoration: const InputDecoration(
-                  labelText:
-                      'This value is passed along to the [Text.maxLines] attribute of the [Text] widget used to display the hint text.',
-                ),
-                onChanged: _onChanged,
-                // valueTransformer: (text) => num.tryParse(text),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(context),
-                  FormBuilderValidators.numeric(context),
-                  FormBuilderValidators.max(context, 70),
-                ]),
-                keyboardType: TextInputType.number,
-              ),
-              FormBuilderDropdown(
-                name: 'gender',
-                decoration: const InputDecoration(
-                  labelText: 'Gender',
-                ),
-                // initialValue: 'Male',
-                allowClear: true,
-                hint: const Text('Select Gender'),
-                validator: FormBuilderValidators.compose(
-                    [FormBuilderValidators.required(context)]),
-                items: genderOptions
-                    .map((gender) => DropdownMenuItem(
-                          value: gender,
-                          child: Text('$gender'),
-                        ))
-                    .toList(),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: MaterialButton(
-                color: Theme.of(context).colorScheme.secondary,
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  _formKey.currentState!.save();
-                  if (_formKey.currentState!.validate()) {
-                    print(_formKey.currentState!.value);
-                  } else {
-                    print("validation failed");
-                  }
-                },
-              ),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: MaterialButton(
-                color: Theme.of(context).colorScheme.secondary,
-                child: const Text(
-                  "Reset",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () {
-                  _formKey.currentState!.reset();
-                },
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-```
-
-## Input widgets
+## Inputs
 
 The currently supported fields include:
-* `FormBuilderCheckbox` - Single Checkbox field
-* `FormBuilderCheckboxGroup` - List of Checkboxes for multiple selection
+* `FormBuilderCheckbox` - Single checkbox field
+* `FormBuilderCheckboxGroup` - List of checkboxes for multiple selection
 * `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
 * `FormBuilderDateRangePicker` - For selection of a range of dates
 * `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
 * `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
-* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox.
+* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox
 * `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
 * `FormBuilderRangeSlider` - Used to select a range from a range of values
 * `FormBuilderSegmentedControl` - For selection of a value using the `CupertinoSegmentedControl` widget as an input
 * `FormBuilderSlider` - For selection of a numerical value on a slider
 * `FormBuilderSwitch` - On/Off switch field
-* `FormBuilderTextField` - A Material Design text field input.
+* `FormBuilderTextField` - A Material Design text field input
+
+### Parameters
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
@@ -234,15 +65,42 @@ In order to create an input field in the form, along with the label, and any app
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
 The rest of the attributes will be determined by the type of Widget being used.
 
-### Building your own custom field
+## Use
+
+### Setup
+
+No especific setup required: only install the dependency and use :)
+
+### Basic use
+
+```dart
+final _formKey = GlobalKey<FormBuilderState>();
+
+FormBuilder(
+    key: _formKey,
+    child:  FormBuilderTextField(
+        name: 'text',
+        onChanged: (val) {
+            print(val); // Print the text value write into TextField
+        },
+    ),
+)
+```
+
+See [pud.dev example tab](https://pub.dev/packages/flutter_form_builder/example) or [github code](example/lib/main.dart) for more details
+
+### Especific uses
+
+#### Building your own custom field
 
 To build your own field within a `FormBuilder`, we use `FormBuilderField` which will require that you define your own field.
 Read [this article](https://medium.com/@danvickmiller/building-a-custom-flutter-form-builder-field-c67e2b2a27f4) for step-by-step instructions on how to build your own custom field.
-```Dart
+
+```dart
 var options = ["Option 1", "Option 2", "Option 3"];
 ```
 
-```Dart
+```dart
 FormBuilderField(
   name: "name",
   validator: FormBuilderValidators.compose([
@@ -272,13 +130,17 @@ FormBuilderField(
 ),
 ```
 
-### Programmatically changing field value
+#### Programmatically changing field value
+
 You can either change the value of one field at a time like so:
-```Dart
+
+```dart
 _formKey.currentState.fields['color_picker'].didChange(Colors.black);
 ```
+
 Or multiple fields value like so:
-```Dart
+
+```dart
 _formKey.currentState.patchValue({
   'age': '50',
   'slider': 6.7,
@@ -286,15 +148,20 @@ _formKey.currentState.patchValue({
   'choice_chip': 'Test 2',
   'rate': 4,
   'chips_test': [
-    Contact('Andrew', 'stock@man.com', 'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg'),
+    Contact(
+        'Andrew', 
+        'stock@man.com', 
+        'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg',
+    ),
   ],
 });
 ```
 
-### Programmatically inducing an error
-#### Option 1 - Using FormBuilder / FieldBuilderField key
+#### Programmatically inducing an error
 
-```Dart
+##### Option 1 - Using FormBuilder / FieldBuilderField key
+
+```dart
 final _formKey = GlobalKey<FormBuilderState>();
 final _emailFieldKey = GlobalKey<FormBuilderFieldState>();
 ...
@@ -318,7 +185,7 @@ FormBuilder(
             // Either invalidate using Form Key
             _formKey.currentState?.invalidateField(name: 'email', errorText: 'Email already taken.');
             // OR invalidate using Field Key
-            _emailFieldKey.currentState?.invalidate('Email already taken.');
+            _emailFieldKey.currentState?.invalidate('Email already taken');
           }
         },
       ),
@@ -328,7 +195,7 @@ FormBuilder(
 
 ```
 
-#### Option 2 - Using InputDecoration.errorText
+##### Option 2 - Using InputDecoration.errorText
 
 Declare a variable to hold your error:
 ```Dart
@@ -363,10 +230,11 @@ RaisedButton(
 ),
 ```
 
-### Conditional validation
+#### Conditional validation
 
 You can also validate a field based on the value of another field
-```Dart
+
+```dart
 FormBuilderRadioGroup(
   decoration: InputDecoration(labelText: 'My best language'),
   name: 'my_language',
@@ -397,29 +265,42 @@ FormBuilderRadioGroup(
   ),
 ```
 
-### Ecosystem
-
-Here are additional packages that you can use to extend `flutter_form_builder`'s functionality.
-* [form_builder_validators](https://pub.dev/packages/form_builder_validators) - provides a convenient way of validating data entered into any Flutter `FormField`.
-* [form_builder_extra_fields](https://pub.dev/packages/form_builder_extra_fields) - provides additional ready-made form input fields compartible with `flutter_form_builder`.
-* [form_builder_file_picker](https://pub.dev/packages/form_builder_file_picker) - A `FormbuilderField` that allows selecting image(s) from user device storage.
-* [form_builder_image_picker](https://pub.dev/packages/form_builder_image_picker) - A `FormbuilderField` that allows selecting image(s) from device Gallery or Camera.
-* [form_builder_phone_field](https://pub.dev/packages/form_builder_phone_field) - A `FormbuilderField` for international phone number input.
-
 ## Support
 
-### Issues and PRs
+### Contribute
 
-Any kind of support in the form of reporting bugs, answering questions or PRs is always appreciated.
+You have some ways to contribute to this packages
 
-### Coffee :-)
+ - Beginner: Reporting bugs or request new features
+ - Intermediate: Implement new features (from issues or not) and created pull requests
+ - Advanced: Join to [organization](#ecosystem) like a member and help coding, manage issues, dicuss new features and other things
 
-If this package was helpful to you in delivering your project or you just wanna to support this
-package, a cup of coffee would be highly appreciated ;-)
+ See [contribution file](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md) for more details
+
+### Questions and answers
+
+You can join to [our Discord server](https://discord.gg/25KNPMJQf2) or search answers in [StackOverflow](https://stackoverflow.com/questions/tagged/flutter-form-builder)
+
+### Donations
+
+Buy a coffe to [Danvick Miller](https://twitter.com/danvickmiller), creator of this awesome package
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
 
-## Credits
+## Roadmap
+
+- [Improve focus behavior](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1049)
+- Add more widget tests and missing tests for some fields
+- [Add visual examples](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1027) (images, gifs, videos, sample application)
+- [Solve open issues](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues), [prioritizing bugs](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/labels/bug)
+
+## Ecosystem
+
+Take a look to [our awesome ecosystem](https://github.com/flutter-form-builder-ecosystem) and all packages in there
+
+## Thanks to
+
+### Contributors
 
 <a href="https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=flutter-form-builder-ecosystem/flutter_form_builder" />
