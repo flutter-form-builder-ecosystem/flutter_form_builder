@@ -290,7 +290,7 @@ Buy a coffe to [Danvick Miller](https://twitter.com/danvickmiller), creator of t
 ## Roadmap
 
 - [Improve focus behavior](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1049)
-- Add more widget tests and missing tests for some fields
+- Add more widget tests and missing tests for some fields: [#1090](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1090)/[#1089](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1089)
 - [Add visual examples](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1027) (images, gifs, videos, sample application)
 - [Solve open issues](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues), [prioritizing bugs](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/labels/bug)
 
