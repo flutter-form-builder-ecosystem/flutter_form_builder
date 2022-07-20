@@ -31,7 +31,7 @@ ___
 - Create a form with several type of inputs
 - Get values from form by easy way
 - Apply validators to inputs fields
-- React to form changes
+- React to form fields changes and validations 
 
 ## Inputs
 
