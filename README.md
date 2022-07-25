@@ -104,7 +104,8 @@ var options = ["Option 1", "Option 2", "Option 3"];
 FormBuilderField(
   name: "name",
   validator: FormBuilderValidators.compose([
-    FormBuilderValidators.required(context),
+# Flutter Form Builder
+    FormBuilderValidators.required(),
   ]),
   builder: (FormFieldState<dynamic> field) {
     return InputDecorator(
@@ -174,8 +175,8 @@ FormBuilder(
         name: 'email',
         decoration: InputDecoration(labelText: 'Email'),
         validator: FormBuilderValidators.compose([
-          FormBuilderValidators.required(context),
-          FormBuilderValidators.email(context),
+          FormBuilderValidators.required(),
+          FormBuilderValidators.email(),
         ]),
       ),
       RaisedButton(
@@ -211,8 +212,8 @@ FormBuilderTextField(
     errorText: _emailError,
   ),
   validator: FormBuilderValidators.compose([
-      FormBuilderValidators.required(context),
-      FormBuilderValidators.email(context),
+      FormBuilderValidators.required(),
+      FormBuilderValidators.email(),
   ]),
 ),
 ```
@@ -238,7 +239,7 @@ You can also validate a field based on the value of another field
 FormBuilderRadioGroup(
   decoration: InputDecoration(labelText: 'My best language'),
   name: 'my_language',
-  validator: FormBuilderValidators.required(context),
+  validator: FormBuilderValidators.required(),
   options: [
     'Dart',
     'Kotlin',
