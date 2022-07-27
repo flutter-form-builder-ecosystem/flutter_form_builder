@@ -1,3 +1,9 @@
+## [7.5.0] - 27-Jul-2022
+
+* Apply license BSD-3-clause
+* Remove unused parameters from FormBuilderDateTimePicker (#1086)
+* Refactor readme 
+
 ## [7.4.0] - 12-Jul-2022
 
 * Added shape property to FormBuilderChoiceChip
