@@ -79,3 +79,12 @@ jobs:
         sh ./tool/pub_login.sh
     - name: Publish package
       run: dart pub publish -v -f
+    - name: Build changelog
+      id: github_release
+      uses: mikepenz/release-changelog-builder-action@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create release
+      uses: softprops/action-gh-release@v0.1.14
+      with:
+        body: ${{steps.github_release.outputs.changelog}}
