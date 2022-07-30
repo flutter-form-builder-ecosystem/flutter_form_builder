@@ -172,29 +172,30 @@ FormBuilder(
   child: Column(
     children: [
       FormBuilderTextField(
-        key: _emailFieldKey
+        key: _emailFieldKey,
         name: 'email',
-        decoration: InputDecoration(labelText: 'Email'),
+        decoration: const InputDecoration(labelText: 'Email'),
         validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(),
           FormBuilderValidators.email(),
         ]),
       ),
-      RaisedButton(
-        child: Text('Submit'),
+      ElevatedButton(
+        child: const Text('Submit'),
         onPressed: () async {
           if(await checkIfEmailExists()){
             // Either invalidate using Form Key
-            _formKey.currentState?.invalidateField(name: 'email', errorText: 'Email already taken.');
+            _formKey.currentState?.invalidateField(
+                name: 'email', errorText: 'Email already taken.');
             // OR invalidate using Field Key
-            _emailFieldKey.currentState?.invalidate('Email already taken');
+            _emailFieldKey.currentState
+                ?.invalidate('Email already taken');
           }
         },
       ),
     ],
   ),
 ),
-
 ```
 
 ##### Option 2 - Using InputDecoration.errorText
