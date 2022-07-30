@@ -40,9 +40,8 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   /// to noon. Explicitly set this to `null` to use the current time.
   final TimeOfDay initialTime;
 
-  /// If defined, the TextField [decoration]'s [suffixIcon] will be
-  /// overridden to reset the input using the icon defined here.
-  /// Set this to `null` to stop that behavior. Defaults to [Icons.close].
+  @Deprecated(
+      'This property is no used anymore. Please use decoration.suffixIcon to set your desired icon')
   final Widget? resetIcon;
 
   /// Called when an enclosing form is saved. The value passed will be `null`
@@ -213,7 +212,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
               textAlign: textAlign,
               maxLength: maxLength,
               autofocus: autofocus,
-              decoration: state.decoration.copyWith(suffixIcon: resetIcon),
+              decoration: state.decoration,
               readOnly: true,
               enabled: state.enabled,
               autocorrect: autocorrect,
