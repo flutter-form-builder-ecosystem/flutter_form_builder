@@ -212,6 +212,9 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void reset() {
     super.reset();
     setValue(initialValue);
+    if (_customErrorText != null) {
+      setState(() => _customErrorText = null);
+    }
     widget.onReset?.call();
   }
 
