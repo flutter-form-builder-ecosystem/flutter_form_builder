@@ -177,13 +177,9 @@ class _CompleteFormState extends State<CompleteForm> {
                       name: 'age',
                       decoration: InputDecoration(
                         labelText: 'Age',
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.plus_one),
-                          onPressed: () {
-                            _formKey.currentState!.fields['age']
-                                ?.didChange('14');
-                          },
-                        ),
+                        suffixIcon: _ageHasError
+                            ? const Icon(Icons.error, color: Colors.red)
+                            : const Icon(Icons.check, color: Colors.green),
                       ),
                       onChanged: (val) {
                         setState(() {
@@ -207,15 +203,12 @@ class _CompleteFormState extends State<CompleteForm> {
                       name: 'gender',
                       decoration: InputDecoration(
                         labelText: 'Gender',
-                        suffix: IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () {
-                            _formKey.currentState!.fields['gender']?.reset();
-                          },
+                        suffix: _genderHasError
+                            ? const Icon(Icons.error)
+                            : const Icon(Icons.check),
                         ),
                         hintText: 'Select Gender',
                       ),
-                      initialValue: 'Male',
                       validator: FormBuilderValidators.compose(
                           [FormBuilderValidators.required()]),
                       items: genderOptions
