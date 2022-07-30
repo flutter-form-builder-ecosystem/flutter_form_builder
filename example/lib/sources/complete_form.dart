@@ -175,7 +175,8 @@ class _CompleteFormState extends State<CompleteForm> {
                         suffix: _genderHasError
                             ? const Icon(Icons.error)
                             : const Icon(Icons.check),
-                        hintText: 'Select Gender'),
+                        hintText: 'Select Gender',
+                    ),
                     // initialValue: 'Male',
                     validator: FormBuilderValidators.compose(
                         [FormBuilderValidators.required()]),
