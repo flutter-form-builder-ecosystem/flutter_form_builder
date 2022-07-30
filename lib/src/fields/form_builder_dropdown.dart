@@ -9,9 +9,10 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// If the [onChanged] callback is null or the list of items is null
   /// then the dropdown button will be disabled, i.e. its arrow will be
   /// displayed in grey and it will not respond to input. A disabled button
-  /// will display the [disabledHint] widget if it is non-null. If
-  /// [disabledHint] is also null but [hint] is non-null, [hint] will instead
-  /// be displayed.
+  /// will display the [disabledHint] widget if it is non-null.
+  ///
+  /// If [decoration.hint] and variations is non-null and [disabledHint] is null,
+  /// the [decoration.hint] widget will be displayed instead.
   final List<DropdownMenuItem<T>> items;
 
   /// A placeholder widget that is displayed by the dropdown button.
@@ -23,8 +24,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
 
   /// A message to show when the dropdown is disabled.
   ///
-  /// Displayed if [items] or [onChanged] is null. If [hint] is non-null and
-  /// [disabledHint] is null, the [hint] widget will be displayed instead.
+  /// Displayed if [items] or [onChanged] is null. If [decoration.hint] and
+  /// variations is non-null and [disabledHint] is null, the [decoration.hint]
+  /// widget will be displayed instead.
   final Widget? disabledHint;
 
   /// Called when the dropdown button is tapped.
@@ -219,7 +221,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
 
   /// Defines the corner radii of the menu's rounded rectangle shape.
   ///
-  /// The radii of the first menu item's top left and right corners are
+  /// The radius of the first menu item's top left and right corners are
   /// defined by the corresponding properties of the [borderRadius].
   /// Similarly, the radii of the last menu item's bottom and right corners
   /// are defined by the corresponding properties of the [borderRadius].
@@ -227,32 +229,34 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
 
   /// Creates field for Dropdown button
   FormBuilderDropdown({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<T>? validator,
-    T? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T?>? onChanged,
-    ValueTransformer<T?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<T>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.items,
     this.isExpanded = true,
     this.isDense = true,
     this.elevation = 8,
     this.iconSize = 24.0,
-    this.hint,
+    @Deprecated('Please use decoration.hint and variations to set your desired label')
+        this.hint,
     this.style,
     this.disabledHint,
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
-    this.allowClear = false,
-    this.clearIcon = const Icon(Icons.close),
+    @Deprecated('Please use decoration.suffix to set your desired behavior')
+        this.allowClear = false,
+    @Deprecated('Please use decoration.suffixIcon to set your desired icon')
+        this.clearIcon = const Icon(Icons.close),
     this.onTap,
     this.autofocus = false,
     this.shouldRequestFocus = false,
@@ -264,23 +268,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     this.enableFeedback,
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
-  }) : /*: assert(allowClear == true || clearIcon != null)*/ super(
-          key: key,
-          initialValue: initialValue,
-          name: name,
-          validator: validator,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
+  }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
-            // DropdownButtonFormField
-            // TextFormField
 
             void changeValue(T? value) {
               if (shouldRequestFocus) {
@@ -290,60 +280,42 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             }
 
             return InputDecorator(
-              decoration: state.decoration.copyWith(
-                floatingLabelBehavior: hint == null
-                    ? decoration.floatingLabelBehavior
-                    : FloatingLabelBehavior.always,
-              ),
+              decoration: state.decoration,
               isEmpty: state.value == null,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<T>(
-                        isExpanded: isExpanded,
-                        hint: hint,
-                        items: items,
-                        value: field.value,
-                        style: style,
-                        isDense: isDense,
-                        disabledHint: field.value != null
-                            ? (items
-                                    .firstWhereOrNull((dropDownItem) =>
-                                        dropDownItem.value == field.value)
-                                    ?.child ??
-                                Text(field.value.toString()))
-                            : disabledHint,
-                        elevation: elevation,
-                        iconSize: iconSize,
-                        icon: icon,
-                        iconDisabledColor: iconDisabledColor,
-                        iconEnabledColor: iconEnabledColor,
-                        onChanged: state.enabled
-                            ? (value) => changeValue(value)
-                            : null,
-                        onTap: onTap,
-                        focusNode: state.effectiveFocusNode,
-                        autofocus: autofocus,
-                        dropdownColor: dropdownColor,
-                        focusColor: focusColor,
-                        itemHeight: itemHeight,
-                        selectedItemBuilder: selectedItemBuilder,
-                        menuMaxHeight: menuMaxHeight,
-                        borderRadius: borderRadius,
-                        enableFeedback: enableFeedback,
-                        alignment: alignment,
-                      ),
-                    ),
-                  ),
-                  if (allowClear && state.enabled && field.value != null) ...[
-                    const VerticalDivider(),
-                    InkWell(
-                      onTap: () => changeValue(null),
-                      child: clearIcon,
-                    ),
-                  ]
-                ],
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<T>(
+                  isExpanded: isExpanded,
+                  hint: hint,
+                  items: items,
+                  value: field.value,
+                  style: style,
+                  isDense: isDense,
+                  disabledHint: field.value != null
+                      ? (items
+                              .firstWhereOrNull((dropDownItem) =>
+                                  dropDownItem.value == field.value)
+                              ?.child ??
+                          Text(field.value.toString()))
+                      : disabledHint,
+                  elevation: elevation,
+                  iconSize: iconSize,
+                  icon: icon,
+                  iconDisabledColor: iconDisabledColor,
+                  iconEnabledColor: iconEnabledColor,
+                  onChanged:
+                      state.enabled ? (value) => changeValue(value) : null,
+                  onTap: onTap,
+                  focusNode: state.effectiveFocusNode,
+                  autofocus: autofocus,
+                  dropdownColor: dropdownColor,
+                  focusColor: focusColor,
+                  itemHeight: itemHeight,
+                  selectedItemBuilder: selectedItemBuilder,
+                  menuMaxHeight: menuMaxHeight,
+                  borderRadius: borderRadius,
+                  enableFeedback: enableFeedback,
+                  alignment: alignment,
+                ),
               ),
             );
           },
