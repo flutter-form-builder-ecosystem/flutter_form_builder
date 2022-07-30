@@ -8,6 +8,7 @@ Also included are common ready-made form input fields for FormBuilder. This give
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/flutter-form-builder-ecosystem/flutter_form_builder/Base?logo=github&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/actions/workflows/base.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/flutter-form-builder-ecosystem/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
+[![Discord](https://img.shields.io/discord/985922433578053673?logo=discord&style=for-the-badge)](https://discord.com/invite/25KNPMJQf2)
 ___
 
 - [Features](#features)
@@ -264,6 +265,57 @@ FormBuilderRadioGroup(
       return null;
     },
   ),
+```
+
+#### Implement reset, clear or other button into FormBuilderField
+
+If you can add some button to reset specific field, can use the `decoration` parameter like this:
+
+```dart
+List<String> genderOptions = ['Male', 'Female', 'Other'];
+
+FormBuilderDropdown<String>(
+  name: 'gender',
+  decoration: InputDecoration(
+    labelText: 'Gender',
+    initialValue: 'Male',
+    suffix: IconButton(
+      icon: const Icon(Icons.close),
+      onPressed: () {
+        _formKey.currentState!.fields['gender']
+            ?.reset();
+      },
+    ),
+    hintText: 'Select Gender',
+  ),
+  items: genderOptions
+      .map((gender) => DropdownMenuItem(
+            alignment: AlignmentDirectional.center,
+            value: gender,
+            child: Text(gender),
+          ))
+      .toList(),
+),
+```
+
+Or if is allowed by the field, set a value like this:
+
+```dart
+FormBuilderTextField(
+  name: 'age',
+  decoration: InputDecoration(
+    labelText: 'Age',
+    suffixIcon: IconButton(
+      icon: const Icon(Icons.plus_one),
+      onPressed: () {
+        _formKey.currentState!.fields['age']
+            ?.didChange('14');
+      },
+    ),
+  ),
+  initialValue: '13',
+  keyboardType: TextInputType.number,
+),
 ```
 
 ## Support
