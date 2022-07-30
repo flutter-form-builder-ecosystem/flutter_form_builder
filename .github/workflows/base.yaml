@@ -54,7 +54,6 @@ jobs:
           flutter build appbundle --debug
           flutter build ios --debug --no-codesign
           flutter build web
-          flutter build linux
 
   deployment:
     if: ${{ github.ref_type == 'tag' }}
