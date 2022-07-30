@@ -39,7 +39,13 @@ jobs:
       - name: Analyze static code
         run: flutter analyze
       - name: Run tests
-        run: flutter test
+        run: flutter test --coverage
+      - name: Upload coverage to Codecov
+        if: ${{ matrix.channel == 'stable' }}
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov.info
+          name: flutter_form_builder
       - name: Check publish warnings
         run: dart pub publish --dry-run
       - name: Build example
@@ -48,14 +54,6 @@ jobs:
           flutter build appbundle --debug
           flutter build ios --debug --no-codesign
           flutter build web
-
-      - name: Upload coverage to Codecov
-        if: ${{ matrix.channel == 'stable' }}
-        uses: codecov/codecov-action@v3
-        with:
-          files: coverage/lcov.info
-          flags: unittests
-          name: flutter_form_builder
 
   deployment:
     if: ${{ github.ref_type == 'tag' }}
