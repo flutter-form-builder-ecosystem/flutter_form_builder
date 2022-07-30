@@ -171,11 +171,11 @@ class _CompleteFormState extends State<CompleteForm> {
                     // autovalidate: true,
                     name: 'gender',
                     decoration: InputDecoration(
-                        labelText: 'Gender',
-                        suffix: _genderHasError
-                            ? const Icon(Icons.error)
-                            : const Icon(Icons.check),
-                        hintText: 'Select Gender',
+                      labelText: 'Gender',
+                      suffix: _genderHasError
+                          ? const Icon(Icons.error)
+                          : const Icon(Icons.check),
+                      hintText: 'Select Gender',
                     ),
                     // initialValue: 'Male',
                     validator: FormBuilderValidators.compose(
