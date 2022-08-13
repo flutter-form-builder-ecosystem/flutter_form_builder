@@ -173,7 +173,7 @@ class GroupedRadio<T> extends StatefulWidget {
   final ControlAffinity controlAffinity;
 
   const GroupedRadio({
-    Key? key,
+    super.key,
     required this.options,
     required this.orientation,
     required this.onChanged,
@@ -193,7 +193,7 @@ class GroupedRadio<T> extends StatefulWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
-  }) : super(key: key);
+  });
 
   @override
   State<GroupedRadio<T?>> createState() => _GroupedRadioState<T>();
@@ -203,46 +203,43 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
-    for (var i = 0; i < widget.options.length; i++) {
-      widgetList.add(item(i));
+    for (int i = 0; i < widget.options.length; i++) {
+      widgetList.add(_buildRadioButton(i));
     }
-    Widget finalWidget;
-    if (widget.orientation == OptionsOrientation.vertical) {
-      finalWidget = SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: widgetList,
-        ),
-      );
-    } else if (widget.orientation == OptionsOrientation.horizontal) {
-      finalWidget = SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: widgetList.map((item) {
-            return Column(children: <Widget>[item]);
-          }).toList(),
-        ),
-      );
-    } else {
-      finalWidget = SingleChildScrollView(
-        child: Wrap(
-          spacing: widget.wrapSpacing,
-          runSpacing: widget.wrapRunSpacing,
-          textDirection: widget.wrapTextDirection,
-          crossAxisAlignment: widget.wrapCrossAxisAlignment,
-          verticalDirection: widget.wrapVerticalDirection,
-          alignment: widget.wrapAlignment,
-          direction: Axis.horizontal,
-          runAlignment: widget.wrapRunAlignment,
-          children: widgetList,
-        ),
-      );
+
+    switch (widget.orientation) {
+      case OptionsOrientation.vertical:
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: widgetList,
+          ),
+        );
+      case OptionsOrientation.horizontal:
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: widgetList),
+        );
+      case OptionsOrientation.wrap:
+      default:
+        return SingleChildScrollView(
+          child: Wrap(
+            spacing: widget.wrapSpacing,
+            runSpacing: widget.wrapRunSpacing,
+            textDirection: widget.wrapTextDirection,
+            crossAxisAlignment: widget.wrapCrossAxisAlignment,
+            verticalDirection: widget.wrapVerticalDirection,
+            alignment: widget.wrapAlignment,
+            direction: Axis.horizontal,
+            runAlignment: widget.wrapRunAlignment,
+            children: widgetList,
+          ),
+        );
     }
-    return finalWidget;
   }
 
-  Widget item(int index) {
+  Widget _buildRadioButton(int index) {
     final option = widget.options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
@@ -266,16 +263,28 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
           : () {
               widget.onChanged(optionValue);
             },
-      child: widget.options[index],
+      child: option,
     );
 
-    return Row(
+    return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.controlAffinity == ControlAffinity.leading) control,
-        Flexible(child: label),
-        if (widget.controlAffinity == ControlAffinity.trailing) control,
-        if (widget.separator != null && index != widget.options.length - 1)
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget.controlAffinity == ControlAffinity.leading) control,
+            Flexible(child: label),
+            if (widget.controlAffinity == ControlAffinity.trailing) control,
+            if (widget.orientation != OptionsOrientation.vertical &&
+                widget.separator != null &&
+                index != widget.options.length - 1)
+              widget.separator!,
+          ],
+        ),
+        if (widget.orientation == OptionsOrientation.vertical &&
+            widget.separator != null &&
+            index != widget.options.length - 1)
           widget.separator!,
       ],
     );
