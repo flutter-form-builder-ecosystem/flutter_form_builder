@@ -160,6 +160,9 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// {@macro flutter.widgets.editableText.cursorWidth}
   final double cursorWidth;
 
+  /// {@macro flutter.widgets.editableText.cursorHeight}
+  final double? cursorHeight;
+
   /// {@macro flutter.widgets.editableText.cursorRadius}
   final Radius? cursorRadius;
 
@@ -307,6 +310,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     this.autofocus = false,
     this.autocorrect = true,
     this.cursorWidth = 2.0,
+    this.cursorHeight,
     this.keyboardType,
     this.style,
     this.controller,
@@ -399,6 +403,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
               inputFormatters: inputFormatters,
               enabled: state.enabled,
               cursorWidth: cursorWidth,
+              cursorHeight: cursorHeight,
               cursorRadius: cursorRadius,
               cursorColor: cursorColor,
               scrollPadding: scrollPadding,
