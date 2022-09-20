@@ -71,6 +71,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
   final TextInputType keyboardType;
   final TextStyle? style;
   final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
 
   /// Preset the widget's value.
   final bool autofocus;
@@ -166,6 +167,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.locale,
     this.maxLength,
     this.textDirection,
+    this.textAlignVertical,
     this.onFieldSubmitted,
     this.controller,
     this.style,
@@ -210,6 +212,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
             return TextField(
               textDirection: textDirection,
               textAlign: textAlign,
+              textAlignVertical: textAlignVertical,
               maxLength: maxLength,
               autofocus: autofocus,
               decoration: state.decoration,

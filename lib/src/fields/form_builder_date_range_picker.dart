@@ -19,6 +19,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   final StrutStyle? strutStyle;
   final TextDirection? textDirection;
   final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
   final bool autofocus;
   final bool autocorrect;
   final MaxLengthEnforcement? maxLengthEnforcement;
@@ -86,6 +87,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     this.enableInteractiveSelection = true,
     this.maxLengthEnforcement,
     this.textAlign = TextAlign.start,
+    this.textAlignVertical,
     this.autofocus = false,
     this.autocorrect = true,
     this.cursorWidth = 2.0,
@@ -169,6 +171,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
               textCapitalization: textCapitalization,
               textDirection: textDirection,
               textInputAction: textInputAction,
+              textAlignVertical: textAlignVertical,
               strutStyle: strutStyle,
               readOnly: true,
               expands: expands,
