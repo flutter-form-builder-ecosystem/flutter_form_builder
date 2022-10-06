@@ -109,7 +109,7 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// ```
   /// {@end-tool}
   ///
-  /// Defaults to the [TextTheme.subtitle1] value of the current
+  /// Defaults to the [TextTheme.titleMedium] value of the current
   /// [ThemeData.textTheme] of the current [Theme].
   final TextStyle? style;
 
