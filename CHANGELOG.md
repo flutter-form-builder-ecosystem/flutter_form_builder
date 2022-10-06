@@ -1,3 +1,9 @@
+## [7.7.0]
+
+* Added cursorHeight property for form builder text field ([#1112](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1112))
+* Added textAlignVertical support on FormBuilderDateRangePicker and FormBuilderDateTimePicker ([#1116](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1116))
+* Added shape that missed filterChip property ([#1118](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1118))
+
 ## [7.6.0]
 
 * `FormBuilderDateTimePicker`: Deprecate reset icon For alternatives, see Readme section: Implement reset, clear or other button into FormBuilderField. #1094
