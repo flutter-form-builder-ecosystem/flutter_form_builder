@@ -136,6 +136,7 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
                       pressElevation: pressElevation,
                       materialTapTargetSize: materialTapTargetSize,
                       padding: padding,
+                      shape: shape,
                       checkmarkColor: checkmarkColor,
                       clipBehavior: clipBehavior,
                       labelStyle: labelStyle,
