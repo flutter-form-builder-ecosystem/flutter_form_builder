@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/widgets/custom_iconed_checkbox_list_tile.dart';
 
 /// Single Checkbox field
 class FormBuilderCheckbox extends FormBuilderField<bool> {
@@ -66,6 +67,21 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in activestate
+  final IconData? activeIcon;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in inactivestate
+  final IconData? inactiveIcon;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in triactivestate
+  final IconData? tristateIcon;
+
+  ///Controls the borderRadius of the iconbox
+  final BorderRadius? borderRadius;
+
   /// Creates a single Checkbox field
   FormBuilderCheckbox({
     //From Super
@@ -98,6 +114,10 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.shouldRequestFocus = false,
     this.subtitle,
     this.tristate = false,
+    this.activeIcon,
+    this.inactiveIcon,
+    this.tristateIcon,
+    this.borderRadius,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -116,7 +136,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
 
             return InputDecorator(
               decoration: state.decoration,
-              child: CheckboxListTile(
+              child: CustomIconedCheckboxListTile(
                 dense: true,
                 isThreeLine: false,
                 title: title,
@@ -130,6 +150,10 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                         state.didChange(value);
                       }
                     : null,
+                borderRadius: borderRadius,
+                activeIcon: activeIcon,
+                inactiveIcon: inactiveIcon,
+                tristateIcon: tristateIcon,
                 checkColor: checkColor,
                 activeColor: activeColor,
                 secondary: secondary,

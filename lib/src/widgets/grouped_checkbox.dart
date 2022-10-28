@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/widgets/custom_iconed_checkbox.dart';
 
 class GroupedCheckbox<T> extends StatelessWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
@@ -180,6 +181,20 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   final ControlAffinity controlAffinity;
 
+  ///Controls the borderRadius of the iconbox
+  final BorderRadius? borderRadius;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in activestate
+  final IconData? activeIcon;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in inactivestate
+  final IconData? inactiveIcon;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in triactivestate
+  final IconData? tristateIcon;
   const GroupedCheckbox({
     Key? key,
     required this.options,
@@ -203,6 +218,10 @@ class GroupedCheckbox<T> extends StatelessWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
+    this.activeIcon,
+    this.inactiveIcon,
+    this.tristateIcon,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -251,7 +270,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
     final option = options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == disabled?.contains(optionValue);
-    final control = Checkbox(
+    final control = CustomIconedCheckbox(
       activeColor: activeColor,
       checkColor: checkColor,
       focusColor: focusColor,
@@ -261,6 +280,10 @@ class GroupedCheckbox<T> extends StatelessWidget {
           ? value?.contains(optionValue)
           : true == value?.contains(optionValue),
       tristate: tristate,
+      activeIcon: activeIcon,
+      inactiveIcon: inactiveIcon,
+      tristateIcon: tristateIcon,
+      borderRadius: borderRadius,
       onChanged: isOptionDisabled
           ? null
           : (selected) {

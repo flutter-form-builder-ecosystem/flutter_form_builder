@@ -144,6 +144,7 @@ class _CompleteFormState extends State<CompleteForm> {
                       name: 'accept_terms',
                       initialValue: false,
                       onChanged: _onChanged,
+                      // activeIcon: Icons.text_snippet,
                       title: RichText(
                         text: const TextSpan(
                           children: [
@@ -275,6 +276,8 @@ class _CompleteFormState extends State<CompleteForm> {
                       decoration: const InputDecoration(
                           labelText: 'The language of my people'),
                       name: 'languages',
+                      materialTapTargetSize: MaterialTapTargetSize.padded,
+
                       // initialValue: const ['Dart'],
                       options: const [
                         FormBuilderFieldOption(value: 'Dart'),

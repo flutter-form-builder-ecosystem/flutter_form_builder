@@ -25,6 +25,21 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
   final OptionsOrientation orientation;
   final bool shouldRequestFocus;
 
+  ///Controls the borderRadius of the iconbox
+  final BorderRadius? borderRadius;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in activestate
+  final IconData? activeIcon;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in inactivestate
+  final IconData? inactiveIcon;
+
+  ///Default Flutter Icons are supported for now
+  ///Icon when the checkbox is in triactivestate
+  final IconData? tristateIcon;
+
   /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
     Key? key,
@@ -60,6 +75,10 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.controlAffinity = ControlAffinity.leading,
     this.orientation = OptionsOrientation.wrap,
     this.shouldRequestFocus = false,
+    this.activeIcon,
+    this.inactiveIcon,
+    this.tristateIcon,
+    this.borderRadius,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -107,6 +126,10 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
                 wrapVerticalDirection: wrapVerticalDirection,
                 separator: separator,
                 controlAffinity: controlAffinity,
+                activeIcon: activeIcon,
+                inactiveIcon: inactiveIcon,
+                tristateIcon: tristateIcon,
+                borderRadius: borderRadius,
               ),
             );
           },
