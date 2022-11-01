@@ -17,7 +17,7 @@ ___
 - [Use](#use)
     - [Setup](#setup)
     - [Basic use](#basic-use)
-    - [Especific uses](#especific-uses)
+    - [Specific uses](#specific-uses)
 - [Support](#support)
     - [Contribute](#contribute)
     - [Questions and answers](#questions-and-answers)
@@ -70,7 +70,7 @@ The rest of the attributes will be determined by the type of Widget being used.
 
 ### Setup
 
-No especific setup required: only install the dependency and use :)
+No specific setup required: only install the dependency and use :)
 
 ### Basic use
 
@@ -90,7 +90,7 @@ FormBuilder(
 
 See [pub.dev example tab](https://pub.dev/packages/flutter_form_builder/example) or [github code](example/lib/main.dart) for more details
 
-### Especific uses
+### Specific uses
 
 #### Building your own custom field
 
