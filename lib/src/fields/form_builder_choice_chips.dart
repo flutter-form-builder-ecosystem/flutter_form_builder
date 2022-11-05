@@ -292,55 +292,54 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     super.onChanged,
     super.valueTransformer,
     super.onReset,
-  }) : super(
-            builder: (FormFieldState<T?> field) {
-              final state = field as _FormBuilderChoiceChipState<T>;
+  }) : super(builder: (FormFieldState<T?> field) {
+          final state = field as _FormBuilderChoiceChipState<T>;
 
-              return InputDecorator(
-                decoration: state.decoration,
-                child: Wrap(
-                  direction: direction,
-                  alignment: alignment,
-                  crossAxisAlignment: crossAxisAlignment,
-                  runAlignment: runAlignment,
-                  runSpacing: runSpacing,
-                  spacing: spacing,
-                  textDirection: textDirection,
-                  verticalDirection: verticalDirection,
-                  children: <Widget>[
-                    for (FormBuilderChipOption<T> option in options)
-                      ChoiceChip(
-                        label: option,
-                        shape: shape,
-                        selected: field.value == option.value,
-                        onSelected: state.enabled
-                            ? (selected) {
-                                final choice = selected ? option.value : null;
-                                if (shouldRequestFocus) {
-                                  state.requestFocus();
-                                }
-                                state.didChange(choice);
-                              }
-                            : null,
-                        avatar: option.avatar,
-                        selectedColor: selectedColor,
-                        disabledColor: disabledColor,
-                        backgroundColor: backgroundColor,
-                        shadowColor: shadowColor,
-                        selectedShadowColor: selectedShadowColor,
-                        elevation: elevation,
-                        pressElevation: pressElevation,
-                        materialTapTargetSize: materialTapTargetSize,
-                        labelStyle: labelStyle,
-                        labelPadding: labelPadding,
-                        padding: padding,
-                        visualDensity: visualDensity,
-                        avatarBorder: avatarBorder,
-                      ),
-                  ],
-                ),
-              );
-            });
+          return InputDecorator(
+            decoration: state.decoration,
+            child: Wrap(
+              direction: direction,
+              alignment: alignment,
+              crossAxisAlignment: crossAxisAlignment,
+              runAlignment: runAlignment,
+              runSpacing: runSpacing,
+              spacing: spacing,
+              textDirection: textDirection,
+              verticalDirection: verticalDirection,
+              children: <Widget>[
+                for (FormBuilderChipOption<T> option in options)
+                  ChoiceChip(
+                    label: option,
+                    shape: shape,
+                    selected: field.value == option.value,
+                    onSelected: state.enabled
+                        ? (selected) {
+                            final choice = selected ? option.value : null;
+                            if (shouldRequestFocus) {
+                              state.requestFocus();
+                            }
+                            state.didChange(choice);
+                          }
+                        : null,
+                    avatar: option.avatar,
+                    selectedColor: selectedColor,
+                    disabledColor: disabledColor,
+                    backgroundColor: backgroundColor,
+                    shadowColor: shadowColor,
+                    selectedShadowColor: selectedShadowColor,
+                    elevation: elevation,
+                    pressElevation: pressElevation,
+                    materialTapTargetSize: materialTapTargetSize,
+                    labelStyle: labelStyle,
+                    labelPadding: labelPadding,
+                    padding: padding,
+                    visualDensity: visualDensity,
+                    avatarBorder: avatarBorder,
+                  ),
+              ],
+            ),
+          );
+        });
 
   @override
   FormBuilderFieldState<FormBuilderChoiceChip<T>, T> createState() =>
