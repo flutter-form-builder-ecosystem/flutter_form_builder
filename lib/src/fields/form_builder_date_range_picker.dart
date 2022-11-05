@@ -64,19 +64,18 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
 
   /// Creates field for selecting a range of dates
   FormBuilderDateRangePicker({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<DateTimeRange>? validator,
-    DateTimeRange? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTimeRange?>? onChanged,
-    ValueTransformer<DateTimeRange?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<DateTimeRange>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.firstDate,
     required this.lastDate,
     this.format,
@@ -129,18 +128,6 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     this.allowClear = false,
     this.clearIcon,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          name: name,
-          validator: validator,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<DateTimeRange?> field) {
             final state = field as _FormBuilderDateRangePickerState;
 

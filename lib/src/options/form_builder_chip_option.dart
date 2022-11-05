@@ -10,15 +10,11 @@ class FormBuilderChipOption<T> extends FormBuilderFieldOption<T> {
 
   /// Creates an option for fields with selection options
   const FormBuilderChipOption({
-    Key? key,
-    required value,
+    super.key,
+    required super.value,
     this.avatar,
-    child,
-  }) : super(
-          key: key,
-          value: value,
-          child: child,
-        );
+    super.child,
+  });
 
   @override
   Widget build(BuildContext context) {

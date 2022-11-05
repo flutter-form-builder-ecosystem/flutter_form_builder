@@ -41,19 +41,18 @@ class FormBuilderSegmentedControl<T extends Object>
 
   /// Creates field for selection of a value from the `CupertinoSegmentedControl`
   FormBuilderSegmentedControl({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<T>? validator,
-    T? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<T?>? onChanged,
-    ValueTransformer<T?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<T>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.options,
     this.borderColor,
     this.selectedColor,
@@ -62,18 +61,6 @@ class FormBuilderSegmentedControl<T extends Object>
     this.unselectedColor,
     this.shouldRequestFocus = false,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          name: name,
-          validator: validator,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderSegmentedControlState<T>;
             final theme = Theme.of(state.context);

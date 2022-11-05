@@ -106,19 +106,18 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
 
   /// Creates field to select a range of values on a Slider
   FormBuilderRangeSlider({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<RangeValues>? validator,
-    RangeValues? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<RangeValues?>? onChanged,
-    ValueTransformer<RangeValues?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<RangeValues>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.min,
     required this.max,
     this.divisions,
@@ -134,80 +133,66 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     this.maxTextStyle,
     this.numberFormat,
     this.shouldRequestFocus = false,
-  }) : super(
-            key: key,
-            initialValue: initialValue,
-            name: name,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            autovalidateMode: autovalidateMode,
-            onSaved: onSaved,
-            enabled: enabled,
-            onReset: onReset,
-            decoration: decoration,
-            focusNode: focusNode,
-            builder: (FormFieldState<RangeValues?> field) {
-              final state = field as _FormBuilderRangeSliderState;
-              final effectiveNumberFormat =
-                  numberFormat ?? NumberFormat.compact();
+  }) : super(builder: (FormFieldState<RangeValues?> field) {
+          final state = field as _FormBuilderRangeSliderState;
+          final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
 
-              return InputDecorator(
-                decoration: state.decoration,
-                child: Container(
-                  padding: const EdgeInsets.only(top: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      RangeSlider(
-                        values: field.value ?? RangeValues(min, min),
-                        min: min,
-                        max: max,
-                        divisions: divisions,
-                        activeColor: activeColor,
-                        inactiveColor: inactiveColor,
-                        onChangeEnd: onChangeEnd,
-                        onChangeStart: onChangeStart,
-                        labels: labels,
-                        semanticFormatterCallback: semanticFormatterCallback,
-                        onChanged: state.enabled
-                            ? (values) {
-                                if (shouldRequestFocus) {
-                                  state.requestFocus();
-                                }
-                                field.didChange(values);
-                              }
-                            : null,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          if (displayValues != DisplayValues.none &&
-                              displayValues != DisplayValues.current)
-                            Text(
-                              effectiveNumberFormat.format(min),
-                              style: minTextStyle ?? textStyle,
-                            ),
-                          const Spacer(),
-                          if (displayValues != DisplayValues.none &&
-                              displayValues != DisplayValues.minMax)
-                            Text(
-                              '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
-                              style: textStyle,
-                            ),
-                          const Spacer(),
-                          if (displayValues != DisplayValues.none &&
-                              displayValues != DisplayValues.current)
-                            Text(
-                              effectiveNumberFormat.format(max),
-                              style: maxTextStyle ?? textStyle,
-                            ),
-                        ],
-                      ),
+          return InputDecorator(
+            decoration: state.decoration,
+            child: Container(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RangeSlider(
+                    values: field.value ?? RangeValues(min, min),
+                    min: min,
+                    max: max,
+                    divisions: divisions,
+                    activeColor: activeColor,
+                    inactiveColor: inactiveColor,
+                    onChangeEnd: onChangeEnd,
+                    onChangeStart: onChangeStart,
+                    labels: labels,
+                    semanticFormatterCallback: semanticFormatterCallback,
+                    onChanged: state.enabled
+                        ? (values) {
+                            if (shouldRequestFocus) {
+                              state.requestFocus();
+                            }
+                            field.didChange(values);
+                          }
+                        : null,
+                  ),
+                  Row(
+                    children: <Widget>[
+                      if (displayValues != DisplayValues.none &&
+                          displayValues != DisplayValues.current)
+                        Text(
+                          effectiveNumberFormat.format(min),
+                          style: minTextStyle ?? textStyle,
+                        ),
+                      const Spacer(),
+                      if (displayValues != DisplayValues.none &&
+                          displayValues != DisplayValues.minMax)
+                        Text(
+                          '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
+                          style: textStyle,
+                        ),
+                      const Spacer(),
+                      if (displayValues != DisplayValues.none &&
+                          displayValues != DisplayValues.current)
+                        Text(
+                          effectiveNumberFormat.format(max),
+                          style: maxTextStyle ?? textStyle,
+                        ),
                     ],
                   ),
-                ),
-              );
-            });
+                ],
+              ),
+            ),
+          );
+        });
 
   @override
   FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> createState() =>

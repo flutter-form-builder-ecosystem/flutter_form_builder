@@ -50,29 +50,20 @@ class FormBuilderField<T> extends FormField<T> {
 
   /// Creates a single form field.
   const FormBuilderField({
-    Key? key,
-    //From Super
-    FormFieldSetter<T>? onSaved,
-    T? initialValue,
-    AutovalidateMode autovalidateMode = AutovalidateMode.onUserInteraction,
-    bool enabled = true,
-    FormFieldValidator<T>? validator,
-    required FormFieldBuilder<T> builder,
+    super.key,
+    super.onSaved,
+    super.initialValue,
+    super.autovalidateMode = AutovalidateMode.onUserInteraction,
+    super.enabled = true,
+    super.validator,
+    required super.builder,
     required this.name,
     this.valueTransformer,
     this.onChanged,
     this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
-  }) : super(
-          key: key,
-          onSaved: onSaved,
-          initialValue: initialValue,
-          autovalidateMode: autovalidateMode,
-          enabled: enabled,
-          builder: builder,
-          validator: validator,
-        );
+  });
 
   @override
   FormBuilderFieldState<FormBuilderField<T>, T> createState() =>

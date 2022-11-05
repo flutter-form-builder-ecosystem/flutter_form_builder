@@ -181,7 +181,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
   final ControlAffinity controlAffinity;
 
   const GroupedCheckbox({
-    Key? key,
+    super.key,
     required this.options,
     required this.orientation,
     required this.onChanged,
@@ -203,7 +203,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
