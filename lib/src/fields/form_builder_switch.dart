@@ -21,12 +21,12 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
 
   /// The color to use when this switch is on.
   ///
-  /// Defaults to [ThemeData.toggleableActiveColor].
+  /// Defaults to [ColorScheme.secondary].
   final Color? activeColor;
 
   /// The color to use on the track when this switch is on.
   ///
-  /// Defaults to [ThemeData.toggleableActiveColor] with the opacity set at 50%.
+  /// Defaults to [ColorScheme.secondary] with the opacity set at 50%.
   ///
   /// Ignored if this switch is created with [Switch.adaptive].
   final Color? activeTrackColor;
