@@ -22,7 +22,7 @@ class GroupedRadio<T> extends StatefulWidget {
 
   /// The color to use when this checkbox is checked.
   ///
-  /// Defaults to [ThemeData.toggleableActiveColor].
+  /// Defaults to [ColorScheme.secondary].
   final Color? activeColor;
 
   /// Configures the minimum size of the tap target.

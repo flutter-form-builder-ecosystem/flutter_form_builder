@@ -22,7 +22,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   /// The color to use when this checkbox is checked.
   ///
-  /// Defaults to [ThemeData.toggleableActiveColor].
+  /// Defaults to [ColorScheme.secondary].
   final Color? activeColor;
 
   /// The color to use for the check icon when this checkbox is checked.
