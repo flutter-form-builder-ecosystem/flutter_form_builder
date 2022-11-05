@@ -136,7 +136,9 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   }) : super(builder: (FormFieldState<RangeValues?> field) {
           final state = field as _FormBuilderRangeSliderState;
           final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
-
+          if (initialValue == null) {
+            field.setValue(RangeValues(min, min));
+          }
           return InputDecorator(
             decoration: state.decoration,
             child: Container(
@@ -145,7 +147,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RangeSlider(
-                    values: field.value ?? RangeValues(min, min),
+                    values: field.value!,
                     min: min,
                     max: max,
                     divisions: divisions,
