@@ -131,19 +131,18 @@ class FormBuilderSlider extends FormBuilderField<double> {
 
   /// Creates field for selection of a numerical value on a slider
   FormBuilderSlider({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<double>? validator,
-    required double initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<double?>? onChanged,
-    ValueTransformer<double?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<double>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    required double super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.min,
     required this.max,
     this.divisions,
@@ -162,18 +161,6 @@ class FormBuilderSlider extends FormBuilderField<double> {
     this.mouseCursor,
     this.shouldRequestFocus = false,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          name: name,
-          validator: validator,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<double?> field) {
             final state = field as _FormBuilderSliderState;
             final effectiveNumberFormat =

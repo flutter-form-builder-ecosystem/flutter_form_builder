@@ -36,15 +36,15 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
 
   /// Creates field with chips that acts like a list checkboxes.
   FormBuilderFilterChip({
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    bool enabled = true,
-    FocusNode? focusNode,
-    FormFieldSetter<List<T>>? onSaved,
-    FormFieldValidator<List<T>>? validator,
-    InputDecoration decoration = const InputDecoration(),
-    Key? key,
-    List<T>? initialValue,
-    required String name, // From Super
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.enabled,
+    super.focusNode,
+    super.onSaved,
+    super.validator,
+    super.decoration,
+    super.key,
+    super.initialValue,
+    required super.name,
     required this.options,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
@@ -72,23 +72,11 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
     this.spacing = 0.0,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
-    ValueChanged<List<T>?>? onChanged,
-    ValueTransformer<List<T>?>? valueTransformer,
-    VoidCallback? onReset,
+    super.onChanged,
+    super.valueTransformer,
+    super.onReset,
   })  : assert((maxChips == null) || ((initialValue ?? []).length <= maxChips)),
         super(
-          autovalidateMode: autovalidateMode,
-          decoration: decoration,
-          enabled: enabled,
-          focusNode: focusNode,
-          initialValue: initialValue,
-          key: key,
-          name: name,
-          onChanged: onChanged,
-          onReset: onReset,
-          onSaved: onSaved,
-          validator: validator,
-          valueTransformer: valueTransformer,
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderFilterChipState<T>;
             final fieldValue = field.value ?? [];

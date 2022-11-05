@@ -256,16 +256,16 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
 
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    bool enabled = true,
-    FocusNode? focusNode,
-    FormFieldSetter<T>? onSaved,
-    FormFieldValidator<T>? validator,
-    InputDecoration decoration = const InputDecoration(),
-    Key? key,
-    required String name, //From Super
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.enabled,
+    super.focusNode,
+    super.onSaved,
+    super.validator,
+    super.decoration,
+    super.key,
+    required super.name,
     required this.options,
-    T? initialValue,
+    super.initialValue,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
@@ -289,22 +289,10 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
     this.visualDensity,
-    ValueChanged<T?>? onChanged,
-    ValueTransformer<T?>? valueTransformer,
-    VoidCallback? onReset,
+    super.onChanged,
+    super.valueTransformer,
+    super.onReset,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            name: name,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            autovalidateMode: autovalidateMode,
-            onSaved: onSaved,
-            enabled: enabled,
-            onReset: onReset,
-            decoration: decoration,
-            focusNode: focusNode,
             builder: (FormFieldState<T?> field) {
               final state = field as _FormBuilderChoiceChipState<T>;
 

@@ -106,19 +106,18 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
 
   /// Creates field to select a range of values on a Slider
   FormBuilderRangeSlider({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<RangeValues>? validator,
-    RangeValues? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<RangeValues?>? onChanged,
-    ValueTransformer<RangeValues?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<RangeValues>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.min,
     required this.max,
     this.divisions,
@@ -135,18 +134,6 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     this.numberFormat,
     this.shouldRequestFocus = false,
   }) : super(
-            key: key,
-            initialValue: initialValue,
-            name: name,
-            validator: validator,
-            valueTransformer: valueTransformer,
-            onChanged: onChanged,
-            autovalidateMode: autovalidateMode,
-            onSaved: onSaved,
-            enabled: enabled,
-            onReset: onReset,
-            decoration: decoration,
-            focusNode: focusNode,
             builder: (FormFieldState<RangeValues?> field) {
               final state = field as _FormBuilderRangeSliderState;
               final effectiveNumberFormat =

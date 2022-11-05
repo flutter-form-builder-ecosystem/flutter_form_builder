@@ -10,10 +10,10 @@ class FormBuilderFieldOption<T> extends StatelessWidget {
 
   /// Creates an option for fields with selection options
   const FormBuilderFieldOption({
-    Key? key,
+    super.key,
     required this.value,
     this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

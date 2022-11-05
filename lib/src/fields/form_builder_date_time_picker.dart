@@ -127,19 +127,18 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
 
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<DateTime>? validator,
-    DateTime? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<DateTime?>? onChanged,
-    ValueTransformer<DateTime?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<DateTime>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
@@ -194,18 +193,6 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     this.anchorPoint,
     this.onEntryModeChanged,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          name: name,
-          validator: validator,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<DateTime?> field) {
             final state = field as _FormBuilderDateTimePickerState;
 

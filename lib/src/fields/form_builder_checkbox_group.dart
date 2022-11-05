@@ -27,19 +27,18 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
 
   /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
-    Key? key,
-    //From Super
-    required String name,
-    FormFieldValidator<List<T>>? validator,
-    List<T>? initialValue,
-    InputDecoration decoration = const InputDecoration(),
-    ValueChanged<List<T>?>? onChanged,
-    ValueTransformer<List<T>?>? valueTransformer,
-    bool enabled = true,
-    FormFieldSetter<List<T>>? onSaved,
-    AutovalidateMode autovalidateMode = AutovalidateMode.disabled,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
+    super.key,
+    required super.name,
+    super.validator,
+    super.initialValue,
+    super.decoration,
+    super.onChanged,
+    super.valueTransformer,
+    super.enabled,
+    super.onSaved,
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.onReset,
+    super.focusNode,
     required this.options,
     this.activeColor,
     this.checkColor,
@@ -61,18 +60,6 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
     this.orientation = OptionsOrientation.wrap,
     this.shouldRequestFocus = false,
   }) : super(
-          key: key,
-          initialValue: initialValue,
-          name: name,
-          validator: validator,
-          valueTransformer: valueTransformer,
-          onChanged: onChanged,
-          autovalidateMode: autovalidateMode,
-          onSaved: onSaved,
-          enabled: enabled,
-          onReset: onReset,
-          decoration: decoration,
-          focusNode: focusNode,
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderCheckboxGroupState<T>;
 
