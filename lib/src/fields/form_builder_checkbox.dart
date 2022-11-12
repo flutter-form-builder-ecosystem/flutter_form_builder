@@ -66,6 +66,22 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
+  /// {@macro flutter.material.checkbox.shape}
+  ///
+  /// If this property is null then [CheckboxThemeData.shape] of [ThemeData.checkboxTheme]
+  /// is used. If that's null then the shape will be a [RoundedRectangleBorder]
+  /// with a circular corner radius of 1.0.
+  final OutlinedBorder? shape;
+
+  /// {@macro flutter.material.checkbox.side}
+  ///
+  /// The given value is passed directly to [Checkbox.side].
+  ///
+  /// If this property is null, then [CheckboxThemeData.side] of
+  /// [ThemeData.checkboxTheme] is used. If that is also null, then the side
+  /// will be width 2.
+  final BorderSide? side;
+
   /// Creates a single Checkbox field
   FormBuilderCheckbox({
     super.key,
@@ -97,6 +113,8 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.shouldRequestFocus = false,
     this.subtitle,
     this.tristate = false,
+    this.shape,
+    this.side,
   }) : super(
           builder: (FormFieldState<bool?> field) {
             final state = field as _FormBuilderCheckboxState;
@@ -125,6 +143,8 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 tristate: tristate,
                 contentPadding: contentPadding,
                 selected: selected,
+                checkboxShape: shape,
+                side: side,
               ),
             );
           },
