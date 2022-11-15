@@ -97,6 +97,11 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   /// inform users what the currently selected value is with more context.
   final SemanticFormatterCallback? semanticFormatterCallback;
 
+  /// An alternative to displaying the text value of the slider.
+  final Widget? minValueWidget;
+  final Widget? valueWidget;
+  final Widget? maxValueWidget;
+
   final DisplayValues displayValues;
   final TextStyle? minTextStyle;
   final TextStyle? textStyle;
@@ -128,6 +133,9 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     this.labels,
     this.semanticFormatterCallback,
     this.displayValues = DisplayValues.all,
+    this.minValueWidget,
+    this.valueWidget,
+    this.maxValueWidget,
     this.minTextStyle,
     this.textStyle,
     this.maxTextStyle,
@@ -170,24 +178,27 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                     children: <Widget>[
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.current)
-                        Text(
-                          effectiveNumberFormat.format(min),
-                          style: minTextStyle ?? textStyle,
-                        ),
+                        minValueWidget ??
+                            Text(
+                              effectiveNumberFormat.format(min),
+                              style: minTextStyle ?? textStyle,
+                            ),
                       const Spacer(),
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.minMax)
-                        Text(
-                          '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
-                          style: textStyle,
-                        ),
+                        valueWidget ??
+                            Text(
+                              '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
+                              style: textStyle,
+                            ),
                       const Spacer(),
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.current)
-                        Text(
-                          effectiveNumberFormat.format(max),
-                          style: maxTextStyle ?? textStyle,
-                        ),
+                        maxValueWidget ??
+                            Text(
+                              effectiveNumberFormat.format(max),
+                              style: maxTextStyle ?? textStyle,
+                            ),
                     ],
                   ),
                 ],
