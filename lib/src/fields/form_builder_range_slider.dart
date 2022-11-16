@@ -98,9 +98,25 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   final SemanticFormatterCallback? semanticFormatterCallback;
 
   /// An alternative to displaying the text value of the slider.
-  final Widget? minValueWidget;
-  final Widget? valueWidget;
-  final Widget? maxValueWidget;
+  ///
+  /// Defaults to null.
+  ///
+  /// When used [minValueWidget] will override the value for the minimum widget.
+  final Widget Function(String)? minValueWidget;
+
+  /// An alternative to displaying the text value of the slider.
+  ///
+  /// Defaults to null.
+  ///
+  /// When used [valueWidget] will override the value for the selected value widget.
+  final Widget Function(String)? valueWidget;
+
+  /// An alternative to displaying the text value of the slider.
+  ///
+  /// Defaults to null.
+  ///
+  /// When used [maxValueWidget] will override the value for the maximum widget.
+  final Widget Function(String)? maxValueWidget;
 
   final DisplayValues displayValues;
   final TextStyle? minTextStyle;
@@ -178,7 +194,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                     children: <Widget>[
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.current)
-                        minValueWidget ??
+                        minValueWidget?.call(effectiveNumberFormat.format(min)) ??
                             Text(
                               effectiveNumberFormat.format(min),
                               style: minTextStyle ?? textStyle,
@@ -186,7 +202,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                       const Spacer(),
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.minMax)
-                        valueWidget ??
+                        valueWidget?.call(effectiveNumberFormat.format(min)) ??
                             Text(
                               '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
                               style: textStyle,
@@ -194,7 +210,7 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                       const Spacer(),
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.current)
-                        maxValueWidget ??
+                        maxValueWidget?.call(effectiveNumberFormat.format(min)) ??
                             Text(
                               effectiveNumberFormat.format(max),
                               style: maxTextStyle ?? textStyle,
