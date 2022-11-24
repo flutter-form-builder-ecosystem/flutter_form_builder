@@ -99,8 +99,8 @@ class FormBuilder extends StatefulWidget {
 }
 
 /// A type alias for a map of form fields.
-typedef FormBuilderFields<T>
-    = Map<String, FormBuilderFieldState<FormBuilderField<T>, T>>;
+typedef FormBuilderFields
+    = Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>;
 
 class FormBuilderState extends State<FormBuilder> {
   final _formKey = GlobalKey<FormState>();
