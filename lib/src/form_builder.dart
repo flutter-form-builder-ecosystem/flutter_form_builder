@@ -107,7 +107,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool get enabled => widget.enabled;
 
-  final _fields = <String, FormBuilderFieldState>{};
+  final FormBuilderFields _fields = {};
 
   //because dart type system will not accept ValueTransformer<dynamic>
   final _transformers = <String, Function>{};
@@ -126,7 +126,7 @@ class FormBuilderState extends State<FormBuilder> {
   /// Returns values after saving
   Map<String, dynamic> get initialValue => widget.initialValue;
 
-  Map<String, FormBuilderFieldState> get fields => _fields;
+  FormBuilderFields get fields => _fields;
 
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
