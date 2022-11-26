@@ -57,7 +57,7 @@ class _NestedFormState extends State<NestedForm> {
               final st = formKey.currentState!;
               st.saveAndValidate();
               final value = st.value;
-              print("debug form value $value");
+              debugPrint("debug form value $value");
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(value.toString())));
             },
