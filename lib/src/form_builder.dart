@@ -128,6 +128,9 @@ class FormBuilderState extends State<FormBuilder> {
 
   FormBuilderFields get fields => _fields;
 
+  // TODO add docs
+  Stream<FormBuilderFields> get onChanged => throw UnimplementedError();
+
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
     return t != null ? t.call(v) : v;
