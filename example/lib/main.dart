@@ -61,6 +61,7 @@ class _CompleteFormState extends State<CompleteForm> {
                 onChanged: () {
                   _formKey.currentState!.save();
                   debugPrint(_formKey.currentState!.value.toString());
+                  setState(() {});
                 },
                 autovalidateMode: AutovalidateMode.disabled,
                 initialValue: const {
@@ -75,7 +76,7 @@ class _CompleteFormState extends State<CompleteForm> {
                   children: <Widget>[
                     const SizedBox(height: 15),
                     StreamBuilder(
-                      stream: _formKey.currentState!.onChanged,
+                      stream: _formKey.currentState?.onChanged,
                       builder:
                           (context, AsyncSnapshot<FormBuilderFields> snapshot) {
                         if (snapshot.hasData) {
