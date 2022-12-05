@@ -74,6 +74,23 @@ class _CompleteFormState extends State<CompleteForm> {
                 child: Column(
                   children: <Widget>[
                     const SizedBox(height: 15),
+                    StreamBuilder(
+                      stream: _formKey.currentState!.onChanged,
+                      builder:
+                          (context, AsyncSnapshot<FormBuilderFields> snapshot) {
+                        if (snapshot.hasData) {
+                          final data = snapshot.data;
+
+                          return Column(
+                            children: data!.entries
+                                .map((e) => Text('${e.key}: ${e.value.value}'))
+                                .toList(),
+                          );
+                        }
+
+                        return const Text('no data');
+                      },
+                    ),
                     FormBuilderDateTimePicker(
                       name: 'date',
                       initialEntryMode: DatePickerEntryMode.calendar,
