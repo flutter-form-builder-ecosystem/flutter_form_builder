@@ -75,23 +75,23 @@ class _CompleteFormState extends State<CompleteForm> {
                 child: Column(
                   children: <Widget>[
                     const SizedBox(height: 15),
-                    StreamBuilder(
-                      stream: _formKey.currentState?.onChanged,
-                      builder:
-                          (context, AsyncSnapshot<FormBuilderFields> snapshot) {
-                        if (snapshot.hasData) {
-                          final data = snapshot.data;
+                    // StreamBuilder(
+                    //   stream: _formKey.currentState?.onChanged,
+                    //   builder:
+                    //       (context, AsyncSnapshot<FormBuilderFields> snapshot) {
+                    //     if (snapshot.hasData) {
+                    //       final data = snapshot.data;
 
-                          return Column(
-                            children: data!.entries
-                                .map((e) => Text('${e.key}: ${e.value.value}'))
-                                .toList(),
-                          );
-                        }
+                    //       return Column(
+                    //         children: data!.entries
+                    //             .map((e) => Text('${e.key}: ${e.value.value}'))
+                    //             .toList(),
+                    //       );
+                    //     }
 
-                        return const Text('no data');
-                      },
-                    ),
+                    //     return const Text('no data');
+                    //   },
+                    // ),
                     FormBuilderDateTimePicker(
                       name: 'date',
                       initialEntryMode: DatePickerEntryMode.calendar,
@@ -376,6 +376,96 @@ class _CompleteFormState extends State<CompleteForm> {
                         ),
                       ],
                       onChanged: _onChanged,
+                    ),
+                    // realtime data stream
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Realtime Data Stream',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          StreamBuilder(
+                            stream: _formKey.currentState?.onChanged,
+                            builder: (context,
+                                    AsyncSnapshot<FormBuilderFields>
+                                        snapshot) =>
+                                !snapshot.hasData
+                                    // if there are no data
+                                    ? const Center(
+                                        child: Text(
+                                          'No data yet! Change some values.',
+                                        ),
+                                      )
+                                    // if there are data
+                                    : Table(
+                                        border: TableBorder.all(),
+                                        columnWidths: const {
+                                          0: IntrinsicColumnWidth(flex: 1),
+                                          1: IntrinsicColumnWidth(flex: 2),
+                                        },
+                                        children: [
+                                          TableRow(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  'Key',
+                                                  textAlign: TextAlign.right,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  'Value',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          ...snapshot.data!.entries.map(
+                                            (e) => TableRow(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8),
+                                                  child: Text(
+                                                    e.key,
+                                                    textAlign: TextAlign.right,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8),
+                                                  child: Text(
+                                                    e.value.value.toString(),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
