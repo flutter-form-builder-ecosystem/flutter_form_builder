@@ -130,7 +130,7 @@ class FormBuilderState extends State<FormBuilder> {
 
   FormBuilderFields get fields => _fields;
 
-  // TODO add docs
+  /// A stream that informs the subscribers when the form changes.
   Stream<FormBuilderFields> get onChanged => _onChangedStreamController.stream;
 
   dynamic transformValue<T>(String name, T? v) {
