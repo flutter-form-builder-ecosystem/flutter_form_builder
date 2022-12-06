@@ -26,5 +26,31 @@ void main() {
       expect(nextChange, contains('text1'));
       expect(nextChange['text1']?.value, isNull);
     });
+
+    testWidgets('on changed', (WidgetTester tester) async {
+      await tester.runAsync(() async {
+        await tester.pumpWidget(buildTestableFieldWidget(form));
+        final widget = find.byWidget(emptyTextField);
+
+        expectLater(
+          formKey.currentState!.onChanged.map(
+            (fields) =>
+                fields.entries.map((e) => {e.key: e.value.value}).toList(),
+          ),
+          emitsInOrder([
+            [
+              {'text1': null}
+            ],
+            [
+              {'text1': 'foo'}
+            ],
+            [], // caused by `FormBuilderState.unregisterField`
+            emitsDone,
+          ]),
+        );
+
+        await tester.enterText(widget, 'foo');
+      });
+    });
   });
 }
