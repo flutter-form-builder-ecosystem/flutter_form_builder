@@ -6,18 +6,22 @@ import 'form_builder_tester.dart';
 
 void main() {
   group('onChanged --', () {
-    testWidgets('initial', (WidgetTester tester) async {
-      final key = GlobalKey<FormBuilderState>();
-      final form = FormBuilder(
-        key: key,
-        child: FormBuilderTextField(
-          key: const Key('text1'),
-          name: 'text1',
-        ),
-      );
+    late GlobalKey<FormBuilderState> formKey;
+    late FormBuilderTextField emptyTextField;
+    late FormBuilder form;
 
+    setUp(() {
+      formKey = GlobalKey<FormBuilderState>();
+      emptyTextField = FormBuilderTextField(
+        key: const Key('text1'),
+        name: 'text1',
+      );
+      form = FormBuilder(key: formKey, child: emptyTextField);
+    });
+
+    testWidgets('initial', (WidgetTester tester) async {
       await tester.pumpWidget(buildTestableFieldWidget(form));
-      final nextChange = await key.currentState!.onChanged.first;
+      final nextChange = await formKey.currentState!.onChanged.first;
 
       expect(nextChange, contains('text1'));
       expect(nextChange['text1']?.value, isNull);
