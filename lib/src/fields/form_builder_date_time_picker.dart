@@ -342,12 +342,26 @@ class _FormBuilderDateTimePickerState
 
   Future<TimeOfDay?> _showTimePicker(
       BuildContext context, DateTime? currentValue) async {
+    var builder = widget.transitionBuilder;
+    if (widget.locale != null) {
+      builder = (context, child) {
+        var transitionBuilder = widget.transitionBuilder;
+        return Localizations.override(
+          context: context,
+          locale: widget.locale,
+          child: transitionBuilder == null
+              ? child
+              : transitionBuilder(context, child),
+        );
+      };
+    }
+
     final timePickerResult = await showTimePicker(
       context: context,
       initialTime: currentValue != null
           ? TimeOfDay.fromDateTime(currentValue)
           : widget.initialTime,
-      builder: widget.transitionBuilder,
+      builder: builder,
       useRootNavigator: widget.useRootNavigator,
       routeSettings: widget.routeSettings,
       initialEntryMode: widget.timePickerInitialEntryMode,
