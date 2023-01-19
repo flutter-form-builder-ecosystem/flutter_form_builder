@@ -342,16 +342,29 @@ class _FormBuilderDateTimePickerState
 
   Future<TimeOfDay?> _showTimePicker(
       BuildContext context, DateTime? currentValue) async {
-    final timePickerResult = await showFormBuilderTimePicker(
+    var builder = widget.transitionBuilder;
+    if (widget.locale != null) {
+      builder = (context, child) {
+        var transitionBuilder = widget.transitionBuilder;
+        return Localizations.override(
+          context: context,
+          locale: widget.locale,
+          child: transitionBuilder == null
+              ? child
+              : transitionBuilder(context, child),
+        );
+      };
+    }
+
+    final timePickerResult = await showTimePicker(
       context: context,
       initialTime: currentValue != null
           ? TimeOfDay.fromDateTime(currentValue)
           : widget.initialTime,
-      builder: widget.transitionBuilder,
+      builder: builder,
       useRootNavigator: widget.useRootNavigator,
       routeSettings: widget.routeSettings,
       initialEntryMode: widget.timePickerInitialEntryMode,
-      locale: widget.locale,
       helpText: widget.helpText,
       confirmText: widget.confirmText,
       cancelText: widget.cancelText,
@@ -376,57 +389,4 @@ class _FormBuilderDateTimePickerState
     _textFieldController.text =
         (value == null) ? '' : _dateFormat.format(value);
   }
-}
-
-Future<TimeOfDay?> showFormBuilderTimePicker({
-  required BuildContext context,
-  required TimeOfDay initialTime,
-  TransitionBuilder? builder,
-  bool useRootNavigator = true,
-  TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial,
-  Locale? locale,
-  String? cancelText,
-  String? confirmText,
-  String? helpText,
-  String? errorInvalidText,
-  String? hourLabelText,
-  String? minuteLabelText,
-  RouteSettings? routeSettings,
-  EntryModeChangeCallback? onEntryModeChanged,
-  Offset? anchorPoint,
-}) async {
-  assert(context != null);
-  assert(initialTime != null);
-  assert(useRootNavigator != null);
-  assert(initialEntryMode != null);
-  assert(debugCheckHasMaterialLocalizations(context));
-
-  Widget dialog = TimePickerDialog(
-    initialTime: initialTime,
-    initialEntryMode: initialEntryMode,
-    cancelText: cancelText,
-    confirmText: confirmText,
-    helpText: helpText,
-    errorInvalidText: errorInvalidText,
-    hourLabelText: hourLabelText,
-    minuteLabelText: minuteLabelText,
-    onEntryModeChanged: onEntryModeChanged,
-  );
-  if (locale != null) {
-    dialog = Localizations.override(
-      context: context,
-      locale: locale,
-      child: dialog,
-    );
-  }
-
-  return showDialog<TimeOfDay>(
-    context: context,
-    useRootNavigator: useRootNavigator,
-    builder: (BuildContext context) {
-      return builder == null ? dialog : builder(context, dialog);
-    },
-    routeSettings: routeSettings,
-    anchorPoint: anchorPoint,
-  );
 }
