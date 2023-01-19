@@ -342,7 +342,7 @@ class _FormBuilderDateTimePickerState
 
   Future<TimeOfDay?> _showTimePicker(
       BuildContext context, DateTime? currentValue) async {
-    final timePickerResult = await showTimePicker(
+    final timePickerResult = await showFormBuilderTimePicker(
       context: context,
       initialTime: currentValue != null
           ? TimeOfDay.fromDateTime(currentValue)
@@ -351,6 +351,7 @@ class _FormBuilderDateTimePickerState
       useRootNavigator: widget.useRootNavigator,
       routeSettings: widget.routeSettings,
       initialEntryMode: widget.timePickerInitialEntryMode,
+      locale: widget.locale,
       helpText: widget.helpText,
       confirmText: widget.confirmText,
       cancelText: widget.cancelText,
@@ -375,4 +376,57 @@ class _FormBuilderDateTimePickerState
     _textFieldController.text =
         (value == null) ? '' : _dateFormat.format(value);
   }
+}
+
+Future<TimeOfDay?> showFormBuilderTimePicker({
+  required BuildContext context,
+  required TimeOfDay initialTime,
+  TransitionBuilder? builder,
+  bool useRootNavigator = true,
+  TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial,
+  Locale? locale,
+  String? cancelText,
+  String? confirmText,
+  String? helpText,
+  String? errorInvalidText,
+  String? hourLabelText,
+  String? minuteLabelText,
+  RouteSettings? routeSettings,
+  EntryModeChangeCallback? onEntryModeChanged,
+  Offset? anchorPoint,
+}) async {
+  assert(context != null);
+  assert(initialTime != null);
+  assert(useRootNavigator != null);
+  assert(initialEntryMode != null);
+  assert(debugCheckHasMaterialLocalizations(context));
+
+  Widget dialog = TimePickerDialog(
+    initialTime: initialTime,
+    initialEntryMode: initialEntryMode,
+    cancelText: cancelText,
+    confirmText: confirmText,
+    helpText: helpText,
+    errorInvalidText: errorInvalidText,
+    hourLabelText: hourLabelText,
+    minuteLabelText: minuteLabelText,
+    onEntryModeChanged: onEntryModeChanged,
+  );
+  if (locale != null) {
+    dialog = Localizations.override(
+      context: context,
+      locale: locale,
+      child: dialog,
+    );
+  }
+
+  return showDialog<TimeOfDay>(
+    context: context,
+    useRootNavigator: useRootNavigator,
+    builder: (BuildContext context) {
+      return builder == null ? dialog : builder(context, dialog);
+    },
+    routeSettings: routeSettings,
+    anchorPoint: anchorPoint,
+  );
 }
