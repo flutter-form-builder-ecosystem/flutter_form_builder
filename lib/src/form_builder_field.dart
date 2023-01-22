@@ -133,6 +133,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   @override
   void didUpdateWidget(covariant FormBuilderField<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (widget.name != oldWidget.name) {
+      _formBuilderState?.unregisterField(oldWidget.name, this);
+      _formBuilderState?.registerField(widget.name, this);
+    }
     if (widget.focusNode != oldWidget.focusNode) {
       focusAttachment?.detach();
       effectiveFocusNode.removeListener(_touchedHandler);
