@@ -284,6 +284,13 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// {@macro flutter.services.autofill.autofillHints}
   final Iterable<String>? autofillHints;
 
+  ///{@macro flutter.widgets.text_selection.TextMagnifierConfiguration.intro}
+  ///
+  ///{@macro flutter.widgets.magnifier.intro}
+  ///
+  ///{@macro flutter.widgets.text_selection.TextMagnifierConfiguration.details}
+  final TextMagnifierConfiguration? magnifierConfiguration;
+
   /// Creates a Material Design text field input.
   FormBuilderTextField({
     super.key,
@@ -341,6 +348,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     this.autofillHints,
     this.obscuringCharacter = '•',
     this.mouseCursor,
+    this.magnifierConfiguration,
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
         assert(maxLines == null || maxLines > 0),
@@ -409,6 +417,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
               mouseCursor: mouseCursor,
               obscuringCharacter: obscuringCharacter,
               autofillHints: autofillHints,
+              magnifierConfiguration: magnifierConfiguration,
             );
           },
         );
