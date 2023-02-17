@@ -1,3 +1,5 @@
+import 'package:example/sources/nested_form.dart';
+
 import 'sources/custom_fields.dart';
 import 'package:example/sources/signup_form.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +17,24 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Flutter Form Builder')),
       body: ListView(
         children: <Widget>[
+          ListTile(
+            title: const Text('Nested Form'),
+            trailing: const Icon(CupertinoIcons.right_chevron),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CodePage(
+                      title: 'Nested Form',
+                      sourceFilePath: 'lib/sources/nested_form.dart',
+                      child: NestedForm(),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+          const Divider(),
           ListTile(
             title: const Text('Complete Form'),
             trailing: const Icon(CupertinoIcons.right_chevron),
