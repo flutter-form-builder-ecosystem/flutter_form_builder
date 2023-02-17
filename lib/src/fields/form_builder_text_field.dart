@@ -73,12 +73,14 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// {@macro flutter.widgets.editableText.expands}
   final bool expands;
 
-  /// Configuration of toolbar options.
+  /// {@macro flutter.widgets.EditableText.contextMenuBuilder}
   ///
-  /// If not set, select all and paste will default to be enabled. Copy and cut
-  /// will be disabled if [obscureText] is true. If [readOnly] is true,
-  /// paste and cut will be disabled regardless.
-  final ToolbarOptions? toolbarOptions;
+  /// If not provided, will build a default menu based on the platform.
+  ///
+  /// See also:
+  ///
+  ///  * [AdaptiveTextSelectionToolbar], which is built by default.
+  final EditableTextContextMenuBuilder? contextMenuBuilder;
 
   /// {@macro flutter.widgets.editableText.showCursor}
   final bool? showCursor;
@@ -284,6 +286,13 @@ class FormBuilderTextField extends FormBuilderField<String> {
   /// {@macro flutter.services.autofill.autofillHints}
   final Iterable<String>? autofillHints;
 
+  ///{@macro flutter.widgets.text_selection.TextMagnifierConfiguration.intro}
+  ///
+  ///{@macro flutter.widgets.magnifier.intro}
+  ///
+  ///{@macro flutter.widgets.text_selection.TextMagnifierConfiguration.details}
+  final TextMagnifierConfiguration? magnifierConfiguration;
+
   /// Creates a Material Design text field input.
   FormBuilderTextField({
     super.key,
@@ -336,11 +345,12 @@ class FormBuilderTextField extends FormBuilderField<String> {
     this.selectionWidthStyle = ui.BoxWidthStyle.tight,
     this.smartDashesType,
     this.smartQuotesType,
-    this.toolbarOptions,
     this.selectionHeightStyle = ui.BoxHeightStyle.tight,
     this.autofillHints,
     this.obscuringCharacter = '•',
     this.mouseCursor,
+    this.contextMenuBuilder,
+    this.magnifierConfiguration,
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
         assert(maxLines == null || maxLines > 0),
@@ -405,10 +415,11 @@ class FormBuilderTextField extends FormBuilderField<String> {
               selectionWidthStyle: selectionWidthStyle,
               smartDashesType: smartDashesType,
               smartQuotesType: smartQuotesType,
-              toolbarOptions: toolbarOptions,
               mouseCursor: mouseCursor,
+              contextMenuBuilder: contextMenuBuilder,
               obscuringCharacter: obscuringCharacter,
               autofillHints: autofillHints,
+              magnifierConfiguration: magnifierConfiguration,
             );
           },
         );
