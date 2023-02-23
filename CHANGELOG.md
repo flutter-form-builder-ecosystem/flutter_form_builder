@@ -1,3 +1,14 @@
+## [7.8.0]
+
+* Remove deprecated property toggleableActiveColor
+* Add widget tests for FormBuilderRangeSlider
+* Add tests for FormBuilderDateRangePicker
+* Add OutlinedBorder shape BorderSide side to FormBuilderCheckbox
+* Add FormBuilderFields type alias
+* Able to change dynamically field name
+* Fix time picker dialog locale
+* Provide magnifier configuration parameter to form builder text field
+
 ## [7.7.0]
 
 * Added cursorHeight property for form builder text field ([#1112](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1112))
