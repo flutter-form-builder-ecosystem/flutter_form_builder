@@ -337,9 +337,9 @@ You can join to [our Discord server](https://discord.gg/25KNPMJQf2) or search an
 
 ### Donations
 
-Buy a coffe to [Danvick Miller](https://twitter.com/danvickmiller), creator of this awesome package
+Donate or become a sponsor of Flutter Form Builder Ecosystem
 
-[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg)](https://www.buymeacoffee.com/danvick)
+[![Become a Sponsor](https://opencollective.com/flutter-form-builder-ecosystem/tiers/sponsor.svg?avatarHeight=56)](https://opencollective.com/flutter-form-builder-ecosystem)
 
 ## Roadmap
 
