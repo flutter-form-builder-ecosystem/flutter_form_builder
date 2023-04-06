@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -113,6 +114,7 @@ class FormBuilderState extends State<FormBuilder> {
   final _transformers = <String, Function>{};
   final _instantValue = <String, dynamic>{};
   final _savedValue = <String, dynamic>{};
+  final _onChangedStreamController = StreamController<FormBuilderFields>();
 
   Map<String, dynamic> get instantValue =>
       Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
@@ -127,6 +129,9 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, dynamic> get initialValue => widget.initialValue;
 
   FormBuilderFields get fields => _fields;
+
+  /// A stream that informs the subscribers when the form changes.
+  Stream<FormBuilderFields> get onChanged => _onChangedStreamController.stream;
 
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
@@ -149,6 +154,7 @@ class FormBuilderState extends State<FormBuilder> {
       setState(() {});
     }
     widget.onChanged?.call();
+    _onChangedStreamController.add(fields);
   }
 
   bool get isValid =>
@@ -162,6 +168,7 @@ class FormBuilderState extends State<FormBuilder> {
     if (isSetState) {
       setState(() {});
     }
+    _onChangedStreamController.add(fields);
   }
 
   void registerField(String name, FormBuilderFieldState field) {
@@ -192,6 +199,7 @@ class FormBuilderState extends State<FormBuilder> {
         populateForm: false,
       );
     }
+    _onChangedStreamController.add(fields);
   }
 
   void unregisterField(String name, FormBuilderFieldState field) {
@@ -216,6 +224,7 @@ class FormBuilderState extends State<FormBuilder> {
         return true;
       }());
     }
+    _onChangedStreamController.add(fields);
   }
 
   void save() {
@@ -268,6 +277,12 @@ class FormBuilderState extends State<FormBuilder> {
     val.forEach((key, dynamic value) {
       _fields[key]?.didChange(value);
     });
+  }
+
+  @override
+  void dispose() {
+    _onChangedStreamController.close();
+    super.dispose();
   }
 
   @override

@@ -319,6 +319,27 @@ FormBuilderTextField(
 ),
 ```
 
+#### Stream for Real-time Form Changes
+
+You can subscribe to the stream on [FormBuilderState.onChanged](https://pub.dev/documentation/flutter_form_builder/latest/flutter_form_builder/FormBuilderState/onChanged.html) in order to react to the changes in real-time. You can use this stream in a `StreamBuilder` widget, an example would be:
+
+```dart
+StreamBuilder(
+  stream: _formKey.currentState?.onChanged,
+  builder: (context, AsyncSnapshot<FormBuilderFields> snapshot) {
+    if (!snapshot.hasData) {
+      // if there are data, render a widget
+    } else {
+      // if there are no data, render a widget
+    }
+  },
+)
+```
+
+You can see a further example in the example app.
+
+You can also use this stream with [Bloc library](https://bloclibrary.dev).
+
 ## Support
 
 ### Contribute
