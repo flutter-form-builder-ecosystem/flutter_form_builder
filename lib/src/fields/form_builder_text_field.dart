@@ -349,7 +349,7 @@ class FormBuilderTextField extends FormBuilderField<String> {
     this.autofillHints,
     this.obscuringCharacter = '•',
     this.mouseCursor,
-    this.contextMenuBuilder,
+    this.contextMenuBuilder = _defaultContextMenuBuilder,
     this.magnifierConfiguration,
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
@@ -423,6 +423,15 @@ class FormBuilderTextField extends FormBuilderField<String> {
             );
           },
         );
+
+  static Widget _defaultContextMenuBuilder(
+    BuildContext context,
+    EditableTextState editableTextState,
+  ) {
+    return AdaptiveTextSelectionToolbar.editableText(
+      editableTextState: editableTextState,
+    );
+  }
 
   @override
   FormBuilderFieldState<FormBuilderTextField, String> createState() =>
