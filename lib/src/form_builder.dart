@@ -63,6 +63,9 @@ class FormBuilder extends StatefulWidget {
   /// Whether the form should auto focus on the first field that fails validation.
   final bool autoFocusOnValidationFailure;
 
+  /// Whether the form should scroll to the first field that fails validation.
+  final bool autoScrollToInvalidField;
+
   /// Whether to clear the internal value of a field when it is unregistered.
   ///
   /// Defaults to `false`.
@@ -88,6 +91,7 @@ class FormBuilder extends StatefulWidget {
     this.skipDisabled = false,
     this.enabled = true,
     this.autoFocusOnValidationFailure = false,
+    this.autoScrollToInvalidField = false,
     this.clearValueOnUnregister = false,
   });
 
@@ -226,18 +230,34 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void invalidateField({required String name, String? errorText}) =>
-      fields[name]?.invalidate(errorText ?? '');
+      fields[name]?.invalidate(
+        errorText ?? '',
+        shouldAutofocus: widget.autoFocusOnValidationFailure,
+        shouldScrollToInvalidField: widget.autoScrollToInvalidField,
+      );
 
   void invalidateFirstField({required String errorText}) =>
-      fields.values.first.invalidate(errorText);
+      fields.values.first.invalidate(
+        errorText,
+        shouldAutofocus: widget.autoFocusOnValidationFailure,
+        shouldScrollToInvalidField: widget.autoScrollToInvalidField,
+      );
 
   bool validate() {
     final hasError = !_formKey.currentState!.validate();
-    if (hasError && widget.autoFocusOnValidationFailure) {
+    if (hasError) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
-      wrongFields.first.requestFocus();
+
+      if (widget.autoFocusOnValidationFailure) {
+        wrongFields.first.requestFocus();
+      }
+
+      if (widget.autoScrollToInvalidField) {
+        wrongFields.first.ensureScrollableVisibility();
+      }
     }
+
     return !hasError;
   }
 
