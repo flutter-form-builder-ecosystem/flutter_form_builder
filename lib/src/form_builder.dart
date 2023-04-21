@@ -60,9 +60,6 @@ class FormBuilder extends StatefulWidget {
   /// and their enabled state will be ignored.
   final bool enabled;
 
-  /// Whether the form should auto focus on the first field that fails validation.
-  final bool autoFocusOnValidationFailure;
-
   /// Whether to clear the internal value of a field when it is unregistered.
   ///
   /// Defaults to `false`.
@@ -87,7 +84,6 @@ class FormBuilder extends StatefulWidget {
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
     this.enabled = true,
-    this.autoFocusOnValidationFailure = false,
     this.clearValueOnUnregister = false,
   });
 
@@ -182,16 +178,11 @@ class FormBuilderState extends State<FormBuilder> {
 
     _fields[name] = field;
     field.registerTransformer(_transformers);
-    if (oldField != null) {
-      // ignore: invalid_use_of_protected_member
-      field.setValue(oldField.value, populateForm: false);
-    } else {
-      // ignore: invalid_use_of_protected_member
-      field.setValue(
-        _instantValue[name] ??= field.initialValue,
-        populateForm: false,
-      );
-    }
+
+    field.setValue(
+      oldField?.value ?? (_instantValue[name] ??= field.initialValue),
+      populateForm: false,
+    );
   }
 
   void unregisterField(String name, FormBuilderFieldState field) {
@@ -220,48 +211,78 @@ class FormBuilderState extends State<FormBuilder> {
 
   void save() {
     _formKey.currentState!.save();
-    //copy values from instant to saved
+    // Copy values from instant to saved
     _savedValue.clear();
     _savedValue.addAll(_instantValue);
   }
 
+  @Deprecated(
+      'Will be remove to avoid redundancy. Use fields[name]?.invalidate(errorText) instead')
   void invalidateField({required String name, String? errorText}) =>
       fields[name]?.invalidate(errorText ?? '');
 
+  @Deprecated(
+      'Will be remove to avoid redundancy. Use fields.first.invalidate(errorText) instead')
   void invalidateFirstField({required String errorText}) =>
       fields.values.first.invalidate(errorText);
 
-  bool validate() {
+  /// Validate all fields of form
+  ///
+  /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
+  /// By default `true`
+  ///
+  /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// By default `false`.
+  bool validate({
+    bool focusOnInvalid = true,
+    bool autoScrollWhenFocusOnInvalid = false,
+  }) {
     final hasError = !_formKey.currentState!.validate();
-    if (hasError && widget.autoFocusOnValidationFailure) {
+    if (hasError) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
-      wrongFields.first.requestFocus();
+      if (focusOnInvalid) {
+        wrongFields.first.focus();
+      }
+      if (autoScrollWhenFocusOnInvalid) {
+        wrongFields.first.ensureScrollableVisibility();
+      }
     }
     return !hasError;
   }
 
-  bool saveAndValidate() {
+  /// Save form values and validate all fields of form
+  ///
+  /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
+  /// By default `true`
+  ///
+  /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// By default `false`.
+  bool saveAndValidate({
+    bool focusOnInvalid = true,
+    bool autoScrollWhenFocusOnInvalid = false,
+  }) {
     save();
-    return validate();
+    return validate(
+      focusOnInvalid: focusOnInvalid,
+      autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+    );
   }
 
   void reset() {
-    log('reset called');
     _formKey.currentState!.reset();
-    for (var item in _fields.entries) {
+    for (var field in _fields.entries) {
       try {
-        item.value.didChange(getRawValue(item.key));
+        field.value.didChange(getRawValue(field.key));
       } catch (e, st) {
         log(
-          'Error when resetting field: ${item.key}',
+          'Error when resetting field: ${field.key}',
           error: e,
           stackTrace: st,
           level: 2000,
         );
       }
     }
-    // _formKey.currentState!.setState(() {});
   }
 
   void patchValue(Map<String, dynamic> val) {

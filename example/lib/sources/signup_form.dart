@@ -111,8 +111,8 @@ class _SignupFormState extends State<SignupForm> {
                     if (_formKey.currentState?.saveAndValidate() ?? false) {
                       if (true) {
                         // Either invalidate using Form Key
-                        _formKey.currentState?.invalidateField(
-                            name: 'email', errorText: 'Email already taken.');
+                        _formKey.currentState?.fields['email']
+                            ?.invalidate('Email already taken.');
                         // OR invalidate using Field Key
                         // _emailFieldKey.currentState?.invalidate('Email already taken.');
                       }
