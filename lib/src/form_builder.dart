@@ -233,6 +233,11 @@ class FormBuilderState extends State<FormBuilder> {
   ///
   /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
   /// By default `false`.
+  ///
+  /// Note: If a invalid field is from type **TextField** and will focused,
+  /// the form will auto scroll to show this invalid field.
+  /// In this case, the automatic scroll happens because is a behavior inside the framework,
+  /// not because [autoScrollWhenFocusOnInvalid] is `true`.
   bool validate({
     bool focusOnInvalid = true,
     bool autoScrollWhenFocusOnInvalid = false,
@@ -258,6 +263,11 @@ class FormBuilderState extends State<FormBuilder> {
   ///
   /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
   /// By default `false`.
+  ///
+  /// Note: If a invalid field is from type **TextField** and will focused,
+  /// the form will auto scroll to show this invalid field.
+  /// In this case, the automatic scroll happens because is a behavior inside the framework,
+  /// not because [autoScrollWhenFocusOnInvalid] is `true`.
   bool saveAndValidate({
     bool focusOnInvalid = true,
     bool autoScrollWhenFocusOnInvalid = false,

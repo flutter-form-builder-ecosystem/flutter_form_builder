@@ -214,6 +214,11 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   ///
   /// Auto scroll when focus invalid if [autoScrollWhenFocusOnInvalid] is `true`.
   /// By default `false`.
+  ///
+  /// Note: If a invalid field is from type **TextField** and will focused,
+  /// the form will auto scroll to show this invalid field.
+  /// In this case, the automatic scroll happens because is a behavior inside the framework,
+  /// not because [autoScrollWhenFocusOnInvalid] is `true`.
   @override
   bool validate({
     bool clearCustomError = true,
@@ -238,18 +243,23 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// Focus field if [shoudlFocus] is `true`.
   /// By default `true`
   ///
-  /// Auto scroll when focus invalid if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// Auto scroll when focus invalid if [shouldAutoScrollWhenFocus] is `true`.
   /// By default `false`.
+  ///
+  /// Note: If a invalid field is from type **TextField** and will focused,
+  /// the form will auto scroll to show this invalid field.
+  /// In this case, the automatic scroll happens because is a behavior inside the framework,
+  /// not because [shouldAutoScrollWhenFocus] is `true`.
   void invalidate(
     String errorText, {
     bool shoudlFocus = true,
-    bool autoScrollWhenFocusOnInvalid = false,
+    bool shouldAutoScrollWhenFocus = false,
   }) {
     setState(() => _customErrorText = errorText);
 
     validate(
       clearCustomError: false,
-      autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+      autoScrollWhenFocusOnInvalid: shouldAutoScrollWhenFocus,
       focusOnInvalid: shoudlFocus,
     );
   }
