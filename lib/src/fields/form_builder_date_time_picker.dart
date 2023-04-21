@@ -139,6 +139,7 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.restorationId,
     this.inputType = InputType.both,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,

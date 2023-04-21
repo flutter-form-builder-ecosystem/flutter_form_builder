@@ -127,7 +127,6 @@ class FormBuilderSlider extends FormBuilderField<double> {
   final TextStyle? minTextStyle;
   final TextStyle? textStyle;
   final TextStyle? maxTextStyle;
-  final bool shouldRequestFocus;
 
   /// Creates field for selection of a numerical value on a slider
   FormBuilderSlider({
@@ -143,6 +142,7 @@ class FormBuilderSlider extends FormBuilderField<double> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.restorationId,
     required this.min,
     required this.max,
     this.divisions,
@@ -159,7 +159,6 @@ class FormBuilderSlider extends FormBuilderField<double> {
     this.maxTextStyle,
     this.autofocus = false,
     this.mouseCursor,
-    this.shouldRequestFocus = false,
   }) : super(
           builder: (FormFieldState<double?> field) {
             final state = field as _FormBuilderSliderState;
@@ -186,9 +185,6 @@ class FormBuilderSlider extends FormBuilderField<double> {
                       semanticFormatterCallback: semanticFormatterCallback,
                       onChanged: state.enabled
                           ? (value) {
-                              if (shouldRequestFocus) {
-                                state.requestFocus();
-                              }
                               field.didChange(value);
                             }
                           : null,

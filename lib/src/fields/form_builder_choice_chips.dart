@@ -3,8 +3,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
 class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
-  final bool shouldRequestFocus;
-
   /// The list of items the user can select.
   final List<FormBuilderChipOption<T>> options;
 
@@ -266,6 +264,10 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     required super.name,
     required this.options,
     super.initialValue,
+    super.restorationId,
+    super.onChanged,
+    super.valueTransformer,
+    super.onReset,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
@@ -284,14 +286,10 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
     this.selectedShadowColor,
     this.shadowColor,
     this.shape,
-    this.shouldRequestFocus = false,
     this.spacing = 0.0,
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
     this.visualDensity,
-    super.onChanged,
-    super.valueTransformer,
-    super.onReset,
   }) : super(builder: (FormFieldState<T?> field) {
           final state = field as _FormBuilderChoiceChipState<T>;
 
@@ -315,9 +313,6 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
                     onSelected: state.enabled
                         ? (selected) {
                             final choice = selected ? option.value : null;
-                            if (shouldRequestFocus) {
-                              state.requestFocus();
-                            }
                             state.didChange(choice);
                           }
                         : null,

@@ -43,8 +43,6 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
-  final bool shouldRequestFocus;
-
   /// If true the checkbox's [value] can be true, false, or null.
   ///
   /// Checkbox displays a dash when its value is null.
@@ -102,6 +100,7 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.restorationId,
     required this.title,
     this.activeColor,
     this.autofocus = false,
@@ -110,7 +109,6 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
     this.controlAffinity = ListTileControlAffinity.leading,
     this.secondary,
     this.selected = false,
-    this.shouldRequestFocus = false,
     this.subtitle,
     this.tristate = false,
     this.shape,
@@ -129,9 +127,6 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
                 value: tristate ? state.value : (state.value ?? false),
                 onChanged: state.enabled
                     ? (value) {
-                        if (shouldRequestFocus) {
-                          state.requestFocus();
-                        }
                         state.didChange(value);
                       }
                     : null,

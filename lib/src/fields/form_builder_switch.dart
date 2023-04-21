@@ -76,8 +76,6 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
-  final bool shouldRequestFocus;
-
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -95,6 +93,7 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.restorationId,
     required this.title,
     this.activeColor,
     this.activeTrackColor,
@@ -107,7 +106,6 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
     this.controlAffinity = ListTileControlAffinity.trailing,
     this.contentPadding = EdgeInsets.zero,
     this.autofocus = false,
-    this.shouldRequestFocus = false,
     this.selected = false,
   }) : super(
           builder: (FormFieldState<bool?> field) {
@@ -123,9 +121,6 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
                 value: state.value ?? false,
                 onChanged: state.enabled
                     ? (value) {
-                        if (shouldRequestFocus) {
-                          state.requestFocus();
-                        }
                         field.didChange(value);
                       }
                     : null,
