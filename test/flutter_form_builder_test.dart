@@ -129,6 +129,54 @@ void main() {
       expect(2, formInstantValue(testWidgetName));
     },
   );
+
+  testWidgets(
+      'Should not show error when field is not enabled and skipDisabled is true',
+      (tester) async {
+    const textFieldName = 'text3';
+    const errorTextField = 'error text field';
+    final testWidget = FormBuilderTextField(
+      name: textFieldName,
+      enabled: false,
+      validator: (value) => errorTextField,
+    );
+    await tester.pumpWidget(buildTestableFieldWidget(
+      testWidget,
+      skipDisabled: true,
+    ));
+
+    formKey.currentState?.validate();
+    await tester.pumpAndSettle();
+    expect(find.text(errorTextField), findsNothing);
+
+    formKey.currentState?.fields[textFieldName]?.validate();
+    await tester.pumpAndSettle();
+    expect(find.text(errorTextField), findsNothing);
+  });
+  testWidgets(
+      'Should show error when field is not enabled and skipDisabled is false',
+      (tester) async {
+    const textFieldName = 'text4';
+    const errorTextField = 'error text field';
+    final testWidget = FormBuilderTextField(
+      name: textFieldName,
+      enabled: false,
+      validator: (value) => errorTextField,
+    );
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    formKey.currentState?.validate();
+    await tester.pumpAndSettle();
+    expect(find.text(errorTextField), findsOneWidget);
+
+    formKey.currentState?.reset();
+    await tester.pumpAndSettle();
+    expect(find.text(errorTextField), findsNothing);
+
+    formKey.currentState?.fields[textFieldName]?.validate();
+    await tester.pumpAndSettle();
+    expect(find.text(errorTextField), findsOneWidget);
+  });
 }
 
 // simple stateful widget that can hide and show its child with the intent of

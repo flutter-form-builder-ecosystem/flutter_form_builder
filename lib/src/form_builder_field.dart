@@ -112,6 +112,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   bool _touched = false;
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
+  bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
 
   late FocusNode effectiveFocusNode;
   FocusAttachment? focusAttachment;
@@ -167,7 +168,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void _informFormForFieldChange({required bool isSetState}) {
     if (_formBuilderState != null) {
-      if (enabled || !_formBuilderState!.widget.skipDisabled) {
+      if (enabled || _readOnly) {
         _formBuilderState!.setInternalFieldValue<T>(
           widget.name,
           value,
@@ -233,6 +234,9 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   InputDecoration get decoration => widget.decoration.copyWith(
-        errorText: widget.decoration.errorText ?? errorText,
+        errorText: widget.enabled || _readOnly
+            ? widget.decoration.errorText ?? errorText
+            : null,
+        enabled: widget.enabled || _readOnly,
       );
 }
