@@ -129,12 +129,19 @@ class _CompleteFormState extends State<CompleteForm> {
                     ),
                     FormBuilderRangeSlider(
                       name: 'range_slider',
-                      // validator: FormBuilderValidators.compose([FormBuilderValidators.min(context, 6)]),
                       onChanged: _onChanged,
                       min: 0.0,
                       max: 100.0,
                       initialValue: const RangeValues(4, 7),
                       divisions: 20,
+                      maxValueWidget: (max) => TextButton(
+                        onPressed: () {
+                          _formKey.currentState?.patchValue(
+                            {'range_slider': const RangeValues(4, 100)},
+                          );
+                        },
+                        child: Text(max),
+                      ),
                       activeColor: Colors.red,
                       inactiveColor: Colors.pink[100],
                       decoration:
