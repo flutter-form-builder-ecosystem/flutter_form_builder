@@ -42,5 +42,24 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text(errorTextField), findsNothing);
     });
+    testWidgets(
+        'Should show error when init form and AutovalidateMode is always',
+        (tester) async {
+      const textFieldName = 'text4';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) => errorTextField,
+      );
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testWidget,
+          autovalidateMode: AutovalidateMode.always,
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text(errorTextField), findsOneWidget);
+    });
   });
 }

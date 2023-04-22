@@ -72,6 +72,10 @@ class FormBuilderField<T> extends FormField<T> {
 class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     extends FormFieldState<T> {
   String? _customErrorText;
+  FormBuilderState? _formBuilderState;
+  bool _touched = false;
+  late FocusNode effectiveFocusNode;
+  FocusAttachment? focusAttachment;
 
   @override
   F get widget => super.widget as F;
@@ -86,16 +90,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
       (_formBuilderState?.initialValue ??
           const <String, dynamic>{})[widget.name] as T?;
 
-  FormBuilderState? _formBuilderState;
-
   dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
-
-  void registerTransformer(Map<String, Function> map) {
-    final fun = widget.valueTransformer;
-    if (fun != null) {
-      map[widget.name] = fun;
-    }
-  }
 
   @override
   String? get errorText => super.errorText ?? _customErrorText;
@@ -108,13 +103,22 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   bool get isValid =>
       super.isValid && decoration.errorText == null && errorText == null;
 
-  bool _touched = false;
-
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
 
-  late FocusNode effectiveFocusNode;
-  FocusAttachment? focusAttachment;
+  InputDecoration get decoration => widget.decoration.copyWith(
+        errorText: widget.enabled || _readOnly
+            ? widget.decoration.errorText ?? errorText
+            : null,
+        enabled: widget.enabled || _readOnly,
+      );
+
+  void registerTransformer(Map<String, Function> map) {
+    final fun = widget.valueTransformer;
+    if (fun != null) {
+      map[widget.name] = fun;
+    }
+  }
 
   @override
   void initState() {
@@ -128,6 +132,16 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     // Register a touch handler
     effectiveFocusNode.addListener(_touchedHandler);
     focusAttachment = effectiveFocusNode.attach(context);
+
+    // Verify if need auto validate form
+    if ((enabled || _readOnly) &&
+        (widget.autovalidateMode == AutovalidateMode.always ||
+            _formBuilderState?.widget.autovalidateMode ==
+                AutovalidateMode.always)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        validate();
+      });
+    }
   }
 
   @override
@@ -272,11 +286,4 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void ensureScrollableVisibility() {
     Scrollable.ensureVisible(context);
   }
-
-  InputDecoration get decoration => widget.decoration.copyWith(
-        errorText: widget.enabled || _readOnly
-            ? widget.decoration.errorText ?? errorText
-            : null,
-        enabled: widget.enabled || _readOnly,
-      );
 }
