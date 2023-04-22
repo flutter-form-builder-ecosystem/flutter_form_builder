@@ -177,6 +177,20 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(errorTextField), findsOneWidget);
   });
+  testWidgets('Should show error when init form and AutovalidateMode is always',
+      (tester) async {
+    const textFieldName = 'text4';
+    const errorTextField = 'error text field';
+    final testWidget = FormBuilderTextField(
+      name: textFieldName,
+      validator: (value) => errorTextField,
+      autovalidateMode: AutovalidateMode.always,
+    );
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+    await tester.pumpAndSettle();
+
+    expect(find.text(errorTextField), findsOneWidget);
+  });
 }
 
 // simple stateful widget that can hide and show its child with the intent of
