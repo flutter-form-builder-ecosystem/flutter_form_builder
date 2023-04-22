@@ -97,10 +97,28 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   /// inform users what the currently selected value is with more context.
   final SemanticFormatterCallback? semanticFormatterCallback;
 
+  /// An alternative to displaying the text value of the slider.
+  ///
+  /// Defaults to null.
+  ///
+  /// When used [minValueWidget] will override the value for the minimum widget.
+  final Widget Function(String min)? minValueWidget;
+
+  /// An alternative to displaying the text value of the slider.
+  ///
+  /// Defaults to null.
+  ///
+  /// When used [valueWidget] will override the value for the selected value widget.
+  final Widget Function(String value)? valueWidget;
+
+  /// An alternative to displaying the text value of the slider.
+  ///
+  /// Defaults to null.
+  ///
+  /// When used [maxValueWidget] will override the value for the maximum widget.
+  final Widget Function(String max)? maxValueWidget;
+
   final DisplayValues displayValues;
-  final TextStyle? minTextStyle;
-  final TextStyle? textStyle;
-  final TextStyle? maxTextStyle;
   final NumberFormat? numberFormat;
   final bool shouldRequestFocus;
 
@@ -128,9 +146,9 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
     this.labels,
     this.semanticFormatterCallback,
     this.displayValues = DisplayValues.all,
-    this.minTextStyle,
-    this.textStyle,
-    this.maxTextStyle,
+    this.minValueWidget,
+    this.valueWidget,
+    this.maxValueWidget,
     this.numberFormat,
     this.shouldRequestFocus = false,
   }) : super(builder: (FormFieldState<RangeValues?> field) {
@@ -170,24 +188,22 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
                     children: <Widget>[
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.current)
-                        Text(
-                          effectiveNumberFormat.format(min),
-                          style: minTextStyle ?? textStyle,
-                        ),
+                        minValueWidget
+                                ?.call(effectiveNumberFormat.format(min)) ??
+                            Text(effectiveNumberFormat.format(min)),
                       const Spacer(),
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.minMax)
-                        Text(
-                          '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
-                          style: textStyle,
-                        ),
+                        valueWidget?.call(
+                                '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}') ??
+                            Text(
+                                '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}'),
                       const Spacer(),
                       if (displayValues != DisplayValues.none &&
                           displayValues != DisplayValues.current)
-                        Text(
-                          effectiveNumberFormat.format(max),
-                          style: maxTextStyle ?? textStyle,
-                        ),
+                        maxValueWidget
+                                ?.call(effectiveNumberFormat.format(max)) ??
+                            Text(effectiveNumberFormat.format(max)),
                     ],
                   ),
                 ],
