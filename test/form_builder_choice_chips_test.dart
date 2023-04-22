@@ -11,7 +11,6 @@ void main() {
       const widgetName = 'cc1';
 
       final testWidget = FormBuilderChoiceChip<int>(
-        shouldRequestFocus: false,
         name: widgetName,
         options: const [
           FormBuilderChipOption(key: ValueKey('1'), value: 1),
@@ -38,7 +37,6 @@ void main() {
       const widgetName = 'cc2';
 
       final testWidget = FormBuilderChoiceChip<int>(
-        shouldRequestFocus: false,
         name: widgetName,
         options: const [
           FormBuilderChipOption(key: ValueKey('1'), value: 1),
@@ -64,7 +62,6 @@ void main() {
       const widgetName = 'cc3';
 
       final testWidget = FormBuilderChoiceChip<int>(
-        shouldRequestFocus: false,
         name: widgetName,
         initialValue: 1,
         options: const [

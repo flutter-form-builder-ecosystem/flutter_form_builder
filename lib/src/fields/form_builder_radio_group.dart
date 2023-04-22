@@ -5,7 +5,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 /// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
   final Axis wrapDirection;
-  final bool shouldRadioRequestFocus;
   final Color? activeColor;
   final Color? focusColor;
   final Color? hoverColor;
@@ -35,7 +34,6 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     required super.name,
     required this.options,
     super.initialValue,
-    this.shouldRadioRequestFocus = false,
     this.activeColor,
     this.controlAffinity = ControlAffinity.leading,
     this.disabled,
@@ -55,6 +53,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
     super.onChanged,
     super.valueTransformer,
     super.onReset,
+    super.restorationId,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderRadioGroupState<T>;
@@ -71,9 +70,6 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
                 hoverColor: hoverColor,
                 materialTapTargetSize: materialTapTargetSize,
                 onChanged: (value) {
-                  if (shouldRadioRequestFocus) {
-                    state.requestFocus();
-                  }
                   state.didChange(value);
                 },
                 options: options,

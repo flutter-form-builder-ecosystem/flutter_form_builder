@@ -15,13 +15,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// the [decoration.hint] widget will be displayed instead.
   final List<DropdownMenuItem<T>> items;
 
-  /// A placeholder widget that is displayed by the dropdown button.
-  ///
-  /// If [value] is null, this widget is displayed as a placeholder for
-  /// the dropdown button's value. This widget is also displayed if the button
-  /// is disabled ([items] or [onChanged] is null) and [disabledHint] is null.
-  final Widget? hint;
-
   /// A message to show when the dropdown is disabled.
   ///
   /// Displayed if [items] or [onChanged] is null. If [decoration.hint] and
@@ -179,9 +172,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// instead.
   final Color? dropdownColor;
 
-  final bool allowClear;
-  final Widget clearIcon;
-
   /// The maximum height of the menu.
   ///
   /// The maximum height of the menu must be at least one row shorter than
@@ -192,8 +182,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
   /// mentioned above, then the menu defaults to being padded at the top
   /// and bottom of the menu by at one menu item's height.
   final double? menuMaxHeight;
-
-  final bool shouldRequestFocus;
 
   /// Whether detected gestures should provide acoustic and/or haptic feedback.
   ///
@@ -241,25 +229,19 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.restorationId,
     required this.items,
     this.isExpanded = true,
     this.isDense = true,
     this.elevation = 8,
     this.iconSize = 24.0,
-    @Deprecated('Please use decoration.hint and variations to set your desired label')
-        this.hint,
     this.style,
     this.disabledHint,
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
-    @Deprecated('Please use decoration.suffix to set your desired behavior')
-        this.allowClear = false,
-    @Deprecated('Please use decoration.suffixIcon to set your desired icon')
-        this.clearIcon = const Icon(Icons.close),
     this.onTap,
     this.autofocus = false,
-    this.shouldRequestFocus = false,
     this.dropdownColor,
     this.focusColor,
     this.itemHeight,
@@ -273,9 +255,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
             final state = field as _FormBuilderDropdownState<T>;
 
             void changeValue(T? value) {
-              if (shouldRequestFocus) {
-                state.requestFocus();
-              }
               state.didChange(value);
             }
 
@@ -285,7 +264,6 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<T>(
                   isExpanded: isExpanded,
-                  hint: hint,
                   items: items,
                   value: field.value,
                   style: style,

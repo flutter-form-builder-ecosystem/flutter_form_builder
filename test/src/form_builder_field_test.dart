@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../form_builder_tester.dart';
 
 void main() {
-  group('Form Builder Field -', () {
+  group('FormBuilderField -', () {
     testWidgets('Reset custom error from form builder', (tester) async {
       const textFieldName = 'text1';
       const errorTextField = 'error text field';
@@ -13,8 +13,7 @@ void main() {
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       // Set custom error
-      formKey.currentState
-          ?.invalidateField(name: textFieldName, errorText: errorTextField);
+      formKey.currentState?.fields[textFieldName]?.invalidate(errorTextField);
       await tester.pumpAndSettle();
       expect(find.text(errorTextField), findsOneWidget);
 

@@ -12,44 +12,50 @@ Also included are common ready-made form input fields for FormBuilder. This give
 ___
 
 - [Features](#features)
-- [Inputs](#inpus)
-    - [Parameters](#parameters)
+- [Inputs](#inputs)
+  - [Parameters](#parameters)
 - [Use](#use)
-    - [Setup](#setup)
-    - [Basic use](#basic-use)
-    - [Specific uses](#specific-uses)
+  - [Setup](#setup)
+  - [Basic use](#basic-use)
+  - [Specific uses](#specific-uses)
+    - [Building your own custom field](#building-your-own-custom-field)
+    - [Programmatically changing field value](#programmatically-changing-field-value)
+    - [Programmatically inducing an error](#programmatically-inducing-an-error)
+    - [Conditional validation](#conditional-validation)
+    - [Implement reset, clear or other button into field](#implement-reset-clear-or-other-button-into-field)
 - [Support](#support)
-    - [Contribute](#contribute)
-    - [Questions and answers](#questions-and-answers)
-    - [Donations](#donations)
+  - [Contribute](#contribute)
+  - [Questions and answers](#questions-and-answers)
+  - [Donations](#donations)
 - [Roadmap](#roadmap)
 - [Ecosystem](#ecosystem)
 - [Thanks to](#thanks-to)
-    - [Contributors](#contributors)
+  - [Contributors](#contributors)
 
 ## Features
 
 - Create a form with several type of inputs
 - Get values from form by easy way
 - Apply validators to inputs fields
-- React to form fields changes and validations 
+- React to form fields changes and validations
 
 ## Inputs
 
 The currently supported fields include:
-* `FormBuilderCheckbox` - Single checkbox field
-* `FormBuilderCheckboxGroup` - List of checkboxes for multiple selection
-* `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
-* `FormBuilderDateRangePicker` - For selection of a range of dates
-* `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
-* `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
-* `FormBuilderFilterChip` - Creates a chip that acts like a checkbox
-* `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
-* `FormBuilderRangeSlider` - Used to select a range from a range of values
-* `FormBuilderSegmentedControl` - For selection of a value using the `CupertinoSegmentedControl` widget as an input
-* `FormBuilderSlider` - For selection of a numerical value on a slider
-* `FormBuilderSwitch` - On/Off switch field
-* `FormBuilderTextField` - A Material Design text field input
+
+- `FormBuilderCheckbox` - Single checkbox field
+- `FormBuilderCheckboxGroup` - List of checkboxes for multiple selection
+- `FormBuilderChoiceChip` - Creates a chip that acts like a radio button.
+- `FormBuilderDateRangePicker` - For selection of a range of dates
+- `FormBuilderDateTimePicker` - For `Date`, `Time` and `DateTime` input
+- `FormBuilderDropdown` - Used to select one value from a list as a Dropdown
+- `FormBuilderFilterChip` - Creates a chip that acts like a checkbox
+- `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
+- `FormBuilderRangeSlider` - Used to select a range from a range of values
+- `FormBuilderSegmentedControl` - For selection of a value using the `CupertinoSegmentedControl` widget as an input
+- `FormBuilderSlider` - For selection of a numerical value on a slider
+- `FormBuilderSwitch` - On/Off switch field
+- `FormBuilderTextField` - A Material Design text field input
 
 ### Parameters
 
@@ -161,7 +167,7 @@ _formKey.currentState.patchValue({
 
 #### Programmatically inducing an error
 
-##### Option 1 - Using FormBuilder / FieldBuilderField key
+##### Using form state key or field state key
 
 ```dart
 final _formKey = GlobalKey<FormBuilderState>();
@@ -185,11 +191,9 @@ FormBuilder(
         onPressed: () async {
           if(await checkIfEmailExists()){
             // Either invalidate using Form Key
-            _formKey.currentState?.invalidateField(
-                name: 'email', errorText: 'Email already taken.');
+            _formKey.currentState?.fields['email']?.invalidate('Email already taken');
             // OR invalidate using Field Key
-            _emailFieldKey.currentState
-                ?.invalidate('Email already taken');
+            _emailFieldKey.currentState?.invalidate('Email already taken');
           }
         },
       ),
@@ -198,15 +202,20 @@ FormBuilder(
 ),
 ```
 
-##### Option 2 - Using InputDecoration.errorText
+When use `invalidate` and `validate` methods, can use two optional parameters configure the behavior
+when invalidate field or form, like focus or auto scroll. Take a look on method documentation for more details
+
+##### Using InputDecoration.errorText
 
 Declare a variable to hold your error:
-```Dart
+
+```dart
 String _emailError;
 ```
 
 Use the variable as the `errorText` within `InputDecoration`
-```Dart
+
+```dart
 FormBuilderTextField(
   name: 'email',
   decoration: InputDecoration(
@@ -221,7 +230,8 @@ FormBuilderTextField(
 ```
 
 Set the error text
-```Dart
+
+```dart
 RaisedButton(
   child: Text('Submit'),
   onPressed: () async {
@@ -268,7 +278,7 @@ FormBuilderRadioGroup(
   ),
 ```
 
-#### Implement reset, clear or other button into FormBuilderField
+#### Implement reset, clear or other button into field
 
 If you can add some button to reset specific field, can use the `decoration` parameter like this:
 
@@ -325,9 +335,9 @@ FormBuilderTextField(
 
 You have some ways to contribute to this packages
 
- - Beginner: Reporting bugs or request new features
- - Intermediate: Implement new features (from issues or not) and created pull requests
- - Advanced: Join to [organization](#ecosystem) like a member and help coding, manage issues, dicuss new features and other things
+- Beginner: Reporting bugs or request new features
+- Intermediate: Implement new features (from issues or not) and created pull requests
+- Advanced: Join to [organization](#ecosystem) like a member and help coding, manage issues, dicuss new features and other things
 
  See [contribution file](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md) for more details
 
@@ -343,8 +353,6 @@ Donate or become a sponsor of Flutter Form Builder Ecosystem
 
 ## Roadmap
 
-- [Improve focus behavior](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1049)
-- Add more widget tests and missing tests for some fields: [#1090](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1090)/[#1089](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1089)
 - [Add visual examples](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1027) (images, gifs, videos, sample application)
 - [Solve open issues](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues), [prioritizing bugs](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/labels/bug)
 

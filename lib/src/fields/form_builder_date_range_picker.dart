@@ -76,6 +76,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.restorationId,
     required this.firstDate,
     required this.lastDate,
     this.format,
@@ -120,7 +121,6 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
     this.fieldStartHintText,
     this.fieldStartLabelText,
     this.helpText,
-    // this.initialDateRange,
     this.initialEntryMode = DatePickerEntryMode.calendar,
     this.routeSettings,
     this.saveText,
@@ -277,7 +277,7 @@ class _FormBuilderDateRangePickerState
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
               onPressed: () {
-                requestFocus();
+                focus();
                 didChange(null);
                 effectiveFocusNode.unfocus();
               },

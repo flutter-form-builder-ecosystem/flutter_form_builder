@@ -10,7 +10,6 @@ void main() {
       const widgetName = 'formBuilderFilterChip';
 
       final testWidget = FormBuilderFilterChip<int>(
-        shouldRequestFocus: false,
         name: widgetName,
         options: const [
           FormBuilderChipOption(key: ValueKey('1'), value: 1),
@@ -36,7 +35,6 @@ void main() {
         const widgetName = 'fc2';
 
         final testWidget = FormBuilderFilterChip<int>(
-          shouldRequestFocus: false,
           name: widgetName,
           options: const [
             FormBuilderChipOption(key: ValueKey('1'), value: 1),
@@ -68,7 +66,6 @@ void main() {
         const widgetName = 'fc3';
 
         final testWidget = FormBuilderFilterChip<int>(
-          shouldRequestFocus: false,
           name: widgetName,
           initialValue: const [1],
           options: const [
