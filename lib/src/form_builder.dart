@@ -45,8 +45,11 @@ class FormBuilder extends StatefulWidget {
 
   /// Whether the form should ignore submitting values from fields where
   /// `enabled` is `false`.
+  ///
   /// This behavior is common in HTML forms where _readonly_ values are not
   /// submitted when the form is submitted.
+  ///
+  /// `true` = Disabled / `false` = Read only
   ///
   /// When `true`, the final form value will not contain disabled fields.
   /// Default is `false`.
