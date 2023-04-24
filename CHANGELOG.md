@@ -1,3 +1,29 @@
+## [8.0.0]
+
+### BREAKING CHANGE
+
+* [Improve focus and scroll](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1223)
+  * Remove property `shouldRequestFocus` for each form field
+  * Remove property `autoFocusOnValidationFailure` on `FormBuilder`. Use properties on `validate` and `invalidate` instead
+
+### Features
+
+* **NEW** Add `isDirty` property to field and form
+* **NEW** Add `isTouched` property to field and form
+* Add `focusOnInvalid` and `autoScrollWhenFocusOnInvalid` to `validate` and `saveAndValidate` methods from `FormBuilderState`
+* Add `focusOnInvalid` and `autoScrollWhenFocusOnInvalid` to `validate` method from `FormBuilderFieldState`
+* Add `shouldFocus` and `shouldAutoScrollWhenFocus` to `invalidate` method from `FormBuilderFieldState`
+* Depreciate `invalidateField` and `invalidateFirstField` on `FormBuilder`
+* Add desktop support (linux, macos, windows)
+* `FormBuilderRangeSlider`: Able custom widgets max, min and value
+
+### Bug fixes
+
+* Apply validation on init when autovalidate is always
+* Fix `skipDisabled` property on `FormBuilder`
+* Improve reset method. Simplify on form builder and update on form field to update value on interface.
+* `FormBuilderTextField`: Add support context menu by default
+
 ## [7.8.0]
 
 * Remove deprecated property toggleableActiveColor
@@ -28,7 +54,7 @@
 
 * Apply license BSD-3-clause
 * Remove unused parameters from FormBuilderDateTimePicker (#1086)
-* Refactor readme 
+* Refactor readme
 
 ## [7.4.0]
 
