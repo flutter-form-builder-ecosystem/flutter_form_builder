@@ -14,10 +14,6 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        channel: [stable, beta]
 
     steps:
       - uses: actions/checkout@v3
@@ -30,7 +26,7 @@ jobs:
       - name: Flutter action
         uses: subosito/flutter-action@v2
         with:
-          channel: ${{ matrix.channel }}
+          channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
@@ -41,7 +37,6 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
       - name: Upload coverage to Codecov
-        if: ${{ matrix.channel == 'stable' }}
         uses: codecov/codecov-action@v3
         with:
           files: coverage/lcov.info
