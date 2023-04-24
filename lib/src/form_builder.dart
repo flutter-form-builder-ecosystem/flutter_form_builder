@@ -111,19 +111,23 @@ class FormBuilderState extends State<FormBuilder> {
 
   bool get enabled => widget.enabled;
 
-  /// Verify if all fields on form are valid
+  /// Verify if all fields on form are valid.
   bool get isValid => fields.values.every((field) => field.isValid);
 
-  /// Verify if some field on form are dirty
+  /// Will be true if some field on form are dirty.
+  ///
+  /// Dirty: The value of field is changed by user or by logic code.
   bool get isDirty => fields.values.any((field) => field.isDirty);
 
-  /// Verify if some field on form are touched
+  /// Will be true if some field on form are touched.
+  ///
+  /// Touched: The field is focused by user or by logic code.
   bool get isTouched => fields.values.any((field) => field.isTouched);
 
-  /// Get initialValue
+  /// Get initialValue.
   Map<String, dynamic> get initialValue => widget.initialValue;
 
-  /// Get all fields of form
+  /// Get all fields of form.
   FormBuilderFields get fields => _fields;
 
   Map<String, dynamic> get instantValue =>

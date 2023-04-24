@@ -106,7 +106,15 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
+
+  /// Will be true if the field is dirty
+  ///
+  /// The value of field is changed by user or by logic code.
   bool get isDirty => _dirty;
+
+  /// Will be true if the field is touched
+  ///
+  /// The field is focused by user or by logic code
   bool get isTouched => _touched;
 
   InputDecoration get decoration => widget.decoration.copyWith(
