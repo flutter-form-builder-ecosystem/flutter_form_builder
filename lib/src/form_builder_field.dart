@@ -74,6 +74,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   String? _customErrorText;
   FormBuilderState? _formBuilderState;
   bool _touched = false;
+  bool _dirty = false;
   late FocusNode effectiveFocusNode;
   FocusAttachment? focusAttachment;
 
@@ -105,6 +106,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
+  bool get isDirty => _dirty;
+  bool get isTouched => _touched;
 
   InputDecoration get decoration => widget.decoration.copyWith(
         errorText: widget.enabled || _readOnly
@@ -173,6 +176,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void _informFormForFieldChange() {
     if (_formBuilderState != null) {
+      _dirty = true;
       if (enabled || _readOnly) {
         _formBuilderState!.setInternalFieldValue<T>(
           widget.name,
@@ -212,7 +216,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   @override
   void reset() {
     super.reset();
-    setValue(initialValue);
+    didChange(initialValue);
+    _dirty = false;
     if (_customErrorText != null) {
       setState(() => _customErrorText = null);
     }
