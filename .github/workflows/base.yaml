@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     tags:
-      - '*'
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
   pull_request:
     branches: [main]
@@ -54,30 +54,20 @@ jobs:
     if: ${{ github.ref_type == 'tag' }}
     needs: build
     name: Deploy package
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
-
     steps:
-    - name: Configure enviroment
-      uses: actions/checkout@v3
-    - name: Download flutter
-      uses: subosito/flutter-action@v2
-      with:
-        channel: 'stable'
-    - name: Setup pub credentials
-      shell: bash
-      env:
-        PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
-        PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
-      run: |
-        sh ./tool/pub_login.sh
-    - name: Publish package
-      run: dart pub publish -v -f
-    - name: Build changelog
-      id: github_release
-      uses: mikepenz/release-changelog-builder-action@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Create release
-      uses: softprops/action-gh-release@v0.1.14
-      with:
-        body: ${{steps.github_release.outputs.changelog}}
+      - uses: actions/checkout@v3
+      - uses: dart-lang/setup-dart@v1
+      - name: Publish package
+        run: dart pub publish -v -f
+      - name: Build changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        uses: softprops/action-gh-release@v0.1.14
+        with:
+          body: ${{steps.github_release.outputs.changelog}}
