@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -102,16 +100,33 @@ typedef FormBuilderFields
     = Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>;
 
 class FormBuilderState extends State<FormBuilder> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FormBuilderFields _fields = {};
+  final Map<String, dynamic> _instantValue = {};
+  final Map<String, dynamic> _savedValue = {};
+  // Because dart type system will not accept ValueTransformer<dynamic>
+  final Map<String, Function> _transformers = {};
 
   bool get enabled => widget.enabled;
 
-  final FormBuilderFields _fields = {};
+  /// Verify if all fields on form are valid.
+  bool get isValid => fields.values.every((field) => field.isValid);
 
-  //because dart type system will not accept ValueTransformer<dynamic>
-  final _transformers = <String, Function>{};
-  final _instantValue = <String, dynamic>{};
-  final _savedValue = <String, dynamic>{};
+  /// Will be true if some field on form are dirty.
+  ///
+  /// Dirty: The value of field is changed by user or by logic code.
+  bool get isDirty => fields.values.any((field) => field.isDirty);
+
+  /// Will be true if some field on form are touched.
+  ///
+  /// Touched: The field is focused by user or by logic code.
+  bool get isTouched => fields.values.any((field) => field.isTouched);
+
+  /// Get initialValue.
+  Map<String, dynamic> get initialValue => widget.initialValue;
+
+  /// Get all fields of form.
+  FormBuilderFields get fields => _fields;
 
   Map<String, dynamic> get instantValue =>
       Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
@@ -121,11 +136,6 @@ class FormBuilderState extends State<FormBuilder> {
   Map<String, dynamic> get value =>
       Map<String, dynamic>.unmodifiable(_savedValue.map((key, value) =>
           MapEntry(key, _transformers[key]?.call(value) ?? value)));
-
-  /// Returns values after saving
-  Map<String, dynamic> get initialValue => widget.initialValue;
-
-  FormBuilderFields get fields => _fields;
 
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
@@ -149,9 +159,6 @@ class FormBuilderState extends State<FormBuilder> {
     }
     widget.onChanged?.call();
   }
-
-  bool get isValid =>
-      fields.values.where((element) => !element.isValid).isEmpty;
 
   void removeInternalFieldValue(
     String name, {
@@ -282,22 +289,15 @@ class FormBuilderState extends State<FormBuilder> {
     );
   }
 
+  /// Reset form to `initialValue`
   void reset() {
-    _formKey.currentState!.reset();
-    for (var field in _fields.entries) {
-      try {
-        field.value.didChange(getRawValue(field.key));
-      } catch (e, st) {
-        log(
-          'Error when resetting field: ${field.key}',
-          error: e,
-          stackTrace: st,
-          level: 2000,
-        );
-      }
-    }
+    _formKey.currentState?.reset();
   }
 
+  /// Update fields values of form.
+  /// Useful when need update all values at once, after init.
+  ///
+  /// To load all values at once on init, use `initialValue` property
   void patchValue(Map<String, dynamic> val) {
     val.forEach((key, dynamic value) {
       _fields[key]?.didChange(value);
