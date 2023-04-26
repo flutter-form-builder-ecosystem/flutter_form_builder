@@ -301,7 +301,7 @@ void main() {
       await tester.pumpAndSettle();
       formKey.currentState?.reset();
 
-      expect(formKey.currentState?.initialValue, {});
+      expect(formKey.currentState?.instantValue, {textFieldName: null});
     });
     testWidgets('Should reset to initial when call reset', (tester) async {
       const textFieldName = 'text';
@@ -318,7 +318,7 @@ void main() {
       await tester.pumpAndSettle();
       formKey.currentState?.reset();
 
-      expect(formKey.currentState?.initialValue, equals(initialValue));
+      expect(formKey.currentState?.instantValue, equals(initialValue));
     });
     testWidgets(
         'Should reset custom error when invalidate field and then reset',
