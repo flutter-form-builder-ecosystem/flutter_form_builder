@@ -110,7 +110,6 @@ var options = ["Option 1", "Option 2", "Option 3"];
 FormBuilderField(
   name: "name",
   validator: FormBuilderValidators.compose([
-# Flutter Form Builder
     FormBuilderValidators.required(),
   ]),
   builder: (FormFieldState<dynamic> field) {
