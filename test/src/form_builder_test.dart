@@ -177,9 +177,11 @@ void main() {
       final testWidget = FormBuilderTextField(
         name: textFieldName,
         validator: (value) => errorTextField,
-        autovalidateMode: AutovalidateMode.always,
       );
-      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testWidget,
+        autovalidateMode: AutovalidateMode.always,
+      ));
       await tester.pumpAndSettle();
 
       expect(find.text(errorTextField), findsOneWidget);

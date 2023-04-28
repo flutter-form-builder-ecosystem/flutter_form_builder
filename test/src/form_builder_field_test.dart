@@ -24,6 +24,58 @@ void main() {
         expect(find.text(errorTextField), findsOneWidget);
       });
     });
+    group('isValid -', () {
+      testWidgets('Should invalid when set custom error', (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        // Set custom error
+        textFieldKey.currentState?.invalidate(errorTextField);
+        await tester.pumpAndSettle();
+
+        expect(textFieldKey.currentState?.isValid, isFalse);
+      });
+    });
+    group('hasErrors -', () {
+      testWidgets('Should has errors when set custom error', (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        // Set custom error
+        textFieldKey.currentState?.invalidate(errorTextField);
+        await tester.pumpAndSettle();
+
+        expect(textFieldKey.currentState?.hasError, isTrue);
+      });
+      testWidgets('Should no has errors when is empty and no has validators',
+          (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        // Set custom error
+        textFieldKey.currentState?.validate();
+        await tester.pumpAndSettle();
+
+        expect(textFieldKey.currentState?.hasError, isFalse);
+      });
+    });
 
     group('autovalidateMode -', () {
       testWidgets(
@@ -33,14 +85,29 @@ void main() {
         const errorTextField = 'error text field';
         final testWidget = FormBuilderTextField(
           name: textFieldName,
+          validator: (value) =>
+              value == null || value.isEmpty ? errorTextField : null,
+          autovalidateMode: AutovalidateMode.always,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorTextField), findsOneWidget);
+      });
+      testWidgets(
+          'Should show error when AutovalidateMode is onUserInteraction and change field',
+          (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => errorTextField,
         );
-        await tester.pumpWidget(
-          buildTestableFieldWidget(
-            testWidget,
-            autovalidateMode: AutovalidateMode.always,
-          ),
-        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        expect(find.text(errorTextField), findsNothing);
+
+        await tester.enterText(find.byWidget(testWidget), 'hola');
         await tester.pumpAndSettle();
 
         expect(find.text(errorTextField), findsOneWidget);
