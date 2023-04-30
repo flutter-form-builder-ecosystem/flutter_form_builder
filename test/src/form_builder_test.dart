@@ -118,6 +118,65 @@ void main() {
     );
   });
 
+  group('isValid -', () {
+    testWidgets('Should invalid when set custom error', (tester) async {
+      const textFieldName = 'text';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(name: textFieldName);
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      // Set custom error
+      formKey.currentState?.fields[textFieldName]?.invalidate(errorTextField);
+      await tester.pumpAndSettle();
+
+      expect(formKey.currentState?.isValid, isFalse);
+    });
+    testWidgets('Should valid when no has error and autovalidateMode is always',
+        (tester) async {
+      const textFieldName = 'text';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) =>
+            value == null || value.isEmpty ? errorTextField : null,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testWidget,
+        autovalidateMode: AutovalidateMode.always,
+      ));
+
+      expect(formKey.currentState?.isValid, isFalse);
+
+      final widgetFinder = find.byWidget(testWidget);
+      await tester.enterText(widgetFinder, 'test');
+      await tester.pumpAndSettle();
+
+      expect(formKey.currentState?.isValid, isTrue);
+    });
+    testWidgets('Should invalid when has error and autovalidateMode is always',
+        (tester) async {
+      const textFieldName = 'text';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) =>
+            value == null || value.length < 10 ? errorTextField : null,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testWidget,
+        autovalidateMode: AutovalidateMode.always,
+      ));
+
+      expect(formKey.currentState?.isValid, isFalse);
+
+      final widgetFinder = find.byWidget(testWidget);
+      await tester.enterText(widgetFinder, 'test');
+      await tester.pumpAndSettle();
+
+      expect(formKey.currentState?.isValid, isFalse);
+    });
+  });
+
   group('skipDisabled -', () {
     testWidgets(
         'Should not show error when field is not enabled and skipDisabled is true',

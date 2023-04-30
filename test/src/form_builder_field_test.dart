@@ -24,6 +24,7 @@ void main() {
         expect(find.text(errorTextField), findsOneWidget);
       });
     });
+
     group('isValid -', () {
       testWidgets('Should invalid when set custom error', (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
@@ -41,7 +42,54 @@ void main() {
 
         expect(textFieldKey.currentState?.isValid, isFalse);
       });
+      testWidgets(
+          'Should valid when no has error and autovalidateMode is always',
+          (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+          autovalidateMode: AutovalidateMode.always,
+          validator: (value) =>
+              value == null || value.isEmpty ? errorTextField : null,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        expect(textFieldKey.currentState?.isValid, isFalse);
+
+        final widgetFinder = find.byWidget(testWidget);
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
+
+        expect(textFieldKey.currentState?.isValid, isTrue);
+      });
+      testWidgets(
+          'Should invalid when has error and autovalidateMode is always',
+          (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+          autovalidateMode: AutovalidateMode.always,
+          validator: (value) =>
+              value == null || value.length < 10 ? errorTextField : null,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        expect(textFieldKey.currentState?.isValid, isFalse);
+
+        final widgetFinder = find.byWidget(testWidget);
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
+
+        expect(textFieldKey.currentState?.isValid, isFalse);
+      });
     });
+
     group('hasErrors -', () {
       testWidgets('Should has errors when set custom error', (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
