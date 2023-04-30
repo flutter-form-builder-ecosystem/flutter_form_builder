@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 
 enum OptionsOrientation { horizontal, vertical, wrap }
 
@@ -51,7 +52,7 @@ class FormBuilderField<T> extends FormField<T> {
     super.key,
     super.onSaved,
     super.initialValue,
-    super.autovalidateMode = AutovalidateMode.onUserInteraction,
+    super.autovalidateMode,
     super.enabled = true,
     super.validator,
     super.restorationId,
@@ -106,6 +107,12 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
+  bool get _isEnableValidate =>
+      widget.autovalidateMode.isEnable ||
+      (_formBuilderState?.widget.autovalidateMode?.isEnable ?? false);
+  bool get _isAlwaysValidate =>
+      widget.autovalidateMode.isAlways ||
+      (_formBuilderState?.widget.autovalidateMode?.isAlways ?? false);
 
   /// Will be true if the field is dirty
   ///
@@ -145,10 +152,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     focusAttachment = effectiveFocusNode.attach(context);
 
     // Verify if need auto validate form
-    if ((enabled || _readOnly) &&
-        (widget.autovalidateMode == AutovalidateMode.always ||
-            _formBuilderState?.widget.autovalidateMode ==
-                AutovalidateMode.always)) {
+    if ((enabled || _readOnly) && _isAlwaysValidate) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         validate();
       });
@@ -186,17 +190,11 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     if (_formBuilderState != null) {
       _dirty = true;
       if (enabled || _readOnly) {
-        _formBuilderState!.setInternalFieldValue<T>(
-          widget.name,
-          value,
-          isSetState: false,
-        );
-      } else {
-        _formBuilderState!.removeInternalFieldValue(
-          widget.name,
-          isSetState: false,
-        );
+        _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
+        if (_isEnableValidate) validate();
+        return;
       }
+      _formBuilderState!.removeInternalFieldValue(widget.name);
     }
   }
 

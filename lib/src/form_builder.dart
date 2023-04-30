@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A container for form fields.
@@ -151,23 +152,16 @@ class FormBuilderState extends State<FormBuilder> {
         initialValue[name];
   }
 
-  void setInternalFieldValue<T>(String name, T? value,
-      {required bool isSetState}) {
+  void setInternalFieldValue<T>(String name, T? value) {
     _instantValue[name] = value;
-    if (isSetState) {
-      setState(() {});
+    if (widget.autovalidateMode?.isEnable ?? false) {
+      validate();
     }
     widget.onChanged?.call();
   }
 
-  void removeInternalFieldValue(
-    String name, {
-    required bool isSetState,
-  }) {
+  void removeInternalFieldValue(String name) {
     _instantValue.remove(name);
-    if (isSetState) {
-      setState(() {});
-    }
   }
 
   void registerField(String name, FormBuilderFieldState field) {
