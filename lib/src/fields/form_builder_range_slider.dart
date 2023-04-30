@@ -118,8 +118,47 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
   /// When used [maxValueWidget] will override the value for the maximum widget.
   final Widget Function(String max)? maxValueWidget;
 
-  final DisplayValues displayValues;
+  /// Provides the ability to format a number in a locale-specific way.
+  ///
+  /// The format is specified as a pattern using a subset of the ICU formatting
+  /// patterns.
+  ///
+  /// - `0` A single digit
+  /// - `#` A single digit, omitted if the value is zero
+  /// - `.` Decimal separator
+  /// - `-` Minus sign
+  /// - `,` Grouping separator
+  /// - `E` Separates mantissa and expontent
+  /// - `+` - Before an exponent, to say it should be prefixed with a plus sign.
+  /// - `%` - In prefix or suffix, multiply by 100 and show as percentage
+  /// - `‰ (\u2030)` In prefix or suffix, multiply by 1000 and show as per mille
+  /// - `¤ (\u00A4)` Currency sign, replaced by currency name
+  /// - `'` Used to quote special characters
+  /// - `;` Used to separate the positive and negative patterns (if both present)
+  ///
+  /// For example,
+  ///
+  ///       var f = NumberFormat("###.0#", "en_US");
+  ///       print(f.format(12.345));
+  ///           ==> 12.34
+  ///
+  /// If the locale is not specified, it will default to the current locale. If
+  /// the format is not specified it will print in a basic format with at least
+  /// one integer digit and three fraction digits.
+  ///
+  /// There are also standard patterns available via the special constructors.
+  /// e.g.
+  ///
+  ///       var percent = NumberFormat.percentPattern("ar"); var
+  ///       eurosInUSFormat = NumberFormat.currency(locale: "en_US",
+  ///           symbol: "€");
+  ///
+  /// There are several such constructors available, though some of them are
+  /// limited. For example, at the moment, scientificPattern prints only as
+  /// equivalent to "#E0" and does not take into account significant digits.
   final NumberFormat? numberFormat;
+
+  final DisplayValues displayValues;
 
   /// Creates field to select a range of values on a Slider
   FormBuilderRangeSlider({
