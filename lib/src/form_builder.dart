@@ -123,6 +123,13 @@ class FormBuilderState extends State<FormBuilder> {
   /// Touched: The field is focused by user or by logic code.
   bool get isTouched => fields.values.any((field) => field.isTouched);
 
+  /// Get a map of errors
+  Map<String, String> get errors => {
+        for (var element
+            in fields.entries.where((element) => element.value.hasError))
+          element.key.toString(): element.value.errorText ?? ''
+      };
+
   /// Get initialValue.
   Map<String, dynamic> get initialValue => widget.initialValue;
 
