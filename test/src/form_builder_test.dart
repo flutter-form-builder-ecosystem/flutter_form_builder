@@ -398,6 +398,67 @@ void main() {
       expect(find.text(errorTextField), findsNothing);
     });
   });
+
+  group('errors -', () {
+    testWidgets('Should get errors when more than one fields are invalid',
+        (tester) async {
+      const textFieldName = 'text';
+      const checkboxName = 'checkbox';
+      const textFieldError = 'error text';
+      const checkboxError = 'error checkbox';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) => textFieldError,
+      );
+      final testCheckbox = FormBuilderCheckbox(
+        title: const Text('title'),
+        name: checkboxName,
+        validator: (value) => checkboxError,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        Column(children: [testTextField, testCheckbox]),
+        autovalidateMode: AutovalidateMode.always,
+      ));
+
+      expect(
+        formKey.currentState?.errors,
+        equals({
+          textFieldName: textFieldError,
+          checkboxName: checkboxError,
+        }),
+      );
+    });
+    testWidgets('Should get errors when one field are invalid', (tester) async {
+      const textFieldName = 'text';
+      const textFieldError = 'error text';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) => textFieldError,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testTextField,
+        autovalidateMode: AutovalidateMode.always,
+      ));
+
+      expect(
+        formKey.currentState?.errors,
+        equals({textFieldName: textFieldError}),
+      );
+    });
+    testWidgets('Should not get errors when all fields are valid',
+        (tester) async {
+      const textFieldName = 'text';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testTextField,
+        autovalidateMode: AutovalidateMode.always,
+      ));
+
+      expect(formKey.currentState?.errors, equals({}));
+    });
+  });
 }
 
 // simple stateful widget that can hide and show its child with the intent of
