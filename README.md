@@ -307,24 +307,47 @@ FormBuilderDropdown<String>(
 ),
 ```
 
-Or if is allowed by the field, set a value like this:
+Or reset value like this:
 
 ```dart
-FormBuilderTextField(
-  name: 'age',
-  decoration: InputDecoration(
-    labelText: 'Age',
-    suffixIcon: IconButton(
-      icon: const Icon(Icons.plus_one),
-      onPressed: () {
-        _formKey.currentState!.fields['age']
-            ?.didChange('14');
+class ClearFormBuilderTextField extends StatefulWidget {
+  const ClearFormBuilderTextField({super.key});
+
+  @override
+  State<ClearFormBuilderTextField> createState() =>
+      _ClearFormBuilderTextFieldState();
+}
+
+class _ClearFormBuilderTextFieldState
+    extends State<ClearFormBuilderTextField> {
+  final ValueNotifier<String?> text = ValueNotifier<String?>(null);
+  final textFieldKey = GlobalKey<FormBuilderFieldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return FormBuilderTextField(
+      autovalidateMode: AutovalidateMode.always,
+      name: 'age',
+      key: textFieldKey,
+      onChanged: (value) {
+        text.value = value;
       },
-    ),
-  ),
-  initialValue: '13',
-  keyboardType: TextInputType.number,
-),
+      decoration: InputDecoration(
+        labelText: 'Age',
+        suffixIcon: ValueListenableBuilder<String?>(
+          valueListenable: text,
+          child: IconButton(
+            onPressed: () => textFieldKey.currentState?.didChange(null),
+            tooltip: 'Clear',
+            icon: const Icon(Icons.clear),
+          ),
+          builder: (context, value, child) =>
+              (value?.isEmpty ?? true) ? const SizedBox() : child!,
+        ),
+      ),
+    );
+  }
+}
 ```
 
 ## Support
