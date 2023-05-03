@@ -335,5 +335,6 @@ class _FormBuilderScope extends InheritedWidget {
   FormBuilder get form => _formState.widget;
 
   @override
-  bool updateShouldNotify(_FormBuilderScope oldWidget) => true;
+  bool updateShouldNotify(_FormBuilderScope oldWidget) =>
+      oldWidget._formState != _formState;
 }
