@@ -312,10 +312,28 @@ class FormBuilderState extends State<FormBuilder> {
       autovalidateMode: widget.autovalidateMode,
       onWillPop: widget.onWillPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
-      child: FocusTraversalGroup(
-        policy: WidgetOrderTraversalPolicy(),
-        child: widget.child,
+      child: _FormBuilderScope(
+        formState: this,
+        child: FocusTraversalGroup(
+          policy: WidgetOrderTraversalPolicy(),
+          child: widget.child,
+        ),
       ),
     );
   }
+}
+
+class _FormBuilderScope extends InheritedWidget {
+  const _FormBuilderScope({
+    required super.child,
+    required FormBuilderState formState,
+  }) : _formState = formState;
+
+  final FormBuilderState _formState;
+
+  /// The [Form] associated with this widget.
+  FormBuilder get form => _formState.widget;
+
+  @override
+  bool updateShouldNotify(_FormBuilderScope oldWidget) => true;
 }
