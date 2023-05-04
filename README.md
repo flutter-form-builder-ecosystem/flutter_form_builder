@@ -38,6 +38,10 @@ ___
 - Apply validators to inputs fields
 - React to form fields changes and validations
 
+| Complete Form | Sign Up | Dynamic Fields | Conditional Form |
+|---|---|---|---|
+| ![Gif demostration with all fields](/screenshots/complete_form.gif) | ![Gif demostration sign up form](/screenshots/signup.gif) | ![Gif demostration dynamic fields](/screenshots/dynamic_fields.gif) | ![Gif demostration conditional fields](/screenshots/conditional_fields.gif) |
+
 ## Inputs
 
 The currently supported fields include:
