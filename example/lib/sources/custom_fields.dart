@@ -11,7 +11,6 @@ class CustomFields extends StatefulWidget {
 
 class _CustomFieldsState extends State<CustomFields> {
   final _formKey = GlobalKey<FormBuilderState>();
-  var options = ["Option 1", "Option 2", "Option 3"];
 
   @override
   Widget build(BuildContext context) {
