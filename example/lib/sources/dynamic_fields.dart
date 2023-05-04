@@ -24,6 +24,7 @@ class _DynamicFieldsState extends State<DynamicFields> {
   Widget build(BuildContext context) {
     return FormBuilder(
       key: _formKey,
+      // IMPORTANT to remove all references from dynamic field when delete
       clearValueOnUnregister: true,
       child: Column(
         children: <Widget>[
@@ -87,28 +88,14 @@ class _DynamicFieldsState extends State<DynamicFields> {
   }
 }
 
-class NewTextField extends StatefulWidget {
+class NewTextField extends StatelessWidget {
   const NewTextField({
     super.key,
     required this.name,
     this.onDelete,
-    this.unregisterField,
   });
   final String name;
   final VoidCallback? onDelete;
-  final void Function(String name, FormBuilderFieldState field)?
-      unregisterField;
-
-  @override
-  State<NewTextField> createState() => _NewTextFieldState();
-}
-
-class _NewTextFieldState extends State<NewTextField> {
-  @override
-  void dispose() {
-    super.dispose();
-    // widget.unregisterField?.call(widget.name, this);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +105,7 @@ class _NewTextFieldState extends State<NewTextField> {
         children: [
           Expanded(
             child: FormBuilderTextField(
-              name: widget.name,
+              name: name,
               validator: FormBuilderValidators.minLength(4),
               decoration: const InputDecoration(
                 label: Text('New field'),
@@ -127,7 +114,7 @@ class _NewTextFieldState extends State<NewTextField> {
           ),
           IconButton(
             icon: const Icon(Icons.delete_forever),
-            onPressed: widget.onDelete,
+            onPressed: onDelete,
           ),
         ],
       ),
