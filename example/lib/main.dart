@@ -1,3 +1,4 @@
+import 'package:example/sources/conditional_fields.dart';
 import 'package:example/sources/dynamic_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -99,6 +100,23 @@ class _HomePage extends StatelessWidget {
                     return const CodePage(
                       title: 'Dynamic Form',
                       child: DynamicFields(),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('Conditional Form'),
+            trailing: const Icon(Icons.arrow_right_sharp),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CodePage(
+                      title: 'Conditional Form',
+                      child: ConditionalFields(),
                     );
                   },
                 ),

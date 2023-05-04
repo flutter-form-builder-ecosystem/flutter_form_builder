@@ -81,7 +81,7 @@ class _DynamicFieldsState extends State<DynamicFields> {
             ],
           ),
           const Divider(height: 40),
-          Text('Saved value: ${_formKey.currentState?.value.toString() ?? ''}'),
+          Text('Saved value: $savedValue'),
         ],
       ),
     );
