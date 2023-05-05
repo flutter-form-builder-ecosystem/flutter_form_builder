@@ -38,8 +38,8 @@ class FormBuilderField<T> extends FormField<T> {
   /// Called when the field value is changed.
   final ValueChanged<T?>? onChanged;
 
-  /// The border, labels, icons, and styles used to decorate the field.
-  final InputDecoration decoration;
+  // /// The border, labels, icons, and styles used to decorate the field.
+  // final InputDecoration decoration;
 
   /// Called when the field value is reset.
   final VoidCallback? onReset;
@@ -60,10 +60,26 @@ class FormBuilderField<T> extends FormField<T> {
     required this.name,
     this.valueTransformer,
     this.onChanged,
-    this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
   });
+
+  const factory FormBuilderField.decoration({
+    Key? key,
+    void Function(T?)? onSaved,
+    T? initialValue,
+    AutovalidateMode? autovalidateMode,
+    bool enabled,
+    String? Function(T?)? validator,
+    String? restorationId,
+    required Widget Function(FormFieldState<T>) builder,
+    required String name,
+    ValueTransformer<T?>? valueTransformer,
+    ValueChanged<T?>? onChanged,
+    VoidCallback? onReset,
+    FocusNode? focusNode,
+    InputDecoration decoration,
+  }) = FormBuilderFieldDecoration;
 
   @override
   FormBuilderFieldState<FormBuilderField<T>, T> createState() =>
@@ -98,12 +114,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   String? get errorText => super.errorText ?? _customErrorText;
 
   @override
-  bool get hasError =>
-      super.hasError || decoration.errorText != null || errorText != null;
+  bool get hasError => super.hasError || errorText != null;
 
   @override
-  bool get isValid =>
-      super.isValid && decoration.errorText == null && errorText == null;
+  bool get isValid => super.isValid && errorText == null;
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
@@ -124,12 +138,12 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// The field is focused by user or by logic code
   bool get isTouched => _touched;
 
-  InputDecoration get decoration => widget.decoration.copyWith(
-        errorText: widget.enabled || _readOnly
-            ? widget.decoration.errorText ?? errorText
-            : null,
-        enabled: widget.enabled || _readOnly,
-      );
+  // InputDecoration get decoration => widget.decoration.copyWith(
+  //       errorText: widget.enabled || _readOnly
+  //           ? widget.decoration.errorText ?? errorText
+  //           : null,
+  //       enabled: widget.enabled || _readOnly,
+  //     );
 
   void registerTransformer(Map<String, Function> map) {
     final fun = widget.valueTransformer;
@@ -297,4 +311,48 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void ensureScrollableVisibility() {
     Scrollable.ensureVisible(context);
   }
+}
+
+class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
+  const FormBuilderFieldDecoration({
+    super.key,
+    super.onSaved,
+    super.initialValue,
+    super.autovalidateMode,
+    super.enabled = true,
+    super.validator,
+    super.restorationId,
+    required super.name,
+    super.valueTransformer,
+    super.onChanged,
+    super.onReset,
+    super.focusNode,
+    required super.builder,
+    this.decoration = const InputDecoration(),
+  });
+  final InputDecoration decoration;
+
+  @override
+  FormBuilderFieldDecorationState<FormBuilderFieldDecoration<T>, T>
+      createState() =>
+          FormBuilderFieldDecorationState<FormBuilderFieldDecoration<T>, T>();
+}
+
+class FormBuilderFieldDecorationState<F extends FormBuilderFieldDecoration<T>,
+    T> extends FormBuilderFieldState<FormBuilderField<T>, T> {
+  @override
+  F get widget => super.widget as F;
+
+  InputDecoration get decoration => widget.decoration.copyWith(
+        errorText: widget.enabled || _readOnly
+            ? widget.decoration.errorText ?? errorText
+            : null,
+        enabled: widget.enabled || _readOnly,
+      );
+
+  @override
+  bool get hasError => super.hasError || widget.decoration.errorText != null;
+
+  @override
+  bool get isValid => super.isValid && widget.decoration.errorText == null;
 }

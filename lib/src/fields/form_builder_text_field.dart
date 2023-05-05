@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A Material Design text field input.
-class FormBuilderTextField extends FormBuilderField<String> {
+class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   /// Controls the text being edited.
   ///
   /// If null, this widget will create its own [TextEditingController].
@@ -271,13 +271,14 @@ class FormBuilderTextField extends FormBuilderField<String> {
   ///{@macro flutter.widgets.text_selection.TextMagnifierConfiguration.details}
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  /// By default `false`
+  final bool readOnly;
+
   /// Creates a Material Design text field input.
   FormBuilderTextField({
     super.key,
     required super.name,
     super.validator,
-    String? initialValue,
-    bool readOnly = false,
     super.decoration,
     super.onChanged,
     super.valueTransformer,
@@ -287,6 +288,8 @@ class FormBuilderTextField extends FormBuilderField<String> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    String? initialValue,
+    this.readOnly = false,
     this.maxLines = 1,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -348,8 +351,6 @@ class FormBuilderTextField extends FormBuilderField<String> {
           initialValue: controller != null ? controller.text : initialValue,
           builder: (FormFieldState<String?> field) {
             final state = field as _FormBuilderTextFieldState;
-            /*final effectiveDecoration = (decoration ?? const InputDecoration())
-                .applyDefaults(Theme.of(field.context).inputDecorationTheme);*/
 
             return TextField(
               restorationId: restorationId,
@@ -414,12 +415,12 @@ class FormBuilderTextField extends FormBuilderField<String> {
   }
 
   @override
-  FormBuilderFieldState<FormBuilderTextField, String> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderTextField, String> createState() =>
       _FormBuilderTextFieldState();
 }
 
 class _FormBuilderTextFieldState
-    extends FormBuilderFieldState<FormBuilderTextField, String> {
+    extends FormBuilderFieldDecorationState<FormBuilderTextField, String> {
   TextEditingController? get _effectiveController =>
       widget.controller ?? _controller;
 
