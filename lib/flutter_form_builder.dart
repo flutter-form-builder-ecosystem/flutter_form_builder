@@ -19,3 +19,4 @@ export 'src/fields/form_builder_text_field.dart';
 export 'src/widgets/grouped_checkbox.dart';
 export 'src/widgets/grouped_radio.dart';
 export 'src/options/form_builder_chip_option.dart';
+export 'src/options/display_values_enum.dart';

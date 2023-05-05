@@ -64,7 +64,16 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
   /// is used.
   final EdgeInsets contentPadding;
 
-  /// {@macro flutter.cupertino.switch.dragStartBehavior}
+  /// Where to place the control in widgets that use [ListTile] to position a
+  /// control next to a label.
+  ///
+  /// See also:
+  ///
+  ///  * [CheckboxListTile], which combines a [ListTile] with a [Checkbox].
+  ///  * [RadioListTile], which combines a [ListTile] with a [Radio] button.
+  ///  * [SwitchListTile], which combines a [ListTile] with a [Switch].
+  ///  * [ExpansionTile], which combines a [ListTile] with a button that expands
+  ///    or collapses the tile to reveal or hide the children.
   final ListTileControlAffinity controlAffinity;
 
   /// Whether to render icons and text in the [activeColor].
