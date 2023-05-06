@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Single Checkbox field
-class FormBuilderCheckbox extends FormBuilderField<bool> {
+class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
   /// The primary content of the CheckboxListTile.
   ///
   /// Typically a [Text] widget.
@@ -146,9 +146,9 @@ class FormBuilderCheckbox extends FormBuilderField<bool> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderCheckbox, bool> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderCheckbox, bool> createState() =>
       _FormBuilderCheckboxState();
 }
 
 class _FormBuilderCheckboxState
-    extends FormBuilderFieldState<FormBuilderCheckbox, bool> {}
+    extends FormBuilderFieldDecorationState<FormBuilderCheckbox, bool> {}

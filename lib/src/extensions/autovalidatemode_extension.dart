@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 extension AutovalidateModeExtension on AutovalidateMode {
   /// Is always or is onUserInteraction

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 
@@ -38,9 +38,6 @@ class FormBuilderField<T> extends FormField<T> {
   /// Called when the field value is changed.
   final ValueChanged<T?>? onChanged;
 
-  /// The border, labels, icons, and styles used to decorate the field.
-  final InputDecoration decoration;
-
   /// Called when the field value is reset.
   final VoidCallback? onReset;
 
@@ -60,7 +57,6 @@ class FormBuilderField<T> extends FormField<T> {
     required this.name,
     this.valueTransformer,
     this.onChanged,
-    this.decoration = const InputDecoration(),
     this.onReset,
     this.focusNode,
   });
@@ -98,15 +94,13 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   String? get errorText => super.errorText ?? _customErrorText;
 
   @override
-  bool get hasError =>
-      super.hasError || decoration.errorText != null || errorText != null;
+  bool get hasError => super.hasError || errorText != null;
 
   @override
-  bool get isValid =>
-      super.isValid && decoration.errorText == null && errorText == null;
+  bool get isValid => super.isValid && errorText == null;
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
-  bool get _readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
+  bool get readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
   bool get _isEnableValidate =>
       widget.autovalidateMode.isEnable ||
       (_formBuilderState?.widget.autovalidateMode?.isEnable ?? false);
@@ -123,13 +117,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   ///
   /// The field is focused by user or by logic code
   bool get isTouched => _touched;
-
-  InputDecoration get decoration => widget.decoration.copyWith(
-        errorText: widget.enabled || _readOnly
-            ? widget.decoration.errorText ?? errorText
-            : null,
-        enabled: widget.enabled || _readOnly,
-      );
 
   void registerTransformer(Map<String, Function> map) {
     final fun = widget.valueTransformer;
@@ -152,7 +139,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     focusAttachment = effectiveFocusNode.attach(context);
 
     // Verify if need auto validate form
-    if ((enabled || _readOnly) && _isAlwaysValidate) {
+    if ((enabled || readOnly) && _isAlwaysValidate) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         validate();
       });
@@ -189,7 +176,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void _informFormForFieldChange() {
     if (_formBuilderState != null) {
       _dirty = true;
-      if (enabled || _readOnly) {
+      if (enabled || readOnly) {
         _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
         if (_isEnableValidate) validate();
         return;

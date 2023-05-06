@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field to select one value from a list of Radio Widgets
-class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
+class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
   final Axis wrapDirection;
   final Color? activeColor;
   final Color? focusColor;
@@ -90,9 +90,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderField<T> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderRadioGroup<T>, T> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderRadioGroup<T>, T> createState() =>
       _FormBuilderRadioGroupState<T>();
 }
 
 class _FormBuilderRadioGroupState<T>
-    extends FormBuilderFieldState<FormBuilderRadioGroup<T>, T> {}
+    extends FormBuilderFieldDecorationState<FormBuilderRadioGroup<T>, T> {}

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of Checkboxes for selecting multiple options
-class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
+class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
   final List<FormBuilderFieldOption<T>> options;
   final Color? activeColor;
   final Color? checkColor;
@@ -96,9 +96,9 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> createState() =>
-      _FormBuilderCheckboxGroupState<T>();
+  FormBuilderFieldDecorationState<FormBuilderCheckboxGroup<T>, List<T>>
+      createState() => _FormBuilderCheckboxGroupState<T>();
 }
 
-class _FormBuilderCheckboxGroupState<T>
-    extends FormBuilderFieldState<FormBuilderCheckboxGroup<T>, List<T>> {}
+class _FormBuilderCheckboxGroupState<T> extends FormBuilderFieldDecorationState<
+    FormBuilderCheckboxGroup<T>, List<T>> {}
