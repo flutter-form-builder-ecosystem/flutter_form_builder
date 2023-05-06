@@ -254,47 +254,39 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
 
-            void changeValue(T? value) {
-              state.didChange(value);
-            }
-
-            return InputDecorator(
+            final hasValue = items.map((e) => e.value).contains(field.value);
+            return DropdownButtonFormField<T>(
+              isExpanded: isExpanded,
               decoration: state.decoration,
-              isEmpty: state.value == null,
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton<T>(
-                  isExpanded: isExpanded,
-                  items: items,
-                  value: field.value,
-                  style: style,
-                  isDense: isDense,
-                  disabledHint: field.value != null
-                      ? (items
-                              .firstWhereOrNull((dropDownItem) =>
-                                  dropDownItem.value == field.value)
-                              ?.child ??
-                          Text(field.value.toString()))
-                      : disabledHint,
-                  elevation: elevation,
-                  iconSize: iconSize,
-                  icon: icon,
-                  iconDisabledColor: iconDisabledColor,
-                  iconEnabledColor: iconEnabledColor,
-                  onChanged:
-                      state.enabled ? (value) => changeValue(value) : null,
-                  onTap: onTap,
-                  focusNode: state.effectiveFocusNode,
-                  autofocus: autofocus,
-                  dropdownColor: dropdownColor,
-                  focusColor: focusColor,
-                  itemHeight: itemHeight,
-                  selectedItemBuilder: selectedItemBuilder,
-                  menuMaxHeight: menuMaxHeight,
-                  borderRadius: borderRadius,
-                  enableFeedback: enableFeedback,
-                  alignment: alignment,
-                ),
-              ),
+              items: items,
+              value: hasValue ? field.value : null,
+              style: style,
+              isDense: isDense,
+              disabledHint: field.value != null
+                  ? (items
+                          .firstWhereOrNull((dropDownItem) =>
+                              dropDownItem.value == field.value)
+                          ?.child ??
+                      Text(field.value.toString()))
+                  : disabledHint,
+              elevation: elevation,
+              iconSize: iconSize,
+              icon: icon,
+              iconDisabledColor: iconDisabledColor,
+              iconEnabledColor: iconEnabledColor,
+              onChanged:
+                  state.enabled ? (T? value) => state.didChange(value) : null,
+              onTap: onTap,
+              focusNode: state.effectiveFocusNode,
+              autofocus: autofocus,
+              dropdownColor: dropdownColor,
+              focusColor: focusColor,
+              itemHeight: itemHeight,
+              selectedItemBuilder: selectedItemBuilder,
+              menuMaxHeight: menuMaxHeight,
+              borderRadius: borderRadius,
+              enableFeedback: enableFeedback,
+              alignment: alignment,
             );
           },
         );
@@ -305,4 +297,12 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
 }
 
 class _FormBuilderDropdownState<T>
-    extends FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> {}
+    extends FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> {
+  @override
+  void didUpdateWidget(covariant FormBuilderDropdown<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.items != oldWidget.items) {
+      setValue(initialValue);
+    }
+  }
+}
