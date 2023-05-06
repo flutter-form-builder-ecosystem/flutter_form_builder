@@ -378,7 +378,6 @@ Donate or become a sponsor of Flutter Form Builder Ecosystem
 
 ## Roadmap
 
-- [Add visual examples](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1027) (images, gifs, videos, sample application)
 - [Solve open issues](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues), [prioritizing bugs](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/labels/bug)
 
 ## Ecosystem

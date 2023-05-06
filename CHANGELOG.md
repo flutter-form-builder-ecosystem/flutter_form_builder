@@ -1,3 +1,29 @@
+## [9.0.0-dev.1]
+
+### BREAKING CHANGE
+
+* [Improve autovalidateMode](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1232)
+  * On FormBuilderField, `autovalidateMode` change default from `AutovalidateMode.onUserInteraction` to `AutovalidateMode.disabled`
+
+* [Refactor FormBuilderField](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1238)
+  * Add widget to remove decoration property from core. Now exist two field widgets:
+
+    1. `FormBuilderField`: Refactored. Now don't included decoration property or references to this property
+    2. `FormBuilderFieldDecoration`: New. Like the old `FormBuilderField`
+
+
+### Features
+
+* **NEW** Add errors getter on `FormBuilder`. Can get all errors on form from formKey
+* Improve examples
+* Add gifs to readme
+* `FormBuilderSlider`: Able custom widgets max, min and value
+
+### Fixes
+
+* Improve FormBuilder rebuild. Now only rebuild at same time the field that user touch, not all touched fields
+* `FormBuilderDropdown`: Improve widget and solved assert error with initialValue (issue closed after 2 years and 5 months)
+
 ## [8.0.0]
 
 ### BREAKING CHANGE
