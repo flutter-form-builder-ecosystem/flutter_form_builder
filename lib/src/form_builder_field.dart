@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 
@@ -60,23 +60,6 @@ class FormBuilderField<T> extends FormField<T> {
     this.onReset,
     this.focusNode,
   });
-
-  const factory FormBuilderField.decoration({
-    Key? key,
-    void Function(T?)? onSaved,
-    T? initialValue,
-    AutovalidateMode? autovalidateMode,
-    bool enabled,
-    String? Function(T?)? validator,
-    String? restorationId,
-    required Widget Function(FormFieldState<T>) builder,
-    required String name,
-    ValueTransformer<T?>? valueTransformer,
-    ValueChanged<T?>? onChanged,
-    VoidCallback? onReset,
-    FocusNode? focusNode,
-    InputDecoration decoration,
-  }) = FormBuilderFieldDecoration;
 
   @override
   FormBuilderFieldState<FormBuilderField<T>, T> createState() =>
