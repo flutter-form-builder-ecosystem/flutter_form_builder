@@ -1,5 +1,6 @@
 import 'package:example/sources/conditional_fields.dart';
 import 'package:example/sources/dynamic_fields.dart';
+import 'package:example/sources/related_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -117,6 +118,23 @@ class _HomePage extends StatelessWidget {
                     return const CodePage(
                       title: 'Conditional Form',
                       child: ConditionalFields(),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('Related Fields'),
+            trailing: const Icon(Icons.arrow_right_sharp),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CodePage(
+                      title: 'Related Fields',
+                      child: RelatedFields(),
                     );
                   },
                 ),
