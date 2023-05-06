@@ -10,7 +10,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 enum InputType { date, time, both }
 
 /// Field for `Date`, `Time` and `DateTime` input
-class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
+class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   /// The date/time picker dialogs to show.
   final InputType inputType;
 
@@ -234,12 +234,12 @@ class FormBuilderDateTimePicker extends FormBuilderField<DateTime> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> createState() =>
-      _FormBuilderDateTimePickerState();
+  FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime>
+      createState() => _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState
-    extends FormBuilderFieldState<FormBuilderDateTimePicker, DateTime> {
+class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
+    FormBuilderDateTimePicker, DateTime> {
   late TextEditingController _textFieldController;
 
   late DateFormat _dateFormat;

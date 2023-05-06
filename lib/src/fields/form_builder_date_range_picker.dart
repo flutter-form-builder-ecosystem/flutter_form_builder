@@ -7,7 +7,8 @@ import 'package:intl/intl.dart' as intl;
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selecting a range of dates
-class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
+class FormBuilderDateRangePicker
+    extends FormBuilderFieldDecoration<DateTimeRange> {
   //TODO: Add documentation
   final int maxLines;
   final TextInputType? keyboardType;
@@ -169,7 +170,7 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderDateRangePicker, DateTimeRange>
+  FormBuilderFieldDecorationState<FormBuilderDateRangePicker, DateTimeRange>
       createState() => _FormBuilderDateRangePickerState();
 
   static String tryFormat(DateTime date, intl.DateFormat format) {
@@ -182,8 +183,8 @@ class FormBuilderDateRangePicker extends FormBuilderField<DateTimeRange> {
   }
 }
 
-class _FormBuilderDateRangePickerState
-    extends FormBuilderFieldState<FormBuilderDateRangePicker, DateTimeRange> {
+class _FormBuilderDateRangePickerState extends FormBuilderFieldDecorationState<
+    FormBuilderDateRangePicker, DateTimeRange> {
   late TextEditingController _effectiveController;
 
   @override

@@ -5,7 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selection of a value from the `CupertinoSegmentedControl`
 class FormBuilderSegmentedControl<T extends Object>
-    extends FormBuilderField<T> {
+    extends FormBuilderFieldDecoration<T> {
   /// The color used to fill the backgrounds of unselected widgets and as the
   /// text color of the selected widget.
   ///
@@ -101,9 +101,10 @@ class FormBuilderSegmentedControl<T extends Object>
         );
 
   @override
-  FormBuilderFieldState<FormBuilderSegmentedControl<T>, T> createState() =>
-      _FormBuilderSegmentedControlState();
+  FormBuilderFieldDecorationState<FormBuilderSegmentedControl<T>, T>
+      createState() => _FormBuilderSegmentedControlState();
 }
 
 class _FormBuilderSegmentedControlState<T extends Object>
-    extends FormBuilderFieldState<FormBuilderSegmentedControl<T>, T> {}
+    extends FormBuilderFieldDecorationState<FormBuilderSegmentedControl<T>,
+        T> {}

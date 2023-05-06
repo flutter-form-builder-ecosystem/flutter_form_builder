@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// On/Off switch field
-class FormBuilderSwitch extends FormBuilderField<bool> {
+class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
   /// The primary content of the list tile.
   ///
   /// Typically a [Text] widget.
@@ -150,9 +150,9 @@ class FormBuilderSwitch extends FormBuilderField<bool> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderSwitch, bool> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderSwitch, bool> createState() =>
       _FormBuilderSwitchState();
 }
 
 class _FormBuilderSwitchState
-    extends FormBuilderFieldState<FormBuilderSwitch, bool> {}
+    extends FormBuilderFieldDecorationState<FormBuilderSwitch, bool> {}

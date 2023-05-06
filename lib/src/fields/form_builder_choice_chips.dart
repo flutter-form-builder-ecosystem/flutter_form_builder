@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
-class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
+class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   /// The list of items the user can select.
   final List<FormBuilderChipOption<T>> options;
 
@@ -337,9 +337,9 @@ class FormBuilderChoiceChip<T> extends FormBuilderField<T> {
         });
 
   @override
-  FormBuilderFieldState<FormBuilderChoiceChip<T>, T> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderChoiceChip<T>, T> createState() =>
       _FormBuilderChoiceChipState<T>();
 }
 
 class _FormBuilderChoiceChipState<T>
-    extends FormBuilderFieldState<FormBuilderChoiceChip<T>, T> {}
+    extends FormBuilderFieldDecorationState<FormBuilderChoiceChip<T>, T> {}

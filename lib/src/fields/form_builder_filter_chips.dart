@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field with chips that acts like a list checkboxes.
-class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
+class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
   //TODO: Add documentation
   final Color? backgroundColor;
   final Color? disabledColor;
@@ -134,9 +134,9 @@ class FormBuilderFilterChip<T> extends FormBuilderField<List<T>> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>> createState() =>
-      _FormBuilderFilterChipState<T>();
+  FormBuilderFieldDecorationState<FormBuilderFilterChip<T>, List<T>>
+      createState() => _FormBuilderFilterChipState<T>();
 }
 
-class _FormBuilderFilterChipState<T>
-    extends FormBuilderFieldState<FormBuilderFilterChip<T>, List<T>> {}
+class _FormBuilderFilterChipState<T> extends FormBuilderFieldDecorationState<
+    FormBuilderFilterChip<T>, List<T>> {}

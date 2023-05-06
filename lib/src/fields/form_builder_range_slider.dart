@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
 /// Field to select a range of values on a Slider
-class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
+class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
   /// Called when the user starts selecting new values for the slider.
   ///
   /// This callback shouldn't be used to update the slider [values] (use
@@ -247,9 +247,9 @@ class FormBuilderRangeSlider extends FormBuilderField<RangeValues> {
         });
 
   @override
-  FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> createState() =>
-      _FormBuilderRangeSliderState();
+  FormBuilderFieldDecorationState<FormBuilderRangeSlider, RangeValues>
+      createState() => _FormBuilderRangeSliderState();
 }
 
-class _FormBuilderRangeSliderState
-    extends FormBuilderFieldState<FormBuilderRangeSlider, RangeValues> {}
+class _FormBuilderRangeSliderState extends FormBuilderFieldDecorationState<
+    FormBuilderRangeSlider, RangeValues> {}

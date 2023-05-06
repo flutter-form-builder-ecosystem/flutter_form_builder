@@ -66,7 +66,7 @@ class _SignupFormState extends State<SignupForm> {
                       : null,
             ),
             const SizedBox(height: 10),
-            FormBuilderField<bool>(
+            FormBuilderFieldDecoration<bool>(
               name: 'test',
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),

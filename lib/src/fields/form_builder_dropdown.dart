@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for Dropdown button
-class FormBuilderDropdown<T> extends FormBuilderField<T> {
+class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// The list of items the user can select.
   ///
   /// If the [onChanged] callback is null or the list of items is null
@@ -300,9 +300,9 @@ class FormBuilderDropdown<T> extends FormBuilderField<T> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderDropdown<T>, T> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> createState() =>
       _FormBuilderDropdownState<T>();
 }
 
 class _FormBuilderDropdownState<T>
-    extends FormBuilderFieldState<FormBuilderDropdown<T>, T> {}
+    extends FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> {}

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field for selection of a numerical value on a slider
-class FormBuilderSlider extends FormBuilderField<double> {
+class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
   /// Called when the user starts selecting a new value for the slider.
   ///
   /// This callback shouldn't be used to update the slider [value] (use
@@ -273,9 +273,9 @@ class FormBuilderSlider extends FormBuilderField<double> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderSlider, double> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderSlider, double> createState() =>
       _FormBuilderSliderState();
 }
 
 class _FormBuilderSliderState
-    extends FormBuilderFieldState<FormBuilderSlider, double> {}
+    extends FormBuilderFieldDecorationState<FormBuilderSlider, double> {}
