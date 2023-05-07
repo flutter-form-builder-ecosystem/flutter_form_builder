@@ -367,7 +367,7 @@ You have some ways to contribute to this packages
 
 ### Questions and answers
 
-You can question or search answers on [Github discussion](https://github.com/flutter-form-builder-ecosystem/phone_number/discussions) or on [StackOverflow](https://stackoverflow.com/questions/tagged/flutter-form-builder)
+You can question or search answers on [Github discussion](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/discussions) or on [StackOverflow](https://stackoverflow.com/questions/tagged/flutter-form-builder)
 
 ### Donations
 
