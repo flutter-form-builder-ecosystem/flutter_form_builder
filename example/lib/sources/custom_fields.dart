@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -12,6 +11,14 @@ class CustomFields extends StatefulWidget {
 class _CustomFieldsState extends State<CustomFields> {
   final _formKey = GlobalKey<FormBuilderState>();
 
+  static const List<String> _kOptions = <String>[
+    'pikachu',
+    'bulbasaur',
+    'charmander',
+    'squirtle',
+    'caterpie',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
@@ -19,11 +26,15 @@ class _CustomFieldsState extends State<CustomFields> {
       child: Column(
         children: <Widget>[
           const SizedBox(height: 20),
-          FormBuilderField<String?>(
-            name: 'name',
+          FormBuilderField<DateTime?>(
+            name: 'date',
             builder: (FormFieldState field) {
-              return CupertinoTextField(
-                onChanged: (value) => field.didChange(value),
+              return InputDatePickerFormField(
+                firstDate: DateTime.now(),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
+                onDateSubmitted: (value) => field.didChange(value),
+                errorInvalidText: field.errorText,
+                onDateSaved: (value) => field.didChange(value),
               );
             },
           ),
@@ -43,12 +54,18 @@ class _CustomFieldsState extends State<CustomFields> {
           FormBuilderField<String?>(
             name: 'name',
             builder: (FormFieldState field) {
-              return CupertinoFormRow(
-                prefix: const Text('Name: '),
-                error: field.errorText != null ? Text(field.errorText!) : null,
-                child: CupertinoTextField(
-                  onChanged: (value) => field.didChange(value),
-                ),
+              return Autocomplete<String>(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text == '') {
+                    return const Iterable<String>.empty();
+                  }
+                  return _kOptions.where((String option) {
+                    return option.contains(textEditingValue.text.toLowerCase());
+                  });
+                },
+                onSelected: (String selection) {
+                  field.didChange(selection);
+                },
               );
             },
             autovalidateMode: AutovalidateMode.always,

@@ -222,25 +222,6 @@ class _CompleteFormState extends State<CompleteForm> {
                       .toList(growable: false),
                   controlAffinity: ControlAffinity.trailing,
                 ),
-                FormBuilderSegmentedControl(
-                  decoration: const InputDecoration(
-                    labelText: 'Movie Rating (Archer)',
-                  ),
-                  name: 'movie_rating',
-                  // initialValue: 1,
-                  // textStyle: TextStyle(fontWeight: FontWeight.bold),
-                  options: List.generate(5, (i) => i + 1)
-                      .map((number) => FormBuilderFieldOption(
-                            value: number,
-                            child: Text(
-                              number.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ))
-                      .toList(),
-                  onChanged: _onChanged,
-                ),
                 FormBuilderSwitch(
                   title: const Text('I Accept the terms and conditions'),
                   name: 'accept_terms_switch',
