@@ -55,7 +55,6 @@ The currently supported fields include:
 - `FormBuilderFilterChip` - Creates a chip that acts like a checkbox
 - `FormBuilderRadioGroup` - Used to select one value from a list of Radio Widgets
 - `FormBuilderRangeSlider` - Used to select a range from a range of values
-- `FormBuilderSegmentedControl` - For selection of a value using the `CupertinoSegmentedControl` widget as an input
 - `FormBuilderSlider` - For selection of a numerical value on a slider
 - `FormBuilderSwitch` - On/Off switch field
 - `FormBuilderTextField` - A Material Design text field input
