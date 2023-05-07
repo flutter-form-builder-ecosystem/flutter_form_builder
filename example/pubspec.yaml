@@ -8,7 +8,6 @@ environment:
   flutter: ">=3.7.0"
 
 dependencies:
-  cupertino_icons: any
   flutter:
     sdk: flutter
   flutter_form_builder:
