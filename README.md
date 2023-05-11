@@ -40,7 +40,7 @@ ___
 
 | Complete Form | Sign Up | Dynamic Fields | Conditional Form |
 |---|---|---|---|
-| ![Gif demostration with all fields](/screenshots/complete_form.gif) | ![Gif demostration sign up form](/screenshots/signup.gif) | ![Gif demostration dynamic fields](/screenshots/dynamic_fields.gif) | ![Gif demostration conditional fields](/screenshots/conditional_fields.gif) |
+| ![Gif demostration with all fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/complete_form.gif) | ![Gif demostration sign up form](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/signup.gif) | ![Gif demostration dynamic fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/dynamic_fields.gif) | ![Gif demostration conditional fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/conditional_fields.gif) |
 
 ## Inputs
 
