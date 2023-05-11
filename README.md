@@ -29,7 +29,6 @@ ___
 - [Roadmap](#roadmap)
 - [Ecosystem](#ecosystem)
 - [Thanks to](#thanks-to)
-  - [Contributors](#contributors)
 
 ## Features
 
