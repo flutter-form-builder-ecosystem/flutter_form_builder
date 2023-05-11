@@ -385,10 +385,4 @@ Take a look to [our awesome ecosystem](https://github.com/flutter-form-builder-e
 
 ## Thanks to
 
-### Contributors
-
-<a href="https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=flutter-form-builder-ecosystem/flutter_form_builder" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).
+[All contributors](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/graphs/contributors)
