@@ -1,3 +1,35 @@
+## [9.0.0]
+
+### BREAKING CHANGES
+
+* [Improve autovalidateMode](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1232)
+  * On FormBuilderField, `autovalidateMode` change default from `AutovalidateMode.onUserInteraction` to `AutovalidateMode.disabled`
+* [Refactor FormBuilderField](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1238)
+  * Add widget to remove decoration property from core. Now exist two field widgets:
+    1. `FormBuilderField`: Refactored. Now don't included decoration property or references to this property
+    2. `FormBuilderFieldDecoration`: New. Like the old `FormBuilderField`
+* [Remove FormBuilderCupertinoSegmentedControl](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1240)
+  * Remove `FormBuilderCupertinoSegmentedControl` field. Included on [form_builder_cupertino_fields](https://pub.dev/packages/form_builder_cupertino_fields)
+  * Update custom fields example without cupertino widgets
+  * Remove cupertino icons dependency
+* Update intl version to 0.18.0
+* Update constraints to Flutter 3.10
+* Update constraints to Dart 3
+
+### Features
+
+* **NEW** Add errors getter on `FormBuilder`. Can get all errors on form from formKey
+* Improve examples
+* Add gifs to readme
+* `FormBuilderSlider`: Able custom widgets max, min and value
+* `FormBuilderTextField`: Add `contentInsertionConfiguration` property
+
+### Fixes
+
+* Improve FormBuilder rebuild. Now only rebuild at same time the field that user touch, not all touched fields
+* Verify error fields on form validation
+* `FormBuilderDropdown`: Improve widget and solved assert error with initialValue (issue closed after 2 years and 5 months)
+
 ## [9.0.0-dev.3]
 
 ### BREAKING CHANGE
