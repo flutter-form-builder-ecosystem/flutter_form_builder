@@ -274,6 +274,9 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   /// By default `false`
   final bool readOnly;
 
+  /// {@macro flutter.widgets.editableText.contentInsertionConfiguration}
+  final ContentInsertionConfiguration? contentInsertionConfiguration;
+
   /// Creates a Material Design text field input.
   FormBuilderTextField({
     super.key,
@@ -333,6 +336,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.mouseCursor,
     this.contextMenuBuilder = _defaultContextMenuBuilder,
     this.magnifierConfiguration,
+    this.contentInsertionConfiguration,
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
         assert(maxLines == null || maxLines > 0),
@@ -401,6 +405,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
               obscuringCharacter: obscuringCharacter,
               autofillHints: autofillHints,
               magnifierConfiguration: magnifierConfiguration,
+              contentInsertionConfiguration: contentInsertionConfiguration,
             );
           },
         );
