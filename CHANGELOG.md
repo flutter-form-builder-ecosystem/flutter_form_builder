@@ -1,3 +1,9 @@
+## [9.0.0-dev.3]
+
+### BREAKING CHANGE
+
+* Update constraints to Dart 3
+
 ## [9.0.0-dev.2]
 
 ### BREAKING CHANGE
