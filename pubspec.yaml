@@ -9,13 +9,13 @@ funding:
 
 environment:
   sdk: ">2.19.0 <3.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.17.0
-  collection: ^1.17.0
+  intl: ^0.18.0
+  collection: ^1.17.1
 
 dev_dependencies:
   flutter_lints: ^2.0.1
