@@ -257,11 +257,13 @@ class FormBuilderState extends State<FormBuilder> {
     if (hasError) {
       final wrongFields =
           fields.values.where((element) => element.hasError).toList();
-      if (focusOnInvalid) {
-        wrongFields.first.focus();
-      }
-      if (autoScrollWhenFocusOnInvalid) {
-        wrongFields.first.ensureScrollableVisibility();
+      if (wrongFields.isNotEmpty) {
+        if (focusOnInvalid) {
+          wrongFields.first.focus();
+        }
+        if (autoScrollWhenFocusOnInvalid) {
+          wrongFields.first.ensureScrollableVisibility();
+        }
       }
     }
     return !hasError;
