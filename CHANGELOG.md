@@ -1,3 +1,7 @@
+## [9.0.0-dev.2]
+
+* Migrate to Flutter 3.10.0 and Dart 3.
+
 ## [9.0.0-dev.1]
 
 ### BREAKING CHANGE
