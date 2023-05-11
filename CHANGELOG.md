@@ -6,6 +6,8 @@
   * Remove `FormBuilderCupertinoSegmentedControl` field. Included on [form_builder_cupertino_fields](https://pub.dev/packages/form_builder_cupertino_fields)
   * Update custom fields example without cupertino widgets
   * Remove cupertino icons dependency
+* Update intl version to 0.18.0
+* Update constraints to Flutter 3.10
 
 ## [9.0.0-dev.1]
 
