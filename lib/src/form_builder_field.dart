@@ -101,9 +101,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
-  bool get _isEnableValidate =>
-      widget.autovalidateMode.isEnable ||
-      (_formBuilderState?.widget.autovalidateMode?.isEnable ?? false);
   bool get _isAlwaysValidate =>
       widget.autovalidateMode.isAlways ||
       (_formBuilderState?.widget.autovalidateMode?.isAlways ?? false);
@@ -178,7 +175,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
       _dirty = true;
       if (enabled || readOnly) {
         _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
-        if (_isEnableValidate) validate();
         return;
       }
       _formBuilderState!.removeInternalFieldValue(widget.name);
@@ -243,7 +239,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
     final isValid = super.validate() && !hasError;
 
-    if (!isValid && focusOnInvalid && enabled) {
+    final fields = _formBuilderState?.fields ??
+        <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
+
+    if (!isValid &&
+        focusOnInvalid &&
+        (formState?.focusOnInvalid ?? true) &&
+        enabled &&
+        !fields.values.any((e) => e.effectiveFocusNode.hasFocus)) {
       focus();
       if (autoScrollWhenFocusOnInvalid) ensureScrollableVisibility();
     }
