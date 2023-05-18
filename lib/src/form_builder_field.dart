@@ -256,7 +256,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   /// Invalidate field with a [errorText]
   ///
-  /// Focus field if [shoudlFocus] is `true`.
+  /// Focus field if [shouldFocus] is `true`.
   /// By default `true`
   ///
   /// Auto scroll when focus invalid if [shouldAutoScrollWhenFocus] is `true`.
@@ -268,7 +268,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// not because [shouldAutoScrollWhenFocus] is `true`.
   void invalidate(
     String errorText, {
-    bool shoudlFocus = true,
+    bool shouldFocus = true,
     bool shouldAutoScrollWhenFocus = false,
   }) {
     setState(() => _customErrorText = errorText);
@@ -276,7 +276,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     validate(
       clearCustomError: false,
       autoScrollWhenFocusOnInvalid: shouldAutoScrollWhenFocus,
-      focusOnInvalid: shoudlFocus,
+      focusOnInvalid: shouldFocus,
     );
   }
 
