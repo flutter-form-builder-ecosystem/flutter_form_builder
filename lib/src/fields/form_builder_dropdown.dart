@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -262,12 +261,11 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               value: hasValue ? field.value : null,
               style: style,
               isDense: isDense,
-              disabledHint: field.value != null
-                  ? (items
-                          .firstWhereOrNull((dropDownItem) =>
-                              dropDownItem.value == field.value)
-                          ?.child ??
-                      Text(field.value.toString()))
+              disabledHint: hasValue
+                  ? items
+                      .firstWhere(
+                          (dropDownItem) => dropDownItem.value == field.value)
+                      .child
                   : disabledHint,
               elevation: elevation,
               iconSize: iconSize,
