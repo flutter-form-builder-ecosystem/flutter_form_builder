@@ -207,15 +207,16 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   void quietChange(T? value) {
-    super.didChange(value);
-    _dirty = true;
-    if (_formBuilderState != null) {
-      if (enabled || readOnly) {
-        _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
-        return;
-      }
-      _formBuilderState!.removeInternalFieldValue(widget.name);
-    }
+    // super.didChange(value);
+    // _dirty = true;
+    // if (_formBuilderState != null) {
+    //   if (enabled || readOnly) {
+    //     _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
+    //     return;
+    //   }
+    //   _formBuilderState!.removeInternalFieldValue(widget.name);
+    // }
+    didChange(value);
   }
 
   @override
