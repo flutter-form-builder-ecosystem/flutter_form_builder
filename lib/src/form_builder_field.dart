@@ -208,6 +208,13 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void quietChange(T? value) {
     super.didChange(value);
+    if (_formBuilderState != null) {
+      if (enabled || readOnly) {
+        _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
+        return;
+      }
+      _formBuilderState!.removeInternalFieldValue(widget.name);
+    }
   }
 
   @override
