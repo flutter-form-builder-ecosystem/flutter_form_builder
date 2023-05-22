@@ -206,6 +206,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     widget.onChanged?.call(value);
   }
 
+  void quietChange(T? value) {
+    super.didChange(value);
+  }
+
   @override
   void reset() {
     super.reset();
