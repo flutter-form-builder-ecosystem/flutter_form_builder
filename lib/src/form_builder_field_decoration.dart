@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+/// Extends [FormBuilderField] and add a `decoration` (InputDecoration) property
+///
+/// This class override `decoration.enable` with [enable] value
 class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
   const FormBuilderFieldDecoration({
     super.key,
@@ -36,7 +39,7 @@ class FormBuilderFieldDecorationState<F extends FormBuilderFieldDecoration<T>,
         errorText: widget.enabled || readOnly
             ? widget.decoration.errorText ?? errorText
             : null,
-        enabled: widget.enabled || readOnly,
+        enabled: widget.enabled,
       );
 
   @override
