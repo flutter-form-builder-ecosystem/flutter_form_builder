@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A container for form fields.
@@ -107,6 +106,12 @@ class FormBuilderState extends State<FormBuilder> {
   final Map<String, dynamic> _savedValue = {};
   // Because dart type system will not accept ValueTransformer<dynamic>
   final Map<String, Function> _transformers = {};
+  bool _focusOnInvalid = true;
+
+  /// Will be true if will focus on invalid field when validate
+  ///
+  /// Only used to internal logic
+  bool get focusOnInvalid => _focusOnInvalid;
 
   bool get enabled => widget.enabled;
 
@@ -161,9 +166,6 @@ class FormBuilderState extends State<FormBuilder> {
 
   void setInternalFieldValue<T>(String name, T? value) {
     _instantValue[name] = value;
-    if (widget.autovalidateMode?.isEnable ?? false) {
-      validate();
-    }
     widget.onChanged?.call();
   }
 
@@ -253,6 +255,7 @@ class FormBuilderState extends State<FormBuilder> {
     bool focusOnInvalid = true,
     bool autoScrollWhenFocusOnInvalid = false,
   }) {
+    _focusOnInvalid = focusOnInvalid;
     final hasError = !_formKey.currentState!.validate();
     if (hasError) {
       final wrongFields =
