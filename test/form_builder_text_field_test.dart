@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -43,6 +44,11 @@ void main() {
       initialValueOnForm: 'ok',
     ),
   );
+
+  testWidgets(
+    'FormBuilderTextField triggers onTapOutside',
+    (tester) => _testFormBuilderTextFieldOnTapOutsideCallback(tester),
+  );
 }
 
 Future<void> _testFormBuilderTextFieldWithInitialValue(
@@ -74,4 +80,21 @@ Future<void> _testFormBuilderTextFieldWithInitialValue(
   expect(formValue(textFieldName), newTextValue);
 
   expect(changedCount, 1);
+}
+
+Future<void> _testFormBuilderTextFieldOnTapOutsideCallback(
+    WidgetTester tester) async {
+  const textFieldName = 'Hello 🪐';
+  bool triggered = false;
+
+  var testWidget = FormBuilderTextField(
+    name: textFieldName,
+    onTapOutside: (event) => triggered = true,
+  );
+  await tester.pumpWidget(buildTestableFieldWidget(
+    testWidget,
+  ));
+  final textField = tester.firstWidget(find.byType(TextField)) as TextField;
+  textField.onTapOutside?.call(const PointerDownEvent());
+  expect(triggered, true);
 }
