@@ -203,6 +203,17 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   /// {@endtemplate}
   final GestureTapCallback? onTap;
 
+  /// {@template flutter.material.textfield.onTapOutside}
+  /// A callback to be invoked when a tap is detected outside of this TapRegion
+  /// and any other region with the same groupId, if any.
+  ///
+  /// The PointerDownEvent passed to the function is the event that caused the
+  /// notification. If this region is part of a group (i.e. groupId is set),
+  /// then it's possible that the event may be outside of this immediate region,
+  /// although it will be within the region of one of the group members.
+  /// {@endtemplate}
+  final TapRegionCallback? onTapOutside;
+
   /// The cursor for a mouse pointer when it enters or is hovering over the
   /// widget.
   ///
@@ -322,6 +333,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.minLines,
     this.showCursor,
     this.onTap,
+    this.onTapOutside,
     this.enableSuggestions = false,
     this.textAlignVertical,
     this.dragStartBehavior = DragStartBehavior.start,
@@ -381,6 +393,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
               expands: expands,
               maxLength: maxLength,
               onTap: onTap,
+              onTapOutside: onTapOutside,
               onEditingComplete: onEditingComplete,
               onSubmitted: onSubmitted,
               inputFormatters: inputFormatters,
