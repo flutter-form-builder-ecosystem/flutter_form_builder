@@ -204,12 +204,12 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   final GestureTapCallback? onTap;
 
   /// {@template flutter.material.textfield.onTapOutside}
-  /// A callback to be invoked when a tap is detected outside of this TapRegion 
+  /// A callback to be invoked when a tap is detected outside of this TapRegion
   /// and any other region with the same groupId, if any.
-  /// 
-  /// The PointerDownEvent passed to the function is the event that caused the 
-  /// notification. If this region is part of a group (i.e. groupId is set), 
-  /// then it's possible that the event may be outside of this immediate region, 
+  ///
+  /// The PointerDownEvent passed to the function is the event that caused the
+  /// notification. If this region is part of a group (i.e. groupId is set),
+  /// then it's possible that the event may be outside of this immediate region,
   /// although it will be within the region of one of the group members.
   /// {@endtemplate}
   final TapRegionCallback? onTapOutside;
