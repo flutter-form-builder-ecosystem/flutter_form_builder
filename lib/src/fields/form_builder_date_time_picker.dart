@@ -309,6 +309,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       default:
         throw 'Unexpected input type ${widget.inputType}';
     }
+    if (!mounted) return null;
     final finalValue = newValue ?? currentValue;
     didChange(finalValue);
     return finalValue;
