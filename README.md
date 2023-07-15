@@ -99,6 +99,51 @@ See [pub.dev example tab](https://pub.dev/packages/flutter_form_builder/example)
 
 ### Specific uses
 
+#### Validate and get values
+  
+  ```dart
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  FormBuilder(
+    key: _formKey,
+    child: Column(
+      children: [
+        FormBuilderTextField(
+          key: _emailFieldKey,
+          name: 'email',
+          decoration: const InputDecoration(labelText: 'Email'),
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(),
+            FormBuilderValidators.email(),
+          ]),
+        ),
+        const SizedBox(height: 10),
+        FormBuilderTextField(
+          name: 'password',
+          decoration: const InputDecoration(labelText: 'Password'),
+          obscureText: true,
+          validator: FormBuilderValidators.compose([
+            FormBuilderValidators.required(),
+          ]),
+        ),
+        MaterialButton(
+          color: Theme.of(context).colorScheme.secondary,
+          onPressed: () {
+            // Validate and save the form values
+            _formKey.currentState?.saveAndValidate();
+            debugPrint(_formKey.currentState?.value.toString());
+
+            // On another side, can access all field values without saving form with instantValues
+            _formKey.currentState?.validate();
+            debugPrint(_formKey.currentState?.instantValue.toString());
+          },
+          child: const Text('Login'),
+        )
+      ],
+    ),
+  ),
+  ```
+
 #### Building your own custom field
 
 To build your own field within a `FormBuilder`, we use `FormBuilderField` which will require that you define your own field.
