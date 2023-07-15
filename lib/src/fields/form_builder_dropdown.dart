@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -299,8 +300,28 @@ class _FormBuilderDropdownState<T>
   @override
   void didUpdateWidget(covariant FormBuilderDropdown<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.items != oldWidget.items) {
+
+    final oldValues = oldWidget.items.map((e) => e.value).toList();
+    final currentlyValues = widget.items.map((e) => e.value).toList();
+    final oldChilds = oldWidget.items.map((e) => e.child.toString()).toList();
+    final currentlyChilds =
+        widget.items.map((e) => e.child.toString()).toList();
+
+    if ((!listEquals(oldChilds, currentlyChilds) ||
+            !listEquals(oldValues, currentlyValues)) &&
+        (widget.items.contains(initialValue) ||
+            _emptyValidator<T>(initialValue))) {
       setValue(initialValue);
     }
   }
+}
+
+bool _emptyValidator<T>(T? value) {
+  if (value == null) return true;
+  if (value is Iterable) return value.isEmpty;
+  if (value is String) return value.isEmpty;
+  if (value is List) return value.isEmpty;
+  if (value is Map) return value.isEmpty;
+  if (value is Set) return value.isEmpty;
+  return false;
 }
