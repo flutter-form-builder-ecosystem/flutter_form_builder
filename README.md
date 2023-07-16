@@ -17,6 +17,7 @@ ___
   - [Setup](#setup)
   - [Basic use](#basic-use)
   - [Specific uses](#specific-uses)
+    - [Validate and get values](#validate-and-get-values)
     - [Building your own custom field](#building-your-own-custom-field)
     - [Programmatically changing field value](#programmatically-changing-field-value)
     - [Programmatically inducing an error](#programmatically-inducing-an-error)
