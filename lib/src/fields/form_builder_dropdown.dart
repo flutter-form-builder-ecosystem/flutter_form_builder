@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
 
 /// Field for Dropdown button
 class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
@@ -309,19 +310,9 @@ class _FormBuilderDropdownState<T>
 
     if ((!listEquals(oldChilds, currentlyChilds) ||
             !listEquals(oldValues, currentlyValues)) &&
-        (widget.items.contains(initialValue) ||
-            _emptyValidator<T>(initialValue))) {
+        (currentlyValues.contains(initialValue) ||
+            initialValue.emptyValidator())) {
       setValue(initialValue);
     }
   }
-}
-
-bool _emptyValidator<T>(T? value) {
-  if (value == null) return true;
-  if (value is Iterable) return value.isEmpty;
-  if (value is String) return value.isEmpty;
-  if (value is List) return value.isEmpty;
-  if (value is Map) return value.isEmpty;
-  if (value is Set) return value.isEmpty;
-  return false;
 }
