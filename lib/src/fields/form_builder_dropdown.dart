@@ -308,6 +308,17 @@ class _FormBuilderDropdownState<T>
     final currentlyChilds =
         widget.items.map((e) => e.child.toString()).toList();
 
+    if (!currentlyValues.contains(initialValue) &&
+        !initialValue.emptyValidator()) {
+      assert(
+        currentlyValues.contains(initialValue) && initialValue.emptyValidator(),
+        'The initialValue [$initialValue] is not in the list of items or is not null or empty. '
+        'Please provide one of the items as the initialValue or update your initial value. '
+        'By default, will apply [null] to field value',
+      );
+      setValue(null);
+    }
+
     if ((!listEquals(oldChilds, currentlyChilds) ||
             !listEquals(oldValues, currentlyValues)) &&
         (currentlyValues.contains(initialValue) ||
