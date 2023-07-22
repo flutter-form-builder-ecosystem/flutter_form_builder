@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
 
 /// Field for Dropdown button
 class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
@@ -299,7 +301,28 @@ class _FormBuilderDropdownState<T>
   @override
   void didUpdateWidget(covariant FormBuilderDropdown<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.items != oldWidget.items) {
+
+    final oldValues = oldWidget.items.map((e) => e.value).toList();
+    final currentlyValues = widget.items.map((e) => e.value).toList();
+    final oldChilds = oldWidget.items.map((e) => e.child.toString()).toList();
+    final currentlyChilds =
+        widget.items.map((e) => e.child.toString()).toList();
+
+    if (!currentlyValues.contains(initialValue) &&
+        !initialValue.emptyValidator()) {
+      assert(
+        currentlyValues.contains(initialValue) && initialValue.emptyValidator(),
+        'The initialValue [$initialValue] is not in the list of items or is not null or empty. '
+        'Please provide one of the items as the initialValue or update your initial value. '
+        'By default, will apply [null] to field value',
+      );
+      setValue(null);
+    }
+
+    if ((!listEquals(oldChilds, currentlyChilds) ||
+            !listEquals(oldValues, currentlyValues)) &&
+        (currentlyValues.contains(initialValue) ||
+            initialValue.emptyValidator())) {
       setValue(initialValue);
     }
   }
