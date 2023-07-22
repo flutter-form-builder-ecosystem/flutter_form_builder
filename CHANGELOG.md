@@ -1,3 +1,26 @@
+## [9.1.0]
+
+### Features
+
+* `FormBuilderFieldText`: Add onTapOutside property
+
+### Fixes
+
+* `FormBuilderField`: Misspelling
+* `FormBuilderField`: Remove force validation on autovalidation enables modes
+* `FormBuilderField`: Only focus on invalid field when no focus in another field
+* `FormBuilderField`: Only focus on invalid field when focusOnInvalid is true
+* `FormBuilderFieldDecoration`: Remove readonly property to enable decoration fields
+* `FormBuilderDropdown`: Only show dropdown value when has value on items
+* `FormBuilderDropdown`: Add deep compare when update dropdown items
+* `FormBuilderDateTimePicker`: Check mounted after async
+
+### Others
+
+* Improve readme
+* Apply MIT license
+* Update gradle config on example
+
 ## [9.0.0]
 
 ### BREAKING CHANGES
