@@ -216,6 +216,8 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// are defined by the corresponding properties of the [borderRadius].
   final BorderRadius? borderRadius;
 
+  final Widget? hint;
+
   /// Creates field for Dropdown button
   FormBuilderDropdown({
     super.key,
@@ -251,6 +253,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.enableFeedback,
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
+    this.hint,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
@@ -287,6 +290,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               borderRadius: borderRadius,
               enableFeedback: enableFeedback,
               alignment: alignment,
+              hint: hint,
             );
           },
         );
