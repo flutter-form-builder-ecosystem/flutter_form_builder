@@ -35,6 +35,7 @@ class FormBuilderDateRangePicker
   final EdgeInsets scrollPadding;
   final bool enableInteractiveSelection;
   final InputCounterWidgetBuilder? buildCounter;
+  final MouseCursor? mouseCursor;
   final bool expands;
   final int? minLines;
   final bool showCursor;
@@ -106,6 +107,7 @@ class FormBuilderDateRangePicker
     this.cursorColor,
     this.keyboardAppearance,
     this.buildCounter,
+    this.mouseCursor,
     this.expands = false,
     this.minLines,
     this.showCursor = false,
@@ -146,6 +148,7 @@ class FormBuilderDateRangePicker
               autocorrect: autocorrect,
               autofocus: autofocus,
               buildCounter: buildCounter,
+              mouseCursor: mouseCursor,
               cursorColor: cursorColor,
               cursorRadius: cursorRadius,
               cursorWidth: cursorWidth,

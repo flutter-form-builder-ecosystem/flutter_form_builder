@@ -99,6 +99,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final VoidCallback? onEditingComplete;
 
   final InputCounterWidgetBuilder? buildCounter;
+  final MouseCursor? mouseCursor;
 
   final Radius? cursorRadius;
   final Color? cursorColor;
@@ -178,6 +179,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.textInputAction,
     this.onEditingComplete,
     this.buildCounter,
+    this.mouseCursor,
     this.cursorRadius,
     this.cursorColor,
     this.keyboardAppearance,
@@ -219,6 +221,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
               style: style,
               onEditingComplete: onEditingComplete,
               buildCounter: buildCounter,
+              mouseCursor: mouseCursor,
               cursorColor: cursorColor,
               cursorRadius: cursorRadius,
               cursorWidth: cursorWidth,
