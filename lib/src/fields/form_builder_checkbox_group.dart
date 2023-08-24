@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
   final List<FormBuilderFieldOption<T>> options;
   final Color? activeColor;
+  final VisualDensity? visualDensity;
   final Color? checkColor;
   final Color? focusColor;
   final Color? hoverColor;
@@ -25,7 +26,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
   final OptionsOrientation orientation;
 
   /// Creates a list of Checkboxes for selecting multiple options
-  FormBuilderCheckboxGroup({
+  FormBuilderCheckboxGroup(this.visualDensity, {
     super.key,
     required super.name,
     super.validator,
@@ -75,6 +76,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
                     ? disabled
                     : options.map((e) => e.value).toList(),
                 activeColor: activeColor,
+                visualDensity: visualDensity,
                 focusColor: focusColor,
                 checkColor: checkColor,
                 materialTapTargetSize: materialTapTargetSize,
