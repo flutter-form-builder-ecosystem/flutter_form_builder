@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' hide DropdownMenuItem;
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
 
-import '../custom/dropdown_button_form_field_2.dart' hide DropdownButtonBuilder;
+import '../custom/dropdown_button_form_field_2.dart';
+
+// import '../custom/dropdown_button_form_field_2.dart' hide DropdownButtonBuilder;
 
 /// Field for Dropdown button
 class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
@@ -18,7 +20,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   ///
   /// If [decoration.hint] and variations is non-null and [disabledHint] is null,
   /// the [decoration.hint] widget will be displayed instead.
-  final List<DropdownMenuItem<T>> items;
+  final List<DropdownMenuItem2<T>> items;
 
   /// A message to show when the dropdown is disabled.
   ///
@@ -49,7 +51,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   ///
   /// If this callback is null, the [DropdownMenuItem] from [items]
   /// that matches [value] will be displayed.
-  final DropdownButtonBuilder? selectedItemBuilder;
+  final DropdownButtonBuilder2? selectedItemBuilder;
 
   /// The z-coordinate at which to place the menu when open.
   ///
@@ -256,9 +258,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
     this.useRootNavigator,
-  }) : assert(
-    items.whereType<DropdownMenuItem<T>>().length == items.length
-  ), super(
+  }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
 
