@@ -1,10 +1,14 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide DropdownMenuItem;
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
 
+import '../custom/dropdown_button_form_field_2.dart' hide DropdownButtonBuilder;
+
 /// Field for Dropdown button
 class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
+  final bool? useRootNavigator;
+
   /// The list of items the user can select.
   ///
   /// If the [onChanged] callback is null or the list of items is null
@@ -251,12 +255,15 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.enableFeedback,
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
-  }) : super(
+    this.useRootNavigator,
+  }) : assert(
+    items.whereType<DropdownMenuItem<T>>().length == items.length
+  ), super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
 
             final hasValue = items.map((e) => e.value).contains(field.value);
-            return DropdownButtonFormField<T>(
+            return DropdownButtonFormField2<T>(
               isExpanded: isExpanded,
               decoration: state.decoration,
               items: items,
@@ -287,6 +294,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               borderRadius: borderRadius,
               enableFeedback: enableFeedback,
               alignment: alignment,
+              useRootNavigator: useRootNavigator,
             );
           },
         );
