@@ -1309,7 +1309,7 @@ class _DropdownButtonState<T> extends State<DropdownButton<T>> with WidgetsBindi
         ),
     ];
 
-    final NavigatorState navigator = Navigator.of(context, rootNavigator: _useRootNavigator ?? false);
+    final NavigatorState navigator = Navigator.of(context, rootNavigator: _useRootNavigator ?? true);
     assert(_dropdownRoute == null);
     final RenderBox itemBox = context.findRenderObject()! as RenderBox;
     final Rect itemRect = itemBox.localToGlobal(Offset.zero, ancestor: navigator.context.findRenderObject()) & itemBox.size;
