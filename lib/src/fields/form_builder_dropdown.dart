@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
 
-import '../custom/dropdown_button_form_field_2.dart';
+import 'package:flutter_form_builder/src/fields/dropdown_button_form_field_2.dart';
 
 // import '../custom/dropdown_button_form_field_2.dart' hide DropdownButtonBuilder;
 
