@@ -32,8 +32,8 @@ class _ConditionalFieldsState extends State<ConditionalFields> {
               });
             },
             items: const [
-              DropdownMenuItem(value: 0, child: Text('Show textfield')),
-              DropdownMenuItem(value: 1, child: Text('Show info text')),
+              DropdownMenuItem2(value: 0, child: Text('Show textfield')),
+              DropdownMenuItem2(value: 1, child: Text('Show info text')),
             ],
           ),
           const SizedBox(height: 10),

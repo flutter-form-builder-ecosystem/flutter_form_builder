@@ -189,7 +189,7 @@ class _CompleteFormState extends State<CompleteForm> {
                   validator: FormBuilderValidators.compose(
                       [FormBuilderValidators.required()]),
                   items: genderOptions
-                      .map((gender) => DropdownMenuItem(
+                      .map((gender) => DropdownMenuItem2(
                             alignment: AlignmentDirectional.center,
                             value: gender,
                             child: Text(gender),

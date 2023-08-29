@@ -43,7 +43,7 @@ class _RelatedFieldsState extends State<RelatedFields> {
               });
             },
             items: _allCountries
-                .map((e) => DropdownMenuItem(
+                .map((e) => DropdownMenuItem2(
                       value: e,
                       child: Text(e),
                     ))
@@ -57,7 +57,7 @@ class _RelatedFieldsState extends State<RelatedFields> {
             ),
             initialValue: city,
             items: cities
-                .map((e) => DropdownMenuItem(
+                .map((e) => DropdownMenuItem2(
                       value: e,
                       child: Text(e),
                     ))

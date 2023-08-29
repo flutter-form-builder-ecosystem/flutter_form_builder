@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/src/fields/form_builder_dropdown.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../form_builder_tester.dart';
@@ -11,15 +11,15 @@ void main() {
       final testWidget = FormBuilderDropdown<int>(
         name: widgetName,
         items: const [
-          DropdownMenuItem(
+          DropdownMenuItem2(
             value: 1,
             child: Text('One'),
           ),
-          DropdownMenuItem(
+          DropdownMenuItem2(
             value: 2,
             child: Text('Two'),
           ),
-          DropdownMenuItem(
+          DropdownMenuItem2(
             value: 3,
             child: Text('Three'),
           ),
@@ -251,12 +251,12 @@ class MyTestWidget<T> extends StatefulWidget {
 
 class _MyTestWidgetState<T> extends State<MyTestWidget> {
   T? _initialValue;
-  List<DropdownMenuItem<T>> _items = [];
+  List<DropdownMenuItem2<T>> _items = [];
 
   @override
   void initState() {
     super.initState();
-    _items = widget.initialItems as List<DropdownMenuItem<T>>;
+    _items = widget.initialItems as List<DropdownMenuItem2<T>>;
     _initialValue = widget.initialValue;
   }
 
@@ -274,7 +274,7 @@ class _MyTestWidgetState<T> extends State<MyTestWidget> {
           key: widget.buttonKey,
           onPressed: () {
             setState(() {
-              _items = widget.updatedItems as List<DropdownMenuItem<T>>;
+              _items = widget.updatedItems as List<DropdownMenuItem2<T>>;
               if (widget.updatedInitialValue != null) {
                 _initialValue = widget.updatedInitialValue;
               }
