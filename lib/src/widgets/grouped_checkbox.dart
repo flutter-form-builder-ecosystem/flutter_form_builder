@@ -25,6 +25,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
   /// Defaults to [ColorScheme.secondary].
   final Color? activeColor;
   final VisualDensity? visualDensity;
+
   /// The color to use for the check icon when this checkbox is checked.
   ///
   /// Defaults to Color(0xFFFFFFFF)
@@ -202,7 +203,8 @@ class GroupedCheckbox<T> extends StatelessWidget {
     this.wrapTextDirection,
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
-    this.controlAffinity = ControlAffinity.leading, this.visualDensity,
+    this.controlAffinity = ControlAffinity.leading,
+    this.visualDensity,
   });
 
   @override

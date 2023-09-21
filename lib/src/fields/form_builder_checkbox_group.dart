@@ -26,7 +26,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
   final OptionsOrientation orientation;
 
   /// Creates a list of Checkboxes for selecting multiple options
-  FormBuilderCheckboxGroup( {
+  FormBuilderCheckboxGroup({
     super.key,
     required super.name,
     this.visualDensity,
