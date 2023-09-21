@@ -99,6 +99,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final VoidCallback? onEditingComplete;
 
   final InputCounterWidgetBuilder? buildCounter;
+  final MouseCursor? mouseCursor;
 
   final Radius? cursorRadius;
   final Color? cursorColor;
@@ -178,6 +179,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.textInputAction,
     this.onEditingComplete,
     this.buildCounter,
+    this.mouseCursor,
     this.cursorRadius,
     this.cursorColor,
     this.keyboardAppearance,
@@ -219,6 +221,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
               style: style,
               onEditingComplete: onEditingComplete,
               buildCounter: buildCounter,
+              mouseCursor: mouseCursor,
               cursorColor: cursorColor,
               cursorRadius: cursorRadius,
               cursorWidth: cursorWidth,
@@ -295,10 +298,11 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
         newValue = await _showDatePicker(context, currentValue);
         break;
       case InputType.time:
-        final newTime = await _showTimePicker(context, currentValue);
-        newValue = null != newTime ? convert(newTime) : null;
+        if (!context.mounted) return null;
+        newValue = convert(await _showTimePicker(context, currentValue));
         break;
       case InputType.both:
+        if (!context.mounted) return null;
         final date = await _showDatePicker(context, currentValue);
         if (date != null) {
           if (!mounted) break;

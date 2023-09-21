@@ -1,3 +1,8 @@
+## [9.1.1]
+
+* `FormBuilderDateTimePicker` & `FormBuilderDateRangePicker`: Added optional parameter `mouseCursor`
+* Built with Flutter 3.13
+
 ## [9.1.0]
 
 ### Features
