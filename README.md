@@ -333,9 +333,9 @@ List<String> genderOptions = ['Male', 'Female', 'Other'];
 
 FormBuilderDropdown<String>(
   name: 'gender',
+  initialValue: 'Male',
   decoration: InputDecoration(
     labelText: 'Gender',
-    initialValue: 'Male',
     suffix: IconButton(
       icon: const Icon(Icons.close),
       onPressed: () {
