@@ -273,7 +273,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
-          mainAxisSize: MainAxisSize.min,
           children: [
             if (widget.controlAffinity == ControlAffinity.leading) control,
             Flexible(child: label),
