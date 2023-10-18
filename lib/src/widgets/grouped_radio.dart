@@ -171,6 +171,7 @@ class GroupedRadio<T> extends StatefulWidget {
   final Widget? separator;
 
   final ControlAffinity controlAffinity;
+  final CrossAxisAlignment? controlCrossAxisAlignment;
 
   const GroupedRadio({
     super.key,
@@ -268,9 +269,10 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: controlCrossAxisAlignment ?? CrossAxisAlignment.center,
       children: [
         Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisSize: MainAxisSize.min,
           children: [
             if (widget.controlAffinity == ControlAffinity.leading) control,
