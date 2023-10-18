@@ -269,10 +269,11 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: controlCrossAxisAlignment ?? CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: controlCrossAxisAlignment ?? CrossAxisAlignment.center,
           children: [
             if (widget.controlAffinity == ControlAffinity.leading) control,
             Flexible(child: label),
