@@ -288,6 +288,12 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   /// {@macro flutter.widgets.editableText.contentInsertionConfiguration}
   final ContentInsertionConfiguration? contentInsertionConfiguration;
 
+  /// {@macro flutter.widgets.EditableText.spellCheckConfiguration}
+  ///
+  /// If [SpellCheckConfiguration.misspelledTextStyle] is not specified in this
+  /// configuration, then [materialMisspelledTextStyle] is used by default.
+  final SpellCheckConfiguration? spellCheckConfiguration;
+
   /// Creates a Material Design text field input.
   FormBuilderTextField({
     super.key,
@@ -349,6 +355,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.contextMenuBuilder = _defaultContextMenuBuilder,
     this.magnifierConfiguration,
     this.contentInsertionConfiguration,
+    this.spellCheckConfiguration,
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
         assert(maxLines == null || maxLines > 0),
@@ -419,6 +426,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
               autofillHints: autofillHints,
               magnifierConfiguration: magnifierConfiguration,
               contentInsertionConfiguration: contentInsertionConfiguration,
+              spellCheckConfiguration: spellCheckConfiguration,
             );
           },
         );
