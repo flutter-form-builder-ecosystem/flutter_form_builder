@@ -40,6 +40,11 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
   /// When the value is null, the `contentPadding` is `EdgeInsets.symmetric(horizontal: 16.0)`.
   final EdgeInsets contentPadding;
 
+  /// Defines how compact the list tile's layout will be.
+  ///
+  /// {@macro flutter.material.themedata.visualDensity}
+  final VisualDensity? visualDensity;
+
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
@@ -137,6 +142,7 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
                 autofocus: autofocus,
                 tristate: tristate,
                 contentPadding: contentPadding,
+                visualDensity: visualDensity,
                 selected: selected,
                 checkboxShape: shape,
                 side: side,
