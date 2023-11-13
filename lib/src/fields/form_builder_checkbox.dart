@@ -111,6 +111,7 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
     this.autofocus = false,
     this.checkColor,
     this.contentPadding = EdgeInsets.zero,
+    this.visualDensity,
     this.controlAffinity = ListTileControlAffinity.leading,
     this.secondary,
     this.selected = false,
