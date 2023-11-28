@@ -33,7 +33,7 @@ void main() {
       await tester.pump();
 
       // Close date range picker dialog
-      await tester.tap(find.text('SAVE'));
+      await tester.tap(find.text('Save'));
       await tester.pump();
 
       expect(formSave(), isTrue);
