@@ -197,9 +197,9 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
               field.value!.end < min ||
               field.value!.end > max) {
             if (initialValue == null) {
-              state.setValue(RangeValues(min, min));
+              field.setValue(RangeValues(min, min));
             } else {
-              state.setValue(
+              field.setValue(
                 RangeValues(initialValue.start, initialValue.end),
               );
             }
