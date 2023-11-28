@@ -191,8 +191,18 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
   }) : super(builder: (FormFieldState<RangeValues?> field) {
           final state = field as _FormBuilderRangeSliderState;
           final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
-          if (initialValue == null) {
-            field.setValue(RangeValues(min, min));
+          if (field.value == null ||
+              field.value!.start < min ||
+              field.value!.start > max ||
+              field.value!.end < min ||
+              field.value!.end > max) {
+            if (initialValue == null) {
+              state.setValue(RangeValues(min, min));
+            } else {
+              state.setValue(
+                RangeValues(initialValue.start, initialValue.end),
+              );
+            }
           }
           return InputDecorator(
             decoration: state.decoration,
