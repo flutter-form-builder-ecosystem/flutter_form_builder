@@ -9,17 +9,38 @@ class FormBuilder extends StatefulWidget {
   /// will rebuild.
   final VoidCallback? onChanged;
 
-  /// Enables the form to veto attempts by the user to dismiss the [ModalRoute]
-  /// that contains the form.
+  /// {@macro flutter.widgets.navigator.onPopInvoked}
   ///
-  /// If the callback returns a Future that resolves to false, the form's route
-  /// will not be popped.
+  /// {@tool dartpad}
+  /// This sample demonstrates how to use this parameter to show a confirmation
+  /// dialog when a navigation pop would cause form data to be lost.
+  ///
+  /// ** See code in examples/api/lib/widgets/form/form.1.dart **
+  /// {@end-tool}
   ///
   /// See also:
   ///
-  ///  * [WillPopScope], another widget that provides a way to intercept the
+  ///  * [canPop], which also comes from [PopScope] and is often used in
+  ///    conjunction with this parameter.
+  ///  * [PopScope.onPopInvoked], which is what [Form] delegates to internally.ther widget that provides a way to intercept the
   ///    back button.
-  final WillPopCallback? onWillPop;
+  final void Function(bool)? onPopInvoked;
+
+  /// {@macro flutter.widgets.PopScope.canPop}
+  ///
+  /// {@tool dartpad}
+  /// This sample demonstrates how to use this parameter to show a confirmation
+  /// dialog when a navigation pop would cause form data to be lost.
+  ///
+  /// ** See code in examples/api/lib/widgets/form/form.1.dart **
+  /// {@end-tool}
+  ///
+  /// See also:
+  ///
+  ///  * [onPopInvoked], which also comes from [PopScope] and is often used in
+  ///    conjunction with this parameter.
+  ///  * [PopScope.canPop], which is what [Form] delegates to internally.
+  final bool? canPop;
 
   /// The widget below this widget in the tree.
   ///
@@ -81,11 +102,12 @@ class FormBuilder extends StatefulWidget {
     required this.child,
     this.onChanged,
     this.autovalidateMode,
-    this.onWillPop,
+    this.onPopInvoked,
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
     this.enabled = true,
     this.clearValueOnUnregister = false,
+    this.canPop,
   });
 
   static FormBuilderState? of(BuildContext context) =>
@@ -315,7 +337,8 @@ class FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       autovalidateMode: widget.autovalidateMode,
-      onWillPop: widget.onWillPop,
+      onPopInvoked: widget.onPopInvoked,
+      canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
       child: _FormBuilderScope(
         formState: this,

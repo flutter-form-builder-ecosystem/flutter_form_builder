@@ -465,10 +465,9 @@ void main() {
 // disposing it from the tree
 class _DynamicFormFields extends StatefulWidget {
   const _DynamicFormFields({
-    Key? key,
     required this.name,
     this.valueTransformer,
-  }) : super(key: key);
+  });
 
   final String name;
   final ValueTransformer? valueTransformer;

@@ -38,10 +38,12 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// from the list corresponds to the [DropdownMenuItem] of the same index
   /// in [items].
   ///
-  /// {@tool dartpad --template=stateful_widget_scaffold}
-  ///
+  /// {@tool dartpad}
   /// This sample shows a `DropdownButton` with a button with [Text] that
   /// corresponds to but is unique from [DropdownMenuItem].
+  ///
+  /// ** See code in examples/api/lib/material/dropdown/dropdown_button.selected_item_builder.0.dart **
+  /// {@end-tool}
   ///
   /// If this callback is null, the [DropdownMenuItem] from [items]
   /// that matches [value] will be displayed.
