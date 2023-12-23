@@ -27,4 +27,24 @@ void main() {
     expect(formSave(), isTrue);
     expect(formValue(widgetName), equals(3));
   });
+
+  testWidgets('FormBuilderRadioGroup -- decoration',
+      (WidgetTester tester) async {
+    const widgetName = 'rg1';
+    final testWidget = FormBuilderRadioGroup<int>(
+      name: widgetName,
+      options: const [
+        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
+        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+        FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+      ],
+      itemDecoration:
+          BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+    );
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    // this is a brittle test knowing how we use container for a border
+    // there is one container for each option
+    expect(find.byType(Container), findsExactly(3));
+  });
 }

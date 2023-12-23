@@ -172,6 +172,9 @@ class GroupedRadio<T> extends StatefulWidget {
 
   final ControlAffinity controlAffinity;
 
+  /// will be added to each item if provided
+  final BoxDecoration? itemDecoration;
+
   const GroupedRadio({
     super.key,
     required this.options,
@@ -193,6 +196,7 @@ class GroupedRadio<T> extends StatefulWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
+    this.itemDecoration,
   });
 
   @override
@@ -204,7 +208,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
     for (int i = 0; i < widget.options.length; i++) {
-      widgetList.add(_buildRadioButton(i));
+      widgetList.add(buildItem(i));
     }
 
     switch (widget.orientation) {
@@ -239,7 +243,8 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     }
   }
 
-  Widget _buildRadioButton(int index) {
+  /// the composite of all the components for the option at index
+  Widget buildItem(int index) {
     final option = widget.options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
@@ -266,7 +271,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       child: option,
     );
 
-    return Column(
+    Widget compositeItem = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -288,5 +293,14 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
           widget.separator!,
       ],
     );
+
+    if (widget.itemDecoration != null) {
+      compositeItem = Container(
+        decoration: widget.itemDecoration,
+        child: compositeItem,
+      );
+    }
+
+    return compositeItem;
   }
 }

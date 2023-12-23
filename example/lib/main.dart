@@ -1,4 +1,5 @@
 import 'package:example/sources/conditional_fields.dart';
+import 'package:example/sources/decorated_radio_checkbox.dart';
 import 'package:example/sources/dynamic_fields.dart';
 import 'package:example/sources/related_fields.dart';
 import 'package:flutter/material.dart';
@@ -135,6 +136,23 @@ class _HomePage extends StatelessWidget {
                     return const CodePage(
                       title: 'Related Fields',
                       child: RelatedFields(),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('Radio Checkbox itemDecorator'),
+            trailing: const Icon(Icons.arrow_right_sharp),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CodePage(
+                      title: 'ItemDecorators',
+                      child: DecoratedRadioCheckbox(),
                     );
                   },
                 ),
