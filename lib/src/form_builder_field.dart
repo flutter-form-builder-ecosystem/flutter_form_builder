@@ -93,12 +93,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   @override
   String? get errorText => super.errorText ?? _customErrorText;
 
-  @override
-  bool get hasError => super.hasError || errorText != null;
-
-  @override
-  bool get isValid => super.isValid && errorText == null;
-
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
   bool get _isAlwaysValidate =>
