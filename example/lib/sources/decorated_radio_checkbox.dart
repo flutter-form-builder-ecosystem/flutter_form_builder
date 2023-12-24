@@ -19,8 +19,10 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
       child: Column(
         children: <Widget>[
           const SizedBox(height: 20),
+          // this text appears correctly if the textScaler <> 1.0
           const Text(
-              'Checkboxes: control leading - label area is a column of Widgets - wrapSpacing 5.0'),
+              'Checkboxes: control leading - with itemDecoration- label area is a column of Widgets - wrapSpacing 5.0',
+              textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup',
             options: getDemoOptionsWidgets(),
@@ -31,7 +33,8 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'Checkboxes: control trailing - label area is a column of Widgets - wrapSpacing 5.0'),
+              'Checkboxes: control trailing - with itemDecoration - label area is a column of Widgets - wrapSpacing 5.0',
+              textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup',
             options: getDemoOptionsWidgets(),
@@ -43,7 +46,8 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'Radio: control leading - label area is a column of Widgets - wrapSpacing 5.0'),
+              'Radio: control leading - with itemDecoration - label area is a column of Widgets - wrapSpacing 5.0',
+              textScaler: TextScaler.linear(1.01)),
           FormBuilderRadioGroup(
             name: 'aRadioGroup',
             options: getDemoOptionsWidgets(),
@@ -54,7 +58,8 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'Radio: control leading - label area just the value - wrapSpacing 10.0'),
+              'Radio: control leading - with itemDecoration - label area just the value - wrapSpacing 10.0',
+              textScaler: TextScaler.linear(1.01)),
           FormBuilderRadioGroup(
             name: 'aRadioGroup2',
             options: getDemoOptions(),
@@ -62,6 +67,16 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
             itemDecoration: BoxDecoration(
                 border: Border.all(color: Colors.blueAccent),
                 borderRadius: BorderRadius.circular(5.0)),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+              'Radio: control leading - no itemDecoration - label area just the value - wrapSpacing 10.0',
+              textScaler: TextScaler.linear(1.01)),
+
+          FormBuilderRadioGroup(
+            name: 'aRadioGroup2',
+            options: getDemoOptions(),
+            wrapSpacing: 10.0,
           ),
           const SizedBox(height: 20),
         ],
