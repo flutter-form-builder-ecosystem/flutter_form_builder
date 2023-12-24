@@ -18,16 +18,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter FormBuilder Demo',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         FormBuilderLocalizations.delegate,
         ...GlobalMaterialLocalizations.delegates,
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: FormBuilderLocalizations.supportedLocales,
-      home: _HomePage(),
+      theme: ThemeData.light().copyWith(
+          appBarTheme: const AppBarTheme()
+              .copyWith(backgroundColor: Colors.blue.shade200)),
+      home: const _HomePage(),
     );
   }
 }
