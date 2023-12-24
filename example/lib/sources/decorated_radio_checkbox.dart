@@ -71,6 +71,13 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
             name: 'aRadioGroup2',
             options: getDemoOptions(),
             wrapSpacing: 10.0,
+            wrapRunSpacing: 10.0,
+            decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                contentPadding: const EdgeInsets.only(left: 20, top: 40),
+                labelText: 'hello there',
+                icon: const Icon(Icons.access_alarm_outlined),
+                fillColor: Colors.red.shade200),
             itemDecoration: BoxDecoration(
                 color: Colors.blueGrey.shade200,
                 border: Border.all(color: Colors.blueAccent),
