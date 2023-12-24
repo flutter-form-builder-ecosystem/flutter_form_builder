@@ -182,7 +182,9 @@ class GroupedCheckbox<T> extends StatelessWidget {
   final ControlAffinity controlAffinity;
 
   /// A BoxDecoration that is added to each item if provided
-  /// WrapSpacing is reused for the the padding inside the itemDecoration
+  /// [wrapSpacing] is reused for the the padding inside the [itemDecoration].
+  /// [wrapSpacing] is used as inter-item bottom margin for [Orientation.vertical]
+  /// [wrapSpacing] is used as inter-item right margin for [Orientation.horizontal].
   /// on the side opposite from the control
   final BoxDecoration? itemDecoration;
 
@@ -306,12 +308,17 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
     if (this.itemDecoration != null) {
       compositeItem = Container(
-        padding: EdgeInsets.only(
-            left:
-                controlAffinity == ControlAffinity.leading ? 0.0 : wrapSpacing,
-            right:
-                controlAffinity == ControlAffinity.leading ? wrapSpacing : 0.0),
         decoration: this.itemDecoration,
+        padding: EdgeInsets.only(
+          left: controlAffinity == ControlAffinity.leading ? 0.0 : wrapSpacing,
+          right: controlAffinity == ControlAffinity.leading ? wrapSpacing : 0.0,
+        ),
+        margin: EdgeInsets.only(
+          bottom:
+              orientation == OptionsOrientation.vertical ? wrapSpacing : 0.0,
+          right:
+              orientation == OptionsOrientation.horizontal ? wrapSpacing : 0.0,
+        ),
         child: compositeItem,
       );
     }

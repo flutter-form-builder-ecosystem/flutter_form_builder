@@ -86,9 +86,8 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
             wrapSpacing: 10.0,
           ),
           const SizedBox(height: 20),
-          const SizedBox(height: 20),
           const Text(
-              'With itemDecoration - orientation:horizontal - orientation: horiz - wrapSpacing 5.0',
+              'With itemDecoration - orientation: horiz - no border - wrapSpacing 5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup3',
@@ -96,14 +95,13 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
             wrapSpacing: 5.0,
             orientation: OptionsOrientation.horizontal,
             itemDecoration: BoxDecoration(
-                gradient:
-                    const LinearGradient(colors: [Colors.red, Colors.white]),
-                border: Border.all(color: Colors.blueAccent),
+                color: Colors.grey.shade300,
+//                border: Border.all(color: Colors.blueAccent),
                 borderRadius: BorderRadius.circular(5.0)),
           ),
           const SizedBox(height: 20),
           const Text(
-              'With itemDecoration - orientation:vertical - orientation: vert - wrapSpacing 5.0',
+              'With itemDecoration - orientation: vert - with border - wrapSpacing 5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup3',
@@ -111,11 +109,21 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
             wrapSpacing: 5.0,
             orientation: OptionsOrientation.vertical,
             itemDecoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.red, Colors.white]),
                 color: Colors.red.shade100,
+                border: Border.all(color: Colors.blueAccent),
+                borderRadius: BorderRadius.circular(5.0)),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+              'With itemDecoration - orientation: vert - with border - wrapSpacing 5.0',
+              textScaler: TextScaler.linear(1.01)),
+          FormBuilderRadioGroup(
+            name: 'aRadioGroup4',
+            options: getDemoOptionsWidgets(),
+            wrapSpacing: 5.0,
+            orientation: OptionsOrientation.vertical,
+            itemDecoration: BoxDecoration(
+                color: Colors.lightBlue.shade100,
                 border: Border.all(color: Colors.blueAccent),
                 borderRadius: BorderRadius.circular(5.0)),
           ),
