@@ -173,7 +173,6 @@ class GroupedRadio<T> extends StatefulWidget {
   final ControlAffinity controlAffinity;
 
   /// A BoxDecoration that is added to each item if provided
-  /// [wrapSpacing] is reused for the the padding inside the [itemDecoration].
   /// [wrapSpacing] is used as inter-item bottom margin for [Orientation.vertical]
   /// [wrapSpacing] is used as inter-item right margin for [Orientation.horizontal].
   /// on the side opposite from the control
@@ -301,13 +300,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     if (widget.itemDecoration != null) {
       compositeItem = Container(
         decoration: widget.itemDecoration,
-        padding: EdgeInsets.only(
-            left: widget.controlAffinity == ControlAffinity.leading
-                ? 0.0
-                : widget.wrapSpacing,
-            right: widget.controlAffinity == ControlAffinity.leading
-                ? widget.wrapSpacing
-                : 0.0),
         margin: EdgeInsets.only(
           bottom: widget.orientation == OptionsOrientation.vertical
               ? widget.wrapSpacing

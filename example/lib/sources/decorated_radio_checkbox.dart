@@ -23,7 +23,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const SizedBox(height: 20),
           // this text appears correctly if the textScaler <> 1.0
           const Text(
-              'With itemDecoration- label is a column of Widgets - orientation: wrap - wrapSpacing 5.0',
+              'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup1',
@@ -36,7 +36,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'With itemDecoration - label is a column of Widgets - orientation: wrap - wrapSpacing 5.0',
+              'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup2',
@@ -50,7 +50,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'With itemDecoration - label is a column of Widgets - orientation: wrap - wrapSpacing 5.0',
+              'label:column of Widgets itemBorder:true orient:wrap wrapSpacing: 5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderRadioGroup(
             name: 'aRadioGroup1',
@@ -62,8 +62,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
           const SizedBox(height: 20),
-          const Text(
-              'With itemDecoration - label is the value - orientation: wrap - wrapSpacing 10.0',
+          const Text('label:value itemBorder:true orient:wrap wrapSpacing:10.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderRadioGroup(
             name: 'aRadioGroup2',
@@ -83,7 +82,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'No itemDecoration - label is the value - orientation: wrap - wrapSpacing 10.0',
+              'itemDecoration:false label:value orient:wrap wrapSpacing:10.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderRadioGroup(
             name: 'aRadioGroup3',
@@ -91,8 +90,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
             wrapSpacing: 10.0,
           ),
           const SizedBox(height: 20),
-          const Text(
-              'With itemDecoration - orientation: horiz - no border - wrapSpacing 5.0',
+          const Text('orient:horiz itemBorder:false wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup3',
@@ -105,8 +103,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
           const SizedBox(height: 20),
-          const Text(
-              'With itemDecoration - orientation: vert - with border - wrapSpacing 5.0',
+          const Text('orient:vert itemBorder:true wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup3',
@@ -120,11 +117,11 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'With itemDecoration - orientation: vert - with border - wrapSpacing 5.0',
+              'label:w/sizebox orient:vert itemBorder:true wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
           FormBuilderRadioGroup(
             name: 'aRadioGroup4',
-            options: getDemoOptionsWidgets(),
+            options: getDemoOptionsWidgets(forceMinWidth: 80.0),
             wrapSpacing: 5.0,
             orientation: OptionsOrientation.vertical,
             itemDecoration: BoxDecoration(
@@ -138,24 +135,51 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
   }
 
   /// options using column of widgets for the label
-  List<FormBuilderFieldOption> getDemoOptionsWidgets() {
-    return const [
+  /// We can force a min width by creating a sized box so we don't need another parameter
+  List<FormBuilderFieldOption> getDemoOptionsWidgets({forceMinWidth = 0.0}) {
+    return [
       FormBuilderFieldOption(
-          value: "airplane",
-          child: Column(
-            children: [Text("Airplane"), Icon(Icons.airplanemode_on)],
-          )),
+        value: "airplane",
+        child: Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              children: [
+                const Text("Airplane"),
+                const Icon(Icons.airplanemode_on),
+                SizedBox(width: forceMinWidth, height: 0.0),
+              ],
+            )),
+      ),
       FormBuilderFieldOption(
-          value: "fire-truck",
-          child:
-              Column(children: [Text("Fire Truck"), Icon(Icons.fire_truck)])),
+        value: "fire-truck",
+        child: Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(children: [
+              const Text("Fire Truck"),
+              const Icon(Icons.fire_truck),
+              SizedBox(width: forceMinWidth, height: 0.0),
+            ])),
+      ),
       FormBuilderFieldOption(
-          value: "bus-alert",
-          child: Column(children: [Text("Bus Alert"), Icon(Icons.bus_alert)])),
+        value: "bus-alert",
+        child: Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(children: [
+              const Text("Bus Alert"),
+              const Icon(Icons.bus_alert),
+              SizedBox(width: forceMinWidth, height: 0.0),
+            ])),
+      ),
       FormBuilderFieldOption(
-          value: "firetruck",
-          child:
-              Column(children: [Text("Motorcycle"), Icon(Icons.motorcycle)])),
+        value: "firetruck",
+        child: Container(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(children: [
+              const Text("Motorcycle"),
+              const Icon(Icons.motorcycle),
+              SizedBox(width: forceMinWidth, height: 0.0),
+            ])),
+      ),
     ];
   }
 
