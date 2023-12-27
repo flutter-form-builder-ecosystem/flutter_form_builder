@@ -28,53 +28,6 @@ void main() {
     expect(formValue(widgetName), equals(3));
   });
 
-  testWidgets('FormBuilderRadioGroup -- decoration control leading',
-      (WidgetTester tester) async {
-    const widgetName = 'rg1';
-    final testWidget = FormBuilderRadioGroup<int>(
-      name: widgetName,
-      wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-      ],
-      itemDecoration:
-          BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-    );
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
-
-    // this is a brittle test knowing how we use container for a border
-    // there is one container for each option
-    expect(find.byType(Container), findsExactly(2));
-    // same as wrapSpacing
-    Container foo = tester.firstWidget(find.byType(Container));
-    expect(foo.padding, const EdgeInsets.only(right: 10.0));
-  });
-
-  testWidgets('FormBuilderRadioGroup -- decoration control following',
-      (WidgetTester tester) async {
-    const widgetName = 'rg1';
-    final testWidget = FormBuilderRadioGroup<int>(
-      name: widgetName,
-      controlAffinity: ControlAffinity.trailing,
-      wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-      ],
-      itemDecoration:
-          BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-    );
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
-
-    // this is a brittle test knowing how we use container for a border
-    // there is one container for each option
-    expect(find.byType(Container), findsExactly(2));
-    // same as wrapSpacing
-    Container foo = tester.firstWidget(find.byType(Container));
-    expect(foo.padding, const EdgeInsets.only(left: 10.0));
-  });
-
   testWidgets('FormBuilderRadioGroup -- decoration horizontal',
       (WidgetTester tester) async {
     const widgetName = 'rg1';

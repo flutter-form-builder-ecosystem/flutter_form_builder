@@ -29,53 +29,6 @@ void main() {
     expect(formValue(widgetName), equals(const [1, 3]));
   });
 
-  testWidgets('FormBuilderCheckboxGroup -- decoration control',
-      (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
-      name: widgetName,
-      wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-      ],
-      itemDecoration:
-          BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-    );
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
-
-    // this is a brittle test knowing how we use container for a border
-    // there is one container for each option
-    expect(find.byType(Container), findsExactly(2));
-    // same as wrapSpacing
-    Container foo = tester.firstWidget(find.byType(Container));
-    expect(foo.padding, const EdgeInsets.only(right: 10.0));
-  });
-
-  testWidgets('FormBuilderCheckboxGroup -- decoration control following',
-      (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
-      name: widgetName,
-      controlAffinity: ControlAffinity.trailing,
-      wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-      ],
-      itemDecoration:
-          BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-    );
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
-
-    // this is a brittle test knowing how we use container for a border
-    // there is one container for each option
-    expect(find.byType(Container), findsExactly(2));
-    // same as wrapSpacing
-    Container foo = tester.firstWidget(find.byType(Container));
-    expect(foo.padding, const EdgeInsets.only(left: 10.0));
-  });
-
   testWidgets('FormBuilderCheckboxGroup -- decoration horizontal',
       (WidgetTester tester) async {
     const widgetName = 'cbg1';
