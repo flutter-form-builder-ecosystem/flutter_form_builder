@@ -181,6 +181,12 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   final ControlAffinity controlAffinity;
 
+  /// A BoxDecoration that is added to each item if provided
+  /// [wrapSpacing] is used as inter-item bottom margin for [Orientation.vertical]
+  /// [wrapSpacing] is used as inter-item right margin for [Orientation.horizontal].
+  /// on the side opposite from the control
+  final BoxDecoration? itemDecoration;
+
   const GroupedCheckbox({
     super.key,
     required this.options,
@@ -205,13 +211,14 @@ class GroupedCheckbox<T> extends StatelessWidget {
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
     this.visualDensity,
+    this.itemDecoration,
   });
 
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
     for (var i = 0; i < options.length; i++) {
-      widgetList.add(item(i));
+      widgetList.add(buildItem(i));
     }
     Widget finalWidget;
     if (orientation == OptionsOrientation.vertical) {
@@ -249,7 +256,8 @@ class GroupedCheckbox<T> extends StatelessWidget {
     return finalWidget;
   }
 
-  Widget item(int index) {
+  /// the composite of all the components for the option at index
+  Widget buildItem(int index) {
     final option = options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == disabled?.contains(optionValue);
@@ -287,14 +295,42 @@ class GroupedCheckbox<T> extends StatelessWidget {
       child: option,
     );
 
-    return Row(
+    Widget compositeItem = Column(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        if (controlAffinity == ControlAffinity.leading) control,
-        Flexible(flex: 1, child: label),
-        if (controlAffinity == ControlAffinity.trailing) control,
-        if (separator != null && index != options.length - 1) separator!,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (controlAffinity == ControlAffinity.leading) control,
+            Flexible(flex: 1, child: label),
+            if (controlAffinity == ControlAffinity.trailing) control,
+            if (orientation != OptionsOrientation.vertical &&
+                separator != null &&
+                index != options.length - 1)
+              separator!,
+          ],
+        ),
+        if (orientation == OptionsOrientation.vertical &&
+            separator != null &&
+            index != options.length - 1)
+          separator!,
       ],
     );
+
+    if (this.itemDecoration != null) {
+      compositeItem = Container(
+        decoration: this.itemDecoration,
+        margin: EdgeInsets.only(
+          bottom:
+              orientation == OptionsOrientation.vertical ? wrapSpacing : 0.0,
+          right:
+              orientation == OptionsOrientation.horizontal ? wrapSpacing : 0.0,
+        ),
+        child: compositeItem,
+      );
+    }
+
+    return compositeItem;
   }
 }

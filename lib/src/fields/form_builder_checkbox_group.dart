@@ -25,6 +25,11 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
 
+  /// A BoxDecoration that is added to each item if provided
+  /// WrapSpacing is reused for the the padding inside the itemDecoration
+  /// on the side opposite from the control
+  final BoxDecoration? itemDecoration;
+
   /// Creates a list of Checkboxes for selecting multiple options
   FormBuilderCheckboxGroup({
     super.key,
@@ -60,6 +65,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
     this.orientation = OptionsOrientation.wrap,
+    this.itemDecoration,
   }) : super(
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderCheckboxGroupState<T>;
@@ -93,6 +99,7 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
                 wrapVerticalDirection: wrapVerticalDirection,
                 separator: separator,
                 controlAffinity: controlAffinity,
+                itemDecoration: itemDecoration,
               ),
             );
           },

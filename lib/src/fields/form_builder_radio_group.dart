@@ -22,6 +22,11 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
   final WrapAlignment wrapRunAlignment;
   final WrapCrossAlignment wrapCrossAxisAlignment;
 
+  /// A BoxDecoration that is added to each item if provided
+  /// WrapSpacing is reused for the the padding inside the itemDecoration
+  /// on the side opposite from the control
+  final BoxDecoration? itemDecoration;
+
   /// Creates field to select one value from a list of Radio Widgets
   FormBuilderRadioGroup({
     super.autovalidateMode = AutovalidateMode.disabled,
@@ -54,6 +59,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
     super.valueTransformer,
     super.onReset,
     super.restorationId,
+    this.itemDecoration,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderRadioGroupState<T>;
@@ -84,6 +90,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                 wrapSpacing: wrapSpacing,
                 wrapTextDirection: wrapTextDirection,
                 wrapVerticalDirection: wrapVerticalDirection,
+                itemDecoration: itemDecoration,
               ),
             );
           },
