@@ -1,6 +1,7 @@
 import 'package:example/sources/conditional_fields.dart';
 import 'package:example/sources/decorated_radio_checkbox.dart';
 import 'package:example/sources/dynamic_fields.dart';
+import 'package:example/sources/grouped_radio_checkbox.dart';
 import 'package:example/sources/related_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -156,6 +157,23 @@ class _HomePage extends StatelessWidget {
                     return const CodePage(
                       title: 'ItemDecorators',
                       child: DecoratedRadioCheckbox(),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('GroupedRadio and GroupedCheckbox Orientation'),
+            trailing: const Icon(Icons.arrow_right_sharp),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const CodePage(
+                      title: 'GroupedRadio and GroupedCheckbox',
+                      child: GroupedRadioCheckbox(),
                     );
                   },
                 ),
