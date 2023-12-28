@@ -287,13 +287,26 @@ class GroupedCheckbox<T> extends StatelessWidget {
       child: option,
     );
 
-    return Row(
+    return Column(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        if (controlAffinity == ControlAffinity.leading) control,
-        Flexible(flex: 1, child: label),
-        if (controlAffinity == ControlAffinity.trailing) control,
-        if (separator != null && index != options.length - 1) separator!,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            if (controlAffinity == ControlAffinity.leading) control,
+            Flexible(flex: 1, child: label),
+            if (controlAffinity == ControlAffinity.trailing) control,
+            if (orientation != OptionsOrientation.vertical &&
+                separator != null &&
+                index != options.length - 1)
+              separator!,
+          ],
+        ),
+        if (orientation == OptionsOrientation.vertical &&
+            separator != null &&
+            index != options.length - 1)
+          separator!,
       ],
     );
   }
