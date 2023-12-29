@@ -181,10 +181,13 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   final ControlAffinity controlAffinity;
 
-  /// A BoxDecoration that is added to each item if provided
-  /// [wrapSpacing] is used as inter-item bottom margin for [Orientation.vertical]
-  /// [wrapSpacing] is used as inter-item right margin for [Orientation.horizontal].
-  /// on the side opposite from the control
+  /// Applied to a [Container] wrapping each item if provided
+  ///
+  /// If the [orientation] is set to [OptionsOrientation.vertical] then
+  /// [wrapSpacing] is used as inter-item bottom margin
+  ///
+  /// If the [orientation] is set to [OptionsOrientation.horizontal] then
+  /// [wrapSpacing] is used as inter-item right margin
   final BoxDecoration? itemDecoration;
 
   const GroupedCheckbox({

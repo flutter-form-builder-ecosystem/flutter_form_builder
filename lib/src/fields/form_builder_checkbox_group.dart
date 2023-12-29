@@ -25,9 +25,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
 
-  /// A BoxDecoration that is added to each item if provided
-  /// WrapSpacing is reused for the the padding inside the itemDecoration
-  /// on the side opposite from the control
+  /// Added to each item if provided.
+  /// [GroupedCheckbox] applies the [itemDecorator] to each Checkbox
   final BoxDecoration? itemDecoration;
 
   /// Creates a list of Checkboxes for selecting multiple options
