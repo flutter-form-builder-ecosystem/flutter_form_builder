@@ -7,7 +7,8 @@ import '../form_builder_tester.dart';
 void main() {
   group('FormBuilderField -', () {
     group('custom error -', () {
-      testWidgets('Should show custom error when invalidate field', (tester) async {
+      testWidgets('Should show custom error when invalidate field',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text2';
         const errorTextField = 'error text field';
@@ -41,7 +42,9 @@ void main() {
 
         expect(textFieldKey.currentState?.isValid, isFalse);
       });
-      testWidgets('Should valid when no has error and autovalidateMode is always', (tester) async {
+      testWidgets(
+          'Should valid when no has error and autovalidateMode is always',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text';
         const errorTextField = 'error text field';
@@ -49,7 +52,8 @@ void main() {
           name: textFieldName,
           key: textFieldKey,
           autovalidateMode: AutovalidateMode.always,
-          validator: (value) => value == null || value.isEmpty ? errorTextField : null,
+          validator: (value) =>
+              value == null || value.isEmpty ? errorTextField : null,
         );
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -61,7 +65,9 @@ void main() {
 
         expect(textFieldKey.currentState?.isValid, isTrue);
       });
-      testWidgets('Should invalid when has error and autovalidateMode is always', (tester) async {
+      testWidgets(
+          'Should invalid when has error and autovalidateMode is always',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text';
         const errorTextField = 'error text field';
@@ -69,7 +75,8 @@ void main() {
           name: textFieldName,
           key: textFieldKey,
           autovalidateMode: AutovalidateMode.always,
-          validator: (value) => value == null || value.length < 10 ? errorTextField : null,
+          validator: (value) =>
+              value == null || value.length < 10 ? errorTextField : null,
         );
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -100,7 +107,8 @@ void main() {
 
         expect(textFieldKey.currentState?.hasError, isTrue);
       });
-      testWidgets('Should no has errors when is empty and no has validators', (tester) async {
+      testWidgets('Should no has errors when is empty and no has validators',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text';
         final testWidget = FormBuilderTextField(
@@ -118,7 +126,9 @@ void main() {
     });
 
     group('valueIsValid -', () {
-      testWidgets('Should value is valid when validator passes, despite set custom error', (tester) async {
+      testWidgets(
+          'Should value is valid when validator passes, despite set custom error',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text';
         const errorTextField = 'error text field';
@@ -137,7 +147,8 @@ void main() {
     });
 
     group('valueHasError -', () {
-      testWidgets('Should value is invalid when validator passes', (tester) async {
+      testWidgets('Should value is invalid when validator passes',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text';
         const invalidValue = 'invalid';
@@ -155,12 +166,15 @@ void main() {
     });
 
     group('autovalidateMode -', () {
-      testWidgets('Should show error when init form and AutovalidateMode is always', (tester) async {
+      testWidgets(
+          'Should show error when init form and AutovalidateMode is always',
+          (tester) async {
         const textFieldName = 'text4';
         const errorTextField = 'error text field';
         final testWidget = FormBuilderTextField(
           name: textFieldName,
-          validator: (value) => value == null || value.isEmpty ? errorTextField : null,
+          validator: (value) =>
+              value == null || value.isEmpty ? errorTextField : null,
           autovalidateMode: AutovalidateMode.always,
         );
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -168,7 +182,9 @@ void main() {
 
         expect(find.text(errorTextField), findsOneWidget);
       });
-      testWidgets('Should show error when AutovalidateMode is onUserInteraction and change field', (tester) async {
+      testWidgets(
+          'Should show error when AutovalidateMode is onUserInteraction and change field',
+          (tester) async {
         const textFieldName = 'text4';
         const errorTextField = 'error text field';
         final testWidget = FormBuilderTextField(
@@ -190,15 +206,18 @@ void main() {
       testWidgets('Should not dirty by default', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         expect(textFieldKey.currentState?.isDirty, false);
       });
-      testWidgets('Should dirty when update field value by user', (tester) async {
+      testWidgets('Should dirty when update field value by user',
+          (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         final widgetFinder = find.byWidget(testWidget);
@@ -206,10 +225,12 @@ void main() {
 
         expect(textFieldKey.currentState?.isDirty, true);
       });
-      testWidgets('Should dirty when update field value by method', (tester) async {
+      testWidgets('Should dirty when update field value by method',
+          (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         textFieldKey.currentState?.setValue('test');
@@ -217,7 +238,8 @@ void main() {
 
         expect(textFieldKey.currentState?.isDirty, true);
       });
-      testWidgets('Should dirty when update field with initial value by user', (tester) async {
+      testWidgets('Should dirty when update field with initial value by user',
+          (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         final testWidget = FormBuilderTextField(
@@ -232,7 +254,8 @@ void main() {
 
         expect(textFieldKey.currentState?.isDirty, true);
       });
-      testWidgets('Should dirty when update field with initial value by method', (tester) async {
+      testWidgets('Should dirty when update field with initial value by method',
+          (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         final testWidget = FormBuilderTextField(
@@ -250,7 +273,8 @@ void main() {
       testWidgets('Should not dirty when reset field value', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         textFieldKey.currentState?.setValue('test');
@@ -259,7 +283,8 @@ void main() {
 
         expect(textFieldKey.currentState?.isDirty, false);
       });
-      testWidgets('Should not dirty when reset field with initial value', (tester) async {
+      testWidgets('Should not dirty when reset field with initial value',
+          (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         final testWidget = FormBuilderTextField(
@@ -281,7 +306,8 @@ void main() {
       testWidgets('Should not touched by default', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         expect(textFieldKey.currentState?.isTouched, false);
@@ -289,7 +315,8 @@ void main() {
       testWidgets('Should touched when focus input', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         final widgetFinder = find.byWidget(testWidget);
@@ -303,7 +330,8 @@ void main() {
       testWidgets('Should reset to null when call reset', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
-        final testWidget = FormBuilderTextField(name: textFieldName, key: textFieldKey);
+        final testWidget =
+            FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
         textFieldKey.currentState?.setValue('test');
@@ -329,7 +357,9 @@ void main() {
 
         expect(textFieldKey.currentState?.value, equals(initialValue));
       });
-      testWidgets('Should reset custom error when invalidate field and then reset', (tester) async {
+      testWidgets(
+          'Should reset custom error when invalidate field and then reset',
+          (tester) async {
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
         const textFieldName = 'text';
         const errorTextField = 'error text field';

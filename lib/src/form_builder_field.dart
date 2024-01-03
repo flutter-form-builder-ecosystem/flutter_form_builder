@@ -62,10 +62,12 @@ class FormBuilderField<T> extends FormField<T> {
   });
 
   @override
-  FormBuilderFieldState<FormBuilderField<T>, T> createState() => FormBuilderFieldState<FormBuilderField<T>, T>();
+  FormBuilderFieldState<FormBuilderField<T>, T> createState() =>
+      FormBuilderFieldState<FormBuilderField<T>, T>();
 }
 
-class FormBuilderFieldState<F extends FormBuilderField<T>, T> extends FormFieldState<T> {
+class FormBuilderFieldState<F extends FormBuilderField<T>, T>
+    extends FormFieldState<T> {
   String? _customErrorText;
   FormBuilderState? _formBuilderState;
   bool _touched = false;
@@ -81,7 +83,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T> extends FormFieldS
   /// Returns the initial value, which may be declared at the field, or by the
   /// parent [FormBuilder.initialValue]. When declared at both levels, the field
   /// initialValue prevails.
-  T? get initialValue => widget.initialValue ?? (_formBuilderState?.initialValue ?? const <String, dynamic>{})[widget.name] as T?;
+  T? get initialValue =>
+      widget.initialValue ??
+      (_formBuilderState?.initialValue ??
+          const <String, dynamic>{})[widget.name] as T?;
 
   dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
 
@@ -99,7 +104,9 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T> extends FormFieldS
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
-  bool get _isAlwaysValidate => widget.autovalidateMode.isAlways || (_formBuilderState?.widget.autovalidateMode?.isAlways ?? false);
+  bool get _isAlwaysValidate =>
+      widget.autovalidateMode.isAlways ||
+      (_formBuilderState?.widget.autovalidateMode?.isAlways ?? false);
 
   /// Will be true if the field is dirty
   ///
@@ -235,9 +242,14 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T> extends FormFieldS
     }
     final isValid = super.validate() && !hasError;
 
-    final fields = _formBuilderState?.fields ?? <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
+    final fields = _formBuilderState?.fields ??
+        <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
 
-    if (!isValid && focusOnInvalid && (formState?.focusOnInvalid ?? true) && enabled && !fields.values.any((e) => e.effectiveFocusNode.hasFocus)) {
+    if (!isValid &&
+        focusOnInvalid &&
+        (formState?.focusOnInvalid ?? true) &&
+        enabled &&
+        !fields.values.any((e) => e.effectiveFocusNode.hasFocus)) {
       focus();
       if (autoScrollWhenFocusOnInvalid) ensureScrollableVisibility();
     }
