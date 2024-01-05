@@ -125,6 +125,46 @@ void main() {
       });
     });
 
+    group('valueIsValid -', () {
+      testWidgets(
+          'Should value is valid when validator passes, despite set custom error',
+          (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        // Set custom error
+        textFieldKey.currentState?.invalidate(errorTextField);
+        await tester.pumpAndSettle();
+
+        expect(textFieldKey.currentState?.valueIsValid, isTrue);
+      });
+    });
+
+    group('valueHasError -', () {
+      testWidgets('Should value is invalid when validator passes',
+          (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const textFieldName = 'text';
+        const invalidValue = 'invalid';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+          initialValue: invalidValue,
+          validator: (value) => (value == invalidValue) ? 'error' : null,
+          autovalidateMode: AutovalidateMode.always,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        expect(textFieldKey.currentState?.valueHasError, isTrue);
+      });
+    });
+
     group('autovalidateMode -', () {
       testWidgets(
           'Should show error when init form and AutovalidateMode is always',
