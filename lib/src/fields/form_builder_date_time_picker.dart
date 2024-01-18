@@ -343,6 +343,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       routeSettings: widget.routeSettings,
       currentDate: widget.currentDate,
       anchorPoint: widget.anchorPoint,
+      keyboardType: widget.keyboardType,
     );
   }
 
