@@ -40,6 +40,28 @@ void main() {
       expect(formValue<DateTime>(widgetName),
           DateTime(dateNow.year, dateNow.month, testDay, 12));
     });
+    testWidgets('input keyboard type', (WidgetTester tester) async {
+      const widgetName = 'fdtp3';
+      final widgetKey = UniqueKey();
+      const keyboardType = TextInputType.datetime;
+
+      final testWidget = FormBuilderDateTimePicker(
+        key: widgetKey,
+        name: widgetName,
+        keyboardType: keyboardType,
+        inputType: InputType.date,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      await tester.tap(find.byKey(widgetKey));
+      await tester.pumpAndSettle();
+
+      // change to input edition
+      await tester.tap(find.byIcon(Icons.edit_outlined));
+      await tester.pumpAndSettle();
+
+      final textField = tester.widget<TextField>(find.byType(TextField).first);
+      expect(textField.keyboardType, equals(keyboardType));
+    });
     group('initial value -', () {
       testWidgets('to FormBuilder', (WidgetTester tester) async {
         const widgetName = 'fdtp2';
