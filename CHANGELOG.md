@@ -2,7 +2,6 @@
 
 ## Features
 
-* update flutter version ([c8fb870](commit/c8fb870))
 * Add a message to unregisterField assertion
 * `FormBuilderDateTimePicker` Pass parameter keyboardType to material showDatePicker
 * Reintroduce ability to validate form field's value independent of input's error text
