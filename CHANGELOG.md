@@ -1,3 +1,7 @@
+# [9.2.1]
+
+* Set minimal Flutter version to 3.16.0
+
 # [9.2.0]
 
 ## Features
