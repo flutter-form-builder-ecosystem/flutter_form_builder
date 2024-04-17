@@ -23,8 +23,9 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const SizedBox(height: 20),
           // this text appears correctly if the textScaler <> 1.0
           const Text(
-              'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
-              textScaler: TextScaler.linear(1.01)),
+            'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
+            // textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup1',
             options: getDemoOptionsWidgets(),
@@ -36,8 +37,9 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
-              textScaler: TextScaler.linear(1.01)),
+            'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
+            // textScaler: TextScaler.linear(1.01)
+          ),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup2',
             options: getDemoOptionsWidgets(),
@@ -50,8 +52,9 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'label:column of Widgets itemBorder:true orient:wrap wrapSpacing: 5.0',
-              textScaler: TextScaler.linear(1.01)),
+            'label:column of Widgets itemBorder:true orient:wrap wrapSpacing: 5.0',
+            //textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderRadioGroup(
             name: 'aRadioGroup1',
             options: getDemoOptionsWidgets(),
@@ -62,8 +65,10 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
           const SizedBox(height: 20),
-          const Text('label:value itemBorder:true orient:wrap wrapSpacing:10.0',
-              textScaler: TextScaler.linear(1.01)),
+          const Text(
+            'label:value itemBorder:true orient:wrap wrapSpacing:10.0',
+            //  textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderRadioGroup(
             name: 'aRadioGroup2',
             options: getDemoOptions(),
@@ -82,16 +87,19 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'itemDecoration:false label:value orient:wrap wrapSpacing:10.0',
-              textScaler: TextScaler.linear(1.01)),
+            'itemDecoration:false label:value orient:wrap wrapSpacing:10.0',
+            // textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderRadioGroup(
             name: 'aRadioGroup3',
             options: getDemoOptions(),
             wrapSpacing: 10.0,
           ),
           const SizedBox(height: 20),
-          const Text('orient:horiz itemBorder:false wrapSpacing:5.0',
-              textScaler: TextScaler.linear(1.01)),
+          const Text(
+            'orient:horiz itemBorder:false wrapSpacing:5.0',
+            // textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup3',
             options: getDemoOptionsWidgets(),
@@ -103,8 +111,10 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
           const SizedBox(height: 20),
-          const Text('orient:vert itemBorder:true wrapSpacing:5.0',
-              textScaler: TextScaler.linear(1.01)),
+          const Text(
+            'orient:vert itemBorder:true wrapSpacing:5.0',
+            //textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderCheckboxGroup(
             name: 'aCheckboxGroup3',
             options: getDemoOptionsWidgets(),
@@ -117,8 +127,9 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'label:w/sizebox orient:vert itemBorder:true wrapSpacing:5.0',
-              textScaler: TextScaler.linear(1.01)),
+            'label:w/sizebox orient:vert itemBorder:true wrapSpacing:5.0',
+            //textScaler: TextScaler.linear(1.01),
+          ),
           FormBuilderRadioGroup(
             name: 'aRadioGroup4',
             options: getDemoOptionsWidgets(forceMinWidth: 80.0),

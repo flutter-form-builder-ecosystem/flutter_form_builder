@@ -341,8 +341,8 @@ class FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       autovalidateMode: widget.autovalidateMode,
-      onPopInvoked: widget.onPopInvoked,
-      canPop: widget.canPop,
+      // onPopInvoked: widget.onPopInvoked,
+      // canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
       child: _FormBuilderScope(
         formState: this,
