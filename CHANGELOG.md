@@ -1,3 +1,22 @@
+# [9.2.1]
+
+* Set minimal Flutter version to 3.16.0
+
+# [9.2.0]
+
+## Features
+
+* Add a message to unregisterField assertion
+* `FormBuilderDateTimePicker` Pass parameter keyboardType to material showDatePicker
+* Reintroduce ability to validate form field's value independent of input's error text
+* Add GroupedRadio separator behavior to GroupedCheckbox
+* `FormBuilderCheckboxGroup/FormBuilderRadioGroup` Add itemDecoration to checkbox to add borders to checkboxes and radio buttons
+* `FormBuilderRangeSlider` Correct internal values when min/max changes
+* `FormBuilderCheckbox` Add Visual density parameter
+* `FormBuilderCheckboxGroup` Add visual density property in grouped_checkbox
+* `FormBuilderTextField` Add spell check property from TextField
+* Built with Flutter 3.16
+
 ## [9.1.1]
 
 * `FormBuilderDateTimePicker` & `FormBuilderDateRangePicker`: Added optional parameter `mouseCursor`
@@ -1080,12 +1099,3 @@ Closes [#8](https://github.com/danvick/flutter_form_builder/issues/8)
     * TimePicker
     * Url
     * TypeAhead
-
-
-
-
-
-
-
-
-

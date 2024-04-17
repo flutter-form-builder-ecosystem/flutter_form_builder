@@ -221,7 +221,11 @@ class FormBuilderState extends State<FormBuilder> {
   }
 
   void unregisterField(String name, FormBuilderFieldState field) {
-    assert(_fields.containsKey(name));
+    assert(
+      _fields.containsKey(name),
+      'Failed to unregister a field. Make sure that all field names in a form are unique.',
+    );
+
     // Only remove the field when it is the one registered.  It's possible that
     // the field is replaced (registerField is called twice for a given name)
     // before unregisterField is called for the name, so just emit a warning
@@ -337,8 +341,8 @@ class FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       autovalidateMode: widget.autovalidateMode,
-      onPopInvoked: widget.onPopInvoked,
-      canPop: widget.canPop,
+      // onPopInvoked: widget.onPopInvoked,
+      // canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
       child: _FormBuilderScope(
         formState: this,
