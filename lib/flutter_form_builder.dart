@@ -20,3 +20,5 @@ export 'src/widgets/grouped_checkbox.dart';
 export 'src/widgets/grouped_radio.dart';
 export 'src/options/form_builder_chip_option.dart';
 export 'src/options/display_values_enum.dart';
+export 'src/alippo_custom_form_components/fields/alippo_selection_card_group/alippo_selection_card_group.dart';
+export 'src/alippo_custom_form_components/fields/alippo_selection_card_group/comp/selection_card_options.dart';
