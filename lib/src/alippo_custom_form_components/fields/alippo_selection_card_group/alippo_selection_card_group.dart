@@ -26,9 +26,7 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
 
   /// Color to be used for the chip's background, indicating that it is
   /// selected.
-  final Color? selectedColor;
-
-  final Color? unselectedColor;
+  final Color? selectedCardColor;
 
   /// Color to be used for the chip's background indicating that it is disabled.
   ///
@@ -39,10 +37,7 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
   /// It defaults to [Colors.black38].
   final Color? disabledColor;
 
-  /// Color to be used for the unselected, enabled chip's background.
-  ///
-  /// The default is light grey.
-  final Color? backgroundColor;
+  final Color? defaultCardColor;
 
   /// Color of the chip's shadow when the elevation is greater than 0 and the
   /// chip is selected.
@@ -141,53 +136,17 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
   /// Defaults to 0.0.
   final double spacing;
 
-  /// How the runs themselves should be placed in the cross axis.
-  ///
-  /// For example, if [runAlignment] is [WrapAlignment.center], the runs are
-  /// grouped together in the center of the overall [Wrap] in the cross axis.
-  ///
-  /// Defaults to [WrapAlignment.start].
-  ///
-  /// See also:
-  ///
-  ///  * [alignment], which controls how the children within each run are placed
-  ///    relative to each other in the main axis.
-  ///  * [crossAxisAlignment], which controls how the children within each run
-  ///    are placed relative to each other in the cross axis.
-  final WrapAlignment runAlignment;
-
-  /// How much space to place between the runs themselves in the cross axis.
-  ///
-  /// For example, if [runSpacing] is 10.0, the runs will be spaced at least
-  /// 10.0 logical pixels apart in the cross axis.
-  ///
-  /// If there is additional free space in the overall [Wrap] (e.g., because
-  /// the wrap has a minimum size that is not filled), the additional free space
-  /// will be allocated according to the [runAlignment].
-  ///
-  /// Defaults to 0.0.
-  final double runSpacing;
-
-  /// How the children within a run should be aligned relative to each other in
-  /// the cross axis.
-  ///
-  /// For example, if this is set to [WrapCrossAlignment.end], and the
-  /// [direction] is [Axis.horizontal], then the children within each
-  /// run will have their bottom edges aligned to the bottom edge of the run.
-  ///
-  /// Defaults to [WrapCrossAlignment.start].
-  ///
-  /// See also:
-  ///
-  ///  * [alignment], which controls how the children within each run are placed
-  ///    relative to each other in the main axis.
-  ///  * [runAlignment], which controls how the runs are placed relative to each
-  ///    other in the cross axis.
-  final WrapCrossAlignment crossAxisAlignment;
-
   final ShapeBorder avatarBorder;
 
   final bool expanded;
+
+  final Duration? animationDuration;
+
+  final Duration? reverseAnimationDuration;
+
+  final Curve? animationCurve;
+
+  final Curve? reverseAnimationCurve;
 
   /// Creates a list of `Chip`s that acts like radio buttons
   AlippoSelectionCardGroups({
@@ -207,8 +166,7 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
     super.onReset,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
-    this.backgroundColor,
-    this.crossAxisAlignment = WrapCrossAlignment.start,
+    this.defaultCardColor,
     this.direction = Axis.horizontal,
     this.disabledColor,
     this.elevation,
@@ -217,16 +175,17 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
     this.unselectedLabelStyle,
     this.padding,
     this.pressElevation,
-    this.runAlignment = WrapAlignment.start,
-    this.runSpacing = 0.0,
-    this.selectedColor,
-    this.unselectedColor,
+    this.selectedCardColor,
     this.selectedShadowColor,
     this.shadowColor,
     this.selectedShape,
     this.unselectedShape,
     this.spacing = 0.0,
     this.expanded = false,
+    this.animationDuration,
+    this.reverseAnimationDuration,
+    this.animationCurve,
+    this.reverseAnimationCurve,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _AlippoSelectionCardGroupsState<T>;
@@ -250,11 +209,11 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
                                   }
                                 : null,
                             avatar: option.avatar,
-                            selectedIconColor: unselectedColor,
-                            unselectedIconColor: selectedColor,
-                            selectedCardColor: selectedColor,
+                            selectedIconColor: defaultCardColor,
+                            unselectedIconColor: selectedCardColor,
+                            selectedCardColor: selectedCardColor,
+                            defaultCardColor: defaultCardColor,
                             disabledColor: disabledColor,
-                            backgroundColor: backgroundColor,
                             shadowColor: shadowColor,
                             selectedShadowColor: selectedShadowColor,
                             elevation: elevation,
@@ -267,7 +226,6 @@ class AlippoSelectionCardGroups<T> extends FormBuilderFieldDecoration<T> {
                             unselectedShape: unselectedShape,
                             expanded: expanded,
                             infoModalConfig: option.infoModalConfig,
-                            infoModalHeight: 100,
                           ),
                           if (options.last != option) SizedBox(height: spacing),
                         ],

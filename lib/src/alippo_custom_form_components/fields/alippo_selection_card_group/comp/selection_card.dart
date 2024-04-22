@@ -32,8 +32,6 @@ class SelectionCard<T> extends StatefulWidget {
 
   final bool autofocus;
 
-  final Color? backgroundColor;
-
   final EdgeInsetsGeometry? padding;
 
   final double? elevation;
@@ -58,8 +56,6 @@ class SelectionCard<T> extends StatefulWidget {
 
   final Curve? reverseAnimationCurve;
 
-  final double infoModalHeight;
-
   /// Configuration for the info modal
   final InfoModalConfig? infoModalConfig;
 
@@ -80,7 +76,6 @@ class SelectionCard<T> extends StatefulWidget {
     this.unselectedShape,
     this.focusNode,
     this.autofocus = false,
-    this.backgroundColor,
     this.padding,
     this.elevation,
     this.shadowColor,
@@ -95,7 +90,6 @@ class SelectionCard<T> extends StatefulWidget {
     this.reverseAnimationDuration,
     this.animationCurve,
     this.reverseAnimationCurve,
-    this.infoModalHeight = 0,
   });
 
   @override
@@ -222,9 +216,9 @@ class _SelectionCardState extends State<SelectionCard>
             if (widget.infoModalConfig != null)
               Padding(
                 padding: const EdgeInsets.only(top: 50),
-                child: Visibility(
-                  visible: _animation!.value > 0,
-                  maintainSize: false,
+                child: SizeTransition(
+                  sizeFactor: _animation!,
+                  axis: Axis.vertical,
                   child: Transform(
                     transform:
                         Matrix4.diagonal3Values(1.0, _animation!.value, 1.0),
@@ -262,10 +256,10 @@ class _SelectionCardState extends State<SelectionCard>
               ),
             Card(
               color: ColorTween(
-                    begin: widget.backgroundColor, // Light theme color
+                    begin: widget.defaultCardColor, // Light theme color
                     end: widget.selectedCardColor, // Dark theme color
                   ).evaluate(_animation!) ??
-                  widget.backgroundColor,
+                  widget.defaultCardColor,
               elevation: widget.elevation,
               shadowColor: widget.shadowColor,
               shape: widget.selected
@@ -273,6 +267,7 @@ class _SelectionCardState extends State<SelectionCard>
                   : widget.unselectedShape ?? widget.selectedShape,
               margin: EdgeInsets.zero,
               child: InkWell(
+                splashColor: Colors.transparent,
                 onTap: () {
                   if (widget.onSelected != null) {
                     widget.onSelected!(!widget.selected);
