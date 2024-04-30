@@ -224,7 +224,12 @@ class GroupedCheckbox<T> extends StatelessWidget {
       widgetList.add(buildItem(i));
     }
     Widget finalWidget;
-    if (orientation == OptionsOrientation.vertical) {
+    if (orientation == OptionsOrientation.auto) {
+      finalWidget = OverflowBar(
+        alignment: MainAxisAlignment.spaceEvenly,
+        children: widgetList,
+      );
+    } else if (orientation == OptionsOrientation.vertical) {
       finalWidget = SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(

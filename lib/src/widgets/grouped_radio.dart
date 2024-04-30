@@ -218,6 +218,11 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     }
 
     switch (widget.orientation) {
+      case OptionsOrientation.auto:
+        return OverflowBar(
+          alignment: MainAxisAlignment.spaceEvenly,
+          children: widgetList,
+        );
       case OptionsOrientation.vertical:
         return SingleChildScrollView(
           scrollDirection: Axis.vertical,

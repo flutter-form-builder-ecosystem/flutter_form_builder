@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 
-enum OptionsOrientation { horizontal, vertical, wrap }
+enum OptionsOrientation { horizontal, vertical, wrap, auto }
 
 enum ControlAffinity { leading, trailing }
 
