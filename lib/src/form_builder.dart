@@ -213,11 +213,7 @@ class FormBuilderState extends State<FormBuilder> {
 
     _fields[name] = field;
     field.registerTransformer(_transformers);
-
-    field.setValue(
-      oldField?.value ?? (_instantValue[name] ??= field.initialValue),
-      populateForm: false,
-    );
+    _instantValue[name] = field.initialValue;
   }
 
   void unregisterField(String name, FormBuilderFieldState field) {
