@@ -101,7 +101,10 @@ See [pub.dev example tab](https://pub.dev/packages/flutter_form_builder/example)
 ### Specific uses
 
 #### Validate and get values
-  
+
+Note: Validators are in a separate package
+([form_builder_validators](https://pub.dev/packages/form_builder_validators)).
+
   ```dart
   final _formKey = GlobalKey<FormBuilderState>();
 
