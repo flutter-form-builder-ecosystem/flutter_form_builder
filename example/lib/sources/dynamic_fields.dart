@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+/// ## Caveats
+/// There is a limitation of 2^53 - 1 (approximately 10^15) on the number of new
+/// fields that can be added to this widget. For the purposes of the widget, it
+/// is more than sufficient.
 class DynamicFields extends StatefulWidget {
   const DynamicFields({Key? key}) : super(key: key);
 
@@ -12,6 +16,7 @@ class DynamicFields extends StatefulWidget {
 class _DynamicFieldsState extends State<DynamicFields> {
   final _formKey = GlobalKey<FormBuilderState>();
   final List<Widget> fields = [];
+  var _newTextFieldId = 0;
   String savedValue = '';
 
   @override
@@ -65,12 +70,15 @@ class _DynamicFieldsState extends State<DynamicFields> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
+                    final newTextFieldName = 'name_${_newTextFieldId++}';
+                    final newTextFieldKey = ValueKey(_newTextFieldId);
                     setState(() {
                       fields.add(NewTextField(
-                        name: 'name_${fields.length}',
+                        key: newTextFieldKey,
+                        name: newTextFieldName,
                         onDelete: () {
                           setState(() {
-                            fields.removeAt(fields.length - 1);
+                            fields.removeWhere((e) => e.key == newTextFieldKey);
                           });
                         },
                       ));
