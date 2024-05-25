@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class CustomFields extends StatefulWidget {
-  const CustomFields({Key? key}) : super(key: key);
+  const CustomFields({super.key});
 
   @override
   State<CustomFields> createState() => _CustomFieldsState();
