@@ -1,3 +1,12 @@
+# [9.3.0]
+
+* Set minimal Flutter version to 3.22.0
+* Set minimal Dart version to 3.4.0
+* Update readme
+* Add OverflowBar layout for radios and checkboxes
+* fix: #1396 fix dynamic fields example widget issues
+* Update to use 0.19.0 of intl package
+
 # [9.2.1]
 
 * Set minimal Flutter version to 3.16.0
