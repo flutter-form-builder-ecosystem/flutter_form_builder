@@ -272,7 +272,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
   Future<void> _handleFocus() async {
     if (effectiveFocusNode.hasFocus && enabled) {
       effectiveFocusNode.unfocus();
-      await onShowPicker(context, value);
+      await onShowPicker(value);
     }
   }
 
@@ -289,24 +289,23 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     }
   }
 
-  Future<DateTime?> onShowPicker(
-      BuildContext context, DateTime? currentValue) async {
+  Future<DateTime?> onShowPicker(DateTime? currentValue) async {
     currentValue = value;
     DateTime? newValue;
     switch (widget.inputType) {
       case InputType.date:
-        newValue = await _showDatePicker(context, currentValue);
+        newValue = await _showDatePicker(currentValue);
         break;
       case InputType.time:
-        if (!context.mounted) return null;
-        newValue = convert(await _showTimePicker(context, currentValue));
+        if (!context.mounted) break;
+        newValue = convert(await _showTimePicker(currentValue));
         break;
       case InputType.both:
-        if (!context.mounted) return null;
-        final date = await _showDatePicker(context, currentValue);
+        if (!context.mounted) break;
+        final date = await _showDatePicker(currentValue);
         if (date != null) {
           if (!mounted) break;
-          final time = await _showTimePicker(context, currentValue);
+          final time = await _showTimePicker(currentValue);
           newValue = combine(date, time);
         }
         break;
@@ -319,8 +318,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     return finalValue;
   }
 
-  Future<DateTime?> _showDatePicker(
-      BuildContext context, DateTime? currentValue) {
+  Future<DateTime?> _showDatePicker(DateTime? currentValue) {
     return showDatePicker(
       context: context,
       selectableDayPredicate: widget.selectableDayPredicate,
@@ -347,8 +345,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     );
   }
 
-  Future<TimeOfDay?> _showTimePicker(
-      BuildContext context, DateTime? currentValue) async {
+  Future<TimeOfDay?> _showTimePicker(DateTime? currentValue) async {
     var builder = widget.transitionBuilder;
     if (widget.locale != null) {
       builder = (context, child) {
