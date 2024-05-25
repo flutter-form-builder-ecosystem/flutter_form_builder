@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Demonstrates the use of itemDecorators to wrap a box around selection items
 class DecoratedRadioCheckbox extends StatefulWidget {
-  const DecoratedRadioCheckbox({Key? key}) : super(key: key);
+  const DecoratedRadioCheckbox({super.key});
 
   @override
   State<DecoratedRadioCheckbox> createState() => _DecoratedRadioCheckboxState();

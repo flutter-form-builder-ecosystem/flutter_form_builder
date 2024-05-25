@@ -57,15 +57,15 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   /// shape resolves to null, the default is [StadiumBorder].
   ///
   /// This shape is combined with [side] to create a shape decorated with an
-  /// outline. If it is a [MaterialStateOutlinedBorder],
-  /// [MaterialStateProperty.resolve] is used for the following
-  /// [MaterialState]s:
+  /// outline. If it is a [WidgetStateOutlinedBorder],
+  /// [WidgetStateProperty.resolve] is used for the following
+  /// [WidgetState]s:
   ///
-  ///  * [MaterialState.disabled].
-  ///  * [MaterialState.selected].
-  ///  * [MaterialState.hovered].
-  ///  * [MaterialState.focused].
-  ///  * [MaterialState.pressed].
+  ///  * [WidgetState.disabled].
+  ///  * [WidgetState.selected].
+  ///  * [WidgetState.hovered].
+  ///  * [WidgetState.focused].
+  ///  * [WidgetState.pressed].
   final OutlinedBorder? shape;
 
   /// Configures the minimum size of the tap target.
@@ -90,14 +90,14 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   /// This only has an effect on widgets that respect the [DefaultTextStyle],
   /// such as [Text].
   ///
-  /// If [labelStyle.color] is a [MaterialStateProperty<Color>], [MaterialStateProperty.resolve]
-  /// is used for the following [MaterialState]s:
+  /// If [labelStyle.color] is a [MaterialStateProperty<Color>], [WidgetStateProperty.resolve]
+  /// is used for the following [WidgetState]s:
   ///
-  ///  * [MaterialState.disabled].
-  ///  * [MaterialState.selected].
-  ///  * [MaterialState.hovered].
-  ///  * [MaterialState.focused].
-  ///  * [MaterialState.pressed].
+  ///  * [WidgetState.disabled].
+  ///  * [WidgetState.selected].
+  ///  * [WidgetState.hovered].
+  ///  * [WidgetState.focused].
+  ///  * [WidgetState.pressed].
   final TextStyle? labelStyle;
 
   /// The padding between the contents of the chip and the outside [shape].

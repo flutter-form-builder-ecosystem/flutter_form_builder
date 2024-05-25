@@ -10,6 +10,10 @@ Also included are common ready-made form input fields for FormBuilder. This give
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
 ___
 
+## Call for Maintainers
+
+> We are looking for maintainers to contribute to the development and maintenance of Flutter Form Builder Ecosystem. Is very important to keep the project alive and growing, so we need your help to keep it up to date and with new features. You can contribute in many ways, we describe some of them in [Support](#support) section.
+
 - [Features](#features)
 - [Inputs](#inputs)
   - [Parameters](#parameters)
@@ -281,7 +285,7 @@ FormBuilderTextField(
 Set the error text
 
 ```dart
-RaisedButton(
+ElevatedButton(
   child: Text('Submit'),
   onPressed: () async {
     setState(() => _emailError = null);
