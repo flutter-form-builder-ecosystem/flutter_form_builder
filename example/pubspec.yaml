@@ -1,10 +1,10 @@
 name: example
 description: Example app for flutter_form_builder package
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=3.10.0"
 
 dependencies:
@@ -12,10 +12,10 @@ dependencies:
     sdk: flutter
   flutter_form_builder:
     path: ../
-  form_builder_validators: ^9.0.0-dev.1
+  form_builder_validators: ^10.0.0
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_lints: ^2.0.1
@@ -24,4 +24,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
