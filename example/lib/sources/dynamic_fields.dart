@@ -7,7 +7,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 /// fields that can be added to this widget. For the purposes of the widget, it
 /// is more than sufficient.
 class DynamicFields extends StatefulWidget {
-  const DynamicFields({Key? key}) : super(key: key);
+  const DynamicFields({super.key});
 
   @override
   State<DynamicFields> createState() => _DynamicFieldsState();

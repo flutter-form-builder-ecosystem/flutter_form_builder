@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class GroupedRadioCheckbox extends StatefulWidget {
-  const GroupedRadioCheckbox({Key? key}) : super(key: key);
+  const GroupedRadioCheckbox({super.key});
 
   @override
   State<GroupedRadioCheckbox> createState() {
