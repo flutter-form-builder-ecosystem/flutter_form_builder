@@ -340,7 +340,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.showCursor,
     this.onTap,
     this.onTapOutside,
-    this.enableSuggestions = false,
+    this.enableSuggestions = true,
     this.textAlignVertical,
     this.dragStartBehavior = DragStartBehavior.start,
     this.scrollController,
