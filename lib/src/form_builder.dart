@@ -214,8 +214,12 @@ class FormBuilderState extends State<FormBuilder> {
     _fields[name] = field;
     field.registerTransformer(_transformers);
 
+    if (widget.clearValueOnUnregister || (_instantValue[name] == null)) {
+      _instantValue[name] = field.initialValue ?? initialValue[name];
+    }
+
     field.setValue(
-      oldField?.value ?? (_instantValue[name] ??= field.initialValue),
+      _instantValue[name],
       populateForm: false,
     );
   }
