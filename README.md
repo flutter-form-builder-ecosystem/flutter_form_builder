@@ -44,7 +44,7 @@ ___
 
 | Complete Form | Sign Up | Dynamic Fields | Conditional Form |
 |---|---|---|---|
-| ![Gif demostration with all fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/complete_form.gif) | ![Gif demostration sign up form](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/signup.gif) | ![Gif demostration dynamic fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/dynamic_fields.gif) | ![Gif demostration conditional fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/conditional_fields.gif) |
+| ![Gif demonstration with all fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/complete_form.gif) | ![Gif demonstration sign up form](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/signup.gif) | ![Gif demonstration dynamic fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/dynamic_fields.gif) | ![Gif demonstration conditional fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/conditional_fields.gif) |
 
 ## Inputs
 
@@ -76,6 +76,7 @@ In order to create an input field in the form, along with the label, and any app
 | `validator` | `FormFieldValidator<T>` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
 | `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
 | `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
+
 The rest of the attributes will be determined by the type of Widget being used.
 
 ## Use
@@ -413,7 +414,7 @@ You have some ways to contribute to this packages
 
 - Beginner: Reporting bugs or request new features
 - Intermediate: Implement new features (from issues or not) and created pull requests
-- Advanced: Join to [organization](#ecosystem) like a member and help coding, manage issues, dicuss new features and other things
+- Advanced: Join to [organization](#ecosystem) like a member and help coding, manage issues, discuss new features and other things
 
  See [contribution file](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md) for more details
 
