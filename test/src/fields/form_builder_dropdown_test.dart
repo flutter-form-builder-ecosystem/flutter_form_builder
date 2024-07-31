@@ -151,7 +151,7 @@ void main() {
       ];
 
       // Build the test widget tree with the initial items
-      const MyTestWidget<int> testWidget = MyTestWidget(
+      const MyTestWidget<int> testWidget = MyTestWidget<int>(
         initialItems: initialItems,
         updatedItems: updatedItems,
         initialValue: 1,

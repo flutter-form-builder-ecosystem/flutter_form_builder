@@ -313,7 +313,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
                     selected: field.value == option.value,
                     onSelected: state.enabled
                         ? (bool selected) {
-                            final choice = selected ? option.value : null;
+                            final T? choice = selected ? option.value : null;
                             state.didChange(choice);
                           }
                         : null,

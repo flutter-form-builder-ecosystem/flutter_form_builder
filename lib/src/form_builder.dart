@@ -124,7 +124,7 @@ typedef FormBuilderFields
 class FormBuilderState extends State<FormBuilder> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final FormBuilderFields _fields =
-      <String, FormBuilderFieldState<FormBuilderField, dynamic>>{};
+      <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
   final Map<String, dynamic> _instantValue = <String, dynamic>{};
   final Map<String, dynamic> _savedValue = <String, dynamic>{};
   // Because dart type system will not accept ValueTransformer<dynamic>
@@ -140,31 +140,32 @@ class FormBuilderState extends State<FormBuilder> {
 
   /// Verify if all fields on form are valid.
   bool get isValid => fields.values.every(
-      (FormBuilderFieldState<FormBuilderField, dynamic> field) =>
+      (FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> field) =>
           field.isValid);
 
   /// Will be true if some field on form are dirty.
   ///
   /// Dirty: The value of field is changed by user or by logic code.
   bool get isDirty => fields.values.any(
-      (FormBuilderFieldState<FormBuilderField, dynamic> field) =>
+      (FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> field) =>
           field.isDirty);
 
   /// Will be true if some field on form are touched.
   ///
   /// Touched: The field is focused by user or by logic code.
   bool get isTouched => fields.values.any(
-      (FormBuilderFieldState<FormBuilderField, dynamic> field) =>
+      (FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> field) =>
           field.isTouched);
 
   /// Get a map of errors
   Map<String, String> get errors => <String, String>{
-        for (MapEntry<String,
-                FormBuilderFieldState<FormBuilderField, dynamic>> element
-            in fields.entries.where((MapEntry<String,
-                        FormBuilderFieldState<FormBuilderField, dynamic>>
-                    element) =>
-                element.value.hasError))
+        for (MapEntry<
+            String,
+            FormBuilderFieldState<FormBuilderField<dynamic>,
+                dynamic>> element in fields.entries.where((MapEntry<String,
+                    FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>
+                element) =>
+            element.value.hasError))
           element.key.toString(): element.value.errorText ?? ''
       };
 
@@ -207,14 +208,15 @@ class FormBuilderState extends State<FormBuilder> {
     _instantValue.remove(name);
   }
 
-  void registerField(String name, FormBuilderFieldState field) {
+  void registerField(String name,
+      FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> field) {
     // Each field must have a unique name.  Ideally we could simply:
     //   assert(!_fields.containsKey(name));
     // However, Flutter will delay dispose of deactivated fields, so if a
     // field is being replaced, the new instance is registered before the old
     // one is unregistered.  To accommodate that use case, but also provide
     // assistance to accidental duplicate names, we check and emit a warning.
-    final FormBuilderFieldState<FormBuilderField, dynamic>? oldField =
+    final FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>? oldField =
         _fields[name];
     assert(() {
       if (oldField != null) {
@@ -237,7 +239,8 @@ class FormBuilderState extends State<FormBuilder> {
     );
   }
 
-  void unregisterField(String name, FormBuilderFieldState field) {
+  void unregisterField(
+      String name, FormBuilderFieldState<dynamic, dynamic> field) {
     assert(
       _fields.containsKey(name),
       'Failed to unregister a field. Make sure that all field names in a form are unique.',
@@ -301,11 +304,11 @@ class FormBuilderState extends State<FormBuilder> {
     _focusOnInvalid = focusOnInvalid;
     final bool hasError = !_formKey.currentState!.validate();
     if (hasError) {
-      final List<FormBuilderFieldState<FormBuilderField, dynamic>> wrongFields =
-          fields.values
-              .where(
-                  (FormBuilderFieldState<FormBuilderField, dynamic> element) =>
-                      element.hasError)
+      final List<FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>
+          wrongFields = fields.values
+              .where((FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>
+                      element) =>
+                  element.hasError)
               .toList();
       if (wrongFields.isNotEmpty) {
         if (focusOnInvalid) {

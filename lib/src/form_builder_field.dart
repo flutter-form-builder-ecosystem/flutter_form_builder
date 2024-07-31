@@ -242,8 +242,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
     final bool isValid = super.validate() && !hasError;
 
-    final Map<String, FormBuilderFieldState<FormBuilderField, dynamic>> fields =
-        _formBuilderState?.fields ??
+    final Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>
+        fields = _formBuilderState?.fields ??
             <String,
                 FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
 
@@ -252,7 +252,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
         (formState?.focusOnInvalid ?? true) &&
         enabled &&
         !fields.values.any(
-            (FormBuilderFieldState<FormBuilderField, dynamic> e) =>
+            (FormBuilderFieldState<FormBuilderField<dynamic>, dynamic> e) =>
                 e.effectiveFocusNode.hasFocus)) {
       focus();
       if (autoScrollWhenFocusOnInvalid) ensureScrollableVisibility();

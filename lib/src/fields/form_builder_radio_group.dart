@@ -77,7 +77,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                 focusColor: focusColor,
                 hoverColor: hoverColor,
                 materialTapTargetSize: materialTapTargetSize,
-                onChanged: (value) {
+                onChanged: (T? value) {
                   state.didChange(value);
                 },
                 options: options,

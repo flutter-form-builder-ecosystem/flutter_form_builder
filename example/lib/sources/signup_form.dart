@@ -11,8 +11,9 @@ class SignupForm extends StatefulWidget {
 
 class _SignupFormState extends State<SignupForm> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-  final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-      _emailFieldKey = GlobalKey<FormBuilderFieldState>();
+  final GlobalKey<FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+      _emailFieldKey =
+      GlobalKey<FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
 
   @override
   Widget build(BuildContext context) {

@@ -296,7 +296,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
           ? null
           : () {
               List<T> selectedListItems =
-                  value == null ? <T>[] : List.of(value!);
+                  value == null ? <T>[] : List<T>.of(value!);
               selectedListItems.contains(optionValue)
                   ? selectedListItems.remove(optionValue)
                   : selectedListItems.add(optionValue);

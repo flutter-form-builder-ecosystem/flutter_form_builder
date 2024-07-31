@@ -9,8 +9,10 @@ void main() {
     group('custom error -', () {
       testWidgets('Should show custom error when invalidate field',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text2';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -29,8 +31,10 @@ void main() {
     group('isValid -', () {
       testWidgets('Should invalid when set custom error',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -48,8 +52,10 @@ void main() {
       testWidgets(
           'Should valid when no has error and autovalidateMode is always',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -72,8 +78,10 @@ void main() {
       testWidgets(
           'Should invalid when has error and autovalidateMode is always',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -98,8 +106,10 @@ void main() {
     group('hasErrors -', () {
       testWidgets('Should has errors when set custom error',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -116,8 +126,10 @@ void main() {
       });
       testWidgets('Should no has errors when is empty and no has validators',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         final FormBuilderTextField testWidget = FormBuilderTextField(
           name: textFieldName,
@@ -137,8 +149,10 @@ void main() {
       testWidgets(
           'Should value is valid when validator passes, despite set custom error',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -158,8 +172,10 @@ void main() {
     group('valueHasError -', () {
       testWidgets('Should value is invalid when validator passes',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String invalidValue = 'invalid';
         final FormBuilderTextField testWidget = FormBuilderTextField(
@@ -216,8 +232,10 @@ void main() {
     group('isDirty - ', () {
       testWidgets('Should not dirty by default', (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -227,8 +245,10 @@ void main() {
       testWidgets('Should dirty when update field value by user',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -241,8 +261,10 @@ void main() {
       testWidgets('Should dirty when update field value by method',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -255,8 +277,10 @@ void main() {
       testWidgets('Should dirty when update field with initial value by user',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget = FormBuilderTextField(
           name: textFieldName,
           key: textFieldKey,
@@ -272,8 +296,10 @@ void main() {
       testWidgets('Should dirty when update field with initial value by method',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget = FormBuilderTextField(
           name: textFieldName,
           key: textFieldKey,
@@ -289,8 +315,10 @@ void main() {
       testWidgets('Should not dirty when reset field value',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -304,8 +332,10 @@ void main() {
       testWidgets('Should not dirty when reset field with initial value',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget = FormBuilderTextField(
           name: textFieldName,
           key: textFieldKey,
@@ -324,8 +354,10 @@ void main() {
     group('isTouched - ', () {
       testWidgets('Should not touched by default', (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -335,8 +367,10 @@ void main() {
       testWidgets('Should touched when focus input',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -352,8 +386,10 @@ void main() {
       testWidgets('Should reset to null when call reset',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         final FormBuilderTextField testWidget =
             FormBuilderTextField(name: textFieldName, key: textFieldKey);
         await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -367,8 +403,10 @@ void main() {
       testWidgets('Should reset to initial when call reset',
           (WidgetTester tester) async {
         const String textFieldName = 'text';
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String initialValue = 'test';
         final FormBuilderTextField testWidget = FormBuilderTextField(
           name: textFieldName,
@@ -386,8 +424,10 @@ void main() {
       testWidgets(
           'Should reset custom error when invalidate field and then reset',
           (WidgetTester tester) async {
-        final GlobalKey<FormBuilderFieldState<FormBuilderField, dynamic>>
-            textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>
+            textFieldKey = GlobalKey<
+                FormBuilderFieldState<FormBuilderField<String>, dynamic>>();
         const String textFieldName = 'text';
         const String errorTextField = 'error text field';
         final FormBuilderTextField testWidget = FormBuilderTextField(
