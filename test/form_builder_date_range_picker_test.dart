@@ -8,8 +8,8 @@ import 'form_builder_tester.dart';
 void main() {
   group('FormBuilderDateRangePicker --', () {
     testWidgets('basic', (WidgetTester tester) async {
-      const widgetName = 'formBuilderDateRangePicker';
-      final testWidget = FormBuilderDateRangePicker(
+      const String widgetName = 'formBuilderDateRangePicker';
+      final FormBuilderDateRangePicker testWidget = FormBuilderDateRangePicker(
         name: widgetName,
         firstDate: DateTime(2010),
         // Using last date < today to make date picker always open on 01/01/2010
@@ -47,8 +47,8 @@ void main() {
     });
 
     testWidgets('initial value', (WidgetTester tester) async {
-      const widgetName = 'formBuilderDateRangePicker';
-      final testWidget = FormBuilderDateRangePicker(
+      const String widgetName = 'formBuilderDateRangePicker';
+      final FormBuilderDateRangePicker testWidget = FormBuilderDateRangePicker(
         name: widgetName,
         firstDate: DateTime(2010),
         lastDate: DateTime(2020),
@@ -71,8 +71,8 @@ void main() {
 
     testWidgets('text field empty when value is null',
         (WidgetTester tester) async {
-      const widgetName = 'formBuilderDateRangePicker';
-      final testWidget = FormBuilderDateRangePicker(
+      const String widgetName = 'formBuilderDateRangePicker';
+      final FormBuilderDateRangePicker testWidget = FormBuilderDateRangePicker(
         name: widgetName,
         firstDate: DateTime(2010),
         lastDate: DateTime(2020),
@@ -83,8 +83,8 @@ void main() {
     });
 
     testWidgets('text field shows date range', (WidgetTester tester) async {
-      const widgetName = 'formBuilderDateRangePicker';
-      final testWidget = FormBuilderDateRangePicker(
+      const String widgetName = 'formBuilderDateRangePicker';
+      final FormBuilderDateRangePicker testWidget = FormBuilderDateRangePicker(
         name: widgetName,
         firstDate: DateTime(2010),
         lastDate: DateTime(2020),

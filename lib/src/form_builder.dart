@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../flutter_form_builder.dart';
 
 /// A container for form fields.
 class FormBuilder extends StatefulWidget {
@@ -22,7 +22,7 @@ class FormBuilder extends StatefulWidget {
   ///
   ///  * [canPop], which also comes from [PopScope] and is often used in
   ///    conjunction with this parameter.
-  ///  * [PopScope.onPopInvoked], which is what [Form] delegates to internally.ther widget that provides a way to intercept the
+  ///  * [PopScope.onPopInvoked], which is what [Form] delegates to internally their widget that provides a way to intercept the
   ///    back button.
   final void Function(bool)? onPopInvoked;
 
@@ -123,11 +123,12 @@ typedef FormBuilderFields
 
 class FormBuilderState extends State<FormBuilder> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final FormBuilderFields _fields = {};
-  final Map<String, dynamic> _instantValue = {};
-  final Map<String, dynamic> _savedValue = {};
+  final FormBuilderFields _fields =
+      <String, FormBuilderFieldState<FormBuilderField, dynamic>>{};
+  final Map<String, dynamic> _instantValue = <String, dynamic>{};
+  final Map<String, dynamic> _savedValue = <String, dynamic>{};
   // Because dart type system will not accept ValueTransformer<dynamic>
-  final Map<String, Function> _transformers = {};
+  final Map<String, Function> _transformers = <String, Function>{};
   bool _focusOnInvalid = true;
 
   /// Will be true if will focus on invalid field when validate
@@ -138,22 +139,32 @@ class FormBuilderState extends State<FormBuilder> {
   bool get enabled => widget.enabled;
 
   /// Verify if all fields on form are valid.
-  bool get isValid => fields.values.every((field) => field.isValid);
+  bool get isValid => fields.values.every(
+      (FormBuilderFieldState<FormBuilderField, dynamic> field) =>
+          field.isValid);
 
   /// Will be true if some field on form are dirty.
   ///
   /// Dirty: The value of field is changed by user or by logic code.
-  bool get isDirty => fields.values.any((field) => field.isDirty);
+  bool get isDirty => fields.values.any(
+      (FormBuilderFieldState<FormBuilderField, dynamic> field) =>
+          field.isDirty);
 
   /// Will be true if some field on form are touched.
   ///
   /// Touched: The field is focused by user or by logic code.
-  bool get isTouched => fields.values.any((field) => field.isTouched);
+  bool get isTouched => fields.values.any(
+      (FormBuilderFieldState<FormBuilderField, dynamic> field) =>
+          field.isTouched);
 
   /// Get a map of errors
-  Map<String, String> get errors => {
-        for (var element
-            in fields.entries.where((element) => element.value.hasError))
+  Map<String, String> get errors => <String, String>{
+        for (MapEntry<String,
+                FormBuilderFieldState<FormBuilderField, dynamic>> element
+            in fields.entries.where((MapEntry<String,
+                        FormBuilderFieldState<FormBuilderField, dynamic>>
+                    element) =>
+                element.value.hasError))
           element.key.toString(): element.value.errorText ?? ''
       };
 
@@ -164,16 +175,17 @@ class FormBuilderState extends State<FormBuilder> {
   FormBuilderFields get fields => _fields;
 
   Map<String, dynamic> get instantValue =>
-      Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
-          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+      Map<String, dynamic>.unmodifiable(_instantValue.map(
+          (String key, dynamic value) => MapEntry<String, dynamic>(
+              key, _transformers[key]?.call(value) ?? value)));
 
   /// Returns the saved value only
-  Map<String, dynamic> get value =>
-      Map<String, dynamic>.unmodifiable(_savedValue.map((key, value) =>
-          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+  Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(
+      _savedValue.map((String key, dynamic value) => MapEntry<String, dynamic>(
+          key, _transformers[key]?.call(value) ?? value)));
 
   dynamic transformValue<T>(String name, T? v) {
-    final t = _transformers[name];
+    final Function? t = _transformers[name];
     return t != null ? t.call(v) : v;
   }
 
@@ -202,7 +214,8 @@ class FormBuilderState extends State<FormBuilder> {
     // field is being replaced, the new instance is registered before the old
     // one is unregistered.  To accommodate that use case, but also provide
     // assistance to accidental duplicate names, we check and emit a warning.
-    final oldField = _fields[name];
+    final FormBuilderFieldState<FormBuilderField, dynamic>? oldField =
+        _fields[name];
     assert(() {
       if (oldField != null) {
         debugPrint('Warning! Replacing duplicate Field for $name'
@@ -286,10 +299,14 @@ class FormBuilderState extends State<FormBuilder> {
     bool autoScrollWhenFocusOnInvalid = false,
   }) {
     _focusOnInvalid = focusOnInvalid;
-    final hasError = !_formKey.currentState!.validate();
+    final bool hasError = !_formKey.currentState!.validate();
     if (hasError) {
-      final wrongFields =
-          fields.values.where((element) => element.hasError).toList();
+      final List<FormBuilderFieldState<FormBuilderField, dynamic>> wrongFields =
+          fields.values
+              .where(
+                  (FormBuilderFieldState<FormBuilderField, dynamic> element) =>
+                      element.hasError)
+              .toList();
       if (wrongFields.isNotEmpty) {
         if (focusOnInvalid) {
           wrongFields.first.focus();
@@ -335,7 +352,7 @@ class FormBuilderState extends State<FormBuilder> {
   ///
   /// To load all values at once on init, use `initialValue` property
   void patchValue(Map<String, dynamic> val) {
-    val.forEach((key, dynamic value) {
+    val.forEach((String key, dynamic value) {
       _fields[key]?.didChange(value);
     });
   }

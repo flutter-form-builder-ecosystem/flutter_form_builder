@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// Field for selecting a range of dates
 class FormBuilderDateRangePicker
@@ -132,7 +132,8 @@ class FormBuilderDateRangePicker
     this.clearIcon,
   }) : super(
           builder: (FormFieldState<DateTimeRange?> field) {
-            final state = field as _FormBuilderDateRangePickerState;
+            final _FormBuilderDateRangePickerState state =
+                field as _FormBuilderDateRangePickerState;
 
             return TextField(
               enabled: state.enabled,
@@ -217,7 +218,7 @@ class _FormBuilderDateRangePickerState extends FormBuilderFieldDecorationState<
       final initialLastDate = value?.isEmpty ?? true
           ? (widget.initialLastDate ?? initialFirstDate)
           : (value.length < 2 ? initialFirstDate : value[1]);*/
-      final picked = await showDateRangePicker(
+      final DateTimeRange? picked = await showDateRangePicker(
         context: context,
         firstDate: widget.firstDate,
         lastDate: widget.lastDate,

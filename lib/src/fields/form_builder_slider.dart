@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// Field for selection of a numerical value on a slider
 class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
@@ -213,8 +213,9 @@ class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
     this.valueWidget,
   }) : super(
           builder: (FormFieldState<double?> field) {
-            final state = field as _FormBuilderSliderState;
-            final effectiveNumberFormat =
+            final _FormBuilderSliderState state =
+                field as _FormBuilderSliderState;
+            final NumberFormat effectiveNumberFormat =
                 numberFormat ?? NumberFormat.compact();
 
             return InputDecorator(
@@ -223,7 +224,7 @@ class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Slider(
                       value: field.value!,
                       min: min,
@@ -236,7 +237,7 @@ class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
                       label: label,
                       semanticFormatterCallback: semanticFormatterCallback,
                       onChanged: state.enabled
-                          ? (value) {
+                          ? (double value) {
                               field.didChange(value);
                             }
                           : null,

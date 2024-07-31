@@ -6,39 +6,41 @@ import 'form_builder_tester.dart';
 
 void main() {
   testWidgets('FormBuilderCheckboxGroup -- 1,3', (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
+    const String widgetName = 'cbg1';
+    final FormBuilderCheckboxGroup<int> testWidget =
+        FormBuilderCheckboxGroup<int>(
       name: widgetName,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-        FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+      options: const <FormBuilderFieldOption<int>>[
+        FormBuilderFieldOption<int>(key: ValueKey<String>('1'), value: 1),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('2'), value: 2),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('3'), value: 3),
       ],
     );
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
     expect(formSave(), isTrue);
     expect(formValue(widgetName), isNull);
-    await tester.tap(find.byKey(const ValueKey('1')));
+    await tester.tap(find.byKey(const ValueKey<String>('1')));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(const [1]));
-    await tester.tap(find.byKey(const ValueKey('3')));
+    expect(formValue(widgetName), equals(const <int>[1]));
+    await tester.tap(find.byKey(const ValueKey<String>('3')));
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(widgetName), equals(const [1, 3]));
+    expect(formValue(widgetName), equals(const <int>[1, 3]));
   });
 
   testWidgets('FormBuilderCheckboxGroup -- decoration horizontal',
       (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
+    const String widgetName = 'cbg1';
+    final FormBuilderCheckboxGroup<int> testWidget =
+        FormBuilderCheckboxGroup<int>(
       name: widgetName,
       orientation: OptionsOrientation.horizontal,
       wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+      options: const <FormBuilderFieldOption<int>>[
+        FormBuilderFieldOption<int>(key: ValueKey<String>('1'), value: 1),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('2'), value: 2),
       ],
       itemDecoration:
           BoxDecoration(border: Border.all(color: Colors.blueAccent)),
@@ -57,14 +59,15 @@ void main() {
 
   testWidgets('FormBuilderCheckboxGroup -- decoration vertical',
       (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
+    const String widgetName = 'cbg1';
+    final FormBuilderCheckboxGroup<int> testWidget =
+        FormBuilderCheckboxGroup<int>(
       name: widgetName,
       orientation: OptionsOrientation.vertical,
       wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+      options: const <FormBuilderFieldOption<int>>[
+        FormBuilderFieldOption<int>(key: ValueKey<String>('1'), value: 1),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('2'), value: 2),
       ],
       itemDecoration:
           BoxDecoration(border: Border.all(color: Colors.blueAccent)),
@@ -83,15 +86,16 @@ void main() {
 
   testWidgets('FormBuilderCheckboxGroup -- separator horizontal',
       (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
+    const String widgetName = 'cbg1';
+    final FormBuilderCheckboxGroup<int> testWidget =
+        FormBuilderCheckboxGroup<int>(
       name: widgetName,
       orientation: OptionsOrientation.horizontal,
       wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-        FormBuilderFieldOption(key: ValueKey('3'), value: 2),
+      options: const <FormBuilderFieldOption<int>>[
+        FormBuilderFieldOption<int>(key: ValueKey<String>('1'), value: 1),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('2'), value: 2),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('3'), value: 2),
       ],
       separator: const VerticalDivider(width: 8.0, color: Colors.red),
     );
@@ -103,15 +107,16 @@ void main() {
 
   testWidgets('FormBuilderCheckboxGroup -- separator vertical',
       (WidgetTester tester) async {
-    const widgetName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
+    const String widgetName = 'cbg1';
+    final FormBuilderCheckboxGroup<int> testWidget =
+        FormBuilderCheckboxGroup<int>(
       name: widgetName,
       orientation: OptionsOrientation.vertical,
       wrapSpacing: 10.0,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-        FormBuilderFieldOption(key: ValueKey('3'), value: 2),
+      options: const <FormBuilderFieldOption<int>>[
+        FormBuilderFieldOption<int>(key: ValueKey<String>('1'), value: 1),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('2'), value: 2),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('3'), value: 2),
       ],
       separator: const VerticalDivider(width: 8.0, color: Colors.red),
     );
@@ -122,36 +127,37 @@ void main() {
   });
   testWidgets('FormBuilderCheckboxGroup -- didChange',
       (WidgetTester tester) async {
-    const fieldName = 'cbg1';
-    final testWidget = FormBuilderCheckboxGroup<int>(
+    const String fieldName = 'cbg1';
+    final FormBuilderCheckboxGroup<int> testWidget =
+        FormBuilderCheckboxGroup<int>(
       name: fieldName,
-      options: const [
-        FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-        FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-        FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+      options: const <FormBuilderFieldOption<int>>[
+        FormBuilderFieldOption<int>(key: ValueKey<String>('1'), value: 1),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('2'), value: 2),
+        FormBuilderFieldOption<int>(key: ValueKey<String>('3'), value: 3),
       ],
     );
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
     expect(formSave(), isTrue);
     expect(formValue(fieldName), isNull);
-    formFieldDidChange(fieldName, [1, 3]);
+    formFieldDidChange(fieldName, <int>[1, 3]);
     await tester.pumpAndSettle();
     expect(formSave(), isTrue);
-    expect(formValue(fieldName), [1, 3]);
+    expect(formValue(fieldName), <int>[1, 3]);
 
     Checkbox checkbox1 = tester
-        .element(find.byKey(const ValueKey('1')))
+        .element(find.byKey(const ValueKey<String>('1')))
         .findAncestorWidgetOfExactType<Row>()!
         .children
         .first as Checkbox;
     Checkbox checkbox2 = tester
-        .element(find.byKey(const ValueKey('2')))
+        .element(find.byKey(const ValueKey<String>('2')))
         .findAncestorWidgetOfExactType<Row>()!
         .children
         .first as Checkbox;
     Checkbox checkbox3 = tester
-        .element(find.byKey(const ValueKey('3')))
+        .element(find.byKey(const ValueKey<String>('3')))
         .findAncestorWidgetOfExactType<Row>()!
         .children
         .first as Checkbox;

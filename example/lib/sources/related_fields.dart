@@ -9,10 +9,10 @@ class RelatedFields extends StatefulWidget {
 }
 
 class _RelatedFieldsState extends State<RelatedFields> {
-  final _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   String country = '';
   String city = '';
-  List<String> cities = [];
+  List<String> cities = <String>[];
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _RelatedFieldsState extends State<RelatedFields> {
               label: Text('Countries'),
             ),
             initialValue: country,
-            onChanged: (value) {
+            onChanged: (String? value) {
               setState(() {
                 country = value ?? '';
                 city = '';
@@ -43,7 +43,7 @@ class _RelatedFieldsState extends State<RelatedFields> {
               });
             },
             items: _allCountries
-                .map((e) => DropdownMenuItem(
+                .map((String e) => DropdownMenuItem<String>(
                       value: e,
                       child: Text(e),
                     ))
@@ -57,7 +57,7 @@ class _RelatedFieldsState extends State<RelatedFields> {
             ),
             initialValue: city,
             items: cities
-                .map((e) => DropdownMenuItem(
+                .map((String e) => DropdownMenuItem<String>(
                       value: e,
                       child: Text(e),
                     ))
@@ -89,22 +89,22 @@ class _RelatedFieldsState extends State<RelatedFields> {
         cities = _allUsaCities;
         break;
       default:
-        cities = [];
+        cities = <String>[];
     }
   }
 }
 
-const _allCountries = [
+const List<String> _allCountries = <String>[
   'United States',
   'France',
 ];
 
-const _allUsaCities = [
+const List<String> _allUsaCities = <String>[
   'California',
   'Another city',
 ];
 
-const _allFranceCities = [
+const List<String> _allFranceCities = <String>[
   'Paris',
   'Another city',
 ];

@@ -10,4 +10,4 @@ linter:
     always_use_package_imports: false
     always_specify_types: true
     omit_local_variable_types: false
-    public_member_api_docs: true
+    # public_member_api_docs: true

@@ -10,7 +10,7 @@ class ConditionalFields extends StatefulWidget {
 }
 
 class _ConditionalFieldsState extends State<ConditionalFields> {
-  final _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   int? option;
 
   @override
@@ -26,14 +26,14 @@ class _ConditionalFieldsState extends State<ConditionalFields> {
             decoration: const InputDecoration(
               label: Text('Select the option'),
             ),
-            onChanged: (value) {
+            onChanged: (int? value) {
               setState(() {
                 option = value;
               });
             },
-            items: const [
-              DropdownMenuItem(value: 0, child: Text('Show textfield')),
-              DropdownMenuItem(value: 1, child: Text('Show info text')),
+            items: const <DropdownMenuItem<int>>[
+              DropdownMenuItem<int>(value: 0, child: Text('Show textfield')),
+              DropdownMenuItem<int>(value: 1, child: Text('Show info text')),
             ],
           ),
           const SizedBox(height: 10),

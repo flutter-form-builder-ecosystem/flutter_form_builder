@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 class GroupedRadio<T> extends StatefulWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
@@ -212,7 +212,7 @@ class GroupedRadio<T> extends StatefulWidget {
 class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
   @override
   Widget build(BuildContext context) {
-    final widgetList = <Widget>[];
+    final List<Widget> widgetList = <Widget>[];
     for (int i = 0; i < widget.options.length; i++) {
       widgetList.add(buildItem(i));
     }
@@ -256,10 +256,11 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
 
   /// the composite of all the components for the option at index
   Widget buildItem(int index) {
-    final option = widget.options[index];
-    final optionValue = option.value;
-    final isOptionDisabled = true == widget.disabled?.contains(optionValue);
-    final control = Radio<T?>(
+    final FormBuilderFieldOption<T?> option = widget.options[index];
+    final T? optionValue = option.value;
+    final bool isOptionDisabled =
+        true == widget.disabled?.contains(optionValue);
+    final Radio<T?> control = Radio<T?>(
       groupValue: widget.value,
       activeColor: widget.activeColor,
       focusColor: widget.focusColor,
@@ -273,7 +274,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
             },
     );
 
-    final label = GestureDetector(
+    final GestureDetector label = GestureDetector(
       onTap: isOptionDisabled
           ? null
           : () {
@@ -285,10 +286,10 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
     Widget compositeItem = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: <Widget>[
             if (widget.controlAffinity == ControlAffinity.leading) control,
             Flexible(child: label),
             if (widget.controlAffinity == ControlAffinity.trailing) control,

@@ -16,11 +16,11 @@ class _CompleteFormState extends State<CompleteForm> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
-  final _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   bool _ageHasError = false;
   bool _genderHasError = false;
 
-  var genderOptions = ['Male', 'Female', 'Other'];
+  List<String> genderOptions = <String>['Male', 'Female', 'Other'];
 
   void _onChanged(dynamic val) => debugPrint(val.toString());
 
@@ -37,12 +37,12 @@ class _CompleteFormState extends State<CompleteForm> {
               debugPrint(_formKey.currentState!.value.toString());
             },
             autovalidateMode: AutovalidateMode.disabled,
-            initialValue: const {
+            initialValue: const <String, dynamic>{
               'movie_rating': 5,
               'best_language': 'Dart',
               'age': '13',
               'gender': 'Male',
-              'languages_filter': ['Dart']
+              'languages_filter': <String>['Dart']
             },
             skipDisabled: true,
             child: Column(
@@ -86,7 +86,8 @@ class _CompleteFormState extends State<CompleteForm> {
                 ),
                 FormBuilderSlider(
                   name: 'slider',
-                  validator: FormBuilderValidators.compose([
+                  validator: FormBuilderValidators
+                      .compose(<FormFieldValidator<double>>[
                     FormBuilderValidators.min(6),
                   ]),
                   onChanged: _onChanged,
@@ -107,10 +108,12 @@ class _CompleteFormState extends State<CompleteForm> {
                   max: 100.0,
                   initialValue: const RangeValues(4, 7),
                   divisions: 20,
-                  maxValueWidget: (max) => TextButton(
+                  maxValueWidget: (String max) => TextButton(
                     onPressed: () {
                       _formKey.currentState?.patchValue(
-                        {'range_slider': const RangeValues(4, 100)},
+                        <String, dynamic>{
+                          'range_slider': const RangeValues(4, 100)
+                        },
                       );
                     },
                     child: Text(max),
@@ -125,7 +128,7 @@ class _CompleteFormState extends State<CompleteForm> {
                   onChanged: _onChanged,
                   title: RichText(
                     text: const TextSpan(
-                      children: [
+                      children: <InlineSpan>[
                         TextSpan(
                           text: 'I have read and agree to the ',
                           style: TextStyle(color: Colors.black),
@@ -160,7 +163,7 @@ class _CompleteFormState extends State<CompleteForm> {
                         ? const Icon(Icons.error, color: Colors.red)
                         : const Icon(Icons.check, color: Colors.green),
                   ),
-                  onChanged: (val) {
+                  onChanged: (String? val) {
                     setState(() {
                       _ageHasError =
                           !(_formKey.currentState?.fields['age']?.validate() ??
@@ -168,7 +171,8 @@ class _CompleteFormState extends State<CompleteForm> {
                     });
                   },
                   // valueTransformer: (text) => num.tryParse(text),
-                  validator: FormBuilderValidators.compose([
+                  validator: FormBuilderValidators
+                      .compose(<FormFieldValidator<String>>[
                     FormBuilderValidators.required(),
                     FormBuilderValidators.numeric(),
                     FormBuilderValidators.max(70),
@@ -186,16 +190,16 @@ class _CompleteFormState extends State<CompleteForm> {
                         : const Icon(Icons.check),
                     hintText: 'Select Gender',
                   ),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
+                  validator: FormBuilderValidators.compose(<FormFieldValidator<
+                      String>>[FormBuilderValidators.required()]),
                   items: genderOptions
-                      .map((gender) => DropdownMenuItem(
+                      .map((String gender) => DropdownMenuItem<String>(
                             alignment: AlignmentDirectional.center,
                             value: gender,
                             child: Text(gender),
                           ))
                       .toList(),
-                  onChanged: (val) {
+                  onChanged: (String? val) {
                     setState(() {
                       _genderHasError = !(_formKey
                               .currentState?.fields['gender']
@@ -203,7 +207,7 @@ class _CompleteFormState extends State<CompleteForm> {
                           false);
                     });
                   },
-                  valueTransformer: (val) => val?.toString(),
+                  valueTransformer: (String? val) => val?.toString(),
                 ),
                 FormBuilderRadioGroup<String>(
                   decoration: const InputDecoration(
@@ -212,14 +216,15 @@ class _CompleteFormState extends State<CompleteForm> {
                   initialValue: null,
                   name: 'best_language',
                   onChanged: _onChanged,
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
-                  options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                      .map((lang) => FormBuilderFieldOption(
-                            value: lang,
-                            child: Text(lang),
-                          ))
-                      .toList(growable: false),
+                  validator: FormBuilderValidators.compose(<FormFieldValidator<
+                      String>>[FormBuilderValidators.required()]),
+                  options:
+                      <String>['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
+                          .map((String lang) => FormBuilderFieldOption<String>(
+                                value: lang,
+                                child: Text(lang),
+                              ))
+                          .toList(growable: false),
                   controlAffinity: ControlAffinity.trailing,
                 ),
                 FormBuilderSwitch(
@@ -234,12 +239,12 @@ class _CompleteFormState extends State<CompleteForm> {
                       labelText: 'The language of my people'),
                   name: 'languages',
                   // initialValue: const ['Dart'],
-                  options: const [
-                    FormBuilderFieldOption(value: 'Dart'),
-                    FormBuilderFieldOption(value: 'Kotlin'),
-                    FormBuilderFieldOption(value: 'Java'),
-                    FormBuilderFieldOption(value: 'Swift'),
-                    FormBuilderFieldOption(value: 'Objective-C'),
+                  options: const <FormBuilderFieldOption<String>>[
+                    FormBuilderFieldOption<String>(value: 'Dart'),
+                    FormBuilderFieldOption<String>(value: 'Kotlin'),
+                    FormBuilderFieldOption<String>(value: 'Java'),
+                    FormBuilderFieldOption<String>(value: 'Swift'),
+                    FormBuilderFieldOption<String>(value: 'Objective-C'),
                   ],
                   onChanged: _onChanged,
                   separator: const VerticalDivider(
@@ -247,7 +252,8 @@ class _CompleteFormState extends State<CompleteForm> {
                     thickness: 5,
                     color: Colors.red,
                   ),
-                  validator: FormBuilderValidators.compose([
+                  validator: FormBuilderValidators
+                      .compose(<FormFieldValidator<List<String>>>[
                     FormBuilderValidators.minLength(1),
                     FormBuilderValidators.maxLength(3),
                   ]),
@@ -258,30 +264,31 @@ class _CompleteFormState extends State<CompleteForm> {
                       labelText: 'The language of my people'),
                   name: 'languages_filter',
                   selectedColor: Colors.red,
-                  options: const [
-                    FormBuilderChipOption(
+                  options: const <FormBuilderChipOption<String>>[
+                    FormBuilderChipOption<String>(
                       value: 'Dart',
                       avatar: CircleAvatar(child: Text('D')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Kotlin',
                       avatar: CircleAvatar(child: Text('K')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Java',
                       avatar: CircleAvatar(child: Text('J')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Swift',
                       avatar: CircleAvatar(child: Text('S')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Objective-C',
                       avatar: CircleAvatar(child: Text('O')),
                     ),
                   ],
                   onChanged: _onChanged,
-                  validator: FormBuilderValidators.compose([
+                  validator: FormBuilderValidators
+                      .compose(<FormFieldValidator<List<String>>>[
                     FormBuilderValidators.minLength(1),
                     FormBuilderValidators.maxLength(3),
                   ]),
@@ -293,24 +300,24 @@ class _CompleteFormState extends State<CompleteForm> {
                           'Ok, if I had to choose one language, it would be:'),
                   name: 'languages_choice',
                   initialValue: 'Dart',
-                  options: const [
-                    FormBuilderChipOption(
+                  options: const <FormBuilderChipOption<String>>[
+                    FormBuilderChipOption<String>(
                       value: 'Dart',
                       avatar: CircleAvatar(child: Text('D')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Kotlin',
                       avatar: CircleAvatar(child: Text('K')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Java',
                       avatar: CircleAvatar(child: Text('J')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Swift',
                       avatar: CircleAvatar(child: Text('S')),
                     ),
-                    FormBuilderChipOption(
+                    FormBuilderChipOption<String>(
                       value: 'Objective-C',
                       avatar: CircleAvatar(child: Text('O')),
                     ),

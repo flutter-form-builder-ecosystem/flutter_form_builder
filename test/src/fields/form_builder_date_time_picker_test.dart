@@ -7,13 +7,13 @@ import '../../form_builder_tester.dart';
 void main() {
   group('FormBuilderDateTimePicker --', () {
     testWidgets('basic', (WidgetTester tester) async {
-      const widgetName = 'fdtp1';
-      final widgetKey = UniqueKey();
-      final dateNow = DateTime.now();
-      const confirmText = 'OK';
-      const cancelText = 'CANCEL';
+      const String widgetName = 'fdtp1';
+      final UniqueKey widgetKey = UniqueKey();
+      final DateTime dateNow = DateTime.now();
+      const String confirmText = 'OK';
+      const String cancelText = 'CANCEL';
 
-      final testWidget = FormBuilderDateTimePicker(
+      final FormBuilderDateTimePicker testWidget = FormBuilderDateTimePicker(
         key: widgetKey,
         name: widgetName,
         confirmText: confirmText,
@@ -28,7 +28,8 @@ void main() {
       expect(find.text(confirmText), findsOneWidget);
       expect(find.text(cancelText), findsOneWidget);
 
-      final testDay = dateNow.day - 1 <= 0 ? dateNow.day + 1 : dateNow.day - 1;
+      final int testDay =
+          dateNow.day - 1 <= 0 ? dateNow.day + 1 : dateNow.day - 1;
       await tester.tap(find.text(testDay.toString()));
       await tester.pumpAndSettle();
       await tester.tap(find.text(confirmText));
@@ -41,11 +42,11 @@ void main() {
           DateTime(dateNow.year, dateNow.month, testDay, 12));
     });
     testWidgets('input keyboard type', (WidgetTester tester) async {
-      const widgetName = 'fdtp3';
-      final widgetKey = UniqueKey();
-      const keyboardType = TextInputType.datetime;
+      const String widgetName = 'fdtp3';
+      final UniqueKey widgetKey = UniqueKey();
+      const TextInputType keyboardType = TextInputType.datetime;
 
-      final testWidget = FormBuilderDateTimePicker(
+      final FormBuilderDateTimePicker testWidget = FormBuilderDateTimePicker(
         key: widgetKey,
         name: widgetName,
         keyboardType: keyboardType,
@@ -59,18 +60,20 @@ void main() {
       await tester.tap(find.byIcon(Icons.edit_outlined));
       await tester.pumpAndSettle();
 
-      final textField = tester.widget<TextField>(find.byType(TextField).first);
+      final TextField textField =
+          tester.widget<TextField>(find.byType(TextField).first);
       expect(textField.keyboardType, equals(keyboardType));
     });
     group('initial value -', () {
       testWidgets('to FormBuilder', (WidgetTester tester) async {
-        const widgetName = 'fdtp2';
-        final widgetKey = UniqueKey();
-        final dateFuture = DateTime.now().add(const Duration(days: 10));
-        const confirmText = 'OK';
-        const cancelText = 'CANCEL';
+        const String widgetName = 'fdtp2';
+        final UniqueKey widgetKey = UniqueKey();
+        final DateTime dateFuture =
+            DateTime.now().add(const Duration(days: 10));
+        const String confirmText = 'OK';
+        const String cancelText = 'CANCEL';
 
-        final testWidget = FormBuilderDateTimePicker(
+        final FormBuilderDateTimePicker testWidget = FormBuilderDateTimePicker(
           key: widgetKey,
           name: widgetName,
           confirmText: confirmText,
@@ -79,7 +82,7 @@ void main() {
 
         await tester.pumpWidget(buildTestableFieldWidget(
           testWidget,
-          initialValue: {widgetName: dateFuture},
+          initialValue: <String, dynamic>{widgetName: dateFuture},
         ));
 
         expect(formSave(), isTrue);
@@ -89,7 +92,7 @@ void main() {
         expect(find.text(confirmText), findsOneWidget);
         expect(find.text(cancelText), findsOneWidget);
 
-        final testDay =
+        final int testDay =
             dateFuture.day - 1 <= 0 ? dateFuture.day + 1 : dateFuture.day - 1;
         await tester.tap(find.text(testDay.toString()));
         await tester.pumpAndSettle();
@@ -106,13 +109,14 @@ void main() {
         );
       });
       testWidgets('to Widget', (WidgetTester tester) async {
-        const widgetName = 'fdtp3';
-        final widgetKey = UniqueKey();
-        final datePast = DateTime.now().subtract(const Duration(days: 10));
-        const confirmText = 'OK';
-        const cancelText = 'CANCEL';
+        const String widgetName = 'fdtp3';
+        final UniqueKey widgetKey = UniqueKey();
+        final DateTime datePast =
+            DateTime.now().subtract(const Duration(days: 10));
+        const String confirmText = 'OK';
+        const String cancelText = 'CANCEL';
 
-        final testWidget = FormBuilderDateTimePicker(
+        final FormBuilderDateTimePicker testWidget = FormBuilderDateTimePicker(
           key: widgetKey,
           name: widgetName,
           confirmText: confirmText,
@@ -129,7 +133,7 @@ void main() {
         expect(find.text(confirmText), findsOneWidget);
         expect(find.text(cancelText), findsOneWidget);
 
-        final testDay =
+        final int testDay =
             datePast.day - 1 <= 0 ? datePast.day + 1 : datePast.day - 1;
         await tester.tap(find.text(testDay.toString()));
         await tester.pumpAndSettle();

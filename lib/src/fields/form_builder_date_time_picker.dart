@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:intl/intl.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 enum InputType { date, time, both }
 
@@ -197,7 +197,8 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.onEntryModeChanged,
   }) : super(
           builder: (FormFieldState<DateTime?> field) {
-            final state = field as _FormBuilderDateTimePickerState;
+            final _FormBuilderDateTimePickerState state =
+                field as _FormBuilderDateTimePickerState;
 
             return TextField(
               textDirection: textDirection,
@@ -253,7 +254,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     _textFieldController = widget.controller ?? TextEditingController();
     _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
     //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
-    final initVal = value;
+    final DateTime? initVal = value;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
     effectiveFocusNode.addListener(_handleFocus);
@@ -277,7 +278,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
   }
 
   DateFormat _getDefaultDateTimeFormat() {
-    final languageCode = widget.locale?.languageCode;
+    final String? languageCode = widget.locale?.languageCode;
     switch (widget.inputType) {
       case InputType.time:
         return DateFormat.Hm(languageCode);
@@ -302,10 +303,10 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
         break;
       case InputType.both:
         if (!context.mounted) break;
-        final date = await _showDatePicker(currentValue);
+        final DateTime? date = await _showDatePicker(currentValue);
         if (date != null) {
           if (!mounted) break;
-          final time = await _showTimePicker(currentValue);
+          final TimeOfDay? time = await _showTimePicker(currentValue);
           newValue = combine(date, time);
         }
         break;
@@ -313,7 +314,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
         throw 'Unexpected input type ${widget.inputType}';
     }
     if (!mounted) return null;
-    final finalValue = newValue ?? currentValue;
+    final DateTime? finalValue = newValue ?? currentValue;
     didChange(finalValue);
     return finalValue;
   }
@@ -346,10 +347,10 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
   }
 
   Future<TimeOfDay?> _showTimePicker(DateTime? currentValue) async {
-    var builder = widget.transitionBuilder;
+    TransitionBuilder? builder = widget.transitionBuilder;
     if (widget.locale != null) {
-      builder = (context, child) {
-        var transitionBuilder = widget.transitionBuilder;
+      builder = (BuildContext context, Widget? child) {
+        TransitionBuilder? transitionBuilder = widget.transitionBuilder;
         return Localizations.override(
           context: context,
           locale: widget.locale,
@@ -360,7 +361,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       };
     }
 
-    final timePickerResult = await showTimePicker(
+    final TimeOfDay? timePickerResult = await showTimePicker(
       context: context,
       initialTime: currentValue != null
           ? TimeOfDay.fromDateTime(currentValue)

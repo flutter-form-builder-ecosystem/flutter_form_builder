@@ -10,7 +10,7 @@ class DecoratedRadioCheckbox extends StatefulWidget {
 }
 
 class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
-  final _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   int? option;
 
   @override
@@ -25,7 +25,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const Text(
               'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderCheckboxGroup(
+          FormBuilderCheckboxGroup<String>(
             name: 'aCheckboxGroup1',
             options: getDemoOptionsWidgets(),
             wrapSpacing: 5.0,
@@ -38,7 +38,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const Text(
               'label:column of Widgets itemBorder:true orient:wrap wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderCheckboxGroup(
+          FormBuilderCheckboxGroup<String>(
             name: 'aCheckboxGroup2',
             options: getDemoOptionsWidgets(),
             wrapSpacing: 5.0,
@@ -52,7 +52,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const Text(
               'label:column of Widgets itemBorder:true orient:wrap wrapSpacing: 5.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderRadioGroup(
+          FormBuilderRadioGroup<String>(
             name: 'aRadioGroup1',
             options: getDemoOptionsWidgets(),
             wrapSpacing: 5.0,
@@ -64,7 +64,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const SizedBox(height: 20),
           const Text('label:value itemBorder:true orient:wrap wrapSpacing:10.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderRadioGroup(
+          FormBuilderRadioGroup<String>(
             name: 'aRadioGroup2',
             options: getDemoOptions(),
             wrapSpacing: 10.0,
@@ -84,7 +84,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const Text(
               'itemDecoration:false label:value orient:wrap wrapSpacing:10.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderRadioGroup(
+          FormBuilderRadioGroup<String>(
             name: 'aRadioGroup3',
             options: getDemoOptions(),
             wrapSpacing: 10.0,
@@ -92,7 +92,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const SizedBox(height: 20),
           const Text('orient:horiz itemBorder:false wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderCheckboxGroup(
+          FormBuilderCheckboxGroup<String>(
             name: 'aCheckboxGroup3',
             options: getDemoOptionsWidgets(),
             wrapSpacing: 5.0,
@@ -105,7 +105,7 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           const SizedBox(height: 20),
           const Text('orient:vert itemBorder:true wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderCheckboxGroup(
+          FormBuilderCheckboxGroup<String>(
             name: 'aCheckboxGroup3',
             options: getDemoOptionsWidgets(),
             wrapSpacing: 5.0,
@@ -117,9 +117,9 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
           ),
           const SizedBox(height: 20),
           const Text(
-              'label:w/sizebox orient:vert itemBorder:true wrapSpacing:5.0',
+              'label:w/sizedbox orient:vert itemBorder:true wrapSpacing:5.0',
               textScaler: TextScaler.linear(1.01)),
-          FormBuilderRadioGroup(
+          FormBuilderRadioGroup<String>(
             name: 'aRadioGroup4',
             options: getDemoOptionsWidgets(forceMinWidth: 80.0),
             wrapSpacing: 5.0,
@@ -136,45 +136,46 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
 
   /// options using column of widgets for the label
   /// We can force a min width by creating a sized box so we don't need another parameter
-  List<FormBuilderFieldOption> getDemoOptionsWidgets({forceMinWidth = 0.0}) {
-    return [
-      FormBuilderFieldOption(
+  List<FormBuilderFieldOption<String>> getDemoOptionsWidgets(
+      {double forceMinWidth = 0.0}) {
+    return <FormBuilderFieldOption<String>>[
+      FormBuilderFieldOption<String>(
         value: "airplane",
         child: Container(
             padding: const EdgeInsets.all(5.0),
             child: Column(
-              children: [
+              children: <Widget>[
                 const Text("Airplane"),
                 const Icon(Icons.airplanemode_on),
                 SizedBox(width: forceMinWidth, height: 0.0),
               ],
             )),
       ),
-      FormBuilderFieldOption(
+      FormBuilderFieldOption<String>(
         value: "fire-truck",
         child: Container(
             padding: const EdgeInsets.all(5.0),
-            child: Column(children: [
+            child: Column(children: <Widget>[
               const Text("Fire Truck"),
               const Icon(Icons.fire_truck),
               SizedBox(width: forceMinWidth, height: 0.0),
             ])),
       ),
-      FormBuilderFieldOption(
+      FormBuilderFieldOption<String>(
         value: "bus-alert",
         child: Container(
             padding: const EdgeInsets.all(5.0),
-            child: Column(children: [
+            child: Column(children: <Widget>[
               const Text("Bus Alert"),
               const Icon(Icons.bus_alert),
               SizedBox(width: forceMinWidth, height: 0.0),
             ])),
       ),
-      FormBuilderFieldOption(
+      FormBuilderFieldOption<String>(
         value: "firetruck",
         child: Container(
             padding: const EdgeInsets.all(5.0),
-            child: Column(children: [
+            child: Column(children: <Widget>[
               const Text("Motorcycle"),
               const Icon(Icons.motorcycle),
               SizedBox(width: forceMinWidth, height: 0.0),
@@ -184,18 +185,18 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
   }
 
   /// opens using just values
-  List<FormBuilderFieldOption> getDemoOptions() {
-    return const [
-      FormBuilderFieldOption(
+  List<FormBuilderFieldOption<String>> getDemoOptions() {
+    return const <FormBuilderFieldOption<String>>[
+      FormBuilderFieldOption<String>(
         value: "airplane",
       ),
-      FormBuilderFieldOption(
+      FormBuilderFieldOption<String>(
         value: "fire-truck",
       ),
-      FormBuilderFieldOption(
+      FormBuilderFieldOption<String>(
         value: "bus-alert",
       ),
-      FormBuilderFieldOption(
+      FormBuilderFieldOption<String>(
         value: "firetruck",
       ),
     ];

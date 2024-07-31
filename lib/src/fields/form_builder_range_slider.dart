@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 
 /// Field to select a range of values on a Slider
@@ -189,8 +189,10 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
     this.maxValueWidget,
     this.numberFormat,
   }) : super(builder: (FormFieldState<RangeValues?> field) {
-          final state = field as _FormBuilderRangeSliderState;
-          final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
+          final _FormBuilderRangeSliderState state =
+              field as _FormBuilderRangeSliderState;
+          final NumberFormat effectiveNumberFormat =
+              numberFormat ?? NumberFormat.compact();
           if (field.value == null ||
               field.value!.start < min ||
               field.value!.start > max ||
@@ -210,7 +212,7 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
               padding: const EdgeInsets.only(top: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget>[
                   RangeSlider(
                     values: field.value!,
                     min: min,
@@ -223,7 +225,7 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
                     labels: labels,
                     semanticFormatterCallback: semanticFormatterCallback,
                     onChanged: state.enabled
-                        ? (values) {
+                        ? (RangeValues values) {
                             field.didChange(values);
                           }
                         : null,

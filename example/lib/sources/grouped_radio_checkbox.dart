@@ -15,9 +15,9 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
-  final _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
-  var genderOptions = ['Male', 'Female', 'Other'];
+  List<String> genderOptions = <String>['Male', 'Female', 'Other'];
 
   void _onChanged(dynamic val) => debugPrint(val.toString());
 
@@ -34,12 +34,12 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
               debugPrint(_formKey.currentState!.value.toString());
             },
             autovalidateMode: AutovalidateMode.disabled,
-            initialValue: const {
+            initialValue: const <String, dynamic>{
               'movie_rating': 5,
               'best_language': 'Dart',
               'age': '13',
               'gender': 'Male',
-              'languages_filter': ['Dart']
+              'languages_filter': <String>['Dart']
             },
             skipDisabled: true,
             child: Column(
@@ -60,14 +60,15 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
-                  options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                      .map((lang) => FormBuilderFieldOption(
-                            value: lang,
-                            child: Text(lang),
-                          ))
-                      .toList(growable: false),
+                  validator: FormBuilderValidators.compose(<FormFieldValidator<
+                      String>>[FormBuilderValidators.required()]),
+                  options:
+                      <String>['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
+                          .map((String lang) => FormBuilderFieldOption<String>(
+                                value: lang,
+                                child: Text(lang),
+                              ))
+                          .toList(growable: false),
                   controlAffinity: ControlAffinity.leading,
                   orientation: OptionsOrientation.wrap,
                 ),
@@ -87,14 +88,15 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
-                  options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                      .map((lang) => FormBuilderFieldOption(
-                            value: lang,
-                            child: Text(lang),
-                          ))
-                      .toList(growable: false),
+                  validator: FormBuilderValidators.compose(<FormFieldValidator<
+                      String>>[FormBuilderValidators.required()]),
+                  options:
+                      <String>['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
+                          .map((String lang) => FormBuilderFieldOption<String>(
+                                value: lang,
+                                child: Text(lang),
+                              ))
+                          .toList(growable: false),
                   controlAffinity: ControlAffinity.leading,
                   orientation: OptionsOrientation.vertical,
                 ),
@@ -106,12 +108,12 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       labelText: 'The language of my people'),
                   name: 'languages_horiz',
                   // initialValue: const ['Dart'],
-                  options: const [
-                    FormBuilderFieldOption(value: 'Dart'),
-                    FormBuilderFieldOption(value: 'Kotlin'),
-                    FormBuilderFieldOption(value: 'Java'),
-                    FormBuilderFieldOption(value: 'Swift'),
-                    FormBuilderFieldOption(value: 'Objective-C'),
+                  options: const <FormBuilderFieldOption<String>>[
+                    FormBuilderFieldOption<String>(value: 'Dart'),
+                    FormBuilderFieldOption<String>(value: 'Kotlin'),
+                    FormBuilderFieldOption<String>(value: 'Java'),
+                    FormBuilderFieldOption<String>(value: 'Swift'),
+                    FormBuilderFieldOption<String>(value: 'Objective-C'),
                   ],
                   onChanged: _onChanged,
                   separator: const SizedBox(
@@ -121,7 +123,8 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
-                  validator: FormBuilderValidators.compose([
+                  validator: FormBuilderValidators
+                      .compose(<FormFieldValidator<List<String>>>[
                     FormBuilderValidators.minLength(1),
                     FormBuilderValidators.maxLength(3),
                   ]),
@@ -135,12 +138,12 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       labelText: 'The language of my people'),
                   name: 'languages_vert',
                   // initialValue: const ['Dart'],
-                  options: const [
-                    FormBuilderFieldOption(value: 'Dart'),
-                    FormBuilderFieldOption(value: 'Kotlin'),
-                    FormBuilderFieldOption(value: 'Java'),
-                    FormBuilderFieldOption(value: 'Swift'),
-                    FormBuilderFieldOption(value: 'Objective-C'),
+                  options: const <FormBuilderFieldOption<String>>[
+                    FormBuilderFieldOption<String>(value: 'Dart'),
+                    FormBuilderFieldOption<String>(value: 'Kotlin'),
+                    FormBuilderFieldOption<String>(value: 'Java'),
+                    FormBuilderFieldOption<String>(value: 'Swift'),
+                    FormBuilderFieldOption<String>(value: 'Objective-C'),
                   ],
                   onChanged: _onChanged,
                   separator: const SizedBox(
@@ -150,7 +153,8 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
-                  validator: FormBuilderValidators.compose([
+                  validator: FormBuilderValidators
+                      .compose(<FormFieldValidator<List<String>>>[
                     FormBuilderValidators.minLength(1),
                     FormBuilderValidators.maxLength(3),
                   ]),

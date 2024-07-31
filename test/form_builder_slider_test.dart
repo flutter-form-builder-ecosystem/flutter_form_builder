@@ -5,8 +5,8 @@ import 'form_builder_tester.dart';
 
 void main() {
   testWidgets('FormBuilderSlider -- 5.0', (WidgetTester tester) async {
-    const widgetName = 'slider1';
-    final testWidget = FormBuilderSlider(
+    const String widgetName = 'slider1';
+    final FormBuilderSlider testWidget = FormBuilderSlider(
       name: widgetName,
       initialValue: 2,
       min: 0,

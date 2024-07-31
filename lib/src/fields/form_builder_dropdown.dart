@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
+import '../../flutter_form_builder.dart';
+import '../extensions/generic_validator.dart';
 
 /// Field for Dropdown button
 class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
@@ -255,9 +255,12 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.alignment = AlignmentDirectional.centerStart,
   }) : super(
           builder: (FormFieldState<T?> field) {
-            final state = field as _FormBuilderDropdownState<T>;
+            final _FormBuilderDropdownState<T> state =
+                field as _FormBuilderDropdownState<T>;
 
-            final hasValue = items.map((e) => e.value).contains(field.value);
+            final bool hasValue = items
+                .map((DropdownMenuItem<T> e) => e.value)
+                .contains(field.value);
             return DropdownButtonFormField<T>(
               isExpanded: isExpanded,
               decoration: state.decoration,
@@ -267,8 +270,8 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               isDense: isDense,
               disabledHint: hasValue
                   ? items
-                      .firstWhere(
-                          (dropDownItem) => dropDownItem.value == field.value)
+                      .firstWhere((DropdownMenuItem<T> dropDownItem) =>
+                          dropDownItem.value == field.value)
                       .child
                   : disabledHint,
               elevation: elevation,
@@ -304,11 +307,16 @@ class _FormBuilderDropdownState<T>
   void didUpdateWidget(covariant FormBuilderDropdown<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    final oldValues = oldWidget.items.map((e) => e.value).toList();
-    final currentlyValues = widget.items.map((e) => e.value).toList();
-    final oldChilds = oldWidget.items.map((e) => e.child.toString()).toList();
-    final currentlyChilds =
-        widget.items.map((e) => e.child.toString()).toList();
+    final List<T?> oldValues =
+        oldWidget.items.map((DropdownMenuItem<T> e) => e.value).toList();
+    final List<T?> currentlyValues =
+        widget.items.map((DropdownMenuItem<T> e) => e.value).toList();
+    final List<String> oldChilds = oldWidget.items
+        .map((DropdownMenuItem<T> e) => e.child.toString())
+        .toList();
+    final List<String> currentlyChilds = widget.items
+        .map((DropdownMenuItem<T> e) => e.child.toString())
+        .toList();
 
     if (!currentlyValues.contains(initialValue) &&
         !initialValue.emptyValidator()) {

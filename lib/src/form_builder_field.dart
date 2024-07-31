@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
+import '../flutter_form_builder.dart';
+import 'extensions/autovalidatemode_extension.dart';
 
 enum OptionsOrientation { horizontal, vertical, wrap, auto }
 
@@ -119,7 +119,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   bool get isTouched => _touched;
 
   void registerTransformer(Map<String, Function> map) {
-    final fun = widget.valueTransformer;
+    final ValueTransformer<T?>? fun = widget.valueTransformer;
     if (fun != null) {
       map[widget.name] = fun;
     }
@@ -240,16 +240,20 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     if (clearCustomError) {
       setState(() => _customErrorText = null);
     }
-    final isValid = super.validate() && !hasError;
+    final bool isValid = super.validate() && !hasError;
 
-    final fields = _formBuilderState?.fields ??
-        <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
+    final Map<String, FormBuilderFieldState<FormBuilderField, dynamic>> fields =
+        _formBuilderState?.fields ??
+            <String,
+                FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
 
     if (!isValid &&
         focusOnInvalid &&
         (formState?.focusOnInvalid ?? true) &&
         enabled &&
-        !fields.values.any((e) => e.effectiveFocusNode.hasFocus)) {
+        !fields.values.any(
+            (FormBuilderFieldState<FormBuilderField, dynamic> e) =>
+                e.effectiveFocusNode.hasFocus)) {
       focus();
       if (autoScrollWhenFocusOnInvalid) ensureScrollableVisibility();
     }

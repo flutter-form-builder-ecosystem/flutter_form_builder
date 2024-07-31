@@ -1,8 +1,8 @@
-import 'package:example/sources/conditional_fields.dart';
-import 'package:example/sources/decorated_radio_checkbox.dart';
-import 'package:example/sources/dynamic_fields.dart';
-import 'package:example/sources/grouped_radio_checkbox.dart';
-import 'package:example/sources/related_fields.dart';
+import 'sources/conditional_fields.dart';
+import 'sources/decorated_radio_checkbox.dart';
+import 'sources/dynamic_fields.dart';
+import 'sources/grouped_radio_checkbox.dart';
+import 'sources/related_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter FormBuilder Demo',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         FormBuilderLocalizations.delegate,
         ...GlobalMaterialLocalizations.delegates,
         GlobalWidgetsLocalizations.delegate,
@@ -50,8 +50,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'Complete Form',
                       child: CompleteForm(),
@@ -67,8 +67,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'Custom Fields',
                       child: CustomFields(),
@@ -84,8 +84,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'Signup Form',
                       child: SignupForm(),
@@ -101,8 +101,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'Dynamic Form',
                       child: DynamicFields(),
@@ -118,8 +118,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'Conditional Form',
                       child: ConditionalFields(),
@@ -135,8 +135,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'Related Fields',
                       child: RelatedFields(),
@@ -152,8 +152,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'ItemDecorators',
                       child: DecoratedRadioCheckbox(),
@@ -169,8 +169,8 @@ class _HomePage extends StatelessWidget {
             trailing: const Icon(Icons.arrow_right_sharp),
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) {
                     return const CodePage(
                       title: 'GroupedRadio and GroupedCheckbox',
                       child: GroupedRadioCheckbox(),

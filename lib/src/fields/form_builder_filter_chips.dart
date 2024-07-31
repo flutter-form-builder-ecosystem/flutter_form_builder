@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// Field with chips that acts like a list checkboxes.
 class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
@@ -74,11 +74,13 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
     super.onChanged,
     super.valueTransformer,
     super.onReset,
-  })  : assert((maxChips == null) || ((initialValue ?? []).length <= maxChips)),
+  })  : assert(
+            (maxChips == null) || ((initialValue ?? <T>[]).length <= maxChips)),
         super(
           builder: (FormFieldState<List<T>?> field) {
-            final state = field as _FormBuilderFilterChipState<T>;
-            final fieldValue = field.value ?? [];
+            final _FormBuilderFilterChipState<T> state =
+                field as _FormBuilderFilterChipState<T>;
+            final List<T> fieldValue = field.value ?? <T>[];
 
             return InputDecorator(
               decoration: state.decoration,
@@ -101,8 +103,8 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
                               (null == maxChips ||
                                   fieldValue.length < maxChips ||
                                   fieldValue.contains(option.value))
-                          ? (selected) {
-                              final currentValue = [...fieldValue];
+                          ? (bool selected) {
+                              final List<T> currentValue = <T>[...fieldValue];
                               selected
                                   ? currentValue.add(option.value)
                                   : currentValue.remove(option.value);

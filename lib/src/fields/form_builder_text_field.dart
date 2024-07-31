@@ -3,7 +3,7 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// A Material Design text field input.
 class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
@@ -373,7 +373,8 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
         super(
           initialValue: controller != null ? controller.text : initialValue,
           builder: (FormFieldState<String?> field) {
-            final state = field as _FormBuilderTextFieldState;
+            final _FormBuilderTextFieldState state =
+                field as _FormBuilderTextFieldState;
 
             return TextField(
               restorationId: restorationId,

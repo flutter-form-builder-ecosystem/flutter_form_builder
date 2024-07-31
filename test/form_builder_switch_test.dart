@@ -5,13 +5,13 @@ import 'form_builder_tester.dart';
 
 void main() {
   testWidgets('FormBuilderSwitch -- Off/On/Off', (WidgetTester tester) async {
-    const switchName = 'switch1';
-    final testWidget = FormBuilderSwitch(
+    const String switchName = 'switch1';
+    final FormBuilderSwitch testWidget = FormBuilderSwitch(
       name: switchName,
       title: const Text('Switch 1'),
       initialValue: false,
     );
-    final widgetFinder = find.byWidget(testWidget);
+    final Finder widgetFinder = find.byWidget(testWidget);
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 

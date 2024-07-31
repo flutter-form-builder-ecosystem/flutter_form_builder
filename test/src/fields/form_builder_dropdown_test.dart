@@ -7,25 +7,25 @@ import '../../form_builder_tester.dart';
 void main() {
   group('FormBuilderDropdown --', () {
     testWidgets('basic', (WidgetTester tester) async {
-      const widgetName = 'd1';
-      final testWidget = FormBuilderDropdown<int>(
+      const String widgetName = 'd1';
+      final FormBuilderDropdown<int> testWidget = FormBuilderDropdown<int>(
         name: widgetName,
-        items: const [
-          DropdownMenuItem(
+        items: const <DropdownMenuItem<int>>[
+          DropdownMenuItem<int>(
             value: 1,
             child: Text('One'),
           ),
-          DropdownMenuItem(
+          DropdownMenuItem<int>(
             value: 2,
             child: Text('Two'),
           ),
-          DropdownMenuItem(
+          DropdownMenuItem<int>(
             value: 3,
             child: Text('Three'),
           ),
         ],
       );
-      final widgetFinder = find.byWidget(testWidget);
+      final Finder widgetFinder = find.byWidget(testWidget);
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
@@ -46,22 +46,22 @@ void main() {
     });
     testWidgets('reset to initial value when update items',
         (WidgetTester tester) async {
-      const widgetName = 'dropdown_field';
-      const buttonKey = Key('update_button');
+      const String widgetName = 'dropdown_field';
+      const Key buttonKey = Key('update_button');
 
       // Define the initial and updated items for the dropdown
-      const List<DropdownMenuItem<int>> initialItems = [
-        DropdownMenuItem(value: 1, child: Text('Option 1')),
-        DropdownMenuItem(value: 2, child: Text('Option 2')),
+      const List<DropdownMenuItem<int>> initialItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 1, child: Text('Option 1')),
+        DropdownMenuItem<int>(value: 2, child: Text('Option 2')),
       ];
 
-      const List<DropdownMenuItem<int>> updatedItems = [
-        DropdownMenuItem(value: 3, child: Text('Option 3')),
-        DropdownMenuItem(value: 4, child: Text('Option 4')),
+      const List<DropdownMenuItem<int>> updatedItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 3, child: Text('Option 3')),
+        DropdownMenuItem<int>(value: 4, child: Text('Option 4')),
       ];
 
       // Build the test widget tree with the initial items
-      const testWidget = MyTestWidget(
+      const MyTestWidget<int> testWidget = MyTestWidget<int>(
         initialItems: initialItems,
         updatedItems: updatedItems,
         initialValue: 1,
@@ -76,7 +76,7 @@ void main() {
       expect(formValue(widgetName), equals(1));
 
       // Tap button and update the dropdown items
-      final buttonFinder = find.byKey(buttonKey);
+      final Finder buttonFinder = find.byKey(buttonKey);
       await tester.tap(buttonFinder);
       await tester.pumpAndSettle();
 
@@ -86,22 +86,22 @@ void main() {
     });
     testWidgets('reset to initial value when update items with same values',
         (WidgetTester tester) async {
-      const widgetName = 'dropdown_field';
-      const buttonKey = Key('update_button');
+      const String widgetName = 'dropdown_field';
+      const Key buttonKey = Key('update_button');
 
       // Define the initial and updated items for the dropdown
-      const List<DropdownMenuItem<int>> initialItems = [
-        DropdownMenuItem(value: 1, child: Text('Option 1')),
-        DropdownMenuItem(value: 2, child: Text('Option 2')),
+      const List<DropdownMenuItem<int>> initialItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 1, child: Text('Option 1')),
+        DropdownMenuItem<int>(value: 2, child: Text('Option 2')),
       ];
 
-      const List<DropdownMenuItem<int>> updatedItems = [
-        DropdownMenuItem(value: 1, child: Text('Option 3')),
-        DropdownMenuItem(value: 2, child: Text('Option 4')),
+      const List<DropdownMenuItem<int>> updatedItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 1, child: Text('Option 3')),
+        DropdownMenuItem<int>(value: 2, child: Text('Option 4')),
       ];
 
       // Build the test widget tree with the initial items
-      const testWidget = MyTestWidget(
+      const MyTestWidget<int> testWidget = MyTestWidget<int>(
         initialItems: initialItems,
         updatedItems: updatedItems,
         initialValue: 1,
@@ -123,7 +123,7 @@ void main() {
       expect(formValue(widgetName), equals(2));
 
       // Tap button and update the dropdown items
-      final buttonFinder = find.byKey(buttonKey);
+      final Finder buttonFinder = find.byKey(buttonKey);
       await tester.tap(buttonFinder);
       await tester.pumpAndSettle();
 
@@ -134,24 +134,24 @@ void main() {
 
     testWidgets('reset to initial value when update items with same children',
         (WidgetTester tester) async {
-      const widgetName = 'dropdown_field';
-      const buttonKey = Key('update_button');
-      const option1 = Text('Option 1');
-      const option2 = Text('Option 2');
+      const String widgetName = 'dropdown_field';
+      const Key buttonKey = Key('update_button');
+      const Text option1 = Text('Option 1');
+      const Text option2 = Text('Option 2');
 
       // Define the initial and updated items for the dropdown
-      const List<DropdownMenuItem<int>> initialItems = [
-        DropdownMenuItem(value: 1, child: option1),
-        DropdownMenuItem(value: 2, child: option2),
+      const List<DropdownMenuItem<int>> initialItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 1, child: option1),
+        DropdownMenuItem<int>(value: 2, child: option2),
       ];
 
-      const List<DropdownMenuItem<int>> updatedItems = [
-        DropdownMenuItem(value: 3, child: option1),
-        DropdownMenuItem(value: 4, child: option2),
+      const List<DropdownMenuItem<int>> updatedItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 3, child: option1),
+        DropdownMenuItem<int>(value: 4, child: option2),
       ];
 
       // Build the test widget tree with the initial items
-      const testWidget = MyTestWidget(
+      const MyTestWidget<int> testWidget = MyTestWidget(
         initialItems: initialItems,
         updatedItems: updatedItems,
         initialValue: 1,
@@ -174,7 +174,7 @@ void main() {
       expect(formValue(widgetName), equals(2));
 
       // Tap button and update the dropdown items
-      final buttonFinder = find.byKey(buttonKey);
+      final Finder buttonFinder = find.byKey(buttonKey);
       await tester.tap(buttonFinder);
       await tester.pumpAndSettle();
 
@@ -184,17 +184,17 @@ void main() {
     });
     testWidgets('maintain initial value when update to equals items',
         (WidgetTester tester) async {
-      const widgetName = 'dropdown_field';
-      const buttonKey = Key('update_button');
+      const String widgetName = 'dropdown_field';
+      const Key buttonKey = Key('update_button');
 
       // Define the initial and updated items for the dropdown
-      const List<DropdownMenuItem<int>> initialItems = [
-        DropdownMenuItem(value: 1, child: Text('Option 1')),
-        DropdownMenuItem(value: 2, child: Text('Option 2')),
+      const List<DropdownMenuItem<int>> initialItems = <DropdownMenuItem<int>>[
+        DropdownMenuItem<int>(value: 1, child: Text('Option 1')),
+        DropdownMenuItem<int>(value: 2, child: Text('Option 2')),
       ];
 
       // Build the test widget tree with the initial items
-      const testWidget = MyTestWidget(
+      const MyTestWidget<int> testWidget = MyTestWidget<int>(
         initialItems: initialItems,
         updatedItems: initialItems,
         initialValue: 1,
@@ -216,7 +216,7 @@ void main() {
       expect(formValue(widgetName), equals(2));
 
       // Tap button and update the dropdown items
-      final buttonFinder = find.byKey(buttonKey);
+      final Finder buttonFinder = find.byKey(buttonKey);
       await tester.tap(buttonFinder);
       await tester.pumpAndSettle();
 
@@ -239,42 +239,42 @@ class MyTestWidget<T> extends StatefulWidget {
     super.key,
     required this.initialItems,
     this.initialValue,
-    this.updatedItems = const [],
+    this.updatedItems = const <DropdownMenuItem<Never>>[],
     required this.fieldName,
     required this.buttonKey,
     this.updatedInitialValue,
   });
 
   @override
-  State<MyTestWidget> createState() => _MyTestWidgetState<T>();
+  State<MyTestWidget<T>> createState() => _MyTestWidgetState<T>();
 }
 
-class _MyTestWidgetState<T> extends State<MyTestWidget> {
+class _MyTestWidgetState<T> extends State<MyTestWidget<T>> {
   T? _initialValue;
-  List<DropdownMenuItem<T>> _items = [];
+  List<DropdownMenuItem<T>> _items = <DropdownMenuItem<T>>[];
 
   @override
   void initState() {
     super.initState();
-    _items = widget.initialItems as List<DropdownMenuItem<T>>;
+    _items = widget.initialItems;
     _initialValue = widget.initialValue;
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         FormBuilderDropdown<T>(
           name: 'dropdown_field',
           items: _items,
           initialValue: _initialValue,
-          onChanged: (value) {},
+          onChanged: (T? value) {},
         ),
         ElevatedButton(
           key: widget.buttonKey,
           onPressed: () {
             setState(() {
-              _items = widget.updatedItems as List<DropdownMenuItem<T>>;
+              _items = widget.updatedItems;
               if (widget.updatedInitialValue != null) {
                 _initialValue = widget.updatedInitialValue;
               }

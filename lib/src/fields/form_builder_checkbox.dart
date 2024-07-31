@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// Single Checkbox field
 class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
@@ -121,7 +121,8 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
     this.side,
   }) : super(
           builder: (FormFieldState<bool?> field) {
-            final state = field as _FormBuilderCheckboxState;
+            final _FormBuilderCheckboxState state =
+                field as _FormBuilderCheckboxState;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -132,7 +133,7 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
                 subtitle: subtitle,
                 value: tristate ? state.value : (state.value ?? false),
                 onChanged: state.enabled
-                    ? (value) {
+                    ? (bool? value) {
                         state.didChange(value);
                       }
                     : null,

@@ -7,8 +7,8 @@ import 'form_builder_tester.dart';
 void main() {
   group('FormBuilderRangeSlider --', () {
     testWidgets('basic', (WidgetTester tester) async {
-      const widgetName = 'formBuilderRangeSlider';
-      final testWidget = FormBuilderRangeSlider(
+      const String widgetName = 'formBuilderRangeSlider';
+      final FormBuilderRangeSlider testWidget = FormBuilderRangeSlider(
         name: widgetName,
         min: 10.0,
         max: 20.0,
@@ -34,8 +34,8 @@ void main() {
     });
 
     testWidgets('initial value', (WidgetTester tester) async {
-      const widgetName = 'formBuilderRangeSlider';
-      final testWidget = FormBuilderRangeSlider(
+      const String widgetName = 'formBuilderRangeSlider';
+      final FormBuilderRangeSlider testWidget = FormBuilderRangeSlider(
         name: widgetName,
         min: 10.0,
         max: 20.0,
@@ -62,8 +62,9 @@ void main() {
     });
 
     testWidgets('Stateful Update', (WidgetTester tester) async {
-      const widgetName = 'formBuilderRangeSlider';
-      const testWidget = _FormBuilderRangeSliderStateTest(widgetName);
+      const String widgetName = 'formBuilderRangeSlider';
+      const _FormBuilderRangeSliderStateTest testWidget =
+          _FormBuilderRangeSliderStateTest(widgetName);
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
@@ -101,7 +102,7 @@ class _FormBuilderRangeSliderStateTestState
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: <Widget>[
         Expanded(
           child: FormBuilderRangeSlider(
             name: widget.name,

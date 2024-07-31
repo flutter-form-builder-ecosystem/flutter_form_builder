@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-final formKey = GlobalKey<FormBuilderState>();
+final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
 
 Widget buildTestableFieldWidget(
   Widget widget, {
-  Map<String, dynamic> initialValue = const {},
+  Map<String, dynamic> initialValue = const <String, dynamic>{},
   bool skipDisabled = false,
   bool clearValueOnUnregister = false,
   AutovalidateMode? autovalidateMode,

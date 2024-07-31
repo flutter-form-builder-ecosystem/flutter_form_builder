@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// A list of Checkboxes for selecting multiple options
 class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
@@ -67,7 +67,8 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
     this.itemDecoration,
   }) : super(
           builder: (FormFieldState<List<T>?> field) {
-            final state = field as _FormBuilderCheckboxGroupState<T>;
+            final _FormBuilderCheckboxGroupState<T> state =
+                field as _FormBuilderCheckboxGroupState<T>;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -75,12 +76,14 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
                 orientation: orientation,
                 value: state.value,
                 options: options,
-                onChanged: (val) {
+                onChanged: (List<T> val) {
                   field.didChange(val);
                 },
                 disabled: state.enabled
                     ? disabled
-                    : options.map((e) => e.value).toList(),
+                    : options
+                        .map((FormBuilderFieldOption<T> e) => e.value)
+                        .toList(),
                 activeColor: activeColor,
                 visualDensity: visualDensity,
                 focusColor: focusColor,

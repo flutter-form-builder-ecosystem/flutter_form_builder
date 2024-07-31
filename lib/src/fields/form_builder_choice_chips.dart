@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
 class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
@@ -291,7 +291,8 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
     this.verticalDirection = VerticalDirection.down,
     this.visualDensity,
   }) : super(builder: (FormFieldState<T?> field) {
-          final state = field as _FormBuilderChoiceChipState<T>;
+          final _FormBuilderChoiceChipState<T> state =
+              field as _FormBuilderChoiceChipState<T>;
 
           return InputDecorator(
             decoration: state.decoration,
@@ -311,7 +312,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
                     shape: shape,
                     selected: field.value == option.value,
                     onSelected: state.enabled
-                        ? (selected) {
+                        ? (bool selected) {
                             final choice = selected ? option.value : null;
                             state.didChange(choice);
                           }

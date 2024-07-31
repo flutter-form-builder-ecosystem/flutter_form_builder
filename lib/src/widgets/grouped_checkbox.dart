@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 class GroupedCheckbox<T> extends StatelessWidget {
   /// A list of string that describes each checkbox. Each item must be distinct.
@@ -219,8 +219,8 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final widgetList = <Widget>[];
-    for (var i = 0; i < options.length; i++) {
+    final List<Widget> widgetList = <Widget>[];
+    for (int i = 0; i < options.length; i++) {
       widgetList.add(buildItem(i));
     }
     Widget finalWidget;
@@ -241,7 +241,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
       finalWidget = SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: widgetList.map((item) {
+          children: widgetList.map((Widget item) {
             return Column(children: <Widget>[item]);
           }).toList(),
         ),
@@ -266,10 +266,10 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
   /// the composite of all the components for the option at index
   Widget buildItem(int index) {
-    final option = options[index];
-    final optionValue = option.value;
-    final isOptionDisabled = true == disabled?.contains(optionValue);
-    final control = Checkbox(
+    final FormBuilderFieldOption<T> option = options[index];
+    final T optionValue = option.value;
+    final bool isOptionDisabled = true == disabled?.contains(optionValue);
+    final Checkbox control = Checkbox(
       visualDensity: visualDensity,
       activeColor: activeColor,
       checkColor: checkColor,
@@ -282,19 +282,21 @@ class GroupedCheckbox<T> extends StatelessWidget {
       tristate: tristate,
       onChanged: isOptionDisabled
           ? null
-          : (selected) {
-              List<T> selectedListItems = value == null ? [] : List.of(value!);
+          : (bool? selected) {
+              List<T> selectedListItems =
+                  value == null ? <T>[] : List<T>.of(value!);
               selected!
                   ? selectedListItems.add(optionValue)
                   : selectedListItems.remove(optionValue);
               onChanged(selectedListItems);
             },
     );
-    final label = GestureDetector(
+    final GestureDetector label = GestureDetector(
       onTap: isOptionDisabled
           ? null
           : () {
-              List<T> selectedListItems = value == null ? [] : List.of(value!);
+              List<T> selectedListItems =
+                  value == null ? <T>[] : List.of(value!);
               selectedListItems.contains(optionValue)
                   ? selectedListItems.remove(optionValue)
                   : selectedListItems.add(optionValue);
@@ -306,7 +308,7 @@ class GroupedCheckbox<T> extends StatelessWidget {
     Widget compositeItem = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[

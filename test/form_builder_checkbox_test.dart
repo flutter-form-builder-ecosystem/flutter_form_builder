@@ -5,13 +5,13 @@ import 'form_builder_tester.dart';
 
 void main() {
   testWidgets('FormBuilderCheckbox -- Off/On/Off', (WidgetTester tester) async {
-    const checkboxName = 'cb1';
-    final testWidget = FormBuilderCheckbox(
+    const String checkboxName = 'cb1';
+    final FormBuilderCheckbox testWidget = FormBuilderCheckbox(
       name: checkboxName,
       title: const Text('Checkbox 1'),
       initialValue: false,
     );
-    final widgetFinder = find.byWidget(testWidget);
+    final Finder widgetFinder = find.byWidget(testWidget);
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 

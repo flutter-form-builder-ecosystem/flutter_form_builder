@@ -9,7 +9,7 @@ class CustomFields extends StatefulWidget {
 }
 
 class _CustomFieldsState extends State<CustomFields> {
-  final _formKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
   static const List<String> _kOptions = <String>[
     'pikachu',
@@ -28,32 +28,32 @@ class _CustomFieldsState extends State<CustomFields> {
           const SizedBox(height: 20),
           FormBuilderField<DateTime?>(
             name: 'date',
-            builder: (FormFieldState field) {
+            builder: (FormFieldState<DateTime?> field) {
               return InputDatePickerFormField(
                 firstDate: DateTime.now(),
                 lastDate: DateTime.now().add(const Duration(days: 30)),
-                onDateSubmitted: (value) => field.didChange(value),
+                onDateSubmitted: (DateTime value) => field.didChange(value),
                 errorInvalidText: field.errorText,
-                onDateSaved: (value) => field.didChange(value),
+                onDateSaved: (DateTime value) => field.didChange(value),
               );
             },
           ),
           const SizedBox(height: 10),
           FormBuilderField<bool>(
             name: 'terms',
-            builder: (FormFieldState field) {
+            builder: (FormFieldState<bool> field) {
               return CheckboxListTile(
                 title: const Text('I Accept the terms and conditions'),
                 value: field.value ?? false,
                 controlAffinity: ListTileControlAffinity.leading,
-                onChanged: (value) => field.didChange(value),
+                onChanged: (bool? value) => field.didChange(value),
               );
             },
           ),
           const SizedBox(height: 10),
           FormBuilderField<String?>(
             name: 'name',
-            builder: (FormFieldState field) {
+            builder: (FormFieldState<String?> field) {
               return Autocomplete<String>(
                 optionsBuilder: (TextEditingValue textEditingValue) {
                   if (textEditingValue.text == '') {
@@ -69,7 +69,7 @@ class _CustomFieldsState extends State<CustomFields> {
               );
             },
             autovalidateMode: AutovalidateMode.always,
-            validator: (valueCandidate) {
+            validator: (String? valueCandidate) {
               if (valueCandidate?.isEmpty ?? true) {
                 return 'This field is required.';
               }

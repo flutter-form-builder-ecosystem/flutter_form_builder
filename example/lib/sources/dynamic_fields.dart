@@ -14,9 +14,9 @@ class DynamicFields extends StatefulWidget {
 }
 
 class _DynamicFieldsState extends State<DynamicFields> {
-  final _formKey = GlobalKey<FormBuilderState>();
-  final List<Widget> fields = [];
-  var _newTextFieldId = 0;
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+  final List<Widget> fields = <Widget>[];
+  int _newTextFieldId = 0;
   String savedValue = '';
 
   @override
@@ -70,15 +70,17 @@ class _DynamicFieldsState extends State<DynamicFields> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    final newTextFieldName = 'name_${_newTextFieldId++}';
-                    final newTextFieldKey = ValueKey(_newTextFieldId);
+                    final String newTextFieldName = 'name_${_newTextFieldId++}';
+                    final ValueKey<int> newTextFieldKey =
+                        ValueKey<int>(_newTextFieldId);
                     setState(() {
                       fields.add(NewTextField(
                         key: newTextFieldKey,
                         name: newTextFieldName,
                         onDelete: () {
                           setState(() {
-                            fields.removeWhere((e) => e.key == newTextFieldKey);
+                            fields.removeWhere(
+                                (Widget e) => e.key == newTextFieldKey);
                           });
                         },
                       ));
@@ -110,7 +112,7 @@ class NewTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
-        children: [
+        children: <Widget>[
           Expanded(
             child: FormBuilderTextField(
               name: name,

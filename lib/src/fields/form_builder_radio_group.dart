@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
@@ -61,7 +61,8 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
     this.itemDecoration,
   }) : super(
           builder: (FormFieldState<T?> field) {
-            final state = field as _FormBuilderRadioGroupState<T>;
+            final _FormBuilderRadioGroupState<T> state =
+                field as _FormBuilderRadioGroupState<T>;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -70,7 +71,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                 controlAffinity: controlAffinity,
                 disabled: state.enabled
                     ? disabled
-                    : options.map((option) => option.value).toList(),
+                    : options
+                        .map((FormBuilderFieldOption<T> option) => option.value)
+                        .toList(),
                 focusColor: focusColor,
                 hoverColor: hoverColor,
                 materialTapTargetSize: materialTapTargetSize,

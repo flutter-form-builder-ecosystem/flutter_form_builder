@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import '../../flutter_form_builder.dart';
 
 /// On/Off switch field
 class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
@@ -118,7 +118,8 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
     this.selected = false,
   }) : super(
           builder: (FormFieldState<bool?> field) {
-            final state = field as _FormBuilderSwitchState;
+            final _FormBuilderSwitchState state =
+                field as _FormBuilderSwitchState;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -129,7 +130,7 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
                 title: title,
                 value: state.value ?? false,
                 onChanged: state.enabled
-                    ? (value) {
+                    ? (bool value) {
                         field.didChange(value);
                       }
                     : null,

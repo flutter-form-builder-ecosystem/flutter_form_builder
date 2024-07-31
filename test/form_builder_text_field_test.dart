@@ -7,12 +7,12 @@ import 'form_builder_tester.dart';
 void main() {
   testWidgets('FormBuilderTextField -- Hello Planet',
       (WidgetTester tester) async {
-    const newTextValue = 'Hello 🪐';
-    const textFieldName = 'text1';
-    final testWidget = FormBuilderTextField(
+    const String newTextValue = 'Hello 🪐';
+    const String textFieldName = 'text1';
+    final FormBuilderTextField testWidget = FormBuilderTextField(
       name: textFieldName,
     );
-    final widgetFinder = find.byWidget(testWidget);
+    final Finder widgetFinder = find.byWidget(testWidget);
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
     expect(formSave(), isTrue);
@@ -26,20 +26,20 @@ void main() {
   });
   testWidgets(
     'FormBuilderTextField without initialValue',
-    (tester) => _testFormBuilderTextFieldWithInitialValue(
+    (WidgetTester tester) => _testFormBuilderTextFieldWithInitialValue(
       tester,
     ),
   );
   testWidgets(
     'FormBuilderTextField has initialValue on Field',
-    (tester) => _testFormBuilderTextFieldWithInitialValue(
+    (WidgetTester tester) => _testFormBuilderTextFieldWithInitialValue(
       tester,
       initialValueOnField: 'ok',
     ),
   );
   testWidgets(
     'FormBuilderTextField has initialValue on Form',
-    (tester) => _testFormBuilderTextFieldWithInitialValue(
+    (WidgetTester tester) => _testFormBuilderTextFieldWithInitialValue(
       tester,
       initialValueOnForm: 'ok',
     ),
@@ -47,7 +47,8 @@ void main() {
 
   testWidgets(
     'FormBuilderTextField triggers onTapOutside',
-    (tester) => _testFormBuilderTextFieldOnTapOutsideCallback(tester),
+    (WidgetTester tester) =>
+        _testFormBuilderTextFieldOnTapOutsideCallback(tester),
   );
 }
 
@@ -57,17 +58,17 @@ Future<void> _testFormBuilderTextFieldWithInitialValue(
   String? initialValueOnForm,
 }) async {
   int changedCount = 0;
-  const newTextValue = 'Hello 🪐';
-  const textFieldName = 'text1';
+  const String newTextValue = 'Hello 🪐';
+  const String textFieldName = 'text1';
 
-  var testWidget = FormBuilderTextField(
+  FormBuilderTextField testWidget = FormBuilderTextField(
     name: textFieldName,
     initialValue: initialValueOnField,
     onChanged: (String? value) => changedCount++,
   );
   await tester.pumpWidget(buildTestableFieldWidget(
     testWidget,
-    initialValue: {
+    initialValue: <String, dynamic>{
       textFieldName: initialValueOnForm,
     },
   ));
@@ -84,17 +85,18 @@ Future<void> _testFormBuilderTextFieldWithInitialValue(
 
 Future<void> _testFormBuilderTextFieldOnTapOutsideCallback(
     WidgetTester tester) async {
-  const textFieldName = 'Hello 🪐';
+  const String textFieldName = 'Hello 🪐';
   bool triggered = false;
 
-  var testWidget = FormBuilderTextField(
+  FormBuilderTextField testWidget = FormBuilderTextField(
     name: textFieldName,
-    onTapOutside: (event) => triggered = true,
+    onTapOutside: (PointerDownEvent event) => triggered = true,
   );
   await tester.pumpWidget(buildTestableFieldWidget(
     testWidget,
   ));
-  final textField = tester.firstWidget(find.byType(TextField)) as TextField;
+  final TextField textField =
+      tester.firstWidget(find.byType(TextField)) as TextField;
   textField.onTapOutside?.call(const PointerDownEvent());
   expect(triggered, true);
 }
