@@ -64,12 +64,8 @@ class _RelatedFieldsState extends State<RelatedFields> {
                 .toList(),
           ),
           const SizedBox(height: 10),
-          MaterialButton(
-            color: Theme.of(context).colorScheme.secondary,
-            child: const Text(
-              "Submit",
-              style: TextStyle(color: Colors.white),
-            ),
+          ElevatedButton(
+            child: const Text("Submit"),
             onPressed: () {
               _formKey.currentState!.saveAndValidate();
               debugPrint(_formKey.currentState?.instantValue.toString() ?? '');

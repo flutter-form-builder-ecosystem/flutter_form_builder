@@ -80,12 +80,8 @@ class _CustomFieldsState extends State<CustomFields> {
           Row(
             children: <Widget>[
               Expanded(
-                child: MaterialButton(
-                  color: Theme.of(context).colorScheme.secondary,
-                  child: const Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: ElevatedButton(
+                  child: const Text("Submit"),
                   onPressed: () {
                     _formKey.currentState!.save();
                     if (_formKey.currentState!.validate()) {
@@ -98,12 +94,8 @@ class _CustomFieldsState extends State<CustomFields> {
               ),
               const SizedBox(width: 20),
               Expanded(
-                child: MaterialButton(
-                  color: Theme.of(context).colorScheme.secondary,
-                  child: const Text(
-                    "Reset",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: ElevatedButton(
+                  child: const Text("Reset"),
                   onPressed: () {
                     _formKey.currentState!.reset();
                   },
