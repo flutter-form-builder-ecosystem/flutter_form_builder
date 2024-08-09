@@ -1,3 +1,21 @@
+# [9.4.0]
+
+## Fixes
+
+* #1388 Respect latest field's initial value (esp when its forcefully recreated)
+
+## Features
+
+* `FormBuilderTextField` #1334 set enableSuggestions default to true
+* Replace deprecated property onPopInvoked
+* Use elevated button on main example
+* Update android settings on example
+
+## Chores
+
+* Set minimal Flutter version to 3.24.0
+* Set minimal Dart version to 3.5.0
+
 # [9.3.0]
 
 * Set minimal Flutter version to 3.22.0
