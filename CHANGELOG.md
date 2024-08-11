@@ -1,3 +1,9 @@
+# [9.5.0]
+
+## Features
+
+* `FormBuilderTextField` Add missing fields from TextField
+
 # [9.4.0]
 
 ## Fixes
