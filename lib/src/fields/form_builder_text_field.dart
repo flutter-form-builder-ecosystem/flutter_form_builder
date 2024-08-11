@@ -294,6 +294,73 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   /// configuration, then [materialMisspelledTextStyle] is used by default.
   final SpellCheckConfiguration? spellCheckConfiguration;
 
+  /// {@macro flutter.material.Material.clipBehavior}
+  ///
+  /// Defaults to [Clip.hardEdge].
+  final Clip clipBehavior;
+
+  /// Determine whether this text field can request the primary focus.
+  ///
+  /// Defaults to true. If false, the text field will not request focus
+  /// when tapped, or when its context menu is displayed. If false it will not
+  /// be possible to move the focus to the text field with tab key.
+  final bool canRequestFocus;
+
+  /// The color of the cursor when the [InputDecorator] is showing an error.
+  ///
+  /// If this is null it will default to [TextStyle.color] of
+  /// [InputDecoration.errorStyle]. If that is null, it will use
+  /// [ColorScheme.error] of [ThemeData.colorScheme].
+  final Color? cursorErrorColor;
+
+  /// {@macro flutter.widgets.editableText.cursorOpacityAnimates}
+  final bool? cursorOpacityAnimates;
+
+  /// {@macro flutter.services.TextInputConfiguration.enableIMEPersonalizedLearning}
+  final bool enableIMEPersonalizedLearning;
+
+  /// {@macro flutter.widgets.editableText.groupId}
+  final Object groupId;
+
+  /// {@macro flutter.widgets.editableText.onAppPrivateCommand}
+  final AppPrivateCommandCallback? onAppPrivateCommand;
+
+  /// Whether [onTap] should be called for every tap.
+  ///
+  /// Defaults to false, so [onTap] is only called for each distinct tap. When
+  /// enabled, [onTap] is called for every tap including consecutive taps.
+  final bool onTapAlwaysCalled;
+
+  /// {@macro flutter.widgets.editableText.scribbleEnabled}
+  final bool scribbleEnabled;
+
+  /// {@macro flutter.widgets.editableText.selectionControls}
+  final TextSelectionControls? selectionControls;
+
+  /// Represents the interactive "state" of this widget in terms of a set of
+  /// [WidgetState]s, including [WidgetState.disabled], [WidgetState.hovered],
+  /// [WidgetState.error], and [WidgetState.focused].
+  ///
+  /// Classes based on this one can provide their own
+  /// [WidgetStatesController] to which they've added listeners.
+  /// They can also update the controller's [WidgetStatesController.value]
+  /// however, this may only be done when it's safe to call
+  /// [State.setState], like in an event handler.
+  ///
+  /// The controller's [WidgetStatesController.value] represents the set of
+  /// states that a widget's visual properties, typically [WidgetStateProperty]
+  /// values, are resolved against. It is _not_ the intrinsic state of the widget.
+  /// The widget is responsible for ensuring that the controller's
+  /// [WidgetStatesController.value] tracks its intrinsic state. For example
+  /// one cannot request the keyboard focus for a widget by adding [WidgetState.focused]
+  /// to its controller. When the widget gains the or loses the focus it will
+  /// [WidgetStatesController.update] its controller's [WidgetStatesController.value]
+  /// and notify listeners of the change.
+  final WidgetStatesController? statesController;
+
+  /// {@macro flutter.widgets.undoHistory.controller}
+  final UndoHistoryController? undoController;
+
   /// Creates a Material Design text field input.
   FormBuilderTextField({
     super.key,
@@ -356,6 +423,18 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.magnifierConfiguration,
     this.contentInsertionConfiguration,
     this.spellCheckConfiguration,
+    this.clipBehavior = Clip.hardEdge,
+    this.canRequestFocus = true,
+    this.cursorErrorColor,
+    this.cursorOpacityAnimates,
+    this.enableIMEPersonalizedLearning = true,
+    this.groupId = EditableText,
+    this.onAppPrivateCommand,
+    this.onTapAlwaysCalled = false,
+    this.scribbleEnabled = true,
+    this.selectionControls,
+    this.statesController,
+    this.undoController,
   })  : assert(initialValue == null || controller == null),
         assert(minLines == null || minLines > 0),
         assert(maxLines == null || maxLines > 0),
@@ -427,6 +506,18 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
               magnifierConfiguration: magnifierConfiguration,
               contentInsertionConfiguration: contentInsertionConfiguration,
               spellCheckConfiguration: spellCheckConfiguration,
+              clipBehavior: clipBehavior,
+              canRequestFocus: canRequestFocus,
+              cursorErrorColor: cursorErrorColor,
+              cursorOpacityAnimates: cursorOpacityAnimates,
+              enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+              groupId: groupId,
+              onAppPrivateCommand: onAppPrivateCommand,
+              onTapAlwaysCalled: onTapAlwaysCalled,
+              scribbleEnabled: scribbleEnabled,
+              selectionControls: selectionControls,
+              statesController: statesController,
+              undoController: undoController,
             );
           },
         );
