@@ -1,10 +1,10 @@
-# [9.5.0]
+# 9.4.1
 
 ## Features
 
 * `FormBuilderTextField` Add missing fields from TextField
 
-# [9.4.0]
+# 9.4.0
 
 ## Fixes
 
