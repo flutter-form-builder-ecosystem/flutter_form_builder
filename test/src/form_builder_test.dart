@@ -39,10 +39,14 @@ void main() {
           ),
         );
 
+        // Write an input resulting in a null value after transformation
+        formFieldDidChange(testWidgetName, 'a');
+        expect(formInstantValue(testWidgetName), isNull);
+
         // Write an input and test the transformer
         formFieldDidChange(testWidgetName, '1');
-        expect(int, formInstantValue(testWidgetName).runtimeType);
-        expect(1, formInstantValue(testWidgetName));
+        expect(formInstantValue(testWidgetName).runtimeType, int);
+        expect(formInstantValue(testWidgetName), 1);
 
         // Remove the dynamic field from the widget tree
         final _DynamicFormFieldsState dynamicFieldState =
@@ -54,8 +58,8 @@ void main() {
 
         // With the field unregistered, the form does not have its transformer
         // but it still has its value, now recovered as type String
-        expect(String, formInstantValue(testWidgetName).runtimeType);
-        expect('1', formInstantValue(testWidgetName));
+        expect(formInstantValue(testWidgetName).runtimeType, String);
+        expect(formInstantValue(testWidgetName), '1');
 
         // Show and recreate the field's state
         dynamicFieldState.show = true;
@@ -63,8 +67,8 @@ void main() {
 
         // The transformer is registered again and with the internal value that
         // was kept, it's expected an int of value 1
-        expect(int, formInstantValue(testWidgetName).runtimeType);
-        expect(1, formInstantValue(testWidgetName));
+        expect(formInstantValue(testWidgetName).runtimeType, int);
+        expect(formInstantValue(testWidgetName), 1);
       },
     );
 
@@ -102,8 +106,8 @@ void main() {
 
         // With the field unregistered, the form does not have its transformer,
         // and since the value was cleared, neither its value
-        expect(Null, formInstantValue(testWidgetName).runtimeType);
-        expect(null, formInstantValue(testWidgetName));
+        expect(formInstantValue(testWidgetName).runtimeType, Null);
+        expect(formInstantValue(testWidgetName), isNull);
 
         // Show and recreate the field's state
         dynamicFieldState.show = true;
@@ -112,8 +116,8 @@ void main() {
         // A new input is needed to get another value
         formFieldDidChange(testWidgetName, '2');
         await tester.pump();
-        expect(int, formInstantValue(testWidgetName).runtimeType);
-        expect(2, formInstantValue(testWidgetName));
+        expect(formInstantValue(testWidgetName).runtimeType, int);
+        expect(formInstantValue(testWidgetName), 2);
       },
     );
   });
