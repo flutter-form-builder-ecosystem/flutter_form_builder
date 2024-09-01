@@ -253,6 +253,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.enableFeedback,
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
+    Widget? hint,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
@@ -289,6 +290,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               borderRadius: borderRadius,
               enableFeedback: enableFeedback,
               alignment: alignment,
+              hint: hint,
             );
           },
         );
