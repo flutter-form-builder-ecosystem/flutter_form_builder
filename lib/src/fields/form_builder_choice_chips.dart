@@ -252,6 +252,14 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
 
   final ShapeBorder avatarBorder;
 
+  /// Indicates whether a checkmark should be displayed on the selected choice chip.
+  ///
+  /// Defaults to `true`.
+  ///
+  /// When set to `true`, a checkmark will appear on the selected chip to visually
+  /// indicate its selection status. If set to `false`, no checkmark will be shown.
+  final bool showCheckmark;
+
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
     super.autovalidateMode = AutovalidateMode.disabled,
@@ -290,6 +298,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
     this.textDirection,
     this.verticalDirection = VerticalDirection.down,
     this.visualDensity,
+    this.showCheckmark = true,
   }) : super(builder: (FormFieldState<T?> field) {
           final state = field as _FormBuilderChoiceChipState<T>;
 
@@ -330,6 +339,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
                     padding: padding,
                     visualDensity: visualDensity,
                     avatarBorder: avatarBorder,
+                    showCheckmark: showCheckmark,
                   ),
               ],
             ),
