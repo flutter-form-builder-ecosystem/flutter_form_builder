@@ -170,14 +170,24 @@ class FormBuilderState extends State<FormBuilder> {
   /// Get all fields of form.
   FormBuilderFields get fields => _fields;
 
-  Map<String, dynamic> get instantValue =>
-      Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
-          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+  Map<String, dynamic> get instantValue => Map<String, dynamic>.unmodifiable(
+        _instantValue.map(
+          (key, value) => MapEntry(
+            key,
+            _transformers[key] == null ? value : _transformers[key]!(value),
+          ),
+        ),
+      );
 
   /// Returns the saved value only
-  Map<String, dynamic> get value =>
-      Map<String, dynamic>.unmodifiable(_savedValue.map((key, value) =>
-          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+  Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(
+        _savedValue.map(
+          (key, value) => MapEntry(
+            key,
+            _transformers[key] == null ? value : _transformers[key]!(value),
+          ),
+        ),
+      );
 
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
