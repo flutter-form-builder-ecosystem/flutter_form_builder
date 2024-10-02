@@ -37,7 +37,7 @@ jobs:
           java-version: '11'
 
       - name: Get Flutter version by FVM
-        uses: kuhnroyal/flutter-fvm-config-action@v2
+        uses: kuhnroyal/flutter-fvm-config-action@v3
         id: fvm-config-action
         with:
           path: ".fvmrc"
