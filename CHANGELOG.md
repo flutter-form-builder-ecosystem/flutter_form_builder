@@ -1,3 +1,9 @@
+# [9.4.2]
+
+## Fixes
+
+* #1350 valueTransformer transform values to null
+
 # 9.4.1
 
 ## Features
