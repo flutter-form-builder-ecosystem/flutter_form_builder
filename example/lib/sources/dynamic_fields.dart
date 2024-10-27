@@ -46,12 +46,8 @@ class _DynamicFieldsState extends State<DynamicFields> {
           Row(
             children: <Widget>[
               Expanded(
-                child: MaterialButton(
-                  color: Theme.of(context).colorScheme.secondary,
-                  child: const Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: ElevatedButton(
+                  child: const Text("Submit"),
                   onPressed: () {
                     _formKey.currentState!.saveAndValidate();
                     setState(() {
@@ -63,12 +59,8 @@ class _DynamicFieldsState extends State<DynamicFields> {
               ),
               const SizedBox(width: 20),
               Expanded(
-                child: MaterialButton(
-                  color: Theme.of(context).colorScheme.secondary,
-                  child: const Text(
-                    "Add field",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: ElevatedButton(
+                  child: const Text("Add field"),
                   onPressed: () {
                     final newTextFieldName = 'name_${_newTextFieldId++}';
                     final newTextFieldKey = ValueKey(_newTextFieldId);

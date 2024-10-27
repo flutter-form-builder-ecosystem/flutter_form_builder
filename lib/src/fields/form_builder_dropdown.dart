@@ -218,6 +218,13 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// are defined by the corresponding properties of the [borderRadius].
   final BorderRadius? borderRadius;
 
+  /// A placeholder widget that is displayed by the dropdown button.
+  ///
+  /// If [value] is null and the dropdown is enabled ([items] and [onChanged] are non-null),
+  /// this widget is displayed as a placeholder for the dropdown button's value.
+  ///
+  /// If [value] is null and the dropdown is disabled and [disabledHint] is null,
+  /// this widget is used as the placeholder.
   final Widget? hint;
 
   /// Creates field for Dropdown button
@@ -257,6 +264,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.enableFeedback,
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
+    this.hint,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
@@ -288,6 +296,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               borderRadius: borderRadius,
               enableFeedback: enableFeedback,
               alignment: alignment,
+              hint: hint,
             );
           },
         );

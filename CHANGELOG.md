@@ -1,3 +1,40 @@
+# [9.5.0]
+
+## Fixes
+
+* #1350: valueTransformer transform values to null
+* #1416: Added missing TextField properties to FormBuilderTextField
+* #1398: Add hint to FormBuilderDropdown 
+* #1317: Added new property to form_builder_choice_chip
+
+# 9.4.1
+
+## Features
+
+* `FormBuilderTextField` Add missing fields from TextField
+
+## Other
+
+* ci: replace deployment jobs for reuse workflow
+
+# 9.4.0
+
+## Fixes
+
+* #1388 Respect latest field's initial value (esp when its forcefully recreated)
+
+## Features
+
+* `FormBuilderTextField` #1334 set enableSuggestions default to true
+* Replace deprecated property onPopInvoked
+* Use elevated button on main example
+* Update android settings on example
+
+## Chores
+
+* Set minimal Flutter version to 3.24.0
+* Set minimal Dart version to 3.5.0
+
 # [9.3.0]
 
 * Set minimal Flutter version to 3.22.0

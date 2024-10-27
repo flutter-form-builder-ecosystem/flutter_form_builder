@@ -320,23 +320,20 @@ class _CompleteFormState extends State<CompleteForm> {
               ],
             ),
           ),
+          const SizedBox(height: 8),
           Row(
             children: <Widget>[
               Expanded(
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState?.saveAndValidate() ?? false) {
-                      debugPrint(_formKey.currentState?.value.toString());
-                    } else {
-                      debugPrint(_formKey.currentState?.value.toString());
-                      debugPrint('validation failed');
-                    }
-                  },
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                    onPressed: () {
+                      if (_formKey.currentState?.saveAndValidate() ?? false) {
+                        debugPrint(_formKey.currentState?.value.toString());
+                      } else {
+                        debugPrint(_formKey.currentState?.value.toString());
+                        debugPrint('validation failed');
+                      }
+                    },
+                    child: const Text('Submit')),
               ),
               const SizedBox(width: 20),
               Expanded(
@@ -345,11 +342,7 @@ class _CompleteFormState extends State<CompleteForm> {
                     _formKey.currentState?.reset();
                   },
                   // color: Theme.of(context).colorScheme.secondary,
-                  child: Text(
-                    'Reset',
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary),
-                  ),
+                  child: const Text('Reset'),
                 ),
               ),
             ],

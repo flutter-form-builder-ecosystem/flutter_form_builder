@@ -89,8 +89,7 @@ class _SignupFormState extends State<SignupForm> {
               },
             ),
             const SizedBox(height: 10),
-            MaterialButton(
-              color: Theme.of(context).colorScheme.secondary,
+            ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState?.saveAndValidate() ?? false) {
                   if (true) {
@@ -103,8 +102,7 @@ class _SignupFormState extends State<SignupForm> {
                 }
                 debugPrint(_formKey.currentState?.value.toString());
               },
-              child:
-                  const Text('Signup', style: TextStyle(color: Colors.white)),
+              child: const Text('Signup'),
             )
           ],
         ),

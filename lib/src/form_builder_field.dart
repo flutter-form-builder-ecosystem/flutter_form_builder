@@ -88,7 +88,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
       (_formBuilderState?.initialValue ??
           const <String, dynamic>{})[widget.name] as T?;
 
-  dynamic get transformedValue => widget.valueTransformer?.call(value) ?? value;
+  dynamic get transformedValue =>
+      widget.valueTransformer == null ? value : widget.valueTransformer!(value);
 
   @override
   String? get errorText => super.errorText ?? _customErrorText;

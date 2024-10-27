@@ -9,7 +9,10 @@ class FormBuilder extends StatefulWidget {
   /// will rebuild.
   final VoidCallback? onChanged;
 
-  /// {@macro flutter.widgets.navigator.onPopInvoked}
+  /// DEPRECATED: Use [onPopInvokedWithResult] instead.
+  final void Function(bool)? onPopInvoked;
+
+  /// {@macro flutter.widgets.navigator.onPopInvokedWithResult}
   ///
   /// {@tool dartpad}
   /// This sample demonstrates how to use this parameter to show a confirmation
@@ -22,9 +25,8 @@ class FormBuilder extends StatefulWidget {
   ///
   ///  * [canPop], which also comes from [PopScope] and is often used in
   ///    conjunction with this parameter.
-  ///  * [PopScope.onPopInvoked], which is what [Form] delegates to internally.ther widget that provides a way to intercept the
-  ///    back button.
-  final void Function(bool)? onPopInvoked;
+  ///  * [PopScope.onPopInvokedWithResult], which is what [Form] delegates to internally.
+  final PopInvokedWithResultCallback<Object?>? onPopInvokedWithResult;
 
   /// {@macro flutter.widgets.PopScope.canPop}
   ///
@@ -102,7 +104,12 @@ class FormBuilder extends StatefulWidget {
     required this.child,
     this.onChanged,
     this.autovalidateMode,
+    @Deprecated(
+      'Use onPopInvokedWithResult instead. '
+      'This feature was deprecated after v3.22.0-12.0.pre.',
+    )
     this.onPopInvoked,
+    this.onPopInvokedWithResult,
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
     this.enabled = true,
@@ -163,14 +170,24 @@ class FormBuilderState extends State<FormBuilder> {
   /// Get all fields of form.
   FormBuilderFields get fields => _fields;
 
-  Map<String, dynamic> get instantValue =>
-      Map<String, dynamic>.unmodifiable(_instantValue.map((key, value) =>
-          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+  Map<String, dynamic> get instantValue => Map<String, dynamic>.unmodifiable(
+        _instantValue.map(
+          (key, value) => MapEntry(
+            key,
+            _transformers[key] == null ? value : _transformers[key]!(value),
+          ),
+        ),
+      );
 
   /// Returns the saved value only
-  Map<String, dynamic> get value =>
-      Map<String, dynamic>.unmodifiable(_savedValue.map((key, value) =>
-          MapEntry(key, _transformers[key]?.call(value) ?? value)));
+  Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(
+        _savedValue.map(
+          (key, value) => MapEntry(
+            key,
+            _transformers[key] == null ? value : _transformers[key]!(value),
+          ),
+        ),
+      );
 
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
@@ -345,6 +362,8 @@ class FormBuilderState extends State<FormBuilder> {
     return Form(
       key: _formKey,
       autovalidateMode: widget.autovalidateMode,
+      onPopInvokedWithResult: widget.onPopInvokedWithResult,
+      // ignore: deprecated_member_use
       onPopInvoked: widget.onPopInvoked,
       canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
