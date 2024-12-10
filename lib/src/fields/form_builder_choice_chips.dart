@@ -51,6 +51,28 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   /// The default is [Colors.black].
   final Color? shadowColor;
 
+  /// The color and weight of the chip's outline.
+  ///
+  /// Defaults to the border side in the ambient [ChipThemeData]. If the theme
+  /// border side resolves to null and [ThemeData.useMaterial3] is true, then
+  /// [BorderSide] with a [ColorScheme.outline] color is used when the chip is
+  /// enabled, and [BorderSide] with a [ColorScheme.onSurface] color with an
+  /// opacity of 0.12 is used when the chip is disabled. Otherwise, it defaults
+  /// to null.
+  ///
+  /// This value is combined with [shape] to create a shape decorated with an
+  /// outline. To omit the outline entirely, pass [BorderSide.none] to [side].
+  ///
+  /// If it is a [WidgetStateBorderSide], [WidgetStateProperty.resolve] is
+  /// used for the following [WidgetState]s:
+  ///
+  ///  * [WidgetState.disabled].
+  ///  * [WidgetState.selected].
+  ///  * [WidgetState.hovered].
+  ///  * [WidgetState.focused].
+  ///  * [WidgetState.pressed].
+  final BorderSide? side;
+
   /// The [OutlinedBorder] to draw around the chip.
   ///
   /// Defaults to the shape in the ambient [ChipThemeData]. If the theme
@@ -293,6 +315,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
     this.selectedColor,
     this.selectedShadowColor,
     this.shadowColor,
+    this.side,
     this.shape,
     this.spacing = 0.0,
     this.textDirection,
@@ -317,6 +340,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
                 for (FormBuilderChipOption<T> option in options)
                   ChoiceChip(
                     label: option,
+                    side: side,
                     shape: shape,
                     selected: field.value == option.value,
                     onSelected: state.enabled
