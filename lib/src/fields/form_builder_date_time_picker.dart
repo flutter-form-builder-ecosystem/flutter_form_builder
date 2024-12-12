@@ -364,7 +364,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       };
     }
 
-    final timePickerResult = await showTimePicker(
+    return await showTimePicker(
       context: context,
       initialTime: currentValue != null
           ? TimeOfDay.fromDateTime(currentValue)
@@ -380,8 +380,6 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       errorInvalidText: widget.errorInvalidText,
       onEntryModeChanged: widget.onEntryModeChanged,
     );
-    return timePickerResult ??
-        (currentValue != null ? TimeOfDay.fromDateTime(currentValue) : null);
   }
 
   /// Sets the hour and minute of a [DateTime] from a [TimeOfDay].
