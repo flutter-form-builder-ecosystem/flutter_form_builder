@@ -306,7 +306,11 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
         if (date != null) {
           if (!mounted) break;
           final time = await _showTimePicker(currentValue);
-          newValue = combine(date, time);
+          if(time == null) {
+            newValue = null;
+          } else {
+            newValue = combine(date, time);
+          }
         }
         break;
       default:
