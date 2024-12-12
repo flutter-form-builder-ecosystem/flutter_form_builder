@@ -125,6 +125,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final SelectableDayPredicate? selectableDayPredicate;
   final Offset? anchorPoint;
   final EntryModeChangeCallback? onEntryModeChanged;
+  final bool barrierDismissible;
 
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
@@ -195,6 +196,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.selectableDayPredicate,
     this.anchorPoint,
     this.onEntryModeChanged,
+    this.barrierDismissible = true,
   }) : super(
           builder: (FormFieldState<DateTime?> field) {
             final state = field as _FormBuilderDateTimePickerState;
@@ -343,6 +345,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       currentDate: widget.currentDate,
       anchorPoint: widget.anchorPoint,
       keyboardType: widget.keyboardType,
+      barrierDismissible: widget.barrierDismissible,
     );
   }
 
@@ -376,6 +379,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       anchorPoint: widget.anchorPoint,
       errorInvalidText: widget.errorInvalidText,
       onEntryModeChanged: widget.onEntryModeChanged,
+      barrierDismissible: widget.barrierDismissible,
     );
   }
 
