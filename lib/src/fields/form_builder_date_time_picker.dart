@@ -284,7 +284,6 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       case InputType.date:
         return DateFormat.yMd(languageCode);
       case InputType.both:
-      default:
         return DateFormat.yMd(languageCode).add_Hms();
     }
   }
@@ -313,8 +312,6 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
           }
         }
         break;
-      default:
-        throw 'Unexpected input type ${widget.inputType}';
     }
     if (!mounted) return null;
     final finalValue = newValue ?? currentValue;
