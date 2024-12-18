@@ -60,8 +60,6 @@ jobs:
         run: flutter test --coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
           files: coverage/lcov.info
           name: flutter_form_builder
