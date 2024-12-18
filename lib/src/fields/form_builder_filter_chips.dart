@@ -13,6 +13,7 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
   final double? elevation, pressElevation;
   final List<FormBuilderChipOption<T>> options;
   final MaterialTapTargetSize? materialTapTargetSize;
+  final BorderSide? side;
   final OutlinedBorder? shape;
 
   // Wrap Settings
@@ -66,6 +67,7 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
     this.selectedColor,
     this.selectedShadowColor,
     this.shadowColor,
+    this.side,
     this.shape,
     this.showCheckmark = true,
     this.spacing = 0.0,
@@ -119,6 +121,7 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
                       pressElevation: pressElevation,
                       materialTapTargetSize: materialTapTargetSize,
                       padding: padding,
+                      side: side,
                       shape: shape,
                       checkmarkColor: checkmarkColor,
                       clipBehavior: clipBehavior,
