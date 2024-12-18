@@ -237,7 +237,6 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
           child: Row(children: widgetList),
         );
       case OptionsOrientation.wrap:
-      default:
         return SingleChildScrollView(
           child: Wrap(
             spacing: widget.wrapSpacing,
