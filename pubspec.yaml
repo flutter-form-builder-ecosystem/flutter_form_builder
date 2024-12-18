@@ -17,7 +17,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ">=0.19.0 <0.21.0"
+  # This version would be max, the same version used on flutter_localizations
+  # https://github.com/flutter/flutter/blob/17025dd88227cd9532c33fa78f5250d548d87e9a/packages/flutter_localizations/pubspec.yaml#L14
+  intl: ">=0.19.0 <0.20.0"
 
 dev_dependencies:
   flutter_lints: ^4.0.0
