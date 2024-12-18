@@ -35,21 +35,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '11'
-
-      - name: Get Flutter version by FVM
-        uses: kuhnroyal/flutter-fvm-config-action@v2
-        id: fvm-config-action
+      - name: Setup Flutter
+        uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
-          path: ".fvmrc"
-
-      - name: Flutter action
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
-          channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
-          architecture: x64
-          cache: true
-
+          path: '.fvmrc'
       - name: Install dependencies
         run: flutter pub get
       - name: Format code
@@ -59,9 +48,7 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov.info
           name: flutter_form_builder
