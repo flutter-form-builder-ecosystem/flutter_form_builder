@@ -282,6 +282,15 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   /// indicate its selection status. If set to `false`, no checkmark will be shown.
   final bool showCheckmark;
 
+  /// The surface tint color of the chip when it is selected.
+  final Color? surfaceTintColor;
+
+  /// {@macro flutter.material.Material.clipBehavior}
+  final Clip clipBehavior;
+
+  /// The color of the chip's check mark when selected.
+  final Color? checkmarkColor;
+
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
     super.autovalidateMode = AutovalidateMode.disabled,
@@ -322,6 +331,9 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
     this.verticalDirection = VerticalDirection.down,
     this.visualDensity,
     this.showCheckmark = true,
+    this.surfaceTintColor,
+    this.clipBehavior = Clip.none,
+    this.checkmarkColor,
   }) : super(builder: (FormFieldState<T?> field) {
           final state = field as _FormBuilderChoiceChipState<T>;
 
@@ -364,6 +376,9 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
                     visualDensity: visualDensity,
                     avatarBorder: avatarBorder,
                     showCheckmark: showCheckmark,
+                    surfaceTintColor: surfaceTintColor,
+                    clipBehavior: clipBehavior,
+                    checkmarkColor: checkmarkColor,
                   ),
               ],
             ),
