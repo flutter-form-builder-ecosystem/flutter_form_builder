@@ -8,7 +8,8 @@ Also included are common ready-made form input fields for FormBuilder. This give
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/flutter-form-builder-ecosystem/flutter_form_builder/base.yaml?branch=main&logo=github&style=for-the-badge)](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/actions/workflows/base.yaml)
 [![Codecov](https://img.shields.io/codecov/c/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codecov&style=for-the-badge)](https://codecov.io/gh/flutter-form-builder-ecosystem/flutter_form_builder/)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/flutter-form-builder-ecosystem/flutter_form_builder?logo=codefactor&style=for-the-badge)](https://www.codefactor.io/repository/github/flutter-form-builder-ecosystem/flutter_form_builder)
-___
+
+---
 
 ## Call for Maintainers
 
@@ -42,8 +43,8 @@ ___
 - Apply validators to inputs fields
 - React to form fields changes and validations
 
-| Complete Form | Sign Up | Dynamic Fields | Conditional Form |
-|---|---|---|---|
+| Complete Form                                                                                                                                                 | Sign Up                                                                                                                                             | Dynamic Fields                                                                                                                                                | Conditional Form                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![Gif demostration with all fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/complete_form.gif) | ![Gif demostration sign up form](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/signup.gif) | ![Gif demostration dynamic fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/dynamic_fields.gif) | ![Gif demostration conditional fields](https://raw.githubusercontent.com/flutter-form-builder-ecosystem/flutter_form_builder/main/screenshots/conditional_fields.gif) |
 
 ## Inputs
@@ -67,15 +68,16 @@ The currently supported fields include:
 
 In order to create an input field in the form, along with the label, and any applicable validation, there are several attributes that are supported by all types of inputs namely:
 
-| Attribute | Type  | Default | Required | Description |
-|-----------|-------|---------|-------------|----------|
-| `name` | `String` |  | `Yes` | This will form the key in the form value Map |
-| `initialValue` | `T` | `null`  | `No` | The initial value of the input field |
-| `enabled` | `bool` | `true` | `No` | Determines whether the field widget will accept user input. |
-| `decoration` | `InputDecoration` | `InputDecoration()` | `No` | Defines the border, labels, icons, and styles used to decorate the field. |
-| `validator` | `FormFieldValidator<T>` | `null` | `No` | A `FormFieldValidator` that will check the validity of value in the `FormField` |
-| `onChanged` | `ValueChanged<T>` | `null` | `No` | This event function will fire immediately the the field value changes |
-| `valueTransformer` | `ValueTransformer<T>` | `null` | `No` | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
+| Attribute          | Type                    | Default             | Required | Description                                                                                                                               |
+| ------------------ | ----------------------- | ------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`             | `String`                |                     | `Yes`    | This will form the key in the form value Map                                                                                              |
+| `initialValue`     | `T`                     | `null`              | `No`     | The initial value of the input field                                                                                                      |
+| `enabled`          | `bool`                  | `true`              | `No`     | Determines whether the field widget will accept user input.                                                                               |
+| `decoration`       | `InputDecoration`       | `InputDecoration()` | `No`     | Defines the border, labels, icons, and styles used to decorate the field.                                                                 |
+| `validator`        | `FormFieldValidator<T>` | `null`              | `No`     | A `FormFieldValidator` that will check the validity of value in the `FormField`                                                           |
+| `onChanged`        | `ValueChanged<T>`       | `null`              | `No`     | This event function will fire immediately the the field value changes                                                                     |
+| `valueTransformer` | `ValueTransformer<T>`   | `null`              | `No`     | Function that transforms field value before saving to form value. e.g. transform TextField value for numeric field from `String` to `num` |
+
 The rest of the attributes will be determined by the type of Widget being used.
 
 ## Use
@@ -109,48 +111,48 @@ See [pub.dev example tab](https://pub.dev/packages/flutter_form_builder/example)
 Note: Validators are in a separate package
 ([form_builder_validators](https://pub.dev/packages/form_builder_validators)).
 
-  ```dart
-  final _formKey = GlobalKey<FormBuilderState>();
+```dart
+final _formKey = GlobalKey<FormBuilderState>();
 
-  FormBuilder(
-    key: _formKey,
-    child: Column(
-      children: [
-        FormBuilderTextField(
-          key: _emailFieldKey,
-          name: 'email',
-          decoration: const InputDecoration(labelText: 'Email'),
-          validator: FormBuilderValidators.compose([
-            FormBuilderValidators.required(),
-            FormBuilderValidators.email(),
-          ]),
-        ),
-        const SizedBox(height: 10),
-        FormBuilderTextField(
-          name: 'password',
-          decoration: const InputDecoration(labelText: 'Password'),
-          obscureText: true,
-          validator: FormBuilderValidators.compose([
-            FormBuilderValidators.required(),
-          ]),
-        ),
-        MaterialButton(
-          color: Theme.of(context).colorScheme.secondary,
-          onPressed: () {
-            // Validate and save the form values
-            _formKey.currentState?.saveAndValidate();
-            debugPrint(_formKey.currentState?.value.toString());
+FormBuilder(
+  key: _formKey,
+  child: Column(
+    children: [
+      FormBuilderTextField(
+        key: _emailFieldKey,
+        name: 'email',
+        decoration: const InputDecoration(labelText: 'Email'),
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(),
+          FormBuilderValidators.email(),
+        ]),
+      ),
+      const SizedBox(height: 10),
+      FormBuilderTextField(
+        name: 'password',
+        decoration: const InputDecoration(labelText: 'Password'),
+        obscureText: true,
+        validator: FormBuilderValidators.compose([
+          FormBuilderValidators.required(),
+        ]),
+      ),
+      MaterialButton(
+        color: Theme.of(context).colorScheme.secondary,
+        onPressed: () {
+          // Validate and save the form values
+          _formKey.currentState?.saveAndValidate();
+          debugPrint(_formKey.currentState?.value.toString());
 
-            // On another side, can access all field values without saving form with instantValues
-            _formKey.currentState?.validate();
-            debugPrint(_formKey.currentState?.instantValue.toString());
-          },
-          child: const Text('Login'),
-        )
-      ],
-    ),
+          // On another side, can access all field values without saving form with instantValues
+          _formKey.currentState?.validate();
+          debugPrint(_formKey.currentState?.instantValue.toString());
+        },
+        child: const Text('Login'),
+      )
+    ],
   ),
-  ```
+),
+```
 
 #### Building your own custom field
 
@@ -210,8 +212,8 @@ _formKey.currentState.patchValue({
   'rate': 4,
   'chips_test': [
     Contact(
-        'Andrew', 
-        'stock@man.com', 
+        'Andrew',
+        'stock@man.com',
         'https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4057996.jpg',
     ),
   ],
@@ -415,7 +417,7 @@ You have some ways to contribute to this packages
 - Intermediate: Implement new features (from issues or not) and created pull requests
 - Advanced: Join to [organization](#ecosystem) like a member and help coding, manage issues, dicuss new features and other things
 
- See [contribution file](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md) for more details
+See [contribution file](https://github.com/flutter-form-builder-ecosystem/.github/blob/main/CONTRIBUTING.md) for more details
 
 ### Questions and answers
 

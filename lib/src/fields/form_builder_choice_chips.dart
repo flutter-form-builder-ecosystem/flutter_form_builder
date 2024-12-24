@@ -282,6 +282,67 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   /// indicate its selection status. If set to `false`, no checkmark will be shown.
   final bool showCheckmark;
 
+  /// The surface tint color of the chip when it is selected.
+  ///
+  /// In Material 3, a surface tint is applied to cards and other surfaces to help
+  /// indicate elevation. This property allows customization of that tint color.
+  /// If null, [ThemeData.surfaceTintColor] is used.
+  ///
+  /// See also:
+  ///  * [Material.surfaceTintColor], which is used to implement the background
+  ///    tint for elevated surfaces in Material 3.
+  final Color? surfaceTintColor;
+
+  /// {@macro flutter.material.Material.clipBehavior}
+  ///
+  /// Defaults to [Clip.none].
+  ///
+  /// This property can be used to clip the content of the chip when it overflows
+  /// its bounds. For example, if you have a long label text that doesn't fit
+  /// within the chip's bounds, setting this to [Clip.hardEdge] will clip the
+  /// overflowing text.
+  final Clip clipBehavior;
+
+  /// The color of the chip's check mark when selected.
+  ///
+  /// If null, [ChipThemeData.checkmarkColor] is used. If that is also null,
+  /// [ColorScheme.primary] is used.
+  ///
+  /// This color is used to indicate the selected state of the chip when
+  /// [showCheckmark] is true.
+  final Color? checkmarkColor;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
+  /// Constraints to be enforced on the avatar's box.
+  ///
+  /// If null, the avatar will occupy the minimum necessary space.
+  final BoxConstraints? avatarBoxConstraints;
+
+  /// The style of the chip's animation when selected or deselected.
+  ///
+  /// This property is only used if [selected] is non-null. If [selected] is
+  /// null, the chip cannot be selected and therefore cannot animate between
+  /// selected and deselected states.
+  final ChipAnimationStyle? chipAnimationStyle;
+
+  /// The color of the chip.
+  ///
+  /// This color will be used for the background of the chip if [selected] is
+  /// false, or if [selected] is null and [onSelected] is null.
+  final WidgetStateProperty<Color?>? color;
+
+  /// The icon theme data for the icon.
+  ///
+  /// This property can be used to style the icon in the chip.
+  final IconThemeData? iconTheme;
+
+  /// The tooltip message to show when long pressing on the chip.
+  ///
+  /// If [tooltip] is an empty string, no tooltip will be shown.
+  final String? tooltip;
+
   /// Creates a list of `Chip`s that acts like radio buttons
   FormBuilderChoiceChip({
     super.autovalidateMode = AutovalidateMode.disabled,
@@ -322,6 +383,15 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
     this.verticalDirection = VerticalDirection.down,
     this.visualDensity,
     this.showCheckmark = true,
+    this.surfaceTintColor,
+    this.clipBehavior = Clip.none,
+    this.checkmarkColor,
+    this.autofocus = false,
+    this.avatarBoxConstraints,
+    this.chipAnimationStyle,
+    this.color,
+    this.iconTheme,
+    this.tooltip,
   }) : super(builder: (FormFieldState<T?> field) {
           final state = field as _FormBuilderChoiceChipState<T>;
 
@@ -364,6 +434,15 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
                     visualDensity: visualDensity,
                     avatarBorder: avatarBorder,
                     showCheckmark: showCheckmark,
+                    surfaceTintColor: surfaceTintColor,
+                    clipBehavior: clipBehavior,
+                    checkmarkColor: checkmarkColor,
+                    autofocus: autofocus,
+                    avatarBoxConstraints: avatarBoxConstraints,
+                    chipAnimationStyle: chipAnimationStyle,
+                    color: color,
+                    iconTheme: iconTheme,
+                    tooltip: tooltip,
                   ),
               ],
             ),
