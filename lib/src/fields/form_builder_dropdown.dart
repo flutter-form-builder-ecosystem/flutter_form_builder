@@ -231,6 +231,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   FormBuilderDropdown({
     super.key,
     required super.name,
+    
     super.validator,
     super.initialValue,
     super.decoration,
@@ -249,6 +250,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.iconSize = 24.0,
     this.style,
     this.disabledHint,
+    this.hint,
     this.icon,
     this.iconDisabledColor,
     this.iconEnabledColor,
@@ -275,19 +277,14 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
               value: hasValue ? field.value : null,
               style: style,
               isDense: isDense,
-              disabledHint: hasValue
-                  ? items
-                      .firstWhere(
-                          (dropDownItem) => dropDownItem.value == field.value)
-                      .child
-                  : disabledHint,
+              disabledHint: hasValue ? items.firstWhere((dropDownItem) => dropDownItem.value == field.value).child : disabledHint,
               elevation: elevation,
               iconSize: iconSize,
               icon: icon,
+              hint: hint,
               iconDisabledColor: iconDisabledColor,
               iconEnabledColor: iconEnabledColor,
-              onChanged:
-                  state.enabled ? (T? value) => state.didChange(value) : null,
+              onChanged: state.enabled ? (T? value) => state.didChange(value) : null,
               onTap: onTap,
               focusNode: state.effectiveFocusNode,
               autofocus: autofocus,
@@ -305,12 +302,10 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
         );
 
   @override
-  FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> createState() =>
-      _FormBuilderDropdownState<T>();
+  FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> createState() => _FormBuilderDropdownState<T>();
 }
 
-class _FormBuilderDropdownState<T>
-    extends FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> {
+class _FormBuilderDropdownState<T> extends FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> {
   @override
   void didUpdateWidget(covariant FormBuilderDropdown<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -318,11 +313,9 @@ class _FormBuilderDropdownState<T>
     final oldValues = oldWidget.items.map((e) => e.value).toList();
     final currentlyValues = widget.items.map((e) => e.value).toList();
     final oldChilds = oldWidget.items.map((e) => e.child.toString()).toList();
-    final currentlyChilds =
-        widget.items.map((e) => e.child.toString()).toList();
+    final currentlyChilds = widget.items.map((e) => e.child.toString()).toList();
 
-    if (!currentlyValues.contains(initialValue) &&
-        !initialValue.emptyValidator()) {
+    if (!currentlyValues.contains(initialValue) && !initialValue.emptyValidator()) {
       assert(
         currentlyValues.contains(initialValue) && initialValue.emptyValidator(),
         'The initialValue [$initialValue] is not in the list of items or is not null or empty. '
@@ -332,10 +325,8 @@ class _FormBuilderDropdownState<T>
       setValue(null);
     }
 
-    if ((!listEquals(oldChilds, currentlyChilds) ||
-            !listEquals(oldValues, currentlyValues)) &&
-        (currentlyValues.contains(initialValue) ||
-            initialValue.emptyValidator())) {
+    if ((!listEquals(oldChilds, currentlyChilds) || !listEquals(oldValues, currentlyValues)) &&
+        (currentlyValues.contains(initialValue) || initialValue.emptyValidator())) {
       setValue(initialValue);
     }
   }
