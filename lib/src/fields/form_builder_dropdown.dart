@@ -163,6 +163,12 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// [kMinInteractiveDimension].
   final double? itemHeight;
 
+  /// The width of the menu.
+  ///
+  /// If it is not provided, the width of the menu is the width of the
+  /// dropdown button.
+  final double? menuWidth;
+
   /// The color for the button's [Material] when it has the input focus.
   final Color? focusColor;
 
@@ -174,6 +180,17 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// If it is not provided, the theme's [ThemeData.canvasColor] will be used
   /// instead.
   final Color? dropdownColor;
+
+  /// Padding around the visible portion of the dropdown widget.
+  ///
+  /// As the padding increases, the size of the [DropdownButton] will also
+  /// increase. The padding is included in the clickable area of the dropdown
+  /// widget, so this can make the widget easier to click.
+  ///
+  /// Padding can be useful when used with a custom border. The clickable
+  /// area will stay flush with the border, as opposed to an external [Padding]
+  /// widget which will leave a non-clickable gap.
+  final EdgeInsetsGeometry? padding;
 
   /// The maximum height of the menu.
   ///
@@ -227,6 +244,11 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
   /// this widget is used as the placeholder.
   final Widget? hint;
 
+  /// The widget to use for drawing the drop-down button's underline.
+  ///
+  /// Defaults to SizedBox.shrink().
+  final Widget? underline;
+
   /// Creates field for Dropdown button
   FormBuilderDropdown({
     super.key,
@@ -263,43 +285,54 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.borderRadius,
     this.alignment = AlignmentDirectional.centerStart,
     this.hint,
+    this.underline = const SizedBox.shrink(),
+    this.padding,
+    this.menuWidth,
   }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderDropdownState<T>;
 
             final hasValue = items.map((e) => e.value).contains(field.value);
-            return DropdownButtonFormField<T>(
-              isExpanded: isExpanded,
+            return InputDecorator(
               decoration: state.decoration,
-              items: items,
-              value: hasValue ? field.value : null,
-              style: style,
-              isDense: isDense,
-              disabledHint: hasValue
-                  ? items
-                      .firstWhere(
-                          (dropDownItem) => dropDownItem.value == field.value)
-                      .child
-                  : disabledHint,
-              elevation: elevation,
-              iconSize: iconSize,
-              icon: icon,
-              iconDisabledColor: iconDisabledColor,
-              iconEnabledColor: iconEnabledColor,
-              onChanged:
-                  state.enabled ? (T? value) => state.didChange(value) : null,
-              onTap: onTap,
-              focusNode: state.effectiveFocusNode,
-              autofocus: autofocus,
-              dropdownColor: dropdownColor,
-              focusColor: focusColor,
-              itemHeight: itemHeight,
-              selectedItemBuilder: selectedItemBuilder,
-              menuMaxHeight: menuMaxHeight,
-              borderRadius: borderRadius,
-              enableFeedback: enableFeedback,
-              alignment: alignment,
-              hint: hint,
+              child: DropdownButton<T>(
+                menuWidth: menuWidth,
+                padding: padding,
+                underline: underline,
+                isExpanded: isExpanded,
+                items: items,
+                value: hasValue ? field.value : null,
+                style: style,
+                isDense: isDense,
+                disabledHint: hasValue
+                    ? items
+                        .firstWhere(
+                            (dropDownItem) => dropDownItem.value == field.value)
+                        .child
+                    : disabledHint,
+                elevation: elevation,
+                iconSize: iconSize,
+                icon: icon,
+                iconDisabledColor: iconDisabledColor,
+                iconEnabledColor: iconEnabledColor,
+                onChanged: state.enabled
+                    ? (T? value) {
+                        field.didChange(value);
+                      }
+                    : null,
+                onTap: onTap,
+                focusNode: state.effectiveFocusNode,
+                autofocus: autofocus,
+                dropdownColor: dropdownColor,
+                focusColor: focusColor,
+                itemHeight: itemHeight,
+                selectedItemBuilder: selectedItemBuilder,
+                menuMaxHeight: menuMaxHeight,
+                borderRadius: borderRadius,
+                enableFeedback: enableFeedback,
+                alignment: alignment,
+                hint: hint,
+              ),
             );
           },
         );

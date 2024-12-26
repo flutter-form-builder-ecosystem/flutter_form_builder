@@ -225,6 +225,47 @@ void main() {
       expect(formValue(widgetName), equals(2));
     });
   });
+  testWidgets('Should reset to null when call reset', (tester) async {
+    const widgetName = 'dropdown_field';
+
+    // Define the initial and updated items for the dropdown
+    const List<DropdownMenuItem<int>> initialItems = [
+      DropdownMenuItem(value: 1, child: Text('Option 1')),
+      DropdownMenuItem(value: 2, child: Text('Option 2')),
+    ];
+
+    final testWidget =
+        FormBuilderDropdown(name: widgetName, items: initialItems);
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    formKey.currentState?.patchValue({widgetName: 1});
+    await tester.pumpAndSettle();
+    formKey.currentState?.reset();
+
+    expect(formKey.currentState?.instantValue, {widgetName: null});
+  });
+  testWidgets('Should reset to initial when call reset', (tester) async {
+    const widgetName = 'dropdown_field';
+    const initialValue = {widgetName: 1};
+
+    // Define the initial and updated items for the dropdown
+    const List<DropdownMenuItem<int>> initialItems = [
+      DropdownMenuItem(value: 1, child: Text('Option 1')),
+      DropdownMenuItem(value: 2, child: Text('Option 2')),
+    ];
+    final testWidget =
+        FormBuilderDropdown(name: widgetName, items: initialItems);
+    await tester.pumpWidget(buildTestableFieldWidget(
+      testWidget,
+      initialValue: initialValue,
+    ));
+
+    formKey.currentState?.patchValue({widgetName: 2});
+    await tester.pumpAndSettle();
+    formKey.currentState?.reset();
+
+    expect(formKey.currentState?.instantValue, equals(initialValue));
+  });
 }
 
 class MyTestWidget<T> extends StatefulWidget {
