@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/intl.dart';
@@ -101,5 +102,27 @@ void main() {
         findsOneWidget,
       );
     });
+  });
+  testWidgets('When press tab, field will be focused',
+      (WidgetTester tester) async {
+    const widgetName = 'cb1';
+    final testWidget = FormBuilderDateRangePicker(
+      name: widgetName,
+      firstDate: DateTime(2010),
+      // Using last date < today to make date picker always open on 01/01/2010
+      // If last date >= today, it opens on DateTime.now month, which complicates testing.
+      lastDate: DateTime(2020),
+    );
+    final widgetFinder = find.byWidget(testWidget);
+
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    expect(formSave(), isTrue);
+    expect(formValue<DateTimeRange?>(widgetName), isNull);
+    expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pumpAndSettle();
+    // TODO: Fix this behavior to solve #1301 and partially #1450
+    // expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
   });
 }

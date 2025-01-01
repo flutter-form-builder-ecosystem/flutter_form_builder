@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/src/fields/form_builder_dropdown.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -265,6 +266,38 @@ void main() {
     formKey.currentState?.reset();
 
     expect(formKey.currentState?.instantValue, equals(initialValue));
+  });
+
+  testWidgets('When press tab, field will be focused',
+      (WidgetTester tester) async {
+    const widgetName = 'cb1';
+    final testWidget = FormBuilderDropdown<int>(
+      name: widgetName,
+      items: const [
+        DropdownMenuItem(
+          value: 1,
+          child: Text('One'),
+        ),
+        DropdownMenuItem(
+          value: 2,
+          child: Text('Two'),
+        ),
+        DropdownMenuItem(
+          value: 3,
+          child: Text('Three'),
+        ),
+      ],
+    );
+    final widgetFinder = find.byWidget(testWidget);
+
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    expect(formSave(), isTrue);
+    expect(formValue(widgetName), isNull);
+    expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pumpAndSettle();
+    expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
   });
 }
 
