@@ -397,6 +397,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
 
           return InputDecorator(
             decoration: state.decoration,
+            isFocused: state.effectiveFocusNode.hasFocus,
             child: Wrap(
               direction: direction,
               alignment: alignment,
@@ -455,4 +456,27 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
 }
 
 class _FormBuilderChoiceChipState<T>
-    extends FormBuilderFieldDecorationState<FormBuilderChoiceChip<T>, T> {}
+    extends FormBuilderFieldDecorationState<FormBuilderChoiceChip<T>, T> {
+  void handleFocusChange() {
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    effectiveFocusNode.addListener(handleFocusChange);
+  }
+
+  @override
+  void dispose() {
+    effectiveFocusNode.removeListener(handleFocusChange);
+    super.dispose();
+  }
+
+  @override
+  void didChange(T? value) {
+    focus();
+    // effectiveFocusNode.requestFocus();
+    super.didChange(value);
+  }
+}

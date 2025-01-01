@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -80,6 +81,27 @@ void main() {
         formValue<RangeValues?>(widgetName),
         equals(const RangeValues(-9.0, 9.0)),
       );
+    });
+
+    testWidgets('When press tab, field will be focused',
+        (WidgetTester tester) async {
+      const widgetName = 'key';
+      final testWidget = FormBuilderRangeSlider(
+        name: widgetName,
+        min: 10.0,
+        max: 20.0,
+      );
+      final widgetFinder = find.byWidget(testWidget);
+
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      expect(formSave(), isTrue);
+      expect(formValue<RangeValues?>(widgetName),
+          equals(const RangeValues(10.0, 10.0)));
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+      await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+      await tester.pumpAndSettle();
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
     });
   });
 }

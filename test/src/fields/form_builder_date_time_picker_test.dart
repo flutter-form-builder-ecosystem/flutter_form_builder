@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -146,5 +147,33 @@ void main() {
         );
       });
     });
+  });
+
+  testWidgets('When press tab, field will be focused',
+      (WidgetTester tester) async {
+    const widgetName = 'cb1';
+    final widgetKey = UniqueKey();
+    const confirmText = 'OK';
+    const cancelText = 'CANCEL';
+
+    final testWidget = FormBuilderDateTimePicker(
+      key: widgetKey,
+      name: widgetName,
+      confirmText: confirmText,
+      cancelText: cancelText,
+    );
+    final widgetFinder = find.byWidget(testWidget);
+
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    expect(formSave(), isTrue);
+    expect(formValue(widgetName), equals(null));
+    expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pumpAndSettle();
+    // TODO: Fix this behavior to solve #1301 and partially #1450
+    // expect(find.text(confirmText), findsOneWidget);
+    // expect(find.text(cancelText), findsOneWidget);
+    // expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
   });
 }

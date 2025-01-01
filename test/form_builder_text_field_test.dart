@@ -1,54 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'form_builder_tester.dart';
 
 void main() {
-  testWidgets('FormBuilderTextField -- Hello Planet',
-      (WidgetTester tester) async {
-    const newTextValue = 'Hello 🪐';
-    const textFieldName = 'text1';
-    final testWidget = FormBuilderTextField(
-      name: textFieldName,
+  group('FormBuilderTextField -', () {
+    testWidgets('Hello Planet', (WidgetTester tester) async {
+      const newTextValue = 'Hello 🪐';
+      const textFieldName = 'text1';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+      );
+      final widgetFinder = find.byWidget(testWidget);
+
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      expect(formSave(), isTrue);
+      expect(formValue(textFieldName), isNull);
+      await tester.enterText(widgetFinder, newTextValue);
+      expect(formSave(), isTrue);
+      expect(formValue(textFieldName), equals(newTextValue));
+      await tester.enterText(widgetFinder, '');
+      expect(formSave(), isTrue);
+      expect(formValue(textFieldName), isEmpty);
+    });
+    testWidgets(
+      'without initialValue',
+      (tester) => _testFormBuilderTextFieldWithInitialValue(
+        tester,
+      ),
     );
-    final widgetFinder = find.byWidget(testWidget);
+    testWidgets(
+      'has initialValue on Field',
+      (tester) => _testFormBuilderTextFieldWithInitialValue(
+        tester,
+        initialValueOnField: 'ok',
+      ),
+    );
+    testWidgets(
+      'has initialValue on Form',
+      (tester) => _testFormBuilderTextFieldWithInitialValue(
+        tester,
+        initialValueOnForm: 'ok',
+      ),
+    );
 
-    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
-    expect(formSave(), isTrue);
-    expect(formValue(textFieldName), isNull);
-    await tester.enterText(widgetFinder, newTextValue);
-    expect(formSave(), isTrue);
-    expect(formValue(textFieldName), equals(newTextValue));
-    await tester.enterText(widgetFinder, '');
-    expect(formSave(), isTrue);
-    expect(formValue(textFieldName), isEmpty);
+    testWidgets(
+      'triggers onTapOutside',
+      (tester) => _testFormBuilderTextFieldOnTapOutsideCallback(tester),
+    );
+    testWidgets('When press tab, field will be focused',
+        (WidgetTester tester) async {
+      const widgetName = 'cb1';
+      var testWidget = FormBuilderTextField(
+        name: widgetName,
+      );
+      final widgetFinder = find.byWidget(testWidget);
+
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      expect(formSave(), isTrue);
+      expect(formValue(widgetName), isNull);
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+      await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+      await tester.pumpAndSettle();
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+    });
   });
-  testWidgets(
-    'FormBuilderTextField without initialValue',
-    (tester) => _testFormBuilderTextFieldWithInitialValue(
-      tester,
-    ),
-  );
-  testWidgets(
-    'FormBuilderTextField has initialValue on Field',
-    (tester) => _testFormBuilderTextFieldWithInitialValue(
-      tester,
-      initialValueOnField: 'ok',
-    ),
-  );
-  testWidgets(
-    'FormBuilderTextField has initialValue on Form',
-    (tester) => _testFormBuilderTextFieldWithInitialValue(
-      tester,
-      initialValueOnForm: 'ok',
-    ),
-  );
-
-  testWidgets(
-    'FormBuilderTextField triggers onTapOutside',
-    (tester) => _testFormBuilderTextFieldOnTapOutsideCallback(tester),
-  );
 }
 
 Future<void> _testFormBuilderTextFieldWithInitialValue(
