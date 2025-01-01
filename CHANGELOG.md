@@ -1,3 +1,14 @@
+# 9.7.0
+
+## Fixes
+
+* [FormBuilderDateTimePicker] #1444 "cancel" button behavior fix
+* [FormBuilderDropdown] #1434 Replace dropdown
+
+## Features
+
+* [FormBuilderChoiceChip] #1448 add missing properties
+
 # 9.6.0
 
 * Build with Flutter 3.27
