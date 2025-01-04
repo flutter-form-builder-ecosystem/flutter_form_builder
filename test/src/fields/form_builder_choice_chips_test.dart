@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'form_builder_tester.dart';
+import '../../form_builder_tester.dart';
 
 void main() {
   group('FormBuilderChoiceChip --', () {

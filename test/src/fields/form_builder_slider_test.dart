@@ -1,47 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/src/fields/form_builder_checkbox.dart';
+import 'package:flutter_form_builder/src/fields/form_builder_slider.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'form_builder_tester.dart';
+import '../../form_builder_tester.dart';
 
 void main() {
-  group('FormBuilderCheckbox -', () {
-    testWidgets('Off/On/Off', (WidgetTester tester) async {
-      const widgetName = 'cb1';
-      final testWidget = FormBuilderCheckbox(
+  group('FormBuilderSlider -', () {
+    testWidgets('Basic', (WidgetTester tester) async {
+      const widgetName = 'slider1';
+      final testWidget = FormBuilderSlider(
         name: widgetName,
-        title: const Text('Checkbox 1'),
-        initialValue: false,
+        initialValue: 2,
+        min: 0,
+        max: 10,
+        divisions: 20,
+        decoration: const InputDecoration(
+          labelText: 'Number of things',
+        ),
       );
-      final widgetFinder = find.byWidget(testWidget);
-
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
-      expect(formValue(widgetName), isFalse);
-      await tester.tap(widgetFinder);
+      expect(formValue(widgetName), equals(2.0));
+      await tester.tap(find.byType(Slider));
       await tester.pumpAndSettle();
       expect(formSave(), isTrue);
-      expect(formValue(widgetName), isTrue);
-      await tester.tap(widgetFinder);
-      await tester.pumpAndSettle();
-      expect(formSave(), isTrue);
-      expect(formValue(widgetName), isFalse);
+      expect(formValue(widgetName), equals(5.0));
     });
+
     testWidgets('When press tab, field will be focused',
         (WidgetTester tester) async {
-      const widgetName = 'cb1';
-      final testWidget = FormBuilderCheckbox(
+      const widgetName = 'key';
+      final testWidget = FormBuilderSlider(
         name: widgetName,
-        title: const Text('Checkbox 1'),
-        initialValue: false,
+        initialValue: 2,
+        min: 0,
+        max: 10,
       );
       final widgetFinder = find.byWidget(testWidget);
 
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
-      expect(formValue(widgetName), isFalse);
+      expect(formValue(widgetName), equals(2.0));
       expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
       await tester.pumpAndSettle();
