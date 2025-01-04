@@ -98,13 +98,17 @@ void main() {
       final widgetFinder = find.byWidget(testWidget);
 
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      final focusNode =
+          formKey.currentState?.fields[widgetName]?.effectiveFocusNode;
 
       expect(formSave(), isTrue);
       expect(formValue<int?>(widgetName), isNull);
       expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+      expect(focusNode?.hasFocus, false);
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
       await tester.pumpAndSettle();
       expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+      expect(focusNode?.hasFocus, true);
     });
   });
 }

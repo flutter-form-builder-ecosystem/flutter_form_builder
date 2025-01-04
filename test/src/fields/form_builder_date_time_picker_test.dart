@@ -165,15 +165,19 @@ void main() {
     final widgetFinder = find.byWidget(testWidget);
 
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+    final focusNode =
+        formKey.currentState?.fields[widgetName]?.effectiveFocusNode;
 
     expect(formSave(), isTrue);
     expect(formValue(widgetName), equals(null));
     expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+    expect(focusNode?.hasFocus, false);
     await tester.sendKeyEvent(LogicalKeyboardKey.tab);
     await tester.pumpAndSettle();
     // TODO: Fix this behavior to solve #1301 and partially #1450
     // expect(find.text(confirmText), findsOneWidget);
     // expect(find.text(cancelText), findsOneWidget);
     // expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+    // expect(focusNode?.hasFocus, true);
   });
 }
