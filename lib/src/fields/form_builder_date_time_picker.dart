@@ -201,39 +201,43 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
           builder: (FormFieldState<DateTime?> field) {
             final state = field as _FormBuilderDateTimePickerState;
 
-            return TextField(
-              textDirection: textDirection,
-              textAlign: textAlign,
-              textAlignVertical: textAlignVertical,
-              maxLength: maxLength,
-              autofocus: autofocus,
-              decoration: state.decoration,
-              readOnly: true,
-              enabled: state.enabled,
-              autocorrect: autocorrect,
-              controller: state._textFieldController,
-              focusNode: state.effectiveFocusNode,
-              inputFormatters: inputFormatters,
-              keyboardType: keyboardType,
-              maxLines: maxLines,
-              obscureText: obscureText,
-              showCursor: showCursor,
-              minLines: minLines,
-              expands: expands,
-              style: style,
-              onEditingComplete: onEditingComplete,
-              buildCounter: buildCounter,
-              mouseCursor: mouseCursor,
-              cursorColor: cursorColor,
-              cursorRadius: cursorRadius,
-              cursorWidth: cursorWidth,
-              enableInteractiveSelection: enableInteractiveSelection,
-              keyboardAppearance: keyboardAppearance,
-              scrollPadding: scrollPadding,
-              strutStyle: strutStyle,
-              textCapitalization: textCapitalization,
-              textInputAction: textInputAction,
-              maxLengthEnforcement: maxLengthEnforcement,
+            return FocusTraversalGroup(
+              policy: ReadingOrderTraversalPolicy(),
+              child: TextField(
+                onTap: () => state.showPicker(),
+                textDirection: textDirection,
+                textAlign: textAlign,
+                textAlignVertical: textAlignVertical,
+                maxLength: maxLength,
+                autofocus: autofocus,
+                decoration: state.decoration,
+                readOnly: true,
+                enabled: state.enabled,
+                autocorrect: autocorrect,
+                controller: state._textFieldController,
+                focusNode: state.effectiveFocusNode,
+                inputFormatters: inputFormatters,
+                keyboardType: keyboardType,
+                maxLines: maxLines,
+                obscureText: obscureText,
+                showCursor: showCursor,
+                minLines: minLines,
+                expands: expands,
+                style: style,
+                onEditingComplete: onEditingComplete,
+                buildCounter: buildCounter,
+                mouseCursor: mouseCursor,
+                cursorColor: cursorColor,
+                cursorRadius: cursorRadius,
+                cursorWidth: cursorWidth,
+                enableInteractiveSelection: enableInteractiveSelection,
+                keyboardAppearance: keyboardAppearance,
+                scrollPadding: scrollPadding,
+                strutStyle: strutStyle,
+                textCapitalization: textCapitalization,
+                textInputAction: textInputAction,
+                maxLengthEnforcement: maxLengthEnforcement,
+              ),
             );
           },
         );
@@ -258,12 +262,20 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     final initVal = value;
     _textFieldController.text =
         initVal == null ? '' : _dateFormat.format(initVal);
-    effectiveFocusNode.addListener(_handleFocus);
+
+    effectiveFocusNode.onKeyEvent = (node, event) {
+      if (event is KeyDownEvent &&
+          event.logicalKey == LogicalKeyboardKey.space &&
+          node.hasFocus) {
+        showPicker();
+        return KeyEventResult.handled;
+      }
+      return KeyEventResult.ignored;
+    };
   }
 
   @override
   void dispose() {
-    effectiveFocusNode.removeListener(_handleFocus);
     // Dispose the _textFieldController when initState created it
     if (null == widget.controller) {
       _textFieldController.dispose();
@@ -271,23 +283,17 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     super.dispose();
   }
 
-  Future<void> _handleFocus() async {
-    if (effectiveFocusNode.hasFocus && enabled) {
-      effectiveFocusNode.unfocus();
-      await onShowPicker(value);
-    }
-  }
-
   DateFormat _getDefaultDateTimeFormat() {
     final languageCode = widget.locale?.languageCode;
-    switch (widget.inputType) {
-      case InputType.time:
-        return DateFormat.Hm(languageCode);
-      case InputType.date:
-        return DateFormat.yMd(languageCode);
-      case InputType.both:
-        return DateFormat.yMd(languageCode).add_Hms();
-    }
+    return switch (widget.inputType) {
+      InputType.time => DateFormat.Hm(languageCode),
+      InputType.date => DateFormat.yMd(languageCode),
+      InputType.both => DateFormat.yMd(languageCode).add_Hms()
+    };
+  }
+
+  Future<void> showPicker() async {
+    await onShowPicker(value);
   }
 
   Future<DateTime?> onShowPicker(DateTime? currentValue) async {
