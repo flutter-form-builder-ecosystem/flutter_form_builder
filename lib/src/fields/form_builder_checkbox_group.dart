@@ -71,7 +71,9 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
 
             return InputDecorator(
               decoration: state.decoration,
+              isFocused: state.effectiveFocusNode.hasFocus,
               child: GroupedCheckbox<T>(
+                focusNode: state.effectiveFocusNode,
                 orientation: orientation,
                 value: state.value,
                 options: options,

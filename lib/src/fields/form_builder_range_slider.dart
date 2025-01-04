@@ -204,53 +204,57 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
               );
             }
           }
-          return InputDecorator(
-            decoration: state.decoration,
-            child: Container(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RangeSlider(
-                    values: field.value!,
-                    min: min,
-                    max: max,
-                    divisions: divisions,
-                    activeColor: activeColor,
-                    inactiveColor: inactiveColor,
-                    onChangeEnd: onChangeEnd,
-                    onChangeStart: onChangeStart,
-                    labels: labels,
-                    semanticFormatterCallback: semanticFormatterCallback,
-                    onChanged: state.enabled
-                        ? (values) {
-                            field.didChange(values);
-                          }
-                        : null,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      if (displayValues != DisplayValues.none &&
-                          displayValues != DisplayValues.current)
-                        minValueWidget
-                                ?.call(effectiveNumberFormat.format(min)) ??
-                            Text(effectiveNumberFormat.format(min)),
-                      const Spacer(),
-                      if (displayValues != DisplayValues.none &&
-                          displayValues != DisplayValues.minMax)
-                        valueWidget?.call(
-                                '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}') ??
-                            Text(
-                                '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}'),
-                      const Spacer(),
-                      if (displayValues != DisplayValues.none &&
-                          displayValues != DisplayValues.current)
-                        maxValueWidget
-                                ?.call(effectiveNumberFormat.format(max)) ??
-                            Text(effectiveNumberFormat.format(max)),
-                    ],
-                  ),
-                ],
+          return Focus(
+            focusNode: state.effectiveFocusNode,
+            child: InputDecorator(
+              decoration: state.decoration,
+              isFocused: state.effectiveFocusNode.hasFocus,
+              child: Container(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RangeSlider(
+                      values: field.value!,
+                      min: min,
+                      max: max,
+                      divisions: divisions,
+                      activeColor: activeColor,
+                      inactiveColor: inactiveColor,
+                      onChangeEnd: onChangeEnd,
+                      onChangeStart: onChangeStart,
+                      labels: labels,
+                      semanticFormatterCallback: semanticFormatterCallback,
+                      onChanged: state.enabled
+                          ? (values) {
+                              field.didChange(values);
+                            }
+                          : null,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        if (displayValues != DisplayValues.none &&
+                            displayValues != DisplayValues.current)
+                          minValueWidget
+                                  ?.call(effectiveNumberFormat.format(min)) ??
+                              Text(effectiveNumberFormat.format(min)),
+                        const Spacer(),
+                        if (displayValues != DisplayValues.none &&
+                            displayValues != DisplayValues.minMax)
+                          valueWidget?.call(
+                                  '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}') ??
+                              Text(
+                                  '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}'),
+                        const Spacer(),
+                        if (displayValues != DisplayValues.none &&
+                            displayValues != DisplayValues.current)
+                          maxValueWidget
+                                  ?.call(effectiveNumberFormat.format(max)) ??
+                              Text(effectiveNumberFormat.format(max)),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

@@ -65,7 +65,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
 
             return InputDecorator(
               decoration: state.decoration,
+              isFocused: state.effectiveFocusNode.hasFocus,
               child: GroupedRadio<T>(
+                focusNode: state.effectiveFocusNode,
                 activeColor: activeColor,
                 controlAffinity: controlAffinity,
                 disabled: state.enabled

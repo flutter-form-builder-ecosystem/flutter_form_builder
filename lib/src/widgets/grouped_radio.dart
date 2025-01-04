@@ -181,11 +181,14 @@ class GroupedRadio<T> extends StatefulWidget {
   /// [wrapSpacing] is used as inter-item right margin
   final BoxDecoration? itemDecoration;
 
+  final FocusNode focusNode;
+
   const GroupedRadio({
     super.key,
     required this.options,
     required this.orientation,
     required this.onChanged,
+    required this.focusNode,
     this.value,
     this.disabled,
     this.activeColor,
@@ -217,40 +220,39 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       widgetList.add(buildItem(i));
     }
 
-    switch (widget.orientation) {
-      case OptionsOrientation.auto:
-        return OverflowBar(
-          alignment: MainAxisAlignment.spaceEvenly,
-          children: widgetList,
-        );
-      case OptionsOrientation.vertical:
-        return SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Focus(
+      focusNode: widget.focusNode,
+      child: switch (widget.orientation) {
+        OptionsOrientation.auto => OverflowBar(
+            alignment: MainAxisAlignment.spaceEvenly,
             children: widgetList,
           ),
-        );
-      case OptionsOrientation.horizontal:
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: widgetList),
-        );
-      case OptionsOrientation.wrap:
-        return SingleChildScrollView(
-          child: Wrap(
-            spacing: widget.wrapSpacing,
-            runSpacing: widget.wrapRunSpacing,
-            textDirection: widget.wrapTextDirection,
-            crossAxisAlignment: widget.wrapCrossAxisAlignment,
-            verticalDirection: widget.wrapVerticalDirection,
-            alignment: widget.wrapAlignment,
-            direction: Axis.horizontal,
-            runAlignment: widget.wrapRunAlignment,
-            children: widgetList,
+        OptionsOrientation.vertical => SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: widgetList,
+            ),
           ),
-        );
-    }
+        OptionsOrientation.horizontal => SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(children: widgetList),
+          ),
+        OptionsOrientation.wrap => SingleChildScrollView(
+            child: Wrap(
+              spacing: widget.wrapSpacing,
+              runSpacing: widget.wrapRunSpacing,
+              textDirection: widget.wrapTextDirection,
+              crossAxisAlignment: widget.wrapCrossAxisAlignment,
+              verticalDirection: widget.wrapVerticalDirection,
+              alignment: widget.wrapAlignment,
+              direction: Axis.horizontal,
+              runAlignment: widget.wrapRunAlignment,
+              children: widgetList,
+            ),
+          )
+      },
+    );
   }
 
   /// the composite of all the components for the option at index
