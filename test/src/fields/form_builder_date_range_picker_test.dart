@@ -106,12 +106,14 @@ void main() {
   testWidgets('When press tab, field will be focused',
       (WidgetTester tester) async {
     const widgetName = 'cb1';
+    const saveText = 'SAVE THE DATE';
     final testWidget = FormBuilderDateRangePicker(
       name: widgetName,
       firstDate: DateTime(2010),
       // Using last date < today to make date picker always open on 01/01/2010
       // If last date >= today, it opens on DateTime.now month, which complicates testing.
       lastDate: DateTime(2020),
+      saveText: saveText,
     );
     final widgetFinder = find.byWidget(testWidget);
 
@@ -125,8 +127,13 @@ void main() {
     expect(focusNode?.hasFocus, false);
     await tester.sendKeyEvent(LogicalKeyboardKey.tab);
     await tester.pumpAndSettle();
-    // TODO: Fix this behavior to solve #1301 and partially #1450
-    // expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
-    // expect(focusNode?.hasFocus, true);
+    expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+    expect(focusNode?.hasFocus, true);
+    expect(find.text(saveText), findsNothing);
+
+    // Open picker
+    await tester.sendKeyEvent(LogicalKeyboardKey.space);
+    await tester.pumpAndSettle();
+    expect(find.text(saveText), findsOneWidget);
   });
 }

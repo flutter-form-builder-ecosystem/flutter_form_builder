@@ -174,10 +174,13 @@ void main() {
     expect(focusNode?.hasFocus, false);
     await tester.sendKeyEvent(LogicalKeyboardKey.tab);
     await tester.pumpAndSettle();
-    // TODO: Fix this behavior to solve #1301 and partially #1450
-    // expect(find.text(confirmText), findsOneWidget);
-    // expect(find.text(cancelText), findsOneWidget);
-    // expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
-    // expect(focusNode?.hasFocus, true);
+    expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+    expect(focusNode?.hasFocus, true);
+
+    // Open picker
+    await tester.sendKeyEvent(LogicalKeyboardKey.space);
+    await tester.pumpAndSettle();
+    expect(find.text(confirmText), findsOneWidget);
+    expect(find.text(cancelText), findsOneWidget);
   });
 }
