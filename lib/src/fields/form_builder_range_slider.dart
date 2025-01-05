@@ -204,8 +204,13 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
               );
             }
           }
+          // TODO: Solve focus issue when Flutter team solve this issue
+          // https://github.com/flutter/flutter/issues/53958
           return Focus(
             focusNode: state.effectiveFocusNode,
+            skipTraversal: true,
+            canRequestFocus: state.enabled,
+            debugLabel: 'FormBuilderRangeSlider-$name',
             child: InputDecorator(
               decoration: state.decoration,
               isFocused: state.effectiveFocusNode.hasFocus,
