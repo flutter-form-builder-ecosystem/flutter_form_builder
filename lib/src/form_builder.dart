@@ -369,10 +369,7 @@ class FormBuilderState extends State<FormBuilder> {
       // `onChanged` is called during setInternalFieldValue else will be called early
       child: _FormBuilderScope(
         formState: this,
-        child: FocusTraversalGroup(
-          policy: WidgetOrderTraversalPolicy(),
-          child: widget.child,
-        ),
+        child: widget.child,
       ),
     );
   }
