@@ -164,7 +164,6 @@ void main() {
         expect(textFieldKey.currentState?.valueHasError, isTrue);
       });
     });
-
     group('autovalidateMode -', () {
       testWidgets(
           'Should show error when init form and AutovalidateMode is always',
@@ -201,7 +200,6 @@ void main() {
         expect(find.text(errorTextField), findsOneWidget);
       });
     });
-
     group('isDirty - ', () {
       testWidgets('Should not dirty by default', (tester) async {
         const textFieldName = 'text';
@@ -301,7 +299,6 @@ void main() {
         expect(textFieldKey.currentState?.isDirty, false);
       });
     });
-
     group('isTouched - ', () {
       testWidgets('Should not touched by default', (tester) async {
         const textFieldName = 'text';
@@ -325,7 +322,6 @@ void main() {
         expect(textFieldKey.currentState?.isTouched, true);
       });
     });
-
     group('reset -', () {
       testWidgets('Should reset to null when call reset', (tester) async {
         const textFieldName = 'text';
@@ -376,6 +372,57 @@ void main() {
         textFieldKey.currentState?.reset();
         await tester.pumpAndSettle();
         expect(find.text(errorTextField), findsNothing);
+      });
+    });
+    group('focus -', () {
+      testWidgets('Should focus on field when invalidate it', (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const widgetName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: widgetName,
+          key: textFieldKey,
+        );
+        final widgetFinder = find.byWidget(testWidget);
+
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        final focusNode =
+            formKey.currentState?.fields[widgetName]?.effectiveFocusNode;
+
+        expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+        expect(focusNode?.hasFocus, false);
+
+        textFieldKey.currentState?.invalidate(errorTextField);
+        await tester.pumpAndSettle();
+
+        expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+        expect(focusNode?.hasFocus, true);
+      });
+      testWidgets(
+          'Should not focus on field when invalidate field and is disabled',
+          (tester) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const widgetName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: widgetName,
+          key: textFieldKey,
+          enabled: false,
+        );
+        final widgetFinder = find.byWidget(testWidget);
+
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        final focusNode =
+            formKey.currentState?.fields[widgetName]?.effectiveFocusNode;
+
+        expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+        expect(focusNode?.hasFocus, false);
+
+        textFieldKey.currentState?.invalidate(errorTextField);
+        await tester.pumpAndSettle();
+
+        expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+        expect(focusNode?.hasFocus, false);
       });
     });
   });
