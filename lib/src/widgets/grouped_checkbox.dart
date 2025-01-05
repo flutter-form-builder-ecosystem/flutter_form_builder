@@ -190,14 +190,11 @@ class GroupedCheckbox<T> extends StatelessWidget {
   /// [wrapSpacing] is used as inter-item right margin
   final BoxDecoration? itemDecoration;
 
-  final FocusNode focusNode;
-
   const GroupedCheckbox({
     super.key,
     required this.options,
     required this.orientation,
     required this.onChanged,
-    required this.focusNode,
     this.value,
     this.disabled,
     this.activeColor,
@@ -227,43 +224,40 @@ class GroupedCheckbox<T> extends StatelessWidget {
       widgetList.add(buildItem(i));
     }
 
-    return Focus(
-      focusNode: focusNode,
-      child: switch (orientation) {
-        OptionsOrientation.auto => OverflowBar(
-            alignment: MainAxisAlignment.spaceEvenly,
+    return switch (orientation) {
+      OptionsOrientation.auto => OverflowBar(
+          alignment: MainAxisAlignment.spaceEvenly,
+          children: widgetList,
+        ),
+      OptionsOrientation.vertical => SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: widgetList,
           ),
-        OptionsOrientation.vertical => SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widgetList,
-            ),
+        ),
+      OptionsOrientation.horizontal => SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: widgetList.map((item) {
+              return Column(children: <Widget>[item]);
+            }).toList(),
           ),
-        OptionsOrientation.horizontal => SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: widgetList.map((item) {
-                return Column(children: <Widget>[item]);
-              }).toList(),
-            ),
+        ),
+      OptionsOrientation.wrap => SingleChildScrollView(
+          child: Wrap(
+            spacing: wrapSpacing,
+            runSpacing: wrapRunSpacing,
+            textDirection: wrapTextDirection,
+            crossAxisAlignment: wrapCrossAxisAlignment,
+            verticalDirection: wrapVerticalDirection,
+            alignment: wrapAlignment,
+            direction: Axis.horizontal,
+            runAlignment: wrapRunAlignment,
+            children: widgetList,
           ),
-        OptionsOrientation.wrap => SingleChildScrollView(
-            child: Wrap(
-              spacing: wrapSpacing,
-              runSpacing: wrapRunSpacing,
-              textDirection: wrapTextDirection,
-              crossAxisAlignment: wrapCrossAxisAlignment,
-              verticalDirection: wrapVerticalDirection,
-              alignment: wrapAlignment,
-              direction: Axis.horizontal,
-              runAlignment: wrapRunAlignment,
-              children: widgetList,
-            ),
-          )
-      },
-    );
+        )
+    };
   }
 
   /// the composite of all the components for the option at index

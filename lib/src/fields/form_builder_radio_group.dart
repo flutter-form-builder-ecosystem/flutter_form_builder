@@ -63,35 +63,40 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
           builder: (FormFieldState<T?> field) {
             final state = field as _FormBuilderRadioGroupState<T>;
 
-            return InputDecorator(
-              decoration: state.decoration,
-              isFocused: state.effectiveFocusNode.hasFocus,
-              child: GroupedRadio<T>(
-                focusNode: state.effectiveFocusNode,
-                activeColor: activeColor,
-                controlAffinity: controlAffinity,
-                disabled: state.enabled
-                    ? disabled
-                    : options.map((option) => option.value).toList(),
-                focusColor: focusColor,
-                hoverColor: hoverColor,
-                materialTapTargetSize: materialTapTargetSize,
-                onChanged: (value) {
-                  state.didChange(value);
-                },
-                options: options,
-                orientation: orientation,
-                separator: separator,
-                value: state.value,
-                wrapAlignment: wrapAlignment,
-                wrapCrossAxisAlignment: wrapCrossAxisAlignment,
-                wrapDirection: wrapDirection,
-                wrapRunAlignment: wrapRunAlignment,
-                wrapRunSpacing: wrapRunSpacing,
-                wrapSpacing: wrapSpacing,
-                wrapTextDirection: wrapTextDirection,
-                wrapVerticalDirection: wrapVerticalDirection,
-                itemDecoration: itemDecoration,
+            return Focus(
+              focusNode: state.effectiveFocusNode,
+              skipTraversal: true,
+              canRequestFocus: state.enabled,
+              debugLabel: 'FormBuilderRadioGroup-$name',
+              child: InputDecorator(
+                decoration: state.decoration,
+                isFocused: state.effectiveFocusNode.hasFocus,
+                child: GroupedRadio<T>(
+                  activeColor: activeColor,
+                  controlAffinity: controlAffinity,
+                  disabled: state.enabled
+                      ? disabled
+                      : options.map((option) => option.value).toList(),
+                  focusColor: focusColor,
+                  hoverColor: hoverColor,
+                  materialTapTargetSize: materialTapTargetSize,
+                  onChanged: (value) {
+                    state.didChange(value);
+                  },
+                  options: options,
+                  orientation: orientation,
+                  separator: separator,
+                  value: state.value,
+                  wrapAlignment: wrapAlignment,
+                  wrapCrossAxisAlignment: wrapCrossAxisAlignment,
+                  wrapDirection: wrapDirection,
+                  wrapRunAlignment: wrapRunAlignment,
+                  wrapRunSpacing: wrapRunSpacing,
+                  wrapSpacing: wrapSpacing,
+                  wrapTextDirection: wrapTextDirection,
+                  wrapVerticalDirection: wrapVerticalDirection,
+                  itemDecoration: itemDecoration,
+                ),
               ),
             );
           },

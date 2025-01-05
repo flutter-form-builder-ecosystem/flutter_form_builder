@@ -81,9 +81,11 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _FormBuilderFilterChipState<T>;
             final fieldValue = field.value ?? [];
-
             return Focus(
               focusNode: state.effectiveFocusNode,
+              skipTraversal: true,
+              canRequestFocus: state.enabled,
+              debugLabel: 'FormBuilderFilterChip-$name',
               child: InputDecorator(
                 decoration: state.decoration,
                 isFocused: state.effectiveFocusNode.hasFocus,

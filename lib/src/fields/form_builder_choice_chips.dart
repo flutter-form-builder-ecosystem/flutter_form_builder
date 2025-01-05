@@ -397,6 +397,9 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
 
           return Focus(
             focusNode: state.effectiveFocusNode,
+            skipTraversal: true,
+            canRequestFocus: state.enabled,
+            debugLabel: 'FormBuilderChoiceChip-$name',
             child: InputDecorator(
               decoration: state.decoration,
               isFocused: state.effectiveFocusNode.hasFocus,
