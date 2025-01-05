@@ -36,6 +36,7 @@ class FormBuilderFieldDecorationState<F extends FormBuilderFieldDecoration<T>,
   F get widget => super.widget as F;
 
   InputDecoration get decoration => widget.decoration.copyWith(
+        // Read only allow show error to support property skipDisabled
         errorText: widget.enabled || readOnly
             ? widget.decoration.errorText ?? errorText
             : null,
