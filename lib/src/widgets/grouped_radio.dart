@@ -217,27 +217,23 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       widgetList.add(buildItem(i));
     }
 
-    switch (widget.orientation) {
-      case OptionsOrientation.auto:
-        return OverflowBar(
+    return switch (widget.orientation) {
+      OptionsOrientation.auto => OverflowBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: widgetList,
-        );
-      case OptionsOrientation.vertical:
-        return SingleChildScrollView(
+        ),
+      OptionsOrientation.vertical => SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: widgetList,
           ),
-        );
-      case OptionsOrientation.horizontal:
-        return SingleChildScrollView(
+        ),
+      OptionsOrientation.horizontal => SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(children: widgetList),
-        );
-      case OptionsOrientation.wrap:
-        return SingleChildScrollView(
+        ),
+      OptionsOrientation.wrap => SingleChildScrollView(
           child: Wrap(
             spacing: widget.wrapSpacing,
             runSpacing: widget.wrapRunSpacing,
@@ -249,8 +245,8 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
             runAlignment: widget.wrapRunAlignment,
             children: widgetList,
           ),
-        );
-    }
+        )
+    };
   }
 
   /// the composite of all the components for the option at index

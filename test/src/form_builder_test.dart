@@ -183,7 +183,7 @@ void main() {
 
   group('skipDisabled -', () {
     testWidgets(
-        'Should not show error when field is not enabled and skipDisabled is true',
+        'Should not show error when field is disabled and skipDisabled is true',
         (tester) async {
       const textFieldName = 'text3';
       const errorTextField = 'error text field';
@@ -206,7 +206,7 @@ void main() {
       expect(find.text(errorTextField), findsNothing);
     });
     testWidgets(
-        'Should show error when field is not enabled and skipDisabled is false',
+        'Should show error when field is disabled and skipDisabled is false',
         (tester) async {
       const textFieldName = 'text4';
       const errorTextField = 'error text field';

@@ -370,7 +370,6 @@ class FormBuilderState extends State<FormBuilder> {
       child: _FormBuilderScope(
         formState: this,
         child: FocusTraversalGroup(
-          policy: WidgetOrderTraversalPolicy(),
           child: widget.child,
         ),
       ),

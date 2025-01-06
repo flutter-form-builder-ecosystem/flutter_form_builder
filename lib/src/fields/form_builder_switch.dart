@@ -122,7 +122,9 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
 
             return InputDecorator(
               decoration: state.decoration,
+              isFocused: state.effectiveFocusNode.hasFocus,
               child: SwitchListTile(
+                focusNode: state.effectiveFocusNode,
                 dense: true,
                 isThreeLine: false,
                 contentPadding: contentPadding,

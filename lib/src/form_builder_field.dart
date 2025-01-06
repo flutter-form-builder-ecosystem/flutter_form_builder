@@ -157,7 +157,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     if (widget.focusNode != oldWidget.focusNode) {
       focusAttachment?.detach();
       effectiveFocusNode.removeListener(_touchedHandler);
-      effectiveFocusNode = widget.focusNode ?? FocusNode();
+      effectiveFocusNode =
+          widget.focusNode ?? FocusNode(canRequestFocus: enabled);
       effectiveFocusNode.addListener(_touchedHandler);
       focusAttachment = effectiveFocusNode.attach(context);
     }

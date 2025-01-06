@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'form_builder_tester.dart';
+import '../../form_builder_tester.dart';
 
 void main() {
-  group('FormBuilderRangeSlider --', () {
+  group('FormBuilderRangeSlider -', () {
     testWidgets('basic', (WidgetTester tester) async {
       const widgetName = 'formBuilderRangeSlider';
       final testWidget = FormBuilderRangeSlider(
@@ -61,6 +62,25 @@ void main() {
       expect(formValue<RangeValues>(widgetName), const RangeValues(11.0, 18.0));
     });
 
+    testWidgets('when set valueWidget then show on FormBuilderRangeSlider',
+        (WidgetTester tester) async {
+      const widgetName = 'formBuilderRangeSlider';
+      final keyValueWidget = Key('valueWidget');
+      final testWidget = FormBuilderRangeSlider(
+        name: widgetName,
+        min: 10.0,
+        max: 20.0,
+        valueWidget: (value) => Text(value, key: keyValueWidget),
+        initialValue: const RangeValues(14.0, 18.0),
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      expect(formSave(), isTrue);
+      expect(formValue<RangeValues?>(widgetName),
+          equals(const RangeValues(14.0, 18.0)));
+      expect(find.byKey(keyValueWidget), findsOneWidget);
+    });
+
     testWidgets('Stateful Update', (WidgetTester tester) async {
       const widgetName = 'formBuilderRangeSlider';
       const testWidget = _FormBuilderRangeSliderStateTest(widgetName);
@@ -80,6 +100,31 @@ void main() {
         formValue<RangeValues?>(widgetName),
         equals(const RangeValues(-9.0, 9.0)),
       );
+    });
+
+    testWidgets('When press tab, field will be focused',
+        (WidgetTester tester) async {
+      const widgetName = 'key';
+      final testWidget = FormBuilderRangeSlider(
+        name: widgetName,
+        min: 10.0,
+        max: 20.0,
+      );
+      final widgetFinder = find.byWidget(testWidget);
+
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      final focusNode =
+          formKey.currentState?.fields[widgetName]?.effectiveFocusNode;
+
+      expect(formSave(), isTrue);
+      expect(formValue<RangeValues?>(widgetName),
+          equals(const RangeValues(10.0, 10.0)));
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+      expect(focusNode?.hasFocus, false);
+      await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+      await tester.pumpAndSettle();
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+      expect(focusNode?.hasFocus, true);
     });
   });
 }
