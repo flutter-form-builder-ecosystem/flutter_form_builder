@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../form_builder_tester.dart';
 
 void main() {
-  group('FormBuilderRangeSlider --', () {
+  group('FormBuilderRangeSlider -', () {
     testWidgets('basic', (WidgetTester tester) async {
       const widgetName = 'formBuilderRangeSlider';
       final testWidget = FormBuilderRangeSlider(
@@ -60,6 +60,25 @@ void main() {
 
       expect(formSave(), isTrue);
       expect(formValue<RangeValues>(widgetName), const RangeValues(11.0, 18.0));
+    });
+
+    testWidgets('when set valueWidget then show on FormBuilderRangeSlider',
+        (WidgetTester tester) async {
+      const widgetName = 'formBuilderRangeSlider';
+      final keyValueWidget = Key('valueWidget');
+      final testWidget = FormBuilderRangeSlider(
+        name: widgetName,
+        min: 10.0,
+        max: 20.0,
+        valueWidget: (value) => Text(value, key: keyValueWidget),
+        initialValue: const RangeValues(14.0, 18.0),
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      expect(formSave(), isTrue);
+      expect(formValue<RangeValues?>(widgetName),
+          equals(const RangeValues(14.0, 18.0)));
+      expect(find.byKey(keyValueWidget), findsOneWidget);
     });
 
     testWidgets('Stateful Update', (WidgetTester tester) async {

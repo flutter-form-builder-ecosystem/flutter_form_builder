@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import '../../form_builder_tester.dart';
 
 void main() {
-  group('FormBuilderDateRangePicker --', () {
+  group('FormBuilderDateRangePicker -', () {
     testWidgets('basic', (WidgetTester tester) async {
       const widgetName = 'formBuilderDateRangePicker';
       final testWidget = FormBuilderDateRangePicker(
@@ -135,5 +135,31 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.space);
     await tester.pumpAndSettle();
     expect(find.text(saveText), findsOneWidget);
+  });
+  testWidgets('When press clear button then clear value text field',
+      (WidgetTester tester) async {
+    const widgetName = 'cb1';
+    final initialValue = DateTimeRange(
+      start: DateTime(2010, 1, 2),
+      end: DateTime(2010, 1, 4),
+    );
+    final testWidget = FormBuilderDateRangePicker(
+      name: widgetName,
+      initialValue: initialValue,
+      allowClear: true,
+      firstDate: DateTime(2010),
+      // Using last date < today to make date picker always open on 01/01/2010
+      // If last date >= today, it opens on DateTime.now month, which complicates testing.
+      lastDate: DateTime(2020),
+    );
+
+    await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+    expect(formSave(), isTrue);
+    expect(formValue<DateTimeRange?>(widgetName), equals(initialValue));
+    await tester.tap(find.byType(IconButton));
+    await tester.pumpAndSettle();
+
+    expect(find.widgetWithText(TextField, ''), findsOneWidget);
   });
 }
