@@ -1,3 +1,8 @@
+# 10.0.0-dev.1
+
+* feat: #1297 Improve focus behavior by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1453
+  * Solves issues #1296, #1290, #1301, #1304 and #1292
+
 # 9.7.0
 
 ## Fixes
