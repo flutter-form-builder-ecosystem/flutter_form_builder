@@ -330,6 +330,46 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text(errorTextField), findsOneWidget);
     });
+    group('Interact with FormBuilderField -', () {
+      testWidgets(
+          'Should show error when FormBuilder is disabled and FormBuilderField is always',
+          (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator: (value) => errorTextField,
+          autovalidateMode: AutovalidateMode.always,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(
+          testWidget,
+          autovalidateMode: AutovalidateMode.disabled,
+        ));
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorTextField), findsOneWidget);
+      });
+      // TODO: Enable when solve issue
+      // https://github.com/flutter/flutter/issues/125766
+      // testWidgets(
+      //     'Should not show error when FormBuilder is always and FormBuilderField is disabled',
+      //     (tester) async {
+      //   const textFieldName = 'text4';
+      //   const errorTextField = 'error text field';
+      //   final testWidget = FormBuilderTextField(
+      //     name: textFieldName,
+      //     validator: (value) => errorTextField,
+      //     autovalidateMode: AutovalidateMode.disabled,
+      //   );
+      //   await tester.pumpWidget(buildTestableFieldWidget(
+      //     testWidget,
+      //     autovalidateMode: AutovalidateMode.always,
+      //   ));
+      //   await tester.pumpAndSettle();
+
+      //   expect(find.text(errorTextField), findsNothing);
+      // });
+    });
   });
 
   group('isDirty - ', () {
