@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 
 enum OptionsOrientation { horizontal, vertical, wrap, auto }
 
@@ -98,16 +97,13 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   bool get hasError => super.hasError || errorText != null;
 
   @override
-  bool get isValid => super.isValid && errorText == null;
+  bool get isValid => super.isValid && _customErrorText == null;
 
   bool get valueIsValid => super.isValid;
   bool get valueHasError => super.hasError;
 
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
   bool get readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
-  bool get _isAlwaysValidate =>
-      widget.autovalidateMode.isAlways ||
-      (_formBuilderState?.widget.autovalidateMode?.isAlways ?? false);
 
   /// Will be true if the field is dirty
   ///
@@ -140,11 +136,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     focusAttachment = effectiveFocusNode.attach(context);
 
     // Verify if need auto validate form
-    if ((enabled || readOnly) && _isAlwaysValidate) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        validate();
-      });
-    }
   }
 
   @override

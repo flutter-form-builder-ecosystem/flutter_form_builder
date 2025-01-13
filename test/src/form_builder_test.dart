@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -248,6 +249,126 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(errorTextField), findsOneWidget);
+    });
+    testWidgets(
+        'Should not show error when init form and AutovalidateMode is disabled',
+        (tester) async {
+      const textFieldName = 'text4';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) => errorTextField,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testWidget,
+        autovalidateMode: AutovalidateMode.disabled,
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.text(errorTextField), findsNothing);
+    });
+    testWidgets(
+        'Should show error when init form and AutovalidateMode is onUserInteraction',
+        (tester) async {
+      const textFieldName = 'text4';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) => errorTextField,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(
+        testWidget,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.text(errorTextField), findsNothing);
+
+      final widgetFinder = find.byWidget(testWidget);
+      await tester.enterText(widgetFinder, 'test');
+      await tester.pumpAndSettle();
+
+      expect(find.text(errorTextField), findsOneWidget);
+    });
+    testWidgets(
+        'Should show error when init form and AutovalidateMode is onUnfocus',
+        (tester) async {
+      const textFieldName = 'text4';
+      const errorTextField = 'error text field';
+      final testWidget = FormBuilderTextField(
+        name: textFieldName,
+        validator: (value) => errorTextField,
+      );
+      final widgetFinder = find.byWidget(testWidget);
+
+      // Init form
+      await tester.pumpWidget(buildTestableFieldWidget(
+        Column(
+          children: [
+            testWidget,
+            ElevatedButton(onPressed: () {}, child: const Text('Submit')),
+          ],
+        ),
+        autovalidateMode: AutovalidateMode.onUnfocus,
+      ));
+      await tester.pumpAndSettle();
+      final focusNode =
+          formKey.currentState?.fields[textFieldName]?.effectiveFocusNode;
+      expect(find.text(errorTextField), findsNothing);
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+      expect(focusNode?.hasFocus, false);
+
+      // Focus input and write text
+      await tester.enterText(widgetFinder, 'test');
+      await tester.pumpAndSettle();
+      expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+      expect(focusNode?.hasFocus, true);
+      expect(find.text(errorTextField), findsNothing);
+
+      // Unfocus input and show error
+      await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+      await tester.pumpAndSettle();
+      expect(find.text(errorTextField), findsOneWidget);
+    });
+    group('Interact with FormBuilderField -', () {
+      testWidgets(
+          'Should show error when FormBuilder is disabled and FormBuilderField is always',
+          (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator: (value) => errorTextField,
+          autovalidateMode: AutovalidateMode.always,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(
+          testWidget,
+          autovalidateMode: AutovalidateMode.disabled,
+        ));
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorTextField), findsOneWidget);
+      });
+      // TODO: Enable when solve issue
+      // https://github.com/flutter/flutter/issues/125766
+      // testWidgets(
+      //     'Should not show error when FormBuilder is always and FormBuilderField is disabled',
+      //     (tester) async {
+      //   const textFieldName = 'text4';
+      //   const errorTextField = 'error text field';
+      //   final testWidget = FormBuilderTextField(
+      //     name: textFieldName,
+      //     validator: (value) => errorTextField,
+      //     autovalidateMode: AutovalidateMode.disabled,
+      //   );
+      //   await tester.pumpWidget(buildTestableFieldWidget(
+      //     testWidget,
+      //     autovalidateMode: AutovalidateMode.always,
+      //   ));
+      //   await tester.pumpAndSettle();
+
+      //   expect(find.text(errorTextField), findsNothing);
+      // });
     });
   });
 

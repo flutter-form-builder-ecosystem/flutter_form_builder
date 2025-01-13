@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
 
 /// A container for form fields.
 class FormBuilder extends StatefulWidget {
@@ -355,6 +356,18 @@ class FormBuilderState extends State<FormBuilder> {
     val.forEach((key, dynamic value) {
       _fields[key]?.didChange(value);
     });
+  }
+
+  @override
+  void initState() {
+    // Verify if need auto validate form
+    if (enabled && (widget.autovalidateMode?.isAlways ?? false)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // No focus on invalid, like default behavior on Flutter base Form
+        validate(focusOnInvalid: false);
+      });
+    }
+    super.initState();
   }
 
   @override
