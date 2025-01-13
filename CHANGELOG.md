@@ -1,3 +1,8 @@
+# 10.0.0-dev.2
+
+* feat: #1458 improve autovalidate modes by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1460
+  * Solves issues #1364 and #1457
+
 # 10.0.0-dev.1
 
 * feat: #1297 Improve focus behavior by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1453
