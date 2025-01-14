@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 ///
 /// This class override `decoration.enable` with [enable] value
 class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
-  const FormBuilderFieldDecoration({
+  FormBuilderFieldDecoration({
     super.key,
     super.onSaved,
     super.initialValue,
@@ -21,7 +21,12 @@ class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
     super.focusNode,
     required super.builder,
     this.decoration = const InputDecoration(),
-  });
+  }) : assert(
+            decoration.enabled == enabled ||
+                (enabled == false && decoration.enabled),
+            '''decoration.enabled will be used instead of enabled FormBuilderField property.
+            This will create conflicts and unexpected behaviors on focus, errorText, and other properties.
+            Please, to enable or disable the field, use the enabled property of FormBuilderField.''');
   final InputDecoration decoration;
 
   @override
@@ -40,7 +45,9 @@ class FormBuilderFieldDecorationState<F extends FormBuilderFieldDecoration<T>,
         errorText: widget.enabled || readOnly
             ? widget.decoration.errorText ?? errorText
             : null,
-        enabled: widget.enabled,
+        enabled: widget.decoration.enabled
+            ? widget.enabled
+            : widget.decoration.enabled,
       );
 
   @override
