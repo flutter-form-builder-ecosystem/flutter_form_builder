@@ -424,6 +424,11 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.contentInsertionConfiguration,
     this.spellCheckConfiguration,
     this.clipBehavior = Clip.hardEdge,
+    @Deprecated(
+      'This property will be removed in the next Flutter stable versions. '
+      'Use FocusNode.canRequestFocus instead. '
+      'Ref: https://docs.flutter.dev/release/breaking-changes/can-request-focus',
+    )
     this.canRequestFocus = true,
     this.cursorErrorColor,
     this.cursorOpacityAnimates,
