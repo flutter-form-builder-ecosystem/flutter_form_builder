@@ -1,4 +1,5 @@
 extension GenericValidator<T> on T? {
+  /// Check if the value is empty in a generic way
   bool emptyValidator() {
     if (this == null) return true;
     if (this is Iterable) return (this as Iterable).isEmpty;
