@@ -10,9 +10,6 @@ class FormBuilder extends StatefulWidget {
   /// will rebuild.
   final VoidCallback? onChanged;
 
-  /// DEPRECATED: Use [onPopInvokedWithResult] instead.
-  final void Function(bool)? onPopInvoked;
-
   /// {@macro flutter.widgets.navigator.onPopInvokedWithResult}
   ///
   /// {@tool dartpad}
@@ -105,11 +102,6 @@ class FormBuilder extends StatefulWidget {
     required this.child,
     this.onChanged,
     this.autovalidateMode,
-    @Deprecated(
-      'Use onPopInvokedWithResult instead. '
-      'This feature was deprecated after v3.22.0-12.0.pre.',
-    )
-    this.onPopInvoked,
     this.onPopInvokedWithResult,
     this.initialValue = const <String, dynamic>{},
     this.skipDisabled = false,
@@ -143,6 +135,7 @@ class FormBuilderState extends State<FormBuilder> {
   /// Only used to internal logic
   bool get focusOnInvalid => _focusOnInvalid;
 
+  /// Get if form is enabled
   bool get enabled => widget.enabled;
 
   /// Verify if all fields on form are valid.
@@ -171,6 +164,7 @@ class FormBuilderState extends State<FormBuilder> {
   /// Get all fields of form.
   FormBuilderFields get fields => _fields;
 
+  /// Get all fields values of form.
   Map<String, dynamic> get instantValue => Map<String, dynamic>.unmodifiable(
         _instantValue.map(
           (key, value) => MapEntry(
@@ -204,15 +198,18 @@ class FormBuilderState extends State<FormBuilder> {
         initialValue[name];
   }
 
+  /// Get a field value by name
   void setInternalFieldValue<T>(String name, T? value) {
     _instantValue[name] = value;
     widget.onChanged?.call();
   }
 
+  /// Remove a field value by name
   void removeInternalFieldValue(String name) {
     _instantValue.remove(name);
   }
 
+  /// Register a field on form
   void registerField(String name, FormBuilderFieldState field) {
     // Each field must have a unique name.  Ideally we could simply:
     //   assert(!_fields.containsKey(name));
@@ -242,6 +239,7 @@ class FormBuilderState extends State<FormBuilder> {
     );
   }
 
+  /// Unregister a field on form
   void unregisterField(String name, FormBuilderFieldState field) {
     assert(
       _fields.containsKey(name),
@@ -270,22 +268,13 @@ class FormBuilderState extends State<FormBuilder> {
     }
   }
 
+  /// Save form values
   void save() {
     _formKey.currentState!.save();
     // Copy values from instant to saved
     _savedValue.clear();
     _savedValue.addAll(_instantValue);
   }
-
-  @Deprecated(
-      'Will be remove to avoid redundancy. Use fields[name]?.invalidate(errorText) instead')
-  void invalidateField({required String name, String? errorText}) =>
-      fields[name]?.invalidate(errorText ?? '');
-
-  @Deprecated(
-      'Will be remove to avoid redundancy. Use fields.first.invalidate(errorText) instead')
-  void invalidateFirstField({required String errorText}) =>
-      fields.values.first.invalidate(errorText);
 
   /// Validate all fields of form
   ///
@@ -343,7 +332,7 @@ class FormBuilderState extends State<FormBuilder> {
     );
   }
 
-  /// Reset form to `initialValue`
+  /// Reset form to `initialValue` set on FormBuilder or on each field.
   void reset() {
     _formKey.currentState?.reset();
   }
@@ -376,8 +365,6 @@ class FormBuilderState extends State<FormBuilder> {
       key: _formKey,
       autovalidateMode: widget.autovalidateMode,
       onPopInvokedWithResult: widget.onPopInvokedWithResult,
-      // ignore: deprecated_member_use
-      onPopInvoked: widget.onPopInvoked,
       canPop: widget.canPop,
       // `onChanged` is called during setInternalFieldValue else will be called early
       child: _FormBuilderScope(

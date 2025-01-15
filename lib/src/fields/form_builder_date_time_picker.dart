@@ -40,10 +40,6 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   /// to noon. Explicitly set this to `null` to use the current time.
   final TimeOfDay initialTime;
 
-  @Deprecated(
-      'This property is no used anymore. Please use decoration.suffixIcon to set your desired icon')
-  final Widget? resetIcon;
-
   /// Called when an enclosing form is saved. The value passed will be `null`
   /// if [format] fails to parse the text.
   // final FormFieldSetter<DateTime> onSaved;
@@ -146,7 +142,6 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.cursorWidth = 2.0,
     this.enableInteractiveSelection = true,
-    this.resetIcon = const Icon(Icons.close),
     this.initialTime = const TimeOfDay(hour: 12, minute: 0),
     this.keyboardType,
     this.textAlign = TextAlign.start,

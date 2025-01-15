@@ -44,7 +44,7 @@ class _ExamplePageState extends State<_ExamplePage> {
           key: _formKey,
           child: Column(
             children: [
-              FormBuilderFilterChip<String>(
+              FormBuilderFilterChips<String>(
                 decoration: const InputDecoration(
                   labelText: 'The language of my people',
                   enabled: false,

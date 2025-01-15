@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// A list of `Chip`s that acts like radio buttons
-class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
+class FormBuilderChoiceChips<T> extends FormBuilderFieldDecoration<T> {
   /// The list of items the user can select.
   final List<FormBuilderChipOption<T>> options;
 
@@ -344,7 +344,7 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
   final String? tooltip;
 
   /// Creates a list of `Chip`s that acts like radio buttons
-  FormBuilderChoiceChip({
+  FormBuilderChoiceChips({
     super.autovalidateMode = AutovalidateMode.disabled,
     super.enabled,
     super.focusNode,
@@ -457,12 +457,12 @@ class FormBuilderChoiceChip<T> extends FormBuilderFieldDecoration<T> {
         });
 
   @override
-  FormBuilderFieldDecorationState<FormBuilderChoiceChip<T>, T> createState() =>
+  FormBuilderFieldDecorationState<FormBuilderChoiceChips<T>, T> createState() =>
       _FormBuilderChoiceChipState<T>();
 }
 
 class _FormBuilderChoiceChipState<T>
-    extends FormBuilderFieldDecorationState<FormBuilderChoiceChip<T>, T> {
+    extends FormBuilderFieldDecorationState<FormBuilderChoiceChips<T>, T> {
   void handleFocusChange() {
     setState(() {});
   }

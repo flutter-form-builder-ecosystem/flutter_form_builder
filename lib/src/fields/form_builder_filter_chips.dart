@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 /// Field with chips that acts like a list checkboxes.
-class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
+class FormBuilderFilterChips<T> extends FormBuilderFieldDecoration<List<T>> {
   //TODO: Add documentation
   final Color? backgroundColor;
   final Color? disabledColor;
@@ -35,7 +35,7 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
   final ShapeBorder avatarBorder;
 
   /// Creates field with chips that acts like a list checkboxes.
-  FormBuilderFilterChip({
+  FormBuilderFilterChips({
     super.autovalidateMode = AutovalidateMode.disabled,
     super.enabled,
     super.focusNode,
@@ -59,7 +59,7 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
     this.labelPadding,
     this.labelStyle,
     this.materialTapTargetSize,
-    this.maxChips,
+    @Deprecated('Useless property. Please remove it.') this.maxChips,
     this.padding,
     this.pressElevation,
     this.runAlignment = WrapAlignment.start,
@@ -143,9 +143,9 @@ class FormBuilderFilterChip<T> extends FormBuilderFieldDecoration<List<T>> {
         );
 
   @override
-  FormBuilderFieldDecorationState<FormBuilderFilterChip<T>, List<T>>
+  FormBuilderFieldDecorationState<FormBuilderFilterChips<T>, List<T>>
       createState() => _FormBuilderFilterChipState<T>();
 }
 
 class _FormBuilderFilterChipState<T> extends FormBuilderFieldDecorationState<
-    FormBuilderFilterChip<T>, List<T>> {}
+    FormBuilderFilterChips<T>, List<T>> {}
