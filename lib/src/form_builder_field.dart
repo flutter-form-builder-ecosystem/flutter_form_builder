@@ -71,12 +71,17 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   FormBuilderState? _formBuilderState;
   bool _touched = false;
   bool _dirty = false;
+
+  /// The focus node that is used to focus this field.
   late FocusNode effectiveFocusNode;
+
+  /// The focus attachment for the [effectiveFocusNode].
   FocusAttachment? focusAttachment;
 
   @override
   F get widget => super.widget as F;
 
+  /// Returns the parent [FormBuilderState] if it exists.
   FormBuilderState? get formState => _formBuilderState;
 
   /// Returns the initial value, which may be declared at the field, or by the
@@ -91,18 +96,33 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
       widget.valueTransformer == null ? value : widget.valueTransformer!(value);
 
   @override
+
+  /// Returns the current error text,
+  /// which may be a validation error or a custom error text.
   String? get errorText => super.errorText ?? _customErrorText;
 
   @override
+
+  /// Returns `true` if the field has an error or has a custom error text.
   bool get hasError => super.hasError || errorText != null;
 
   @override
+
+  /// Returns `true` if the field is valid and has no custom error text.
   bool get isValid => super.isValid && _customErrorText == null;
 
+  /// Returns `true` if the field is valid.
   bool get valueIsValid => super.isValid;
+
+  /// Returns `true` if the field has an error.
   bool get valueHasError => super.hasError;
 
+  /// Returns `true` if the field is enabled and the parent FormBuilder is enabled.
   bool get enabled => widget.enabled && (_formBuilderState?.enabled ?? true);
+
+  /// Returns `true` if the field is read only.
+  ///
+  /// See [FormBuilder.skipDisabled] for more information.
   bool get readOnly => !(_formBuilderState?.widget.skipDisabled ?? false);
 
   /// Will be true if the field is dirty
@@ -199,6 +219,10 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   @override
+
+  /// Reset field value to initial value
+  ///
+  /// Also reset custom error text if exists, and set [isDirty] to `false`.
   void reset() {
     super.reset();
     didChange(initialValue);
@@ -276,10 +300,12 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     );
   }
 
+  /// Focus field
   void focus() {
     FocusScope.of(context).requestFocus(effectiveFocusNode);
   }
 
+  /// Scroll to show field
   void ensureScrollableVisibility() {
     Scrollable.ensureVisible(context);
   }

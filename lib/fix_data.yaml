@@ -1,0 +1,45 @@
+version: 1
+transforms:
+  - title: 'Remove deprecated maxChips property on FormBuilderFilterChip'
+    date: 2025-01-15
+    element:
+      uris: [ 'flutter_form_builder.dart' ]
+      constructor: ''
+      inClass: 'FormBuilderFilterChip'
+    changes:
+      - kind: 'removeParameter'
+        name: 'maxChips'
+  - title: 'Remove deprecated resetIcon property on FormBuilderDateTimePicker'
+    date: 2025-01-15
+    element:
+      uris: [ 'flutter_form_builder.dart' ]
+      constructor: ''
+      inClass: 'FormBuilderDateTimePicker'
+    changes:
+      - kind: 'removeParameter'
+        name: 'resetIcon'
+  - title: 'Remove deprecated onPopInvoked property on FormBuilder'
+    date: 2025-01-15
+    element:
+      uris: [ 'flutter_form_builder.dart' ]
+      constructor: ''
+      inClass: 'FormBuilder'
+    changes:
+      - kind: 'removeParameter'
+        name: 'onPopInvoked'
+  - title: 'Rename FormBuilderChoiceChip to be plural'
+    date: 2025-01-15
+    element:
+      uris: [ 'flutter_form_builder.dart' ]
+      class: 'FormBuilderChoiceChip'
+    changes:
+      - kind: 'rename'
+        newName: 'FormBuilderChoiceChips'
+  - title: 'Rename FormBuilderFilterChip to be plural'
+    date: 2025-01-15
+    element:
+      uris: [ 'flutter_form_builder.dart' ]
+      class: 'FormBuilderFilterChip'
+    changes:
+      - kind: 'rename'
+        newName: 'FormBuilderFilterChips'

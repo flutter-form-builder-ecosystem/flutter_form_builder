@@ -1,7 +1,6 @@
+// test_fixes/fix_test.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,12 +12,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter FormBuilder Example',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        FormBuilderLocalizations.delegate,
-        ...GlobalMaterialLocalizations.delegates,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: FormBuilderLocalizations.supportedLocales,
       home: const _ExamplePage(),
     );
   }
@@ -42,9 +35,23 @@ class _ExamplePageState extends State<_ExamplePage> {
         padding: const EdgeInsets.all(16),
         child: FormBuilder(
           key: _formKey,
+          onPopInvoked: (p0) {},
           child: Column(
             children: [
-              FormBuilderFilterChips<String>(
+              FormBuilderDateTimePicker(
+                name: 'date',
+                resetIcon: const Icon(Icons.clear),
+              ),
+              FormBuilderChoiceChip<String>(
+                name: 'choice_chip',
+                options: const [
+                  'Option 1',
+                  'Option 2',
+                  'Option 3',
+                ].map((e) => FormBuilderChipOption(value: e)).toList(),
+              ),
+              FormBuilderFilterChip(
+                maxChips: 2,
                 decoration: const InputDecoration(
                   labelText: 'The language of my people',
                   enabled: false,
@@ -73,10 +80,6 @@ class _ExamplePageState extends State<_ExamplePage> {
                     avatar: CircleAvatar(child: Text('O')),
                   ),
                 ],
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.minLength(1),
-                  FormBuilderValidators.maxLength(3),
-                ]),
               ),
               const SizedBox(height: 10),
               ElevatedButton(

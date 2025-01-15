@@ -23,6 +23,9 @@ class GroupedCheckbox<T> extends StatelessWidget {
   /// The color to use when this checkbox is checked.
   ///
   /// Defaults to [ColorScheme.secondary].
+  ///
+  /// If [fillColor] returns a non-null color in the [WidgetState.selected]
+  /// state, it will be used instead of this color.
   final Color? activeColor;
   final VisualDensity? visualDensity;
 

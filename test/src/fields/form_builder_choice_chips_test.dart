@@ -11,7 +11,7 @@ void main() {
     testWidgets('basic', (WidgetTester tester) async {
       const widgetName = 'cc1';
 
-      final testWidget = FormBuilderChoiceChip<int>(
+      final testWidget = FormBuilderChoiceChips<int>(
         name: widgetName,
         options: const [
           FormBuilderChipOption(key: ValueKey('1'), value: 1),
@@ -37,7 +37,7 @@ void main() {
     testWidgets('to FormBuilder', (WidgetTester tester) async {
       const widgetName = 'cc2';
 
-      final testWidget = FormBuilderChoiceChip<int>(
+      final testWidget = FormBuilderChoiceChips<int>(
         name: widgetName,
         options: const [
           FormBuilderChipOption(key: ValueKey('1'), value: 1),
@@ -62,7 +62,7 @@ void main() {
     testWidgets('to Widget', (WidgetTester tester) async {
       const widgetName = 'cc3';
 
-      final testWidget = FormBuilderChoiceChip<int>(
+      final testWidget = FormBuilderChoiceChips<int>(
         name: widgetName,
         initialValue: 1,
         options: const [
@@ -87,7 +87,7 @@ void main() {
     testWidgets('When press tab, field will be focused',
         (WidgetTester tester) async {
       const widgetName = 'cb1';
-      final testWidget = FormBuilderChoiceChip<int>(
+      final testWidget = FormBuilderChoiceChips<int>(
         name: widgetName,
         options: const [
           FormBuilderChipOption(key: ValueKey('1'), value: 1),
