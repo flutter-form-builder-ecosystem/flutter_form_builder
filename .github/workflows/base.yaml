@@ -42,11 +42,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Format code
-        run: dart format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed lib/ test/ example/
       - name: Analyze static code
         run: flutter analyze
       - name: Run tests
         run: flutter test --coverage
+      - name: Run fixes tests
+        run: dart fix --compare-to-golden test_fixes/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
