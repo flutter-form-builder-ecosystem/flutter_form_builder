@@ -1,3 +1,24 @@
+# 10.0.0-dev.3
+
+## BREAKING CHANGES
+
+* feat: #1456 remove deprecated code by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1465
+  * Solve issue #1456
+  * Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead.
+  * [FormBuilderTextField] Deprecate canRequestFocus property. Use `FocusNode.canRequestFocus.` instead.
+  * Assert on FormBuilderField.decoration.enabled property. Use FormBuilderField.enabled instead.
+  * Easy way! Only need execute `dart fix --apply` on your project.
+    * Rename FormBuilderChoiceChip to FormBuilderChoiceChips.
+    * Rename FormBuilderFilterChip to FormBuilderFilterChips.
+    * [FormBuilderFilterChip] Remove maxChips property.
+    * [FormBuilderDateTimePicker] Remove resetIcon property.
+    * [FormBuilder] Remove onPopInvoked property.
+
+## Features
+
+* feat: #1455 improve input decoration enabled property by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1464
+  * Solve issue #1455
+
 # 10.0.0-dev.2
 
 * feat: #1458 improve autovalidate modes by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1460
@@ -799,11 +820,11 @@
 * Export `flutter_typeahead` package so user gets access `TextFieldConfiguration` class
 * Deprecate `validator` attribute in FormBuilderDateTimePicker, only `validators` should be used
 * When TimePicker is cancelled, return original value instead of null
-* Fix bug where initialTime for TimePicker defaults to 12:00, use currentTime. Closes [#234](https://github.com/danvick/flutter_form_builder/issues/234)
+* Fix bug where initialTime for TimePicker defaults to 12:00, use currentTime. Closes [#234](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/234)
 
 ## [3.8.0+1]
 
-* Fix bug where Changing readOnly of `FormBuilder` does not change readOnly of `FormBuilderDateTimePicker`. Closes [#179](https://github.com/danvick/flutter_form_builder/issues/179)
+* Fix bug where Changing readOnly of `FormBuilder` does not change readOnly of `FormBuilderDateTimePicker`. Closes [#179](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/179)
 
 ## [3.8.0]
 
@@ -812,7 +833,7 @@
     * `FormBuilderFilterChip` - Creates a chip that acts like a checkbox. By [Cesar Flores](https://github.com/VOIDCRUSHER). Again!
     * `FormBuilderColorPicker` with help from [Benjamin](https://github.com/Reprevise)
     * `FormBuilderTouchSpin` replaced the confusingly named `FormBuilderStepper` which is now deprecated.
-* Fix some inconsistencies in controller and focus node disposal. Courtesy of [Thomas Järvstrand](https://github.com/tjarvstrand). Should close [#230](https://github.com/danvick/flutter_form_builder/issues/230)
+* Fix some inconsistencies in controller and focus node disposal. Courtesy of [Thomas Järvstrand](https://github.com/tjarvstrand). Should close [#230](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/230)
 * Bumped up `flutter_typeahead` from `1.7.0` to `1.8.0`
 
 ## [3.7.3]
@@ -831,29 +852,29 @@
 
 ## [3.7.0] - 5-Dec-2019
 
-* Included `onSaved` callback to all fields. Closes [#175](https://github.com/danvick/flutter_form_builder/issues/175)
+* Included `onSaved` callback to all fields. Closes [#175](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/175)
 * Added `Key` option to all fields to make testing possible 
-* Fixed bug where custom controller not working in TypeAhead. Closes [#144](https://github.com/danvick/flutter_form_builder/issues/144)
+* Fixed bug where custom controller not working in TypeAhead. Closes [#144](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/144)
 * Fix issue where `FormBuilderDateRangePicker` ignores `initialFirstDate` and `initialLastDate`
-* Fixed bug where readOnly not working in FormBuilderDateTimePicker. Closes [#179](https://github.com/danvick/flutter_form_builder/issues/179)
-* Allow double `values` for `FormBuilderStepper`. Closes [#182](https://github.com/danvick/flutter_form_builder/issues/182)
+* Fixed bug where readOnly not working in FormBuilderDateTimePicker. Closes [#179](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/179)
+* Allow double `values` for `FormBuilderStepper`. Closes [#182](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/182)
 * Only include clear icon next to DropdownButton if the value is not `null`
-* Revert `intl`, upgrade `flutter_chips_input` & `datetime_picker_formfield` - due incompatibilities. Closes [#183](https://github.com/danvick/flutter_form_builder/issues/183), [#185](https://github.com/danvick/flutter_form_builder/issues/185)
+* Revert `intl`, upgrade `flutter_chips_input` & `datetime_picker_formfield` - due incompatibilities. Closes [#183](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/183), [#185](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/185)
 
 ## [3.6.1] - 6-Nov-2019
 
-* Fixed bug caused by dropping unimplemented attribute `onChipTapped` of `flutter_chips_input`. Closes [#168](https://github.com/danvick/flutter_form_builder/issues/168)
+* Fixed bug caused by dropping unimplemented attribute `onChipTapped` of `flutter_chips_input`. Closes [#168](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/168)
 
 ## [3.6.0] - 4-Nov-2019
 
-* Added clear option to FormBuilderDropdown - set `allowClear` to true. Closes [#148](https://github.com/danvick/flutter_form_builder/issues/148)
-* Default `contentPadding` and `border` attributes removed from CheckboxList, Radio and SegmentedControl list. Closes [#160](https://github.com/danvick/flutter_form_builder/issues/160)
-* Added `numberFormat` attribute to Slider. Closes [#156](https://github.com/danvick/flutter_form_builder/issues/156)
+* Added clear option to FormBuilderDropdown - set `allowClear` to true. Closes [#148](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/148)
+* Default `contentPadding` and `border` attributes removed from CheckboxList, Radio and SegmentedControl list. Closes [#160](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/160)
+* Added `numberFormat` attribute to Slider. Closes [#156](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/156)
 * Add error text to date range picker. Thanks to [ffpetrovic](https://github.com/ffpetrovic)
 * Fixed bug where pushing cancel on timePicker causes crash. Thanks to [ayushin](https://github.com/ayushin)
-* Fixed bug where Switch doesn't obey initialValue from FormBuilder. Closes [#159](https://github.com/danvick/flutter_form_builder/issues/159)
-* Fixed bug where FormBuilderDropdown shows value instead of label when disabled/readOnly. Closes [#154](https://github.com/danvick/flutter_form_builder/issues/154)
-* Fixed bug where FormBuilderDateTimePicker value is parsed from TextField string. Closes [#164](https://github.com/danvick/flutter_form_builder/issues/164)
+* Fixed bug where Switch doesn't obey initialValue from FormBuilder. Closes [#159](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/159)
+* Fixed bug where FormBuilderDropdown shows value instead of label when disabled/readOnly. Closes [#154](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/154)
+* Fixed bug where FormBuilderDateTimePicker value is parsed from TextField string. Closes [#164](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/164)
 * Added default TextInputConfiguration options for ChipsInput
 * Fix example project - AndroidX compatibility. Thanks to [prasadsunny1](https://github.com/prasadsunny1)
 * Bumped up `flutter_typeahead` 1.6.1 -> 1.7.0
@@ -870,7 +891,7 @@
 
 ## [3.5.3]
 
-* Fixed DateTimePicker bug: '`DateTime is not a subtype of type TimeOfDay`' when Input type is Time only. Closes [#131](https://github.com/danvick/flutter_form_builder/issues/131)
+* Fixed DateTimePicker bug: '`DateTime is not a subtype of type TimeOfDay`' when Input type is Time only. Closes [#131](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/131)
 
 ## [3.5.2]
 
@@ -956,7 +977,7 @@
 
 ## [3.2.3]
 
-* Allow `readonly` attribute for fields to be changed at runtime. Credit [Daniel Acorsi](https://github.com/dhaalves). Closes [#75](https://github.com/danvick/flutter_form_builder/issues/75)
+* Allow `readonly` attribute for fields to be changed at runtime. Credit [Daniel Acorsi](https://github.com/dhaalves). Closes [#75](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/75)
 
 ## [3.2.2]
 
@@ -964,7 +985,7 @@
 
 ## [3.2.1]
 
-* Add missing attributes for `FormBuilderSlider` to customize `Slider` Widget including `activeColor`, `inactiveColor`, `onChangeStart`, `onChangeEnd`, `label` and `semanticFormatterCallback`. Closes [#80](https://github.com/danvick/flutter_form_builder/issues/80).
+* Add missing attributes for `FormBuilderSlider` to customize `Slider` Widget including `activeColor`, `inactiveColor`, `onChangeStart`, `onChangeEnd`, `label` and `semanticFormatterCallback`. Closes [#80](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/80).
 * Add support for `underline` to `FormBuilderDropdown`. Credit Jordan Nelson (github/jrnelson333).
 * Minor fixes to README
 
@@ -975,7 +996,7 @@
 
 ## [3.1.3]
 
-* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead` - Closes [#73](https://github.com/danvick/flutter_form_builder/issues/73). Credit to daWeed (github/psrcek)
+* Made `flutter_typeahead`'s `onSuggestionSelected` available to `FormBuilderTypeAhead` - Closes [#73](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/73). Credit to daWeed (github/psrcek)
 
 ## [3.1.2]
 
@@ -993,7 +1014,7 @@
 
 ## [3.0.1]
 
-* Fixed bug in where `focuNode` for `FormBuilderTextField` is ignored. Closes [#53](https://github.com/danvick/flutter_form_builder/issues/53)
+* Fixed bug in where `focuNode` for `FormBuilderTextField` is ignored. Closes [#53](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/53)
 * Fixed bug in where `textEditingConfiguration` for `FormBuilderTypeAhead` ignored
 
 ## [3.0.0]
@@ -1020,7 +1041,7 @@ functions that do different validations
 * New Feature `FormBuilderValidators` comes with common validation functionality options such as: 
 required, min, max, minLength, maxLength, email, url, credit card etc.
 * Added `valueTransformer` - transforms field value before saving to the final form value
-* Added requested `onChanged` value notifier event on fields. Closes [#45](https://github.com/danvick/flutter_form_builder/issues/45)
+* Added requested `onChanged` value notifier event on fields. Closes [#45](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/45)
 * Prevent duplicate `attribute` names in fields - assertion
 * **Breaking changes:**
     * `FormBuilderInputOption` becomes `FormBuilderFieldOption`
@@ -1067,7 +1088,7 @@ Access form state using a `GlobalKey<FormBilderState>`
 ## [1.5.0]
 
 * Now using `datetime_picker_formfield` plugin from pub for DatePicker and TimePicker. 
-Should close [#33](https://github.com/danvick/flutter_form_builder/issues/33)
+Should close [#33](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/33)
 * Added new `FormBuilderInput` - DateTimePicker
 * **Breaking change**: DatePicker, TimePicker & DateTimePicker now return an object of 
 type `DateTime` instead of `String`
@@ -1077,8 +1098,8 @@ type `DateTime` instead of `String`
 
 * The entire form or individual controls can now be made readonly by making `readonly` property 
 to `true`. Default value is `false`. 
-Closes [#11](https://github.com/danvick/flutter_form_builder/issues/11) and 
-[#16](https://github.com/danvick/flutter_form_builder/issues/16)
+Closes [#11](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/11) and 
+[#16](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/16)
 
 ## [1.3.5]
 
@@ -1090,7 +1111,7 @@ Bug fix: Imported `dart:async` for use of `Future`s to be compatible with Dart <
 
 ## [1.3.3]
 
-* Updated `flutter_typeahead` version. Closes [#15](https://github.com/danvick/flutter_form_builder/issues/15)
+* Updated `flutter_typeahead` version. Closes [#15](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/15)
 
 ## [1.3.2]
 
@@ -1102,7 +1123,7 @@ Bug fix: Imported `dart:async` for use of `Future`s to be compatible with Dart <
 * Moved ChipsInput into own library on pub.dartlang.org, 
 check it out [here](https://pub.dartlang.org/packages/flutter_chips_input)
 * Updated example code to include proper use of Form's `onChanged` function after update. 
-Closes [#8](https://github.com/danvick/flutter_form_builder/issues/8)
+Closes [#8](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/8)
 
 ## [1.3.0]
 
@@ -1147,7 +1168,7 @@ Closes [#8](https://github.com/danvick/flutter_form_builder/issues/8)
 * Added resetButton
 
 ### Fixes 
-* Fixed bug where `TYPE_TEXT` validates as `TYPE_EMAIL` - Closes [#1](https://github.com/danvick/flutter_form_builder/issues/1)
+* Fixed bug where `TYPE_TEXT` validates as `TYPE_EMAIL` - Closes [#1](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1)
 * Fixed initial value setting `FormBuilderInput.checkboxList()`
 
 ### Breaking Changes
