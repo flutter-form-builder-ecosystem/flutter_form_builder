@@ -407,6 +407,20 @@ class _ClearFormBuilderTextFieldState
 }
 ```
 
+## Migrations
+
+### v9 to v10
+
+- Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead
+- [FormBuilderTextField] Deprecate canRequestFocus property. Use `FocusNode.canRequestFocus.` instead
+- Assert on FormBuilderField.decoration.enabled property. Use FormBuilderField.enabled instead
+- Easy way! Only need execute `dart fix --apply` on your project.
+  - Rename FormBuilderChoiceChip to FormBuilderChoiceChips.
+  - Rename FormBuilderFilterChip to FormBuilderFilterChips.
+  - [FormBuilderFilterChip] Remove maxChips property.
+  - [FormBuilderDateTimePicker] Remove resetIcon property.
+  - [FormBuilder] Remove onPopInvoked property.
+
 ## Support
 
 ### Contribute
