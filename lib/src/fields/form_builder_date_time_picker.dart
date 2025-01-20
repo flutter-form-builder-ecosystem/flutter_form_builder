@@ -327,7 +327,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       context: context,
       selectableDayPredicate: widget.selectableDayPredicate,
       initialDatePickerMode: widget.initialDatePickerMode,
-      initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
+      initialDate: currentValue ?? widget.initialDate,
       firstDate: widget.firstDate ?? DateTime(1900),
       lastDate: widget.lastDate ?? DateTime(2100),
       locale: widget.locale,
