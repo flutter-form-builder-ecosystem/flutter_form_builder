@@ -23,7 +23,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   /// (Sunday, June 3, 2018 at 9:24pm)
   final DateFormat? format;
 
-  /// The date the calendar opens to when displayed. Defaults to the current date.
+  /// The date the calendar opens to when displayed. Defaults to null.
   ///
   /// To preset the widget's value, use [initialValue] instead.
   final DateTime? initialDate;
