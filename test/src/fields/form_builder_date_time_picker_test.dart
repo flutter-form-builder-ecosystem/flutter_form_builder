@@ -41,7 +41,9 @@ void main() {
       expect(formValue<DateTime>(widgetName),
           DateTime(dateNow.year, dateNow.month, testDay, 12));
     });
-    testWidgets('input keyboard type', (WidgetTester tester) async {
+    testWidgets(
+        'should change to text field and show keyboard when edit icon is pressed',
+        (WidgetTester tester) async {
       const widgetName = 'fdtp3';
       final widgetKey = UniqueKey();
       const keyboardType = TextInputType.datetime;
@@ -62,6 +64,30 @@ void main() {
 
       final textField = tester.widget<TextField>(find.byType(TextField).first);
       expect(textField.keyboardType, equals(keyboardType));
+    });
+    testWidgets('should show a past year when set on lastDate',
+        (WidgetTester tester) async {
+      const widgetName = 'fdtp3';
+      final widgetKey = UniqueKey();
+      const confirmText = 'OK';
+      const cancelText = 'CANCEL';
+      final year = 2006;
+
+      final testWidget = FormBuilderDateTimePicker(
+        key: widgetKey,
+        name: widgetName,
+        confirmText: confirmText,
+        cancelText: cancelText,
+        initialDate: null,
+        lastDate: DateTime(year, 12, 31),
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      await tester.tap(find.byKey(widgetKey));
+      await tester.pumpAndSettle();
+
+      expect(find.text(confirmText), findsOneWidget);
+      expect(find.text(cancelText), findsOneWidget);
+      expect(find.text('December ${year.toString()}'), findsOneWidget);
     });
     group('initial value -', () {
       testWidgets('to FormBuilder', (WidgetTester tester) async {

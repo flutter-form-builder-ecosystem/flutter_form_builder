@@ -23,7 +23,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   /// (Sunday, June 3, 2018 at 9:24pm)
   final DateFormat? format;
 
-  /// The date the calendar opens to when displayed. Defaults to the current date.
+  /// The date the calendar opens to when displayed. Defaults to null.
   ///
   /// To preset the widget's value, use [initialValue] instead.
   final DateTime? initialDate;
@@ -327,7 +327,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
       context: context,
       selectableDayPredicate: widget.selectableDayPredicate,
       initialDatePickerMode: widget.initialDatePickerMode,
-      initialDate: currentValue ?? widget.initialDate ?? DateTime.now(),
+      initialDate: currentValue ?? widget.initialDate,
       firstDate: widget.firstDate ?? DateTime(1900),
       lastDate: widget.lastDate ?? DateTime(2100),
       locale: widget.locale,
