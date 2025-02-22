@@ -331,6 +331,9 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
   /// enabled, [onTap] is called for every tap including consecutive taps.
   final bool onTapAlwaysCalled;
 
+  /// {@macro flutter.widgets.editableText.stylusHandwritingEnabled}
+  final bool stylusHandwritingEnabled;
+
   /// {@macro flutter.widgets.editableText.scribbleEnabled}
   final bool scribbleEnabled;
 
@@ -436,7 +439,13 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     this.groupId = EditableText,
     this.onAppPrivateCommand,
     this.onTapAlwaysCalled = false,
+    @Deprecated(
+      'Use `stylusHandwritingEnabled` instead. '
+      'This feature was deprecated after v3.27.0-0.2.pre.',
+    )
     this.scribbleEnabled = true,
+    this.stylusHandwritingEnabled =
+        EditableText.defaultStylusHandwritingEnabled,
     this.selectionControls,
     this.statesController,
     this.undoController,
@@ -519,7 +528,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
               groupId: groupId,
               onAppPrivateCommand: onAppPrivateCommand,
               onTapAlwaysCalled: onTapAlwaysCalled,
-              scribbleEnabled: scribbleEnabled,
+              stylusHandwritingEnabled: stylusHandwritingEnabled,
               selectionControls: selectionControls,
               statesController: statesController,
               undoController: undoController,
