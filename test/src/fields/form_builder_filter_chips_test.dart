@@ -43,12 +43,14 @@ void main() {
             FormBuilderChipOption(key: ValueKey('3'), value: 3),
           ],
         );
-        await tester.pumpWidget(buildTestableFieldWidget(
-          testWidget,
-          initialValue: {
-            widgetName: [1]
-          },
-        ));
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            initialValue: {
+              widgetName: [1],
+            },
+          ),
+        );
 
         await tester.ensureVisible(find.byKey(const ValueKey('1')));
         expect(formInstantValue(widgetName), equals(<int>[1]));
@@ -92,8 +94,9 @@ void main() {
         expect(formValue<List<int>?>(widgetName), equals(<int>[3]));
       });
     });
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'key';
       final testWidget = FormBuilderFilterChips<int>(
         name: widgetName,

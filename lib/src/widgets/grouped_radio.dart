@@ -219,33 +219,33 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
 
     return switch (widget.orientation) {
       OptionsOrientation.auto => OverflowBar(
-          alignment: MainAxisAlignment.spaceEvenly,
+        alignment: MainAxisAlignment.spaceEvenly,
+        children: widgetList,
+      ),
+      OptionsOrientation.vertical => SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: widgetList,
         ),
-      OptionsOrientation.vertical => SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: widgetList,
-          ),
-        ),
+      ),
       OptionsOrientation.horizontal => SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: widgetList),
-        ),
+        scrollDirection: Axis.horizontal,
+        child: Row(children: widgetList),
+      ),
       OptionsOrientation.wrap => SingleChildScrollView(
-          child: Wrap(
-            spacing: widget.wrapSpacing,
-            runSpacing: widget.wrapRunSpacing,
-            textDirection: widget.wrapTextDirection,
-            crossAxisAlignment: widget.wrapCrossAxisAlignment,
-            verticalDirection: widget.wrapVerticalDirection,
-            alignment: widget.wrapAlignment,
-            direction: Axis.horizontal,
-            runAlignment: widget.wrapRunAlignment,
-            children: widgetList,
-          ),
-        )
+        child: Wrap(
+          spacing: widget.wrapSpacing,
+          runSpacing: widget.wrapRunSpacing,
+          textDirection: widget.wrapTextDirection,
+          crossAxisAlignment: widget.wrapCrossAxisAlignment,
+          verticalDirection: widget.wrapVerticalDirection,
+          alignment: widget.wrapAlignment,
+          direction: Axis.horizontal,
+          runAlignment: widget.wrapRunAlignment,
+          children: widgetList,
+        ),
+      ),
     };
   }
 
@@ -261,19 +261,21 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       hoverColor: widget.hoverColor,
       materialTapTargetSize: widget.materialTapTargetSize,
       value: optionValue,
-      onChanged: isOptionDisabled
-          ? null
-          : (T? selected) {
-              widget.onChanged(selected);
-            },
+      onChanged:
+          isOptionDisabled
+              ? null
+              : (T? selected) {
+                widget.onChanged(selected);
+              },
     );
 
     final label = GestureDetector(
-      onTap: isOptionDisabled
-          ? null
-          : () {
-              widget.onChanged(optionValue);
-            },
+      onTap:
+          isOptionDisabled
+              ? null
+              : () {
+                widget.onChanged(optionValue);
+              },
       child: option,
     );
 
@@ -304,12 +306,14 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       compositeItem = Container(
         decoration: widget.itemDecoration,
         margin: EdgeInsets.only(
-          bottom: widget.orientation == OptionsOrientation.vertical
-              ? widget.wrapSpacing
-              : 0.0,
-          right: widget.orientation == OptionsOrientation.horizontal
-              ? widget.wrapSpacing
-              : 0.0,
+          bottom:
+              widget.orientation == OptionsOrientation.vertical
+                  ? widget.wrapSpacing
+                  : 0.0,
+          right:
+              widget.orientation == OptionsOrientation.horizontal
+                  ? widget.wrapSpacing
+                  : 0.0,
         ),
         child: compositeItem,
       );

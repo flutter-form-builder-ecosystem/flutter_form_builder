@@ -48,7 +48,7 @@ class FormBuilderDateRangePicker
   final DateTime? currentDate; // widget.currentDate,
   final String? errorFormatText; // widget.erroerrorFormatText,
   final Widget Function(BuildContext, Widget?)?
-      pickerBuilder; // widget.builder,
+  pickerBuilder; // widget.builder,
   final String? errorInvalidRangeText; // widget.errorInvalidRangeText,
   final String? errorInvalidText; // widget.errorInvalidText,
   final String? fieldEndHintText; // widget.fieldEndHintText,
@@ -131,54 +131,54 @@ class FormBuilderDateRangePicker
     this.allowClear = false,
     this.clearIcon,
   }) : super(
-          builder: (FormFieldState<DateTimeRange?> field) {
-            final state = field as _FormBuilderDateRangePickerState;
+         builder: (FormFieldState<DateTimeRange?> field) {
+           final state = field as _FormBuilderDateRangePickerState;
 
-            return FocusTraversalGroup(
-              policy: ReadingOrderTraversalPolicy(),
-              child: TextField(
-                onTap: () => state.showPicker(),
-                enabled: state.enabled,
-                style: style,
-                focusNode: state.effectiveFocusNode,
-                decoration: state.decoration,
-                // initialValue: "${_initialValue ?? ''}",
-                maxLines: maxLines,
-                keyboardType: keyboardType,
-                obscureText: obscureText,
-                onEditingComplete: onEditingComplete,
-                controller: state._effectiveController,
-                autocorrect: autocorrect,
-                autofocus: autofocus,
-                buildCounter: buildCounter,
-                mouseCursor: mouseCursor,
-                cursorColor: cursorColor,
-                cursorRadius: cursorRadius,
-                cursorWidth: cursorWidth,
-                enableInteractiveSelection: enableInteractiveSelection,
-                maxLength: maxLength,
-                inputFormatters: inputFormatters,
-                keyboardAppearance: keyboardAppearance,
-                maxLengthEnforcement: maxLengthEnforcement,
-                scrollPadding: scrollPadding,
-                textAlign: textAlign,
-                textCapitalization: textCapitalization,
-                textDirection: textDirection,
-                textInputAction: textInputAction,
-                textAlignVertical: textAlignVertical,
-                strutStyle: strutStyle,
-                readOnly: true,
-                expands: expands,
-                minLines: minLines,
-                showCursor: showCursor,
-              ),
-            );
-          },
-        );
+           return FocusTraversalGroup(
+             policy: ReadingOrderTraversalPolicy(),
+             child: TextField(
+               onTap: () => state.showPicker(),
+               enabled: state.enabled,
+               style: style,
+               focusNode: state.effectiveFocusNode,
+               decoration: state.decoration,
+               // initialValue: "${_initialValue ?? ''}",
+               maxLines: maxLines,
+               keyboardType: keyboardType,
+               obscureText: obscureText,
+               onEditingComplete: onEditingComplete,
+               controller: state._effectiveController,
+               autocorrect: autocorrect,
+               autofocus: autofocus,
+               buildCounter: buildCounter,
+               mouseCursor: mouseCursor,
+               cursorColor: cursorColor,
+               cursorRadius: cursorRadius,
+               cursorWidth: cursorWidth,
+               enableInteractiveSelection: enableInteractiveSelection,
+               maxLength: maxLength,
+               inputFormatters: inputFormatters,
+               keyboardAppearance: keyboardAppearance,
+               maxLengthEnforcement: maxLengthEnforcement,
+               scrollPadding: scrollPadding,
+               textAlign: textAlign,
+               textCapitalization: textCapitalization,
+               textDirection: textDirection,
+               textInputAction: textInputAction,
+               textAlignVertical: textAlignVertical,
+               strutStyle: strutStyle,
+               readOnly: true,
+               expands: expands,
+               minLines: minLines,
+               showCursor: showCursor,
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderDateRangePicker, DateTimeRange>
-      createState() => _FormBuilderDateRangePickerState();
+  createState() => _FormBuilderDateRangePickerState();
 
   static String tryFormat(DateTime date, intl.DateFormat format) {
     try {
@@ -190,8 +190,12 @@ class FormBuilderDateRangePicker
   }
 }
 
-class _FormBuilderDateRangePickerState extends FormBuilderFieldDecorationState<
-    FormBuilderDateRangePicker, DateTimeRange> {
+class _FormBuilderDateRangePickerState
+    extends
+        FormBuilderFieldDecorationState<
+          FormBuilderDateRangePicker,
+          DateTimeRange
+        > {
   late TextEditingController _effectiveController;
 
   @override
@@ -262,7 +266,9 @@ class _FormBuilderDateRangePickerState extends FormBuilderFieldDecorationState<
   }
 
   String format(DateTime date) => FormBuilderDateRangePicker.tryFormat(
-      date, widget.format ?? intl.DateFormat.yMd());
+    date,
+    widget.format ?? intl.DateFormat.yMd(),
+  );
 
   void _setTextFieldString() {
     setState(() => _effectiveController.text = _valueToText());
@@ -281,8 +287,9 @@ class _FormBuilderDateRangePickerState extends FormBuilderFieldDecorationState<
   }
 
   @override
-  InputDecoration get decoration => widget.allowClear
-      ? super.decoration.copyWith(
+  InputDecoration get decoration =>
+      widget.allowClear
+          ? super.decoration.copyWith(
             suffix: IconButton(
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
@@ -293,5 +300,5 @@ class _FormBuilderDateRangePickerState extends FormBuilderFieldDecorationState<
               icon: widget.clearIcon ?? const Icon(Icons.clear),
             ),
           )
-      : super.decoration;
+          : super.decoration;
 }

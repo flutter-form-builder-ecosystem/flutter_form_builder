@@ -7,8 +7,9 @@ import '../form_builder_tester.dart';
 
 void main() {
   group('custom error -', () {
-    testWidgets('Should show custom error when invalidate field',
-        (tester) async {
+    testWidgets('Should show custom error when invalidate field', (
+      tester,
+    ) async {
       const textFieldName = 'text1';
       const errorTextField = 'error text field';
       final testWidget = FormBuilderTextField(name: textFieldName);
@@ -22,105 +23,105 @@ void main() {
   });
 
   group('dynamic fields', () {
-    testWidgets(
-      'FormBuilder Dynamic Field -- keeping value',
-      (WidgetTester tester) async {
-        const String testWidgetName = 'test_widget_name';
+    testWidgets('FormBuilder Dynamic Field -- keeping value', (
+      WidgetTester tester,
+    ) async {
+      const String testWidgetName = 'test_widget_name';
 
-        await tester.pumpWidget(
-          buildTestableFieldWidget(
-            _DynamicFormFields(
-              name: testWidgetName,
-              valueTransformer: (value) {
-                return value is String ? int.tryParse(value) : null;
-              },
-            ),
-            // the value is kept
-            clearValueOnUnregister: false,
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          _DynamicFormFields(
+            name: testWidgetName,
+            valueTransformer: (value) {
+              return value is String ? int.tryParse(value) : null;
+            },
           ),
-        );
+          // the value is kept
+          clearValueOnUnregister: false,
+        ),
+      );
 
-        // Write an input resulting in a null value after transformation
-        formFieldDidChange(testWidgetName, 'a');
-        expect(formInstantValue(testWidgetName), isNull);
+      // Write an input resulting in a null value after transformation
+      formFieldDidChange(testWidgetName, 'a');
+      expect(formInstantValue(testWidgetName), isNull);
 
-        // Write an input and test the transformer
-        formFieldDidChange(testWidgetName, '1');
-        expect(formInstantValue(testWidgetName).runtimeType, int);
-        expect(formInstantValue(testWidgetName), 1);
+      // Write an input and test the transformer
+      formFieldDidChange(testWidgetName, '1');
+      expect(formInstantValue(testWidgetName).runtimeType, int);
+      expect(formInstantValue(testWidgetName), 1);
 
-        // Remove the dynamic field from the widget tree
-        final _DynamicFormFieldsState dynamicFieldState =
-            tester.state(find.byType(_DynamicFormFields));
-        dynamicFieldState.show = false;
+      // Remove the dynamic field from the widget tree
+      final _DynamicFormFieldsState dynamicFieldState = tester.state(
+        find.byType(_DynamicFormFields),
+      );
+      dynamicFieldState.show = false;
 
-        // Pump the next frame, disposing the field's state
-        await tester.pump();
+      // Pump the next frame, disposing the field's state
+      await tester.pump();
 
-        // With the field unregistered, the form does not have its transformer
-        // but it still has its value, now recovered as type String
-        expect(formInstantValue(testWidgetName).runtimeType, String);
-        expect(formInstantValue(testWidgetName), '1');
+      // With the field unregistered, the form does not have its transformer
+      // but it still has its value, now recovered as type String
+      expect(formInstantValue(testWidgetName).runtimeType, String);
+      expect(formInstantValue(testWidgetName), '1');
 
-        // Show and recreate the field's state
-        dynamicFieldState.show = true;
-        await tester.pump();
+      // Show and recreate the field's state
+      dynamicFieldState.show = true;
+      await tester.pump();
 
-        // The transformer is registered again and with the internal value that
-        // was kept, it's expected an int of value 1
-        expect(formInstantValue(testWidgetName).runtimeType, int);
-        expect(formInstantValue(testWidgetName), 1);
-      },
-    );
+      // The transformer is registered again and with the internal value that
+      // was kept, it's expected an int of value 1
+      expect(formInstantValue(testWidgetName).runtimeType, int);
+      expect(formInstantValue(testWidgetName), 1);
+    });
 
-    testWidgets(
-      'FormBuilder Dynamic Field -- clearing value',
-      (WidgetTester tester) async {
-        const String testWidgetName = 'test_widget_name';
+    testWidgets('FormBuilder Dynamic Field -- clearing value', (
+      WidgetTester tester,
+    ) async {
+      const String testWidgetName = 'test_widget_name';
 
-        await tester.pumpWidget(
-          buildTestableFieldWidget(
-            _DynamicFormFields(
-              name: testWidgetName,
-              valueTransformer: (value) {
-                return value is String ? int.tryParse(value) : null;
-              },
-            ),
-            // the value is cleared
-            clearValueOnUnregister: true,
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          _DynamicFormFields(
+            name: testWidgetName,
+            valueTransformer: (value) {
+              return value is String ? int.tryParse(value) : null;
+            },
           ),
-        );
+          // the value is cleared
+          clearValueOnUnregister: true,
+        ),
+      );
 
-        // Write an input and test the transformer
-        formFieldDidChange(testWidgetName, '1');
-        await tester.pump();
-        expect(int, formInstantValue(testWidgetName).runtimeType);
-        expect(1, formInstantValue(testWidgetName));
+      // Write an input and test the transformer
+      formFieldDidChange(testWidgetName, '1');
+      await tester.pump();
+      expect(int, formInstantValue(testWidgetName).runtimeType);
+      expect(1, formInstantValue(testWidgetName));
 
-        // Remove the dynamic field from the widget tree
-        final _DynamicFormFieldsState dynamicFieldState =
-            tester.state(find.byType(_DynamicFormFields));
-        dynamicFieldState.show = false;
+      // Remove the dynamic field from the widget tree
+      final _DynamicFormFieldsState dynamicFieldState = tester.state(
+        find.byType(_DynamicFormFields),
+      );
+      dynamicFieldState.show = false;
 
-        // Pump the next frame, disposing the field's state
-        await tester.pump();
+      // Pump the next frame, disposing the field's state
+      await tester.pump();
 
-        // With the field unregistered, the form does not have its transformer,
-        // and since the value was cleared, neither its value
-        expect(formInstantValue(testWidgetName).runtimeType, Null);
-        expect(formInstantValue(testWidgetName), isNull);
+      // With the field unregistered, the form does not have its transformer,
+      // and since the value was cleared, neither its value
+      expect(formInstantValue(testWidgetName).runtimeType, Null);
+      expect(formInstantValue(testWidgetName), isNull);
 
-        // Show and recreate the field's state
-        dynamicFieldState.show = true;
-        await tester.pump();
+      // Show and recreate the field's state
+      dynamicFieldState.show = true;
+      await tester.pump();
 
-        // A new input is needed to get another value
-        formFieldDidChange(testWidgetName, '2');
-        await tester.pump();
-        expect(formInstantValue(testWidgetName).runtimeType, int);
-        expect(formInstantValue(testWidgetName), 2);
-      },
-    );
+      // A new input is needed to get another value
+      formFieldDidChange(testWidgetName, '2');
+      await tester.pump();
+      expect(formInstantValue(testWidgetName).runtimeType, int);
+      expect(formInstantValue(testWidgetName), 2);
+    });
   });
 
   group('isValid -', () {
@@ -136,219 +137,244 @@ void main() {
 
       expect(formKey.currentState?.isValid, isFalse);
     });
-    testWidgets('Should valid when no has error and autovalidateMode is always',
-        (tester) async {
-      const textFieldName = 'text';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        validator: (value) =>
-            value == null || value.isEmpty ? errorTextField : null,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        autovalidateMode: AutovalidateMode.always,
-      ));
+    testWidgets(
+      'Should valid when no has error and autovalidateMode is always',
+      (tester) async {
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator:
+              (value) => value == null || value.isEmpty ? errorTextField : null,
+        );
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            autovalidateMode: AutovalidateMode.always,
+          ),
+        );
 
-      expect(formKey.currentState?.isValid, isFalse);
+        expect(formKey.currentState?.isValid, isFalse);
 
-      final widgetFinder = find.byWidget(testWidget);
-      await tester.enterText(widgetFinder, 'test');
-      await tester.pumpAndSettle();
+        final widgetFinder = find.byWidget(testWidget);
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
 
-      expect(formKey.currentState?.isValid, isTrue);
-    });
-    testWidgets('Should invalid when has error and autovalidateMode is always',
-        (tester) async {
-      const textFieldName = 'text';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        validator: (value) =>
-            value == null || value.length < 10 ? errorTextField : null,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        autovalidateMode: AutovalidateMode.always,
-      ));
+        expect(formKey.currentState?.isValid, isTrue);
+      },
+    );
+    testWidgets(
+      'Should invalid when has error and autovalidateMode is always',
+      (tester) async {
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator:
+              (value) =>
+                  value == null || value.length < 10 ? errorTextField : null,
+        );
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            autovalidateMode: AutovalidateMode.always,
+          ),
+        );
 
-      expect(formKey.currentState?.isValid, isFalse);
+        expect(formKey.currentState?.isValid, isFalse);
 
-      final widgetFinder = find.byWidget(testWidget);
-      await tester.enterText(widgetFinder, 'test');
-      await tester.pumpAndSettle();
+        final widgetFinder = find.byWidget(testWidget);
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
 
-      expect(formKey.currentState?.isValid, isFalse);
-    });
+        expect(formKey.currentState?.isValid, isFalse);
+      },
+    );
   });
 
   group('skipDisabled -', () {
     testWidgets(
-        'Should not show error when field is disabled and skipDisabled is true',
-        (tester) async {
-      const textFieldName = 'text3';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        enabled: false,
-        validator: (value) => errorTextField,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        skipDisabled: true,
-      ));
+      'Should not show error when field is disabled and skipDisabled is true',
+      (tester) async {
+        const textFieldName = 'text3';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          enabled: false,
+          validator: (value) => errorTextField,
+        );
+        await tester.pumpWidget(
+          buildTestableFieldWidget(testWidget, skipDisabled: true),
+        );
 
-      formKey.currentState?.validate();
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsNothing);
+        formKey.currentState?.validate();
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsNothing);
 
-      formKey.currentState?.fields[textFieldName]?.validate();
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsNothing);
-    });
+        formKey.currentState?.fields[textFieldName]?.validate();
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsNothing);
+      },
+    );
     testWidgets(
-        'Should show error when field is disabled and skipDisabled is false',
-        (tester) async {
-      const textFieldName = 'text4';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        enabled: false,
-        validator: (value) => errorTextField,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      'Should show error when field is disabled and skipDisabled is false',
+      (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          enabled: false,
+          validator: (value) => errorTextField,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
-      formKey.currentState?.validate();
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsOneWidget);
+        formKey.currentState?.validate();
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsOneWidget);
 
-      formKey.currentState?.reset();
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsNothing);
+        formKey.currentState?.reset();
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsNothing);
 
-      formKey.currentState?.fields[textFieldName]?.validate();
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsOneWidget);
-    });
+        formKey.currentState?.fields[textFieldName]?.validate();
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsOneWidget);
+      },
+    );
   });
 
   group('autovalidateMode -', () {
     testWidgets(
-        'Should show error when init form and AutovalidateMode is always',
-        (tester) async {
-      const textFieldName = 'text4';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        validator: (value) => errorTextField,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        autovalidateMode: AutovalidateMode.always,
-      ));
-      await tester.pumpAndSettle();
-
-      expect(find.text(errorTextField), findsOneWidget);
-    });
-    testWidgets(
-        'Should not show error when init form and AutovalidateMode is disabled',
-        (tester) async {
-      const textFieldName = 'text4';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        validator: (value) => errorTextField,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        autovalidateMode: AutovalidateMode.disabled,
-      ));
-      await tester.pumpAndSettle();
-
-      expect(find.text(errorTextField), findsNothing);
-    });
-    testWidgets(
-        'Should show error when init form and AutovalidateMode is onUserInteraction',
-        (tester) async {
-      const textFieldName = 'text4';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        validator: (value) => errorTextField,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-      ));
-      await tester.pumpAndSettle();
-
-      expect(find.text(errorTextField), findsNothing);
-
-      final widgetFinder = find.byWidget(testWidget);
-      await tester.enterText(widgetFinder, 'test');
-      await tester.pumpAndSettle();
-
-      expect(find.text(errorTextField), findsOneWidget);
-    });
-    testWidgets(
-        'Should show error when init form and AutovalidateMode is onUnfocus',
-        (tester) async {
-      const textFieldName = 'text4';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
-        validator: (value) => errorTextField,
-      );
-      final widgetFinder = find.byWidget(testWidget);
-
-      // Init form
-      await tester.pumpWidget(buildTestableFieldWidget(
-        Column(
-          children: [
-            testWidget,
-            ElevatedButton(onPressed: () {}, child: const Text('Submit')),
-          ],
-        ),
-        autovalidateMode: AutovalidateMode.onUnfocus,
-      ));
-      await tester.pumpAndSettle();
-      final focusNode =
-          formKey.currentState?.fields[textFieldName]?.effectiveFocusNode;
-      expect(find.text(errorTextField), findsNothing);
-      expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
-      expect(focusNode?.hasFocus, false);
-
-      // Focus input and write text
-      await tester.enterText(widgetFinder, 'test');
-      await tester.pumpAndSettle();
-      expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
-      expect(focusNode?.hasFocus, true);
-      expect(find.text(errorTextField), findsNothing);
-
-      // Unfocus input and show error
-      await tester.sendKeyEvent(LogicalKeyboardKey.tab);
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsOneWidget);
-    });
-    group('Interact with FormBuilderField -', () {
-      testWidgets(
-          'Should show error when FormBuilder is disabled and FormBuilderField is always',
-          (tester) async {
+      'Should show error when init form and AutovalidateMode is always',
+      (tester) async {
         const textFieldName = 'text4';
         const errorTextField = 'error text field';
         final testWidget = FormBuilderTextField(
           name: textFieldName,
           validator: (value) => errorTextField,
-          autovalidateMode: AutovalidateMode.always,
         );
-        await tester.pumpWidget(buildTestableFieldWidget(
-          testWidget,
-          autovalidateMode: AutovalidateMode.disabled,
-        ));
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            autovalidateMode: AutovalidateMode.always,
+          ),
+        );
         await tester.pumpAndSettle();
 
         expect(find.text(errorTextField), findsOneWidget);
-      });
+      },
+    );
+    testWidgets(
+      'Should not show error when init form and AutovalidateMode is disabled',
+      (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator: (value) => errorTextField,
+        );
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            autovalidateMode: AutovalidateMode.disabled,
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorTextField), findsNothing);
+      },
+    );
+    testWidgets(
+      'Should show error when init form and AutovalidateMode is onUserInteraction',
+      (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator: (value) => errorTextField,
+        );
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorTextField), findsNothing);
+
+        final widgetFinder = find.byWidget(testWidget);
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
+
+        expect(find.text(errorTextField), findsOneWidget);
+      },
+    );
+    testWidgets(
+      'Should show error when init form and AutovalidateMode is onUnfocus',
+      (tester) async {
+        const textFieldName = 'text4';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          validator: (value) => errorTextField,
+        );
+        final widgetFinder = find.byWidget(testWidget);
+
+        // Init form
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            Column(
+              children: [
+                testWidget,
+                ElevatedButton(onPressed: () {}, child: const Text('Submit')),
+              ],
+            ),
+            autovalidateMode: AutovalidateMode.onUnfocus,
+          ),
+        );
+        await tester.pumpAndSettle();
+        final focusNode =
+            formKey.currentState?.fields[textFieldName]?.effectiveFocusNode;
+        expect(find.text(errorTextField), findsNothing);
+        expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
+        expect(focusNode?.hasFocus, false);
+
+        // Focus input and write text
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
+        expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
+        expect(focusNode?.hasFocus, true);
+        expect(find.text(errorTextField), findsNothing);
+
+        // Unfocus input and show error
+        await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsOneWidget);
+      },
+    );
+    group('Interact with FormBuilderField -', () {
+      testWidgets(
+        'Should show error when FormBuilder is disabled and FormBuilderField is always',
+        (tester) async {
+          const textFieldName = 'text4';
+          const errorTextField = 'error text field';
+          final testWidget = FormBuilderTextField(
+            name: textFieldName,
+            validator: (value) => errorTextField,
+            autovalidateMode: AutovalidateMode.always,
+          );
+          await tester.pumpWidget(
+            buildTestableFieldWidget(
+              testWidget,
+              autovalidateMode: AutovalidateMode.disabled,
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          expect(find.text(errorTextField), findsOneWidget);
+        },
+      );
       // TODO: Enable when solve issue
       // https://github.com/flutter/flutter/issues/125766
       // testWidgets(
@@ -390,8 +416,9 @@ void main() {
 
       expect(formKey.currentState?.isDirty, true);
     });
-    testWidgets('Should dirty when update field value by method',
-        (tester) async {
+    testWidgets('Should dirty when update field value by method', (
+      tester,
+    ) async {
       const textFieldName = 'text';
       final testWidget = FormBuilderTextField(name: textFieldName);
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
@@ -401,28 +428,34 @@ void main() {
 
       expect(formKey.currentState?.isDirty, true);
     });
-    testWidgets('Should dirty when update field with initial value by user',
-        (tester) async {
+    testWidgets('Should dirty when update field with initial value by user', (
+      tester,
+    ) async {
       const textFieldName = 'text';
       final testWidget = FormBuilderTextField(name: textFieldName);
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        initialValue: {textFieldName: 'hi'},
-      ));
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testWidget,
+          initialValue: {textFieldName: 'hi'},
+        ),
+      );
 
       final widgetFinder = find.byWidget(testWidget);
       await tester.enterText(widgetFinder, 'test');
 
       expect(formKey.currentState?.isDirty, true);
     });
-    testWidgets('Should dirty when update field with initial value by method',
-        (tester) async {
+    testWidgets('Should dirty when update field with initial value by method', (
+      tester,
+    ) async {
       const textFieldName = 'text';
       final testWidget = FormBuilderTextField(name: textFieldName);
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        initialValue: {textFieldName: 'hi'},
-      ));
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testWidget,
+          initialValue: {textFieldName: 'hi'},
+        ),
+      );
 
       formKey.currentState?.patchValue({textFieldName: 'test'});
       await tester.pumpAndSettle();
@@ -440,14 +473,17 @@ void main() {
 
       expect(formKey.currentState?.isDirty, false);
     });
-    testWidgets('Should not dirty when reset field with initial value',
-        (tester) async {
+    testWidgets('Should not dirty when reset field with initial value', (
+      tester,
+    ) async {
       const textFieldName = 'text';
       final testWidget = FormBuilderTextField(name: textFieldName);
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        initialValue: {textFieldName: 'hi'},
-      ));
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testWidget,
+          initialValue: {textFieldName: 'hi'},
+        ),
+      );
 
       formKey.currentState?.patchValue({textFieldName: 'test'});
       await tester.pumpAndSettle();
@@ -492,13 +528,10 @@ void main() {
     testWidgets('Should reset to initial when call reset', (tester) async {
       const textFieldName = 'text';
       const initialValue = {textFieldName: 'test'};
-      final testWidget = FormBuilderTextField(
-        name: textFieldName,
+      final testWidget = FormBuilderTextField(name: textFieldName);
+      await tester.pumpWidget(
+        buildTestableFieldWidget(testWidget, initialValue: initialValue),
       );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testWidget,
-        initialValue: initialValue,
-      ));
 
       formKey.currentState?.patchValue({textFieldName: 'hello'});
       await tester.pumpAndSettle();
@@ -507,26 +540,28 @@ void main() {
       expect(formKey.currentState?.instantValue, equals(initialValue));
     });
     testWidgets(
-        'Should reset custom error when invalidate field and then reset',
-        (tester) async {
-      const textFieldName = 'text';
-      const errorTextField = 'error text field';
-      final testWidget = FormBuilderTextField(name: textFieldName);
-      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      'Should reset custom error when invalidate field and then reset',
+      (tester) async {
+        const textFieldName = 'text';
+        const errorTextField = 'error text field';
+        final testWidget = FormBuilderTextField(name: textFieldName);
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
-      formKey.currentState?.fields[textFieldName]?.invalidate(errorTextField);
-      await tester.pumpAndSettle();
+        formKey.currentState?.fields[textFieldName]?.invalidate(errorTextField);
+        await tester.pumpAndSettle();
 
-      // Reset custom error
-      formKey.currentState?.reset();
-      await tester.pumpAndSettle();
-      expect(find.text(errorTextField), findsNothing);
-    });
+        // Reset custom error
+        formKey.currentState?.reset();
+        await tester.pumpAndSettle();
+        expect(find.text(errorTextField), findsNothing);
+      },
+    );
   });
 
   group('errors -', () {
-    testWidgets('Should get errors when more than one fields are invalid',
-        (tester) async {
+    testWidgets('Should get errors when more than one fields are invalid', (
+      tester,
+    ) async {
       const textFieldName = 'text';
       const checkboxName = 'checkbox';
       const textFieldError = 'error text';
@@ -540,17 +575,16 @@ void main() {
         name: checkboxName,
         validator: (value) => checkboxError,
       );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        Column(children: [testTextField, testCheckbox]),
-        autovalidateMode: AutovalidateMode.always,
-      ));
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          Column(children: [testTextField, testCheckbox]),
+          autovalidateMode: AutovalidateMode.always,
+        ),
+      );
 
       expect(
         formKey.currentState?.errors,
-        equals({
-          textFieldName: textFieldError,
-          checkboxName: checkboxError,
-        }),
+        equals({textFieldName: textFieldError, checkboxName: checkboxError}),
       );
     });
     testWidgets('Should get errors when one field are invalid', (tester) async {
@@ -560,26 +594,29 @@ void main() {
         name: textFieldName,
         validator: (value) => textFieldError,
       );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testTextField,
-        autovalidateMode: AutovalidateMode.always,
-      ));
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testTextField,
+          autovalidateMode: AutovalidateMode.always,
+        ),
+      );
 
       expect(
         formKey.currentState?.errors,
         equals({textFieldName: textFieldError}),
       );
     });
-    testWidgets('Should not get errors when all fields are valid',
-        (tester) async {
+    testWidgets('Should not get errors when all fields are valid', (
+      tester,
+    ) async {
       const textFieldName = 'text';
-      final testTextField = FormBuilderTextField(
-        name: textFieldName,
+      final testTextField = FormBuilderTextField(name: textFieldName);
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testTextField,
+          autovalidateMode: AutovalidateMode.always,
+        ),
       );
-      await tester.pumpWidget(buildTestableFieldWidget(
-        testTextField,
-        autovalidateMode: AutovalidateMode.always,
-      ));
 
       expect(formKey.currentState?.errors, equals({}));
     });
@@ -589,10 +626,7 @@ void main() {
 // simple stateful widget that can hide and show its child with the intent of
 // disposing it from the tree
 class _DynamicFormFields extends StatefulWidget {
-  const _DynamicFormFields({
-    required this.name,
-    this.valueTransformer,
-  });
+  const _DynamicFormFields({required this.name, this.valueTransformer});
 
   final String name;
   final ValueTransformer? valueTransformer;
@@ -617,9 +651,7 @@ class _DynamicFormFieldsState extends State<_DynamicFormFields> {
         name: widget.name,
         valueTransformer: widget.valueTransformer,
         builder: (FormFieldState<String?> field) {
-          return TextField(
-            onChanged: (value) => field.didChange(value),
-          );
+          return TextField(onChanged: (value) => field.didChange(value));
         },
       ),
     );

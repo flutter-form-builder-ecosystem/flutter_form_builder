@@ -89,25 +89,23 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// initialValue prevails.
   T? get initialValue =>
       widget.initialValue ??
-      (_formBuilderState?.initialValue ??
-          const <String, dynamic>{})[widget.name] as T?;
+      (_formBuilderState?.initialValue ?? const <String, dynamic>{})[widget
+              .name]
+          as T?;
 
   dynamic get transformedValue =>
       widget.valueTransformer == null ? value : widget.valueTransformer!(value);
 
   @override
-
   /// Returns the current error text,
   /// which may be a validation error or a custom error text.
   String? get errorText => super.errorText ?? _customErrorText;
 
   @override
-
   /// Returns `true` if the field has an error or has a custom error text.
   bool get hasError => super.hasError || errorText != null;
 
   @override
-
   /// Returns `true` if the field is valid and has no custom error text.
   bool get isValid => super.isValid && _customErrorText == null;
 
@@ -219,7 +217,6 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   }
 
   @override
-
   /// Reset field value to initial value
   ///
   /// Also reset custom error text if exists, and set [isDirty] to `false`.
@@ -259,7 +256,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
     final isValid = super.validate() && !hasError;
 
-    final fields = _formBuilderState?.fields ??
+    final fields =
+        _formBuilderState?.fields ??
         <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
 
     if (!isValid &&

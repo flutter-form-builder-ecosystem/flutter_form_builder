@@ -414,7 +414,7 @@ class _ClearFormBuilderTextFieldState
 - Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead
 - [FormBuilderTextField] Deprecate canRequestFocus property. Use `FocusNode.canRequestFocus.` instead
 - Assert on FormBuilderField.decoration.enabled property. Use FormBuilderField.enabled instead
-- Easy way! Only need execute `dart fix --apply` on your project.
+- Easy way! Only need execute `dart fix --apply` on your project to fix the following changes:
   - Rename FormBuilderChoiceChip to FormBuilderChoiceChips.
   - Rename FormBuilderFilterChip to FormBuilderFilterChips.
   - [FormBuilderFilterChip] Remove maxChips property.

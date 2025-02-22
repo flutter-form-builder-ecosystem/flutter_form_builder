@@ -12,18 +12,9 @@ void main() {
       final testWidget = FormBuilderDropdown<int>(
         name: widgetName,
         items: const [
-          DropdownMenuItem(
-            value: 1,
-            child: Text('One'),
-          ),
-          DropdownMenuItem(
-            value: 2,
-            child: Text('Two'),
-          ),
-          DropdownMenuItem(
-            value: 3,
-            child: Text('Three'),
-          ),
+          DropdownMenuItem(value: 1, child: Text('One')),
+          DropdownMenuItem(value: 2, child: Text('Two')),
+          DropdownMenuItem(value: 3, child: Text('Three')),
         ],
       );
       final widgetFinder = find.byWidget(testWidget);
@@ -45,8 +36,9 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(widgetName), equals(1));
     });
-    testWidgets('reset to initial value when update items',
-        (WidgetTester tester) async {
+    testWidgets('reset to initial value when update items', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'dropdown_field';
       const buttonKey = Key('update_button');
 
@@ -85,8 +77,9 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(widgetName), equals(3));
     });
-    testWidgets('reset to initial value when update items with same values',
-        (WidgetTester tester) async {
+    testWidgets('reset to initial value when update items with same values', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'dropdown_field';
       const buttonKey = Key('update_button');
 
@@ -133,8 +126,9 @@ void main() {
       expect(formValue(widgetName), equals(1));
     });
 
-    testWidgets('reset to initial value when update items with same children',
-        (WidgetTester tester) async {
+    testWidgets('reset to initial value when update items with same children', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'dropdown_field';
       const buttonKey = Key('update_button');
       const option1 = Text('Option 1');
@@ -183,8 +177,9 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(widgetName), equals(3));
     });
-    testWidgets('maintain initial value when update to equals items',
-        (WidgetTester tester) async {
+    testWidgets('maintain initial value when update to equals items', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'dropdown_field';
       const buttonKey = Key('update_button');
 
@@ -235,8 +230,10 @@ void main() {
       DropdownMenuItem(value: 2, child: Text('Option 2')),
     ];
 
-    final testWidget =
-        FormBuilderDropdown(name: widgetName, items: initialItems);
+    final testWidget = FormBuilderDropdown(
+      name: widgetName,
+      items: initialItems,
+    );
     await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
     formKey.currentState?.patchValue({widgetName: 1});
@@ -254,12 +251,13 @@ void main() {
       DropdownMenuItem(value: 1, child: Text('Option 1')),
       DropdownMenuItem(value: 2, child: Text('Option 2')),
     ];
-    final testWidget =
-        FormBuilderDropdown(name: widgetName, items: initialItems);
-    await tester.pumpWidget(buildTestableFieldWidget(
-      testWidget,
-      initialValue: initialValue,
-    ));
+    final testWidget = FormBuilderDropdown(
+      name: widgetName,
+      items: initialItems,
+    );
+    await tester.pumpWidget(
+      buildTestableFieldWidget(testWidget, initialValue: initialValue),
+    );
 
     formKey.currentState?.patchValue({widgetName: 2});
     await tester.pumpAndSettle();
@@ -268,24 +266,16 @@ void main() {
     expect(formKey.currentState?.instantValue, equals(initialValue));
   });
 
-  testWidgets('When press tab, field will be focused',
-      (WidgetTester tester) async {
+  testWidgets('When press tab, field will be focused', (
+    WidgetTester tester,
+  ) async {
     const widgetName = 'cb1';
     final testWidget = FormBuilderDropdown<int>(
       name: widgetName,
       items: const [
-        DropdownMenuItem(
-          value: 1,
-          child: Text('One'),
-        ),
-        DropdownMenuItem(
-          value: 2,
-          child: Text('Two'),
-        ),
-        DropdownMenuItem(
-          value: 3,
-          child: Text('Three'),
-        ),
+        DropdownMenuItem(value: 1, child: Text('One')),
+        DropdownMenuItem(value: 2, child: Text('Two')),
+        DropdownMenuItem(value: 3, child: Text('Three')),
       ],
     );
     final widgetFinder = find.byWidget(testWidget);
@@ -359,7 +349,7 @@ class _MyTestWidgetState<T> extends State<MyTestWidget> {
             });
           },
           child: const Text('update'),
-        )
+        ),
       ],
     );
   }

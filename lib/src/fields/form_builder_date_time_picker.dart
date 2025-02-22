@@ -193,57 +193,58 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.onEntryModeChanged,
     this.barrierDismissible = true,
   }) : super(
-          builder: (FormFieldState<DateTime?> field) {
-            final state = field as _FormBuilderDateTimePickerState;
+         builder: (FormFieldState<DateTime?> field) {
+           final state = field as _FormBuilderDateTimePickerState;
 
-            return FocusTraversalGroup(
-              policy: ReadingOrderTraversalPolicy(),
-              child: TextField(
-                onTap: () => state.showPicker(),
-                textDirection: textDirection,
-                textAlign: textAlign,
-                textAlignVertical: textAlignVertical,
-                maxLength: maxLength,
-                autofocus: autofocus,
-                decoration: state.decoration,
-                readOnly: true,
-                enabled: state.enabled,
-                autocorrect: autocorrect,
-                controller: state._textFieldController,
-                focusNode: state.effectiveFocusNode,
-                inputFormatters: inputFormatters,
-                keyboardType: keyboardType,
-                maxLines: maxLines,
-                obscureText: obscureText,
-                showCursor: showCursor,
-                minLines: minLines,
-                expands: expands,
-                style: style,
-                onEditingComplete: onEditingComplete,
-                buildCounter: buildCounter,
-                mouseCursor: mouseCursor,
-                cursorColor: cursorColor,
-                cursorRadius: cursorRadius,
-                cursorWidth: cursorWidth,
-                enableInteractiveSelection: enableInteractiveSelection,
-                keyboardAppearance: keyboardAppearance,
-                scrollPadding: scrollPadding,
-                strutStyle: strutStyle,
-                textCapitalization: textCapitalization,
-                textInputAction: textInputAction,
-                maxLengthEnforcement: maxLengthEnforcement,
-              ),
-            );
-          },
-        );
+           return FocusTraversalGroup(
+             policy: ReadingOrderTraversalPolicy(),
+             child: TextField(
+               onTap: () => state.showPicker(),
+               textDirection: textDirection,
+               textAlign: textAlign,
+               textAlignVertical: textAlignVertical,
+               maxLength: maxLength,
+               autofocus: autofocus,
+               decoration: state.decoration,
+               readOnly: true,
+               enabled: state.enabled,
+               autocorrect: autocorrect,
+               controller: state._textFieldController,
+               focusNode: state.effectiveFocusNode,
+               inputFormatters: inputFormatters,
+               keyboardType: keyboardType,
+               maxLines: maxLines,
+               obscureText: obscureText,
+               showCursor: showCursor,
+               minLines: minLines,
+               expands: expands,
+               style: style,
+               onEditingComplete: onEditingComplete,
+               buildCounter: buildCounter,
+               mouseCursor: mouseCursor,
+               cursorColor: cursorColor,
+               cursorRadius: cursorRadius,
+               cursorWidth: cursorWidth,
+               enableInteractiveSelection: enableInteractiveSelection,
+               keyboardAppearance: keyboardAppearance,
+               scrollPadding: scrollPadding,
+               strutStyle: strutStyle,
+               textCapitalization: textCapitalization,
+               textInputAction: textInputAction,
+               maxLengthEnforcement: maxLengthEnforcement,
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime>
-      createState() => _FormBuilderDateTimePickerState();
+  createState() => _FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
-    FormBuilderDateTimePicker, DateTime> {
+class _FormBuilderDateTimePickerState
+    extends
+        FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime> {
   late TextEditingController _textFieldController;
 
   late DateFormat _dateFormat;
@@ -283,7 +284,7 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
     return switch (widget.inputType) {
       InputType.time => DateFormat.Hm(languageCode),
       InputType.date => DateFormat.yMd(languageCode),
-      InputType.both => DateFormat.yMd(languageCode).add_Hms()
+      InputType.both => DateFormat.yMd(languageCode).add_Hms(),
     };
   }
 
@@ -358,18 +359,20 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
         return Localizations.override(
           context: context,
           locale: widget.locale,
-          child: transitionBuilder == null
-              ? child
-              : transitionBuilder(context, child),
+          child:
+              transitionBuilder == null
+                  ? child
+                  : transitionBuilder(context, child),
         );
       };
     }
 
     return await showTimePicker(
       context: context,
-      initialTime: currentValue != null
-          ? TimeOfDay.fromDateTime(currentValue)
-          : widget.initialTime,
+      initialTime:
+          currentValue != null
+              ? TimeOfDay.fromDateTime(currentValue)
+              : widget.initialTime,
       builder: builder,
       useRootNavigator: widget.useRootNavigator,
       routeSettings: widget.routeSettings,
@@ -386,7 +389,12 @@ class _FormBuilderDateTimePickerState extends FormBuilderFieldDecorationState<
 
   /// Sets the hour and minute of a [DateTime] from a [TimeOfDay].
   DateTime combine(DateTime date, TimeOfDay? time) => DateTime(
-      date.year, date.month, date.day, time?.hour ?? 0, time?.minute ?? 0);
+    date.year,
+    date.month,
+    date.day,
+    time?.hour ?? 0,
+    time?.minute ?? 0,
+  );
 
   DateTime? convert(TimeOfDay? time) =>
       time == null ? null : DateTime(1, 1, 1, time.hour, time.minute);

@@ -229,37 +229,38 @@ class GroupedCheckbox<T> extends StatelessWidget {
 
     return switch (orientation) {
       OptionsOrientation.auto => OverflowBar(
-          alignment: MainAxisAlignment.spaceEvenly,
+        alignment: MainAxisAlignment.spaceEvenly,
+        children: widgetList,
+      ),
+      OptionsOrientation.vertical => SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: widgetList,
         ),
-      OptionsOrientation.vertical => SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: widgetList,
-          ),
-        ),
+      ),
       OptionsOrientation.horizontal => SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: widgetList.map((item) {
-              return Column(children: <Widget>[item]);
-            }).toList(),
-          ),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children:
+              widgetList.map((item) {
+                return Column(children: <Widget>[item]);
+              }).toList(),
         ),
+      ),
       OptionsOrientation.wrap => SingleChildScrollView(
-          child: Wrap(
-            spacing: wrapSpacing,
-            runSpacing: wrapRunSpacing,
-            textDirection: wrapTextDirection,
-            crossAxisAlignment: wrapCrossAxisAlignment,
-            verticalDirection: wrapVerticalDirection,
-            alignment: wrapAlignment,
-            direction: Axis.horizontal,
-            runAlignment: wrapRunAlignment,
-            children: widgetList,
-          ),
-        )
+        child: Wrap(
+          spacing: wrapSpacing,
+          runSpacing: wrapRunSpacing,
+          textDirection: wrapTextDirection,
+          crossAxisAlignment: wrapCrossAxisAlignment,
+          verticalDirection: wrapVerticalDirection,
+          alignment: wrapAlignment,
+          direction: Axis.horizontal,
+          runAlignment: wrapRunAlignment,
+          children: widgetList,
+        ),
+      ),
     };
   }
 
@@ -275,30 +276,35 @@ class GroupedCheckbox<T> extends StatelessWidget {
       focusColor: focusColor,
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
-      value: tristate
-          ? value?.contains(optionValue)
-          : true == value?.contains(optionValue),
+      value:
+          tristate
+              ? value?.contains(optionValue)
+              : true == value?.contains(optionValue),
       tristate: tristate,
-      onChanged: isOptionDisabled
-          ? null
-          : (selected) {
-              List<T> selectedListItems = value == null ? [] : List.of(value!);
-              selected!
-                  ? selectedListItems.add(optionValue)
-                  : selectedListItems.remove(optionValue);
-              onChanged(selectedListItems);
-            },
+      onChanged:
+          isOptionDisabled
+              ? null
+              : (selected) {
+                List<T> selectedListItems =
+                    value == null ? [] : List.of(value!);
+                selected!
+                    ? selectedListItems.add(optionValue)
+                    : selectedListItems.remove(optionValue);
+                onChanged(selectedListItems);
+              },
     );
     final label = GestureDetector(
-      onTap: isOptionDisabled
-          ? null
-          : () {
-              List<T> selectedListItems = value == null ? [] : List.of(value!);
-              selectedListItems.contains(optionValue)
-                  ? selectedListItems.remove(optionValue)
-                  : selectedListItems.add(optionValue);
-              onChanged(selectedListItems);
-            },
+      onTap:
+          isOptionDisabled
+              ? null
+              : () {
+                List<T> selectedListItems =
+                    value == null ? [] : List.of(value!);
+                selectedListItems.contains(optionValue)
+                    ? selectedListItems.remove(optionValue)
+                    : selectedListItems.add(optionValue);
+                onChanged(selectedListItems);
+              },
       child: option,
     );
 

@@ -29,8 +29,9 @@ void main() {
       expect(formValue(widgetName), isFalse);
     });
 
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'cb1';
       final testWidget = FormBuilderSwitch(
         name: widgetName,

@@ -289,53 +289,57 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     this.padding,
     this.menuWidth,
   }) : super(
-          builder: (FormFieldState<T?> field) {
-            final state = field as _FormBuilderDropdownState<T>;
+         builder: (FormFieldState<T?> field) {
+           final state = field as _FormBuilderDropdownState<T>;
 
-            final hasValue = items.map((e) => e.value).contains(field.value);
-            return InputDecorator(
-              decoration: state.decoration,
-              child: DropdownButton<T>(
-                menuWidth: menuWidth,
-                padding: padding,
-                underline: underline,
-                isExpanded: isExpanded,
-                items: items,
-                value: hasValue ? field.value : null,
-                style: style,
-                isDense: isDense,
-                disabledHint: hasValue
-                    ? items
-                        .firstWhere(
-                            (dropDownItem) => dropDownItem.value == field.value)
-                        .child
-                    : disabledHint,
-                elevation: elevation,
-                iconSize: iconSize,
-                icon: icon,
-                iconDisabledColor: iconDisabledColor,
-                iconEnabledColor: iconEnabledColor,
-                onChanged: state.enabled
-                    ? (T? value) {
-                        field.didChange(value);
-                      }
-                    : null,
-                onTap: onTap,
-                focusNode: state.effectiveFocusNode,
-                autofocus: autofocus,
-                dropdownColor: dropdownColor,
-                focusColor: focusColor,
-                itemHeight: itemHeight,
-                selectedItemBuilder: selectedItemBuilder,
-                menuMaxHeight: menuMaxHeight,
-                borderRadius: borderRadius,
-                enableFeedback: enableFeedback,
-                alignment: alignment,
-                hint: hint,
-              ),
-            );
-          },
-        );
+           final hasValue = items.map((e) => e.value).contains(field.value);
+           return InputDecorator(
+             decoration: state.decoration,
+             child: DropdownButton<T>(
+               menuWidth: menuWidth,
+               padding: padding,
+               underline: underline,
+               isExpanded: isExpanded,
+               items: items,
+               value: hasValue ? field.value : null,
+               style: style,
+               isDense: isDense,
+               disabledHint:
+                   hasValue
+                       ? items
+                           .firstWhere(
+                             (dropDownItem) =>
+                                 dropDownItem.value == field.value,
+                           )
+                           .child
+                       : disabledHint,
+               elevation: elevation,
+               iconSize: iconSize,
+               icon: icon,
+               iconDisabledColor: iconDisabledColor,
+               iconEnabledColor: iconEnabledColor,
+               onChanged:
+                   state.enabled
+                       ? (T? value) {
+                         field.didChange(value);
+                       }
+                       : null,
+               onTap: onTap,
+               focusNode: state.effectiveFocusNode,
+               autofocus: autofocus,
+               dropdownColor: dropdownColor,
+               focusColor: focusColor,
+               itemHeight: itemHeight,
+               selectedItemBuilder: selectedItemBuilder,
+               menuMaxHeight: menuMaxHeight,
+               borderRadius: borderRadius,
+               enableFeedback: enableFeedback,
+               alignment: alignment,
+               hint: hint,
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> createState() =>

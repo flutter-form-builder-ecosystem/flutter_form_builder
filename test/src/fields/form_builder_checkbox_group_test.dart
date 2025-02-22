@@ -41,8 +41,9 @@ void main() {
           FormBuilderFieldOption(key: ValueKey('1'), value: 1),
           FormBuilderFieldOption(key: ValueKey('2'), value: 2),
         ],
-        itemDecoration:
-            BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+        itemDecoration: BoxDecoration(
+          border: Border.all(color: Colors.blueAccent),
+        ),
       );
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -66,8 +67,9 @@ void main() {
           FormBuilderFieldOption(key: ValueKey('1'), value: 1),
           FormBuilderFieldOption(key: ValueKey('2'), value: 2),
         ],
-        itemDecoration:
-            BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+        itemDecoration: BoxDecoration(
+          border: Border.all(color: Colors.blueAccent),
+        ),
       );
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -137,29 +139,36 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(fieldName), [1, 3]);
 
-      Checkbox checkbox1 = tester
-          .element(find.byKey(const ValueKey('1')))
-          .findAncestorWidgetOfExactType<Row>()!
-          .children
-          .first as Checkbox;
-      Checkbox checkbox2 = tester
-          .element(find.byKey(const ValueKey('2')))
-          .findAncestorWidgetOfExactType<Row>()!
-          .children
-          .first as Checkbox;
-      Checkbox checkbox3 = tester
-          .element(find.byKey(const ValueKey('3')))
-          .findAncestorWidgetOfExactType<Row>()!
-          .children
-          .first as Checkbox;
+      Checkbox checkbox1 =
+          tester
+                  .element(find.byKey(const ValueKey('1')))
+                  .findAncestorWidgetOfExactType<Row>()!
+                  .children
+                  .first
+              as Checkbox;
+      Checkbox checkbox2 =
+          tester
+                  .element(find.byKey(const ValueKey('2')))
+                  .findAncestorWidgetOfExactType<Row>()!
+                  .children
+                  .first
+              as Checkbox;
+      Checkbox checkbox3 =
+          tester
+                  .element(find.byKey(const ValueKey('3')))
+                  .findAncestorWidgetOfExactType<Row>()!
+                  .children
+                  .first
+              as Checkbox;
 
       // checkboxes should represent the state of the didChange value
       expect(checkbox1.value, true);
       expect(checkbox2.value, false);
       expect(checkbox3.value, true);
     });
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'cb1';
       final testWidget = FormBuilderCheckboxGroup<int>(
         name: widgetName,

@@ -14,9 +14,7 @@ void main() {
         min: 0,
         max: 10,
         divisions: 20,
-        decoration: const InputDecoration(
-          labelText: 'Number of things',
-        ),
+        decoration: const InputDecoration(labelText: 'Number of things'),
       );
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -28,8 +26,9 @@ void main() {
       expect(formValue(widgetName), equals(5.0));
     });
 
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'key';
       final testWidget = FormBuilderSlider(
         name: widgetName,

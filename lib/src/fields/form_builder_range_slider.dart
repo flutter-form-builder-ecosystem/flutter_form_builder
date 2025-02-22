@@ -188,87 +188,95 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
     this.valueWidget,
     this.maxValueWidget,
     this.numberFormat,
-  }) : super(builder: (FormFieldState<RangeValues?> field) {
-          final state = field as _FormBuilderRangeSliderState;
-          final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
-          if (field.value == null ||
-              field.value!.start < min ||
-              field.value!.start > max ||
-              field.value!.end < min ||
-              field.value!.end > max) {
-            if (initialValue == null) {
-              field.setValue(RangeValues(min, min));
-            } else {
-              field.setValue(
-                RangeValues(initialValue.start, initialValue.end),
-              );
-            }
-          }
-          // TODO: Solve focus issue when Flutter team solve this issue
-          // https://github.com/flutter/flutter/issues/53958
-          return Focus(
-            focusNode: state.effectiveFocusNode,
-            skipTraversal: true,
-            canRequestFocus: state.enabled,
-            debugLabel: 'FormBuilderRangeSlider-$name',
-            child: InputDecorator(
-              decoration: state.decoration,
-              isFocused: state.effectiveFocusNode.hasFocus,
-              child: Container(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RangeSlider(
-                      values: field.value!,
-                      min: min,
-                      max: max,
-                      divisions: divisions,
-                      activeColor: activeColor,
-                      inactiveColor: inactiveColor,
-                      onChangeEnd: onChangeEnd,
-                      onChangeStart: onChangeStart,
-                      labels: labels,
-                      semanticFormatterCallback: semanticFormatterCallback,
-                      onChanged: state.enabled
-                          ? (values) {
-                              field.didChange(values);
-                            }
-                          : null,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        if (displayValues != DisplayValues.none &&
-                            displayValues != DisplayValues.current)
-                          minValueWidget
-                                  ?.call(effectiveNumberFormat.format(min)) ??
-                              Text(effectiveNumberFormat.format(min)),
-                        const Spacer(),
-                        if (displayValues != DisplayValues.none &&
-                            displayValues != DisplayValues.minMax)
-                          valueWidget?.call(
-                                  '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}') ??
-                              Text(
-                                  '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}'),
-                        const Spacer(),
-                        if (displayValues != DisplayValues.none &&
-                            displayValues != DisplayValues.current)
-                          maxValueWidget
-                                  ?.call(effectiveNumberFormat.format(max)) ??
-                              Text(effectiveNumberFormat.format(max)),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        });
+  }) : super(
+         builder: (FormFieldState<RangeValues?> field) {
+           final state = field as _FormBuilderRangeSliderState;
+           final effectiveNumberFormat = numberFormat ?? NumberFormat.compact();
+           if (field.value == null ||
+               field.value!.start < min ||
+               field.value!.start > max ||
+               field.value!.end < min ||
+               field.value!.end > max) {
+             if (initialValue == null) {
+               field.setValue(RangeValues(min, min));
+             } else {
+               field.setValue(
+                 RangeValues(initialValue.start, initialValue.end),
+               );
+             }
+           }
+           // TODO: Solve focus issue when Flutter team solve this issue
+           // https://github.com/flutter/flutter/issues/53958
+           return Focus(
+             focusNode: state.effectiveFocusNode,
+             skipTraversal: true,
+             canRequestFocus: state.enabled,
+             debugLabel: 'FormBuilderRangeSlider-$name',
+             child: InputDecorator(
+               decoration: state.decoration,
+               isFocused: state.effectiveFocusNode.hasFocus,
+               child: Container(
+                 padding: const EdgeInsets.only(top: 10.0),
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     RangeSlider(
+                       values: field.value!,
+                       min: min,
+                       max: max,
+                       divisions: divisions,
+                       activeColor: activeColor,
+                       inactiveColor: inactiveColor,
+                       onChangeEnd: onChangeEnd,
+                       onChangeStart: onChangeStart,
+                       labels: labels,
+                       semanticFormatterCallback: semanticFormatterCallback,
+                       onChanged:
+                           state.enabled
+                               ? (values) {
+                                 field.didChange(values);
+                               }
+                               : null,
+                     ),
+                     Row(
+                       children: <Widget>[
+                         if (displayValues != DisplayValues.none &&
+                             displayValues != DisplayValues.current)
+                           minValueWidget?.call(
+                                 effectiveNumberFormat.format(min),
+                               ) ??
+                               Text(effectiveNumberFormat.format(min)),
+                         const Spacer(),
+                         if (displayValues != DisplayValues.none &&
+                             displayValues != DisplayValues.minMax)
+                           valueWidget?.call(
+                                 '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
+                               ) ??
+                               Text(
+                                 '${effectiveNumberFormat.format(field.value!.start)} - ${effectiveNumberFormat.format(field.value!.end)}',
+                               ),
+                         const Spacer(),
+                         if (displayValues != DisplayValues.none &&
+                             displayValues != DisplayValues.current)
+                           maxValueWidget?.call(
+                                 effectiveNumberFormat.format(max),
+                               ) ??
+                               Text(effectiveNumberFormat.format(max)),
+                       ],
+                     ),
+                   ],
+                 ),
+               ),
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderRangeSlider, RangeValues>
-      createState() => _FormBuilderRangeSliderState();
+  createState() => _FormBuilderRangeSliderState();
 }
 
-class _FormBuilderRangeSliderState extends FormBuilderFieldDecorationState<
-    FormBuilderRangeSlider, RangeValues> {}
+class _FormBuilderRangeSliderState
+    extends
+        FormBuilderFieldDecorationState<FormBuilderRangeSlider, RangeValues> {}

@@ -17,15 +17,19 @@ void main() {
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
-      expect(formValue<RangeValues?>(widgetName),
-          equals(const RangeValues(10.0, 10.0)));
+      expect(
+        formValue<RangeValues?>(widgetName),
+        equals(const RangeValues(10.0, 10.0)),
+      );
 
       // Inspired by https://github.com/flutter/flutter/blob/master/packages/flutter/test/material/range_slider_test.dart
       // Tap at the center of the slider.
-      final Offset topLeft =
-          tester.getTopLeft(find.byType(RangeSlider)).translate(24, 0);
-      final Offset bottomRight =
-          tester.getBottomRight(find.byType(RangeSlider)).translate(-24, 0);
+      final Offset topLeft = tester
+          .getTopLeft(find.byType(RangeSlider))
+          .translate(24, 0);
+      final Offset bottomRight = tester
+          .getBottomRight(find.byType(RangeSlider))
+          .translate(-24, 0);
       final Offset rightTarget = topLeft + (bottomRight - topLeft) * 0.5;
       await tester.tapAt(rightTarget);
       await tester.pumpAndSettle();
@@ -45,15 +49,19 @@ void main() {
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
-      expect(formValue<RangeValues?>(widgetName),
-          equals(const RangeValues(14.0, 18.0)));
+      expect(
+        formValue<RangeValues?>(widgetName),
+        equals(const RangeValues(14.0, 18.0)),
+      );
 
       // Inspired by https://github.com/flutter/flutter/blob/master/packages/flutter/test/material/range_slider_test.dart
       // Tap a small offset after the start of the slider.
-      final Offset topLeft =
-          tester.getTopLeft(find.byType(RangeSlider)).translate(24, 0);
-      final Offset bottomRight =
-          tester.getBottomRight(find.byType(RangeSlider)).translate(-24, 0);
+      final Offset topLeft = tester
+          .getTopLeft(find.byType(RangeSlider))
+          .translate(24, 0);
+      final Offset bottomRight = tester
+          .getBottomRight(find.byType(RangeSlider))
+          .translate(-24, 0);
       final Offset leftTarget = topLeft + (bottomRight - topLeft) * 0.1;
       await tester.tapAt(leftTarget);
       await tester.pumpAndSettle();
@@ -62,8 +70,9 @@ void main() {
       expect(formValue<RangeValues>(widgetName), const RangeValues(11.0, 18.0));
     });
 
-    testWidgets('when set valueWidget then show on FormBuilderRangeSlider',
-        (WidgetTester tester) async {
+    testWidgets('when set valueWidget then show on FormBuilderRangeSlider', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'formBuilderRangeSlider';
       final keyValueWidget = Key('valueWidget');
       final testWidget = FormBuilderRangeSlider(
@@ -76,8 +85,10 @@ void main() {
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
       expect(formSave(), isTrue);
-      expect(formValue<RangeValues?>(widgetName),
-          equals(const RangeValues(14.0, 18.0)));
+      expect(
+        formValue<RangeValues?>(widgetName),
+        equals(const RangeValues(14.0, 18.0)),
+      );
       expect(find.byKey(keyValueWidget), findsOneWidget);
     });
 
@@ -102,8 +113,9 @@ void main() {
       );
     });
 
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'key';
       final testWidget = FormBuilderRangeSlider(
         name: widgetName,
@@ -117,8 +129,10 @@ void main() {
           formKey.currentState?.fields[widgetName]?.effectiveFocusNode;
 
       expect(formSave(), isTrue);
-      expect(formValue<RangeValues?>(widgetName),
-          equals(const RangeValues(10.0, 10.0)));
+      expect(
+        formValue<RangeValues?>(widgetName),
+        equals(const RangeValues(10.0, 10.0)),
+      );
       expect(Focus.of(tester.element(widgetFinder)).hasFocus, false);
       expect(focusNode?.hasFocus, false);
       await tester.sendKeyEvent(LogicalKeyboardKey.tab);
@@ -158,7 +172,7 @@ class _FormBuilderRangeSliderStateTestState
         TextButton(
           onPressed: () => setState(() => range -= 1),
           child: const Text('Reduce Range'),
-        )
+        ),
       ],
     );
   }
