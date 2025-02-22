@@ -2,6 +2,8 @@
 
 ## BREAKING CHANGES
 
+* Set minimal Flutter version to 3.29.0
+* Set minimal Dart version to 3.7.0
 * refactor: #1456 remove deprecated code by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1465
   * Solve issue #1456
   * Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead.
