@@ -47,7 +47,6 @@ class _ExamplePageState extends State<_ExamplePage> {
               FormBuilderFilterChips<String>(
                 decoration: const InputDecoration(
                   labelText: 'The language of my people',
-                  enabled: false,
                 ),
                 name: 'languages_filter',
                 selectedColor: Colors.red,
