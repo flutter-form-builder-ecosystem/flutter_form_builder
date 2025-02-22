@@ -1,3 +1,28 @@
+# 10.0.0
+
+## BREAKING CHANGES
+
+* refactor: #1456 remove deprecated code by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1465
+  * Solve issue #1456
+  * Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead.
+  * [FormBuilderTextField] Deprecate canRequestFocus property. Use `FocusNode.canRequestFocus.` instead.
+  * Assert on FormBuilderField.decoration.enabled property. Use FormBuilderField.enabled instead.
+  * Easy way! Only need execute `dart fix --apply` on your project to fix the following changes:
+    * Rename FormBuilderChoiceChip to FormBuilderChoiceChips.
+    * Rename FormBuilderFilterChip to FormBuilderFilterChips.
+    * [FormBuilderFilterChip] Remove maxChips property.
+    * [FormBuilderDateTimePicker] Remove resetIcon property.
+    * [FormBuilder] Remove onPopInvoked property.
+
+## Features
+
+* feat: #1455 improve input decoration enabled property by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1464
+  * Solve issue #1455
+* feat: #1458 improve autovalidate modes by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1460
+  * Solves issues #1364 and #1457
+* feat: #1297 Improve focus behavior by @deandreamatias in https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1453
+  * Solves issues #1296, #1290, #1301, #1304 and #1292
+
 # 10.0.0-dev.3
 
 ## BREAKING CHANGES
@@ -7,7 +32,7 @@
   * Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead.
   * [FormBuilderTextField] Deprecate canRequestFocus property. Use `FocusNode.canRequestFocus.` instead.
   * Assert on FormBuilderField.decoration.enabled property. Use FormBuilderField.enabled instead.
-  * Easy way! Only need execute `dart fix --apply` on your project.
+  * Easy way! Only need execute `dart fix --apply` on your project to fix the following changes:
     * Rename FormBuilderChoiceChip to FormBuilderChoiceChips.
     * Rename FormBuilderFilterChip to FormBuilderFilterChips.
     * [FormBuilderFilterChip] Remove maxChips property.
