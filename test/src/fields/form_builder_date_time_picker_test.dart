@@ -38,35 +38,41 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(formSave(), isTrue);
-      expect(formValue<DateTime>(widgetName),
-          DateTime(dateNow.year, dateNow.month, testDay, 12));
+      expect(
+        formValue<DateTime>(widgetName),
+        DateTime(dateNow.year, dateNow.month, testDay, 12),
+      );
     });
     testWidgets(
-        'should change to text field and show keyboard when edit icon is pressed',
-        (WidgetTester tester) async {
-      const widgetName = 'fdtp3';
-      final widgetKey = UniqueKey();
-      const keyboardType = TextInputType.datetime;
+      'should change to text field and show keyboard when edit icon is pressed',
+      (WidgetTester tester) async {
+        const widgetName = 'fdtp3';
+        final widgetKey = UniqueKey();
+        const keyboardType = TextInputType.datetime;
 
-      final testWidget = FormBuilderDateTimePicker(
-        key: widgetKey,
-        name: widgetName,
-        keyboardType: keyboardType,
-        inputType: InputType.date,
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
-      await tester.tap(find.byKey(widgetKey));
-      await tester.pumpAndSettle();
+        final testWidget = FormBuilderDateTimePicker(
+          key: widgetKey,
+          name: widgetName,
+          keyboardType: keyboardType,
+          inputType: InputType.date,
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        await tester.tap(find.byKey(widgetKey));
+        await tester.pumpAndSettle();
 
-      // change to input edition
-      await tester.tap(find.byIcon(Icons.edit_outlined));
-      await tester.pumpAndSettle();
+        // change to input edition
+        await tester.tap(find.byIcon(Icons.edit_outlined));
+        await tester.pumpAndSettle();
 
-      final textField = tester.widget<TextField>(find.byType(TextField).first);
-      expect(textField.keyboardType, equals(keyboardType));
-    });
-    testWidgets('should show a past year when set on lastDate',
-        (WidgetTester tester) async {
+        final textField = tester.widget<TextField>(
+          find.byType(TextField).first,
+        );
+        expect(textField.keyboardType, equals(keyboardType));
+      },
+    );
+    testWidgets('should show a past year when set on lastDate', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'fdtp3';
       final widgetKey = UniqueKey();
       const confirmText = 'OK';
@@ -104,10 +110,12 @@ void main() {
           cancelText: cancelText,
         );
 
-        await tester.pumpWidget(buildTestableFieldWidget(
-          testWidget,
-          initialValue: {widgetName: dateFuture},
-        ));
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            initialValue: {widgetName: dateFuture},
+          ),
+        );
 
         expect(formSave(), isTrue);
         expect(formValue(widgetName), dateFuture);
@@ -128,8 +136,15 @@ void main() {
         expect(formSave(), isTrue);
         expect(
           formValue<DateTime>(widgetName),
-          DateTime(dateFuture.year, dateFuture.month, testDay, dateFuture.hour,
-              dateFuture.minute, 0, 0),
+          DateTime(
+            dateFuture.year,
+            dateFuture.month,
+            testDay,
+            dateFuture.hour,
+            dateFuture.minute,
+            0,
+            0,
+          ),
         );
       });
       testWidgets('to Widget', (WidgetTester tester) async {
@@ -168,15 +183,23 @@ void main() {
         expect(formSave(), isTrue);
         expect(
           formValue<DateTime>(widgetName),
-          DateTime(datePast.year, datePast.month, testDay, datePast.hour,
-              datePast.minute, 0, 0),
+          DateTime(
+            datePast.year,
+            datePast.month,
+            testDay,
+            datePast.hour,
+            datePast.minute,
+            0,
+            0,
+          ),
         );
       });
     });
   });
 
-  testWidgets('When press tab, field will be focused',
-      (WidgetTester tester) async {
+  testWidgets('When press tab, field will be focused', (
+    WidgetTester tester,
+  ) async {
     const widgetName = 'cb1';
     final widgetKey = UniqueKey();
     const confirmText = 'OK';

@@ -118,8 +118,8 @@ class FormBuilder extends StatefulWidget {
 }
 
 /// A type alias for a map of form fields.
-typedef FormBuilderFields
-    = Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>;
+typedef FormBuilderFields =
+    Map<String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>;
 
 class FormBuilderState extends State<FormBuilder> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -153,10 +153,11 @@ class FormBuilderState extends State<FormBuilder> {
 
   /// Get a map of errors
   Map<String, String> get errors => {
-        for (var element
-            in fields.entries.where((element) => element.value.hasError))
-          element.key.toString(): element.value.errorText ?? ''
-      };
+    for (var element in fields.entries.where(
+      (element) => element.value.hasError,
+    ))
+      element.key.toString(): element.value.errorText ?? '',
+  };
 
   /// Get initialValue.
   Map<String, dynamic> get initialValue => widget.initialValue;
@@ -166,23 +167,23 @@ class FormBuilderState extends State<FormBuilder> {
 
   /// Get all fields values of form.
   Map<String, dynamic> get instantValue => Map<String, dynamic>.unmodifiable(
-        _instantValue.map(
-          (key, value) => MapEntry(
-            key,
-            _transformers[key] == null ? value : _transformers[key]!(value),
-          ),
-        ),
-      );
+    _instantValue.map(
+      (key, value) => MapEntry(
+        key,
+        _transformers[key] == null ? value : _transformers[key]!(value),
+      ),
+    ),
+  );
 
   /// Returns the saved value only
   Map<String, dynamic> get value => Map<String, dynamic>.unmodifiable(
-        _savedValue.map(
-          (key, value) => MapEntry(
-            key,
-            _transformers[key] == null ? value : _transformers[key]!(value),
-          ),
-        ),
-      );
+    _savedValue.map(
+      (key, value) => MapEntry(
+        key,
+        _transformers[key] == null ? value : _transformers[key]!(value),
+      ),
+    ),
+  );
 
   dynamic transformValue<T>(String name, T? v) {
     final t = _transformers[name];
@@ -220,8 +221,10 @@ class FormBuilderState extends State<FormBuilder> {
     final oldField = _fields[name];
     assert(() {
       if (oldField != null) {
-        debugPrint('Warning! Replacing duplicate Field for $name'
-            ' -- this is OK to ignore as long as the field was intentionally replaced');
+        debugPrint(
+          'Warning! Replacing duplicate Field for $name'
+          ' -- this is OK to ignore as long as the field was intentionally replaced',
+        );
       }
       return true;
     }());
@@ -233,10 +236,7 @@ class FormBuilderState extends State<FormBuilder> {
       _instantValue[name] = field.initialValue ?? initialValue[name];
     }
 
-    field.setValue(
-      _instantValue[name],
-      populateForm: false,
-    );
+    field.setValue(_instantValue[name], populateForm: false);
   }
 
   /// Unregister a field on form
@@ -261,8 +261,10 @@ class FormBuilderState extends State<FormBuilder> {
       assert(() {
         // This is OK to ignore when you are intentionally replacing a field
         // with another field using the same name.
-        debugPrint('Warning! Ignoring Field unregistration for $name'
-            ' -- this is OK to ignore as long as the field was intentionally replaced');
+        debugPrint(
+          'Warning! Ignoring Field unregistration for $name'
+          ' -- this is OK to ignore as long as the field was intentionally replaced',
+        );
         return true;
       }());
     }
@@ -369,9 +371,7 @@ class FormBuilderState extends State<FormBuilder> {
       // `onChanged` is called during setInternalFieldValue else will be called early
       child: _FormBuilderScope(
         formState: this,
-        child: FocusTraversalGroup(
-          child: widget.child,
-        ),
+        child: FocusTraversalGroup(child: widget.child),
       ),
     );
   }

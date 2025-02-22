@@ -40,10 +40,9 @@ void main() {
       expect(formSave(), isTrue);
       expect(
         formValue<DateTimeRange?>(widgetName),
-        equals(DateTimeRange(
-          start: DateTime(2010, 1, 2),
-          end: DateTime(2010, 1, 4),
-        )),
+        equals(
+          DateTimeRange(start: DateTime(2010, 1, 2), end: DateTime(2010, 1, 4)),
+        ),
       );
     });
 
@@ -63,15 +62,15 @@ void main() {
       expect(formSave(), isTrue);
       expect(
         formValue<DateTimeRange?>(widgetName),
-        equals(DateTimeRange(
-          start: DateTime(2010, 1, 2),
-          end: DateTime(2010, 1, 4),
-        )),
+        equals(
+          DateTimeRange(start: DateTime(2010, 1, 2), end: DateTime(2010, 1, 4)),
+        ),
       );
     });
 
-    testWidgets('text field empty when value is null',
-        (WidgetTester tester) async {
+    testWidgets('text field empty when value is null', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'formBuilderDateRangePicker';
       final testWidget = FormBuilderDateRangePicker(
         name: widgetName,
@@ -103,8 +102,9 @@ void main() {
       );
     });
   });
-  testWidgets('When press tab, field will be focused',
-      (WidgetTester tester) async {
+  testWidgets('When press tab, field will be focused', (
+    WidgetTester tester,
+  ) async {
     const widgetName = 'cb1';
     const saveText = 'SAVE THE DATE';
     final testWidget = FormBuilderDateRangePicker(
@@ -136,8 +136,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(saveText), findsOneWidget);
   });
-  testWidgets('When press clear button then clear value text field',
-      (WidgetTester tester) async {
+  testWidgets('When press clear button then clear value text field', (
+    WidgetTester tester,
+  ) async {
     const widgetName = 'cb1';
     final initialValue = DateTimeRange(
       start: DateTime(2010, 1, 2),

@@ -392,69 +392,72 @@ class FormBuilderChoiceChips<T> extends FormBuilderFieldDecoration<T> {
     this.color,
     this.iconTheme,
     this.tooltip,
-  }) : super(builder: (FormFieldState<T?> field) {
-          final state = field as _FormBuilderChoiceChipState<T>;
+  }) : super(
+         builder: (FormFieldState<T?> field) {
+           final state = field as _FormBuilderChoiceChipState<T>;
 
-          return Focus(
-            focusNode: state.effectiveFocusNode,
-            skipTraversal: true,
-            canRequestFocus: state.enabled,
-            debugLabel: 'FormBuilderChoiceChip-$name',
-            child: InputDecorator(
-              decoration: state.decoration,
-              isFocused: state.effectiveFocusNode.hasFocus,
-              child: Wrap(
-                direction: direction,
-                alignment: alignment,
-                crossAxisAlignment: crossAxisAlignment,
-                runAlignment: runAlignment,
-                runSpacing: runSpacing,
-                spacing: spacing,
-                textDirection: textDirection,
-                verticalDirection: verticalDirection,
-                children: <Widget>[
-                  for (FormBuilderChipOption<T> option in options)
-                    ChoiceChip(
-                      label: option,
-                      side: side,
-                      shape: shape,
-                      selected: field.value == option.value,
-                      onSelected: state.enabled
-                          ? (selected) {
-                              final choice = selected ? option.value : null;
-                              state.didChange(choice);
-                            }
-                          : null,
-                      avatar: option.avatar,
-                      selectedColor: selectedColor,
-                      disabledColor: disabledColor,
-                      backgroundColor: backgroundColor,
-                      shadowColor: shadowColor,
-                      selectedShadowColor: selectedShadowColor,
-                      elevation: elevation,
-                      pressElevation: pressElevation,
-                      materialTapTargetSize: materialTapTargetSize,
-                      labelStyle: labelStyle,
-                      labelPadding: labelPadding,
-                      padding: padding,
-                      visualDensity: visualDensity,
-                      avatarBorder: avatarBorder,
-                      showCheckmark: showCheckmark,
-                      surfaceTintColor: surfaceTintColor,
-                      clipBehavior: clipBehavior,
-                      checkmarkColor: checkmarkColor,
-                      autofocus: autofocus,
-                      avatarBoxConstraints: avatarBoxConstraints,
-                      chipAnimationStyle: chipAnimationStyle,
-                      color: color,
-                      iconTheme: iconTheme,
-                      tooltip: tooltip,
-                    ),
-                ],
-              ),
-            ),
-          );
-        });
+           return Focus(
+             focusNode: state.effectiveFocusNode,
+             skipTraversal: true,
+             canRequestFocus: state.enabled,
+             debugLabel: 'FormBuilderChoiceChip-$name',
+             child: InputDecorator(
+               decoration: state.decoration,
+               isFocused: state.effectiveFocusNode.hasFocus,
+               child: Wrap(
+                 direction: direction,
+                 alignment: alignment,
+                 crossAxisAlignment: crossAxisAlignment,
+                 runAlignment: runAlignment,
+                 runSpacing: runSpacing,
+                 spacing: spacing,
+                 textDirection: textDirection,
+                 verticalDirection: verticalDirection,
+                 children: <Widget>[
+                   for (FormBuilderChipOption<T> option in options)
+                     ChoiceChip(
+                       label: option,
+                       side: side,
+                       shape: shape,
+                       selected: field.value == option.value,
+                       onSelected:
+                           state.enabled
+                               ? (selected) {
+                                 final choice = selected ? option.value : null;
+                                 state.didChange(choice);
+                               }
+                               : null,
+                       avatar: option.avatar,
+                       selectedColor: selectedColor,
+                       disabledColor: disabledColor,
+                       backgroundColor: backgroundColor,
+                       shadowColor: shadowColor,
+                       selectedShadowColor: selectedShadowColor,
+                       elevation: elevation,
+                       pressElevation: pressElevation,
+                       materialTapTargetSize: materialTapTargetSize,
+                       labelStyle: labelStyle,
+                       labelPadding: labelPadding,
+                       padding: padding,
+                       visualDensity: visualDensity,
+                       avatarBorder: avatarBorder,
+                       showCheckmark: showCheckmark,
+                       surfaceTintColor: surfaceTintColor,
+                       clipBehavior: clipBehavior,
+                       checkmarkColor: checkmarkColor,
+                       autofocus: autofocus,
+                       avatarBoxConstraints: avatarBoxConstraints,
+                       chipAnimationStyle: chipAnimationStyle,
+                       color: color,
+                       iconTheme: iconTheme,
+                       tooltip: tooltip,
+                     ),
+                 ],
+               ),
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderChoiceChips<T>, T> createState() =>

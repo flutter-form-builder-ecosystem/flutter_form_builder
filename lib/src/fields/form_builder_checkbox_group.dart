@@ -66,55 +66,57 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
     this.orientation = OptionsOrientation.wrap,
     this.itemDecoration,
   }) : super(
-          builder: (FormFieldState<List<T>?> field) {
-            final state = field as _FormBuilderCheckboxGroupState<T>;
+         builder: (FormFieldState<List<T>?> field) {
+           final state = field as _FormBuilderCheckboxGroupState<T>;
 
-            return Focus(
-              focusNode: state.effectiveFocusNode,
-              skipTraversal: true,
-              canRequestFocus: state.enabled,
-              debugLabel: 'FormBuilderCheckboxGroup-$name',
-              child: InputDecorator(
-                decoration: state.decoration,
-                isFocused: state.effectiveFocusNode.hasFocus,
-                child: GroupedCheckbox<T>(
-                  orientation: orientation,
-                  value: state.value,
-                  options: options,
-                  onChanged: (val) {
-                    field.didChange(val);
-                  },
-                  disabled: state.enabled
-                      ? disabled
-                      : options.map((e) => e.value).toList(),
-                  activeColor: activeColor,
-                  visualDensity: visualDensity,
-                  focusColor: focusColor,
-                  checkColor: checkColor,
-                  materialTapTargetSize: materialTapTargetSize,
-                  hoverColor: hoverColor,
-                  tristate: tristate,
-                  wrapAlignment: wrapAlignment,
-                  wrapCrossAxisAlignment: wrapCrossAxisAlignment,
-                  wrapDirection: wrapDirection,
-                  wrapRunAlignment: wrapRunAlignment,
-                  wrapRunSpacing: wrapRunSpacing,
-                  wrapSpacing: wrapSpacing,
-                  wrapTextDirection: wrapTextDirection,
-                  wrapVerticalDirection: wrapVerticalDirection,
-                  separator: separator,
-                  controlAffinity: controlAffinity,
-                  itemDecoration: itemDecoration,
-                ),
-              ),
-            );
-          },
-        );
+           return Focus(
+             focusNode: state.effectiveFocusNode,
+             skipTraversal: true,
+             canRequestFocus: state.enabled,
+             debugLabel: 'FormBuilderCheckboxGroup-$name',
+             child: InputDecorator(
+               decoration: state.decoration,
+               isFocused: state.effectiveFocusNode.hasFocus,
+               child: GroupedCheckbox<T>(
+                 orientation: orientation,
+                 value: state.value,
+                 options: options,
+                 onChanged: (val) {
+                   field.didChange(val);
+                 },
+                 disabled:
+                     state.enabled
+                         ? disabled
+                         : options.map((e) => e.value).toList(),
+                 activeColor: activeColor,
+                 visualDensity: visualDensity,
+                 focusColor: focusColor,
+                 checkColor: checkColor,
+                 materialTapTargetSize: materialTapTargetSize,
+                 hoverColor: hoverColor,
+                 tristate: tristate,
+                 wrapAlignment: wrapAlignment,
+                 wrapCrossAxisAlignment: wrapCrossAxisAlignment,
+                 wrapDirection: wrapDirection,
+                 wrapRunAlignment: wrapRunAlignment,
+                 wrapRunSpacing: wrapRunSpacing,
+                 wrapSpacing: wrapSpacing,
+                 wrapTextDirection: wrapTextDirection,
+                 wrapVerticalDirection: wrapVerticalDirection,
+                 separator: separator,
+                 controlAffinity: controlAffinity,
+                 itemDecoration: itemDecoration,
+               ),
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderCheckboxGroup<T>, List<T>>
-      createState() => _FormBuilderCheckboxGroupState<T>();
+  createState() => _FormBuilderCheckboxGroupState<T>();
 }
 
-class _FormBuilderCheckboxGroupState<T> extends FormBuilderFieldDecorationState<
-    FormBuilderCheckboxGroup<T>, List<T>> {}
+class _FormBuilderCheckboxGroupState<T>
+    extends
+        FormBuilderFieldDecorationState<FormBuilderCheckboxGroup<T>, List<T>> {}

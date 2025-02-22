@@ -117,39 +117,40 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
     this.autofocus = false,
     this.selected = false,
   }) : super(
-          builder: (FormFieldState<bool?> field) {
-            final state = field as _FormBuilderSwitchState;
+         builder: (FormFieldState<bool?> field) {
+           final state = field as _FormBuilderSwitchState;
 
-            return InputDecorator(
-              decoration: state.decoration,
-              isFocused: state.effectiveFocusNode.hasFocus,
-              child: SwitchListTile(
-                focusNode: state.effectiveFocusNode,
-                dense: true,
-                isThreeLine: false,
-                contentPadding: contentPadding,
-                title: title,
-                value: state.value ?? false,
-                onChanged: state.enabled
-                    ? (value) {
-                        field.didChange(value);
-                      }
-                    : null,
-                activeColor: activeColor,
-                activeThumbImage: activeThumbImage,
-                activeTrackColor: activeTrackColor,
-                inactiveThumbColor: inactiveThumbColor,
-                inactiveThumbImage: activeThumbImage,
-                inactiveTrackColor: inactiveTrackColor,
-                secondary: secondary,
-                subtitle: subtitle,
-                autofocus: autofocus,
-                selected: selected,
-                controlAffinity: controlAffinity,
-              ),
-            );
-          },
-        );
+           return InputDecorator(
+             decoration: state.decoration,
+             isFocused: state.effectiveFocusNode.hasFocus,
+             child: SwitchListTile(
+               focusNode: state.effectiveFocusNode,
+               dense: true,
+               isThreeLine: false,
+               contentPadding: contentPadding,
+               title: title,
+               value: state.value ?? false,
+               onChanged:
+                   state.enabled
+                       ? (value) {
+                         field.didChange(value);
+                       }
+                       : null,
+               activeColor: activeColor,
+               activeThumbImage: activeThumbImage,
+               activeTrackColor: activeTrackColor,
+               inactiveThumbColor: inactiveThumbColor,
+               inactiveThumbImage: activeThumbImage,
+               inactiveTrackColor: inactiveTrackColor,
+               secondary: secondary,
+               subtitle: subtitle,
+               autofocus: autofocus,
+               selected: selected,
+               controlAffinity: controlAffinity,
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderSwitch, bool> createState() =>

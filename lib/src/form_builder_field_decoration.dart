@@ -22,34 +22,38 @@ class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
     required super.builder,
     this.decoration = const InputDecoration(),
   }) : assert(
-            decoration.enabled == enabled ||
-                (enabled == false && decoration.enabled),
-            '''decoration.enabled will be used instead of enabled FormBuilderField property.
+         decoration.enabled == enabled ||
+             (enabled == false && decoration.enabled),
+         '''decoration.enabled will be used instead of enabled FormBuilderField property.
             This will create conflicts and unexpected behaviors on focus, errorText, and other properties.
-            Please, to enable or disable the field, use the enabled property of FormBuilderField.''');
+            Please, to enable or disable the field, use the enabled property of FormBuilderField.''',
+       );
   final InputDecoration decoration;
 
   @override
   FormBuilderFieldDecorationState<FormBuilderFieldDecoration<T>, T>
-      createState() =>
-          FormBuilderFieldDecorationState<FormBuilderFieldDecoration<T>, T>();
+  createState() =>
+      FormBuilderFieldDecorationState<FormBuilderFieldDecoration<T>, T>();
 }
 
-class FormBuilderFieldDecorationState<F extends FormBuilderFieldDecoration<T>,
-    T> extends FormBuilderFieldState<FormBuilderField<T>, T> {
+class FormBuilderFieldDecorationState<
+  F extends FormBuilderFieldDecoration<T>,
+  T
+>
+    extends FormBuilderFieldState<FormBuilderField<T>, T> {
   @override
   F get widget => super.widget as F;
 
   /// Get the decoration with the current state
   InputDecoration get decoration => widget.decoration.copyWith(
-        // Read only allow show error to support property skipDisabled
-        errorText: widget.enabled || readOnly
+    // Read only allow show error to support property skipDisabled
+    errorText:
+        widget.enabled || readOnly
             ? widget.decoration.errorText ?? errorText
             : null,
-        enabled: widget.decoration.enabled
-            ? widget.enabled
-            : widget.decoration.enabled,
-      );
+    enabled:
+        widget.decoration.enabled ? widget.enabled : widget.decoration.enabled,
+  );
 
   @override
   bool get hasError => super.hasError || widget.decoration.errorText != null;

@@ -120,39 +120,40 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
     this.shape,
     this.side,
   }) : super(
-          builder: (FormFieldState<bool?> field) {
-            final state = field as _FormBuilderCheckboxState;
+         builder: (FormFieldState<bool?> field) {
+           final state = field as _FormBuilderCheckboxState;
 
-            return InputDecorator(
-              decoration: state.decoration,
-              isFocused: state.effectiveFocusNode.hasFocus,
-              child: CheckboxListTile(
-                dense: true,
-                isThreeLine: false,
-                focusNode: state.effectiveFocusNode,
-                title: title,
-                subtitle: subtitle,
-                value: tristate ? state.value : (state.value ?? false),
-                onChanged: state.enabled
-                    ? (value) {
-                        state.didChange(value);
-                      }
-                    : null,
-                checkColor: checkColor,
-                activeColor: activeColor,
-                secondary: secondary,
-                controlAffinity: controlAffinity,
-                autofocus: autofocus,
-                tristate: tristate,
-                contentPadding: contentPadding,
-                visualDensity: visualDensity,
-                selected: selected,
-                checkboxShape: shape,
-                side: side,
-              ),
-            );
-          },
-        );
+           return InputDecorator(
+             decoration: state.decoration,
+             isFocused: state.effectiveFocusNode.hasFocus,
+             child: CheckboxListTile(
+               dense: true,
+               isThreeLine: false,
+               focusNode: state.effectiveFocusNode,
+               title: title,
+               subtitle: subtitle,
+               value: tristate ? state.value : (state.value ?? false),
+               onChanged:
+                   state.enabled
+                       ? (value) {
+                         state.didChange(value);
+                       }
+                       : null,
+               checkColor: checkColor,
+               activeColor: activeColor,
+               secondary: secondary,
+               controlAffinity: controlAffinity,
+               autofocus: autofocus,
+               tristate: tristate,
+               contentPadding: contentPadding,
+               visualDensity: visualDensity,
+               selected: selected,
+               checkboxShape: shape,
+               side: side,
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderCheckbox, bool> createState() =>

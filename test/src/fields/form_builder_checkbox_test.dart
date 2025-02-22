@@ -28,8 +28,9 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(widgetName), isFalse);
     });
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'cb1';
       final testWidget = FormBuilderCheckbox(
         name: widgetName,

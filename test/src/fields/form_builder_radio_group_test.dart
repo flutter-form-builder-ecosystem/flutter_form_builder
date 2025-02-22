@@ -29,27 +29,29 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(widgetName), equals(3));
     });
-    testWidgets('When had a disabled option then can not set this value option',
-        (WidgetTester tester) async {
-      const widgetName = 'rg1';
-      final testWidget = FormBuilderRadioGroup<int>(
-        name: widgetName,
-        disabled: [2],
-        options: const [
-          FormBuilderFieldOption(key: ValueKey('1'), value: 1),
-          FormBuilderFieldOption(key: ValueKey('2'), value: 2),
-          FormBuilderFieldOption(key: ValueKey('3'), value: 3),
-        ],
-      );
-      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+    testWidgets(
+      'When had a disabled option then can not set this value option',
+      (WidgetTester tester) async {
+        const widgetName = 'rg1';
+        final testWidget = FormBuilderRadioGroup<int>(
+          name: widgetName,
+          disabled: [2],
+          options: const [
+            FormBuilderFieldOption(key: ValueKey('1'), value: 1),
+            FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+            FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+          ],
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
-      expect(formSave(), isTrue);
-      expect(formValue(widgetName), isNull);
-      await tester.tap(find.byKey(const ValueKey('2')));
-      await tester.pumpAndSettle();
-      expect(formSave(), isTrue);
-      expect(formValue(widgetName), isNull);
-    });
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), isNull);
+        await tester.tap(find.byKey(const ValueKey('2')));
+        await tester.pumpAndSettle();
+        expect(formSave(), isTrue);
+        expect(formValue(widgetName), isNull);
+      },
+    );
 
     testWidgets('decoration horizontal', (WidgetTester tester) async {
       const widgetName = 'rg1';
@@ -61,8 +63,9 @@ void main() {
           FormBuilderFieldOption(key: ValueKey('1'), value: 1),
           FormBuilderFieldOption(key: ValueKey('2'), value: 2),
         ],
-        itemDecoration:
-            BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+        itemDecoration: BoxDecoration(
+          border: Border.all(color: Colors.blueAccent),
+        ),
       );
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -86,8 +89,9 @@ void main() {
           FormBuilderFieldOption(key: ValueKey('1'), value: 1),
           FormBuilderFieldOption(key: ValueKey('2'), value: 2),
         ],
-        itemDecoration:
-            BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+        itemDecoration: BoxDecoration(
+          border: Border.all(color: Colors.blueAccent),
+        ),
       );
       await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -141,8 +145,9 @@ void main() {
       // verify separator counts
       expect(find.byType(VerticalDivider), findsNWidgets(2));
     });
-    testWidgets('When press tab, field will be focused',
-        (WidgetTester tester) async {
+    testWidgets('When press tab, field will be focused', (
+      WidgetTester tester,
+    ) async {
       const widgetName = 'key';
       final testWidget = FormBuilderRadioGroup<int>(
         name: widgetName,

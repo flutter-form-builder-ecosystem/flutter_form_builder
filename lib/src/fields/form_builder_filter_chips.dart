@@ -76,76 +76,78 @@ class FormBuilderFilterChips<T> extends FormBuilderFieldDecoration<List<T>> {
     super.onChanged,
     super.valueTransformer,
     super.onReset,
-  })  : assert((maxChips == null) || ((initialValue ?? []).length <= maxChips)),
-        super(
-          builder: (FormFieldState<List<T>?> field) {
-            final state = field as _FormBuilderFilterChipState<T>;
-            final fieldValue = field.value ?? [];
-            return Focus(
-              focusNode: state.effectiveFocusNode,
-              skipTraversal: true,
-              canRequestFocus: state.enabled,
-              debugLabel: 'FormBuilderFilterChip-$name',
-              child: InputDecorator(
-                decoration: state.decoration,
-                isFocused: state.effectiveFocusNode.hasFocus,
-                child: Wrap(
-                  direction: direction,
-                  alignment: alignment,
-                  crossAxisAlignment: crossAxisAlignment,
-                  runAlignment: runAlignment,
-                  runSpacing: runSpacing,
-                  spacing: spacing,
-                  textDirection: textDirection,
-                  verticalDirection: verticalDirection,
-                  children: <Widget>[
-                    for (FormBuilderChipOption<T> option in options)
-                      FilterChip(
-                        label: option,
-                        selected: fieldValue.contains(option.value),
-                        avatar: option.avatar,
-                        onSelected: state.enabled &&
-                                (null == maxChips ||
-                                    fieldValue.length < maxChips ||
-                                    fieldValue.contains(option.value))
-                            ? (selected) {
-                                final currentValue = [...fieldValue];
-                                selected
-                                    ? currentValue.add(option.value)
-                                    : currentValue.remove(option.value);
+  }) : assert((maxChips == null) || ((initialValue ?? []).length <= maxChips)),
+       super(
+         builder: (FormFieldState<List<T>?> field) {
+           final state = field as _FormBuilderFilterChipState<T>;
+           final fieldValue = field.value ?? [];
+           return Focus(
+             focusNode: state.effectiveFocusNode,
+             skipTraversal: true,
+             canRequestFocus: state.enabled,
+             debugLabel: 'FormBuilderFilterChip-$name',
+             child: InputDecorator(
+               decoration: state.decoration,
+               isFocused: state.effectiveFocusNode.hasFocus,
+               child: Wrap(
+                 direction: direction,
+                 alignment: alignment,
+                 crossAxisAlignment: crossAxisAlignment,
+                 runAlignment: runAlignment,
+                 runSpacing: runSpacing,
+                 spacing: spacing,
+                 textDirection: textDirection,
+                 verticalDirection: verticalDirection,
+                 children: <Widget>[
+                   for (FormBuilderChipOption<T> option in options)
+                     FilterChip(
+                       label: option,
+                       selected: fieldValue.contains(option.value),
+                       avatar: option.avatar,
+                       onSelected:
+                           state.enabled &&
+                                   (null == maxChips ||
+                                       fieldValue.length < maxChips ||
+                                       fieldValue.contains(option.value))
+                               ? (selected) {
+                                 final currentValue = [...fieldValue];
+                                 selected
+                                     ? currentValue.add(option.value)
+                                     : currentValue.remove(option.value);
 
-                                field.didChange(currentValue);
-                              }
-                            : null,
-                        selectedColor: selectedColor,
-                        disabledColor: disabledColor,
-                        backgroundColor: backgroundColor,
-                        shadowColor: shadowColor,
-                        selectedShadowColor: selectedShadowColor,
-                        elevation: elevation,
-                        pressElevation: pressElevation,
-                        materialTapTargetSize: materialTapTargetSize,
-                        padding: padding,
-                        side: side,
-                        shape: shape,
-                        checkmarkColor: checkmarkColor,
-                        clipBehavior: clipBehavior,
-                        labelStyle: labelStyle,
-                        showCheckmark: showCheckmark,
-                        labelPadding: labelPadding,
-                        avatarBorder: avatarBorder,
-                      ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
+                                 field.didChange(currentValue);
+                               }
+                               : null,
+                       selectedColor: selectedColor,
+                       disabledColor: disabledColor,
+                       backgroundColor: backgroundColor,
+                       shadowColor: shadowColor,
+                       selectedShadowColor: selectedShadowColor,
+                       elevation: elevation,
+                       pressElevation: pressElevation,
+                       materialTapTargetSize: materialTapTargetSize,
+                       padding: padding,
+                       side: side,
+                       shape: shape,
+                       checkmarkColor: checkmarkColor,
+                       clipBehavior: clipBehavior,
+                       labelStyle: labelStyle,
+                       showCheckmark: showCheckmark,
+                       labelPadding: labelPadding,
+                       avatarBorder: avatarBorder,
+                     ),
+                 ],
+               ),
+             ),
+           );
+         },
+       );
 
   @override
   FormBuilderFieldDecorationState<FormBuilderFilterChips<T>, List<T>>
-      createState() => _FormBuilderFilterChipState<T>();
+  createState() => _FormBuilderFilterChipState<T>();
 }
 
-class _FormBuilderFilterChipState<T> extends FormBuilderFieldDecorationState<
-    FormBuilderFilterChips<T>, List<T>> {}
+class _FormBuilderFilterChipState<T>
+    extends
+        FormBuilderFieldDecorationState<FormBuilderFilterChips<T>, List<T>> {}
