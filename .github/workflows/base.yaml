@@ -19,6 +19,9 @@ concurrency:
 jobs:
   build:
     runs-on: macos-latest
+    strategy:
+      matrix:
+        flutter-version: [stable, beta]
 
     steps:
       - uses: actions/checkout@v4
@@ -39,6 +42,7 @@ jobs:
         uses: kuhnroyal/flutter-fvm-config-action/setup@v3
         with:
           path: '.fvmrc'
+          flavor: ${{ matrix.flutter-version }}
       - name: Install dependencies
         run: flutter pub get
       - name: Format code
