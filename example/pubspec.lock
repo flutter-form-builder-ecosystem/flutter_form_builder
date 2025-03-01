@@ -82,12 +82,11 @@ packages:
   form_builder_validators:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "feature/#137-update-intl-constraints"
-      resolved-ref: "66f5d8879c790648c0089b0dbac3569be0040637"
-      url: "https://github.com/flutter-form-builder-ecosystem/form_builder_validators"
-    source: git
-    version: "11.1.1"
+      name: form_builder_validators
+      sha256: cd617fa346250293ff3e2709961d0faf7b80e6e4f0ff7b500126b28d7422dd67
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.1.2"
   intl:
     dependency: "direct main"
     description:
