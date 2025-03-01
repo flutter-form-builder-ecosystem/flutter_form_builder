@@ -8,7 +8,7 @@
 PRODUCT_NAME = example
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = dev.danvickmiller.flutterformbuilder.example
+PRODUCT_BUNDLE_IDENTIFIER = com.flutterformbuilderecosystem.example
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 dev.danvickmiller.flutterformbuilder. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 com.flutterformbuilderecosystem. All rights reserved.
