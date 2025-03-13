@@ -124,6 +124,8 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final bool barrierDismissible;
 
   /// Creates field for `Date`, `Time` and `DateTime` input
+  ///
+  /// The picker can be programmatically opened using the [showPicker] method.
   FormBuilderDateTimePicker({
     super.key,
     required super.name,
@@ -194,7 +196,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.barrierDismissible = true,
   }) : super(
          builder: (FormFieldState<DateTime?> field) {
-           final state = field as _FormBuilderDateTimePickerState;
+           final state = field as FormBuilderDateTimePickerState;
 
            return FocusTraversalGroup(
              policy: ReadingOrderTraversalPolicy(),
@@ -239,10 +241,10 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
 
   @override
   FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime>
-  createState() => _FormBuilderDateTimePickerState();
+  createState() => FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState
+class FormBuilderDateTimePickerState
     extends
         FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime> {
   late TextEditingController _textFieldController;
