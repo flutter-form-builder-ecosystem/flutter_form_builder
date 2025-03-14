@@ -124,8 +124,6 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final bool barrierDismissible;
 
   /// Creates field for `Date`, `Time` and `DateTime` input
-  ///
-  /// The picker can be programmatically opened using the [showPicker] method.
   FormBuilderDateTimePicker({
     super.key,
     required super.name,
@@ -244,6 +242,9 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   createState() => FormBuilderDateTimePickerState();
 }
 
+/// Holds the state of a [FormBuilderDateTimePicker].
+///
+/// The picker can be programmatically opened using the [showPicker] method.
 class FormBuilderDateTimePickerState
     extends
         FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime> {
