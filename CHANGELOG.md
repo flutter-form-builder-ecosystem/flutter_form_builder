@@ -1,3 +1,8 @@
+# 10.0.1
+
+* feat: [#1473](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1475) update intl constraints to allow use <0.21.0 by @deandreamatias
+  * Also update native setup on example
+
 # 10.0.0
 
 ## BREAKING CHANGES
