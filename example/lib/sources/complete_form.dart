@@ -63,6 +63,7 @@ class _CompleteFormState extends State<CompleteForm> {
                     ),
                   ),
                   initialTime: const TimeOfDay(hour: 8, minute: 0),
+                  popOnDateSelection: true,
                   // locale: const Locale.fromSubtags(languageCode: 'fr'),
                 ),
                 FormBuilderDateRangePicker(
