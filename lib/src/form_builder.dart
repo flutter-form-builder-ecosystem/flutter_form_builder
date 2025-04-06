@@ -279,15 +279,10 @@ class FormBuilderState extends State<FormBuilder> {
     _focusOnInvalid = focusOnInvalid;
     final hasError = !_formKey.currentState!.validate();
     if (hasError) {
-      final wrongFields = fields.values.where((element) => element.hasError).toList();
-      if (wrongFields.isNotEmpty) {
-        if (focusOnInvalid) {
-          wrongFields.first.focus();
-        }
-        if (autoScrollWhenFocusOnInvalid) {
-          wrongFields.first.ensureScrollableVisibility();
-        }
-      }
+      scrollToFirstInvalidField(
+        focusOnInvalid: focusOnInvalid,
+        autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+      );
     }
     return !hasError;
   }
@@ -326,10 +321,47 @@ class FormBuilderState extends State<FormBuilder> {
 
   /// Update fields errors of form.
   /// Useful when need update errors at once, after got errors from server.
-  void patchError(Map<String, String> errors) {
+  ///
+  /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
+  /// By default `true`
+  ///
+  /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// By default `false`.
+  ///
+  /// Note: If a invalid field is from type **TextField** and will focused,
+  /// the form will auto scroll to show this invalid field.
+  /// In this case, the automatic scroll happens because is a behavior inside the framework,
+  /// not because [autoScrollWhenFocusOnInvalid] is `true`.
+  void patchError(Map<String, String> errors, {bool focusOnInvalid = true, bool autoScrollWhenFocusOnInvalid = false}) {
     errors.forEach((key, value) {
       _fields[key]?.invalidate(value);
     });
+    scrollToFirstInvalidField(
+      focusOnInvalid: focusOnInvalid,
+      autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+    );
+  }
+
+  /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
+  /// By default `true`
+  ///
+  /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// By default `false`.
+  ///
+  /// Note: If a invalid field is from type **TextField** and will focused,
+  /// the form will auto scroll to show this invalid field.
+  /// In this case, the automatic scroll happens because is a behavior inside the framework,
+  /// not because [autoScrollWhenFocusOnInvalid] is `true`.
+  void scrollToFirstInvalidField({bool focusOnInvalid = true, bool autoScrollWhenFocusOnInvalid = false}) {
+    final wrongFields = fields.values.where((element) => element.hasError).toList();
+    if (wrongFields.isNotEmpty) {
+      if (focusOnInvalid) {
+        wrongFields.first.focus();
+      }
+      if (autoScrollWhenFocusOnInvalid) {
+        wrongFields.first.ensureScrollableVisibility();
+      }
+    }
   }
 
   @override
