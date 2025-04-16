@@ -53,6 +53,7 @@ class FormBuilderField<T> extends FormField<T> {
     super.validator,
     super.restorationId,
     required super.builder,
+    super.errorBuilder,
     required this.name,
     this.valueTransformer,
     this.onChanged,
