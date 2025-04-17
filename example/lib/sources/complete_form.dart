@@ -89,6 +89,20 @@ class _CompleteFormState extends State<CompleteForm> {
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.min(6),
                   ]),
+                  errorBuilder: (context, errorText) => TextButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(errorText),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      errorText,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
                   onChanged: _onChanged,
                   min: 0.0,
                   max: 10.0,

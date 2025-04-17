@@ -359,6 +359,7 @@ class FormBuilderChoiceChips<T> extends FormBuilderFieldDecoration<T> {
     super.onChanged,
     super.valueTransformer,
     super.onReset,
+    super.errorBuilder,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
     this.backgroundColor,

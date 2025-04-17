@@ -38,6 +38,11 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
     required super.name,
     required this.options,
     super.initialValue,
+    super.onChanged,
+    super.valueTransformer,
+    super.onReset,
+    super.restorationId,
+    super.errorBuilder,
     this.activeColor,
     this.controlAffinity = ControlAffinity.leading,
     this.disabled,
@@ -54,10 +59,6 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
     this.wrapSpacing = 0.0,
     this.wrapTextDirection,
     this.wrapVerticalDirection = VerticalDirection.down,
-    super.onChanged,
-    super.valueTransformer,
-    super.onReset,
-    super.restorationId,
     this.itemDecoration,
   }) : super(
          builder: (FormFieldState<T?> field) {

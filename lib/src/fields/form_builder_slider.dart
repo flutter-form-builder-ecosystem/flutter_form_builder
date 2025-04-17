@@ -195,6 +195,7 @@ class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.min,
     required this.max,
     this.divisions,

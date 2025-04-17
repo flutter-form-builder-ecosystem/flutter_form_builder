@@ -46,6 +46,7 @@ class FormBuilderFilterChips<T> extends FormBuilderFieldDecoration<List<T>> {
     super.initialValue,
     required super.name,
     super.restorationId,
+    super.errorBuilder,
     required this.options,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
