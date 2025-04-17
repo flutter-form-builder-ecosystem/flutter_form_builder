@@ -264,6 +264,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.items,
     this.isExpanded = true,
     this.isDense = true,

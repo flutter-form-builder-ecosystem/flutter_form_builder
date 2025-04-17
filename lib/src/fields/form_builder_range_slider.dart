@@ -174,6 +174,7 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
     super.autovalidateMode = AutovalidateMode.disabled,
     super.onReset,
     super.focusNode,
+    super.errorBuilder,
     required this.min,
     required this.max,
     this.divisions,

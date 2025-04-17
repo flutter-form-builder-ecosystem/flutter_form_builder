@@ -79,6 +79,7 @@ class FormBuilderDateRangePicker
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.firstDate,
     required this.lastDate,
     this.format,

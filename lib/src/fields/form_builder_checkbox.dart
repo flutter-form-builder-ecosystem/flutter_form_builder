@@ -106,6 +106,7 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.title,
     this.activeColor,
     this.autofocus = false,
