@@ -59,10 +59,7 @@ class FormBuilderFieldDecorationState<
           widget.errorBuilder != null && efectiveErrorText != null
               ? widget.errorBuilder!(context, efectiveErrorText)
               : null,
-      enabled:
-          widget.decoration.enabled
-              ? widget.enabled
-              : widget.decoration.enabled,
+      enabled: widget.decoration.enabled ? widget.enabled : false,
     );
   }
 
