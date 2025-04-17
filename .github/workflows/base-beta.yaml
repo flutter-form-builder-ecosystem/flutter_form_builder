@@ -1,6 +1,8 @@
 name: Base (beta)
 
 on:
+  schedule:
+    - cron: '0 0 */15 * *' # Runs every 15 days for verifying changes on Flutter beta channel
   push:
     branches: [beta]
     tags:
