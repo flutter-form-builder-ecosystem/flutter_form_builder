@@ -110,8 +110,35 @@ class FormBuilder extends StatefulWidget {
     this.canPop,
   });
 
-  static FormBuilderState? of(BuildContext context) =>
-      context.findAncestorStateOfType<FormBuilderState>();
+  static FormBuilderState of(BuildContext context, [bool listen = false]) {
+    final FormBuilderState? formState = maybeOf(context, listen);
+    assert(() {
+      if (formState == null) {
+        throw FlutterError(
+          'FormBuilder.of() was called with a context that does not contain a FormBuilder widget.\n'
+          'No FormBuilder widget ancestor could be found starting from the context that '
+          'was passed to FormBuilder.of(). This can happen because you are using a widget '
+          'that looks for a FormBuilder ancestor, but no such ancestor exists.\n'
+          'The context used was:\n'
+          '  $context',
+        );
+      }
+      return true;
+    }());
+    return formState!;
+  }
+
+  static FormBuilderState? maybeOf(
+    BuildContext context, [
+    bool listen = false,
+  ]) {
+    if (listen) {
+      return context
+          .dependOnInheritedWidgetOfExactType<_FormBuilderScope>()
+          ?._formState;
+    }
+    return context.findAncestorStateOfType<FormBuilderState>();
+  }
 
   @override
   FormBuilderState createState() => FormBuilderState();
