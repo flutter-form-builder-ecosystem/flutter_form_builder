@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,12 +11,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter FormBuilder Example',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        FormBuilderLocalizations.delegate,
-        ...GlobalMaterialLocalizations.delegates,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: FormBuilderLocalizations.supportedLocales,
       home: const _ExamplePage(),
     );
   }
@@ -37,56 +29,47 @@ class _ExamplePageState extends State<_ExamplePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Minimal code example')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: FormBuilder(
-          key: _formKey,
-          child: Column(
-            children: [
-              FormBuilderFilterChips<String>(
-                decoration: const InputDecoration(
-                  labelText: 'The language of my people',
-                ),
-                name: 'languages_filter',
-                selectedColor: Colors.red,
-                options: const [
-                  FormBuilderChipOption(
-                    value: 'Dart',
-                    avatar: CircleAvatar(child: Text('D')),
+      body: SafeArea(
+        child: Column(
+          children: [
+            FormBuilder(
+              key: _formKey,
+              child: Column(
+                children: [
+                  FormBuilderTextField(
+                    name: 'full_name',
+                    decoration: const InputDecoration(labelText: 'Full Name'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your full name';
+                      }
+                      return null;
+                    },
                   ),
-                  FormBuilderChipOption(
-                    value: 'Kotlin',
-                    avatar: CircleAvatar(child: Text('K')),
+                  Builder(
+                    builder: (innerContext) {
+                      return Text(
+                        FormBuilder.of(innerContext).isValid
+                            ? 'OK Valid'
+                            : 'X Invalid',
+                      );
+                    },
                   ),
-                  FormBuilderChipOption(
-                    value: 'Java',
-                    avatar: CircleAvatar(child: Text('J')),
-                  ),
-                  FormBuilderChipOption(
-                    value: 'Swift',
-                    avatar: CircleAvatar(child: Text('S')),
-                  ),
-                  FormBuilderChipOption(
-                    value: 'Objective-C',
-                    avatar: CircleAvatar(child: Text('O')),
-                  ),
+                  const SizedBox(height: 10),
+                  Builder(builder: (innerContext) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        FormBuilder.of(innerContext).saveAndValidate();
+                        debugPrint(
+                            FormBuilder.of(innerContext).value.toString());
+                      },
+                      child: const Text('Print'),
+                    );
+                  }),
                 ],
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.minLength(1),
-                  FormBuilderValidators.maxLength(3),
-                ]),
               ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  _formKey.currentState?.saveAndValidate();
-                  debugPrint(_formKey.currentState?.value.toString());
-                },
-                child: const Text('Print'),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
