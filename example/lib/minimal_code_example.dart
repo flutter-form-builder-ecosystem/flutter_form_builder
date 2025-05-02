@@ -43,6 +43,7 @@ class _ExamplePageState extends State<_ExamplePage> {
         child: FormBuilder(
           key: _formKey,
           child: Column(
+            spacing: 16,
             children: [
               FormBuilderFilterChips<String>(
                 decoration: const InputDecoration(
@@ -77,7 +78,6 @@ class _ExamplePageState extends State<_ExamplePage> {
                   FormBuilderValidators.maxLength(3),
                 ]),
               ),
-              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   _formKey.currentState?.saveAndValidate();

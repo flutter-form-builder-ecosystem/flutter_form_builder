@@ -620,6 +620,61 @@ void main() {
       expect(formKey.currentState?.errors, equals({}));
     });
   });
+
+  group('multiple fields interaction -', () {
+    testWidgets('Should update form builder fields when has similar fields', (
+      tester,
+    ) async {
+      // Arrange
+      const firstDropdownName = '1_dropdown';
+      const secondDropdownName = '2_dropdown';
+      final firstDropdown = FormBuilderDropdown<int>(
+        name: firstDropdownName,
+        items: const [
+          DropdownMenuItem(value: 1, child: Text('1')),
+          DropdownMenuItem(value: 2, child: Text('2')),
+          DropdownMenuItem(value: 3, child: Text('3')),
+        ],
+      );
+      final secondDropdown = FormBuilderDropdown(
+        name: secondDropdownName,
+        items: const [
+          DropdownMenuItem(value: 1, child: Text('1')),
+          DropdownMenuItem(value: 2, child: Text('2')),
+          DropdownMenuItem(value: 3, child: Text('3')),
+        ],
+      );
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          Column(children: [firstDropdown, secondDropdown]),
+        ),
+      );
+
+      // Act
+      final firstDropdownFinder = find.byWidget(firstDropdown);
+      await tester.tap(firstDropdownFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('1').last);
+      await tester.pumpAndSettle();
+
+      // Assert
+      expect(formInstantValue(firstDropdownName), 1);
+      expect(formInstantValue(secondDropdownName), isNull);
+
+      // Act
+      final secondDropdownFinder = find.byWidget(secondDropdown);
+      await tester.tap(secondDropdownFinder);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('2').last);
+      await tester.pumpAndSettle();
+
+      // Assert
+      expect(formInstantValue(firstDropdownName), 1);
+      expect(formInstantValue(secondDropdownName), 2);
+      expect(formKey.currentState?.fields, contains(firstDropdownName));
+      expect(formKey.currentState?.fields, contains(secondDropdownName));
+    });
+  });
 }
 
 // simple stateful widget that can hide and show its child with the intent of
