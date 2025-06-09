@@ -296,6 +296,7 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
            final hasValue = items.map((e) => e.value).contains(field.value);
            return InputDecorator(
              decoration: state.decoration,
+             isEmpty: !hasValue,
              child: DropdownButton<T>(
                menuWidth: menuWidth,
                padding: padding,
