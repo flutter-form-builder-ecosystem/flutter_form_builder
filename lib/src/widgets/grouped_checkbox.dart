@@ -325,9 +325,9 @@ class GroupedCheckbox<T> extends StatelessWidget {
       ],
     );
 
-    if (this.itemDecoration != null) {
+    if (itemDecoration != null) {
       compositeItem = Container(
-        decoration: this.itemDecoration,
+        decoration: itemDecoration,
         margin: EdgeInsets.only(
           bottom: orientation == OptionsOrientation.vertical
               ? wrapSpacing

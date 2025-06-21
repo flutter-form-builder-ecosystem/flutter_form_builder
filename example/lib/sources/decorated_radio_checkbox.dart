@@ -156,7 +156,9 @@ class _DecoratedRadioCheckboxState extends State<DecoratedRadioCheckbox> {
 
   /// options using column of widgets for the label
   /// We can force a min width by creating a sized box so we don't need another parameter
-  List<FormBuilderFieldOption> getDemoOptionsWidgets({forceMinWidth = 0.0}) {
+  List<FormBuilderFieldOption> getDemoOptionsWidgets({
+    double forceMinWidth = 0.0,
+  }) {
     return [
       FormBuilderFieldOption(
         value: "airplane",
