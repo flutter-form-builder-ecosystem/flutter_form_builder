@@ -39,7 +39,7 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
               'best_language': 'Dart',
               'age': '13',
               'gender': 'Male',
-              'languages_filter': ['Dart']
+              'languages_filter': ['Dart'],
             },
             skipDisabled: true,
             child: Column(
@@ -60,13 +60,16 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
                   options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                      .map((lang) => FormBuilderFieldOption(
-                            value: lang,
-                            child: Text(lang),
-                          ))
+                      .map(
+                        (lang) => FormBuilderFieldOption(
+                          value: lang,
+                          child: Text(lang),
+                        ),
+                      )
                       .toList(growable: false),
                   controlAffinity: ControlAffinity.leading,
                   orientation: OptionsOrientation.wrap,
@@ -87,13 +90,16 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                       decoration: BoxDecoration(color: Colors.red),
                     ),
                   ),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
                   options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                      .map((lang) => FormBuilderFieldOption(
-                            value: lang,
-                            child: Text(lang),
-                          ))
+                      .map(
+                        (lang) => FormBuilderFieldOption(
+                          value: lang,
+                          child: Text(lang),
+                        ),
+                      )
                       .toList(growable: false),
                   controlAffinity: ControlAffinity.leading,
                   orientation: OptionsOrientation.vertical,
@@ -103,7 +109,8 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                 FormBuilderCheckboxGroup<String>(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                      labelText: 'The language of my people'),
+                    labelText: 'The language of my people',
+                  ),
                   name: 'languages_horiz',
                   // initialValue: const ['Dart'],
                   options: const [
@@ -132,7 +139,8 @@ class _GroupedRadioCheckbox extends State<GroupedRadioCheckbox> {
                 FormBuilderCheckboxGroup<String>(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                      labelText: 'The language of my people'),
+                    labelText: 'The language of my people',
+                  ),
                   name: 'languages_vert',
                   // initialValue: const ['Dart'],
                   options: const [

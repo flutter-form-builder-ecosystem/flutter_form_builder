@@ -75,10 +75,9 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                child: GroupedRadio<T>(
                  activeColor: activeColor,
                  controlAffinity: controlAffinity,
-                 disabled:
-                     state.enabled
-                         ? disabled
-                         : options.map((option) => option.value).toList(),
+                 disabled: state.enabled
+                     ? disabled
+                     : options.map((option) => option.value).toList(),
                  focusColor: focusColor,
                  hoverColor: hoverColor,
                  materialTapTargetSize: materialTapTargetSize,

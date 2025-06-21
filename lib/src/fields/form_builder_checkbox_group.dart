@@ -85,10 +85,9 @@ class FormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
                  onChanged: (val) {
                    field.didChange(val);
                  },
-                 disabled:
-                     state.enabled
-                         ? disabled
-                         : options.map((e) => e.value).toList(),
+                 disabled: state.enabled
+                     ? disabled
+                     : options.map((e) => e.value).toList(),
                  activeColor: activeColor,
                  visualDensity: visualDensity,
                  focusColor: focusColor,

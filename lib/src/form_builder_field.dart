@@ -90,8 +90,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// initialValue prevails.
   T? get initialValue =>
       widget.initialValue ??
-      (_formBuilderState?.initialValue ?? const <String, dynamic>{})[widget
-              .name]
+      (_formBuilderState?.initialValue ??
+              const <String, dynamic>{})[widget.name]
           as T?;
 
   dynamic get transformedValue =>

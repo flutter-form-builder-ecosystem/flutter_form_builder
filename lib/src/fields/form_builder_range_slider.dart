@@ -232,12 +232,11 @@ class FormBuilderRangeSlider extends FormBuilderFieldDecoration<RangeValues> {
                        onChangeStart: onChangeStart,
                        labels: labels,
                        semanticFormatterCallback: semanticFormatterCallback,
-                       onChanged:
-                           state.enabled
-                               ? (values) {
-                                 field.didChange(values);
-                               }
-                               : null,
+                       onChanged: state.enabled
+                           ? (values) {
+                               field.didChange(values);
+                             }
+                           : null,
                      ),
                      Row(
                        children: <Widget>[

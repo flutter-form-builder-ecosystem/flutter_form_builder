@@ -107,18 +107,18 @@ class FormBuilderFilterChips<T> extends FormBuilderFieldDecoration<List<T>> {
                        avatar: option.avatar,
                        onSelected:
                            state.enabled &&
-                                   (null == maxChips ||
-                                       fieldValue.length < maxChips ||
-                                       fieldValue.contains(option.value))
-                               ? (selected) {
-                                 final currentValue = [...fieldValue];
-                                 selected
-                                     ? currentValue.add(option.value)
-                                     : currentValue.remove(option.value);
+                               (null == maxChips ||
+                                   fieldValue.length < maxChips ||
+                                   fieldValue.contains(option.value))
+                           ? (selected) {
+                               final currentValue = [...fieldValue];
+                               selected
+                                   ? currentValue.add(option.value)
+                                   : currentValue.remove(option.value);
 
-                                 field.didChange(currentValue);
-                               }
-                               : null,
+                               field.didChange(currentValue);
+                             }
+                           : null,
                        selectedColor: selectedColor,
                        disabledColor: disabledColor,
                        backgroundColor: backgroundColor,

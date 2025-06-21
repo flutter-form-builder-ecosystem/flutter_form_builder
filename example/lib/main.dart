@@ -29,8 +29,10 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: FormBuilderLocalizations.supportedLocales,
       theme: ThemeData.light().copyWith(
-          appBarTheme: const AppBarTheme()
-              .copyWith(backgroundColor: Colors.blue.shade200)),
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: Colors.blue.shade200,
+        ),
+      ),
       home: const _HomePage(),
     );
   }

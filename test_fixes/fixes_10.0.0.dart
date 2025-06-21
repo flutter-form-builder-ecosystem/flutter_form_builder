@@ -88,7 +88,7 @@ class _ExamplePageState extends State<_ExamplePage> {
                   debugPrint(_formKey.currentState?.value.toString());
                 },
                 child: const Text('Print'),
-              )
+              ),
             ],
           ),
         ),

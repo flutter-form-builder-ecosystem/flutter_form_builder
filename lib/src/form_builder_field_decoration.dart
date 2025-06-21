@@ -47,18 +47,16 @@ class FormBuilderFieldDecorationState<
 
   /// Get the decoration with the current state
   InputDecoration get decoration {
-    final String? efectiveErrorText =
-        widget.enabled || readOnly
-            ? widget.decoration.errorText ?? errorText
-            : null;
+    final String? efectiveErrorText = widget.enabled || readOnly
+        ? widget.decoration.errorText ?? errorText
+        : null;
 
     return widget.decoration.copyWith(
       // Read only allow show error to support property skipDisabled
       errorText: widget.errorBuilder != null ? null : efectiveErrorText,
-      error:
-          widget.errorBuilder != null && efectiveErrorText != null
-              ? widget.errorBuilder!(context, efectiveErrorText)
-              : null,
+      error: widget.errorBuilder != null && efectiveErrorText != null
+          ? widget.errorBuilder!(context, efectiveErrorText)
+          : null,
       enabled: widget.decoration.enabled ? widget.enabled : false,
     );
   }

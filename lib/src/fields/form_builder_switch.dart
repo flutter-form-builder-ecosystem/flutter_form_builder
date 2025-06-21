@@ -131,12 +131,11 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
                contentPadding: contentPadding,
                title: title,
                value: state.value ?? false,
-               onChanged:
-                   state.enabled
-                       ? (value) {
-                         field.didChange(value);
-                       }
-                       : null,
+               onChanged: state.enabled
+                   ? (value) {
+                       field.didChange(value);
+                     }
+                   : null,
                activeColor: activeColor,
                activeThumbImage: activeThumbImage,
                activeTrackColor: activeTrackColor,

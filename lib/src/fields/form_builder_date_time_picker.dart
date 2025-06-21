@@ -257,8 +257,9 @@ class _FormBuilderDateTimePickerState
     _dateFormat = widget.format ?? _getDefaultDateTimeFormat();
     //setting this to value instead of initialValue here is OK since we handle initial value in the parent class
     final initVal = value;
-    _textFieldController.text =
-        initVal == null ? '' : _dateFormat.format(initVal);
+    _textFieldController.text = initVal == null
+        ? ''
+        : _dateFormat.format(initVal);
 
     effectiveFocusNode.onKeyEvent = (node, event) {
       if (event is KeyDownEvent &&
@@ -360,20 +361,18 @@ class _FormBuilderDateTimePickerState
         return Localizations.override(
           context: context,
           locale: widget.locale,
-          child:
-              transitionBuilder == null
-                  ? child
-                  : transitionBuilder(context, child),
+          child: transitionBuilder == null
+              ? child
+              : transitionBuilder(context, child),
         );
       };
     }
 
     return await showTimePicker(
       context: context,
-      initialTime:
-          currentValue != null
-              ? TimeOfDay.fromDateTime(currentValue)
-              : widget.initialTime,
+      initialTime: currentValue != null
+          ? TimeOfDay.fromDateTime(currentValue)
+          : widget.initialTime,
       builder: builder,
       useRootNavigator: widget.useRootNavigator,
       routeSettings: widget.routeSettings,
@@ -403,7 +402,8 @@ class _FormBuilderDateTimePickerState
   @override
   void didChange(DateTime? value) {
     super.didChange(value);
-    _textFieldController.text =
-        (value == null) ? '' : _dateFormat.format(value);
+    _textFieldController.text = (value == null)
+        ? ''
+        : _dateFormat.format(value);
   }
 }
