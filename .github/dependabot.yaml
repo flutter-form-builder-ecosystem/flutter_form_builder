@@ -7,5 +7,10 @@ updates:
       interval: "daily"
   - package-ecosystem: "pub"
     directory: "/"
+    ignore:
+      - dependency-name: "*"
+      - update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
     schedule:
       interval: "daily"
