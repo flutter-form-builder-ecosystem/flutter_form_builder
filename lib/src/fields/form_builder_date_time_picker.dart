@@ -123,6 +123,8 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final EntryModeChangeCallback? onEntryModeChanged;
   final bool barrierDismissible;
 
+  final bool readOnly;
+
   /// Creates field for `Date`, `Time` and `DateTime` input
   FormBuilderDateTimePicker({
     super.key,
@@ -191,6 +193,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.selectableDayPredicate,
     this.anchorPoint,
     this.onEntryModeChanged,
+    this.readOnly = false,
     this.barrierDismissible = true,
   }) : super(
          builder: (FormFieldState<DateTime?> field) {
@@ -199,7 +202,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
            return FocusTraversalGroup(
              policy: ReadingOrderTraversalPolicy(),
              child: TextField(
-               onTap: () => state.showPicker(),
+               onTap: readOnly ? () {} : () => state.showPicker(),
                textDirection: textDirection,
                textAlign: textAlign,
                textAlignVertical: textAlignVertical,
