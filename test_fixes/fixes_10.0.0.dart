@@ -39,8 +39,11 @@ class _ExamplePageState extends State<_ExamplePage> {
           child: Column(
             children: [
               FormBuilderDateTimePicker(
-                name: 'date',
                 resetIcon: const Icon(Icons.clear),
+                name: 'date',
+                disablePicker: true,
+                autofocus: true,
+                autocorrect: true,
               ),
               FormBuilderChoiceChip<String>(
                 name: 'choice_chip',
@@ -50,7 +53,7 @@ class _ExamplePageState extends State<_ExamplePage> {
                   'Option 3',
                 ].map((e) => FormBuilderChipOption(value: e)).toList(),
               ),
-              FormBuilderFilterChip(
+              FormBuilderFilterChip<String>(
                 maxChips: 2,
                 decoration: const InputDecoration(
                   labelText: 'The language of my people',
