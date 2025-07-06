@@ -39,6 +39,9 @@ class _ExamplePageState extends State<_ExamplePage> {
             children: [
               FormBuilderDateTimePicker(
                 name: 'date',
+                disablePicker: true,
+                autofocus: true,
+                autocorrect: true,
               ),
               FormBuilderChoiceChips<String>(
                 name: 'choice_chip',
@@ -48,7 +51,7 @@ class _ExamplePageState extends State<_ExamplePage> {
                   'Option 3',
                 ].map((e) => FormBuilderChipOption(value: e)).toList(),
               ),
-              FormBuilderFilterChips(
+              FormBuilderFilterChips<String>(
                 decoration: const InputDecoration(
                   labelText: 'The language of my people',
                   enabled: false,
@@ -85,7 +88,7 @@ class _ExamplePageState extends State<_ExamplePage> {
                   debugPrint(_formKey.currentState?.value.toString());
                 },
                 child: const Text('Print'),
-              )
+              ),
             ],
           ),
         ),
