@@ -204,7 +204,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
            return FocusTraversalGroup(
              policy: ReadingOrderTraversalPolicy(),
              child: TextField(
-               onTap: disablePicker ? () {} : () => state.showPicker(),
+               onTap: disablePicker ? null : () => state.showPicker(),
                textDirection: textDirection,
                textAlign: textAlign,
                textAlignVertical: textAlignVertical,
@@ -268,7 +268,8 @@ class _FormBuilderDateTimePickerState
     effectiveFocusNode.onKeyEvent = (node, event) {
       if (event is KeyDownEvent &&
           event.logicalKey == LogicalKeyboardKey.space &&
-          node.hasFocus) {
+          node.hasFocus &&
+          !widget.disablePicker) {
         showPicker();
         return KeyEventResult.handled;
       }
