@@ -136,7 +136,7 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
                        field.didChange(value);
                      }
                    : null,
-               activeThumbColor: activeColor,
+               activeColor: activeColor,
                activeThumbImage: activeThumbImage,
                activeTrackColor: activeTrackColor,
                inactiveThumbColor: inactiveThumbColor,

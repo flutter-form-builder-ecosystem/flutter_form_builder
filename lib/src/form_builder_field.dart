@@ -37,6 +37,9 @@ class FormBuilderField<T> extends FormField<T> {
   /// Called when the field value is changed.
   final ValueChanged<T?>? onChanged;
 
+  /// Called when the field value is reset.
+  final VoidCallback? onReset;
+
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
@@ -51,10 +54,10 @@ class FormBuilderField<T> extends FormField<T> {
     super.restorationId,
     required super.builder,
     super.errorBuilder,
-    super.onReset,
     required this.name,
     this.valueTransformer,
     this.onChanged,
+    this.onReset,
     this.focusNode,
   });
 
@@ -225,6 +228,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     if (_customErrorText != null) {
       setState(() => _customErrorText = null);
     }
+    widget.onReset?.call();
   }
 
   /// Validate field
