@@ -1,3 +1,11 @@
+# 10.1.0
+
+* Set minimal Flutter version to 3.32.0
+* Set minimal Dart version to 3.8.0
+* Add support for errorBuilder [created on Flutter core](https://github.com/flutter/flutter/pull/162255). By @deandreamatias on [#1480](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1480)
+* Avoid overwrite field children ([#1365](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1365)). By @deandreamatias on [#1489](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1489)
+* [FormBuilderDateTimePicker] Add `disabledPicker` property. By @CesareIsHere on [#1497](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1497)
+
 # 10.1.0-beta
 
 * Add support for errorBuilder [created on Flutter core](https://github.com/flutter/flutter/pull/162255). By @deandreamatias on [#1480](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1480)
