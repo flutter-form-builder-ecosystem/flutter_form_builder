@@ -261,21 +261,19 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       hoverColor: widget.hoverColor,
       materialTapTargetSize: widget.materialTapTargetSize,
       value: optionValue,
-      onChanged:
-          isOptionDisabled
-              ? null
-              : (T? selected) {
-                widget.onChanged(selected);
-              },
+      onChanged: isOptionDisabled
+          ? null
+          : (T? selected) {
+              widget.onChanged(selected);
+            },
     );
 
     final label = GestureDetector(
-      onTap:
-          isOptionDisabled
-              ? null
-              : () {
-                widget.onChanged(optionValue);
-              },
+      onTap: isOptionDisabled
+          ? null
+          : () {
+              widget.onChanged(optionValue);
+            },
       child: option,
     );
 
@@ -306,14 +304,12 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       compositeItem = Container(
         decoration: widget.itemDecoration,
         margin: EdgeInsets.only(
-          bottom:
-              widget.orientation == OptionsOrientation.vertical
-                  ? widget.wrapSpacing
-                  : 0.0,
-          right:
-              widget.orientation == OptionsOrientation.horizontal
-                  ? widget.wrapSpacing
-                  : 0.0,
+          bottom: widget.orientation == OptionsOrientation.vertical
+              ? widget.wrapSpacing
+              : 0.0,
+          right: widget.orientation == OptionsOrientation.horizontal
+              ? widget.wrapSpacing
+              : 0.0,
         ),
         child: compositeItem,
       );

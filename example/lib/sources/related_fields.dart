@@ -31,9 +31,7 @@ class _RelatedFieldsState extends State<RelatedFields> {
           const SizedBox(height: 20),
           FormBuilderDropdown<String>(
             name: 'country',
-            decoration: const InputDecoration(
-              label: Text('Countries'),
-            ),
+            decoration: const InputDecoration(label: Text('Countries')),
             initialValue: country,
             onChanged: (value) {
               setState(() {
@@ -43,24 +41,16 @@ class _RelatedFieldsState extends State<RelatedFields> {
               });
             },
             items: _allCountries
-                .map((e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(e),
-                    ))
+                .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                 .toList(),
           ),
           const SizedBox(height: 10),
           FormBuilderDropdown<String>(
             name: 'city',
-            decoration: const InputDecoration(
-              label: Text('Cities'),
-            ),
+            decoration: const InputDecoration(label: Text('Cities')),
             initialValue: city,
             items: cities
-                .map((e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(e),
-                    ))
+                .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                 .toList(),
           ),
           const SizedBox(height: 10),
@@ -90,17 +80,8 @@ class _RelatedFieldsState extends State<RelatedFields> {
   }
 }
 
-const _allCountries = [
-  'United States',
-  'France',
-];
+const _allCountries = ['United States', 'France'];
 
-const _allUsaCities = [
-  'California',
-  'Another city',
-];
+const _allUsaCities = ['California', 'Another city'];
 
-const _allFranceCities = [
-  'Paris',
-  'Another city',
-];
+const _allFranceCities = ['Paris', 'Another city'];

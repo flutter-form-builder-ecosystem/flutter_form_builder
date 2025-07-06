@@ -103,6 +103,7 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.title,
     this.activeColor,
     this.activeTrackColor,
@@ -130,13 +131,12 @@ class FormBuilderSwitch extends FormBuilderFieldDecoration<bool> {
                contentPadding: contentPadding,
                title: title,
                value: state.value ?? false,
-               onChanged:
-                   state.enabled
-                       ? (value) {
-                         field.didChange(value);
-                       }
-                       : null,
-               activeColor: activeColor,
+               onChanged: state.enabled
+                   ? (value) {
+                       field.didChange(value);
+                     }
+                   : null,
+               activeThumbColor: activeColor,
                activeThumbImage: activeThumbImage,
                activeTrackColor: activeTrackColor,
                inactiveThumbColor: inactiveThumbColor,

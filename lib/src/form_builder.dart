@@ -297,8 +297,9 @@ class FormBuilderState extends State<FormBuilder> {
     _focusOnInvalid = focusOnInvalid;
     final hasError = !_formKey.currentState!.validate();
     if (hasError) {
-      final wrongFields =
-          fields.values.where((element) => element.hasError).toList();
+      final wrongFields = fields.values
+          .where((element) => element.hasError)
+          .toList();
       if (wrongFields.isNotEmpty) {
         if (focusOnInvalid) {
           wrongFields.first.focus();

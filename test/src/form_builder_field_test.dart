@@ -54,9 +54,8 @@ void main() {
             name: textFieldName,
             key: textFieldKey,
             autovalidateMode: AutovalidateMode.always,
-            validator:
-                (value) =>
-                    value == null || value.isEmpty ? errorTextField : null,
+            validator: (value) =>
+                value == null || value.isEmpty ? errorTextField : null,
           );
           await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -79,9 +78,8 @@ void main() {
             name: textFieldName,
             key: textFieldKey,
             autovalidateMode: AutovalidateMode.always,
-            validator:
-                (value) =>
-                    value == null || value.length < 10 ? errorTextField : null,
+            validator: (value) =>
+                value == null || value.length < 10 ? errorTextField : null,
           );
           await tester.pumpWidget(buildTestableFieldWidget(testWidget));
 
@@ -181,9 +179,8 @@ void main() {
           const errorTextField = 'error text field';
           final testWidget = FormBuilderTextField(
             name: textFieldName,
-            validator:
-                (value) =>
-                    value == null || value.isEmpty ? errorTextField : null,
+            validator: (value) =>
+                value == null || value.isEmpty ? errorTextField : null,
             autovalidateMode: AutovalidateMode.always,
           );
           await tester.pumpWidget(buildTestableFieldWidget(testWidget));

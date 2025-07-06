@@ -1,3 +1,7 @@
+# 10.1.0-beta
+
+* Add support for errorBuilder [created on Flutter core](https://github.com/flutter/flutter/pull/162255). By @deandreamatias on [#1480](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/1480)
+
 # 10.0.1
 
 * feat: [#1473](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1475) update intl constraints to allow use <0.21.0 by @deandreamatias

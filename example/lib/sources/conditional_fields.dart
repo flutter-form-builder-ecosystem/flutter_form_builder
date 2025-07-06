@@ -23,9 +23,7 @@ class _ConditionalFieldsState extends State<ConditionalFields> {
           FormBuilderDropdown<int>(
             name: 'options',
             validator: FormBuilderValidators.required(),
-            decoration: const InputDecoration(
-              label: Text('Select the option'),
-            ),
+            decoration: const InputDecoration(label: Text('Select the option')),
             onChanged: (value) {
               setState(() {
                 option = value;
@@ -44,15 +42,10 @@ class _ConditionalFieldsState extends State<ConditionalFields> {
             child: FormBuilderTextField(
               name: 'textfield',
               validator: FormBuilderValidators.minLength(4),
-              decoration: const InputDecoration(
-                label: Text('Magic field'),
-              ),
+              decoration: const InputDecoration(label: Text('Magic field')),
             ),
           ),
-          Visibility(
-            visible: option == 1,
-            child: const Text('Magic info'),
-          ),
+          Visibility(visible: option == 1, child: const Text('Magic info')),
           const SizedBox(height: 10),
           ElevatedButton(
             child: const Text("Submit"),

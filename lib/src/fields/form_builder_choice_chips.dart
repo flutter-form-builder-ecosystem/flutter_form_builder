@@ -359,6 +359,7 @@ class FormBuilderChoiceChips<T> extends FormBuilderFieldDecoration<T> {
     super.onChanged,
     super.valueTransformer,
     super.onReset,
+    super.errorBuilder,
     this.alignment = WrapAlignment.start,
     this.avatarBorder = const CircleBorder(),
     this.backgroundColor,
@@ -420,13 +421,12 @@ class FormBuilderChoiceChips<T> extends FormBuilderFieldDecoration<T> {
                        side: side,
                        shape: shape,
                        selected: field.value == option.value,
-                       onSelected:
-                           state.enabled
-                               ? (selected) {
-                                 final choice = selected ? option.value : null;
-                                 state.didChange(choice);
-                               }
-                               : null,
+                       onSelected: state.enabled
+                           ? (selected) {
+                               final choice = selected ? option.value : null;
+                               state.didChange(choice);
+                             }
+                           : null,
                        avatar: option.avatar,
                        selectedColor: selectedColor,
                        disabledColor: disabledColor,

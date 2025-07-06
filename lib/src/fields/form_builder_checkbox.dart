@@ -106,6 +106,7 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.title,
     this.activeColor,
     this.autofocus = false,
@@ -133,12 +134,11 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
                title: title,
                subtitle: subtitle,
                value: tristate ? state.value : (state.value ?? false),
-               onChanged:
-                   state.enabled
-                       ? (value) {
-                         state.didChange(value);
-                       }
-                       : null,
+               onChanged: state.enabled
+                   ? (value) {
+                       state.didChange(value);
+                     }
+                   : null,
                checkColor: checkColor,
                activeColor: activeColor,
                secondary: secondary,

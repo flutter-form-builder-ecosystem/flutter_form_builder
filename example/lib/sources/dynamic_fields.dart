@@ -37,9 +37,7 @@ class _DynamicFieldsState extends State<DynamicFields> {
           FormBuilderTextField(
             name: 'name',
             validator: FormBuilderValidators.required(),
-            decoration: const InputDecoration(
-              label: Text('Started field'),
-            ),
+            decoration: const InputDecoration(label: Text('Started field')),
           ),
           ...fields,
           const SizedBox(height: 10),
@@ -65,15 +63,19 @@ class _DynamicFieldsState extends State<DynamicFields> {
                     final newTextFieldName = 'name_${_newTextFieldId++}';
                     final newTextFieldKey = ValueKey(_newTextFieldId);
                     setState(() {
-                      fields.add(NewTextField(
-                        key: newTextFieldKey,
-                        name: newTextFieldName,
-                        onDelete: () {
-                          setState(() {
-                            fields.removeWhere((e) => e.key == newTextFieldKey);
-                          });
-                        },
-                      ));
+                      fields.add(
+                        NewTextField(
+                          key: newTextFieldKey,
+                          name: newTextFieldName,
+                          onDelete: () {
+                            setState(() {
+                              fields.removeWhere(
+                                (e) => e.key == newTextFieldKey,
+                              );
+                            });
+                          },
+                        ),
+                      );
                     });
                   },
                 ),
@@ -89,11 +91,7 @@ class _DynamicFieldsState extends State<DynamicFields> {
 }
 
 class NewTextField extends StatelessWidget {
-  const NewTextField({
-    super.key,
-    required this.name,
-    this.onDelete,
-  });
+  const NewTextField({super.key, required this.name, this.onDelete});
   final String name;
   final VoidCallback? onDelete;
 
@@ -107,9 +105,7 @@ class NewTextField extends StatelessWidget {
             child: FormBuilderTextField(
               name: name,
               validator: FormBuilderValidators.minLength(4),
-              decoration: const InputDecoration(
-                label: Text('New field'),
-              ),
+              decoration: const InputDecoration(label: Text('New field')),
             ),
           ),
           IconButton(

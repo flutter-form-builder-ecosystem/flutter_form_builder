@@ -124,8 +124,9 @@ void main() {
         expect(find.text(confirmText), findsOneWidget);
         expect(find.text(cancelText), findsOneWidget);
 
-        final testDay =
-            dateFuture.day - 1 <= 0 ? dateFuture.day + 1 : dateFuture.day - 1;
+        final testDay = dateFuture.day - 1 <= 0
+            ? dateFuture.day + 1
+            : dateFuture.day - 1;
         await tester.tap(find.text(testDay.toString()));
         await tester.pumpAndSettle();
         await tester.tap(find.text(confirmText));
@@ -171,8 +172,9 @@ void main() {
         expect(find.text(confirmText), findsOneWidget);
         expect(find.text(cancelText), findsOneWidget);
 
-        final testDay =
-            datePast.day - 1 <= 0 ? datePast.day + 1 : datePast.day - 1;
+        final testDay = datePast.day - 1 <= 0
+            ? datePast.day + 1
+            : datePast.day - 1;
         await tester.tap(find.text(testDay.toString()));
         await tester.pumpAndSettle();
         await tester.tap(find.text(confirmText));

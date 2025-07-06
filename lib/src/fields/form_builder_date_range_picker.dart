@@ -79,6 +79,7 @@ class FormBuilderDateRangePicker
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.firstDate,
     required this.lastDate,
     this.format,
@@ -287,18 +288,17 @@ class _FormBuilderDateRangePickerState
   }
 
   @override
-  InputDecoration get decoration =>
-      widget.allowClear
-          ? super.decoration.copyWith(
-            suffix: IconButton(
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
-              onPressed: () {
-                focus();
-                didChange(null);
-              },
-              icon: widget.clearIcon ?? const Icon(Icons.clear),
-            ),
-          )
-          : super.decoration;
+  InputDecoration get decoration => widget.allowClear
+      ? super.decoration.copyWith(
+          suffix: IconButton(
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
+            onPressed: () {
+              focus();
+              didChange(null);
+            },
+            icon: widget.clearIcon ?? const Icon(Icons.clear),
+          ),
+        )
+      : super.decoration;
 }

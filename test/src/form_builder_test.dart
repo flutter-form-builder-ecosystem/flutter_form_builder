@@ -144,8 +144,8 @@ void main() {
         const errorTextField = 'error text field';
         final testWidget = FormBuilderTextField(
           name: textFieldName,
-          validator:
-              (value) => value == null || value.isEmpty ? errorTextField : null,
+          validator: (value) =>
+              value == null || value.isEmpty ? errorTextField : null,
         );
         await tester.pumpWidget(
           buildTestableFieldWidget(
@@ -170,9 +170,8 @@ void main() {
         const errorTextField = 'error text field';
         final testWidget = FormBuilderTextField(
           name: textFieldName,
-          validator:
-              (value) =>
-                  value == null || value.length < 10 ? errorTextField : null,
+          validator: (value) =>
+              value == null || value.length < 10 ? errorTextField : null,
         );
         await tester.pumpWidget(
           buildTestableFieldWidget(

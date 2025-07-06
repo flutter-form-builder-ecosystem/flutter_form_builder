@@ -195,6 +195,7 @@ class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
     super.onReset,
     super.focusNode,
     super.restorationId,
+    super.errorBuilder,
     required this.min,
     required this.max,
     this.divisions,
@@ -234,12 +235,11 @@ class FormBuilderSlider extends FormBuilderFieldDecoration<double> {
                      onChangeStart: onChangeStart,
                      label: label,
                      semanticFormatterCallback: semanticFormatterCallback,
-                     onChanged:
-                         state.enabled
-                             ? (value) {
-                               field.didChange(value);
-                             }
-                             : null,
+                     onChanged: state.enabled
+                         ? (value) {
+                             field.didChange(value);
+                           }
+                         : null,
                      autofocus: autofocus,
                      mouseCursor: mouseCursor,
                      focusNode: state.effectiveFocusNode,

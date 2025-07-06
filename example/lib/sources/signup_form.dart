@@ -53,7 +53,10 @@ class _SignupFormState extends State<SignupForm> {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 labelText: 'Confirm Password',
-                suffixIcon: (_formKey.currentState?.fields['confirm_password']
+                suffixIcon:
+                    (_formKey
+                            .currentState
+                            ?.fields['confirm_password']
                             ?.hasError ??
                         false)
                     ? const Icon(Icons.error, color: Colors.red)
@@ -62,8 +65,8 @@ class _SignupFormState extends State<SignupForm> {
               obscureText: true,
               validator: (value) =>
                   _formKey.currentState?.fields['password']?.value != value
-                      ? 'No coinciden'
-                      : null,
+                  ? 'No coinciden'
+                  : null,
             ),
             const SizedBox(height: 10),
             FormBuilderFieldDecoration<bool>(
@@ -76,12 +79,11 @@ class _SignupFormState extends State<SignupForm> {
               decoration: const InputDecoration(labelText: 'Accept Terms?'),
               builder: (FormFieldState<bool?> field) {
                 return InputDecorator(
-                  decoration: InputDecoration(
-                    errorText: field.errorText,
-                  ),
+                  decoration: InputDecoration(errorText: field.errorText),
                   child: SwitchListTile(
                     title: const Text(
-                        'I have read and accept the terms of service.'),
+                      'I have read and accept the terms of service.',
+                    ),
                     onChanged: field.didChange,
                     value: field.value ?? false,
                   ),
@@ -94,8 +96,9 @@ class _SignupFormState extends State<SignupForm> {
                 if (_formKey.currentState?.saveAndValidate() ?? false) {
                   if (true) {
                     // Either invalidate using Form Key
-                    _formKey.currentState?.fields['email']
-                        ?.invalidate('Email already taken.');
+                    _formKey.currentState?.fields['email']?.invalidate(
+                      'Email already taken.',
+                    );
                     // OR invalidate using Field Key
                     // _emailFieldKey.currentState?.invalidate('Email already taken.');
                   }
@@ -103,7 +106,7 @@ class _SignupFormState extends State<SignupForm> {
                 debugPrint(_formKey.currentState?.value.toString());
               },
               child: const Text('Signup'),
-            )
+            ),
           ],
         ),
       ),

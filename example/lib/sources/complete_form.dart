@@ -42,7 +42,7 @@ class _CompleteFormState extends State<CompleteForm> {
               'best_language': 'Dart',
               'age': '13',
               'gender': 'Male',
-              'languages_filter': ['Dart']
+              'languages_filter': ['Dart'],
             },
             skipDisabled: true,
             child: Column(
@@ -78,8 +78,9 @@ class _CompleteFormState extends State<CompleteForm> {
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.close),
                       onPressed: () {
-                        _formKey.currentState!.fields['date_range']
-                            ?.didChange(null);
+                        _formKey.currentState!.fields['date_range']?.didChange(
+                          null,
+                        );
                       },
                     ),
                   ),
@@ -89,6 +90,20 @@ class _CompleteFormState extends State<CompleteForm> {
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.min(6),
                   ]),
+                  errorBuilder: (context, errorText) => TextButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(errorText),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      errorText,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ),
                   onChanged: _onChanged,
                   min: 0.0,
                   max: 10.0,
@@ -109,9 +124,9 @@ class _CompleteFormState extends State<CompleteForm> {
                   divisions: 20,
                   maxValueWidget: (max) => TextButton(
                     onPressed: () {
-                      _formKey.currentState?.patchValue(
-                        {'range_slider': const RangeValues(4, 100)},
-                      );
+                      _formKey.currentState?.patchValue({
+                        'range_slider': const RangeValues(4, 100),
+                      });
                     },
                     child: Text(max),
                   ),
@@ -186,21 +201,24 @@ class _CompleteFormState extends State<CompleteForm> {
                         : const Icon(Icons.check),
                     hintText: 'Select Gender',
                   ),
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
                   items: genderOptions
-                      .map((gender) => DropdownMenuItem(
-                            alignment: AlignmentDirectional.center,
-                            value: gender,
-                            child: Text(gender),
-                          ))
+                      .map(
+                        (gender) => DropdownMenuItem(
+                          alignment: AlignmentDirectional.center,
+                          value: gender,
+                          child: Text(gender),
+                        ),
+                      )
                       .toList(),
                   onChanged: (val) {
                     setState(() {
-                      _genderHasError = !(_formKey
-                              .currentState?.fields['gender']
-                              ?.validate() ??
-                          false);
+                      _genderHasError =
+                          !(_formKey.currentState?.fields['gender']
+                                  ?.validate() ??
+                              false);
                     });
                   },
                   valueTransformer: (val) => val?.toString(),
@@ -212,13 +230,16 @@ class _CompleteFormState extends State<CompleteForm> {
                   initialValue: null,
                   name: 'best_language',
                   onChanged: _onChanged,
-                  validator: FormBuilderValidators.compose(
-                      [FormBuilderValidators.required()]),
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
                   options: ['Dart', 'Kotlin', 'Java', 'Swift', 'Objective-C']
-                      .map((lang) => FormBuilderFieldOption(
-                            value: lang,
-                            child: Text(lang),
-                          ))
+                      .map(
+                        (lang) => FormBuilderFieldOption(
+                          value: lang,
+                          child: Text(lang),
+                        ),
+                      )
                       .toList(growable: false),
                   controlAffinity: ControlAffinity.trailing,
                 ),
@@ -231,7 +252,8 @@ class _CompleteFormState extends State<CompleteForm> {
                 FormBuilderCheckboxGroup<String>(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                      labelText: 'The language of my people'),
+                    labelText: 'The language of my people',
+                  ),
                   name: 'languages',
                   // initialValue: const ['Dart'],
                   options: const [
@@ -255,7 +277,8 @@ class _CompleteFormState extends State<CompleteForm> {
                 FormBuilderFilterChips<String>(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                      labelText: 'The language of my people'),
+                    labelText: 'The language of my people',
+                  ),
                   name: 'languages_filter',
                   selectedColor: Colors.red,
                   options: const [
@@ -289,8 +312,9 @@ class _CompleteFormState extends State<CompleteForm> {
                 FormBuilderChoiceChips<String>(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
-                      labelText:
-                          'Ok, if I had to choose one language, it would be:'),
+                    labelText:
+                        'Ok, if I had to choose one language, it would be:',
+                  ),
                   name: 'languages_choice',
                   initialValue: 'Dart',
                   options: const [
@@ -325,15 +349,16 @@ class _CompleteFormState extends State<CompleteForm> {
             children: <Widget>[
               Expanded(
                 child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState?.saveAndValidate() ?? false) {
-                        debugPrint(_formKey.currentState?.value.toString());
-                      } else {
-                        debugPrint(_formKey.currentState?.value.toString());
-                        debugPrint('validation failed');
-                      }
-                    },
-                    child: const Text('Submit')),
+                  onPressed: () {
+                    if (_formKey.currentState?.saveAndValidate() ?? false) {
+                      debugPrint(_formKey.currentState?.value.toString());
+                    } else {
+                      debugPrint(_formKey.currentState?.value.toString());
+                      debugPrint('validation failed');
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
               ),
               const SizedBox(width: 20),
               Expanded(

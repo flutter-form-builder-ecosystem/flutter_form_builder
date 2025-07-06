@@ -242,10 +242,9 @@ class GroupedCheckbox<T> extends StatelessWidget {
       OptionsOrientation.horizontal => SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children:
-              widgetList.map((item) {
-                return Column(children: <Widget>[item]);
-              }).toList(),
+          children: widgetList.map((item) {
+            return Column(children: <Widget>[item]);
+          }).toList(),
         ),
       ),
       OptionsOrientation.wrap => SingleChildScrollView(
@@ -276,35 +275,30 @@ class GroupedCheckbox<T> extends StatelessWidget {
       focusColor: focusColor,
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
-      value:
-          tristate
-              ? value?.contains(optionValue)
-              : true == value?.contains(optionValue),
+      value: tristate
+          ? value?.contains(optionValue)
+          : true == value?.contains(optionValue),
       tristate: tristate,
-      onChanged:
-          isOptionDisabled
-              ? null
-              : (selected) {
-                List<T> selectedListItems =
-                    value == null ? [] : List.of(value!);
-                selected!
-                    ? selectedListItems.add(optionValue)
-                    : selectedListItems.remove(optionValue);
-                onChanged(selectedListItems);
-              },
+      onChanged: isOptionDisabled
+          ? null
+          : (selected) {
+              List<T> selectedListItems = value == null ? [] : List.of(value!);
+              selected!
+                  ? selectedListItems.add(optionValue)
+                  : selectedListItems.remove(optionValue);
+              onChanged(selectedListItems);
+            },
     );
     final label = GestureDetector(
-      onTap:
-          isOptionDisabled
-              ? null
-              : () {
-                List<T> selectedListItems =
-                    value == null ? [] : List.of(value!);
-                selectedListItems.contains(optionValue)
-                    ? selectedListItems.remove(optionValue)
-                    : selectedListItems.add(optionValue);
-                onChanged(selectedListItems);
-              },
+      onTap: isOptionDisabled
+          ? null
+          : () {
+              List<T> selectedListItems = value == null ? [] : List.of(value!);
+              selectedListItems.contains(optionValue)
+                  ? selectedListItems.remove(optionValue)
+                  : selectedListItems.add(optionValue);
+              onChanged(selectedListItems);
+            },
       child: option,
     );
 
@@ -331,14 +325,16 @@ class GroupedCheckbox<T> extends StatelessWidget {
       ],
     );
 
-    if (this.itemDecoration != null) {
+    if (itemDecoration != null) {
       compositeItem = Container(
-        decoration: this.itemDecoration,
+        decoration: itemDecoration,
         margin: EdgeInsets.only(
-          bottom:
-              orientation == OptionsOrientation.vertical ? wrapSpacing : 0.0,
-          right:
-              orientation == OptionsOrientation.horizontal ? wrapSpacing : 0.0,
+          bottom: orientation == OptionsOrientation.vertical
+              ? wrapSpacing
+              : 0.0,
+          right: orientation == OptionsOrientation.horizontal
+              ? wrapSpacing
+              : 0.0,
         ),
         child: compositeItem,
       );

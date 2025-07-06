@@ -43,6 +43,53 @@ void main() {
       // The field should be valid again
       expect(decorationFieldKey.currentState?.isValid, isTrue);
     });
+
+    testWidgets('when set errorBuilder then show a custom widget on error', (
+      widgetTester,
+    ) async {
+      final decorationFieldKey = GlobalKey<FormBuilderFieldDecorationState>();
+      const name = 'testField';
+      const errorTextField = 'error text field';
+      final errorTextKey = Key('errorTextKey');
+      final widget = FormBuilderFieldDecoration<String>(
+        key: decorationFieldKey,
+        name: name,
+        errorBuilder: (context, errorText) {
+          return Text(
+            errorText,
+            key: errorTextKey,
+            style: const TextStyle(color: Colors.red),
+          );
+        },
+        builder: (FormFieldState<String?> field) {
+          return InputDecorator(
+            decoration: (field as FormBuilderFieldDecorationState).decoration,
+            child: TextField(
+              onChanged: (value) {
+                field.didChange(value);
+              },
+            ),
+          );
+        },
+      );
+
+      await widgetTester.pumpWidget(buildTestableFieldWidget(widget));
+
+      // Initially, the field should be valid
+      expect(decorationFieldKey.currentState?.isValid, isTrue);
+
+      decorationFieldKey.currentState?.invalidate(errorTextField);
+
+      // The field should be invalid
+      expect(decorationFieldKey.currentState?.isValid, isFalse);
+
+      await widgetTester.pumpAndSettle();
+
+      // Check if the custom error widget is displayed
+      expect(find.text(errorTextField), findsOneWidget);
+      expect(find.byKey(errorTextKey), findsOneWidget);
+    });
+
     group('decoration enabled -', () {
       testWidgets(
         'when change the error text then the field should be invalid',

@@ -19,6 +19,7 @@ class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
     super.onChanged,
     super.onReset,
     super.focusNode,
+    super.errorBuilder,
     required super.builder,
     this.decoration = const InputDecoration(),
   }) : assert(
@@ -45,15 +46,20 @@ class FormBuilderFieldDecorationState<
   F get widget => super.widget as F;
 
   /// Get the decoration with the current state
-  InputDecoration get decoration => widget.decoration.copyWith(
-    // Read only allow show error to support property skipDisabled
-    errorText:
-        widget.enabled || readOnly
-            ? widget.decoration.errorText ?? errorText
-            : null,
-    enabled:
-        widget.decoration.enabled ? widget.enabled : widget.decoration.enabled,
-  );
+  InputDecoration get decoration {
+    final String? efectiveErrorText = widget.enabled || readOnly
+        ? widget.decoration.errorText ?? errorText
+        : null;
+
+    return widget.decoration.copyWith(
+      // Read only allow show error to support property skipDisabled
+      errorText: widget.errorBuilder != null ? null : efectiveErrorText,
+      error: widget.errorBuilder != null && efectiveErrorText != null
+          ? widget.errorBuilder!(context, efectiveErrorText)
+          : null,
+      enabled: widget.decoration.enabled ? widget.enabled : false,
+    );
+  }
 
   @override
   bool get hasError => super.hasError || widget.decoration.errorText != null;
