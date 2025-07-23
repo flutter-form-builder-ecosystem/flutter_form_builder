@@ -199,7 +199,7 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.barrierDismissible = true,
   }) : super(
          builder: (FormFieldState<DateTime?> field) {
-           final state = field as _FormBuilderDateTimePickerState;
+           final state = field as FormBuilderDateTimePickerState;
 
            return FocusTraversalGroup(
              policy: ReadingOrderTraversalPolicy(),
@@ -244,10 +244,13 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
 
   @override
   FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime>
-  createState() => _FormBuilderDateTimePickerState();
+  createState() => FormBuilderDateTimePickerState();
 }
 
-class _FormBuilderDateTimePickerState
+/// Holds the state of a [FormBuilderDateTimePicker].
+///
+/// The picker can be programmatically opened using the [showPicker] method.
+class FormBuilderDateTimePickerState
     extends
         FormBuilderFieldDecorationState<FormBuilderDateTimePicker, DateTime> {
   late TextEditingController _textFieldController;
