@@ -1,3 +1,12 @@
+# 10.2.0
+
+* Set minimal Flutter version to 3.35.0
+* Set minimal Dart version to 3.9.0
+* Replace deprecated properties and widgets. This do not affect the public API functionality.
+  * [FormBuilderRadioGroup] Replace widget to use `RadioGroup`.
+  * [FormBuilderField] Use `onReset` from `FormField`.
+  * [FormBuilderSwitch] Use `activeThumbColor` to `activeColor`.
+
 # 10.1.0
 
 * Set minimal Flutter version to 3.32.0
