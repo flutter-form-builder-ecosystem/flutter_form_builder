@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_form_builder/src/form_builder_field.dart';
+import 'package:flutter_form_builder/src/form_builder_field_decoration.dart';
+import 'package:flutter_form_builder/src/form_builder_field_option.dart';
+import 'package:flutter_form_builder/src/widgets/grouped_radio.dart';
 
 /// Field to select one value from a list of Radio Widgets
 class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {

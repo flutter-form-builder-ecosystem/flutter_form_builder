@@ -172,5 +172,51 @@ void main() {
       expect(Focus.of(tester.element(widgetFinder)).hasFocus, true);
       expect(focusNode?.hasFocus, true);
     });
+    testWidgets(
+      'when change value, onChange will be called with value changed',
+      (WidgetTester tester) async {
+        const widgetName = 'key';
+        int? changedValue;
+        final testWidget = FormBuilderRadioGroup<int>(
+          name: widgetName,
+          onChanged: (value) {
+            changedValue = value;
+          },
+          options: const [
+            FormBuilderFieldOption(key: ValueKey('1'), value: 1),
+            FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+            FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+          ],
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        expect(formValue(widgetName), isNull);
+        await tester.tap(find.byKey(const ValueKey('2')));
+        await tester.pumpAndSettle();
+        expect(changedValue, equals(2));
+      },
+    );
+    testWidgets('when is disable then can not change value', (
+      WidgetTester tester,
+    ) async {
+      const widgetName = 'key';
+      int? changedValue;
+      final testWidget = FormBuilderRadioGroup<int>(
+        name: widgetName,
+        onChanged: (value) {
+          changedValue = value;
+        },
+        enabled: false,
+        options: const [
+          FormBuilderFieldOption(key: ValueKey('1'), value: 1),
+          FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+          FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+        ],
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+      await tester.tap(find.byKey(const ValueKey('2')));
+      await tester.pumpAndSettle();
+      expect(changedValue, equals(null));
+    });
   });
 }
