@@ -63,6 +63,7 @@ class FormBuilderDateRangePicker
   final bool useRootNavigator; // widget.useRootNavigator,
   final bool allowClear;
   final Widget? clearIcon;
+  final SelectableDayForRangePredicate? selectableDayPredicate;
 
   /// Creates field for selecting a range of dates
   FormBuilderDateRangePicker({
@@ -131,6 +132,7 @@ class FormBuilderDateRangePicker
     this.useRootNavigator = true,
     this.allowClear = false,
     this.clearIcon,
+    this.selectableDayPredicate,
   }) : super(
          builder: (FormFieldState<DateTimeRange?> field) {
            final state = field as _FormBuilderDateRangePickerState;
@@ -252,6 +254,7 @@ class _FormBuilderDateRangePickerState
       routeSettings: widget.routeSettings,
       saveText: widget.saveText,
       useRootNavigator: widget.useRootNavigator,
+      selectableDayPredicate: widget.selectableDayPredicate,
     );
     if (picked != null) {
       didChange(picked);
