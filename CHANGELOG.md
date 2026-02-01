@@ -1,3 +1,10 @@
+# 10.3.0
+
+* Set minimal Flutter version to 3.38.0
+* Set minimal Dart version to 3.10.0
+* [FormBuilderDateRangePicker] Add `selectableDayPredicate` property by @Guilain on [#1501](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1501)
+* docs: Update example README with comprehensive project documentation
+
 # 10.2.0
 
 * Set minimal Flutter version to 3.35.0
