@@ -157,7 +157,6 @@ FormBuilder(
 #### Building your own custom field
 
 To build your own field within a `FormBuilder`, we use `FormBuilderField` which will require that you define your own field.
-Read [this article](https://medium.com/@danvickmiller/building-a-custom-flutter-form-builder-field-c67e2b2a27f4) for step-by-step instructions on how to build your own custom field.
 
 ```dart
 var options = ["Option 1", "Option 2", "Option 3"];
