@@ -13,6 +13,8 @@ on:
 
   workflow_dispatch:
 
+  permissions:
+    contents: read
 # This ensures that previous jobs for the PR are canceled when PR is updated
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
