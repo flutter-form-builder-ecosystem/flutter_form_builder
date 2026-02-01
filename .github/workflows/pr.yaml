@@ -7,10 +7,10 @@ on:
 jobs:
   validate-pr-title:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: PR Conventional Commit Validation
-        permissions:
-          contents: read
         uses:  ytanikin/PRConventionalCommits@1.3.0
         with:
          task_types: '["feat","fix","docs","test","ci","refactor","perf","chore","revert"]'
