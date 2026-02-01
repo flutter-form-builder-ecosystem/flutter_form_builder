@@ -28,6 +28,8 @@ jobs:
       enable-fix-tests: true
       fvm-flavor: beta
   example:
+    permissions:
+      contents: read
     uses: flutter-form-builder-ecosystem/.github/.github/workflows/build-examples.yaml@main
     with:
       fvm-flavor: beta
