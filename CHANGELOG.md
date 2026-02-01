@@ -1,3 +1,7 @@
+# 10.3.0+1
+
+* Remove article link from readme
+
 # 10.3.0
 
 * Set minimal Flutter version to 3.38.0
@@ -1180,9 +1184,8 @@ Bug fix: Imported `dart:async` for use of `Future`s to be compatible with Dart <
 
 ## [1.3.1]
 
-* Moved ChipsInput into own library on pub.dartlang.org, 
-check it out [here](https://pub.dartlang.org/packages/flutter_chips_input)
-* Updated example code to include proper use of Form's `onChanged` function after update. 
+* Moved ChipsInput into own library on [pub.dev](https://pub.dev/packages/flutter_chips_input)
+* Updated example code to include proper use of Form's `onChanged` function after update.
 Closes [#8](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/issues/8)
 
 ## [1.3.0]
