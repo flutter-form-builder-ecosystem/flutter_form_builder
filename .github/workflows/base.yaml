@@ -36,6 +36,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
+      pages: write
     uses: flutter-form-builder-ecosystem/.github/.github/workflows/deployment.yaml@main
     if: ${{ github.ref_type == 'tag' }}
     needs: [build, example]
