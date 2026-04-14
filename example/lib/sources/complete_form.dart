@@ -55,15 +55,17 @@ class _CompleteFormState extends State<CompleteForm> {
                   inputType: InputType.both,
                   decoration: InputDecoration(
                     labelText: 'Appointment Time',
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        _formKey.currentState!.fields['date']?.didChange(null);
-                      },
-                    ),
+                    // suffixIcon: IconButton(
+                    //   icon: const Icon(Icons.close),
+                    //   onPressed: () {
+                    //     _formKey.currentState!.fields['date']?.didChange(null);
+                    //   },
+                    // ),
                   ),
                   initialTime: const TimeOfDay(hour: 8, minute: 0),
                   // locale: const Locale.fromSubtags(languageCode: 'fr'),
+                  allowClear: true,
+                  clearIcon: Icon(Icons.clear),
                 ),
                 FormBuilderDateRangePicker(
                   name: 'date_range',

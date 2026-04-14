@@ -2,10 +2,8 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:intl/intl.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 enum InputType { date, time, both }
 
@@ -123,6 +121,9 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   final EntryModeChangeCallback? onEntryModeChanged;
   final bool barrierDismissible;
 
+  final bool allowClear;
+  final Widget? clearIcon;
+
   /// If true, disables the picker so it's not shown when the field is tapped.
   final bool disablePicker;
 
@@ -197,6 +198,9 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
     this.onEntryModeChanged,
     this.disablePicker = false,
     this.barrierDismissible = true,
+    // TODO: set allClear to true if that's the default behaviour
+    this.allowClear = false,
+    this.clearIcon,
   }) : super(
          builder: (FormFieldState<DateTime?> field) {
            final state = field as _FormBuilderDateTimePickerState;
@@ -403,6 +407,27 @@ class _FormBuilderDateTimePickerState
 
   DateTime? convert(TimeOfDay? time) =>
       time == null ? null : DateTime(1, 1, 1, time.hour, time.minute);
+
+  /// Sets the [allowClear] property for automatic DateTime reset, and [clearIcon] to a default or user defined icon.
+  @override
+  InputDecoration get decoration => widget.allowClear
+      ? super.decoration.copyWith(
+          suffix: value == null
+              ? null
+              : IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(
+                    maxWidth: 24,
+                    maxHeight: 24,
+                  ),
+                  onPressed: () {
+                    focus();
+                    didChange(null);
+                  },
+                  icon: widget.clearIcon ?? const Icon(Icons.clear),
+                ),
+        )
+      : super.decoration;
 
   @override
   void didChange(DateTime? value) {
