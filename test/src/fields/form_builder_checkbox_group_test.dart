@@ -181,7 +181,9 @@ void main() {
         await tester.pumpWidget(
           buildTestableFieldWidget(
             testWidget,
-            initialValue: const {fieldName: [1, 3]},
+            initialValue: const {
+              fieldName: [1, 3],
+            },
           ),
         );
 
