@@ -503,11 +503,13 @@ void main() {
     });
     group('reset -', () {
       testWidgets(
-        'Should avoid reset recursion when value returns to initial in onChanged',
+        'Should avoid reset recursion when reset is called after dirty state',
         (tester) async {
           const textFieldName = 'text';
           final textFieldKey = GlobalKey<FormBuilderFieldState>();
           var onChangedCalls = 0;
+          var onChangedCallsBeforeReset = 0;
+          bool? isDirtyInResetOnChanged;
           final testWidget = FormBuilderTextField(
             name: textFieldName,
             key: textFieldKey,
@@ -515,8 +517,8 @@ void main() {
             onChanged: (value) {
               onChangedCalls++;
               final state = textFieldKey.currentState;
-              if (value == state?.initialValue && state?.isDirty == true) {
-                state?.reset();
+              if (value == state?.initialValue) {
+                isDirtyInResetOnChanged = state?.isDirty;
               }
             },
           );
@@ -525,12 +527,18 @@ void main() {
           final widgetFinder = find.byWidget(testWidget);
           await tester.enterText(widgetFinder, 'test');
           await tester.pumpAndSettle();
-          await tester.enterText(widgetFinder, 'hi');
+
+          expect(textFieldKey.currentState?.isDirty, true);
+          onChangedCallsBeforeReset = onChangedCalls;
+
+          textFieldKey.currentState?.reset();
           await tester.pumpAndSettle();
 
           expect(tester.takeException(), isNull);
+          expect(textFieldKey.currentState?.value, equals('hi'));
           expect(textFieldKey.currentState?.isDirty, false);
-          expect(onChangedCalls, equals(2));
+          expect(onChangedCalls, equals(onChangedCallsBeforeReset + 1));
+          expect(isDirtyInResetOnChanged, isFalse);
         },
       );
       testWidgets('Should reset to null when call reset', (tester) async {
