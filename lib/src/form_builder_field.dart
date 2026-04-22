@@ -185,7 +185,7 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void _informFormForFieldChange() {
     if (_formBuilderState != null) {
-      _dirty = true;
+      _dirty = value != initialValue;
       if (enabled || readOnly) {
         _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
         return;
