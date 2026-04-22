@@ -166,6 +166,34 @@ void main() {
       expect(checkbox2.value, false);
       expect(checkbox3.value, true);
     });
+    testWidgets(
+      'Should not dirty when didChange receives a list matching initial contents',
+      (WidgetTester tester) async {
+        const fieldName = 'cbg1';
+        final testWidget = FormBuilderCheckboxGroup<int>(
+          name: fieldName,
+          options: const [
+            FormBuilderFieldOption(key: ValueKey('1'), value: 1),
+            FormBuilderFieldOption(key: ValueKey('2'), value: 2),
+            FormBuilderFieldOption(key: ValueKey('3'), value: 3),
+          ],
+        );
+        await tester.pumpWidget(
+          buildTestableFieldWidget(
+            testWidget,
+            initialValue: const {fieldName: [1, 3]},
+          ),
+        );
+
+        final state = formKey.currentState?.fields[fieldName];
+        expect(state?.isDirty, false);
+
+        formFieldDidChange(fieldName, [1, 3]);
+        await tester.pumpAndSettle();
+
+        expect(state?.isDirty, false);
+      },
+    );
     testWidgets('When press tab, field will be focused', (
       WidgetTester tester,
     ) async {
