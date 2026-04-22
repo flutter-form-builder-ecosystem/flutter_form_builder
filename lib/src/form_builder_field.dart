@@ -224,8 +224,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// Also reset custom error text if exists, and set [isDirty] to `false`.
   void reset() {
     super.reset();
-    didChange(initialValue);
     _dirty = false;
+    didChange(initialValue);
     if (_customErrorText != null) {
       setState(() => _customErrorText = null);
     }
