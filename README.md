@@ -154,6 +154,10 @@ FormBuilder(
 ),
 ```
 
+For a complete example that enables or disables the submit button from form
+state and validates an email field conditionally, see
+[Submit Button State](example/lib/sources/submit_button.dart).
+
 #### Building your own custom field
 
 To build your own field within a `FormBuilder`, we use `FormBuilderField` which will require that you define your own field.
