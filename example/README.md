@@ -10,6 +10,7 @@ This example showcases various form building patterns and use cases:
 - **Sign Up Form** - A practical sign-up form example
 - **Dynamic Fields** - Forms with fields that can be added/removed at runtime
 - **Conditional Fields** - Fields that show/hide based on other field values
+- **Submit Button State** - Submit button enabled from form state with conditional validation
 - **Related Fields** - Forms with interdependent field values
 - **Grouped Radio/Checkbox** - Selection inputs with grouping
 - **Decorated Radio/Checkbox** - Custom styling for selection fields
@@ -48,6 +49,7 @@ lib/
 │   ├── signup_form.dart            # Sign up form
 │   ├── dynamic_fields.dart         # Dynamic field management
 │   ├── conditional_fields.dart     # Conditional visibility
+│   ├── submit_button.dart          # Submit button state and validation
 │   ├── related_fields.dart         # Field dependencies
 │   ├── grouped_radio_checkbox.dart # Grouped selections
 │   ├── decorated_radio_checkbox.dart # Styled selections
