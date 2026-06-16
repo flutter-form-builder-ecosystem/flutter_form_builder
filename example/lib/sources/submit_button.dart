@@ -17,9 +17,7 @@ class _SubmitButtonFormState extends State<SubmitButtonForm> {
 
   void _updateSubmitButton() {
     final formState = _formKey.currentState;
-    if (formState == null) {
-      return;
-    }
+    if (formState == null) return;
 
     final isSubscribed = formState.instantValue['subscribe'] == true;
     final isValid = formState.validate(focusOnInvalid: false);
