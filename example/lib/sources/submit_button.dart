@@ -34,9 +34,7 @@ class _SubmitButtonFormState extends State<SubmitButtonForm> {
         _formKey.currentState?.instantValue['subscribe'] == true;
     final hasEmail = value?.isNotEmpty ?? false;
 
-    if (!emailRequired && !hasEmail) {
-      return null;
-    }
+    if (!emailRequired && !hasEmail) return null;
 
     return FormBuilderValidators.compose([
       FormBuilderValidators.required(),
