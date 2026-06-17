@@ -23,6 +23,7 @@ Also included are common ready-made form input fields for FormBuilder. This give
   - [Basic use](#basic-use)
   - [Specific uses](#specific-uses)
     - [Validate and get values](#validate-and-get-values)
+    - [Format date and time values](#format-date-and-time-values)
     - [Building your own custom field](#building-your-own-custom-field)
     - [Programmatically changing field value](#programmatically-changing-field-value)
     - [Programmatically inducing an error](#programmatically-inducing-an-error)
@@ -157,6 +158,22 @@ FormBuilder(
 For a complete example that enables or disables the submit button from form
 state and validates an email field conditionally, see
 [Submit Button State](example/lib/sources/submit_button.dart).
+
+#### Format date and time values
+
+`FormBuilderDateTimePicker.format` expects a
+[`DateFormat`](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
+from the [`intl`](https://pub.dev/packages/intl) package.
+
+```dart
+import 'package:intl/intl.dart';
+
+FormBuilderDateTimePicker(
+  name: 'date',
+  inputType: InputType.date,
+  format: DateFormat('yyyy-MM-dd'),
+)
+```
 
 #### Building your own custom field
 

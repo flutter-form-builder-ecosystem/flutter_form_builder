@@ -18,9 +18,12 @@ class FormBuilderDateTimePicker extends FormBuilderFieldDecoration<DateTime> {
   /// picker(s) will be shown every time the field gains focus.
   // final bool editable;
 
-  /// For representing the date as a string e.g.
+  /// For representing the date as a string.
+  ///
+  /// Use [DateFormat](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
+  /// from the `intl` package, e.g.
   /// `DateFormat("EEEE, MMMM d, yyyy 'at' h:mma")`
-  /// (Sunday, June 3, 2018 at 9:24pm)
+  /// (Sunday, June 3, 2018 at 9:24pm).
   final DateFormat? format;
 
   /// The date the calendar opens to when displayed. Defaults to null.
