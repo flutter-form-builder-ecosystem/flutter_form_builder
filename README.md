@@ -277,8 +277,32 @@ FormBuilder(
 ),
 ```
 
-When use `invalidate` and `validate` methods, can use two optional parameters configure the behavior
-when invalidate field or form, like focus or auto scroll. Take a look on method documentation for more details
+##### Validation focus and auto-scroll options
+
+`validate` and `saveAndValidate` can focus the first invalid field and scroll it
+into view:
+
+```dart
+final isValid = _formKey.currentState?.saveAndValidate(
+  focusOnInvalid: true,
+  autoScrollWhenFocusOnInvalid: true,
+);
+```
+
+`focusOnInvalid` defaults to `true`, and `autoScrollWhenFocusOnInvalid` defaults
+to `false`. This is useful when the first invalid field is not a text field or
+is inside a custom field that does not automatically scroll into view when
+focused.
+
+The same behavior can be used when setting a custom field error:
+
+```dart
+_emailFieldKey.currentState?.invalidate(
+  'Email already taken',
+  shouldFocus: true,
+  shouldAutoScrollWhenFocus: true,
+);
+```
 
 ##### Using InputDecoration.errorText
 
