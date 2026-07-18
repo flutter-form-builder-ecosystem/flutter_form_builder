@@ -663,6 +663,49 @@ void main() {
       expect(formKey.currentState?.fields[textFieldName]?.hasError, isFalse);
       expect(formKey.currentState?.fields[textFieldName]?.errorText, isNull);
     });
+
+    testWidgets('Should saveAndValidateAsync at form level with autoScroll', (
+      tester,
+    ) async {
+      const textFieldName = 'text';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+        asyncValidator: (value) async {
+          await Future.delayed(const Duration(milliseconds: 10));
+          return value == 'invalid' ? 'error' : null;
+        },
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 1000,
+                  ), // Push out of view to test scroll
+                  FormBuilder(key: formKey, child: testTextField),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.enterText(find.byType(TextField), 'invalid');
+      await tester.pump();
+
+      // Ensure saveAndValidateAsync saves the value and validates
+      final validationFuture = formKey.currentState!.saveAndValidateAsync(
+        autoScrollWhenFocusOnInvalid: true,
+      );
+      await tester.pump(const Duration(milliseconds: 20));
+
+      final result = await validationFuture;
+      await tester.pumpAndSettle();
+      expect(result, isFalse);
+      expect(formKey.currentState?.value[textFieldName], 'invalid');
+    });
   });
 
   group('multiple fields interaction -', () {

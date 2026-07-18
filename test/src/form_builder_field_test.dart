@@ -717,6 +717,99 @@ void main() {
           expect(textFieldKey.currentState?.errorText, 'second error');
         },
       );
+
+      testWidgets('Should handle asyncValidator throwing exception', (
+        tester,
+      ) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final testWidget = FormBuilderTextField(
+          name: 'text',
+          key: textFieldKey,
+          asyncValidator: (value) async {
+            await Future.delayed(const Duration(milliseconds: 10));
+            throw Exception('Async failure');
+          },
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        await tester.enterText(find.byType(TextField), 'trigger');
+        await tester.pump();
+
+        final fut = textFieldKey.currentState?.validateAsync();
+        await tester.pump(const Duration(milliseconds: 20));
+        final res = await fut;
+
+        expect(res, isFalse);
+        expect(
+          textFieldKey.currentState?.errorText,
+          'Exception: Async failure',
+        );
+      });
+
+      testWidgets(
+        'Should clear custom and async errors if clearCustomError is true',
+        (tester) async {
+          final textFieldKey = GlobalKey<FormBuilderFieldState>();
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            key: textFieldKey,
+            asyncValidator: (value) async => null,
+          );
+          await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+          textFieldKey.currentState?.invalidate('Custom Error');
+          await tester.pump();
+          expect(textFieldKey.currentState?.errorText, 'Custom Error');
+
+          final fut = textFieldKey.currentState?.validateAsync(
+            clearCustomError: true,
+          );
+          await tester.pump(const Duration(milliseconds: 10));
+          await fut;
+
+          expect(textFieldKey.currentState?.errorText, isNull);
+        },
+      );
+
+      testWidgets(
+        'Should stop async validation and auto-scroll if sync validation fails',
+        (tester) async {
+          final textFieldKey = GlobalKey<FormBuilderFieldState>();
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            key: textFieldKey,
+            validator: (value) => 'Sync Error',
+            asyncValidator: (value) async => 'Async Error',
+          );
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 1000,
+                      ), // Push out of view to test scroll
+                      FormBuilder(key: formKey, child: testWidget),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          // Sync validation fails, async validation should not run, autoScroll should be triggered
+          final fut = textFieldKey.currentState?.validateAsync(
+            autoScrollWhenFocusOnInvalid: true,
+          );
+          await tester.pump(const Duration(milliseconds: 10));
+          final res = await fut;
+          await tester.pumpAndSettle(); // Wait for scroll animation
+
+          expect(res, isFalse);
+          expect(textFieldKey.currentState?.errorText, 'Sync Error');
+        },
+      );
     });
   });
 }
