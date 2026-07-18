@@ -69,8 +69,9 @@ void main() {
                     FormBuilderTextField(
                       name: textFieldName,
                       onChanged: (v) {
-                        formKey.currentState?.fields[checkboxName]
-                            ?.didChange(true);
+                        formKey.currentState?.fields[checkboxName]?.didChange(
+                          true,
+                        );
                       },
                     ),
                     FormBuilderCheckbox(
