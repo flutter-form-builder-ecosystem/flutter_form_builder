@@ -645,10 +645,7 @@ void main() {
       await tester.pump();
 
       expect(formKey.currentState?.fields[textFieldName]?.hasError, isTrue);
-      expect(
-        formKey.currentState?.fields[textFieldName]?.errorText,
-        errorText,
-      );
+      expect(formKey.currentState?.fields[textFieldName]?.errorText, errorText);
 
       // Set valid value
       await tester.enterText(find.byType(TextField), 'valid');
@@ -664,10 +661,7 @@ void main() {
       await tester.pump();
 
       expect(formKey.currentState?.fields[textFieldName]?.hasError, isFalse);
-      expect(
-        formKey.currentState?.fields[textFieldName]?.errorText,
-        isNull,
-      );
+      expect(formKey.currentState?.fields[textFieldName]?.errorText, isNull);
     });
   });
 
