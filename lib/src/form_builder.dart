@@ -312,6 +312,48 @@ class FormBuilderState extends State<FormBuilder> {
     return !hasError;
   }
 
+  /// Validate all fields of form asynchronously
+  ///
+  /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
+  /// By default `true`
+  ///
+  /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// By default `false`.
+  Future<bool> validateAsync({
+    bool focusOnInvalid = true,
+    bool autoScrollWhenFocusOnInvalid = false,
+  }) async {
+    _focusOnInvalid = focusOnInvalid;
+
+    // Each field's validateAsync runs sync validation first, then async
+    final fieldKeys = _fields.keys.toList();
+    final results = await Future.wait(
+      fieldKeys.map(
+        (key) => _fields[key]!.validateAsync(
+          focusOnInvalid: false,
+          autoScrollWhenFocusOnInvalid: false,
+        ),
+      ),
+    );
+
+    final hasError = results.contains(false);
+
+    if (hasError) {
+      final wrongFields =
+          fields.values.where((element) => element.hasError).toList();
+      if (wrongFields.isNotEmpty) {
+        if (focusOnInvalid) {
+          wrongFields.first.focus();
+        }
+        if (autoScrollWhenFocusOnInvalid) {
+          wrongFields.first.ensureScrollableVisibility();
+        }
+      }
+    }
+
+    return !hasError;
+  }
+
   /// Save form values and validate all fields of form
   ///
   /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
@@ -330,6 +372,24 @@ class FormBuilderState extends State<FormBuilder> {
   }) {
     save();
     return validate(
+      focusOnInvalid: focusOnInvalid,
+      autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+    );
+  }
+
+  /// Save form values and validate all fields of form asynchronously
+  ///
+  /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
+  /// By default `true`
+  ///
+  /// Auto scroll to first invalid field focused if [autoScrollWhenFocusOnInvalid] is `true`.
+  /// By default `false`.
+  Future<bool> saveAndValidateAsync({
+    bool focusOnInvalid = true,
+    bool autoScrollWhenFocusOnInvalid = false,
+  }) async {
+    save();
+    return validateAsync(
       focusOnInvalid: focusOnInvalid,
       autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
     );

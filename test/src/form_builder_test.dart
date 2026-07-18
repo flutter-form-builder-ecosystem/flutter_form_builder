@@ -619,6 +619,56 @@ void main() {
 
       expect(formKey.currentState?.errors, equals({}));
     });
+    testWidgets('Should validateAsync at form level', (tester) async {
+      const textFieldName = 'text';
+      const errorText = 'async error';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+        asyncValidator: (value) async {
+          await Future.delayed(const Duration(milliseconds: 20));
+          return value == 'invalid' ? errorText : null;
+        },
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testTextField));
+
+      // Set invalid value
+      await tester.enterText(find.byType(TextField), 'invalid');
+      await tester.pump();
+
+      final validationFuture = formKey.currentState!.validateAsync();
+
+      // Advance past the 20ms async validator delay
+      await tester.pump(const Duration(milliseconds: 30));
+
+      final result = await validationFuture;
+      expect(result, isFalse);
+      await tester.pump();
+
+      expect(formKey.currentState?.fields[textFieldName]?.hasError, isTrue);
+      expect(
+        formKey.currentState?.fields[textFieldName]?.errorText,
+        errorText,
+      );
+
+      // Set valid value
+      await tester.enterText(find.byType(TextField), 'valid');
+      await tester.pump();
+
+      final validationFuture2 = formKey.currentState!.validateAsync();
+
+      // Advance past the 20ms async validator delay
+      await tester.pump(const Duration(milliseconds: 30));
+
+      final result2 = await validationFuture2;
+      expect(result2, isTrue);
+      await tester.pump();
+
+      expect(formKey.currentState?.fields[textFieldName]?.hasError, isFalse);
+      expect(
+        formKey.currentState?.fields[textFieldName]?.errorText,
+        isNull,
+      );
+    });
   });
 
   group('multiple fields interaction -', () {

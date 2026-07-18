@@ -621,5 +621,102 @@ void main() {
         },
       );
     });
+    group('asyncValidator -', () {
+      testWidgets('Should validate asynchronously and update errorText', (
+        tester,
+      ) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        const errorText = 'async error';
+        final testWidget = FormBuilderTextField(
+          name: 'text',
+          key: textFieldKey,
+          asyncValidator: (value) async {
+            await Future.delayed(const Duration(milliseconds: 50));
+            return value == 'invalid' ? errorText : null;
+          },
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+        await tester.pump();
+
+        // 1. Initial State: valid
+        expect(textFieldKey.currentState?.isValid, isTrue);
+        expect(textFieldKey.currentState?.isValidating, isFalse);
+
+        // 2. Validate to 'invalid'
+        await tester.enterText(find.byType(TextField), 'invalid');
+        await tester.pump();
+
+        final validationFuture = textFieldKey.currentState!.validateAsync();
+
+        // Advance past the 50ms async validator delay
+        await tester.pump(const Duration(milliseconds: 60));
+
+        final result = await validationFuture;
+        expect(result, isFalse);
+        await tester.pump();
+
+        expect(textFieldKey.currentState?.isValidating, isFalse);
+        expect(textFieldKey.currentState?.isValid, isFalse);
+        expect(find.text(errorText), findsOneWidget);
+
+        // 3. Validate to 'valid'
+        await tester.enterText(find.byType(TextField), 'valid');
+        await tester.pump();
+
+        final validationFuture2 = textFieldKey.currentState!.validateAsync();
+
+        // Advance past the 50ms async validator delay
+        await tester.pump(const Duration(milliseconds: 60));
+
+        final result2 = await validationFuture2;
+        expect(result2, isTrue);
+        await tester.pump();
+
+        expect(textFieldKey.currentState?.isValidating, isFalse);
+        expect(textFieldKey.currentState?.isValid, isTrue);
+        expect(find.text(errorText), findsNothing);
+      });
+
+      testWidgets(
+        'Should discard stale validations when value changes rapidly',
+        (tester) async {
+          final textFieldKey = GlobalKey<FormBuilderFieldState>();
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            key: textFieldKey,
+            asyncValidator: (value) async {
+              if (value == 'first') {
+                await Future.delayed(const Duration(milliseconds: 100));
+                return 'first error';
+              } else {
+                await Future.delayed(const Duration(milliseconds: 10));
+                return 'second error';
+              }
+            },
+          );
+          await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+          // Run validation for 'first' (long delay)
+          await tester.enterText(find.byType(TextField), 'first');
+          await tester.pump();
+          final fut1 = textFieldKey.currentState?.validateAsync();
+
+          // Run validation for 'second' (short delay) — supersedes 'first'
+          await tester.enterText(find.byType(TextField), 'second');
+          await tester.pump();
+          final fut2 = textFieldKey.currentState?.validateAsync();
+
+          // Advance past both delays
+          await tester.pump(const Duration(milliseconds: 20));
+          await tester.pump(const Duration(milliseconds: 100));
+
+          await fut1;
+          await fut2;
+          await tester.pump();
+
+          expect(textFieldKey.currentState?.errorText, 'second error');
+        },
+      );
+    });
   });
 }
