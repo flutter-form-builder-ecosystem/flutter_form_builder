@@ -151,6 +151,7 @@ class FormBuilderCheckbox extends FormBuilderFieldDecoration<bool> {
                selected: selected,
                checkboxShape: shape,
                side: side,
+               isError: state.hasError,
              ),
            );
          },
