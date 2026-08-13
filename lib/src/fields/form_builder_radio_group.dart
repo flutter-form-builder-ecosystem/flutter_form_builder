@@ -11,6 +11,12 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
   final Color? focusColor;
   final Color? hoverColor;
   final ControlAffinity controlAffinity;
+
+  /// How the radio control should be aligned with the option content.
+  ///
+  /// Defaults to [CrossAxisAlignment.center]. Set to
+  /// [CrossAxisAlignment.start] to pin the radio to the top of tall options.
+  final CrossAxisAlignment itemCrossAxisAlignment;
   final double wrapRunSpacing;
   final double wrapSpacing;
   final List<FormBuilderFieldOption<T>> options;
@@ -47,6 +53,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
     super.errorBuilder,
     this.activeColor,
     this.controlAffinity = ControlAffinity.leading,
+    this.itemCrossAxisAlignment = CrossAxisAlignment.center,
     this.disabled,
     this.focusColor,
     this.hoverColor,
@@ -77,6 +84,7 @@ class FormBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                child: GroupedRadio<T>(
                  activeColor: activeColor,
                  controlAffinity: controlAffinity,
+                 itemCrossAxisAlignment: itemCrossAxisAlignment,
                  disabled: state.enabled
                      ? disabled
                      : options.map((option) => option.value).toList(),

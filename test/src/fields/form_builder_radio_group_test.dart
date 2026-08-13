@@ -196,6 +196,72 @@ void main() {
         expect(changedValue, equals(2));
       },
     );
+    testWidgets(
+      'default itemCrossAxisAlignment centers radio against tall option',
+      (WidgetTester tester) async {
+        const widgetName = 'rg1';
+        final testWidget = FormBuilderRadioGroup<String>(
+          name: widgetName,
+          orientation: OptionsOrientation.vertical,
+          options: const [
+            FormBuilderFieldOption(
+              value: 'tall',
+              child: SizedBox(
+                key: ValueKey('tall-option'),
+                height: 120,
+                width: 200,
+                child: Text('tall option'),
+              ),
+            ),
+          ],
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        final radioRect = tester.getRect(
+          find.byWidgetPredicate((widget) => widget is Radio),
+        );
+        final optionRect = tester.getRect(
+          find.byKey(const ValueKey('tall-option')),
+        );
+
+        expect(radioRect.center.dy, closeTo(optionRect.center.dy, 1));
+      },
+    );
+
+    testWidgets(
+      'itemCrossAxisAlignment start pins radio to top of tall option',
+      (WidgetTester tester) async {
+        const widgetName = 'rg1';
+        final testWidget = FormBuilderRadioGroup<String>(
+          name: widgetName,
+          orientation: OptionsOrientation.vertical,
+          itemCrossAxisAlignment: CrossAxisAlignment.start,
+          options: const [
+            FormBuilderFieldOption(
+              value: 'tall',
+              child: SizedBox(
+                key: ValueKey('tall-option'),
+                height: 120,
+                width: 200,
+                child: Text('tall option'),
+              ),
+            ),
+          ],
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        final radioRect = tester.getRect(
+          find.byWidgetPredicate((widget) => widget is Radio),
+        );
+        final optionRect = tester.getRect(
+          find.byKey(const ValueKey('tall-option')),
+        );
+
+        expect(radioRect.top, closeTo(optionRect.top, 1));
+        expect(radioRect.center.dy, lessThan(optionRect.center.dy));
+      },
+    );
+
     testWidgets('when is disable then can not change value', (
       WidgetTester tester,
     ) async {

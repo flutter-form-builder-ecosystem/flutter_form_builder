@@ -172,6 +172,12 @@ class GroupedRadio<T> extends StatefulWidget {
 
   final ControlAffinity controlAffinity;
 
+  /// How the radio control should be aligned with the option content.
+  ///
+  /// Defaults to [CrossAxisAlignment.center]. Set to
+  /// [CrossAxisAlignment.start] to pin the radio to the top of tall options.
+  final CrossAxisAlignment itemCrossAxisAlignment;
+
   /// Applied to a [Container] wrapping each item if provided
   ///
   /// If the [orientation] is set to [OptionsOrientation.vertical] then
@@ -202,6 +208,7 @@ class GroupedRadio<T> extends StatefulWidget {
     this.wrapVerticalDirection = VerticalDirection.down,
     this.separator,
     this.controlAffinity = ControlAffinity.leading,
+    this.itemCrossAxisAlignment = CrossAxisAlignment.center,
     this.itemDecoration,
   });
 
@@ -284,6 +291,7 @@ class _GroupedRadioState<T> extends State<GroupedRadio<T?>> {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: widget.itemCrossAxisAlignment,
           children: [
             if (widget.controlAffinity == ControlAffinity.leading) control,
             Flexible(child: label),
