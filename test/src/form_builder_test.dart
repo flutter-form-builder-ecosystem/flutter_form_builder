@@ -747,6 +747,75 @@ void main() {
       expect(find.text('required'), findsNothing);
     });
   });
+
+  group('autoScrollWhenFocusOnInvalid -', () {
+    testWidgets('Should scroll to a dynamically inserted first invalid field', (
+      tester,
+    ) async {
+      late StateSetter setShowField;
+      var showDynamicField = false;
+      final scrollController = ScrollController();
+      addTearDown(scrollController.dispose);
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: StatefulBuilder(
+              builder: (context, setState) {
+                setShowField = setState;
+                return SingleChildScrollView(
+                  controller: scrollController,
+                  child: FormBuilder(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        if (showDynamicField)
+                          FormBuilderTextField(
+                            name: 'dynamic',
+                            validator: (_) => 'error',
+                          ),
+                        const SizedBox(height: 1200),
+                        FormBuilderTextField(
+                          name: 'static',
+                          validator: (_) => 'error',
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      );
+
+      expect(formKey.currentState?.fields.keys.toList(), ['static']);
+
+      showDynamicField = true;
+      setShowField(() {});
+      await tester.pumpAndSettle();
+
+      expect(formKey.currentState?.fields.keys.toList(), ['static', 'dynamic']);
+      expect(scrollController.offset, 0);
+
+      expect(
+        formKey.currentState?.saveAndValidate(
+          focusOnInvalid: false,
+          autoScrollWhenFocusOnInvalid: true,
+        ),
+        isFalse,
+      );
+      await tester.pumpAndSettle();
+
+      expect(
+        scrollController.offset,
+        lessThan(200),
+        reason:
+            'Should scroll to the dynamically inserted field at the top, '
+            'not the later-registered field below the spacer',
+      );
+    });
+  });
 }
 
 // simple stateful widget that can hide and show its child with the intent of

@@ -278,6 +278,39 @@ class FormBuilderState extends State<FormBuilder> {
     _savedValue.addAll(_instantValue);
   }
 
+  /// First invalid field in visual reading order, not registration order.
+  ///
+  /// Dynamic fields register last, so [fields.values] can put a newly inserted
+  /// field after earlier ones even when it is first on screen.
+  FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>?
+  _firstInvalidField() {
+    final invalidFields = fields.values
+        .where((field) => field.hasError)
+        .toList();
+    if (invalidFields.length <= 1) {
+      return invalidFields.firstOrNull;
+    }
+
+    invalidFields.sort((a, b) {
+      final aBox = a.context.findRenderObject();
+      final bBox = b.context.findRenderObject();
+      if (aBox is! RenderBox || bBox is! RenderBox) {
+        return 0;
+      }
+      if (!aBox.hasSize || !bBox.hasSize) {
+        return 0;
+      }
+      final aOffset = aBox.localToGlobal(Offset.zero);
+      final bOffset = bBox.localToGlobal(Offset.zero);
+      final vertical = aOffset.dy.compareTo(bOffset.dy);
+      if (vertical != 0) {
+        return vertical;
+      }
+      return aOffset.dx.compareTo(bOffset.dx);
+    });
+    return invalidFields.first;
+  }
+
   /// Validate all fields of form
   ///
   /// Focus to first invalid field when has field invalid, if [focusOnInvalid] is `true`.
@@ -297,15 +330,13 @@ class FormBuilderState extends State<FormBuilder> {
     _focusOnInvalid = focusOnInvalid;
     final hasError = !_formKey.currentState!.validate();
     if (hasError) {
-      final wrongFields = fields.values
-          .where((element) => element.hasError)
-          .toList();
-      if (wrongFields.isNotEmpty) {
+      final firstInvalidField = _firstInvalidField();
+      if (firstInvalidField != null) {
         if (focusOnInvalid) {
-          wrongFields.first.focus();
+          firstInvalidField.focus();
         }
         if (autoScrollWhenFocusOnInvalid) {
-          wrongFields.first.ensureScrollableVisibility();
+          firstInvalidField.ensureScrollableVisibility();
         }
       }
     }
