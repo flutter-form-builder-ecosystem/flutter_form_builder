@@ -444,6 +444,27 @@ void main() {
 
       expect(formKey.currentState?.isDirty, true);
     });
+    testWidgets('Should not dirty when value returns to initial by user', (
+      tester,
+    ) async {
+      const textFieldName = 'text';
+      final testWidget = FormBuilderTextField(name: textFieldName);
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testWidget,
+          initialValue: {textFieldName: 'hi'},
+        ),
+      );
+
+      final widgetFinder = find.byWidget(testWidget);
+      await tester.enterText(widgetFinder, 'test');
+      await tester.pumpAndSettle();
+      expect(formKey.currentState?.isDirty, true);
+
+      await tester.enterText(widgetFinder, 'hi');
+      await tester.pumpAndSettle();
+      expect(formKey.currentState?.isDirty, false);
+    });
     testWidgets('Should dirty when update field with initial value by method', (
       tester,
     ) async {
