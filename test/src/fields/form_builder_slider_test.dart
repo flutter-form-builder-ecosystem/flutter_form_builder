@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/src/fields/form_builder_slider.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import '../../form_builder_tester.dart';
 
 void main() {

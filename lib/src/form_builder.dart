@@ -379,10 +379,7 @@ class FormBuilderState extends State<FormBuilder> {
 }
 
 class _FormBuilderScope extends InheritedWidget {
-  const _FormBuilderScope({
-    required super.child,
-    required FormBuilderState formState,
-  }) : _formState = formState;
+  const _FormBuilderScope({required super.child, required this._formState});
 
   final FormBuilderState _formState;
 

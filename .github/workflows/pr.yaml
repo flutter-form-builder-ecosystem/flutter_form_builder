@@ -1,18 +1,29 @@
-name: PR Conventional Commit Validation
+name: PR Validation
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, edited]
 
+permissions:
+  contents: read
+
 jobs:
+  anti-slop:
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: write
+    if: ${{ github.event.action == 'opened' || github.event.action == 'reopened' }}
+    uses: flutter-form-builder-ecosystem/.github/.github/workflows/pr-quality.yaml@main
+
   validate-pr-title:
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - name: PR Conventional Commit Validation
-        uses:  ytanikin/PRConventionalCommits@1.3.0
+        uses: ytanikin/PRConventionalCommits@1.3.0
         with:
-         task_types: '["feat","fix","docs","test","ci","refactor","perf","chore","revert"]'
-         add_label: 'false'
-         ticket_key_regex: '#\d+'
+          task_types: '["feat","fix","docs","test","ci","refactor","perf","chore","revert"]'
+          add_label: 'false'
+          ticket_key_regex: '#\d+'

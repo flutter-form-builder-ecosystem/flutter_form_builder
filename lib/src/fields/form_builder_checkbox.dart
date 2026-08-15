@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -178,11 +178,5 @@ class _FormBuilderCheckboxState
   void dispose() {
     effectiveFocusNode.removeListener(handleFocusChange);
     super.dispose();
-  }
-
-  @override
-  void didChange(bool? value) {
-    focus();
-    super.didChange(value);
   }
 }

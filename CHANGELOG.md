@@ -1,3 +1,31 @@
+# 11.0.0
+
+## BREAKING CHANGES
+
+* Migrate to the official [`material_ui`](https://pub.dev/packages/material_ui) package. See the migration guide on README.md for more details.
+* Set minimal Flutter version to 3.47.0
+* Set minimal Dart version to 3.13.0
+* [FormBuilderField] Change the default value of `clearCustomError` on `validate` method from `true` to `false` by @majumdersubhanu on [#1506](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1506)
+
+## Features
+
+* [FormBuilderField] Add support for `forceErrorText` property from Flutter core by @majumdersubhanu on [#1506](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1506)
+
+## Fixes
+
+* [FormBuilderField] Fix `autoValidateMode` breaking `invalidate` method by @majumdersubhanu on [#1506](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1506). Solves issue #1484
+* [FormBuilderDropdown] Reset an unknown `initialValue` on first build by @Yusufihsangorgel on [#1512](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1512). Solves issue #1363
+
+## Docs
+
+* Document validation auto-scroll behavior by @rednikisfun on [#1510](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1510). Solves issue #1404
+* Document `DateFormat` source by @rednikisfun on [#1509](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1509). Solves issue #1463
+* Add submit button state example by @rednikisfun on [#1508](https://github.com/flutter-form-builder-ecosystem/flutter_form_builder/pull/1508). Solves issue #1490
+
+## Chores
+
+* Update example native setup with Flutter 3.47.0
+
 # 10.3.0+2
 
 * Setup live website example

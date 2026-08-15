@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -419,6 +419,27 @@ void main() {
           expect(textFieldKey.currentState?.isDirty, true);
         },
       );
+      testWidgets('Should not dirty when value returns to initial by user', (
+        tester,
+      ) async {
+        const textFieldName = 'text';
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final testWidget = FormBuilderTextField(
+          name: textFieldName,
+          key: textFieldKey,
+          initialValue: 'hi',
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        final widgetFinder = find.byWidget(testWidget);
+        await tester.enterText(widgetFinder, 'test');
+        await tester.pumpAndSettle();
+        expect(textFieldKey.currentState?.isDirty, true);
+
+        await tester.enterText(widgetFinder, 'hi');
+        await tester.pumpAndSettle();
+        expect(textFieldKey.currentState?.isDirty, false);
+      });
       testWidgets('Should not dirty when reset field value', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
@@ -481,6 +502,37 @@ void main() {
       });
     });
     group('reset -', () {
+      testWidgets(
+        'Should avoid reset recursion when value returns to initial in onChanged',
+        (tester) async {
+          const textFieldName = 'text';
+          final textFieldKey = GlobalKey<FormBuilderFieldState>();
+          var onChangedCalls = 0;
+          final testWidget = FormBuilderTextField(
+            name: textFieldName,
+            key: textFieldKey,
+            initialValue: 'hi',
+            onChanged: (value) {
+              onChangedCalls++;
+              final state = textFieldKey.currentState;
+              if (value == state?.initialValue && state?.isDirty == true) {
+                state?.reset();
+              }
+            },
+          );
+          await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+          final widgetFinder = find.byWidget(testWidget);
+          await tester.enterText(widgetFinder, 'test');
+          await tester.pumpAndSettle();
+          await tester.enterText(widgetFinder, 'hi');
+          await tester.pumpAndSettle();
+
+          expect(tester.takeException(), isNull);
+          expect(textFieldKey.currentState?.isDirty, false);
+          expect(onChangedCalls, equals(2));
+        },
+      );
       testWidgets('Should reset to null when call reset', (tester) async {
         const textFieldName = 'text';
         final textFieldKey = GlobalKey<FormBuilderFieldState>();
