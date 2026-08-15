@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/generic_validator.dart';
 
@@ -348,6 +348,12 @@ class FormBuilderDropdown<T> extends FormBuilderFieldDecoration<T> {
 class _FormBuilderDropdownState<T>
     extends FormBuilderFieldDecorationState<FormBuilderDropdown<T>, T> {
   @override
+  void initState() {
+    super.initState();
+    _resetUnknownInitialValue();
+  }
+
+  @override
   void didUpdateWidget(covariant FormBuilderDropdown<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
@@ -358,22 +364,30 @@ class _FormBuilderDropdownState<T>
         .map((e) => e.child.toString())
         .toList();
 
-    if (!currentlyValues.contains(initialValue) &&
-        !initialValue.emptyValidator()) {
-      assert(
-        currentlyValues.contains(initialValue) && initialValue.emptyValidator(),
-        'The initialValue [$initialValue] is not in the list of items or is not null or empty. '
-        'Please provide one of the items as the initialValue or update your initial value. '
-        'By default, will apply [null] to field value',
-      );
-      setValue(null);
-    }
+    _resetUnknownInitialValue();
 
     if ((!listEquals(oldChilds, currentlyChilds) ||
             !listEquals(oldValues, currentlyValues)) &&
         (currentlyValues.contains(initialValue) ||
             initialValue.emptyValidator())) {
       setValue(initialValue);
+    }
+  }
+
+  /// Asserts when [initialValue] is not among the current items, like
+  /// [DropdownButton] does for its `value`. On release builds, where asserts
+  /// are disabled, falls back to a null value so an unselectable value is
+  /// never kept in the form state.
+  void _resetUnknownInitialValue() {
+    final values = widget.items.map((e) => e.value).toList();
+    if (!values.contains(initialValue) && !initialValue.emptyValidator()) {
+      assert(
+        values.contains(initialValue) && initialValue.emptyValidator(),
+        'The initialValue [$initialValue] is not in the list of items or is not null or empty. '
+        'Please provide one of the items as the initialValue or update your initial value. '
+        'By default, will apply [null] to field value',
+      );
+      setValue(null);
     }
   }
 }

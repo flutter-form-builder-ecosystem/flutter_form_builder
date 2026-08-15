@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/src/fields/form_builder_dropdown.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -219,6 +219,41 @@ void main() {
       // Verify the updated value of field
       expect(formSave(), isTrue);
       expect(formValue(widgetName), equals(2));
+    });
+    testWidgets('asserts when initial value is not in items', (
+      WidgetTester tester,
+    ) async {
+      const widgetName = 'dropdown_field';
+
+      final testWidget = FormBuilderDropdown<int>(
+        name: widgetName,
+        initialValue: 3,
+        items: const [
+          DropdownMenuItem(value: 1, child: Text('Option 1')),
+          DropdownMenuItem(value: 2, child: Text('Option 2')),
+        ],
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      expect(tester.takeException(), isAssertionError);
+    });
+    testWidgets('asserts when form initial value is not in items', (
+      WidgetTester tester,
+    ) async {
+      const widgetName = 'dropdown_field';
+
+      final testWidget = FormBuilderDropdown<int>(
+        name: widgetName,
+        items: const [
+          DropdownMenuItem(value: 1, child: Text('Option 1')),
+          DropdownMenuItem(value: 2, child: Text('Option 2')),
+        ],
+      );
+      await tester.pumpWidget(
+        buildTestableFieldWidget(testWidget, initialValue: {widgetName: 3}),
+      );
+
+      expect(tester.takeException(), isAssertionError);
     });
   });
   testWidgets('Should reset to null when call reset', (tester) async {

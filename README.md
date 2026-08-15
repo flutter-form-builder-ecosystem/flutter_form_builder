@@ -23,6 +23,7 @@ Also included are common ready-made form input fields for FormBuilder. This give
   - [Basic use](#basic-use)
   - [Specific uses](#specific-uses)
     - [Validate and get values](#validate-and-get-values)
+    - [Format date and time values](#format-date-and-time-values)
     - [Building your own custom field](#building-your-own-custom-field)
     - [Programmatically changing field value](#programmatically-changing-field-value)
     - [Programmatically inducing an error](#programmatically-inducing-an-error)
@@ -154,6 +155,26 @@ FormBuilder(
 ),
 ```
 
+For a complete example that enables or disables the submit button from form
+state and validates an email field conditionally, see
+[Submit Button State](example/lib/sources/submit_button.dart).
+
+#### Format date and time values
+
+`FormBuilderDateTimePicker.format` expects a
+[`DateFormat`](https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html)
+from the [`intl`](https://pub.dev/packages/intl) package.
+
+```dart
+import 'package:intl/intl.dart';
+
+FormBuilderDateTimePicker(
+  name: 'date',
+  inputType: InputType.date,
+  format: DateFormat('yyyy-MM-dd'),
+)
+```
+
 #### Building your own custom field
 
 To build your own field within a `FormBuilder`, we use `FormBuilderField` which will require that you define your own field.
@@ -256,8 +277,32 @@ FormBuilder(
 ),
 ```
 
-When use `invalidate` and `validate` methods, can use two optional parameters configure the behavior
-when invalidate field or form, like focus or auto scroll. Take a look on method documentation for more details
+##### Validation focus and auto-scroll options
+
+`validate` and `saveAndValidate` can focus the first invalid field and scroll it
+into view:
+
+```dart
+final isValid = _formKey.currentState?.saveAndValidate(
+  focusOnInvalid: true,
+  autoScrollWhenFocusOnInvalid: true,
+);
+```
+
+`focusOnInvalid` defaults to `true`, and `autoScrollWhenFocusOnInvalid` defaults
+to `false`. This is useful when the first invalid field is not a text field or
+is inside a custom field that does not automatically scroll into view when
+focused.
+
+The same behavior can be used when setting a custom field error:
+
+```dart
+_emailFieldKey.currentState?.invalidate(
+  'Email already taken',
+  shouldFocus: true,
+  shouldAutoScrollWhenFocus: true,
+);
+```
 
 ##### Using InputDecoration.errorText
 
@@ -407,6 +452,11 @@ class _ClearFormBuilderTextFieldState
 ```
 
 ## Migrations
+
+### v10 to v11
+
+Starting with version 11.0.0 this package migrated to the official [`material_ui`](https://pub.dev/packages/material_ui) library. Properties exposing Material types (e.g. `InputDecoration`, `DropdownMenuItem`, `ListTileControlAffinity`) now use `material_ui`
+types, so import `package:material_ui/material_ui.dart` instead of `package:flutter/material.dart` when configuring them. See the [migration guide](https://pub.dev/packages/material_ui#migrating-existing-code-to-this-package).
 
 ### v9 to v10
 
