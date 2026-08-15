@@ -13,12 +13,13 @@ screenshots:
     path: screenshots/complete_form.gif
 
 environment:
-  sdk: ">=3.10.0 <4.0.0"
-  flutter: ">=3.38.0"
+  sdk: ">=3.13.0 <4.0.0"
+  flutter: ">=3.47.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  material_ui: ^1.0.0
   # This version would be max, the same version used on flutter_localizations
   # https://github.com/flutter/flutter/blob/stable/packages/flutter_localizations/pubspec.yaml
   intl: ">=0.20.0 <0.21.0"
