@@ -29,6 +29,33 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(widgetName), isFalse);
     });
+    testWidgets('error state reaches the checkbox', (
+      WidgetTester tester,
+    ) async {
+      const widgetName = 'cb_error';
+      final testWidget = FormBuilderCheckbox(
+        name: widgetName,
+        title: const Text('Accept terms'),
+        initialValue: false,
+        validator: (value) => value == true ? null : 'required',
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      CheckboxListTile tile() =>
+          tester.widget<CheckboxListTile>(find.byType(CheckboxListTile));
+
+      expect(tile().isError, isFalse);
+
+      expect(formSave(), isFalse);
+      await tester.pumpAndSettle();
+      expect(tile().isError, isTrue);
+
+      await tester.tap(find.byType(CheckboxListTile));
+      await tester.pumpAndSettle();
+      expect(formSave(), isTrue);
+      await tester.pumpAndSettle();
+      expect(tile().isError, isFalse);
+    });
     testWidgets('When press tab, field will be focused', (
       WidgetTester tester,
     ) async {
