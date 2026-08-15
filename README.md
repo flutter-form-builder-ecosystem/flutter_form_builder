@@ -453,6 +453,11 @@ class _ClearFormBuilderTextFieldState
 
 ## Migrations
 
+### v10 to v11
+
+Starting with version 11.0.0 this package migrated to the official [`material_ui`](https://pub.dev/packages/material_ui) library. Properties exposing Material types (e.g. `InputDecoration`, `DropdownMenuItem`, `ListTileControlAffinity`) now use `material_ui`
+types, so import `package:material_ui/material_ui.dart` instead of `package:flutter/material.dart` when configuring them. See the [migration guide](https://pub.dev/packages/material_ui#migrating-existing-code-to-this-package).
+
 ### v9 to v10
 
 - Remove `invalidateField` and `invalidateFirstField` methods from FormBuilderState. Use `fields[name]?.invalidate(errorText)` and `fields.first.invalidate(errorText)` instead
