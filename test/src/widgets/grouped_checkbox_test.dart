@@ -9,7 +9,9 @@ const _options = <FormBuilderFieldOption<int>>[
 ];
 
 Widget _wrap(Widget child) {
-  return MaterialApp(home: Scaffold(body: Center(child: child)));
+  return MaterialApp(
+    home: Scaffold(body: Center(child: child)),
+  );
 }
 
 class _CheckboxGroupHarness extends StatefulWidget {
@@ -63,7 +65,9 @@ void main() {
       expect(find.byType(Checkbox), findsNWidgets(3));
     });
 
-    testWidgets('tapping a label toggles the value', (WidgetTester tester) async {
+    testWidgets('tapping a label toggles the value', (
+      WidgetTester tester,
+    ) async {
       List<int>? changed;
 
       await tester.pumpWidget(
@@ -85,7 +89,9 @@ void main() {
       expect(changed, isEmpty);
     });
 
-    testWidgets('tapping a checkbox toggles the value', (WidgetTester tester) async {
+    testWidgets('tapping a checkbox toggles the value', (
+      WidgetTester tester,
+    ) async {
       List<int>? changed;
 
       await tester.pumpWidget(
@@ -145,8 +151,16 @@ void main() {
       final checkboxes = tester
           .widgetList<Checkbox>(find.byType(Checkbox))
           .toList();
-      expect(checkboxes.map((checkbox) => checkbox.tristate), [true, true, true]);
-      expect(checkboxes.map((checkbox) => checkbox.value), [true, false, false]);
+      expect(checkboxes.map((checkbox) => checkbox.tristate), [
+        true,
+        true,
+        true,
+      ]);
+      expect(checkboxes.map((checkbox) => checkbox.value), [
+        true,
+        false,
+        false,
+      ]);
     });
 
     testWidgets('tristate mode yields null values when value is null', (
@@ -236,7 +250,9 @@ void main() {
     testWidgets('vertical item decoration uses wrapSpacing as bottom margin', (
       WidgetTester tester,
     ) async {
-      const decoration = BoxDecoration(border: Border.fromBorderSide(BorderSide()));
+      const decoration = BoxDecoration(
+        border: Border.fromBorderSide(BorderSide()),
+      );
 
       await tester.pumpWidget(
         _wrap(
@@ -263,7 +279,9 @@ void main() {
     testWidgets('horizontal item decoration uses wrapSpacing as right margin', (
       WidgetTester tester,
     ) async {
-      const decoration = BoxDecoration(border: Border.fromBorderSide(BorderSide()));
+      const decoration = BoxDecoration(
+        border: Border.fromBorderSide(BorderSide()),
+      );
 
       await tester.pumpWidget(
         _wrap(
@@ -287,8 +305,12 @@ void main() {
       }
     });
 
-    testWidgets('auto item decoration has no margin', (WidgetTester tester) async {
-      const decoration = BoxDecoration(border: Border.fromBorderSide(BorderSide()));
+    testWidgets('auto item decoration has no margin', (
+      WidgetTester tester,
+    ) async {
+      const decoration = BoxDecoration(
+        border: Border.fromBorderSide(BorderSide()),
+      );
 
       await tester.pumpWidget(
         _wrap(
@@ -357,9 +379,7 @@ void main() {
       );
 
       final row = tester.widget<Row>(
-        find
-            .ancestor(of: find.text('One'), matching: find.byType(Row))
-            .first,
+        find.ancestor(of: find.text('One'), matching: find.byType(Row)).first,
       );
       expect(row.children.first, isA<Checkbox>());
     });
@@ -379,9 +399,7 @@ void main() {
       );
 
       final row = tester.widget<Row>(
-        find
-            .ancestor(of: find.text('One'), matching: find.byType(Row))
-            .first,
+        find.ancestor(of: find.text('One'), matching: find.byType(Row)).first,
       );
       expect(row.children.last, isA<Checkbox>());
     });
@@ -416,7 +434,10 @@ void main() {
         expect(checkbox.focusColor, color);
         expect(checkbox.hoverColor, color);
         expect(checkbox.visualDensity, VisualDensity.compact);
-        expect(checkbox.materialTapTargetSize, MaterialTapTargetSize.shrinkWrap);
+        expect(
+          checkbox.materialTapTargetSize,
+          MaterialTapTargetSize.shrinkWrap,
+        );
       }
     });
   });

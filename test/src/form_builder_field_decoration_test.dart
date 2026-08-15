@@ -131,63 +131,55 @@ void main() {
           expect(decorationFieldKey.currentState?.isValid, isTrue);
         },
       );
-      test(
-        'when enable property on decoration is false and enabled true, then throw an assert',
-        () async {
-          final decorationFieldKey =
-              GlobalKey<FormBuilderFieldDecorationState>();
-          const name = 'testField';
+      test('when enable property on decoration is false and enabled true, then throw an assert', () async {
+        final decorationFieldKey = GlobalKey<FormBuilderFieldDecorationState>();
+        const name = 'testField';
 
-          expect(
-            () => FormBuilderFieldDecoration<String>(
-              key: decorationFieldKey,
-              name: name,
-              decoration: const InputDecoration(enabled: false),
-              builder: (FormFieldState<String?> field) {
-                return InputDecorator(
-                  decoration:
-                      (field as FormBuilderFieldDecorationState).decoration,
-                  child: TextField(
-                    onChanged: (value) {
-                      field.didChange(value);
-                    },
-                  ),
-                );
-              },
-            ),
-            throwsAssertionError,
-          );
-        },
-      );
-      test(
-        'when enable property on decoration is false and enable is false, then build normally',
-        () async {
-          final decorationFieldKey =
-              GlobalKey<FormBuilderFieldDecorationState>();
-          const name = 'testField';
+        expect(
+          () => FormBuilderFieldDecoration<String>(
+            key: decorationFieldKey,
+            name: name,
+            decoration: const InputDecoration(enabled: false),
+            builder: (FormFieldState<String?> field) {
+              return InputDecorator(
+                decoration:
+                    (field as FormBuilderFieldDecorationState).decoration,
+                child: TextField(
+                  onChanged: (value) {
+                    field.didChange(value);
+                  },
+                ),
+              );
+            },
+          ),
+          throwsAssertionError,
+        );
+      });
+      test('when enable property on decoration is false and enable is false, then build normally', () async {
+        final decorationFieldKey = GlobalKey<FormBuilderFieldDecorationState>();
+        const name = 'testField';
 
-          expect(
-            () => FormBuilderFieldDecoration<String>(
-              key: decorationFieldKey,
-              name: name,
-              decoration: const InputDecoration(enabled: false),
-              enabled: false,
-              builder: (FormFieldState<String?> field) {
-                return InputDecorator(
-                  decoration:
-                      (field as FormBuilderFieldDecorationState).decoration,
-                  child: TextField(
-                    onChanged: (value) {
-                      field.didChange(value);
-                    },
-                  ),
-                );
-              },
-            ),
-            returnsNormally,
-          );
-        },
-      );
+        expect(
+          () => FormBuilderFieldDecoration<String>(
+            key: decorationFieldKey,
+            name: name,
+            decoration: const InputDecoration(enabled: false),
+            enabled: false,
+            builder: (FormFieldState<String?> field) {
+              return InputDecorator(
+                decoration:
+                    (field as FormBuilderFieldDecorationState).decoration,
+                child: TextField(
+                  onChanged: (value) {
+                    field.didChange(value);
+                  },
+                ),
+              );
+            },
+          ),
+          returnsNormally,
+        );
+      });
       test(
         'when decoration is default (enabled: true), then build normally',
         () async {
@@ -215,34 +207,30 @@ void main() {
           );
         },
       );
-      test(
-        'when decoration is default (enabled: true) and enable false, then build normally',
-        () async {
-          final decorationFieldKey =
-              GlobalKey<FormBuilderFieldDecorationState>();
-          const name = 'testField';
+      test('when decoration is default (enabled: true) and enable false, then build normally', () async {
+        final decorationFieldKey = GlobalKey<FormBuilderFieldDecorationState>();
+        const name = 'testField';
 
-          expect(
-            () => FormBuilderFieldDecoration<String>(
-              key: decorationFieldKey,
-              name: name,
-              enabled: false,
-              builder: (FormFieldState<String?> field) {
-                return InputDecorator(
-                  decoration:
-                      (field as FormBuilderFieldDecorationState).decoration,
-                  child: TextField(
-                    onChanged: (value) {
-                      field.didChange(value);
-                    },
-                  ),
-                );
-              },
-            ),
-            returnsNormally,
-          );
-        },
-      );
+        expect(
+          () => FormBuilderFieldDecoration<String>(
+            key: decorationFieldKey,
+            name: name,
+            enabled: false,
+            builder: (FormFieldState<String?> field) {
+              return InputDecorator(
+                decoration:
+                    (field as FormBuilderFieldDecorationState).decoration,
+                child: TextField(
+                  onChanged: (value) {
+                    field.didChange(value);
+                  },
+                ),
+              );
+            },
+          ),
+          returnsNormally,
+        );
+      });
     });
   });
 }

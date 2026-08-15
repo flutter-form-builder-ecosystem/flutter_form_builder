@@ -9,7 +9,9 @@ const _options = <FormBuilderFieldOption<int>>[
 ];
 
 Widget _wrap(Widget child) {
-  return MaterialApp(home: Scaffold(body: Center(child: child)));
+  return MaterialApp(
+    home: Scaffold(body: Center(child: child)),
+  );
 }
 
 void main() {
@@ -161,7 +163,9 @@ void main() {
     testWidgets('vertical item decoration uses wrapSpacing as bottom margin', (
       WidgetTester tester,
     ) async {
-      const decoration = BoxDecoration(border: Border.fromBorderSide(BorderSide()));
+      const decoration = BoxDecoration(
+        border: Border.fromBorderSide(BorderSide()),
+      );
 
       await tester.pumpWidget(
         _wrap(
@@ -188,7 +192,9 @@ void main() {
     testWidgets('horizontal item decoration uses wrapSpacing as right margin', (
       WidgetTester tester,
     ) async {
-      const decoration = BoxDecoration(border: Border.fromBorderSide(BorderSide()));
+      const decoration = BoxDecoration(
+        border: Border.fromBorderSide(BorderSide()),
+      );
 
       await tester.pumpWidget(
         _wrap(
@@ -258,9 +264,7 @@ void main() {
       );
 
       final row = tester.widget<Row>(
-        find
-            .ancestor(of: find.text('One'), matching: find.byType(Row))
-            .first,
+        find.ancestor(of: find.text('One'), matching: find.byType(Row)).first,
       );
       expect(row.children.first, isA<Radio<int?>>());
     });
@@ -280,9 +284,7 @@ void main() {
       );
 
       final row = tester.widget<Row>(
-        find
-            .ancestor(of: find.text('One'), matching: find.byType(Row))
-            .first,
+        find.ancestor(of: find.text('One'), matching: find.byType(Row)).first,
       );
       expect(row.children.last, isA<Radio<int?>>());
     });

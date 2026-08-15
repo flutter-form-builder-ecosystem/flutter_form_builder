@@ -4,19 +4,16 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 void main() {
   group('FormBuilderFieldOption -', () {
-    testWidgets(
-      'renders the value as text when no child is provided',
-      (WidgetTester tester) async {
-        const option = FormBuilderFieldOption<int>(value: 42);
+    testWidgets('renders the value as text when no child is provided', (
+      WidgetTester tester,
+    ) async {
+      const option = FormBuilderFieldOption<int>(value: 42);
 
-        await tester.pumpWidget(
-          const MaterialApp(home: Scaffold(body: option)),
-        );
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: option)));
 
-        expect(find.byType(Text), findsOneWidget);
-        expect(find.text('42'), findsOneWidget);
-      },
-    );
+      expect(find.byType(Text), findsOneWidget);
+      expect(find.text('42'), findsOneWidget);
+    });
 
     testWidgets('renders the child when provided', (WidgetTester tester) async {
       const option = FormBuilderFieldOption<int>(
@@ -24,9 +21,7 @@ void main() {
         child: Text('Option label'),
       );
 
-      await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: option)),
-      );
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: option)));
 
       expect(find.byType(Text), findsOneWidget);
       expect(find.text('Option label'), findsOneWidget);
