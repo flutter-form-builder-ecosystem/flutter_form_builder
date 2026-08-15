@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -673,6 +673,78 @@ void main() {
       expect(formInstantValue(secondDropdownName), 2);
       expect(formKey.currentState?.fields, contains(firstDropdownName));
       expect(formKey.currentState?.fields, contains(secondDropdownName));
+    });
+  });
+
+  group('AutovalidateMode.onUserInteractionIfError -', () {
+    // The mode landed via flutter/flutter#175515. The runtime lookup keeps the
+    // package compatible with older stable versions: there the tests just pass
+    // without exercising the mode.
+    final onUserInteractionIfError = AutovalidateMode.values
+        .asNameMap()['onUserInteractionIfError'];
+
+    testWidgets('form level: validates only after the first failed validate', (
+      WidgetTester tester,
+    ) async {
+      if (onUserInteractionIfError == null) {
+        return;
+      }
+      const widgetName = 'name';
+      final testWidget = FormBuilderTextField(
+        name: widgetName,
+        validator: (value) =>
+            value == null || value.isEmpty ? 'required' : null,
+      );
+      await tester.pumpWidget(
+        buildTestableFieldWidget(
+          testWidget,
+          autovalidateMode: onUserInteractionIfError,
+        ),
+      );
+
+      await tester.enterText(find.byWidget(testWidget), 'a');
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byWidget(testWidget), '');
+      await tester.pumpAndSettle();
+      expect(find.text('required'), findsNothing);
+
+      expect(formSave(), isFalse);
+      await tester.pumpAndSettle();
+      expect(find.text('required'), findsOneWidget);
+
+      await tester.enterText(find.byWidget(testWidget), 'ok');
+      await tester.pumpAndSettle();
+      expect(find.text('required'), findsNothing);
+    });
+
+    testWidgets('field level: validates only after the first failed validate', (
+      WidgetTester tester,
+    ) async {
+      if (onUserInteractionIfError == null) {
+        return;
+      }
+      const widgetName = 'name';
+      final testWidget = FormBuilderTextField(
+        name: widgetName,
+        autovalidateMode: onUserInteractionIfError,
+        validator: (value) =>
+            value == null || value.isEmpty ? 'required' : null,
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+      await tester.enterText(find.byWidget(testWidget), 'a');
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byWidget(testWidget), '');
+      await tester.pumpAndSettle();
+      expect(find.text('required'), findsNothing);
+
+      expect(formKey.currentState!.fields[widgetName]!.validate(), isFalse);
+      await tester.pumpAndSettle();
+      expect(find.text('required'), findsOneWidget);
+
+      await tester.enterText(find.byWidget(testWidget), 'ok');
+      await tester.pumpAndSettle();
+      expect(find.text('required'), findsNothing);
     });
   });
 }
