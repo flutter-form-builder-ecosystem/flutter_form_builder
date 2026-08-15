@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -185,13 +186,26 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   void _informFormForFieldChange() {
     if (_formBuilderState != null) {
-      _dirty = true;
+      _dirty = !_hasSameValue(value, initialValue);
       if (enabled || readOnly) {
         _formBuilderState!.setInternalFieldValue<T>(widget.name, value);
         return;
       }
       _formBuilderState!.removeInternalFieldValue(widget.name);
     }
+  }
+
+  bool _hasSameValue(T? currentValue, T? initialValue) {
+    if (currentValue is List && initialValue is List) {
+      return listEquals(currentValue, initialValue);
+    }
+    if (currentValue is Set && initialValue is Set) {
+      return setEquals(currentValue, initialValue);
+    }
+    if (currentValue is Map && initialValue is Map) {
+      return mapEquals(currentValue, initialValue);
+    }
+    return currentValue == initialValue;
   }
 
   void _touchedHandler() {
@@ -224,8 +238,8 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   /// Also reset custom error text if exists, and set [isDirty] to `false`.
   void reset() {
     super.reset();
-    didChange(initialValue);
     _dirty = false;
+    didChange(initialValue);
     if (_customErrorText != null) {
       setState(() => _customErrorText = null);
     }

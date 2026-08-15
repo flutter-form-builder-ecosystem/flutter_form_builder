@@ -178,10 +178,4 @@ class _FormBuilderCheckboxState
     effectiveFocusNode.removeListener(handleFocusChange);
     super.dispose();
   }
-
-  @override
-  void didChange(bool? value) {
-    focus();
-    super.didChange(value);
-  }
 }
