@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_form_builder/src/extensions/autovalidatemode_extension.dart';
@@ -417,7 +419,7 @@ class FormBuilderState extends State<FormBuilder> {
     if (enabled && (widget.autovalidateMode?.isAlways ?? false)) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         // No focus on invalid, like default behavior on Flutter base Form
-        validate(focusOnInvalid: false);
+        unawaited(validateAsync(focusOnInvalid: false));
       });
     }
     super.initState();

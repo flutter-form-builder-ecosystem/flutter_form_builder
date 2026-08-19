@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -41,7 +43,12 @@ class FormBuilderField<T> extends FormField<T> {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
-  /// Called to validate the field asynchronously.
+  /// Called to validate the field asynchronously after synchronous validation
+  /// succeeds.
+  ///
+  /// This validator follows the field's or parent [FormBuilder]'s
+  /// [AutovalidateMode]. It can also be invoked explicitly with
+  /// [FormBuilderFieldState.validateAsync].
   final Future<String?> Function(T? value)? asyncValidator;
 
   /// Creates a single form field.
@@ -165,7 +172,11 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     effectiveFocusNode.addListener(_touchedHandler);
     focusAttachment = effectiveFocusNode.attach(context);
 
-    // Verify if need auto validate form
+    if (widget.asyncValidator != null &&
+        widget.autovalidateMode == AutovalidateMode.always &&
+        _formBuilderState?.widget.autovalidateMode != AutovalidateMode.always) {
+      _scheduleAsyncValidation();
+    }
   }
 
   @override
@@ -223,6 +234,60 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void _touchedHandler() {
     if (effectiveFocusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
+    } else if (!effectiveFocusNode.hasFocus &&
+        _touched &&
+        _autoValidatesOnUnfocus) {
+      _scheduleAsyncValidation();
+    }
+  }
+
+  bool get _autoValidatesOnUnfocus {
+    final fieldMode = widget.autovalidateMode;
+    final formMode = _formBuilderState?.widget.autovalidateMode;
+    return fieldMode == AutovalidateMode.onUnfocus ||
+        (formMode == AutovalidateMode.onUnfocus &&
+            fieldMode != AutovalidateMode.always);
+  }
+
+  bool _autoValidatesOnInteraction(
+    AutovalidateMode? mode, {
+    required bool hadError,
+  }) =>
+      mode == AutovalidateMode.always ||
+      mode == AutovalidateMode.onUserInteraction ||
+      (mode?.name == 'onUserInteractionIfError' && hadError);
+
+  void _scheduleAsyncValidation() {
+    if (!enabled || widget.asyncValidator == null) {
+      return;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        unawaited(validateAsync(focusOnInvalid: false));
+      }
+    });
+  }
+
+  void _autoValidateAfterInteraction({
+    required bool fieldHadError,
+    required bool formHadError,
+  }) {
+    final formMode = _formBuilderState?.widget.autovalidateMode;
+    if (_autoValidatesOnInteraction(formMode, hadError: formHadError)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_formBuilderState?.mounted ?? false) {
+          unawaited(_formBuilderState!.validateAsync(focusOnInvalid: false));
+        }
+      });
+      return;
+    }
+
+    if (_autoValidatesOnInteraction(
+      widget.autovalidateMode,
+      hadError: fieldHadError,
+    )) {
+      _scheduleAsyncValidation();
     }
   }
 
@@ -236,15 +301,26 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   @override
   void didChange(T? value) {
+    final fieldHadError = hasError;
+    final formHadError =
+        _formBuilderState?.fields.values.any((field) => field.hasError) ??
+        false;
+
     super.didChange(value);
-    if (_customErrorText != null) {
-      setState(() => _customErrorText = null);
-    }
-    if (_asyncErrorText != null) {
-      setState(() => _asyncErrorText = null);
+    _asyncValidationCount++;
+    if (_customErrorText != null || _asyncErrorText != null || _isValidating) {
+      setState(() {
+        _customErrorText = null;
+        _asyncErrorText = null;
+        _isValidating = false;
+      });
     }
     _informFormForFieldChange();
     widget.onChanged?.call(value);
+    _autoValidateAfterInteraction(
+      fieldHadError: fieldHadError,
+      formHadError: formHadError,
+    );
   }
 
   @override

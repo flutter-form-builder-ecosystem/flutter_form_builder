@@ -159,6 +159,62 @@ For a complete example that enables or disables the submit button from form
 state and validates an email field conditionally, see
 [Submit Button State](example/lib/sources/submit_button.dart).
 
+#### Asynchronous validation
+
+Use `asyncValidator` for checks that return a `Future`, such as verifying that
+an email address is not already registered. Synchronous validation runs first;
+the asynchronous validator runs only when the synchronous validator succeeds.
+
+```dart
+final _formKey = GlobalKey<FormBuilderState>();
+
+FormBuilder(
+  key: _formKey,
+  autovalidateMode: AutovalidateMode.onUnfocus,
+  child: Column(
+    children: [
+      FormBuilderTextField(
+        name: 'email',
+        validator: FormBuilderValidators.email(),
+        asyncValidator: (value) async {
+          final isAvailable = await checkEmailAvailability(value);
+          return isAvailable ? null : 'Email is already registered';
+        },
+      ),
+      ElevatedButton(
+        onPressed: () async {
+          final isValid =
+              await _formKey.currentState?.saveAndValidateAsync() ?? false;
+          if (isValid) {
+            // Submit the form.
+          }
+        },
+        child: const Text('Submit'),
+      ),
+    ],
+  ),
+);
+```
+
+`asyncValidator` follows the `autovalidateMode` set on the field or its parent
+`FormBuilder`, just like a synchronous `validator`:
+
+- `disabled` runs it only through `validateAsync()` or
+  `saveAndValidateAsync()`.
+- `always` runs it after the initial build and after value changes.
+- `onUserInteraction` runs it after the user changes a value.
+- `onUnfocus` runs it when the field loses focus.
+- `onUserInteractionIfError`, when available in the installed Flutter version,
+  reruns it after interaction only when the field or form already had an error.
+
+Use a field key to call `validateAsync()` for one field. While validation is in
+progress, `FormBuilderFieldState.isValidating` is `true`. Results from an older
+request are ignored after the value changes or a newer validation starts.
+
+For validators that make a network request, consider using
+`AutovalidateMode.disabled` and invoking `validateAsync()` with your own debounce
+if validating after every edit would create too many requests.
+
 #### Format date and time values
 
 `FormBuilderDateTimePicker.format` expects a

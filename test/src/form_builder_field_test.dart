@@ -674,6 +674,234 @@ void main() {
       );
     });
     group('asyncValidator -', () {
+      group('autovalidateMode -', () {
+        testWidgets('runs on initial build when field mode is always', (
+          tester,
+        ) async {
+          var calls = 0;
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            autovalidateMode: AutovalidateMode.always,
+            asyncValidator: (value) async {
+              calls++;
+              return 'Async Error';
+            },
+          );
+
+          await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+          await tester.pumpAndSettle();
+
+          expect(calls, 1);
+          expect(find.text('Async Error'), findsOneWidget);
+        });
+
+        testWidgets(
+          'runs after a change when field mode is onUserInteraction',
+          (tester) async {
+            var calls = 0;
+            final testWidget = FormBuilderTextField(
+              name: 'text',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              asyncValidator: (value) async {
+                calls++;
+                return null;
+              },
+            );
+
+            await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+            await tester.pumpAndSettle();
+            expect(calls, 0);
+
+            await tester.enterText(find.byType(TextField), 'changed');
+            await tester.pumpAndSettle();
+
+            expect(calls, 1);
+          },
+        );
+
+        testWidgets('does not run automatically when mode is disabled', (
+          tester,
+        ) async {
+          var calls = 0;
+          final fieldKey = GlobalKey<FormBuilderFieldState>();
+          final testWidget = FormBuilderTextField(
+            key: fieldKey,
+            name: 'text',
+            autovalidateMode: AutovalidateMode.disabled,
+            asyncValidator: (value) async {
+              calls++;
+              return null;
+            },
+          );
+
+          await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+          await tester.enterText(find.byType(TextField), 'changed');
+          await tester.pumpAndSettle();
+          expect(calls, 0);
+
+          final validation = fieldKey.currentState!.validateAsync();
+          await tester.pump();
+          expect(await validation, isTrue);
+          expect(calls, 1);
+        });
+
+        testWidgets('inherits onUserInteraction from FormBuilder', (
+          tester,
+        ) async {
+          var firstCalls = 0;
+          var secondCalls = 0;
+
+          await tester.pumpWidget(
+            buildTestableFieldWidget(
+              Column(
+                children: [
+                  FormBuilderTextField(
+                    name: 'first',
+                    asyncValidator: (value) async {
+                      firstCalls++;
+                      return null;
+                    },
+                  ),
+                  FormBuilderTextField(
+                    name: 'second',
+                    asyncValidator: (value) async {
+                      secondCalls++;
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+            ),
+          );
+          await tester.pumpAndSettle();
+          expect(firstCalls, 0);
+          expect(secondCalls, 0);
+
+          await tester.enterText(find.byType(TextField).first, 'changed');
+          await tester.pumpAndSettle();
+
+          expect(firstCalls, 1);
+          expect(secondCalls, 1);
+        });
+
+        testWidgets('inherits always from FormBuilder on initial build', (
+          tester,
+        ) async {
+          var calls = 0;
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            asyncValidator: (value) async {
+              calls++;
+              return 'Async Error';
+            },
+          );
+
+          await tester.pumpWidget(
+            buildTestableFieldWidget(
+              testWidget,
+              autovalidateMode: AutovalidateMode.always,
+            ),
+          );
+          await tester.pumpAndSettle();
+
+          expect(calls, 1);
+          expect(find.text('Async Error'), findsOneWidget);
+        });
+
+        testWidgets('runs when a field with onUnfocus loses focus', (
+          tester,
+        ) async {
+          var calls = 0;
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            autovalidateMode: AutovalidateMode.onUnfocus,
+            asyncValidator: (value) async {
+              calls++;
+              return null;
+            },
+          );
+
+          await tester.pumpWidget(
+            buildTestableFieldWidget(
+              Column(
+                children: [
+                  testWidget,
+                  ElevatedButton(onPressed: () {}, child: const Text('Next')),
+                ],
+              ),
+            ),
+          );
+          await tester.enterText(find.byType(TextField), 'changed');
+          await tester.pumpAndSettle();
+          expect(calls, 0);
+
+          await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+          await tester.pumpAndSettle();
+
+          expect(calls, 1);
+        });
+
+        testWidgets(
+          'onUserInteractionIfError runs only after an existing error',
+          (tester) async {
+            final mode = AutovalidateMode.values
+                .where((mode) => mode.name == 'onUserInteractionIfError')
+                .firstOrNull;
+            if (mode == null) {
+              return;
+            }
+
+            var calls = 0;
+            final fieldKey = GlobalKey<FormBuilderFieldState>();
+            final testWidget = FormBuilderTextField(
+              key: fieldKey,
+              name: 'text',
+              autovalidateMode: mode,
+              asyncValidator: (value) async {
+                calls++;
+                return 'Async Error';
+              },
+            );
+
+            await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+            await tester.enterText(find.byType(TextField), 'first');
+            await tester.pumpAndSettle();
+            expect(calls, 0);
+
+            final validation = fieldKey.currentState!.validateAsync();
+            await tester.pump();
+            expect(await validation, isFalse);
+            expect(calls, 1);
+
+            await tester.enterText(find.byType(TextField), 'second');
+            await tester.pumpAndSettle();
+            expect(calls, 2);
+          },
+        );
+
+        testWidgets('skips async validation when sync validation fails', (
+          tester,
+        ) async {
+          var calls = 0;
+          final testWidget = FormBuilderTextField(
+            name: 'text',
+            autovalidateMode: AutovalidateMode.always,
+            validator: (value) => 'Sync Error',
+            asyncValidator: (value) async {
+              calls++;
+              return null;
+            },
+          );
+
+          await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+          await tester.pumpAndSettle();
+
+          expect(calls, 0);
+          expect(find.text('Sync Error'), findsOneWidget);
+        });
+      });
+
       testWidgets('Should validate asynchronously and update errorText', (
         tester,
       ) async {
@@ -769,6 +997,33 @@ void main() {
           expect(textFieldKey.currentState?.errorText, 'second error');
         },
       );
+
+      testWidgets('Should discard a result after the value changes', (
+        tester,
+      ) async {
+        final textFieldKey = GlobalKey<FormBuilderFieldState>();
+        final testWidget = FormBuilderTextField(
+          name: 'text',
+          key: textFieldKey,
+          asyncValidator: (value) async {
+            await Future.delayed(const Duration(milliseconds: 50));
+            return 'stale error';
+          },
+        );
+        await tester.pumpWidget(buildTestableFieldWidget(testWidget));
+
+        await tester.enterText(find.byType(TextField), 'first');
+        await tester.pump();
+        final validation = textFieldKey.currentState!.validateAsync();
+
+        await tester.enterText(find.byType(TextField), 'second');
+        await tester.pump(const Duration(milliseconds: 60));
+        expect(await validation, isFalse);
+        await tester.pump();
+
+        expect(textFieldKey.currentState?.errorText, isNull);
+        expect(textFieldKey.currentState?.isValidating, isFalse);
+      });
 
       testWidgets('Should handle asyncValidator throwing exception', (
         tester,
