@@ -381,6 +381,7 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     super.forceErrorText,
     String? initialValue,
     super.errorBuilder,
+    super.asyncValidator,
     this.readOnly = false,
     this.maxLines = 1,
     this.obscureText = false,

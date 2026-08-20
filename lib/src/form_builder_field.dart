@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -41,6 +43,14 @@ class FormBuilderField<T> extends FormField<T> {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
+  /// Called to validate the field asynchronously after synchronous validation
+  /// succeeds.
+  ///
+  /// This validator follows the field's or parent [FormBuilder]'s
+  /// [AutovalidateMode]. It can also be invoked explicitly with
+  /// [FormBuilderFieldState.validateAsync].
+  final Future<String?> Function(T? value)? asyncValidator;
+
   /// Creates a single form field.
   const FormBuilderField({
     super.key,
@@ -58,6 +68,7 @@ class FormBuilderField<T> extends FormField<T> {
     this.valueTransformer,
     this.onChanged,
     this.focusNode,
+    this.asyncValidator,
   });
 
   @override
@@ -68,9 +79,15 @@ class FormBuilderField<T> extends FormField<T> {
 class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     extends FormFieldState<T> {
   String? _customErrorText;
+  String? _asyncErrorText;
+  bool _isValidating = false;
+  int _asyncValidationCount = 0;
   FormBuilderState? _formBuilderState;
   bool _touched = false;
   bool _dirty = false;
+
+  /// Returns true if the field is currently performing asynchronous validation.
+  bool get isValidating => _isValidating;
 
   /// The focus node that is used to focus this field.
   late FocusNode effectiveFocusNode;
@@ -98,16 +115,18 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   @override
   /// Returns the current error text,
-  /// which may be a validation error or a custom error text.
-  String? get errorText => super.errorText ?? _customErrorText;
+  /// which may be a validation error, custom error text, or async validation error.
+  String? get errorText =>
+      super.errorText ?? _customErrorText ?? _asyncErrorText;
 
   @override
-  /// Returns `true` if the field has an error or has a custom error text.
+  /// Returns `true` if the field has an error or has a custom/async error text.
   bool get hasError => super.hasError || errorText != null;
 
   @override
-  /// Returns `true` if the field is valid and has no custom error text.
-  bool get isValid => super.isValid && _customErrorText == null;
+  /// Returns `true` if the field is valid and has no custom/async error text.
+  bool get isValid =>
+      super.isValid && _customErrorText == null && _asyncErrorText == null;
 
   /// Returns `true` if the field is valid.
   bool get valueIsValid => super.isValid;
@@ -153,7 +172,11 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     effectiveFocusNode.addListener(_touchedHandler);
     focusAttachment = effectiveFocusNode.attach(context);
 
-    // Verify if need auto validate form
+    if (widget.asyncValidator != null &&
+        widget.autovalidateMode == AutovalidateMode.always &&
+        _formBuilderState?.widget.autovalidateMode != AutovalidateMode.always) {
+      _scheduleAsyncValidation();
+    }
   }
 
   @override
@@ -211,6 +234,60 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
   void _touchedHandler() {
     if (effectiveFocusNode.hasFocus && _touched == false) {
       setState(() => _touched = true);
+    } else if (!effectiveFocusNode.hasFocus &&
+        _touched &&
+        _autoValidatesOnUnfocus) {
+      _scheduleAsyncValidation();
+    }
+  }
+
+  bool get _autoValidatesOnUnfocus {
+    final fieldMode = widget.autovalidateMode;
+    final formMode = _formBuilderState?.widget.autovalidateMode;
+    return fieldMode == AutovalidateMode.onUnfocus ||
+        (formMode == AutovalidateMode.onUnfocus &&
+            fieldMode != AutovalidateMode.always);
+  }
+
+  bool _autoValidatesOnInteraction(
+    AutovalidateMode? mode, {
+    required bool hadError,
+  }) =>
+      mode == AutovalidateMode.always ||
+      mode == AutovalidateMode.onUserInteraction ||
+      (mode?.name == 'onUserInteractionIfError' && hadError);
+
+  void _scheduleAsyncValidation() {
+    if (!enabled || widget.asyncValidator == null) {
+      return;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        unawaited(validateAsync(focusOnInvalid: false));
+      }
+    });
+  }
+
+  void _autoValidateAfterInteraction({
+    required bool fieldHadError,
+    required bool formHadError,
+  }) {
+    final formMode = _formBuilderState?.widget.autovalidateMode;
+    if (_autoValidatesOnInteraction(formMode, hadError: formHadError)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_formBuilderState?.mounted ?? false) {
+          unawaited(_formBuilderState!.validateAsync(focusOnInvalid: false));
+        }
+      });
+      return;
+    }
+
+    if (_autoValidatesOnInteraction(
+      widget.autovalidateMode,
+      hadError: fieldHadError,
+    )) {
+      _scheduleAsyncValidation();
     }
   }
 
@@ -224,24 +301,59 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
 
   @override
   void didChange(T? value) {
+    final fieldHadError = hasError;
+    final formHadError =
+        _formBuilderState?.fields.values.any((field) => field.hasError) ??
+        false;
+
     super.didChange(value);
-    if (_customErrorText != null) {
-      setState(() => _customErrorText = null);
+    _asyncValidationCount++;
+    if (_customErrorText != null || _asyncErrorText != null || _isValidating) {
+      setState(() {
+        _customErrorText = null;
+        _asyncErrorText = null;
+        _isValidating = false;
+      });
     }
     _informFormForFieldChange();
     widget.onChanged?.call(value);
+    _autoValidateAfterInteraction(
+      fieldHadError: fieldHadError,
+      formHadError: formHadError,
+    );
   }
 
   @override
   /// Reset field value to initial value
   ///
-  /// Also reset custom error text if exists, and set [isDirty] to `false`.
+  /// Also reset custom/async error text if exists, and set [isDirty] to `false`.
   void reset() {
     super.reset();
+    _asyncValidationCount++;
+    setState(() {
+      _isValidating = false;
+      _asyncErrorText = null;
+      _customErrorText = null;
+    });
     _dirty = false;
     didChange(initialValue);
-    if (_customErrorText != null) {
-      setState(() => _customErrorText = null);
+  }
+
+  void _handleFocusAndScroll({
+    required bool focusOnInvalid,
+    required bool autoScrollWhenFocusOnInvalid,
+  }) {
+    final fields =
+        _formBuilderState?.fields ??
+        <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
+
+    if (hasError &&
+        focusOnInvalid &&
+        (formState?.focusOnInvalid ?? true) &&
+        enabled &&
+        !fields.values.any((e) => e.effectiveFocusNode.hasFocus)) {
+      focus();
+      if (autoScrollWhenFocusOnInvalid) ensureScrollableVisibility();
     }
   }
 
@@ -276,20 +388,84 @@ class FormBuilderFieldState<F extends FormBuilderField<T>, T>
     }
     final isValid = super.validate() && !hasError;
 
-    final fields =
-        _formBuilderState?.fields ??
-        <String, FormBuilderFieldState<FormBuilderField<dynamic>, dynamic>>{};
-
-    if (!isValid &&
-        focusOnInvalid &&
-        (formState?.focusOnInvalid ?? true) &&
-        enabled &&
-        !fields.values.any((e) => e.effectiveFocusNode.hasFocus)) {
-      focus();
-      if (autoScrollWhenFocusOnInvalid) ensureScrollableVisibility();
+    if (!isValid) {
+      _handleFocusAndScroll(
+        focusOnInvalid: focusOnInvalid,
+        autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+      );
     }
 
     return isValid;
+  }
+
+  /// Validate field asynchronously
+  Future<bool> validateAsync({
+    bool clearCustomError = false,
+    bool focusOnInvalid = true,
+    bool autoScrollWhenFocusOnInvalid = false,
+  }) async {
+    if (clearCustomError) {
+      setState(() {
+        _customErrorText = null;
+        _asyncErrorText = null;
+      });
+    }
+
+    // Run synchronous validation first
+    final isSyncValid = super.validate() && _customErrorText == null;
+    if (!isSyncValid) {
+      _handleFocusAndScroll(
+        focusOnInvalid: focusOnInvalid,
+        autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+      );
+      return false;
+    }
+
+    if (widget.asyncValidator == null) {
+      return true;
+    }
+
+    final isValid = await _runAsyncValidator(value);
+
+    if (!isValid) {
+      _handleFocusAndScroll(
+        focusOnInvalid: focusOnInvalid,
+        autoScrollWhenFocusOnInvalid: autoScrollWhenFocusOnInvalid,
+      );
+    }
+
+    return isValid;
+  }
+
+  Future<bool> _runAsyncValidator(T? valueCandidate) async {
+    final currentValidation = ++_asyncValidationCount;
+    setState(() {
+      _isValidating = true;
+      _asyncErrorText = null;
+    });
+
+    try {
+      final error = await widget.asyncValidator!(valueCandidate);
+
+      if (currentValidation != _asyncValidationCount) {
+        return false;
+      }
+
+      setState(() {
+        _asyncErrorText = error;
+        _isValidating = false;
+      });
+
+      return error == null;
+    } catch (e) {
+      if (currentValidation == _asyncValidationCount) {
+        setState(() {
+          _asyncErrorText = e.toString();
+          _isValidating = false;
+        });
+      }
+      return false;
+    }
   }
 
   /// Invalidate field with a [errorText]

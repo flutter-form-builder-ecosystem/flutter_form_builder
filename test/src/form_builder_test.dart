@@ -640,6 +640,93 @@ void main() {
 
       expect(formKey.currentState?.errors, equals({}));
     });
+    testWidgets('Should validateAsync at form level', (tester) async {
+      const textFieldName = 'text';
+      const errorText = 'async error';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+        asyncValidator: (value) async {
+          await Future.delayed(const Duration(milliseconds: 20));
+          return value == 'invalid' ? errorText : null;
+        },
+      );
+      await tester.pumpWidget(buildTestableFieldWidget(testTextField));
+
+      // Set invalid value
+      await tester.enterText(find.byType(TextField), 'invalid');
+      await tester.pump();
+
+      final validationFuture = formKey.currentState!.validateAsync();
+
+      // Advance past the 20ms async validator delay
+      await tester.pump(const Duration(milliseconds: 30));
+
+      final result = await validationFuture;
+      expect(result, isFalse);
+      await tester.pump();
+
+      expect(formKey.currentState?.fields[textFieldName]?.hasError, isTrue);
+      expect(formKey.currentState?.fields[textFieldName]?.errorText, errorText);
+
+      // Set valid value
+      await tester.enterText(find.byType(TextField), 'valid');
+      await tester.pump();
+
+      final validationFuture2 = formKey.currentState!.validateAsync();
+
+      // Advance past the 20ms async validator delay
+      await tester.pump(const Duration(milliseconds: 30));
+
+      final result2 = await validationFuture2;
+      expect(result2, isTrue);
+      await tester.pump();
+
+      expect(formKey.currentState?.fields[textFieldName]?.hasError, isFalse);
+      expect(formKey.currentState?.fields[textFieldName]?.errorText, isNull);
+    });
+
+    testWidgets('Should saveAndValidateAsync at form level with autoScroll', (
+      tester,
+    ) async {
+      const textFieldName = 'text';
+      final testTextField = FormBuilderTextField(
+        name: textFieldName,
+        asyncValidator: (value) async {
+          await Future.delayed(const Duration(milliseconds: 10));
+          return value == 'invalid' ? 'error' : null;
+        },
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 1000,
+                  ), // Push out of view to test scroll
+                  FormBuilder(key: formKey, child: testTextField),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.enterText(find.byType(TextField), 'invalid');
+      await tester.pump();
+
+      // Ensure saveAndValidateAsync saves the value and validates
+      final validationFuture = formKey.currentState!.saveAndValidateAsync(
+        autoScrollWhenFocusOnInvalid: true,
+      );
+      await tester.pump(const Duration(milliseconds: 20));
+
+      final result = await validationFuture;
+      await tester.pumpAndSettle();
+      expect(result, isFalse);
+      expect(formKey.currentState?.value[textFieldName], 'invalid');
+    });
   });
 
   group('multiple fields interaction -', () {

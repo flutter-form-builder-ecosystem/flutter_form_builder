@@ -21,6 +21,7 @@ class FormBuilderFieldDecoration<T> extends FormBuilderField<T> {
     super.focusNode,
     super.errorBuilder,
     super.forceErrorText,
+    super.asyncValidator,
     required super.builder,
     this.decoration = const InputDecoration(),
   }) : assert(
