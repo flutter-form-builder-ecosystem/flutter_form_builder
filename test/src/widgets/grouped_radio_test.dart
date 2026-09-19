@@ -318,5 +318,60 @@ void main() {
         expect(radio.materialTapTargetSize, MaterialTapTargetSize.shrinkWrap);
       }
     });
+
+    testWidgets('defaults controlAlignment to CrossAxisAlignment.center', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        _wrap(
+          GroupedRadio<int>(
+            options: _options,
+            orientation: OptionsOrientation.vertical,
+            onChanged: (_) {},
+          ),
+        ),
+      );
+
+      final rows = tester
+          .widgetList<Row>(
+            find.descendant(
+              of: find.byType(GroupedRadio<int>),
+              matching: find.byType(Row),
+            ),
+          )
+          .toList();
+      expect(rows, isNotEmpty);
+      for (final row in rows) {
+        expect(row.crossAxisAlignment, CrossAxisAlignment.center);
+      }
+    });
+
+    testWidgets('forwards controlAlignment to each item row', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        _wrap(
+          GroupedRadio<int>(
+            options: _options,
+            orientation: OptionsOrientation.vertical,
+            controlAlignment: CrossAxisAlignment.start,
+            onChanged: (_) {},
+          ),
+        ),
+      );
+
+      final rows = tester
+          .widgetList<Row>(
+            find.descendant(
+              of: find.byType(GroupedRadio<int>),
+              matching: find.byType(Row),
+            ),
+          )
+          .toList();
+      expect(rows, isNotEmpty);
+      for (final row in rows) {
+        expect(row.crossAxisAlignment, CrossAxisAlignment.start);
+      }
+    });
   });
 }
