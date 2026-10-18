@@ -75,11 +75,15 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
 
   /// {@macro flutter.widgets.EditableText.contextMenuBuilder}
   ///
-  /// If not provided, will build a default menu based on the platform.
+  /// If not provided, will build a default menu based on the platform, the
+  /// same way [TextField] does.
   ///
   /// See also:
   ///
-  ///  * [AdaptiveTextSelectionToolbar], which is built by default.
+  ///  * [SystemContextMenu], which is built by default where supported (iOS
+  ///    16+ on editable fields), so pasting doesn't trigger the iOS paste
+  ///    permission prompt.
+  ///  * [AdaptiveTextSelectionToolbar], which is built by default otherwise.
   final EditableTextContextMenuBuilder? contextMenuBuilder;
 
   /// {@macro flutter.widgets.editableText.showCursor}
@@ -544,6 +548,11 @@ class FormBuilderTextField extends FormBuilderFieldDecoration<String> {
     BuildContext context,
     EditableTextState editableTextState,
   ) {
+    if (SystemContextMenu.isSupportedByField(editableTextState)) {
+      return SystemContextMenu.editableText(
+        editableTextState: editableTextState,
+      );
+    }
     return AdaptiveTextSelectionToolbar.editableText(
       editableTextState: editableTextState,
     );

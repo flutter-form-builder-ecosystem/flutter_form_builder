@@ -23,6 +23,72 @@ void main() {
       expect(formSave(), isTrue);
       expect(formValue(textFieldName), isEmpty);
     });
+    group('default context menu', () {
+      Future<Widget> buildDefaultMenu(
+        WidgetTester tester, {
+        required bool supportsSystemMenu,
+        bool readOnly = false,
+      }) async {
+        final testWidget = FormBuilderTextField(
+          name: 'menu',
+          readOnly: readOnly,
+        );
+        await tester.pumpWidget(
+          MediaQuery(
+            data: MediaQueryData(
+              supportsShowingSystemContextMenu: supportsSystemMenu,
+            ),
+            child: buildTestableFieldWidget(testWidget),
+          ),
+        );
+        final state = tester.state<EditableTextState>(
+          find.byType(EditableText),
+        );
+        return testWidget.contextMenuBuilder!(state.context, state);
+      }
+
+      testWidgets('uses the system context menu where supported', (
+        tester,
+      ) async {
+        expect(
+          await buildDefaultMenu(tester, supportsSystemMenu: true),
+          isA<SystemContextMenu>(),
+        );
+      }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
+
+      testWidgets(
+        'uses the Flutter toolbar when the system menu is not supported',
+        (tester) async {
+          expect(
+            await buildDefaultMenu(tester, supportsSystemMenu: false),
+            isA<AdaptiveTextSelectionToolbar>(),
+          );
+        },
+        variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+      );
+
+      testWidgets('uses the Flutter toolbar on read-only fields', (
+        tester,
+      ) async {
+        expect(
+          await buildDefaultMenu(
+            tester,
+            supportsSystemMenu: true,
+            readOnly: true,
+          ),
+          isA<AdaptiveTextSelectionToolbar>(),
+        );
+      }, variant: TargetPlatformVariant.only(TargetPlatform.iOS));
+
+      testWidgets('uses the Flutter toolbar on other platforms', (
+        tester,
+      ) async {
+        expect(
+          await buildDefaultMenu(tester, supportsSystemMenu: true),
+          isA<AdaptiveTextSelectionToolbar>(),
+        );
+      }, variant: TargetPlatformVariant.only(TargetPlatform.android));
+    });
     testWidgets(
       'without initialValue',
       (tester) => _testFormBuilderTextFieldWithInitialValue(tester),
